@@ -123,7 +123,21 @@ rails server
 
 ```
 
+You'll probably get this error in terminal
 
+` FATAL: Peer authentication failed for user "postgres" `
+
+You need to make a small shange to your pg_hba.conf locate /etc/posgresql/9.3/main/
+
+```
+
+$ cd /etc/postgresql/9.3/main
+$ sudo pico ph_hba.conf
+
+```
+
+Details of the edit are here:
+http://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge
 
 ### STEP 4: LAUCH SAMPLE APP
 1. Launch ruby console (See STEP: 1)

@@ -57,12 +57,61 @@ ruby -v
 
 ```
 
-### STEP 3: CREATE NEW RUBY APPLICATION
-1. '$ cd stack/projects'
-2. '$ mkdir myTestApp'
-3. '$ cd myTestApp'
-4. '$ rvm use ruby-2.1.2@myapp --ruby-version --create'
-5. '$ rails new . -d postgresql'  //The . tells rails use the latest version in the current directory
+### STEP 3: Tell Rubygems not to install the documentation for each package locally
+
+```
+echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+
+```
+
+
+## Install Rails
+
+### STEP 1: Install Node.js
+
+To install NodeJS, we're going to add it using a PPA repository:
+
+```
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs
+
+```
+
+### STEP 2: Now install Rails
+
+`gem install rails`
+
+run raisl -v to check everything is installed correctly
+
+`rails -v`
+
+
+## Install PostgreSQL
+
+### STEP 1: add a new repository and easily install
+
+```
+sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
+wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install postgresql-common
+sudo apt-get install postgresql-9.3 libpq-dev
+
+```
+
+### STEP 2: Set up Postgres User
+
+```
+sudo -u postgres psql postgres
+
+# \password postgres
+
+Enter new password: 
+
+```
+
+
 
 ### STEP 4: LAUCH SAMPLE APP
 1. Launch ruby console (See STEP: 1)

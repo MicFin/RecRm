@@ -45,15 +45,17 @@ $ sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properti
 
 
 
-### STEP 2: UPDATE RVM, RUBY, RAILS
-1. enter rubyconsole
-2. `$ rvm get stable`
-3. `$ rvm reload`
-4. `$ rvm list known`
-5. `$ rvm install 2.1`
-6. `$ rvm --default use ruby-2.1.2`
-7. `$ gem install rails`
-8. `$ gem update --system`
+### STEP 2: Install Ruby with RVM
+```
+sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+curl -L https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
+rvm install 2.1.2
+rvm use 2.1.2 --default
+ruby -v
+
+```
 
 ### STEP 3: CREATE NEW RUBY APPLICATION
 1. '$ cd stack/projects'

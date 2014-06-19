@@ -1,3 +1,34 @@
+## Ruby w/ PostgreSQL on AWS
+This README file explains how to set up the AWS EC2 instance Ruby Stack, by Bitnami
+
+### Get Started
+
+1. **Click the follwing link**, will take you to the AWS marketplace to begin setting up your EC2 instance
+https://aws.amazon.com/marketplace/pp/B00JV8XNKQ/ref=gtw_msl_image?ie=UTF8&pf_rd_r=05ZA3J50A153TVH69TTW&pf_rd_m=A33KC2ESLMUT5Y&pf_rd_t=101&pf_rd_i=awsmp-gateway-1&pf_rd_p=1825567482&pf_rd_s=right-3
+
+2. Assuming you have setup your aws account, **select your region** and **click continue**
+
+3. Choose your Instance type and following directions to set up your key pair. When creating a key pair, .pem file will be downloaded.  Put this file in a safe place because you’ll need it to access SSH and FTP
+
+4. Launch
+
+ 
+### SSH
+
+1. SSH username is Ubuntu
+
+2. Get the public DNS. In the AWS EC2 console click on the instance, see below.
+it looks like this: ec2-54-187-205-42.us-west-2.compute.amazonaws.com
+
+3. Open Terminal and follow the steps below.  You'll need your private key you downloaded early.
+
+4. `$ cd/dir/privatekeydir`
+
+5. `$ chmod 400 mykey.pem`
+
+6. `$ ssh -i private_key.pem ubuntu@ec2-public-dns-.us-west-2.compute.amazonaws.com`
+
+
 ## NEW RAILS APP
 This README file explains how to set up your ruby on rails envirenment, create new rails apps and how to launch and publish it. 
 

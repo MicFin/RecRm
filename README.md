@@ -1,5 +1,5 @@
-## Ruby w/ PostgreSQL on AWS
-This README file explains how to set up the AWS EC2 instance Ruby Stack, by Bitnami
+## Set up Rails envirenment on AWS
+This README file explains how to set up the AWS EC2 instance with Ubuntu, Apache, postgreSQL and Ruby on Rails
 
 ### Get Started
 
@@ -29,13 +29,14 @@ it looks like this: ec2-54-187-205-42.us-west-2.compute.amazonaws.com
 6. `$ ssh -i private_key.pem ubuntu@ec2-public-dns-.us-west-2.compute.amazonaws.com`
 
 
-## NEW RAILS APP
-This README file explains how to set up your ruby on rails envirenment, create new rails apps and how to launch and publish it. 
+## Install Ruby
 
-### STEP 1: LAUNCH RUBY CONSOLE
-1. ssh into instance: https://github.com/kindrdfood/RecRm/blob/master/aws/README.md
-2. `$ cd stack`
-3. '$ sudo ./rubyconsole'
+
+### STEP 1: Get some dependencies 
+1. ```
+sudo apt-get update
+sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties
+```
 
 
 

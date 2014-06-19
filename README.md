@@ -123,11 +123,11 @@ rails server
 
 ```
 
-You'll probably get this error in terminal
+**You'll probably get this error in terminal**
 
 ` FATAL: Peer authentication failed for user "postgres" `
 
-You need to make a small shange to your pg_hba.conf locate /etc/posgresql/9.3/main/
+ou need to make a small shange to your pg_hba.conf locate /etc/posgresql/9.3/main/
 
 ```
 

@@ -202,5 +202,5 @@ Following the instructions diring installing of passenger
 - https://www.digitalocean.com/community/tutorials/how-to-configure-the-apache-web-server-on-an-ubuntu-or-debian-vps
 - http://nathanhoad.net/how-to-ruby-on-rails-ubuntu-apache-with-passenger
 - http://serverfault.com/questions/110154/whats-the-default-superuser-username-password-for-postgres-after-a-new-install
-
+- http://stackoverflow.com/questions/2786344/server-unable-to-find-public-folder-in-rails-3-production-environment
 

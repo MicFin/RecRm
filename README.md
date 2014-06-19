@@ -111,6 +111,18 @@ Enter new password:
 
 ```
 
+## Create new rails app
+
+```
+
+rails new myapp -d postgresql
+cd myapp
+rake db:create
+rails server
+
+
+```
+
 
 
 ### STEP 4: LAUCH SAMPLE APP
@@ -186,6 +198,9 @@ Enter new password:
 8. git push origin master
 
 
+## Resources
 
+- https://gorails.com/setup/ubuntu/13.10
+- 
 
 

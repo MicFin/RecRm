@@ -151,7 +151,47 @@ sudo apt-get install apache2
 
 More details: https://www.digitalocean.com/community/tutorials/how-to-configure-the-apache-web-server-on-an-ubuntu-or-debian-vps
 
+## INSTALL PASSENGER
+Passenger is going to help you launch your ruby app
 
+```
+sudo gem install passenger
+sudo passenger-install-apache2-module
+
+```
+
+Following the instructions diring installing of passenger
+
+```
+- sudo pico apache2.conf
+- cd sites-available
+- sudo pico 000-default.conf
+- Must restart server when changes are made to yml files
+
+
+- add this line to apache conf
+   LoadModule passenger_module /home/ubuntu/.rvm/gems/ruby-2.1.2/gems/passenger-4.0.45/buildout/apache2/mod_passenger.so
+   <IfModule mod_passenger.c>
+     PassengerRoot /home/ubuntu/.rvm/gems/ruby-2.1.2/gems/passenger-4.0.45
+     PassengerDefaultRuby /home/ubuntu/.rvm/gems/ruby-2.1.2/wrappers/ruby
+   </IfModule>
+
+
+      <VirtualHost *:80>
+      ServerName ec2-54-213-224-62.us-west-2.compute.amazonaws.com
+      # !!! Be sure to point DocumentRoot to 'public'!
+      DocumentRoot /etc/projects/myapp/public
+
+        <Directory /etc/projects/myapp/public>
+                #Options FollowSymLinks
+                Options Indexes FollowSymLinks Includes ExecCGI
+                AllowOverride All
+                Order deny,allow
+                Allow from all
+        </Directory>
+   </VirtualHost>
+
+```
 
 ### STEP 5: SETUP VIRTUALHOST BEFORE YOU CAN PUBLISH YOUR APP
  

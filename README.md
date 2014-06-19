@@ -140,7 +140,17 @@ Details of the edit are here:
 http://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge
 
 
-## INTSALL APACHE
+## INSTALL APACHE
+
+```
+
+sudo apt-get update
+sudo apt-get install apache2
+
+```
+
+More details: https://www.digitalocean.com/community/tutorials/how-to-configure-the-apache-web-server-on-an-ubuntu-or-debian-vps
+
 
 
 ### STEP 5: SETUP VIRTUALHOST BEFORE YOU CAN PUBLISH YOUR APP

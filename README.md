@@ -22,12 +22,13 @@ it looks like this: ec2-54-187-205-42.us-west-2.compute.amazonaws.com
 
 3. Open Terminal and follow the steps below.  You'll need your private key you downloaded early.
 
-4. `$ cd/dir/privatekeydir`
+```
 
-5. `$ chmod 400 mykey.pem`
+ $ cd/dir/privatekeydir
+ $ chmod 400 mykey.pem
+ $ ssh -i private_key.pem ubuntu@ec2-public-dns-.us-west-2.compute.amazonaws.com
 
-6. `$ ssh -i private_key.pem ubuntu@ec2-public-dns-.us-west-2.compute.amazonaws.com`
-
+```
 
 ## Install Ruby
 
@@ -37,9 +38,7 @@ it looks like this: ec2-54-187-205-42.us-west-2.compute.amazonaws.com
 ```
 
 $ sudo apt-get update
-
 $ sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev 
-
 $ sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties
 
 ```

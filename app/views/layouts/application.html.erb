@@ -11,9 +11,14 @@
 <div class="container">
 	
 	<div class="nav nav-tabs">
-		<li> <a >HOME</a> </li>
-		<li> <%= link_to 'Sign in' %>  </li>
-		<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+		<li> <%= link_to 'HOME', root_path %> </li>
+
+		<% if current_user %>
+			<li><%= link_to 'SIGN OUT', destroy_user_session_path, :method => :delete %></li>
+		<% else %>
+			<li> <%= link_to 'SIGN UP', new_user_registration_path %>  </li>
+			<li> <%= link_to 'LOGIN',  new_user_session_path %>  </li>
+		<% end %>
 	</div>
 
 	<p class="notice"><%= notice %></p>

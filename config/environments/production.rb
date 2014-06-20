@@ -82,7 +82,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
     #Mail functions for devise
- #config.action_mailer.default_url_options = { :host => 'ec2-54-213-224-62.us-west-2.compute.amazonaws.com'}
-  #config.action_mailer.delivery_method = :smtp
- # config.action_mailer.perform_deliveries = true
+ config.action_mailer.default_url_options = { :host => 'ec2-54-213-224-62.us-west-2.compute.amazonaws.com'}
+  config.action_mailer.delivery_method = :smtp
+ config.action_mailer.perform_deliveries = true
 end

@@ -12,10 +12,12 @@
 	
 	<div class="nav nav-tabs">
 		<li> <a >HOME</a> </li>
-		<li> <a >HOME</a>  </li>
+		<li> <%= link_to 'Sign in' %>  </li>
+		<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
 	</div>
 
-
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
 	<%= yield %>
 
 </div>

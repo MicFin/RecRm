@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624122845) do
+ActiveRecord::Schema.define(version: 20140624135932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,21 @@ ActiveRecord::Schema.define(version: 20140624122845) do
 
   add_index "families_users", ["family_id"], name: "index_families_users_on_family_id", using: :btree
   add_index "families_users", ["user_id"], name: "index_families_users_on_user_id", using: :btree
+
+  create_table "patient_groups", force: true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.text     "description"
+    t.integer  "order"
+    t.boolean  "input_option"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "patient_groups_users", id: false, force: true do |t|
+    t.integer "patient_group_id", null: false
+    t.integer "user_id",          null: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -19,6 +19,9 @@
 			<li> <%= link_to 'SIGN UP', new_user_registration_path %>  </li>
 			<li> <%= link_to 'LOGIN',  new_user_session_path %>  </li>
 		<% end %>
+		<% if current_dietitian %>
+			<li><%= link_to 'SIGN OUT', destroy_dietitian_session_path, :method => :delete %></li>
+		<% end %>
 	</div>
 
 	<% if flash[:notice] %>

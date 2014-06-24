@@ -1,0 +1,41 @@
+<h1>Listing appointments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Patient focus</th>
+      <th>Appointment host</th>
+      <th>Dietitian</th>
+      <th>Date</th>
+      <th>Room</th>
+      <th>Note</th>
+      <th>Client note</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        <td><%= appointment.patient_focus_id %></td>
+        <td><%= appointment.appointment_host_id %></td>
+        <td><%= appointment.dietitian_id %></td>
+        <td><%= appointment.date %></td>
+        <td><%= appointment.room_id %></td>
+        <td><%= appointment.note %></td>
+        <td><%= appointment.client_note %></td>
+        <td><%= appointment.created_at %></td>
+        <td><%= appointment.updated_at %></td>
+        <td><%= link_to 'Show', appointment %></td>
+        <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
+        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Appointment', new_appointment_path %>

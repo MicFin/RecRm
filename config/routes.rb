@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :appointments
+
+  devise_for :dietitians
   resources :families
 
   get 'welcome/index'

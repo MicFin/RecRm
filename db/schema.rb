@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624165628) do
+ActiveRecord::Schema.define(version: 20140624222928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "allergens", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "allergens_patient_groups", id: false, force: true do |t|
+    t.integer "allergen_id",      null: false
+    t.integer "patient_group_id", null: false
+  end
+
+  add_index "allergens_patient_groups", ["allergen_id"], name: "index_allergens_patient_groups_on_allergen_id", using: :btree
+  add_index "allergens_patient_groups", ["patient_group_id"], name: "index_allergens_patient_groups_on_patient_group_id", using: :btree
 
   create_table "appointments", force: true do |t|
     t.integer  "patient_focus_id"

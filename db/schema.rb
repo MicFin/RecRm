@@ -11,17 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620004101) do
+ActiveRecord::Schema.define(version: 20140624122845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "articles", force: true do |t|
+  create_table "families", force: true do |t|
     t.string   "name"
-    t.text     "content"
+    t.string   "location"
+    t.integer  "head_of_family_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "families", ["head_of_family_id"], name: "index_families_on_head_of_family_id", using: :btree
+
+  create_table "families_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "family_id"
+  end
+
+  add_index "families_users", ["family_id"], name: "index_families_users_on_family_id", using: :btree
+  add_index "families_users", ["user_id"], name: "index_families_users_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624222928) do
+ActiveRecord::Schema.define(version: 20140626035939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140624222928) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
   end
 
   create_table "allergens_patient_groups", id: false, force: true do |t|
@@ -78,6 +79,25 @@ ActiveRecord::Schema.define(version: 20140624222928) do
   add_index "families_users", ["family_id"], name: "index_families_users_on_family_id", using: :btree
   add_index "families_users", ["user_id"], name: "index_families_users_on_user_id", using: :btree
 
+  create_table "ingredients", force: true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ingredients_recipes", force: true do |t|
+    t.integer  "ingredient_id"
+    t.integer  "recipe_id"
+    t.string   "amount"
+    t.string   "unit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ingredients_recipes", ["ingredient_id"], name: "index_ingredients_recipes_on_ingredient_id", using: :btree
+  add_index "ingredients_recipes", ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id", using: :btree
+
   create_table "patient_groups", force: true do |t|
     t.string   "name"
     t.string   "category"
@@ -91,6 +111,21 @@ ActiveRecord::Schema.define(version: 20140624222928) do
   create_table "patient_groups_users", id: false, force: true do |t|
     t.integer "patient_group_id", null: false
     t.integer "user_id",          null: false
+  end
+
+  create_table "recipes", force: true do |t|
+    t.string   "name"
+    t.string   "taste"
+    t.string   "cook_time"
+    t.string   "prep_time"
+    t.string   "difficulty"
+    t.string   "course"
+    t.string   "age_group"
+    t.string   "target_group"
+    t.integer  "dietitian_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "users", force: true do |t|

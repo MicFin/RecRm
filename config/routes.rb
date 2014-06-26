@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :recipes
+
   resources :appointments
 
   devise_for :dietitians

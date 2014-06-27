@@ -1,4 +1,4 @@
-class ingredientsController < ApplicationController
+class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
 
   # GET /ingredients
@@ -28,7 +28,7 @@ class ingredientsController < ApplicationController
 
     respond_to do |format|
       if @ingredient.save
-        format.html { redirect_to @ingredient, notice: 'ingredient was successfully created.' }
+        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }
         format.json { render :show, status: :created, location: @ingredient }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ingredientsController < ApplicationController
   def update
     respond_to do |format|
       if @ingredient.update(ingredient_params)
-        format.html { redirect_to @ingredient, notice: 'ingredient was successfully updated.' }
+        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully updated.' }
         format.json { render :show, status: :ok, location: @ingredient }
       else
         format.html { render :edit }

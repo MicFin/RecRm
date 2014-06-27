@@ -1,6 +1,3 @@
-require 'unitwise'
-require 'unitwise/ext'
-
 class Ingredient < ActiveRecord::Base
 
 	has_many :ingredients_recipes

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140627214850) do
+ActiveRecord::Schema.define(version: 20140627232020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20140627214850) do
     t.datetime "updated_at"
   end
 
-  create_table "attributes", force: true do |t|
+  create_table "characteristics", force: true do |t|
     t.string   "category"
     t.string   "name"
     t.datetime "created_at"
@@ -147,13 +147,13 @@ ActiveRecord::Schema.define(version: 20140627214850) do
     t.text     "inspiration"
   end
 
-  create_table "recipes_attributes", force: true do |t|
+  create_table "recipes_characteristics", force: true do |t|
     t.integer "recipe_id"
-    t.integer "attribute_id"
+    t.integer "characteristic_id"
   end
 
-  add_index "recipes_attributes", ["attribute_id"], name: "index_recipes_attributes_on_attribute_id", using: :btree
-  add_index "recipes_attributes", ["recipe_id"], name: "index_recipes_attributes_on_recipe_id", using: :btree
+  add_index "recipes_characteristics", ["characteristic_id"], name: "index_recipes_characteristics_on_characteristic_id", using: :btree
+  add_index "recipes_characteristics", ["recipe_id"], name: "index_recipes_characteristics_on_recipe_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

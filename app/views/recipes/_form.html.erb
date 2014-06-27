@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.input :name %>
   </div>
-  <div class="field">
-    <%= f.input :cook_time %>
+  <div class="form-group">
+    <%= f.association :attribute, collection: Attribute.where('category', "Cook Time") %>
   </div>
-  <div class="field">
-    <%= f.input :prep_time %>
+  <div class="form-group">
+    <%#= f.input :prep_time %>
   </div>
-  <div class="field">
-    <%= f.input :difficulty %>
+  <div class="form-group">
+    <%#= f.input :difficulty %>
   </div>
-  <div class="field">
-    <%= f.input :course %>
+  <div class="form-group">
+    <%#= f.input :course %>
   </div>
-  <div class="field">
-    <%= f.input :age_group %>
+  <div class="form-group">
+    <%#= f.input :age_group %>
   </div>
-  <div class="field">
-    <%= f.input :target_group %>
+  <div class="form-group">
+    <%#= f.input :target_group %>
   </div>
-  <div class="field">
-    <%= f.input :dietitian_id %>
+  <div class="form-group">
+    <%#= f.input :dietitian_id %>
   </div>
-  <div class="field">
-    <%= f.input :description %>
+  <div class="form-group">
+    <%#= f.input :description %>
   </div>
   <div class="actions">
     <%= f.button :submit %>

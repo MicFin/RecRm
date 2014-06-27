@@ -1,4 +1,4 @@
-class Recipe_stepsController < ApplicationController
+class RecipeStepsController < ApplicationController
   before_action :set_recipe_step, only: [:show, :edit, :update, :destroy]
 
   # GET /recipe_steps
@@ -28,7 +28,7 @@ class Recipe_stepsController < ApplicationController
 
     respond_to do |format|
       if @recipe_step.save
-        format.html { redirect_to @recipe_step, notice: 'recipe_step was successfully created.' }
+        format.html { redirect_to @recipe_step, notice: 'Recipe step was successfully created.' }
         format.json { render :show, status: :created, location: @recipe_step }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Recipe_stepsController < ApplicationController
   def update
     respond_to do |format|
       if @recipe_step.update(recipe_step_params)
-        format.html { redirect_to @recipe_step, notice: 'recipe_step was successfully updated.' }
+        format.html { redirect_to @recipe_step, notice: 'Recipe step was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe_step }
       else
         format.html { render :edit }
@@ -51,6 +51,15 @@ class Recipe_stepsController < ApplicationController
     end
   end
 
+  # DELETE /recipe_steps/1
+  # DELETE /recipe_steps/1.json
+  def destroy
+    @ingredient.destroy
+    respond_to do |format|
+      format.html { redirect_to recipe_steps_url, notice: 'Recipe step was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe_step

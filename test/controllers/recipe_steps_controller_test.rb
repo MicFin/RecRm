@@ -35,7 +35,7 @@ class RecipeStepsControllerTest < ActionController::TestCase
   end
 
   test "should update recipe_step" do
-    patch :update, id: @recipe_step, recipe_step: { name: @recipe_step.name, category: @recipe_step.category )
+    patch :update, id: @recipe_step, recipe_step: { step_number: @recipe_step.step_number, directions: @recipe_step.directions, recipe_id: @recipe_step.recipe_id )
   end
 
   test "should destroy recipe_step" do

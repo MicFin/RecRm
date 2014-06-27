@@ -35,7 +35,7 @@ class AllergensControllerTest < ActionController::TestCase
   end
 
   test "should update allergen" do
-    patch :update, id: @allergen, allergen: { name: @allergen.name, category: @allergen.category  }
+    patch :update, id: @allergen, allergen: { name: @allergen.name, category: @allergen.description  }
     assert_redirected_to allergen_path(assigns(:allergen))
   end
 

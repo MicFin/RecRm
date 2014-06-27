@@ -30,6 +30,10 @@ gem 'bootstrap-sass', '~> 3.1.1.1'
 
 gem 'devise'
 
+# unitwise is a cross platform list of units and their conversions
+# https://github.com/joshwlewis/unitwise
+gem 'unitwise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

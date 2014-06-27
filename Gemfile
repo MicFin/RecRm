@@ -36,6 +36,11 @@ gem 'devise'
 # http://joshwlewis.com/essays/rails-unit-measurement-persistence/
 gem 'unitwise'
 
+# simple form makes forms easier and prettier to write and plays nice with bootstrap
+# https://github.com/plataformatec/simple_form
+#   Inside your views, use the 'simple_form_for' with one of the Bootstrap form classes, '.form-horizontal', '.form-inline', '.form-search' or '.form-vertical', as the following: simple_form_for(@user, html: {class: 'form-horizontal' }) do |form|
+gem 'simple_form'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,4 +1,4 @@
-<%= form_for(@family) do |f| %>
+<%= simple_form_for(@family, html: {class: 'form-horizontal' }) do |f| %>
   <% if @family.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@family.errors.count, "error") %> prohibited this family from being saved:</h2>
@@ -12,26 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.input :name %>
   </div>
   <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location %>
+    <%= f.input :location %>
   </div>
   <div class="field">
-    <%= f.label :head_of_family_id %><br>
-    <%= f.number_field :head_of_family_id %>
+    <%= f.input :head_of_family_id %>
   </div>
   <div class="field">
-    <%= f.label :created_at %><br>
-    <%= f.datetime_select :created_at %>
+    <%= f.input :created_at %>
   </div>
   <div class="field">
-    <%= f.label :updated_at %><br>
-    <%= f.datetime_select :updated_at %>
+    <%= f.input :updated_at %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>

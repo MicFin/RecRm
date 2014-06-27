@@ -1,4 +1,4 @@
-<%= form_for(@recipe) do |f| %>
+<%= simple_form_for(@recipe, html: {class: 'form-horizontal' }) do |f| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -12,42 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.input :name %>
   </div>
   <div class="field">
-    <%= f.label :cook_time %><br>
-    <%= f.text_field :cook_time %>
+    <%= f.input :cook_time %>
   </div>
   <div class="field">
-    <%= f.label :prep_time %><br>
-    <%= f.text_field :prep_time %>
+    <%= f.input :prep_time %>
   </div>
   <div class="field">
-    <%= f.label :difficulty %><br>
-    <%= f.text_field :difficulty %>
+    <%= f.input :difficulty %>
   </div>
   <div class="field">
-    <%= f.label :course %><br>
-    <%= f.text_field :course %>
+    <%= f.input :course %>
   </div>
   <div class="field">
-    <%= f.label :age_group %><br>
-    <%= f.text_field :age_group %>
+    <%= f.input :age_group %>
   </div>
   <div class="field">
-    <%= f.label :target_group %><br>
-    <%= f.text_field :target_group %>
+    <%= f.input :target_group %>
   </div>
   <div class="field">
-    <%= f.label :dietitian_id %><br>
-    <%= f.number_field :dietitian_id %>
+    <%= f.input :dietitian_id %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description, :cols => "70", :rows => "10" %>
+    <%= f.input :description %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>

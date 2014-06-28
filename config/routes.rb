@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :ingredients
   resources :allergens
   resources :characteristics
-  devise_for :dietitians
   resources :families
   resources :ingredients_recipes
 

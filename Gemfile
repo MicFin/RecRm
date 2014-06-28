@@ -53,6 +53,8 @@ group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors
   gem "better_errors"
+# binding of caller allows you to do variable inspection with better errors  
+  gem "binding_of_caller"
 # Pry allows you to debug, place a binding.pry in ruby code and you can debug from that place in the console
   gem 'pry'
 end

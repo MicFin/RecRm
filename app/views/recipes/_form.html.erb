@@ -40,6 +40,9 @@
   <div class="form-group">
     <%= f.association :characteristics, collection: @cultures, prompt: "Select Culture", label: "Select Any Relevant Cultures",  as: :check_boxes %>
   </div>
+  <div class="form-group">
+  <%= f.input :ingredients, :url => autocomplete_ingredient_name_recipes_path, :as => :autocomplete, input_html: {value: f.object.name || nil} %>
+  </div>
   <div class="actions">
     <%= f.button :submit %>
   </div>

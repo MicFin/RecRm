@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_action :set_characteristic_forms, only: [:new, :edit]
-
+  autocomplete :ingredient, :name
   # GET /recipes
   # GET /recipes.json
   def index

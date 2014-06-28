@@ -6,6 +6,7 @@ class AllergensIngredientsController < ApplicationController
   # GET /allergens_ingredients
   # GET /allergens_ingredients.json
   def index
+    binding.pry
     @allergens_ingredients = AllergensIngredient.all
     # set recipe_id sent as param from recipe create method 
     @recipe_id = params["recipe_id"]

@@ -1,1 +1,14 @@
-<h1>INDEX</h1>
+<div id="recipe-info">
+	<h1><%= @recipe.name %></h1>
+</div>
+
+<%= link_to "New Ingredients Recipe", new_allergens_ingredient_path(recipe_id: @recipe_id), id: "add-ingredients-recipe", remote: true %>
+
+<div  id="ingredient-form-container">
+</div>
+
+
+<div id="ingredients-container">
+</div>
+
+<%= link_to "Review Ingredients for Allergens", allergens_ingredients_path(recipe_id: @recipe_id), id: "review-ingredients"%>

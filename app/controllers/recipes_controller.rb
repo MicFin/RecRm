@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_characteristic_forms, only: [:new, :edit]
 
   # GET /recipes
   # GET /recipes.json
@@ -26,29 +27,10 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
-    # set instance variables for form fields
-    @cook_times = Characteristic.where(category: "Cook Time")
-    @prep_times = Characteristic.where(category: "Prep Time")
-    @difficulties = Characteristic.where(category: "Difficulty")
-    @courses = Characteristic.where(category: "Course")
-    @age_groups = Characteristic.where(category: "Age Group")
-    @scenarios = Characteristic.where(category: "Scenario")
-    @holidays = Characteristic.where(category: "Holiday")
-    @cultures = Characteristic.where(category: "Culture")
   end
 
   # GET /recipes/1/edit
   def edit
-    @recipe = Recipe.find(params[:id])
-    # set instance variables for form fields
-    @cook_times = Characteristic.where(category: "Cook Time")
-    @prep_times = Characteristic.where(category: "Prep Time")
-    @difficulties = Characteristic.where(category: "Difficulty")
-    @courses = Characteristic.where(category: "Course")
-    @age_groups = Characteristic.where(category: "Age Group")
-    @scenarios = Characteristic.where(category: "Scenario")
-    @holidays = Characteristic.where(category: "Holiday")
-    @cultures = Characteristic.where(category: "Culture")
   end
 
   # POST /recipes
@@ -100,6 +82,18 @@ class RecipesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe
       @recipe = Recipe.find(params[:id])
+    end
+
+    def set_characteristic_forms
+    # set instance variables for form fields
+      @cook_times = Characteristic.where(category: "Cook Time")
+      @prep_times = Characteristic.where(category: "Prep Time")
+      @difficulties = Characteristic.where(category: "Difficulty")
+      @courses = Characteristic.where(category: "Course")
+      @age_groups = Characteristic.where(category: "Age Group")
+      @scenarios = Characteristic.where(category: "Scenario")
+      @holidays = Characteristic.where(category: "Holiday")
+      @cultures = Characteristic.where(category: "Culture")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,3 +1,6 @@
-$('#new_ingredients_recipe').after("<%= j render('form') %>");
+// hide button to add a new ingredient
+$("#add_ingredients_recipe").hide();
+// insert ingredients_recipes _form.html.erb
+$('#ingredient-form-container').after("<%= j render('form') %>");
 
 

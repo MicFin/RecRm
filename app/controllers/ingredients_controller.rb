@@ -5,6 +5,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients.json
   def index
     @ingredients = Ingredient.all
+    @recipe_id = params["id"]
   end
 
   # GET /ingredients/1

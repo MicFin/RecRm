@@ -1,5 +1,5 @@
 class IngredientsRecipesController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
   before_action :set_ingredients_recipe, only: [:show, :edit, :update, :destroy]
 
 
@@ -7,6 +7,8 @@ class IngredientsRecipesController < ApplicationController
   # GET /ingredients_recipes.json
   def index
     @ingredients_recipes = IngredientsRecipe.all
+    # set recipe_id sent as param from recipe create method 
+    @recipe_id = params["recipe_id"]
   end
 
   # GET /ingredients_recipes/1
@@ -19,6 +21,8 @@ class IngredientsRecipesController < ApplicationController
     @ingredients_recipe = IngredientsRecipe.new
     @ingredients_recipe.build_ingredient
     @ingredient = Ingredient.new 
+    # set recipe_id sent from ingredients_recipe index JS call
+    @recipe_id = params["recipe_id"]
   end
 
   # GET /ingredients_recipes/1/edit
@@ -28,12 +32,18 @@ class IngredientsRecipesController < ApplicationController
   # POST /ingredients_recipes
   # POST /ingredients_recipes.json
   def create
+    # create new ingredients recipe with params
     @ingredients_recipe = IngredientsRecipe.new(ingredients_recipe_params)
-
+    # set ingredient name to see if it exists yet
+    ingredient_name = params["ingredients_recipe"]["ingredient_attributes"]["name"]
+    # finds of creates the ingredient and saves as the ingredients_recipe's ingredient_id
+    @ingredients_recipe.find_or_create_ingredient(ingredient_name)
+    # respond to...
     respond_to do |format|
       if @ingredients_recipe.save
         format.html { redirect_to @ingredients_recipe, notice: 'ingredients_recipe was successfully created.' }
         format.json { render :show, status: :created, location: @ingredients_recipe }
+        # we are responding to JS right now, create.js.erb
         format.js 
       else
         format.html { render :new }
@@ -74,6 +84,6 @@ class IngredientsRecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredients_recipe_params
-      params.require(:ingredients_recipe).permit(:amount, :amount_unit, )
+      params.require(:ingredients_recipe).permit(:amount, :amount_unit, :recipe_id )
     end
 end

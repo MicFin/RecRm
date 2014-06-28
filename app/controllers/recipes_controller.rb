@@ -39,34 +39,18 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
-    binding.pry
     # remove empty strings from the characteristic_ids array, these are from the placeholder label on the form
     params["recipe"]["characteristic_ids"].reject! { |characteristic_id| characteristic_id.empty? }
     # convert remaining strings in array to integers, not sure why they are coming over as strings
     params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
-    # # set variable for ingredient name
-    # ingredient_name = params["recipe"]["ingredients_recipe"]["ingredient_attributes"]["name"]
-    # # set variable for ingredient object if it exists
-    # ingredient = Ingredient.where(name: params["recipe"]["ingredients_recipe"]["ingredient_attributes"]["name"]).first
     # # create new recipe
     @recipe = Recipe.new(recipe_params)
     respond_to do |format|
       # if recipe saves correctly
       if @recipe.save
-        binding.pry
-        # check if ingredient already exists in database
-        # if ingredient
-        #   # if so then create relationship between ingredient and recipe with amounts
-        #   IngredientsRecipe.new(recipe_id: @recipe.id, ingredient_id: ingredient.id, amount: params["recipe"]["ingredients_recipe"]["amount"].to_i, amount_unit: params["recipe"]["ingredients_recipe"]["amount_unit"]).save! 
-        # else
-        #   # if not create the ingredient
-        #   ingredient = Ingredient.new(name: ingredient_name)
-        #   ingredient.save!
-        #   # then create relationship between ingredient and recipe with amounts
-        #   IngredientsRecipe.new(recipe_id: @recipe.id, ingredient_id: ingredient.id, amount: params["recipe"]["ingredients_recipe"]["amount"].to_i, amount_unit: params["recipe"]["ingredients_recipe"]["amount_unit"]).save!
-        # end
- 
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
+        # if html send to new ingredients_index index 
+        # pass recipe_id to ingredients_recipe index method
+        format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new }

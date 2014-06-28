@@ -9,6 +9,7 @@ class IngredientsRecipesController < ApplicationController
     @ingredients_recipes = IngredientsRecipe.all
     # set recipe_id sent as param from recipe create method 
     @recipe_id = params["recipe_id"]
+    @recipe = Recipe.find(@recipe_id.to_i)
   end
 
   # GET /ingredients_recipes/1

@@ -41,6 +41,13 @@ gem 'unitwise'
 #   Inside your views, use the 'simple_form_for' with one of the Bootstrap form classes, '.form-horizontal', '.form-inline', '.form-search' or '.form-vertical', as the following: simple_form_for(@user, html: {class: 'form-horizontal' }) do |form|
 gem 'simple_form'
 
+# Better error gives you better explanations for errors
+# https://github.com/charliesome/better_errors
+group :development do
+  gem "better_errors"
+  gem 'pry'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

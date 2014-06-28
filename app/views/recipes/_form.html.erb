@@ -1,3 +1,4 @@
+<div class="container">
 <%= simple_form_for(@recipe, html: {class: 'form-horizontal' }) do |f| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
@@ -15,30 +16,32 @@
     <%= f.input :name %>
   </div>
   <div class="form-group">
-    <%= f.association :characteristics, :as => :collection_select,collection: Characteristic.where(category: "Cook Time") %>
+    <%= f.association :characteristics, :as => :collection_select, collection: Characteristic.where(category: "Prep Time"), prompt: "Choose a Prep Time", label: "Prep Time" %>
   </div>
   <div class="form-group">
-    <%#= f.input :prep_time %>
+    <%#= f.association :characteristics, :as => :collection_select, collection: Characteristic.where(category: "Cook Time"), prompt: "Choose a Cook Time", label: "Cook Time" %>
+  </div>
+
+  <div class="form-group">
+    <%#= f.association :characteristics, :as => :collection_select, collection: Characteristic.where(category: "Difficulty"), prompt: "Choose a Difficulty", label: "Difficulty" %>
   </div>
   <div class="form-group">
-    <%#= f.input :difficulty %>
+    <%#= f.association :characteristics, collection: Characteristic.where(category: "Course"), prompt: "Select Courses", label: "Select All Relevant Courses",  as: :check_boxes %>
   </div>
   <div class="form-group">
-    <%#= f.input :course %>
+    <%#= f.association :characteristics, collection: Characteristic.where(category: "Age Group"), prompt: "Select Age Group", label: "Select All Relevant Age Groups",  as: :check_boxes %>
   </div>
   <div class="form-group">
-    <%#= f.input :age_group %>
+    <%#= f.association :characteristics, collection: Characteristic.where(category: "Scenario"), prompt: "Select Scenario", label: "Select Any Relevant Scenarios",  as: :check_boxes %>
   </div>
   <div class="form-group">
-    <%#= f.input :target_group %>
+    <%#= f.association :characteristics, collection: Characteristic.where(category: "Holiday"), prompt: "Select Holidays", label: "Select Any Relevant Holidays",  as: :check_boxes %>
   </div>
   <div class="form-group">
-    <%#= f.input :dietitian_id %>
-  </div>
-  <div class="form-group">
-    <%#= f.input :description %>
+    <%#= f.association :characteristics, collection: Characteristic.where(category: "Culture"), prompt: "Select Culture", label: "Select Any Relevant Cultures",  as: :check_boxes %>
   </div>
   <div class="actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+</div>

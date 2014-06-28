@@ -28,6 +28,7 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
+        binding.pry
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else

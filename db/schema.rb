@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20140627225158) do
+=======
 ActiveRecord::Schema.define(version: 20140627233713) do
+>>>>>>> 52802b695a41af3a9cb65a016c118408eeb91b75
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +26,14 @@ ActiveRecord::Schema.define(version: 20140627233713) do
     t.datetime "updated_at"
     t.text     "description", default: "No Description"
   end
+
+  create_table "allergens_ingredients", id: false, force: true do |t|
+    t.integer "allergen_id",   null: false
+    t.integer "ingredient_id", null: false
+  end
+
+  add_index "allergens_ingredients", ["allergen_id"], name: "index_allergens_ingredients_on_allergen_id", using: :btree
+  add_index "allergens_ingredients", ["ingredient_id"], name: "index_allergens_ingredients_on_ingredient_id", using: :btree
 
   create_table "allergens_patient_groups", id: false, force: true do |t|
     t.integer "allergen_id",      null: false

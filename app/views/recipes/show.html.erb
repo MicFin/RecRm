@@ -38,7 +38,7 @@
     <% end %>
       <strong>Ingredients:</strong>
     <% @ingredients.each do |ingredient| %>
-      <p><%= link_to ingredient.name, ingredient %></p>
+      <p><%= ingredient.name%> <%= link_to 'Edit', edit_ingredient_path(ingredient) %></p>
     <% end %>
 
 

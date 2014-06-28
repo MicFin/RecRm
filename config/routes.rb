@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :characteristics
   devise_for :dietitians
   resources :families
+  resources :ingredients_recipes
 
   get 'welcome/index'
 

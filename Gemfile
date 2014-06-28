@@ -41,10 +41,12 @@ gem 'unitwise'
 #   Inside your views, use the 'simple_form_for' with one of the Bootstrap form classes, '.form-horizontal', '.form-inline', '.form-search' or '.form-vertical', as the following: simple_form_for(@user, html: {class: 'form-horizontal' }) do |form|
 gem 'simple_form'
 
+
+group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors
-group :development do
   gem "better_errors"
+# Pry allows you to debug, place a binding.pry in ruby code and you can debug from that place in the console
   gem 'pry'
 end
 

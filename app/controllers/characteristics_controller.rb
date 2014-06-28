@@ -59,6 +59,6 @@ class CharacteristicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def characteristic_params
-      params.require(:characteristic).permit(:name, :category)
+      params.require(:characteristic).permit(:name, :category, :recipe_ids => [])
     end
 end

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140627225158) do
+=======
+ActiveRecord::Schema.define(version: 20140627233713) do
+>>>>>>> 52802b695a41af3a9cb65a016c118408eeb91b75
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,12 +55,20 @@ ActiveRecord::Schema.define(version: 20140627225158) do
     t.datetime "updated_at"
   end
 
-  create_table "attributes", force: true do |t|
+  create_table "characteristics", force: true do |t|
     t.string   "category"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "characteristics_recipes", force: true do |t|
+    t.integer "recipe_id"
+    t.integer "characteristic_id"
+  end
+
+  add_index "characteristics_recipes", ["characteristic_id"], name: "index_characteristics_recipes_on_characteristic_id", using: :btree
+  add_index "characteristics_recipes", ["recipe_id"], name: "index_characteristics_recipes_on_recipe_id", using: :btree
 
   create_table "dietitians", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -154,14 +166,6 @@ ActiveRecord::Schema.define(version: 20140627225158) do
     t.text     "description"
     t.text     "inspiration"
   end
-
-  create_table "recipes_attributes", force: true do |t|
-    t.integer "recipe_id"
-    t.integer "attribute_id"
-  end
-
-  add_index "recipes_attributes", ["attribute_id"], name: "index_recipes_attributes_on_attribute_id", using: :btree
-  add_index "recipes_attributes", ["recipe_id"], name: "index_recipes_attributes_on_recipe_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

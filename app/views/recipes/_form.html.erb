@@ -1,4 +1,5 @@
-<%= form_for(@recipe) do |f| %>
+<div class="container">
+<%= simple_form_for(@recipe, html: {class: 'form-horizontal' }) do |f| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -11,43 +12,36 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.input :name, :required => true %>
   </div>
-  <div class="field">
-    <%= f.label :cook_time %><br>
-    <%= f.text_field :cook_time %>
+  <div class="form-group">
+    <%= f.association :characteristics, :as => :select, collection: @cook_times, prompt: "Choose a Prep Time", label: "Prep Time", :required => true %>
   </div>
-  <div class="field">
-    <%= f.label :prep_time %><br>
-    <%= f.text_field :prep_time %>
+  <div class="form-group">
+    <%= f.association :characteristics, :as => :select, collection: @prep_times, prompt: "Choose a Cook Time", label: "Cook Time", :required => true %>
   </div>
-  <div class="field">
-    <%= f.label :difficulty %><br>
-    <%= f.text_field :difficulty %>
+
+  <div class="form-group">
+    <%= f.association :characteristics, :as => :select, collection: @difficulties, prompt: "Choose a Difficulty", label: "Difficulty", :required => true %>
   </div>
-  <div class="field">
-    <%= f.label :course %><br>
-    <%= f.text_field :course %>
+  <div class="form-group">
+    <%= f.association :characteristics, collection: @courses, prompt: "Select Courses", label: "Select All Relevant Courses",  as: :check_boxes, :required => true %>
   </div>
-  <div class="field">
-    <%= f.label :age_group %><br>
-    <%= f.text_field :age_group %>
+  <div class="form-group">
+    <%= f.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: "Select All Relevant Age Groups",  as: :check_boxes, :required => true %>
   </div>
-  <div class="field">
-    <%= f.label :target_group %><br>
-    <%= f.text_field :target_group %>
+  <div class="form-group">
+    <%= f.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: "Select Any Relevant Scenarios",  as: :check_boxes %>
   </div>
-  <div class="field">
-    <%= f.label :dietitian_id %><br>
-    <%= f.number_field :dietitian_id %>
+  <div class="form-group">
+    <%= f.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: "Select Any Relevant Holidays",  as: :check_boxes %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description, :cols => "70", :rows => "10" %>
+  <div class="form-group">
+    <%= f.association :characteristics, collection: @cultures, prompt: "Select Culture", label: "Select Any Relevant Cultures",  as: :check_boxes %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>
+</div>

@@ -21,6 +21,8 @@
 
 
 $(document).ready(function() {
+   // $(".js-ingredient").hide();
+   // $(".js-ingredient")
 	$("#js-add-ingredient-button").click(function(){
 		// $("#ingredients-container").append("<div class='form-group ingredient'><%= recipe_form.fields_for :ingredients_recipes, @ingredients_recipe  do |ingredients_recipe_form| %><div class='form-group'><%= ingredients_recipe_form.input :amount %></div><div class='form-group'><%= ingredients_recipe_form.input :amount_unit %></div><div class='form-group'><%= ingredients_recipe_form.fields_for :ingredient, @ingredient do |ingredient_form| %><%= ingredient_form.input :name, :url => autocomplete_ingredient_name_recipes_path, :as => :autocomplete, input_html: {value: ingredient_form.object.name ||= nil} %><% end %></div><% end %></div>");
 		 // $.ajax({

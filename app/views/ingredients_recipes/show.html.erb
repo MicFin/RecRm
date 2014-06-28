@@ -1,5 +1,5 @@
     <div class="form-group ingredient">
-      <%= recipe_form.fields_for :ingredients_recipes, @ingredients_recipe  do |ingredients_recipe_form| %>
+      <%= simple_form_for @ingredients_recipe, remote: true do |ingredients_recipe_form| %>
         <div class="form-group">
           <%= ingredients_recipe_form.input :amount %>
         </div>
@@ -12,5 +12,6 @@
               <%= ingredient_form.input :name, :url => autocomplete_ingredient_name_recipes_path, :as => :autocomplete, input_html: {value: ingredient_form.object.name ||= nil} %>
           <% end %>
         </div>
+        <%= ingredients_recipe_form.button :submit, id: "save-ingredient" %>
       <% end %>
     </div>

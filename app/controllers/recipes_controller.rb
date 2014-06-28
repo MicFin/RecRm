@@ -53,6 +53,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       # if recipe saves correctly
       if @recipe.save
+        binding.pry
         # check if ingredient already exists in database
         # if ingredient
         #   # if so then create relationship between ingredient and recipe with amounts

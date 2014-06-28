@@ -1,74 +1,79 @@
-class IngredientRecipesController < ApplicationController
-  before_action :set_ingredient_recipe, only: [:show, :edit, :update, :destroy]
+class IngredientsRecipesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  before_action :set_ingredients_recipe, only: [:show, :edit, :update, :destroy]
 
-  # GET /ingredient_recipes
-  # GET /ingredient_recipes.json
+
+  # GET /ingredients_recipes
+  # GET /ingredients_recipes.json
   def index
-    @ingredient_recipes = IngredientRecipe.all
+    @ingredients_recipes = IngredientsRecipe.all
   end
 
-  # GET /ingredient_recipes/1
-  # GET /ingredient_recipes/1.json
+  # GET /ingredients_recipes/1
+  # GET /ingredients_recipes/1.json
   def show
   end
 
-  # GET /ingredient_recipes/new
+  # GET /ingredients_recipes/new
   def new
-    @ingredient_recipe = IngredientRecipe.new
+    @ingredients_recipe = IngredientsRecipe.new
+    @ingredients_recipe.build_ingredient
+    @ingredient = Ingredient.new 
   end
 
-  # GET /ingredient_recipes/1/edit
+  # GET /ingredients_recipes/1/edit
   def edit
   end
 
-  # POST /ingredient_recipes
-  # POST /ingredient_recipes.json
+  # POST /ingredients_recipes
+  # POST /ingredients_recipes.json
   def create
-    @ingredient_recipe = IngredientRecipe.new(ingredient_recipe_params)
+    @ingredients_recipe = IngredientsRecipe.new(ingredients_recipe_params)
 
     respond_to do |format|
-      if @ingredient_recipe.save
-        format.html { redirect_to @ingredient_recipe, notice: 'ingredient_recipe was successfully created.' }
-        format.json { render :show, status: :created, location: @ingredient_recipe }
+      if @ingredients_recipe.save
+        format.html { redirect_to @ingredients_recipe, notice: 'ingredients_recipe was successfully created.' }
+        format.json { render :show, status: :created, location: @ingredients_recipe }
+        format.js 
       else
         format.html { render :new }
-        format.json { render json: @ingredient_recipe.errors, status: :unprocessable_entity }
+        format.json { render json: @ingredients_recipe.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /ingredient_recipes/1
-  # PATCH/PUT /ingredient_recipes/1.json
+  # PATCH/PUT /ingredients_recipes/1
+  # PATCH/PUT /ingredients_recipes/1.json
   def update
     respond_to do |format|
-      if @ingredient_recipe.update(ingredient_recipe_params)
-        format.html { redirect_to @ingredient_recipe, notice: 'ingredient_recipe was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ingredient_recipe }
+      if @ingredients_recipe.update(ingredients_recipe_params)
+        format.html { redirect_to @ingredients_recipe, notice: 'ingredients_recipe was successfully updated.' }
+        format.json { render :show, status: :ok, location: @ingredients_recipe }
       else
         format.html { render :edit }
-        format.json { render json: @ingredient_recipe.errors, status: :unprocessable_entity }
+        format.json { render json: @ingredients_recipe.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /ingredient_recipes/1
-  # DELETE /ingredient_recipes/1.json
+  # DELETE /ingredients_recipes/1
+  # DELETE /ingredients_recipes/1.json
   def destroy
-    @ingredient_recipe.destroy
+    @ingredients_recipe.destroy
     respond_to do |format|
-      format.html { redirect_to ingredient_recipes_url, notice: 'ingredient_recipe was successfully destroyed.' }
+      format.html { redirect_to ingredients_recipes_url, notice: 'ingredients_recipe was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_ingredient_recipe
-      @ingredient_recipe = IngredientRecipe.find(params[:id])
+    def set_ingredients_recipe
+      @ingredients_recipe = IngredientsRecipe.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def ingredient_recipe_params
-      params.require(:ingredient_recipe).permit(:name, :category)
+    def ingredients_recipe_params
+      params.require(:ingredients_recipe).permit(:amount, :amount_unit, )
     end
 end

@@ -21,12 +21,15 @@ class RecipesController < ApplicationController
     @scenarios = @recipe.characteristics.where(category: "Scenario")
     @holidays = @recipe.characteristics.where(category: "Holiday")
     @cultures = @recipe.characteristics.where(category: "Culture")
-
+    @ingredients = @recipe.ingredients
   end
 
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+    @ingredients_recipe = IngredientsRecipe.new
+    @ingredients_recipe.build_ingredient
+    @ingredient = Ingredient.new  
   end
 
   # GET /recipes/1/edit
@@ -36,15 +39,32 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
-    # remove empty strings from the characteristic_ids array, these are from the internal placeholder label
+    binding.pry
+    # remove empty strings from the characteristic_ids array, these are from the placeholder label on the form
     params["recipe"]["characteristic_ids"].reject! { |characteristic_id| characteristic_id.empty? }
-    # convert remaining strings in array to integers, again, not sure why they are coming over as strings
+    # convert remaining strings in array to integers, not sure why they are coming over as strings
     params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
-    # create new recipe and relationship to characteristics
+    # # set variable for ingredient name
+    # ingredient_name = params["recipe"]["ingredients_recipe"]["ingredient_attributes"]["name"]
+    # # set variable for ingredient object if it exists
+    # ingredient = Ingredient.where(name: params["recipe"]["ingredients_recipe"]["ingredient_attributes"]["name"]).first
+    # # create new recipe
     @recipe = Recipe.new(recipe_params)
     respond_to do |format|
+      # if recipe saves correctly
       if @recipe.save
-        binding.pry
+        # check if ingredient already exists in database
+        # if ingredient
+        #   # if so then create relationship between ingredient and recipe with amounts
+        #   IngredientsRecipe.new(recipe_id: @recipe.id, ingredient_id: ingredient.id, amount: params["recipe"]["ingredients_recipe"]["amount"].to_i, amount_unit: params["recipe"]["ingredients_recipe"]["amount_unit"]).save! 
+        # else
+        #   # if not create the ingredient
+        #   ingredient = Ingredient.new(name: ingredient_name)
+        #   ingredient.save!
+        #   # then create relationship between ingredient and recipe with amounts
+        #   IngredientsRecipe.new(recipe_id: @recipe.id, ingredient_id: ingredient.id, amount: params["recipe"]["ingredients_recipe"]["amount"].to_i, amount_unit: params["recipe"]["ingredients_recipe"]["amount_unit"]).save!
+        # end
+ 
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
@@ -98,6 +118,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :taste, :cook_time, :prep_time, :difficulty, :course, :age_group, :target_group, :dietitian_id, :characteristic_ids => [])
+      params.require(:recipe).permit(:name, :taste, :cook_time, :prep_time, :difficulty, :course, :age_group, :target_group, :dietitian_id, :characteristic_ids => [], ingredients_recipes_attributes: [ :amount, :amount_unit, ingredient_attributes: [:name] ])
     end
 end

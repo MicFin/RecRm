@@ -36,6 +36,10 @@
     <% @cultures.each do |culture| %>
       <p><%= culture.name %></p>
     <% end %>
+      <strong>Ingredients:</strong>
+    <% @ingredients.each do |ingredient| %>
+      <p><%= link_to ingredient.name, ingredient %></p>
+    <% end %>
 
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |

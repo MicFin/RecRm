@@ -1,5 +1,5 @@
 <div class="container">
-<%= simple_form_for(@recipe, html: {class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@recipe, html: {class: 'form-horizontal' }) do |recipe_form| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -13,38 +13,53 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.input :name, :required => true %>
+    <%= recipe_form.input :name, :required => true %>
   </div>
   <div class="form-group">
-    <%= f.association :characteristics, :as => :select, collection: @cook_times, prompt: "Choose a Prep Time", label: "Prep Time", :required => true %>
+    <%= recipe_form.association :characteristics, :as => :select, collection: @cook_times, prompt: "Choose a Prep Time", label: "Prep Time", :required => true %>
   </div>
   <div class="form-group">
-    <%= f.association :characteristics, :as => :select, collection: @prep_times, prompt: "Choose a Cook Time", label: "Cook Time", :required => true %>
+    <%= recipe_form.association :characteristics, :as => :select, collection: @prep_times, prompt: "Choose a Cook Time", label: "Cook Time", :required => true %>
   </div>
 
   <div class="form-group">
-    <%= f.association :characteristics, :as => :select, collection: @difficulties, prompt: "Choose a Difficulty", label: "Difficulty", :required => true %>
+    <%= recipe_form.association :characteristics, :as => :select, collection: @difficulties, prompt: "Choose a Difficulty", label: "Difficulty", :required => true %>
   </div>
   <div class="form-group">
-    <%= f.association :characteristics, collection: @courses, prompt: "Select Courses", label: "Select All Relevant Courses",  as: :check_boxes, :required => true %>
+    <%= recipe_form.association :characteristics, collection: @courses, prompt: "Select Courses", label: "Select All Relevant Courses",  as: :check_boxes, :required => true %>
   </div>
   <div class="form-group">
-    <%= f.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: "Select All Relevant Age Groups",  as: :check_boxes, :required => true %>
+    <%= recipe_form.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: "Select All Relevant Age Groups",  as: :check_boxes, :required => true %>
   </div>
   <div class="form-group">
-    <%= f.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: "Select Any Relevant Scenarios",  as: :check_boxes %>
+    <%= recipe_form.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: "Select Any Relevant Scenarios",  as: :check_boxes %>
   </div>
   <div class="form-group">
-    <%= f.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: "Select Any Relevant Holidays",  as: :check_boxes %>
+    <%= recipe_form.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: "Select Any Relevant Holidays",  as: :check_boxes %>
   </div>
   <div class="form-group">
-    <%= f.association :characteristics, collection: @cultures, prompt: "Select Culture", label: "Select Any Relevant Cultures",  as: :check_boxes %>
+    <%= recipe_form.association :characteristics, collection: @cultures, prompt: "Select Culture", label: "Select Any Relevant Cultures",  as: :check_boxes %>
   </div>
   <div class="form-group">
-  <%= f.input :ingredients, :url => autocomplete_ingredient_name_recipes_path, :as => :autocomplete, input_html: {value: f.object.name || nil} %>
+    <%= recipe_form.fields_for :ingredients_recipes, @ingredients_recipe  do |ingredients_recipe_form| %>
+      <div class="form-group">
+        <%= ingredients_recipe_form.fields_for :ingredient, @ingredient do |ingredient_form| %>
+          <div class="form-group">
+            <%= ingredient_form.input :name, :url => autocomplete_ingredient_name_recipes_path, :as => :autocomplete, input_html: {value: ingredient_form.object.name ||= nil} %>
+          </div>
+        <% end %>
+        <%#= ingredient_form.input :name, :url => autocomplete_ingredient_name_recipes_path, :as => :autocomplete, input_html: {value: ingredient_form.object.name || nil} %>
+      </div>
+      <div class="form-group">
+        <%= ingredients_recipe_form.input :amount %>
+      </div>
+      <div class="form-group">
+        <%= ingredients_recipe_form.input :amount_unit %>
+      </div>
+    <% end %>
   </div>
   <div class="actions">
-    <%= f.button :submit %>
+    <%= recipe_form.button :submit %>
   </div>
 <% end %>
 </div>

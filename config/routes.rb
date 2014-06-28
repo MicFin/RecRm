@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   end
 
   resources :appointments
-
+  resources :ingredients
+  resources :allergens
+  resources :characteristics
   devise_for :dietitians
   resources :families
 

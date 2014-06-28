@@ -41,11 +41,20 @@ gem 'unitwise'
 #   Inside your views, use the 'simple_form_for' with one of the Bootstrap form classes, '.form-horizontal', '.form-inline', '.form-search' or '.form-vertical', as the following: simple_form_for(@user, html: {class: 'form-horizontal' }) do |form|
 gem 'simple_form'
 
+# For autofilling fields form database. It is rails 4 compatible, don't be fooled by the name.
+# https://github.com/crowdint/rails3-jquery-autocomplete
+gem 'rails3-jquery-autocomplete'
+
+# Required to use with gem 'rails3-jquery-autocomplete' 
+# only requiring widget //= require jquery.ui.autocomplete
+gem 'jquery-ui-rails'
 
 group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors
   gem "better_errors"
+# binding of caller allows you to do variable inspection with better errors  
+  gem "binding_of_caller"
 # Pry allows you to debug, place a binding.pry in ruby code and you can debug from that place in the console
   gem 'pry'
 end

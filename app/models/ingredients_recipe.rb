@@ -4,7 +4,7 @@ require 'unitwise/ext'
 class IngredientsRecipe < ActiveRecord::Base
 	belongs_to :ingredient
 	belongs_to :recipe
-
+  accepts_nested_attributes_for :ingredient
 
 #### need to decide what unit types we will allow a user to select from and then we can save the data in the most basic format IE the user may want to enter it in tons, or pounds or ounces but we can save all weight entries as ounces  ####
 

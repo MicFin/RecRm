@@ -4,14 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Taste</th>
-      <th>Cook time</th>
-      <th>Prep time</th>
-      <th>Difficulty</th>
-      <th>Course</th>
-      <th>Age group</th>
-      <th>Target group</th>
-      <th>Dietitian</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,14 +13,7 @@
     <% @recipes.each do |recipe| %>
       <tr>
         <td><%= recipe.name %></td>
-        <td><%= recipe.taste %></td>
-        <td><%= recipe.cook_time %></td>
-        <td><%= recipe.prep_time %></td>
-        <td><%= recipe.difficulty %></td>
-        <td><%= recipe.course %></td>
-        <td><%= recipe.age_group %></td>
-        <td><%= recipe.target_group %></td>
-        <td><%= recipe.dietitian_id %></td>
+
         <td><%= link_to 'Show', recipe %></td>
         <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
         <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>

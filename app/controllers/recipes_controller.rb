@@ -37,9 +37,9 @@ class RecipesController < ApplicationController
   end
 
   def edit_recipe_step
-    @allergies = PatientGroup.
-    @diseases = PatientGroup.
-    @intolerances = PatientGroup.
+    @allergies = PatientGroup.allergies_no_other
+    @diseases = PatientGroup.diseases_no_other
+    @intolerances = PatientGroup.intolerances_no_other
   end
 
   # POST /recipes
@@ -68,8 +68,10 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
+    binding.pry
     respond_to do |format|
       if @recipe.update(recipe_params)
+        binding.pry
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
@@ -109,6 +111,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :taste, :cook_time, :prep_time, :difficulty, :course, :age_group, :target_group, :dietitian_id, :characteristic_ids => [], ingredients_recipes_attributes: [ :amount, :amount_unit, ingredient_attributes: [:name] ])
+      params.require(:recipe).permit(:name, :description, :dietitian_id, :characteristic_ids => [], :patient_group_ids => [])
     end
 end

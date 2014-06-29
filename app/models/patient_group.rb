@@ -14,12 +14,38 @@ class PatientGroup < ActiveRecord::Base
     return allergies
   end
 
+  # returns all Patient Groups with the category allergy except other field
+  def self.allergies_no_other
+    allergies=[]
+    self.all.each do |allergy|
+      if allergy.category.downcase == "allergy"
+        unless allergy.input_option == true
+          allergies << allergy
+        end
+      end
+    end
+    return allergies
+  end
+
   # returns all Patient Groups with the category intolerance
   def self.intolerances
     intolerances=[]
     self.all.each do |allergy|
       if allergy.category.downcase == "intolerance"
         intolerances << allergy
+      end
+    end
+    return intolerances
+  end
+
+  # returns all Patient Groups with the category intolerance except other field
+  def self.intolerances_no_other
+    intolerances=[]
+    self.all.each do |allergy|
+      if allergy.category.downcase == "intolerance"
+        unless allergy.input_option == true
+          intolerances << allergy
+        end
       end
     end
     return intolerances
@@ -36,5 +62,17 @@ class PatientGroup < ActiveRecord::Base
     return diseases
   end
 
+  # returns all Patient Groups with the category intolerance except other field
+  def self.diseases_no_other
+    diseases=[]
+    self.all.each do |allergy|
+      if allergy.category.downcase == "disease"
+        unless allergy.input_option == true
+          diseases << allergy
+        end
+      end
+    end
+    return diseases
+  end
 
 end

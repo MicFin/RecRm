@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_step]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group]
   before_action :set_characteristic_forms, only: [:new, :edit]
   autocomplete :ingredient, :name
   # GET /recipes
@@ -40,7 +40,7 @@ class RecipesController < ApplicationController
     @intolerances = PatientGroup.intolerances_no_other
   end
 
-  def edit_recipe_step
+  def edit_recipe_group
     @allergies = PatientGroup.allergies_no_other
     @diseases = PatientGroup.diseases_no_other
     @intolerances = PatientGroup.intolerances_no_other
@@ -72,10 +72,8 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1
   # PATCH/PUT /recipes/1.json
   def update
-    binding.pry
     respond_to do |format|
       if @recipe.update(recipe_params)
-        binding.pry
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else

@@ -3,6 +3,8 @@
 
 <strong>Name:</strong>
 <p><%= @recipe.name %></p>
+
+<p><%= link_to 'Edit Meta Recipe Info', edit_recipe_path(@recipe) %></p>
 <strong>Cook Time:</strong>
 <p><%= @cook_time.name %></p>
 <strong>Prep Time:</strong>
@@ -29,14 +31,6 @@
 <% @cultures.each do |culture| %>
   <p><%= culture.name %></p>
 <% end %>
-<h3>Ingredients:</h3>
-<% @ingredients.each do |ingredient| %>
-  <strong><%= ingredient.name%> <%= link_to 'Edit', edit_ingredient_path(ingredient) %></strong>
-  <p>Allergens:</p>
-  <% ingredient.allergens.each do |allergen| %>
-    <p><%= allergen.name %></p>
-  <% end %>
-<% end %>
 <h3>Patient Groups:</h3>
 <strong>Allergies:</strong>
 <% @allergies.each do |allergy| %>
@@ -50,7 +44,13 @@
 <% @diseases.each do |disease| %>
   <p><%=  disease.name %></p>
 <% end %>
+<h3>Ingredients: <%= link_to 'Add/Remove Ingredients', ingredients_recipes_path(recipe_id: @recipe.id) %></h3> 
+<% @ingredients.each do |ingredient| %>
+  <strong><%= ingredient.name%></strong>
+  <p>Allergens:</p>
+  <% ingredient.allergens.each do |allergen| %>
+    <p><%= allergen.name %></p>
+  <% end %>
+<% end %>
 
-
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>

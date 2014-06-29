@@ -22,7 +22,7 @@ class IngredientsRecipesController < ApplicationController
     @ingredients_recipe = IngredientsRecipe.new
     @ingredients_recipe.build_ingredient
     @ingredient = Ingredient.new 
-    # set recipe_id sent from ingredients_recipe index JS call
+    # set recipe_id sent from ingredients_recipe index form remote true
     @recipe_id = params["recipe_id"]
   end
 

@@ -76,5 +76,18 @@
 # Characteristic.create(category: "Culture", name: "Middle Eastern")
 # Characteristic.create(category: "Culture", name: "Indian")
 
-Ingredient.create(name: "Apple", category: "Fruit")
-Ingredient.create(name: "Banana", category: "Fruit")
+# Ingredient.create(name: "Apple", category: "Fruit")
+# Ingredient.create(name: "Banana", category: "Fruit")
+
+
+Allergen.create(name: "lactose", description: "A sugar present in milk. It is a disaccharide containing glucose and galactose units.")
+Allergen.create(name: "wheat", description: "The grain of the wheat plant.")
+Allergen.create(name: "gluten", description: "A substance present in cereal grains, wheat, barley, rye and oats, that is responsible for the elastic texture of dough")
+Allergen.create(name: "dairy", description: "Containing or made from milk.")
+Allergen.create(name: "peanut")
+Allergen.create(name: "walnut")
+Allergen.create(name: "egg")
+Allergen.create(name: "fish")
+Allergen.create(name: "shellfish")
+Allergen.create(name: "apple")
+Allergen.create(name: "banana")

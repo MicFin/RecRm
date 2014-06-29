@@ -1,8 +1,18 @@
 <div id="recipe-info">
 	<h1><%= @recipe.name %></h1>
+	<% @recipe.ingredients.each do |ingredient| %>
+		<p><%= ingredient.name %></p>
+		<div id="ingredient-allergies-container">
+		<% ingredient.allergens.each do |allergen| %>
+			<%= allergen.name %>
+		<% end %>
+		</div>
+	<%= end %>
 </div>
 
-<%= link_to "New Ingredients Recipe", new_allergens_ingredient_path(recipe_id: @recipe_id), id: "add-ingredients-recipe", remote: true %>
+
+
+<%= link_to "New Allergen", new_allergens_ingredient_path(recipe_id: @recipe_id), id: "add-ingredients-recipe", remote: true %>
 
 <div  id="ingredient-form-container">
 </div>

@@ -6,11 +6,14 @@ class AllergensIngredientsController < ApplicationController
   # GET /allergens_ingredients
   # GET /allergens_ingredients.json
   def index
-    binding.pry
     @allergens_ingredients = AllergensIngredient.all
     # set recipe_id sent as param from recipe create method 
     @recipe_id = params["recipe_id"]
     @recipe = Recipe.find(@recipe_id.to_i)
+    # recipe ingredients that are already tagged with allergens
+    @ingredients_tagged = @recipe.ingredients_tagged
+    # recipe ingredients that are not tagged with allergens yet
+    @ingredients_not_tagged = @recipe.ingredients_not_tagged
   end
 
   # GET /allergens_ingredients/1
@@ -23,6 +26,7 @@ class AllergensIngredientsController < ApplicationController
     @allergens_ingredient = AllergensIngredient.new
     @allergens_ingredient.build_allergen
     @allergen = Allergen.new 
+    @allergens = Allergen.all
   end
 
   # GET /allergens_ingredients/1/edit

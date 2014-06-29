@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :families
   resources :ingredients_recipes
   resources :allergens_ingredients
+  resources :recipes_patient_groups
 
   get 'welcome/index'
   get 'home', to: 'home#index', as: 'home'

@@ -1,24 +1,33 @@
-<div id="recipe-info">
-	<h1><%= @recipe.name %></h1>
-	<% @recipe.ingredients.each do |ingredient| %>
-		<p><%= ingredient.name %></p>
-		<div id="ingredient-allergies-container">
-		<% ingredient.allergens.each do |allergen| %>
-			<%= allergen.name %>
-		<% end %>
+<div id="recipe-index-container">
+	<div id="recipe-info">
+		<h1><%= @recipe.name %></h1>
+	</div>
+
+
+	<div id="not-tagged-ingredients">
+		<h3>These ingredients need to be reviewed by a dietitian</h3>
+		<div id="allergen-form-container">
 		</div>
-	<%= end %>
+		<% @recipe.ingredients_not_tagged.each do |ingredient| %>
+			<strong><%= ingredient.name %></strong>
+			<p><%= link_to "Add Allergens", edit_ingredient_path(ingredient, recipe_id: @recipe.id), class: "add-allergen-buttons", remote: true %></p>
+		<% end %>
+	</div>
+
+	<div id="tagged-ingredients">
+		<h3>These ingredients have been reviewed</h3>
+		<% @recipe.ingredients_tagged.each do |ingredient| %>
+			<strong><%= ingredient.name %></strong>
+
+			<% ingredient.allergens.each do |allergen| %>
+				<p><%= allergen.name %></p>
+			<% end %>
+			<p><%= link_to "Edit Ingredient", edit_ingredient_path(ingredient, recipe_id: @recipe.id), class: "add-allergen-buttons", remote: true %></p>
+		<% end %>
+	</div>
+
+	<% if @recipe.ingredients_not_tagged.count < 1 %>
+		<%= link_to "Save All Recipe Ingredients", recipes_patient_groups_path(recipe_id: @recipe_id), id: "patient_groups-button"%>
+	<% end %>
+
 </div>
-
-
-
-<%= link_to "New Allergen", new_allergens_ingredient_path(recipe_id: @recipe_id), id: "add-ingredients-recipe", remote: true %>
-
-<div  id="ingredient-form-container">
-</div>
-
-
-<div id="ingredients-container">
-</div>
-
-<%= link_to "Review Ingredients for Allergens", allergens_ingredients_path(recipe_id: @recipe_id), id: "review-ingredients"%>

@@ -2,7 +2,7 @@
 	<h1><%= @recipe.name %></h1>
 </div>
 
-<%= link_to "New Ingredients Recipe", new_ingredients_recipe_path(recipe_id: @recipe_id), id: "add-ingredients-recipe", remote: true %>
+<%= link_to "Add Ingedient", new_ingredients_recipe_path(recipe_id: @recipe_id), id: "add-ingredients-recipe", remote: true %>
 
 <div id="ingredient-form-container">
 </div>
@@ -15,4 +15,7 @@
 	<% end %>
 </div>
 
-<%= link_to "Review Ingredients for Allergens", allergens_ingredients_path(recipe_id: @recipe_id), id: "review-ingredients"%>
+<% if @recipe.ingredients.count > 0 %>
+	<p>Finished adding ingredients?</p>
+	<%= link_to "Review Ingredients for Allergens", allergens_ingredients_path(recipe_id: @recipe_id), id: "review-ingredients"%>
+<% end %>

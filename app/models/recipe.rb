@@ -3,6 +3,7 @@ class Recipe < ActiveRecord::Base
 	has_many :ingredients, through: :ingredients_recipes
 	has_many :recipe_steps
   has_and_belongs_to_many :characteristics
+  has_and_belongs_to_many :patient_groups
   # removed until can utlilize AJAX to render nested forms for recipe form or to submit for ingredients_recipes forms
   # accepts_nested_attributes_for :ingredients_recipes
 

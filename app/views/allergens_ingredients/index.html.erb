@@ -27,7 +27,7 @@
 	</div>
 
 	<% if @recipe.ingredients_not_tagged.count < 1 %>
-		<%= link_to "Save All Recipe Ingredients", recipes_patient_groups_path(recipe_id: @recipe_id), id: "patient_groups-button"%>
+		<%= link_to "Save All Recipe Ingredients", edit_recipe_step_path(@recipe_id), id: "patient_groups-button"%>
 	<% end %>
 
 </div>

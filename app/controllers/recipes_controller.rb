@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_step]
   before_action :set_characteristic_forms, only: [:new, :edit]
   autocomplete :ingredient, :name
   # GET /recipes
@@ -34,6 +34,12 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
+  end
+
+  def edit_recipe_step
+    @allergies = PatientGroup.
+    @diseases = PatientGroup.
+    @intolerances = PatientGroup.
   end
 
   # POST /recipes

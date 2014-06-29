@@ -3,8 +3,8 @@ class PatientGroup < ActiveRecord::Base
 	has_and_belongs_to_many :allergens
   has_and_belongs_to_many :recipes
 
-  # returns all Patient Groups with the category allergy
-  def self.allergies
+  # returns all Patient Groups with the category allergy and a Patient Group named "Other Allergy" with an input field true boolean
+  def self.allergies_with_other
     allergies=[]
     self.all.each do |allergy|
       if allergy.category.downcase == "allergy"
@@ -14,8 +14,8 @@ class PatientGroup < ActiveRecord::Base
     return allergies
   end
 
-  # returns all Patient Groups with the category allergy except other field
-  def self.allergies_no_other
+  # returns all Patient Groups with the category allergy 
+  def self.allergies
     allergies=[]
     self.all.each do |allergy|
       if allergy.category.downcase == "allergy"
@@ -27,8 +27,8 @@ class PatientGroup < ActiveRecord::Base
     return allergies
   end
 
-  # returns all Patient Groups with the category intolerance
-  def self.intolerances
+  # returns all Patient Groups with the category intolerance and a Patient Group named "Other Intolerance" with an input field true boolean
+  def self.intolerances_with_other
     intolerances=[]
     self.all.each do |allergy|
       if allergy.category.downcase == "intolerance"
@@ -38,8 +38,8 @@ class PatientGroup < ActiveRecord::Base
     return intolerances
   end
 
-  # returns all Patient Groups with the category intolerance except other field
-  def self.intolerances_no_other
+  # returns all Patient Groups with the category intolerance 
+  def self.intolerances
     intolerances=[]
     self.all.each do |allergy|
       if allergy.category.downcase == "intolerance"
@@ -51,8 +51,8 @@ class PatientGroup < ActiveRecord::Base
     return intolerances
   end
 
-  # returns all Patient Groups with the category intolerance
-  def self.diseases
+  # returns array of all Patient Groups with the category disease and an Patient Group named "Other Disease" with an input field true boolean
+  def self.diseases_with_other_field
     diseases=[]
     self.all.each do |allergy|
       if allergy.category.downcase == "disease"
@@ -63,7 +63,7 @@ class PatientGroup < ActiveRecord::Base
   end
 
   # returns all Patient Groups with the category intolerance except other field
-  def self.diseases_no_other
+  def self.diseases
     diseases=[]
     self.all.each do |allergy|
       if allergy.category.downcase == "disease"
@@ -73,6 +73,68 @@ class PatientGroup < ActiveRecord::Base
       end
     end
     return diseases
+  end
+
+
+  # Returns an array of Patient Groups with the category "allergy" that are safe for the input array of allergens
+  def self.safe_allergy_groups(array_of_recipes_allergens)
+    safe_patient_groups = []
+    safe_allergy_groups = []
+    self.all.each do |patient_group|
+      patient_group.allergens.each do |allergen|
+        unless array_of_recipes_allergens.include?(allergen)
+          safe_patient_groups << patient_group 
+        end
+      end
+    end  
+    safe_patient_groups.each do |patient_group|
+      if patient_group.category.downcase == "allergy"
+          safe_allergy_groups << patient_group
+       end
+    end
+    safe_allergy_groups.delete(PatientGroup.where(name: "Other Allergy").first)
+    return safe_allergy_groups
+  end
+
+  # Returns an array of Patient Groups with the category "intolerances" that are safe for the input array of allergens
+  def self.safe_intolerance_groups(array_of_recipes_allergens)
+    safe_patient_groups = []
+    safe_intolerance_groups = []
+    self.all.each do |patient_group|
+      patient_group.allergens.each do |allergen|
+        unless array_of_recipes_allergens.include?(allergen)
+          safe_patient_groups << patient_group 
+        end
+      end
+    end  
+    safe_patient_groups.each do |patient_group|
+      if patient_group.category.downcase == "intolerance"
+          safe_intolerance_groups << patient_group
+       end
+    end
+    safe_intolerance_groups.delete(PatientGroup.where(name: "Other Intolerance").first)
+    binding.pry
+    return safe_intolerance_groups
+  end
+
+  # Returns an array of Patient Groups with the category "disease" that are safe for the input array of allergens
+  def self.safe_disease_groups(array_of_recipes_allergens)
+    safe_patient_groups = []
+    safe_disease_groups = []
+    self.all.each do |patient_group|
+      patient_group.allergens.each do |allergen|
+        unless array_of_recipes_allergens.include?(allergen)
+          safe_patient_groups << patient_group 
+        end
+      end
+    end  
+    safe_patient_groups.each do |patient_group|
+      if patient_group.category.downcase == "disease"
+          safe_disease_groups << patient_group
+       end
+    end
+    safe_disease_groups.delete(PatientGroup.where(name: "Other Disease").first)
+    return safe_disease_groups
   end
 
 end

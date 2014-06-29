@@ -41,9 +41,10 @@ class RecipesController < ApplicationController
   end
 
   def edit_recipe_group
-    @allergies = PatientGroup.allergies_no_other
-    @diseases = PatientGroup.diseases_no_other
-    @intolerances = PatientGroup.intolerances_no_other
+    @allergies = PatientGroup.safe_allergy_groups(@recipe.allergens)
+    @diseases = PatientGroup.safe_disease_groups(@recipe.allergens)
+    @intolerances = PatientGroup.safe_intolerance_groups(@recipe.allergens)
+        binding.pry
   end
 
   # POST /recipes

@@ -11,17 +11,18 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
-    @recipe = Recipe.find(params[:id])
-    # set instance variables for recipe characteristics
-    @cook_times = @recipe.characteristics.where(category: "Cook Time")
-    @prep_times = @recipe.characteristics.where(category: "Prep Time")
-    @difficulties = @recipe.characteristics.where(category: "Difficulty")
+    @ingredients = @recipe.ingredients
+    @allergies = @recipe.allergies
+    @diseases = @recipe.diseases
+    @intolerances = @recipe.intolerances
+    @cook_time = @recipe.characteristics.where(category: "Cook Time").first
+    @prep_time = @recipe.characteristics.where(category: "Prep Time").first
+    @difficulty = @recipe.characteristics.where(category: "Difficulty").first
     @courses = @recipe.characteristics.where(category: "Course")
     @age_groups = @recipe.characteristics.where(category: "Age Group")
     @scenarios = @recipe.characteristics.where(category: "Scenario")
     @holidays = @recipe.characteristics.where(category: "Holiday")
     @cultures = @recipe.characteristics.where(category: "Culture")
-    @ingredients = @recipe.ingredients
   end
 
   # GET /recipes/new
@@ -34,6 +35,9 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
+    @allergies = PatientGroup.allergies_no_other
+    @diseases = PatientGroup.diseases_no_other
+    @intolerances = PatientGroup.intolerances_no_other
   end
 
   def edit_recipe_step

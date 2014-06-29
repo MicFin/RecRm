@@ -29,4 +29,37 @@ class Recipe < ActiveRecord::Base
     return not_tagged_ingredients
   end
 
+  # return a recipe's intolerance patient groups
+  def intolerances
+    intolerances=[]
+    self.patient_groups.each do |patient_group|
+      if patient_group.category.downcase == "intolerance"
+        intolerances << patient_group
+      end
+    end
+    return intolerances
+  end
+
+  # return a recipe's allergy patient groups
+  def allergies
+    allergies=[]
+    self.patient_groups.each do |patient_group|
+      if patient_group.category.downcase == "allergy"
+        allergies << patient_group
+      end
+    end
+    return allergies
+  end
+
+  # return a recipe's disease patient groups
+  def diseases
+    diseases=[]
+    self.patient_groups.each do |patient_group|
+      if patient_group.category.downcase == "disease"
+        diseases << patient_group
+      end
+    end
+    return diseases
+  end
+
 end

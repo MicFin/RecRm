@@ -23,6 +23,7 @@ class RecipesController < ApplicationController
     @scenarios = @recipe.characteristics.where(category: "Scenario")
     @holidays = @recipe.characteristics.where(category: "Holiday")
     @cultures = @recipe.characteristics.where(category: "Culture")
+    binding.pry
   end
 
   # GET /recipes/new
@@ -44,7 +45,7 @@ class RecipesController < ApplicationController
     @allergies = PatientGroup.safe_allergy_groups(@recipe.allergens)
     @diseases = PatientGroup.safe_disease_groups(@recipe.allergens)
     @intolerances = PatientGroup.safe_intolerance_groups(@recipe.allergens)
-        binding.pry
+    binding.pry
   end
 
   # POST /recipes
@@ -59,7 +60,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       # if recipe saves correctly
       if @recipe.save
-        # if html send to new ingredients_index index 
+        # if html send to ingredients_index index 
         # pass recipe_id to ingredients_recipe index method
         format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }

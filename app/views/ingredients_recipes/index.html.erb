@@ -15,7 +15,5 @@
 	<% end %>
 </div>
 
-<% if @recipe.ingredients.count > 0 %>
 	<p>Finished adding ingredients?</p>
 	<%= link_to "Review Ingredients for Allergens", allergens_ingredients_path(recipe_id: @recipe_id), id: "review-ingredients"%>
-<% end %>

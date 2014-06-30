@@ -11,7 +11,7 @@
 				<% if @recipe.ingredients_not_tagged.count < 1 %>
 					<p>All ingredients have been reviewed</p>
 					<p>Please: 
-					<%= link_to "Save All Recipe Ingredients", edit_recipe_group_path(@recipe_id), id: "patient_groups-button"%></p>
+					<%= link_to "Save All Recipe Ingredients", recipe_steps_path(recipe_id: @recipe_id), id: "recipe-steps-button"%></p>
 				<% else %>
 					<h3>These ingredients need to be reviewed by a dietitian</h3>	
 				<% end %>

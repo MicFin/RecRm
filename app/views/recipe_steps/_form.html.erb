@@ -1,0 +1,21 @@
+
+<div class="form-group" id="recipe-steps-form">
+  <%= simple_form_for @recipe_step, remote: true  do |recipe_step_form| %>
+    <div class="form-group">
+      <%= recipe_step_form.input :step_number %>
+    </div>
+    <div class="form-group">
+      <%= recipe_step_form.input :directions %>
+    </div>
+  
+  <div class="form-group">
+    <%= recipe_step_form.association :ingredients, collection: @ingredients, label: "Select all Ingredients use in Step",  as: :check_boxes %>
+  </div>
+
+    <%= recipe_step_form.hidden_field :recipe_id, value: @recipe_id.to_i %>
+    <div class="actions">
+      <%= recipe_step_form.button :submit, "Add Step to Recipe" %>
+    </div>
+  <% end %>
+</div>
+

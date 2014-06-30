@@ -29,7 +29,7 @@ class Recipe < ActiveRecord::Base
     return not_tagged_ingredients
   end
 
-  # return a recipe's intolerance patient groups
+  # return a recipe's Patient Groups with the category intolerance
   def intolerances
     intolerances=[]
     self.patient_groups.each do |patient_group|
@@ -40,7 +40,7 @@ class Recipe < ActiveRecord::Base
     return intolerances
   end
 
-  # return a recipe's allergy patient groups
+  # return a recipe's PAtient Groups with the category allergy
   def allergies
     allergies=[]
     self.patient_groups.each do |patient_group|
@@ -51,7 +51,7 @@ class Recipe < ActiveRecord::Base
     return allergies
   end
 
-  # return a recipe's disease patient groups
+  # return a recipe's Patient Groups with the category disease
   def diseases
     diseases=[]
     self.patient_groups.each do |patient_group|

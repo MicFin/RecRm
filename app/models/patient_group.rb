@@ -81,16 +81,20 @@ class PatientGroup < ActiveRecord::Base
     safe_patient_groups = []
     safe_allergy_groups = []
     self.all.each do |patient_group|
+      if patient_group.allergens.count < 1
+        safe_patient_groups << patient_group  
+      end 
       patient_group.allergens.each do |allergen|
-        unless array_of_recipes_allergens.include?(allergen)
+        if array_of_recipes_allergens.include?(allergen)
+        else
           safe_patient_groups << patient_group 
         end
-      end
+      end    
     end  
     safe_patient_groups.each do |patient_group|
       if patient_group.category.downcase == "allergy"
           safe_allergy_groups << patient_group
-       end
+      end
     end
     safe_allergy_groups.delete(PatientGroup.where(name: "Other Allergy").first)
     return safe_allergy_groups
@@ -101,19 +105,21 @@ class PatientGroup < ActiveRecord::Base
     safe_patient_groups = []
     safe_intolerance_groups = []
     self.all.each do |patient_group|
+      if patient_group.allergens.count < 1
+        safe_patient_groups << patient_group  
+      end 
       patient_group.allergens.each do |allergen|
         unless array_of_recipes_allergens.include?(allergen)
           safe_patient_groups << patient_group 
         end
       end
-    end  
+    end 
     safe_patient_groups.each do |patient_group|
       if patient_group.category.downcase == "intolerance"
           safe_intolerance_groups << patient_group
        end
     end
     safe_intolerance_groups.delete(PatientGroup.where(name: "Other Intolerance").first)
-    binding.pry
     return safe_intolerance_groups
   end
 
@@ -122,6 +128,9 @@ class PatientGroup < ActiveRecord::Base
     safe_patient_groups = []
     safe_disease_groups = []
     self.all.each do |patient_group|
+      if patient_group.allergens.count < 1
+        safe_patient_groups << patient_group  
+      end 
       patient_group.allergens.each do |allergen|
         unless array_of_recipes_allergens.include?(allergen)
           safe_patient_groups << patient_group 

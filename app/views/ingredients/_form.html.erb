@@ -13,7 +13,8 @@
   <% end %>
   <h3><%= @ingredient.name %></h3>
   <div class="field">
-    <%= f.input :category %>
+
+    <%= f.input :category, label: "Category (fruit, vegetable, etc)" %>
   </div>
 
   <div class="form-group">

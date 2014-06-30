@@ -23,7 +23,7 @@ class RecipesController < ApplicationController
     @scenarios = @recipe.characteristics.where(category: "Scenario")
     @holidays = @recipe.characteristics.where(category: "Holiday")
     @cultures = @recipe.characteristics.where(category: "Culture")
-    binding.pry
+    @steps = @recipe.recipe_steps
   end
 
   # GET /recipes/new
@@ -45,7 +45,6 @@ class RecipesController < ApplicationController
     @allergies = PatientGroup.safe_allergy_groups(@recipe.allergens)
     @diseases = PatientGroup.safe_disease_groups(@recipe.allergens)
     @intolerances = PatientGroup.safe_intolerance_groups(@recipe.allergens)
-    binding.pry
   end
 
   # POST /recipes

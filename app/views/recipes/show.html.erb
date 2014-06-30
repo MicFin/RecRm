@@ -32,15 +32,15 @@
   <p><%= culture.name %></p>
 <% end %>
 <h3>Patient Groups:</h3>
-<strong>Allergies:</strong>
+<p><strong>Allergies:</strong></p>
 <% @allergies.each do |allergy| %>
   <p><%=  allergy.name %></p>
 <% end %>
-<strong>Intolerances:</strong>
+<p><strong>Intolerances:</strong></p>
 <% @intolerances.each do |intolerance| %>
   <p><%=  intolerance.name %></p>
 <% end %>
-<strong>Diseases:</strong>
+<p><strong>Diseases:</strong></p>
 <% @diseases.each do |disease| %>
   <p><%=  disease.name %></p>
 <% end %>
@@ -52,5 +52,17 @@
     <p><%= allergen.name %></p>
   <% end %>
 <% end %>
+
+<h3>Steps: <%= link_to 'Add/Remove Steps', ingredients_recipes_path(recipe_id: @recipe.id) %></h3> 
+<% @steps.each do |step| %>
+  <p>Step#: <%= step.step_number%></p>
+  <p>Directions: <%= step.directions %></p>
+  <p>Ingredients in Step:</p>
+  <% step.ingredients.each do |ingredient| %>
+    <p><%= ingredient.name %></p>
+  <% end %>
+<% end %>
+
+
 
 <%= link_to 'Back', recipes_path %>

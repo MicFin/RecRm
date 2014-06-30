@@ -80,4 +80,7 @@ $(document).ready(function() {
   });
 
 
-});
+
+// my attempt to bootstrap js home class
+$(document).ready(Home);
+$(document).on('page:load', Home);

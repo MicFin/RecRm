@@ -35,14 +35,3 @@ class HomeController < ApplicationController
 
 end
 
-
-# @recipes = Recipe.all
-# @filteredRecipes = []
-
-# @recipes.map do | r |
-# 	i = r.ingredients
-#         match = i.where.not(id: my_ingredients).pluck(:id)
-# 	if !match.empty 
-# 		@filteredRecipes << r 
-# 	end
-# end

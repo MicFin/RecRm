@@ -1,0 +1,10 @@
+// remove the step edit form
+$("#recipe-steps-form").remove();
+$('#recipe-step-<%= @recipe_step.id %>').remove();
+// show the link to edit step
+$("#recipe-step-form-container").show();
+$('#recipe-steps-container').append('<%= j render(@recipe_step) %>');
+$("#recipe-group-button").show();
+$(".edit-recipe-step").show();
+$(".remove-step").show();
+$("#add-recipe-step").show();

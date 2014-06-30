@@ -10,12 +10,16 @@
 <strong>steps:</strong>
 <div id="recipe-steps-container">	
 	<% @recipe.recipe_steps.each do |recipe_step| %>
-		<p><strong>Step#:</strong> <%= recipe_step.step_number%></p>
-		<p><strong>Directions:</strong> <%= recipe_step.directions%></p>
-		<p><strong>Ingredients in Step:</strong>
-		<% recipe_step.ingredients.each do |ingredient| %>
-			<p>	<%= ingredient.name %></p>
-		<% end %>
+		<div id="recipe-step-<%=recipe_step.id%>">
+			<p><strong>Step#:</strong> <%= recipe_step.step_number%></p>
+			<p><strong>Directions:</strong> <%= recipe_step.directions%></p>
+			<p><strong>Ingredients in Step:</strong></p>
+			<% recipe_step.ingredients.each do |ingredient| %>
+				<p>	<%= ingredient.name %></p>
+			<% end %>
+			<%= link_to "Edit", edit_recipe_step_path(recipe_step, recipe_id: @recipe_id.to_i), class: "edit-recipe-step", remote: true %>
+			<%= link_to "(remove)", recipe_step, method: :delete, data: {confirm: "Are you sure?"}, class: "remove-step", remote: true %>
+			</div>
 	<% end %>
 </div>
 

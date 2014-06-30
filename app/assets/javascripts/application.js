@@ -71,15 +71,6 @@ $(document).ready(function() {
 
 
 
-  $("#recipe_characteristic_ids").children().each(function(e){
-    $(e).click(function(){
-      debugger;
-      $("#recipe_characteristic_ids").children().removeClass("active")
-
-    });
-  });
-
-
 
 // my attempt to bootstrap js home class
 $(document).ready(Home);

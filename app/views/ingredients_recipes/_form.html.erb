@@ -26,31 +26,4 @@
   <% end %>
 </div>
 
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js" type="text/javascript"></script>
-<script>
-$(document).ready(function() {
-  $("#ingredients-recipe-form-validate").validate({
-    rules: {
-      "ingredients_recipe[ingredients_attribute][name]":{
-        required: true,
-        minlength: 2
-      },
-      "ingredients_recipe[amount]":{
-        required: true,
-        rangelength: [0, 100]
-      }
-    },
-    messages: {
-      "ingredients_recipe[ingredients_attribute][name]":{
-        required: "Enter ingredient name",
-        minlength: "Must be at least 2 letters"
-      },
-      "ingredients_recipe[amount]":{
-        required: "Enter ingredient amount",
-        minlength: "Must be between 0 and 100"
-      }
-    }
-  });
-});
-</script>
 

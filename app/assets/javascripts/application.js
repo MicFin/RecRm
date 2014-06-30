@@ -19,11 +19,35 @@
 //= require_self
 //= require_tree .
 
-
-
-$(document).ready(function(){
- // Ingredient form client side validations // 
-
-
-
+$(document).ready(function() {
+	// validate new recipe form with JS
+  $("#new_recipe").validate({
+    rules: {
+      "recipe[name]":{
+        required: true,
+        minlength: 2
+      },
+    },
+    messages: {
+      "recipe[name]":{
+        required: "Enter recipe name",
+        minlength: "Must be at least 2 letters"
+      }
+    }
+  });
+	// validate new recipe form with JS
+  $("#new_recipe").validate({
+    rules: {
+      "recipe[name]":{
+        required: true,
+        minlength: 2
+      }
+    },
+    messages: {
+      "recipe[name]":{
+        required: "Enter recipe name",
+        minlength: "Must be at least 2 letters"
+      }
+    }
+  });
 });

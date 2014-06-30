@@ -1,0 +1,5 @@
+<p><%= @recipe_step.step_number%>: <%= @recipe_step.directions%>  </p>
+<p>Ingredients in Step</p>
+<% @recipe_step.ingredients.each do |ingredient| %>
+	<p><%=ingredient.name %></p>
+<% end %>

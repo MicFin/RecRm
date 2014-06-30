@@ -6,4 +6,15 @@ class Ingredient < ActiveRecord::Base
 	has_and_belongs_to_many :allergens
 	has_and_belongs_to_many :characteristics
 
+  # method to check if an ingredient has had allergens added
+  def need_allergens?
+    # if an ingredient has allergens already
+    if self.allergens.count >= 1
+      return false
+    # if no allergens have been attached yet
+    else
+      return true
+    end
+  end
+  
 end

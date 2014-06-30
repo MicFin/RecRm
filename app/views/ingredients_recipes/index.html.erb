@@ -1,0 +1,19 @@
+<div id="recipe-info">
+	<h1><%= @recipe.name %></h1>
+</div>
+
+<%= link_to "Add Ingedient", new_ingredients_recipe_path(recipe_id: @recipe_id), id: "add-ingredients-recipe", remote: true %>
+
+<div id="ingredient-form-container">
+</div>
+
+<strong>Ingredients:</strong>
+<div id="ingredients-container">	
+	<% @recipe.ingredients_recipes.each do |ingredients_recipe| %>
+		<strong><%=ingredients_recipe.ingredient.name %></strong>
+		<p>Amount: <%= ingredients_recipe.amount%> <%= ingredients_recipe.amount_unit%></p>
+	<% end %>
+</div>
+
+	<p>Finished adding ingredients?</p>
+	<%= link_to "Review Ingredients for Allergens", allergens_ingredients_path(recipe_id: @recipe_id), id: "review-ingredients"%>

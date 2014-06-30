@@ -23,4 +23,20 @@ class IngredientsRecipe < ActiveRecord::Base
   #   end
   # end
 
+  # find or create ingredient by name
+  def find_or_create_ingredient(name)
+    ingredient = Ingredient.find_by(name: name.downcase)
+    if !ingredient
+      # if not create the ingredient
+      ingredient = Ingredient.new(name: name.downcase)
+      ingredient.save!
+    end
+    self.ingredient_id = ingredient.id
+    self.save!
+  end
+
+ #  over ride rails validate_associated_record_for_ingredient to blank since find_or_create_ingredient(name) is similar
+  def autosave_associated_records_for_ingredient
+  end
+
 end

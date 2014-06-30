@@ -1,3 +1,6 @@
-$('#new_ingredients_recipe').after("<%= j render('form') %>");
+// hide buttons to add a allergens
+$("#add-ingredients-recipe").hide();
+// insert edit ingredient _form.html.erb
+$('#ingredient-form-container').after("<%= j render('form') %>");
 
 

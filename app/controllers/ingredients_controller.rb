@@ -5,6 +5,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients.json
   def index
     @ingredients = Ingredient.all
+    @recipe_id = params["id"]
   end
 
   # GET /ingredients/1
@@ -19,6 +20,8 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients/1/edit
   def edit
+    @allergens = Allergen.all
+    @recipe = Recipe.find(params[:recipe_id])
   end
 
   # POST /ingredients
@@ -40,9 +43,21 @@ class IngredientsController < ApplicationController
   # PATCH/PUT /ingredients/1
   # PATCH/PUT /ingredients/1.json
   def update
+    # if ingredient is not marked as its own allergen 
+    if @ingredient.allergens.where(name: @ingredient.name).count != 1
+      # create allergen and add to ingredient allergens param
+      allergen = Allergen.create(name: @ingredient.name)
+      allergen.save!
+      params["ingredient"]["allergen_ids"].push(allergen.id)
+    end
+    # recipe ID passed from allergens ingredients index add allergy to ingredient button
+    @recipe_id = params["ingredient"]["recipe_id"].to_i
+    # delete recipe ID from the params before saving ingredient
+    params["ingredient"].delete("recipe_id")
     respond_to do |format|
       if @ingredient.update(ingredient_params)
-        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully updated.' }
+       # redirect to list of recipe ingredients and allergens
+        format.html { redirect_to allergens_ingredients_path(recipe_id: @recipe_id), notice: 'Ingredient was successfully updated.' }
         format.json { render :show, status: :ok, location: @ingredient }
       else
         format.html { render :edit }
@@ -69,6 +84,6 @@ class IngredientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :category)
+      params.require(:ingredient).permit(:name, :category, :allergen_ids => [])
     end
 end

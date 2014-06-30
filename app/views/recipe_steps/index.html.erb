@@ -1,0 +1,25 @@
+<div id="recipe-info">
+	<h1><%= @recipe.name %></h1>
+</div>
+
+<%= link_to "Add Step", new_recipe_step_path(recipe_id: @recipe_id), id: "add-recipe-step", remote: true %>
+
+<div id="recipe-step-form-container">
+</div>
+
+<strong>steps:</strong>
+<div id="recipe-steps-container">	
+	<% @recipe.recipe_steps.each do |recipe_step| %>
+		<p><strong>Step#:</strong> <%= recipe_step.step_number%></p>
+		<p><strong>Directions:</strong> <%= recipe_step.directions%></p>
+		<p><strong>Ingredients in Step:</strong>
+		<% recipe_step.ingredients.each do |ingredient| %>
+			<p>	<%= ingredient.name %></p>
+		<% end %>
+	<% end %>
+</div>
+
+
+
+	<p>Finished adding steps?</p>
+	<%= link_to "Save All Steps", edit_recipe_group_path(id: @recipe_id), id: "recipe-group-button"%>

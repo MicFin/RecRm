@@ -1,0 +1,37 @@
+<div id="recipe-index-container">
+	<div id="recipe-info">
+		<h1><%= @recipe.name %></h1>
+	</div>
+	<div id="allergen-form-container">
+	</div>
+
+	<div id="ingredient-lists-container">
+		<div id="not-tagged-ingredients">
+			<div id="">
+				<% if @recipe.ingredients_not_tagged.count < 1 %>
+					<p>All ingredients have been reviewed</p>
+					<p>Please: 
+					<%= link_to "Save All Recipe Ingredients", recipe_steps_path(recipe_id: @recipe_id), id: "recipe-steps-button"%></p>
+				<% else %>
+					<h3>These ingredients need to be reviewed by a dietitian</h3>	
+				<% end %>
+			</div>
+			<% @recipe.ingredients_not_tagged.each do |ingredient| %>
+				<strong><%= ingredient.name %></strong>
+				<p><%= link_to "Add Allergens", edit_ingredient_path(ingredient, recipe_id: @recipe.id), class: "add-allergen-buttons", remote: true %></p>
+			<% end %>
+		</div>
+
+		<div id="tagged-ingredients">
+			<h3>These ingredients have already been reviewed</h3>
+			<% @recipe.ingredients_tagged.each do |ingredient| %>
+				<strong><%= ingredient.name %></strong>
+
+				<% ingredient.allergens.each do |allergen| %>
+					<p><%= allergen.name %></p>
+				<% end %>
+				<p><%= link_to "Edit Ingredient", edit_ingredient_path(ingredient, recipe_id: @recipe.id), class: "add-allergen-buttons", remote: true %></p>
+			<% end %>
+		</div>
+	</div>
+</div>

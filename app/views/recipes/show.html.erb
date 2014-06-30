@@ -1,46 +1,68 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @recipe.name %>
-</p>
-    <strong>Cook Time:</strong>
-    <% @cook_times.each do |cook_time| %>
-      <p><%= cook_time.name %></p>
-    <% end %>
-      <strong>Prep Time:</strong>
-    <% @prep_times.each do |prep_time| %>
-      <p><%= prep_time.name %></p>
-    <% end %>
-      <strong>Difficulty:</strong>
-    <% @difficulties.each do |difficulty| %>
-      <p><%= difficulty.name %></p>
-    <% end %>
-      <strong>Courses:</strong>
-    <% @courses.each do |course| %>
-      <p><%= course.name %></p>
-    <% end %>
-      <strong>Age Groups:</strong>
-    <% @age_groups.each do |age_group| %>
-      <p><%= age_group.name %></p>
-    <% end %>
-      <strong>Scenarios:</strong>
-    <% @scenarios.each do |scenario| %>
-      <p><%= scenario.name %></p>
-    <% end %>
-      <strong>Holidays:</strong>
-    <% @holidays.each do |holiday| %>
-      <p><%= holiday.name %></p>
-    <% end %>
-      <strong>Cultural:</strong>
-    <% @cultures.each do |culture| %>
-      <p><%= culture.name %></p>
-    <% end %>
-      <strong>Ingredients:</strong>
-    <% @ingredients.each do |ingredient| %>
-      <p><%= ingredient.name%> <%= link_to 'Edit', edit_ingredient_path(ingredient) %></p>
-    <% end %>
+
+<strong>Name:</strong>
+<p><%= @recipe.name %></p>
+
+<p><%= link_to 'Edit Meta Recipe Info', edit_recipe_path(@recipe) %></p>
+<strong>Cook Time:</strong>
+<p><%= @cook_time.name %></p>
+<strong>Prep Time:</strong>
+<p><%= @prep_time.name %></p>
+<strong>Difficulty:</strong>
+<p><%= @difficulty.name %></p>
+<strong>Courses:</strong>
+<% @courses.each do |course| %>
+  <p><%= course.name %></p>
+<% end %>
+<strong>Age Groups:</strong>
+<% @age_groups.each do |age_group| %>
+  <p><%= age_group.name %></p>
+<% end %>
+<strong>Scenarios:</strong>
+<% @scenarios.each do |scenario| %>
+  <p><%= scenario.name %></p>
+<% end %>
+<strong>Holidays:</strong>
+<% @holidays.each do |holiday| %>
+  <p><%= holiday.name %></p>
+<% end %>
+<strong>Cultural:</strong>
+<% @cultures.each do |culture| %>
+  <p><%= culture.name %></p>
+<% end %>
+<h3>Patient Groups:</h3>
+<p><strong>Allergies:</strong></p>
+<% @allergies.each do |allergy| %>
+  <p><%=  allergy.name %></p>
+<% end %>
+<p><strong>Intolerances:</strong></p>
+<% @intolerances.each do |intolerance| %>
+  <p><%=  intolerance.name %></p>
+<% end %>
+<p><strong>Diseases:</strong></p>
+<% @diseases.each do |disease| %>
+  <p><%=  disease.name %></p>
+<% end %>
+<h3>Ingredients: <%= link_to 'Add/Remove Ingredients', ingredients_recipes_path(recipe_id: @recipe.id) %></h3> 
+<% @ingredients.each do |ingredient| %>
+  <strong><%= ingredient.name%></strong>
+  <p>Allergens:</p>
+  <% ingredient.allergens.each do |allergen| %>
+    <p><%= allergen.name %></p>
+  <% end %>
+<% end %>
+
+<h3>Steps: <%= link_to 'Add/Remove Steps', ingredients_recipes_path(recipe_id: @recipe.id) %></h3> 
+<% @steps.each do |step| %>
+  <p>Step#: <%= step.step_number%></p>
+  <p>Directions: <%= step.directions %></p>
+  <p>Ingredients in Step:</p>
+  <% step.ingredients.each do |ingredient| %>
+    <p><%= ingredient.name %></p>
+  <% end %>
+<% end %>
 
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+
 <%= link_to 'Back', recipes_path %>

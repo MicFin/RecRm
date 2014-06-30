@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group]
   before_action :set_characteristic_forms, only: [:new, :edit]
   autocomplete :ingredient, :name
   # GET /recipes
@@ -11,17 +11,19 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
-    @recipe = Recipe.find(params[:id])
-    # set instance variables for recipe characteristics
-    @cook_times = @recipe.characteristics.where(category: "Cook Time")
-    @prep_times = @recipe.characteristics.where(category: "Prep Time")
-    @difficulties = @recipe.characteristics.where(category: "Difficulty")
+    @ingredients = @recipe.ingredients
+    @allergies = @recipe.allergies
+    @diseases = @recipe.diseases
+    @intolerances = @recipe.intolerances
+    @cook_time = @recipe.characteristics.where(category: "Cook Time").first
+    @prep_time = @recipe.characteristics.where(category: "Prep Time").first
+    @difficulty = @recipe.characteristics.where(category: "Difficulty").first
     @courses = @recipe.characteristics.where(category: "Course")
     @age_groups = @recipe.characteristics.where(category: "Age Group")
     @scenarios = @recipe.characteristics.where(category: "Scenario")
     @holidays = @recipe.characteristics.where(category: "Holiday")
     @cultures = @recipe.characteristics.where(category: "Culture")
-    @ingredients = @recipe.ingredients
+    @steps = @recipe.recipe_steps
   end
 
   # GET /recipes/new
@@ -34,39 +36,32 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
+    @allergies = PatientGroup.allergies_no_other
+    @diseases = PatientGroup.diseases_no_other
+    @intolerances = PatientGroup.intolerances_no_other
+  end
+
+  def edit_recipe_group
+    @allergies = PatientGroup.safe_allergy_groups(@recipe.allergens)
+    @diseases = PatientGroup.safe_disease_groups(@recipe.allergens)
+    @intolerances = PatientGroup.safe_intolerance_groups(@recipe.allergens)
   end
 
   # POST /recipes
   # POST /recipes.json
   def create
-    binding.pry
     # remove empty strings from the characteristic_ids array, these are from the placeholder label on the form
     params["recipe"]["characteristic_ids"].reject! { |characteristic_id| characteristic_id.empty? }
     # convert remaining strings in array to integers, not sure why they are coming over as strings
     params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
-    # # set variable for ingredient name
-    # ingredient_name = params["recipe"]["ingredients_recipe"]["ingredient_attributes"]["name"]
-    # # set variable for ingredient object if it exists
-    # ingredient = Ingredient.where(name: params["recipe"]["ingredients_recipe"]["ingredient_attributes"]["name"]).first
     # # create new recipe
     @recipe = Recipe.new(recipe_params)
     respond_to do |format|
       # if recipe saves correctly
       if @recipe.save
-        binding.pry
-        # check if ingredient already exists in database
-        # if ingredient
-        #   # if so then create relationship between ingredient and recipe with amounts
-        #   IngredientsRecipe.new(recipe_id: @recipe.id, ingredient_id: ingredient.id, amount: params["recipe"]["ingredients_recipe"]["amount"].to_i, amount_unit: params["recipe"]["ingredients_recipe"]["amount_unit"]).save! 
-        # else
-        #   # if not create the ingredient
-        #   ingredient = Ingredient.new(name: ingredient_name)
-        #   ingredient.save!
-        #   # then create relationship between ingredient and recipe with amounts
-        #   IngredientsRecipe.new(recipe_id: @recipe.id, ingredient_id: ingredient.id, amount: params["recipe"]["ingredients_recipe"]["amount"].to_i, amount_unit: params["recipe"]["ingredients_recipe"]["amount_unit"]).save!
-        # end
- 
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
+        # if html send to ingredients_index index 
+        # pass recipe_id to ingredients_recipe index method
+        format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new }
@@ -119,6 +114,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :taste, :cook_time, :prep_time, :difficulty, :course, :age_group, :target_group, :dietitian_id, :characteristic_ids => [], ingredients_recipes_attributes: [ :amount, :amount_unit, ingredient_attributes: [:name] ])
+      params.require(:recipe).permit(:name, :description, :dietitian_id, :characteristic_ids => [], :patient_group_ids => [])
     end
 end

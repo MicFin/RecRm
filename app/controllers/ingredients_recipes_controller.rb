@@ -54,6 +54,7 @@ class IngredientsRecipesController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @ingredients_recipe.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

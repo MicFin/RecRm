@@ -1,0 +1,7 @@
+ // hide ingrdients
+$(".edit-ingredient").hide();
+$("#review-ingredients").hide();
+$("#add-ingredients-recipe").hide();
+$(".remove-ingredient").hide();
+// insert ingredients recipes _form.html.erb
+$('#ingredient-form-container').after("<%= j render('form') %>");

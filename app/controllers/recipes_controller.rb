@@ -36,9 +36,10 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
-    @allergies = PatientGroup.allergies_no_other
-    @diseases = PatientGroup.diseases_no_other
-    @intolerances = PatientGroup.intolerances_no_other
+    binding.pry
+    @allergies = PatientGroup.allergies
+    @diseases = PatientGroup.diseases
+    @intolerances = PatientGroup.intolerances
   end
 
   def edit_recipe_group

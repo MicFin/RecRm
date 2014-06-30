@@ -1,0 +1,7 @@
+<h1>Dashboard page</h1>
+
+<%= link_to 'Add Recipe', new_recipe_path%>
+
+<% @recipes.each do |recipe| %>
+<p>	<%= recipe.name %> <%= link_to 'View Recipe', recipe%></p>
+<% end %>

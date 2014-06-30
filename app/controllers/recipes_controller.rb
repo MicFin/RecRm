@@ -8,6 +8,9 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
+  def dietitian_recipes_index
+    @recipes = Recipe.where(dietitian_id: current_dietitian.id)
+  end
   # GET /recipes/1
   # GET /recipes/1.json
   def show

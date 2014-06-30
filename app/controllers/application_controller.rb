@@ -14,7 +14,17 @@ class ApplicationController < ActionController::Base
 		      # if not take them to their home page
 		      home_path
 		    end
+		elsif resource.class == Dietitian
+			binding.pry
+				if resource.sign_in_count <= 1
+		      # if first time give first time user experience
+					dietiitian_recipes_path(current_dietitian)
+		    else
+		      # if not take them to their home page
+					dietiitian_recipes_path(current_dietitian)
+		    end
 		end
+
 	end
 
 end

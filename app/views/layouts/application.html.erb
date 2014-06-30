@@ -11,8 +11,13 @@
 <div class="container">
 	
 	<div class="nav nav-tabs">
-		<li> <%= link_to 'HOME', root_path %> </li>
-
+		<% if current_user %>
+			<li> <%= link_to 'HOME', user_authenticated_root_path %> </li>
+		<% elsif current_dietitian %>
+			<li> <%= link_to 'HOME', dietitian_authenticated_root_path %> </li>
+		<% else %>
+			<li> <%= link_to 'HOME', user_unauthenticated_root_path %> </li>
+		<% end %>
 		<% if current_user %>
 			<li><%= link_to 'SIGN OUT', destroy_user_session_path, :method => :delete %></li>
 		<% else %>

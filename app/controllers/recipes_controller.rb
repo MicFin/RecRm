@@ -60,9 +60,11 @@ class RecipesController < ApplicationController
     params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
     # # create new recipe
     @recipe = Recipe.new(recipe_params)
+    @recipe.dietitian_id = current_dietitian.id
     respond_to do |format|
       # if recipe saves correctly
       if @recipe.save
+            binding.pry
         # if html send to ingredients_index index 
         # pass recipe_id to ingredients_recipe index method
         format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }

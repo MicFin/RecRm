@@ -19,7 +19,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   
-  root to: "welcome#index"
+  # root to: "welcome#index"
+
   devise_scope :user do
     authenticated :user do
       root to: 'welcome#index', as: :user_authenticated_root
@@ -30,21 +31,11 @@ Rails.application.routes.draw do
   end
 
 
-  devise_for :dietitians#, :controllers => { :confirmations => "confirmations", session: "sessions", passwords: "passwords", registrations: "registrations" } 
-
+  devise_for :dietitians
+  
   devise_scope :dietitian do
     authenticated :dietitian do
       root :to => 'recipes#dietitian_recipes_index', as: :dietitian_authenticated_root
-      # resources :characteristics
-      # resources :ingredients_recipes
-      # resources :allergens_ingredients
-      # resources :recipes_patient_groups
-      # resources :recipe_steps
-      # resources :ingredients
-      # # dietitian recipes index page
-      # get '/recipes/dietitian_recipes_index/:id', to: 'recipes#dietitian_recipes_index', as: 'dietiitian_recipes'
-      # # recipes edit recipe group page
-      # get '/recipes/edit_recipe_group/:id', to: 'recipes#edit_recipe_group', as: 'edit_recipe_group'
     end
     unauthenticated :dietitian do
       root :to => 'devise/registrations#new', as: :dietitian_unauthenticated_root

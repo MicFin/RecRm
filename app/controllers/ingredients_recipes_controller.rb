@@ -24,10 +24,15 @@ class IngredientsRecipesController < ApplicationController
     @ingredient = Ingredient.new 
     # set recipe_id sent from ingredients_recipe index form remote true
     @recipe_id = params["recipe_id"]
+    # need to decide where to pull this list from
+    @units = ["Cup", "Teaspoon", "Tablespoon", "Ounce", "Pound"]
   end
 
   # GET /ingredients_recipes/1/edit
   def edit
+    @recipe = Recipe.find(params["recipe_id"])
+    # need to decide where to pull this list from
+    @units = ["Cup", "Teaspoon", "Tablespoon", "Ounce", "Pound"]
   end
 
   # POST /ingredients_recipes
@@ -49,6 +54,7 @@ class IngredientsRecipesController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @ingredients_recipe.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -58,8 +64,10 @@ class IngredientsRecipesController < ApplicationController
   def update
     respond_to do |format|
       if @ingredients_recipe.update(ingredients_recipe_params)
-        format.html { redirect_to @ingredients_recipe, notice: 'ingredients_recipe was successfully updated.' }
+        recipe_id = params["ingredients_recipe"]["recipe_id"].to_i
+        format.html { redirect_to ingredients_recipes_path(recipe_id: recipe_id), notice: 'ingredients_recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @ingredients_recipe }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @ingredients_recipe.errors, status: :unprocessable_entity }
@@ -74,6 +82,7 @@ class IngredientsRecipesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to ingredients_recipes_url, notice: 'ingredients_recipe was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

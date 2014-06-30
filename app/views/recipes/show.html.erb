@@ -53,7 +53,7 @@
   <% end %>
 <% end %>
 
-<h3>Steps: <%= link_to 'Add/Remove Steps', ingredients_recipes_path(recipe_id: @recipe.id) %></h3> 
+<h3>Steps: <%= link_to 'Add/Remove Steps', recipe_steps_path(recipe_id: @recipe.id) %></h3> 
 <% @steps.each do |step| %>
   <p>Step#: <%= step.step_number%></p>
   <p>Directions: <%= step.directions %></p>
@@ -65,4 +65,4 @@
 
 
 
-<%= link_to 'Back', recipes_path %>
+<%= link_to 'See All Your Recipes', dietitian_recipes_path(current_dietitian) %>

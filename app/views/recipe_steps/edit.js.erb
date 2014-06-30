@@ -1,0 +1,7 @@
+ // hide ingrdients
+$(".edit-recipe-step").hide();
+$("#recipe-group-button").hide();
+$("#add-recipe-step").hide();
+$(".remove-step").hide();
+// insert ingredients recipes _form.html.erb
+$('#recipe-step-form-container').after("<%= j render('form') %>");

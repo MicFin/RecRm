@@ -7,11 +7,16 @@
 <div id="ingredient-form-container">
 </div>
 
-<strong>Ingredients:</strong>
+<strong id="ingredient-title">Ingredients:</strong>
 <div id="ingredients-container">	
 	<% @recipe.ingredients_recipes.each do |ingredients_recipe| %>
-		<strong><%=ingredients_recipe.ingredient.name %></strong>
+	<div id="ingredients-recipe-<%=ingredients_recipe.id%>">
+		<P><strong><%=ingredients_recipe.ingredient.name %></strong>
+			<%= link_to "Edit", edit_ingredients_recipe_path(ingredients_recipe, recipe_id: @recipe_id.to_i), class: "edit-ingredient", remote: true %>
+			<%= link_to "(remove)", ingredients_recipe, method: :delete, data: {confirm: "Are you sure?"}, class: "remove-ingredient", remote: true %>
+		</p>
 		<p>Amount: <%= ingredients_recipe.amount%> <%= ingredients_recipe.amount_unit%></p>
+	</div>
 	<% end %>
 </div>
 

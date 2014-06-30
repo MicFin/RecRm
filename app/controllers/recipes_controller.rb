@@ -8,6 +8,9 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
+  def dietitian_recipes_index
+    @recipes = Recipe.where(dietitian_id: current_dietitian.id)
+  end
   # GET /recipes/1
   # GET /recipes/1.json
   def show
@@ -29,16 +32,13 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
-    @ingredients_recipe = IngredientsRecipe.new
-    @ingredients_recipe.build_ingredient
-    @ingredient = Ingredient.new  
   end
 
   # GET /recipes/1/edit
   def edit
-    @allergies = PatientGroup.allergies_no_other
-    @diseases = PatientGroup.diseases_no_other
-    @intolerances = PatientGroup.intolerances_no_other
+    @allergies = PatientGroup.allergies
+    @diseases = PatientGroup.diseases
+    @intolerances = PatientGroup.intolerances
   end
 
   def edit_recipe_group
@@ -56,6 +56,7 @@ class RecipesController < ApplicationController
     params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
     # # create new recipe
     @recipe = Recipe.new(recipe_params)
+    @recipe.dietitian_id = current_dietitian.id
     respond_to do |format|
       # if recipe saves correctly
       if @recipe.save
@@ -64,6 +65,7 @@ class RecipesController < ApplicationController
         format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
+        set_characteristic_forms
         format.html { render :new }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
@@ -78,6 +80,7 @@ class RecipesController < ApplicationController
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
+        set_characteristic_forms
         format.html { render :edit }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end

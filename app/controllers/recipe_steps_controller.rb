@@ -26,6 +26,7 @@ class RecipeStepsController < ApplicationController
 
   # GET /recipe_steps/1/edit
   def edit
+    @ingredients = @recipe_step.ingredients
   end
 
   # POST /recipe_steps
@@ -52,6 +53,7 @@ class RecipeStepsController < ApplicationController
       if @recipe_step.update(recipe_step_params)
         format.html { redirect_to @recipe_step, notice: 'Recipe step was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe_step }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @recipe_step.errors, status: :unprocessable_entity }
@@ -62,10 +64,11 @@ class RecipeStepsController < ApplicationController
   # DELETE /recipe_steps/1
   # DELETE /recipe_steps/1.json
   def destroy
-    @ingredient.destroy
+    @recipe_step.destroy
     respond_to do |format|
       format.html { redirect_to recipe_steps_url, notice: 'Recipe step was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
   private

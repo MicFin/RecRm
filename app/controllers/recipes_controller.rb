@@ -39,7 +39,6 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
-    binding.pry
     @allergies = PatientGroup.allergies
     @diseases = PatientGroup.diseases
     @intolerances = PatientGroup.intolerances
@@ -64,7 +63,6 @@ class RecipesController < ApplicationController
     respond_to do |format|
       # if recipe saves correctly
       if @recipe.save
-            binding.pry
         # if html send to ingredients_index index 
         # pass recipe_id to ingredients_recipe index method
         format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }

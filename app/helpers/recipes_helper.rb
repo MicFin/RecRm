@@ -18,7 +18,10 @@ module RecipesHelper
 				@recipe_list << recipe 
 			end
 		end
+		gon.recipe_list = @recipe_list
 		#Rails.logger.debug("MY RECIPES: #{@recipe_list}")
 	end
 
+	def get_recipe!
+	end
 end

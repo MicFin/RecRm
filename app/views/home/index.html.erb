@@ -1,22 +1,13 @@
+
+
 <h1>HOME PAGE BRO!</h1>
 
 
-<table>
-  <thead>
-    <tr>
+<div id="recipeList"></div>
 
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @recipe_list.each do |recipe| %>
-      <tr>
-        <td><%= recipe.name %></td>
-
-    
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<script>
+// call function on page load
+Home.renderRecipeList();
+</script>
 

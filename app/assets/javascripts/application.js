@@ -37,4 +37,9 @@ $(document).ready(function() {
 		// $("#ingredients-container").append("<%= escape_javascript(render( :partial => 'add_ingredient_form' )) %>");
 	});
 
+// Attempting to Bootstrap home page   
+$(document).ready(Home);
+$(document).on('page:load', Home);
+
+
 });

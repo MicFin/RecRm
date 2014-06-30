@@ -24,11 +24,15 @@ class IngredientsRecipesController < ApplicationController
     @ingredient = Ingredient.new 
     # set recipe_id sent from ingredients_recipe index form remote true
     @recipe_id = params["recipe_id"]
+    # need to decide where to pull this list from
+    @units = ["Cup", "Teaspoon", "Tablespoon", "Ounce", "Pound"]
   end
 
   # GET /ingredients_recipes/1/edit
   def edit
     @recipe = Recipe.find(params["recipe_id"])
+    # need to decide where to pull this list from
+    @units = ["Cup", "Teaspoon", "Tablespoon", "Ounce", "Pound"]
   end
 
   # POST /ingredients_recipes

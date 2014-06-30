@@ -5,7 +5,7 @@
       <%= ingredients_recipe_form.input :amount %>
     </div>
     <div class="form-group">
-      <%= ingredients_recipe_form.input :amount_unit %>
+      <%= ingredients_recipe_form.input :amount_unit, :collection => @units, :label => "Unit" ,:include_blank => false %>
     </div>
     <div class="form-group">
       <%= ingredients_recipe_form.fields_for :ingredient, @ingredient do |ingredient_form| %>
@@ -18,7 +18,7 @@
       <% end %>
     </div>
     <div class="actions">
-      <%= ingredients_recipe_form.button :submit, "Add Ingredient to Recipe" %>
+      <%= ingredients_recipe_form.button :submit %>
     </div>
   <% end %>
 </div>

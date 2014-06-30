@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
 		elsif resource.class == Dietitian
 				if resource.sign_in_count <= 1
 		      # if first time give first time user experience
+		      # would rather it direct to dietitian_authenticated_root_path but failing
+		      ### dietitian_authenticated_root_path(current_dietitian)
+		      ### dietitian_authenticated_root_path
 					dietitian_recipes_path(current_dietitian)
 		    else
 		      # if not take them to their home page

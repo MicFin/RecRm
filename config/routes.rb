@@ -11,9 +11,6 @@ Rails.application.routes.draw do
   resources :families
 
   
-  # manual route 
-
-  
   get 'welcome/index'
   get 'home', to: 'home#index', as: 'home'
 
@@ -30,11 +27,11 @@ Rails.application.routes.draw do
     end   
   end
 
-
   devise_for :dietitians
 
   devise_scope :dietitian do
     authenticated :dietitian do
+      # root :to => 'recipes#dietitian_recipes_index', :constraints => lambda { |request| request.env['warden'].user.class.name == 'Dietitian' }, :as => "dietitian_authenticated_root"
       root :to => 'recipes#dietitian_recipes_index', as: :dietitian_authenticated_root
     end
     unauthenticated :dietitian do

@@ -32,9 +32,6 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
-    @ingredients_recipe = IngredientsRecipe.new
-    @ingredients_recipe.build_ingredient
-    @ingredient = Ingredient.new  
   end
 
   # GET /recipes/1/edit
@@ -68,6 +65,7 @@ class RecipesController < ApplicationController
         format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
+        set_characteristic_forms
         format.html { render :new }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
@@ -82,6 +80,7 @@ class RecipesController < ApplicationController
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
+        set_characteristic_forms
         format.html { render :edit }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end

@@ -25,7 +25,6 @@ class PatientGroupsController < ApplicationController
   # POST /patient_groups.json
   def create
     @patient_group = PatientGroup.new(patient_group_params)
-
     respond_to do |format|
       if @patient_group.save
         format.html { redirect_to @patient_group, notice: 'Recipe step was successfully created.' }

@@ -27,16 +27,31 @@ $(document).ready(function() {
         required: true,
         minlength: 2
       },
+      "recipe[characteristic_ids][]": {
+        required: true
+      }
     },
     messages: {
       "recipe[name]":{
         required: "Enter recipe name",
         minlength: "Must be at least 2 letters"
+      },
+      "recipe[characteristic_ids][]": {
+        required: "Please select at least 1 of each Prep Time, Cook Time, Difficulty, Relevant Courses, and Relevant Age Groups."
       }
-    }
+    },
+
+
+
+
+
+
+
   });
-	// validate new recipe form with JS
-  $("#new_recipe").validate({
+
+	// validate new ingredient form with JS: FAILING ****
+  // i think it's due to the form being added in by JQuery so the validate listener isn't being attached (but I tried adding this to the new.js.erb and the create.js.erb so then it would be called after the form is inserted by JQuery and it didn't work either) or because form is remote true
+  $("ingredients-recipe-form-validate").validate({
     rules: {
       "recipe[name]":{
         required: true,

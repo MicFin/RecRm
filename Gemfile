@@ -50,7 +50,8 @@ gem 'rails3-jquery-autocomplete'
 gem 'jquery-ui-rails'
 
 # allows image uploads
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+# gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip", "~> 4.1"
 gem 'aws-sdk'
 
 group :development do

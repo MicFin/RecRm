@@ -54,17 +54,9 @@ class RecipesController < ApplicationController
     params["recipe"]["characteristic_ids"].reject! { |characteristic_id| characteristic_id.empty? }
     # convert remaining strings in array to integers, not sure why they are coming over as strings
     params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
-    # # create new recipe
-#     binding.pry
-#     @recipe = Recipe.new
-#     hash = {}
-# @recipe.instance_variables.each {|var| hash[var.to_s.delete("@")] = @recipe.instance_variable_get(var) }
 
-# ### #### HAS PROBLEM WITH PICTURE
-# binding.pry
-    binding.pry
-
-    # @recipe = Recipe.new(recipe_params)
+    @recipe = Recipe.new(recipe_params)
+    # assign dieititan to recipe
     @recipe.dietitian_id = current_dietitian.id
     respond_to do |format|
       # if recipe saves correctly
@@ -74,6 +66,7 @@ class RecipesController < ApplicationController
         format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
+        binding.pry
         set_characteristic_forms
         format.html { render :new }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
@@ -125,7 +118,8 @@ class RecipesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # need to change :image_url to :avatar when paperclip is working
     def recipe_params
-      params.require(:recipe).permit(:avatar, :name, :description, :dietitian_id, :characteristic_ids => [], :patient_group_ids => [])
+      params.require(:recipe).permit(:image_url, :name, :description, :dietitian_id, :characteristic_ids => [], :patient_group_ids => [])
     end
 end

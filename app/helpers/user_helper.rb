@@ -16,6 +16,7 @@ module UserHelper
 		#Rails.logger.debug("MY ALLERGENS: #{@user_allergens}")
 	end
 
+	# returns user bad ingredients
 	def get_user_ingredients!
 		@user_ingredients = []
 		@user_allergens.map do | allergen |

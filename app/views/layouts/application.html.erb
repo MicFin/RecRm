@@ -7,6 +7,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+	<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
 </head>
 <body>
 
@@ -18,7 +20,7 @@
 			<li><%= link_to 'SIGN OUT', destroy_user_session_path, :method => :delete %></li>
 
 		<% elsif current_dietitian %>
-			<li> <%= link_to 'HOME', dietitian_authenticated_root_path %> </li>
+			<li> <%= link_to 'HOME', dietitian_recipes_path(current_dietitian) %> </li>
 			<li><%= link_to 'SIGN OUT', destroy_dietitian_session_path, :method => :delete %></li>
 		<% else %>
 			<li> <%= link_to 'HOME', user_unauthenticated_root_path %> </li>

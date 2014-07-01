@@ -6,6 +6,7 @@ class Recipe < ActiveRecord::Base
   has_and_belongs_to_many :patient_groups, :uniq => true
   belongs_to :dietitian
   validates :name, :presence => {:message => 'cannot be blank, Recipe not saved'}
+  # validate :has_mandatory_characteristics
   # removed until can utlilize AJAX to render nested forms for recipe form or to submit for ingredients_recipes forms
   # accepts_nested_attributes_for :ingredients_recipes
 
@@ -75,5 +76,8 @@ class Recipe < ActiveRecord::Base
     return allergens.uniq
   end
 
+  # def has_mandatory_characteristics
+  #   binding.pry
+  # end
 
 end

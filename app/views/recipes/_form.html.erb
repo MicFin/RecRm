@@ -12,33 +12,40 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= recipe_form.input :name, :required => true %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, :as => :select, collection: @cook_times, prompt: "Choose a Prep Time", label: "Prep Time", :required => true %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, :as => :select, collection: @prep_times, prompt: "Choose a Cook Time", label: "Cook Time", :required => true %>
-  </div>
+  <div class="recipe-form-section" id="recipe-form-section-1">
+    <div class="form-group">
+      <%= recipe_form.input :name, :required => true %>
+    </div>
+    <div class="form-group" id="recipe-form-selector-1">
+      <%= recipe_form.association :characteristics, :as => :select, collection: @cook_times, prompt: "Choose a Prep Time", label: "Prep Time", :required => true %>
+    </div>
+    <div class="form-group" id="recipe-form-selector-2">
+      <%= recipe_form.association :characteristics, :as => :select, collection: @prep_times, prompt: "Choose a Cook Time", label: "Cook Time", :required => true %>
+    </div>
 
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, :as => :select, collection: @difficulties, prompt: "Choose a Difficulty", label: "Difficulty", :required => true %>
+    <div class="form-group" id="recipe-form-selector-3">
+      <%= recipe_form.association :characteristics, :as => :select, collection: @difficulties, prompt: "Choose a Difficulty", label: "Difficulty", :required => true %>
+    </div>
   </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, collection: @courses, prompt: "Select Courses", label: "Select All Relevant Courses",  as: :check_boxes, :required => true %>
+  
+  <div class="recipe-form-section" id="recipe-form-section-2">
+    <div class="form-group">
+      <%= recipe_form.association :characteristics, collection: @courses, prompt: "Select Courses", label: "Select All Relevant Courses",  as: :check_boxes, :required => true %>
+    </div>
+    <div class="form-group">
+      <%= recipe_form.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: "Select All Relevant Age Groups", as: :check_boxes, :required => true %>
+    </div>
+    <div class="form-group">
+      <%= recipe_form.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: "Select Any Relevant Scenarios",  as: :check_boxes %>
+    </div>
   </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: "Select All Relevant Age Groups",  as: :check_boxes, :required => true %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: "Select Any Relevant Scenarios",  as: :check_boxes %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: "Select Any Relevant Holidays",  as: :check_boxes %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, collection: @cultures, prompt: "Select Culture", label: "Select Any Relevant Cultures",  as: :check_boxes %>
+  <div class="recipe-form-section" id="recipe-form-section-3">
+    <div class="form-group">
+      <%= recipe_form.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: "Select Any Relevant Holidays",  as: :check_boxes %>
+    </div>
+    <div class="form-group">
+      <%= recipe_form.association :characteristics, collection: @cultures, prompt: "Select Culture", label: "Select Any Relevant Cultures",  as: :check_boxes %>
+    </div>
   </div>
 
   <% if @recipe.description != nil %>
@@ -56,7 +63,17 @@
       <%= recipe_form.input :description, :input_html => {:rows => 10}, :required => true %>
     </div>
   <% end %>
-  <div class="actions">
+    <div id="recipe-form-nav-buttons-1" class="recipe-form-nav-buttons form-group">
+      <button class="next-recipe-form-buttons" id="next-recipe-form-buttons-1"style="button">Next</button>
+    </div>
+    <div id="recipe-form-nav-buttons-2" class="recipe-form-nav-buttons form-group">
+      <button style="button" id="previous-recipe-form-buttons-2" class="previous-recipe-form-buttons">Previous</button>
+      <button class="next-recipe-form-buttons" id="next-recipe-form-buttons-2" style="button">Next</button>
+    </div>
+    <div id="recipe-form-nav-buttons-3" class="recipe-form-nav-buttons form-group">
+      <button style="button" id="previous-recipe-form-buttons-3" class="previous-recipe-form-buttons">Previous</button>
+    </div>
+  <div id="recipe-form-section-submit" class="actions">
     <%= recipe_form.button :submit %>
   </div>
 <% end %>

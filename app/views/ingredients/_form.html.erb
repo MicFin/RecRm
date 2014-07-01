@@ -1,27 +1,30 @@
-<%= simple_form_for(@ingredient, html: {class: 'form-horizontal', id: "edit-ingredient-form" } ) do |f| %>
+<div id="edit-ingredient-form-container">
+  <%= simple_form_for(@ingredient, html: {class: 'form-horizontal', id: "edit-ingredient-form" } ) do |f| %>
 
-  <% if @ingredient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+    <% if @ingredient.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
 
-      <ul>
-      <% @ingredient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @ingredient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <h3><%= @ingredient.name %></h3>
+    <div class="field">
+
+     <%= f.input :category, collection: ["Fruit", "Vegetable", "Protein", "Grain", "Dairy", "Meat", "Fish", "Raw", "Legume", "Bean"], prompt: "Select All Relevant Food Categories" %>
+    </div>
+
+    <div class="form-group" style="margin-left: 20px">
+      <%= f.association :allergens, collection: @allergens, label: "Select Any Relevant Allergens",  as: :check_boxes %>
+    </div>
+      <%= f.hidden_field :recipe_id, value: @recipe.id %>
+    <div class="actions">
+      <%= f.button :submit %>
     </div>
   <% end %>
-  <h3><%= @ingredient.name %></h3>
-  <div class="field">
 
-    <%= f.input :category, label: "Category (fruit, vegetable, etc)" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.association :allergens, collection: @allergens, label: "Select Any Relevant Allergens",  as: :check_boxes %>
-  </div>
-    <%= f.hidden_field :recipe_id, value: @recipe.id %>
-  <div class="actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>

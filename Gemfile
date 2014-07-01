@@ -49,6 +49,10 @@ gem 'rails3-jquery-autocomplete'
 # only requiring widget //= require jquery.ui.autocomplete
 gem 'jquery-ui-rails'
 
+# allows image uploads
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk'
+
 group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors

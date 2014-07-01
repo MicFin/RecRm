@@ -55,7 +55,16 @@ class RecipesController < ApplicationController
     # convert remaining strings in array to integers, not sure why they are coming over as strings
     params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
     # # create new recipe
-    @recipe = Recipe.new(recipe_params)
+#     binding.pry
+#     @recipe = Recipe.new
+#     hash = {}
+# @recipe.instance_variables.each {|var| hash[var.to_s.delete("@")] = @recipe.instance_variable_get(var) }
+
+# ### #### HAS PROBLEM WITH PICTURE
+# binding.pry
+    binding.pry
+
+    # @recipe = Recipe.new(recipe_params)
     @recipe.dietitian_id = current_dietitian.id
     respond_to do |format|
       # if recipe saves correctly
@@ -117,6 +126,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :dietitian_id, :characteristic_ids => [], :patient_group_ids => [])
+      params.require(:recipe).permit(:avatar, :name, :description, :dietitian_id, :characteristic_ids => [], :patient_group_ids => [])
     end
 end

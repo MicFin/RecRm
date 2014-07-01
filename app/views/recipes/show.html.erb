@@ -3,7 +3,7 @@
 
 <strong>Name:</strong>
 <p><%= @recipe.name %></p>
-
+<%= image_tag @recipe.avatar.url %>
 <p><%= link_to 'Edit Meta Recipe Info', edit_recipe_path(@recipe) %></p>
 <strong>Cook Time:</strong>
 <p><%= @cook_time.name %></p>

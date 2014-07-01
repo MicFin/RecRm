@@ -6,6 +6,10 @@ class Recipe < ActiveRecord::Base
   has_and_belongs_to_many :patient_groups, :uniq => true
   belongs_to :dietitian
   validates :name, :presence => {:message => 'cannot be blank, Recipe not saved'}
+  # paperclip loaded image 
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  # validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  do_not_validate_attachment_file_type :avatar
   # validate :has_mandatory_characteristics
   # removed until can utlilize AJAX to render nested forms for recipe form or to submit for ingredients_recipes forms
   # accepts_nested_attributes_for :ingredients_recipes

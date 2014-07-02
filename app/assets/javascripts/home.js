@@ -15,6 +15,7 @@ var Home = {
     	//loop through data and add html
     	for (array = 0; array < length; array++){
     		recipeListHTML += "<div>" + data[array].name + "</div>";
+    		
     	}
 
     	// display in html

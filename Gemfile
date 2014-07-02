@@ -54,6 +54,10 @@ gem 'jquery-ui-rails'
 gem "paperclip", "~> 4.1"
 gem 'aws-sdk'
 
+#allows you to set variables within controller and access them in javascript 
+#http://railscasts.com/episodes/324-passing-data-to-javascript?view=asciicast
+gem 'gon'
+
 group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors
@@ -63,9 +67,7 @@ group :development do
 # Pry allows you to debug, place a binding.pry in ruby code and you can debug from that place in the console
   gem 'pry'
 
-  #allows you to set variables within controller and access them in javascript 
-  #http://railscasts.com/episodes/324-passing-data-to-javascript?view=asciicast
-  gem 'gon'
+
 
 end
 

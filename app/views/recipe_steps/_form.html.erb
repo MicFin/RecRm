@@ -1,20 +1,27 @@
 
 <div class="form-group" id="recipe-steps-form">
   <%= simple_form_for @recipe_step, remote: true  do |recipe_step_form| %>
-    <div class="form-group">
-      <%= recipe_step_form.input :step_number %>
-    </div>
-    <div class="form-group">
-      <%= recipe_step_form.input :directions %>
-    </div>
-  
-  <div class="form-group">
-    <%= recipe_step_form.association :ingredients, collection: @ingredients, label: "Select all Ingredients use in Step",  as: :check_boxes %>
-  </div>
-
-    <%= recipe_step_form.hidden_field :recipe_id, value: @recipe_id.to_i %>
-    <div class="actions">
-      <%= recipe_step_form.button :submit %>
+    <div class="recipe-form-section row" id="recipe-form-section-8">
+      <div class="recipe-form-steps-container">
+        <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-8">
+          <div class="form-group col-xs-3">
+            <span class="attribute-title white-font">STEP NUMBER</span> 
+            <%= recipe_step_form.input :step_number, label: false %>
+          </div>
+          <div class="form-group col-xs-9">
+            <span class="attribute-title white-font">DIRECTIONS</span> 
+            <%= recipe_step_form.input :directions, label: false %>
+          </div>
+          <div class="form-group col-xs-12">
+            <span class="attribute-title white-font">INGREDIENTS IN STEP</span>      
+            <%= recipe_step_form.association :ingredients, collection: @ingredients, label: false,  as: :check_boxes %>
+          </div>    
+            <%= recipe_step_form.hidden_field :recipe_id, value: @recipe_id.to_i %>
+          <div class="recipe-form-section-submit actions text-center">
+            <%= recipe_step_form.button :submit, class: "btn btn-default btn-lg" %>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

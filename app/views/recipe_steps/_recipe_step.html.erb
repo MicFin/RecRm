@@ -1,14 +1,14 @@
 
 
-
-
-		<div id="recipe-step-<%=@recipe_step.id%>">
-		<p><strong>Step#:</strong> <%= @recipe_step.step_number%></p>
-		<p><strong>Directions:</strong> <%= @recipe_step.directions%></p>
-		<p><strong>Ingredients in Step:</strong>
-		<% @recipe_step.ingredients.each do |ingredient| %>
-			<p>	<%= ingredient.name %></p>
-		<% end %>
-			<%= link_to "Edit", edit_recipe_step_path(recipe_step, recipe_id: @recipe_id.to_i), class: "edit-recipe-step", remote: true %>
-			<%= link_to "(remove)", @recipe_step, method: :delete, data: {confirm: "Are you sure?"}, class: "remove-step", remote: true %>
+			<div class="col-xs-3 ingredient-list" id="recipe-step-<%=recipe_step.id%>">
+				<p><span class="attribute-title white-font">Step#:</span></p> 
+				<p class="recipe-step-item light-green-font"><%= @recipe_step.step_number%></p>
+				<p><span class="attribute-title white-font">Directions:</span></p> 
+				<p class="recipe-step-item light-green-font"><%= @recipe_step.directions%></p>
+				<p><span class="attribute-title white-font">Ingredients in Step:</span></p>
+				<% @recipe_step.ingredients.each do |ingredient| %>
+					<p class="recipe-step-item light-green-font">	<%= ingredient.name %></p>
+				<% end %>
+				<%= link_to "Edit", edit_recipe_step_path(@recipe_step, recipe_id: @recipe_id.to_i), class: "edit-recipe-step", remote: true %>
+				<%= link_to "(remove)", @recipe_step, method: :delete, data: {confirm: "Are you sure?"}, class: "remove-step", remote: true %>
 			</div>

@@ -26,7 +26,7 @@ class AllergensIngredientsController < ApplicationController
     @allergens_ingredient = AllergensIngredient.new
     @allergens_ingredient.build_allergen
     @allergen = Allergen.new 
-    @allergens = Allergen.all
+    @allergens = Allergen.find(:all, :limit => 10)
   end
 
   # GET /allergens_ingredients/1/edit

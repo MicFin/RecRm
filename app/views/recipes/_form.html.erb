@@ -52,7 +52,8 @@
             <%= image_tag("carrot-large1.png", class: "img-responsive text-left") %>
           </div>
           <div class="col-xs-6">
-            <%= recipe_form.input :image_url,  placeholder: "Paste Image URL Here" %>
+            <span class="attribute-title orange-font">Recipe Image</span>
+            <%= recipe_form.input :image_url,  label: false, placeholder: "Paste Image URL Here" %>
           </div>
         </div>
       </div>
@@ -125,27 +126,43 @@
     </div>
   </div>
 
-  <% if @recipe.description != nil %>
-    <div class="form-group">
-      <%= recipe_form.association :patient_groups, collection: @allergies, label: "Select Target Allergy Patient Groups",  as: :check_boxes %>
-    </div>
-    <div class="form-group">
-      <%= recipe_form.association :patient_groups, collection: @intolerances, label: "Select Target Intolerance Patient Groups",  as: :check_boxes %>
-    </div>
-    <div class="form-group">
-      <%= recipe_form.association :patient_groups, collection: @diseases, label: "Select Target Disease Patient Groups",  as: :check_boxes %>
-    </div>
-    <div class="form-group">
-      <%= recipe_form.input :description, :input_html => {:rows => 10}, :required => true %>
+  <% if @recipe.id%>
+    <div class=" row recipe-form-section" id="patient-group-form">
+      <div class="recipe-form-steps-container">
+        <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-5">
+          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
+            <span class="attribute-title orange-font">Allergies</span>
+            <%= recipe_form.association :patient_groups, collection: @allergies, label: false,  as: :check_boxes %>
+          </div>
+          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
+            <span class="attribute-title orange-font">Inolerances</span>
+            <%= recipe_form.association :patient_groups, collection: @intolerances, label: false,  as: :check_boxes %>
+          </div>
+          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
+            <span class="attribute-title orange-font">Diseases</span>
+            <%= recipe_form.association :patient_groups, collection: @diseases, label: false,  as: :check_boxes %>
+          </div>
+          <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="recipe-form-selector-4">
+          <p class="text-center">Write a short introduction about this recipe!  Keep in mind who the recipe is for.</p><span class="attribute-title orange-font">Description</span>
+                <%= recipe_form.input :description, label: false, :input_html => {:rows => 10}, :required => true %>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
   <div class="recipe-form-section row" id="recipe-form-section-6">
     <div class="recipe-form-steps-container">
       <div class="col-xs-12 recipe-form-steps text-center">
-        <p>Ok, now that we have an idea of who we are making this recipe for, let's get to the fun stuff...</p>
+        <% if @recipe.id %>
         <div class="recipe-form-section-submit actions">
-          <%= recipe_form.button :submit, "Add Ingredients", class: "btn btn-default btn-lg" %>
+          <%= recipe_form.button :submit, "Save Changes", class: "btn btn-default btn-lg" %>
         </div>
+        <% else %>
+        <div class="recipe-form-section-submit actions">
+          <p>Ok, now that we have an idea of who we are making this recipe for, let's get to the fun stuff...</p>
+          <%= recipe_form.button :submit, "Add Ingredients" %>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>

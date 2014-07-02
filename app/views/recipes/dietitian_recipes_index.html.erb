@@ -1,7 +1,37 @@
-<h1>Your Recipes</h1>
+<div class="container" id="recipe-list-page-container">
+	<div class="row">
+		<div class="recipe-form-section row" id="recipe-list-section-0">
+			<h1 id="add-recipe-title-message"><span class="attribute-title">Your Recipes</span></h1>
+		</div>
+		<div class="row button-row recipe-form-section">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4 text-center">
 
-<%= link_to 'Add Recipe', new_recipe_path%>
+				<%= link_to 'Add Recipe', new_recipe_path, class: "btn btn-default btn-lg kindrd-button"%>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+
 
 <% @recipes.each do |recipe| %>
-<p>	<%= recipe.name %> <%= link_to 'View Recipe', recipe %></p>
+	<div class="col-xs-3 ingredient-list" id="ingredients-recipe-<%=recipe.id%>">
+		<p>
+			<span class="attribute-title white-font">
+				<%= recipe.name%> 
+			</span>
+		</p>
+		<% recipe.ingredients.each do |ingredient| %>
+		<p>
+			<span class="attribute-title">
+			<%= ingredient.name%>
+			</span>
+		</p>
+		<% end %>
+		<p><%= link_to "Edit", edit_recipe_path(recipe, recipe_id: recipe.id), class: "edit-recipe" %>
+		</p><p><%= link_to 'View Recipe', recipe %></p>
+	</div>
 <% end %>

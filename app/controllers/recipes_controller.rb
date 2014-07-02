@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group]
   before_action :set_characteristic_forms, only: [:new, :edit]
+  before_action :set_characteristic_display, only: [:edit_recipe_group, :show]
   autocomplete :ingredient, :name
   # GET /recipes
   # GET /recipes.json
@@ -14,19 +15,11 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
-    @ingredients = @recipe.ingredients
+    @ingredients = @recipe.ingredients_recipes
     @allergies = @recipe.allergies
     @diseases = @recipe.diseases
     @intolerances = @recipe.intolerances
-    @cook_time = @recipe.characteristics.where(category: "Cook Time").first
-    @prep_time = @recipe.characteristics.where(category: "Prep Time").first
-    @difficulty = @recipe.characteristics.where(category: "Difficulty").first
-    @courses = @recipe.characteristics.where(category: "Course")
-    @age_groups = @recipe.characteristics.where(category: "Age Group")
-    @scenarios = @recipe.characteristics.where(category: "Scenario")
-    @holidays = @recipe.characteristics.where(category: "Holiday")
-    @cultures = @recipe.characteristics.where(category: "Culture")
-    @steps = @recipe.recipe_steps
+    @recipe_steps = @recipe.recipe_steps
   end
 
   # GET /recipes/new
@@ -66,7 +59,6 @@ class RecipesController < ApplicationController
         format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
-        binding.pry
         set_characteristic_forms
         format.html { render :new }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
@@ -103,6 +95,17 @@ class RecipesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe
       @recipe = Recipe.find(params[:id])
+    end
+
+    def set_characteristic_display
+      @cook_time = @recipe.characteristics.where(category: "Cook Time").first
+      @prep_time = @recipe.characteristics.where(category: "Prep Time").first
+      @difficulty = @recipe.characteristics.where(category: "Difficulty").first
+      @courses = @recipe.characteristics.where(category: "Course")
+      @age_groups = @recipe.characteristics.where(category: "Age Group")
+      @scenarios = @recipe.characteristics.where(category: "Scenario")
+      @holidays = @recipe.characteristics.where(category: "Holiday")
+      @cultures = @recipe.characteristics.where(category: "Culture")
     end
 
     def set_characteristic_forms

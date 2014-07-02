@@ -1,5 +1,5 @@
-<div class="container">
-<%= simple_form_for(@recipe, html: {class: 'form-horizontal' }) do |recipe_form| %>
+
+<%= simple_form_for @recipe, :html => {:multipart => true} do |recipe_form| %>
   <% if @recipe.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -11,53 +11,160 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= recipe_form.input :name, :required => true %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, :as => :select, collection: @cook_times, prompt: "Choose a Prep Time", label: "Prep Time", :required => true %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, :as => :select, collection: @prep_times, prompt: "Choose a Cook Time", label: "Cook Time", :required => true %>
-  </div>
-
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, :as => :select, collection: @difficulties, prompt: "Choose a Difficulty", label: "Difficulty", :required => true %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, collection: @courses, prompt: "Select Courses", label: "Select All Relevant Courses",  as: :check_boxes, :required => true %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: "Select All Relevant Age Groups",  as: :check_boxes, :required => true %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: "Select Any Relevant Scenarios",  as: :check_boxes %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: "Select Any Relevant Holidays",  as: :check_boxes %>
-  </div>
-  <div class="form-group">
-    <%= recipe_form.association :characteristics, collection: @cultures, prompt: "Select Culture", label: "Select Any Relevant Cultures",  as: :check_boxes %>
-  </div>
-
-  <% if @recipe.description != nil %>
-    <div class="form-group">
-      <%= recipe_form.association :patient_groups, collection: @allergies, label: "Select Target Allergy Patient Groups",  as: :check_boxes %>
+  <div class="recipe-form-section row" id="recipe-form-section-1">
+    <div class="recipe-form-steps-container">
+      <div class="col-xs-12 recipe-form-steps">
+        <p> What will you <span class="attribute-title orange-font">name</span> your recipe?</p>
+        <p> Here are some tips on naming a recipe:</p>
+        <ul>
+          <li>Avoid personal names <span class="strike-through dark-orange-font">"Dave's cajun chicken"</span></li>
+          <li>Avoid salesy names <span class="strike-through dark-orange-font">"BEST EVER cajun chicken"</span></li>
+          <li>Include an ingredient or two "Cajun Chicken with Rosemary and Olive Oil Sauce"</li>
+          <li>Include cultural and regional names "Louisiana Red Beans and Rice"</li>
+          <li>Keep it short and sweet</li>
+        </ul>
+      </div>
+      <div class="col-xs-12 selection-area">
+        <div class="hidden-xs col-sm-1 col-md-1 col-lg-1"></div>
+        <div class="col-xs-12 col-ms-10 col-md-10 col-lg-10">
+          <%= recipe_form.input :name, placeholder: "Enter Name Here", label: false, :required => true %>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <%= recipe_form.association :patient_groups, collection: @intolerances, label: "Select Target Intolerance Patient Groups",  as: :check_boxes %>
+  </div>
+  <div class="recipe-form-section row" id="recipe-form-section-2">
+    <div class="recipe-form-steps-container">
+      <div class="col-xs-12 recipe-form-steps">
+        <p> An <span class="attribute-title">image</span> is worth 1000 words and 8000 delicious bytes! <span class="glyphicon glyphicon-question-sign dark-green-font"></span></p>
+        <p> Here are some tips on choosing the right image:</p>
+        <ul>
+          <li>Avoid blurry photos and low quality pictures</li>
+          <li>Avoid images that are too busy</li>
+          <li>Avoid photos that do no look like the actual recipe</li>
+          <li>Include an image with every recipe (try)</li>
+          <li>Include images of the entire recipe</li>
+          <li>Include images of specific ingredients</li>
+        </ul>
+        <p>Right click on the image and select Copy Image URL.  </p>
+        <p>Paste that URL to the field below.</p>
+        <div class="col-xs-12 selection-area">
+          <div class="col-xs-6">
+            <%= image_tag("carrot-large1.png", class: "img-responsive text-left") %>
+          </div>
+          <div class="col-xs-6">
+            <span class="attribute-title orange-font">Recipe Image</span>
+            <%= recipe_form.input :image_url,  label: false, placeholder: "Paste Image URL Here" %>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <%= recipe_form.association :patient_groups, collection: @diseases, label: "Select Target Disease Patient Groups",  as: :check_boxes %>
-    </div>
+  </div>
+  <div class="recipe-form-section row" id="recipe-form-section-3">
+    <div class="recipe-form-steps-container">
+      <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-3">
+        <div class="col-xs-12 form-group">
+          <p>Finding the <span class="attribute-title">time</span> to cook is <span class="attribute-title">difficult</span> and cooking can be too...which is why we pay extra close attention to how we categorize our recipes.</p>
+        </div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-4" id="recipe-form-selector-1">
+          <span class="attribute-title orange-font">Prep Time</span>
+          <%= recipe_form.association :characteristics, :as => :select, collection: @cook_times, label: false, :required => true %>
+        </div>
+        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-4" id="recipe-form-selector-2">
+          <span class="attribute-title orange-font">Cook Time</span>
+          <%= recipe_form.association :characteristics, :as => :select, collection: @prep_times, label: false, :required => true %>
+        </div>
 
-    <div class="form-group">
-      <%= recipe_form.input :description, :input_html => {:rows => 10}, :required => true %>
+        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-4" id="recipe-form-selector-3">
+          <span class="attribute-title orange-font">Difficulty</span>
+          <%= recipe_form.association :characteristics, :as => :select, collection: @difficulties, label: false, :required => true %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="recipe-form-section row" id="recipe-form-section-4">
+    <div class="recipe-form-steps-container">
+      <div class="col-xs-12 recipe-form-steps form-group">
+        <p><span class="attribute-title orange-font">HINT:</span> </p>
+        <p>Use your best judgement when selecting categories.  When in doubt lean towards a yes.</p>
+        <p>Examples: </p>
+        <ul>
+          <li>A recipe marked with difficulty "Expert" should not be tagged as category "New Mom"</li>
+          <li>A recipe marked with cook time "4 hours" should not be tagged as category "Last Minute Meals"</li>
+        </ul>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
+        <span class="attribute-title">Course/Meal</span>
+        <%= recipe_form.association :characteristics, collection: @courses, prompt: "Select Courses", label: false,  as: :check_boxes, :required => true %>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
+        <span class="attribute-title">Age Group</span>
+        <%= recipe_form.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: false, as: :check_boxes, :required => true %>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-6">
+        <span class="attribute-title">Scenario</span>
+        <%= recipe_form.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: false,  as: :check_boxes %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="recipe-form-section row" id="recipe-form-section-5">
+    <div class="recipe-form-steps-container">
+      <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-5">
+        <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-7">
+          <span class="attribute-title orange-font">Holidays</span>
+          <%= recipe_form.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: false,  as: :check_boxes %>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-8">
+          <span class="attribute-title orange-font">Cultures</span>
+          <%= recipe_form.association :characteristics, collection: @cultures, prompt: "Select Culture", label: false,  as: :check_boxes %>
+        </div>
+        <div class="hidden-xs hidden-sm hidden-md col-lg-4 recipe-form-steps" id="recipe-steps-form-selector-9">
+          <p>Please email <a href="mailto:Mike@Kindrdfood.com?Subject=Recipe%Categories" target="_top">here</a> if you have ideas for categories or selections to add.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if @recipe.id%>
+    <div class=" row recipe-form-section" id="patient-group-form">
+      <div class="recipe-form-steps-container">
+        <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-5">
+          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
+            <span class="attribute-title orange-font">Allergies</span>
+            <%= recipe_form.association :patient_groups, collection: @allergies, label: false,  as: :check_boxes %>
+          </div>
+          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
+            <span class="attribute-title orange-font">Inolerances</span>
+            <%= recipe_form.association :patient_groups, collection: @intolerances, label: false,  as: :check_boxes %>
+          </div>
+          <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
+            <span class="attribute-title orange-font">Diseases</span>
+            <%= recipe_form.association :patient_groups, collection: @diseases, label: false,  as: :check_boxes %>
+          </div>
+          <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="recipe-form-selector-4">
+          <p class="text-center">Write a short introduction about this recipe!  Keep in mind who the recipe is for.</p><span class="attribute-title orange-font">Description</span>
+                <%= recipe_form.input :description, label: false, :input_html => {:rows => 10}, :required => true %>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
-  <div class="actions">
-    <%= recipe_form.button :submit %>
+  <div class="recipe-form-section row" id="recipe-form-section-6">
+    <div class="recipe-form-steps-container">
+      <div class="col-xs-12 recipe-form-steps text-center">
+        <% if @recipe.id %>
+        <div class="recipe-form-section-submit actions">
+          <%= recipe_form.button :submit, "Save Changes", class: "btn btn-default btn-lg" %>
+        </div>
+        <% else %>
+        <div class="recipe-form-section-submit actions">
+          <p>Ok, now that we have an idea of who we are making this recipe for, let's get to the fun stuff...</p>
+          <%= recipe_form.button :submit, "Add Ingredients" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 <% end %>
-</div>
+

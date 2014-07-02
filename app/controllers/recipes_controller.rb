@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group]
   before_action :set_characteristic_forms, only: [:new, :edit]
+  before_action :set_characteristic_display, only: [:edit_recipe_group, :show]
   autocomplete :ingredient, :name
   # GET /recipes
   # GET /recipes.json
@@ -14,19 +15,11 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
-    @ingredients = @recipe.ingredients
+    @ingredients = @recipe.ingredients_recipes
     @allergies = @recipe.allergies
     @diseases = @recipe.diseases
     @intolerances = @recipe.intolerances
-    @cook_time = @recipe.characteristics.where(category: "Cook Time").first
-    @prep_time = @recipe.characteristics.where(category: "Prep Time").first
-    @difficulty = @recipe.characteristics.where(category: "Difficulty").first
-    @courses = @recipe.characteristics.where(category: "Course")
-    @age_groups = @recipe.characteristics.where(category: "Age Group")
-    @scenarios = @recipe.characteristics.where(category: "Scenario")
-    @holidays = @recipe.characteristics.where(category: "Holiday")
-    @cultures = @recipe.characteristics.where(category: "Culture")
-    @steps = @recipe.recipe_steps
+    @recipe_steps = @recipe.recipe_steps
   end
 
   # GET /recipes/new
@@ -54,8 +47,9 @@ class RecipesController < ApplicationController
     params["recipe"]["characteristic_ids"].reject! { |characteristic_id| characteristic_id.empty? }
     # convert remaining strings in array to integers, not sure why they are coming over as strings
     params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
-    # # create new recipe
+
     @recipe = Recipe.new(recipe_params)
+    # assign dieititan to recipe
     @recipe.dietitian_id = current_dietitian.id
     respond_to do |format|
       # if recipe saves correctly
@@ -103,6 +97,17 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find(params[:id])
     end
 
+    def set_characteristic_display
+      @cook_time = @recipe.characteristics.where(category: "Cook Time").first
+      @prep_time = @recipe.characteristics.where(category: "Prep Time").first
+      @difficulty = @recipe.characteristics.where(category: "Difficulty").first
+      @courses = @recipe.characteristics.where(category: "Course")
+      @age_groups = @recipe.characteristics.where(category: "Age Group")
+      @scenarios = @recipe.characteristics.where(category: "Scenario")
+      @holidays = @recipe.characteristics.where(category: "Holiday")
+      @cultures = @recipe.characteristics.where(category: "Culture")
+    end
+
     def set_characteristic_forms
     # set instance variables for form fields
       @cook_times = Characteristic.where(category: "Cook Time")
@@ -116,7 +121,8 @@ class RecipesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # need to change :image_url to :avatar when paperclip is working
     def recipe_params
-      params.require(:recipe).permit(:name, :description, :dietitian_id, :characteristic_ids => [], :patient_group_ids => [])
+      params.require(:recipe).permit(:image_url, :name, :description, :dietitian_id, :characteristic_ids => [], :patient_group_ids => [])
     end
 end

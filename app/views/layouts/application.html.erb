@@ -18,7 +18,7 @@
 			<li><%= link_to 'SIGN OUT', destroy_user_session_path, :method => :delete %></li>
 
 		<% elsif current_dietitian %>
-			<li> <%= link_to 'HOME', dietitian_authenticated_root_path %> </li>
+			<li> <%= link_to 'HOME', dietitian_recipes_path(current_dietitian) %> </li>
 			<li><%= link_to 'SIGN OUT', destroy_dietitian_session_path, :method => :delete %></li>
 		<% else %>
 			<li> <%= link_to 'HOME', user_unauthenticated_root_path %> </li>

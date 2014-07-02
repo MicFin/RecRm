@@ -20,7 +20,7 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients/1/edit
   def edit
-    @allergens = Allergen.all
+    @allergens = Allergen.first(10)
     @recipe = Recipe.find(params[:recipe_id])
   end
 

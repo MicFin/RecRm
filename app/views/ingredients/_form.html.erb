@@ -1,27 +1,48 @@
-<%= simple_form_for(@ingredient, html: {class: 'form-horizontal', id: "edit-ingredient-form" } ) do |f| %>
+<div id="edit-ingredient-form-container">
+  <%= simple_form_for(@ingredient, html: {class: 'form-horizontal', id: "edit-ingredient-form" } ) do |f| %>
+    <div class="row">
+      <% if @ingredient.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
 
-  <% if @ingredient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
-
-      <ul>
-      <% @ingredient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @ingredient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+    </div>
+    <div class="recipe-form-section row" >
+      <div class="recipe-form-steps-container">
+        <div class="col-xs-12 recipe-form-steps" id="ingredient-allergen-section">
+          <h3 class="less-margin-top"><span class="attribute-title white-font"><%= @ingredient.name %></span> </h3>
+          <div class="col-xs-1"></div>
+          <div class="form-group col-xs-10 ingredient-allergen-fields">
+            <div class="field text-center form-group">
+              <span class="attribute-title">SELECT FOOD GROUP</span>
+             <%= f.input :category, collection: ["Fruit", "Vegetable", "Protein", "Grain", "Dairy", "Meat", "Fish", "Raw", "Legume", "Bean"], label: false, prompt: "Select Food Category" %>
+            </div>
+
+            <div class="form-group" style="margin-left: 20px">
+              <span class="attribute-title">SELECT COMMON ALLERGENS</span>
+              <%= f.association :allergens, collection: @allergens, label: false,  as: :check_boxes %>
+            </div>
+              <%= f.hidden_field :recipe_id, value: @recipe.id %>
+ <div class="col-xs-12">
+              <p>All ingredients are automatically marked as their own allergen.</p>
+              <ul>
+                <li>Example: You do not need to mark ingredient "Apple" with allergen "Apple"</li>
+                <li>Example: You do need to mark "Cheese" with the allergen "Dairy"</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="actions text-center">
+            <%= f.button :submit %>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
-  <h3><%= @ingredient.name %></h3>
-  <div class="field">
-
-    <%= f.input :category, label: "Category (fruit, vegetable, etc)" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.association :allergens, collection: @allergens, label: "Select Any Relevant Allergens",  as: :check_boxes %>
-  </div>
-    <%= f.hidden_field :recipe_id, value: @recipe.id %>
-  <div class="actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>

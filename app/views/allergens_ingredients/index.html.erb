@@ -1,37 +1,45 @@
-<div id="recipe-index-container">
-	<div id="recipe-info">
-		<h1><%= @recipe.name %></h1>
-	</div>
-	<div id="allergen-form-container">
-	</div>
-
-	<div id="ingredient-lists-container">
-		<div id="not-tagged-ingredients">
-			<div id="">
-				<% if @recipe.ingredients_not_tagged.count < 1 %>
-					<p>All ingredients have been reviewed</p>
-					<p>Please: 
-					<%= link_to "Save All Recipe Ingredients", recipe_steps_path(recipe_id: @recipe_id), id: "recipe-steps-button"%></p>
-				<% else %>
-					<h3>These ingredients need to be reviewed by a dietitian</h3>	
-				<% end %>
-			</div>
-			<% @recipe.ingredients_not_tagged.each do |ingredient| %>
-				<strong><%= ingredient.name %></strong>
-				<p><%= link_to "Add Allergens", edit_ingredient_path(ingredient, recipe_id: @recipe.id), class: "add-allergen-buttons", remote: true %></p>
-			<% end %>
+<div class="container" id="ingredient-form">
+	<div class="row">
+		<div class="recipe-form-section row" id="recipe-form-section-0">
+			<h1 id="add-recipe-title-message"><span class="attribute-title"><%= @recipe.name.upcase.upcase %></span></h1>
 		</div>
 
-		<div id="tagged-ingredients">
-			<h3>These ingredients have already been reviewed</h3>
-			<% @recipe.ingredients_tagged.each do |ingredient| %>
-				<strong><%= ingredient.name %></strong>
-
-				<% ingredient.allergens.each do |allergen| %>
-					<p><%= allergen.name %></p>
-				<% end %>
-				<p><%= link_to "Edit Ingredient", edit_ingredient_path(ingredient, recipe_id: @recipe.id), class: "add-allergen-buttons", remote: true %></p>
-			<% end %>
+		<div id="recipe-index-container">
+			<div class="form-group" id="allergen-form-container">
+			</div>
+			<div id="ingredient-lists-container">
+				<div class="col-xs-12" id="not-tagged-ingredients">
+					<div class="col-xs-12 text-center" >
+						<% if @recipe.ingredients_not_tagged.count < 1 %>
+							<p>All ingredients have been reviewed</p>
+							<p>Continue to edit ingredients or</p>
+							<%= link_to "Save All Recipe Ingredients", recipe_steps_path(recipe_id: @recipe_id), class: "btn btn-default btn-lg", id: "save-ingredients-button"%>
+						<% else %>
+							<h3>These ingredients need to be reviewed by a dietitian</h3>	
+						<% end %>
+					</div>
+					<% @recipe.ingredients_not_tagged.each do |ingredient| %>
+						<div class="col-xs-3 ingredient-list">
+							<p><span class="attribute-title white-font"><%= ingredient.name %></span></p>
+							<p><%= link_to "Add Allergens", edit_ingredient_path(ingredient, recipe_id: @recipe.id), class: "add-allergen-buttons", remote: true %></p>
+						</div>
+					<% end %>
+				</div>
+				<div class="col-xs-12" id="tagged-ingredients">
+					<div class="col-xs-12 text-center" >
+						<h3>These ingredients have already been reviewed</h3>
+					</div>
+					<% @recipe.ingredients_tagged.each do |ingredient| %>
+						<div class="col-xs-3 ingredient-list">
+							<p><span class="attribute-title white-font"><%= ingredient.name %></span></p>
+							<% ingredient.allergens.each do |allergen| %>
+								<p><%= allergen.name %></p>
+							<% end %>
+							<p><%= link_to "Edit Ingredient", edit_ingredient_path(ingredient, recipe_id: @recipe.id), class: "add-allergen-buttons", remote: true %></p>
+						</div>
+					<% end %>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

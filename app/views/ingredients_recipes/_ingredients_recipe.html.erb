@@ -1,6 +1,6 @@
-<div id="ingredients-recipe-<%=ingredients_recipe.id%>">
-	<strong><%=@ingredients_recipe.ingredient.name %></strong>
-	<%= link_to "Edit", edit_ingredients_recipe_path(@ingredients_recipe, recipe_id: params["ingredients_recipe"]["recipe_id"].to_i), class: "edit-ingredient", remote: true %>
-	<%= link_to "(remove)", @ingredients_recipe, method: :delete, data: {confirm: "Are you sure?"}, class: "remove-ingredient", remote: true %>
-	<p>Amount: <%= ingredients_recipe.amount%> <%= ingredients_recipe.amount_unit%></p>
-</div>
+			<div class="col-xs-3 ingredient-list" id="ingredients-recipe-<%=@ingredients_recipe.id%>">
+				<p><span class="attribute-title white-font"><%= @ingredients_recipe.amount%> <%= @ingredients_recipe.amount_unit%></span> <span class="attribute-title"><%=@ingredients_recipe.ingredient.name %></span></p>
+					<%= link_to "Edit", edit_ingredients_recipe_path(@ingredients_recipe, recipe_id: params["ingredients_recipe"]["recipe_id"].to_i), class: "edit-ingredient", remote: true %>
+					<%= link_to "(remove)", @ingredients_recipe, method: :delete, data: {confirm: "Are you sure?"}, class: "remove-ingredient", remote: true %>
+				</p>
+			</div>

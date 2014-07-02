@@ -1,0 +1,269 @@
+
+/* <----------------------- RECIPE FORM ----------------------> */
+
+
+.recipe-form-section input[type="text"] {
+   height: 100px;
+   width: 100%;
+   border-color: rgba(241, 101, 33, 0.5);
+   border-width: 1px;
+   border-radius: 100px;
+}
+.recipe-form-section input[type="text"]:focus, .recipe-form-section input[type="email"]:focus, .recipe-form-section input[type="number"]:focus, .recipe-form-section input[type="password"]:focus{
+  -moz-box-shadow: 0 1px 1px rgba(0, 147, 68, 1) inset, 0 0px 10px rgba(0, 147, 68, 1);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 147, 68, 1) inset, 0 0px 10px rgba(0, 147, 68, 1);
+  box-shadow: 0 1px 1px rgba(0, 147, 68, 1) inset, 0 0px 10px rgba(0, 147, 68, 1);
+  border-color: rgba(0, 147, 68, 1);
+}
+
+.recipe-form-section input[type="email"]{
+   height: 60px;
+   width: 100%;
+   border-color: rgba(241, 101, 33, 0.5);
+   border-width: 1px;
+   border-radius: 5px;
+}
+
+.recipe-form-section input[type="number"]{
+   height: 60px;
+   width: 100%;
+   border-color: rgba(241, 101, 33, 0.5);
+   border-width: 1px;
+   border-radius: 5px;
+}
+
+.recipe-form-section input[type="password"]{
+   height: 60px;
+   width: 100%;
+   border-color: rgba(241, 101, 33, 0.5);
+   border-width: 1px;
+   border-radius: 5px;
+}
+
+.recipe-form-section input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2,2); /* IE */
+  -moz-transform: scale(2,2); /* FF */
+  -webkit-transform: scale(2,2); /* Safari and Chrome */
+  -o-transform: scale(2,2); /* Opera */
+  padding: 10px;
+}
+
+.recipe-form-section input[type=radio] {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2,2); /* IE */
+  -moz-transform: scale(2,2); /* FF */
+  -webkit-transform: scale(2,2); /* Safari and Chrome */
+  -o-transform: scale(2,2); /* Opera */
+  padding: 10px;
+}
+
+.recipe-form-section input, button, textarea {
+  font-family: inherit;
+  font-size: 50px;
+  line-height: inherit;
+  text-align: center;
+}
+
+#ingredients-recipe-form input, button, textarea{
+  font-family: inherit;
+  font-size: 50px;
+  line-height: inherit;
+  text-align: center;  
+}
+
+
+/*#name-field::-webkit-input-placeholder { 
+  color: #F16521;
+    color:    #F16521;
+    opacity: 1;
+}
+:-moz-placeholder { 
+  color: #F16521;
+    color:    #F16521;
+    opacity:  1;
+}
+::-moz-placeholder { 
+  color: #F16521;
+    color:    #F16521;
+    opacity:  1;
+}
+:-ms-input-placeholder { 
+  color: #F16521;
+    color:    #F16521;
+}*/
+
+/*the select boxes for prep time, cook time, and difficulty*/
+.recipe-form-section select{
+  padding: 2%;
+  height: 200%;
+}
+
+.container {
+  padding-left: 0;
+  padding-right:0;
+  width: 100%;
+}
+#recipe-new-form-container{
+  width: 100%;
+}
+
+#recipe-new-form-container p{
+  font-size: 2em;
+}
+.recipe-form-section{
+  padding-bottom: 2%;
+}
+
+#recipe-form-section-0, #recipe-form-section-1, #recipe-form-section-5{
+  background-color: #399E48 ;
+}
+
+.recipe-form-steps-container{
+  margin-left: 25%;
+  width: 50%;
+}
+#add-recipe-title-message {
+  color: white;
+  text-align: center;
+}
+
+.recipe-form-steps{
+  background-color: white;
+  padding: 2% 0 2% 2%;
+  border-radius: 15px;
+}
+
+.attribute-title{
+  font-size: 2em;
+  color: #11753B;
+  font-weight: bold;
+}
+
+.selection-area{
+  margin-top: 5%;
+}
+
+.strike-secthrough{
+  text-decoration: line-through;
+}
+
+#recipe-form-section-3{
+  background-color: #F68D3C;  
+  padding-top: 2%;
+  padding-bottom: 5%;
+}
+
+.orange-font{
+  color: #F68D3C;
+}
+
+.dark-orange-font{
+  color: #F16521
+}
+.white-font{
+  color: white;
+}
+#recipe-steps-form-section-3, #recipe-steps-form-section-5, #recipe-form-section-6{
+  margin-top: 5%;
+}
+#recipe-steps-form-section-3 div:first{
+  margin-bottom: 5%;
+
+}
+
+#recipe-steps-form-section-5{
+  padding-left: 10%;
+  padding-right: 2%;
+}
+
+
+.recipe-form-section select {
+  font-family: inherit;
+  font-size: 20px;
+  line-height: inherit;
+  text-align: center;
+  width: 200px;
+}
+
+label.checkbox {
+  margin-bottom: 10%;
+}
+
+label.checkbox input {
+  margin-right: 10%;
+}
+
+#recipe-form-section-5 .recipe-form-steps-container {
+  margin-top: 5%;   
+}
+
+.recipe-form-section-submit{
+  margin-top: 5%;
+}
+
+#recipe-steps-form-selector-9 {
+  border-radius: 15px;
+  background: #F16521;
+  color: white;
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  text-align: center;
+  padding: 2% 2% 0 2%;
+}
+
+#add-ingredients-recipe{
+  height: 100px;
+  width: 100%;
+  font-size: 50px;
+  border-radius: 15px;
+}
+
+#recipe-steps-form-section-8{
+  background-color: #F68D3C;
+  margin-bottom: 5%;
+  margin-top: -5%;
+  padding-top: 5%;
+
+}
+
+#review-ingredients{
+  height: 100px;
+  width: 100%;
+  font-size: 50px;
+  border-radius: 15px;
+}
+
+.button-row{
+  margin-top: 5%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.ingredient-list{
+  background-color: #F68D3C;
+  border-radius: 15px;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  padding: 2%;
+}
+
+#ingredient-comment-row{
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background-color: #F68D3C;
+}
+
+#ingredient-comment-row p{
+  color: white;
+  font-size: 2em;
+}
+
+#new-ingredient-form{
+  margin-left: 25%;
+}
+
+

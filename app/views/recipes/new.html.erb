@@ -1,5 +1,10 @@
-<h1>Yay! Let's add a <span class="orange">NEW RECIPE</h1>
+<div class="container">
+	<div id="recipe-new-form-container">
+		<div class="recipe-form-section row" id="recipe-form-section-0">
+			<h1 id="add-recipe-title-message">Yay! Let's add a <span class="attribute-title">NEW RECIPE</span></h1>
+		</div>
+		<%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', recipes_path %>
+		<%= link_to 'Back', recipes_path %>
+	</div>
+</div>

@@ -1,24 +1,48 @@
-<div id="recipe-info">
-	<h1><%= @recipe.name %></h1>
-</div>
+<div class="container" id="ingredient-form">
+	<div class="row">
+		<div class="recipe-form-section row" id="recipe-form-section-0">
+			<h1 id="add-recipe-title-message"><span class="attribute-title"><%= @recipe.name.upcase %></span></h1>
+		</div>
+		<div class="row button-row recipe-form-section">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4">
+				<%= link_to "Add Ingredient", new_ingredients_recipe_path(recipe_id: @recipe_id), class: "btn btn-default btn-lg", id: "add-ingredients-recipe", remote: true %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4" id='ingredient-form-container'>
+			</div>
+		</div>
+		<div class="row button-row text-center" id="ingredient-comment-row">
+		<!-- 	<div class="col-xs-2"></div>
+			<div class="col-xs-8" id="ingredient-comment"> -->
+				<p>Add all of the ingredients before moving forward.</p>
+				<p>Double check the list to make sure no ingredients are overlooked.</p>
+	<!-- 		</div> -->
+		</div>
 
-<%= link_to "Add Ingedient", new_ingredients_recipe_path(recipe_id: @recipe_id), id: "add-ingredients-recipe", remote: true %>
-
-<div id="ingredient-form-container">
-</div>
-
-<strong id="ingredient-title">Ingredients:</strong>
-<div id="ingredients-container">	
-	<% @recipe.ingredients_recipes.each do |ingredients_recipe| %>
-	<div id="ingredients-recipe-<%=ingredients_recipe.id%>">
-		<P><strong><%=ingredients_recipe.ingredient.name %></strong>
-			<%= link_to "Edit", edit_ingredients_recipe_path(ingredients_recipe, recipe_id: @recipe_id.to_i), class: "edit-ingredient", remote: true %>
-			<%= link_to "(remove)", ingredients_recipe, method: :delete, data: {confirm: "Are you sure?"}, class: "remove-ingredient", remote: true %>
-		</p>
-		<p>Amount: <%= ingredients_recipe.amount%> <%= ingredients_recipe.amount_unit%></p>
+		<div class="row button-row" id="ingredients-container">	
+			<% @recipe.ingredients_recipes.each do |ingredients_recipe| %>
+			<div class="col-xs-3 ingredient-list" id="ingredients-recipe-<%=ingredients_recipe.id%>">
+				<p><span class="attribute-title white-font"><%= ingredients_recipe.amount%> <%= ingredients_recipe.amount_unit%></span> <span class="attribute-title"><%=ingredients_recipe.ingredient.name %></span></p>
+					<%= link_to "Edit", edit_ingredients_recipe_path(ingredients_recipe, recipe_id: @recipe_id.to_i), class: "edit-ingredient", remote: true %>
+					<%= link_to "(remove)", ingredients_recipe, method: :delete, data: {confirm: "Are you sure?"}, class: "remove-ingredient", remote: true %>
+			</div>
+			<% end %>
+		</div>
+		<div class="row button-row text-center" id="ingredient-comment-row">
+		<!-- 	<div class="col-xs-2"></div>
+			<div class="col-xs-8" id="ingredient-comment"> -->
+				<p>Once all of the ingredients have been added,</p>
+				<p>they have to be reviewed for allergens.</p>
+	<!-- 		</div> -->
+		</div>
+		<div class="row recipe-form-section">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4 recipe-form-section-submit actions ">
+				<%= link_to "Review", allergens_ingredients_path(recipe_id: @recipe_id), class: "btn btn-default btn-lg", id: "review-ingredients"%>	
+			</div>
+		</div>
 	</div>
-	<% end %>
 </div>
-
-	<p>Finished adding ingredients?</p>
-	<%= link_to "Review Ingredients for Allergens", allergens_ingredients_path(recipe_id: @recipe_id), id: "review-ingredients"%>

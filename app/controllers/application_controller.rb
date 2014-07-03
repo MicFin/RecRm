@@ -25,6 +25,17 @@ class ApplicationController < ActionController::Base
 		      # if not take them to their home page
 					dietitian_recipes_path(current_dietitian)
 		    end
+		elsif resource.class == AdminUser
+				if resource.sign_in_count <= 1
+		      # if first time give first time admin experience
+		      # would rather it direct to admin_user_authenticated_root_path but failing
+		      ### admin_user_authenticated_root_path(current_admin_user)
+		      ### admin_user_authenticated_root_path
+					admin_dashboard_path
+		    else
+		      # if not take them to their home page
+					admin_dashboard_path
+		    end
 		end
 
 	end

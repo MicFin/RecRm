@@ -15,4 +15,6 @@ ActiveAdmin.register Allergen do
   # end
   filter :name
   filter :description
+
+  permit_params :name, :description
 end

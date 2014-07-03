@@ -4,11 +4,12 @@ ActiveAdmin.register RecipeStep do
   filter :directions
   filter :recipe_id
   
+
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
+  permit_params :step_numer, :directions, :recipe_id
+
   # or
   #
   # permit_params do

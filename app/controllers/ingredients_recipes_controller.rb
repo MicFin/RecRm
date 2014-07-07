@@ -25,14 +25,14 @@ class IngredientsRecipesController < ApplicationController
     # set recipe_id sent from ingredients_recipe index form remote true
     @recipe_id = params["recipe_id"]
     # need to decide where to pull this list from
-    @units = ["cup", "teaspoon", "tablespoon", "ounce", "pound", "fluid ounce", "gill", "pint", "quart" "gallon", "milliliter", "liter", "deciliter", "milligram", "gram", "kilogram", "pinch", "handful", "dash", "to taste", "bushel"]
+    @units = ["cup", "teaspoon", "tablespoon", "ounce", "pound", "fluid ounce", "gill", "pint", "quart" "gallon", "milliliter", "liter", "deciliter", "milligram", "gram", "kilogram", "pinch", "handful", "dash", "to taste", "bushel", "drop", "piece", "whole", "half", "slice"]
   end
 
   # GET /ingredients_recipes/1/edit
   def edit
     @recipe = Recipe.find(params["recipe_id"])
     # need to decide where to pull this list from
-    @units = ["cup", "teaspoon", "tablespoon", "ounce", "pound", "fluid ounce", "gill", "pint", "quart" "gallon", "milliliter", "liter", "deciliter", "milligram", "gram", "kilogram", "pinch", "handful", "dash", "to taste", "bushel"]
+    @units = ["cup", "teaspoon", "tablespoon", "ounce", "pound", "fluid ounce", "gill", "pint", "quart" "gallon", "milliliter", "liter", "deciliter", "milligram", "gram", "kilogram", "pinch", "handful", "dash", "to taste", "bushel", "drop", "piece", "whole", "half", "slice"]
   end
 
   # POST /ingredients_recipes

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707041456) do
+ActiveRecord::Schema.define(version: 20140707051642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,9 +211,12 @@ ActiveRecord::Schema.define(version: 20140707041456) do
     t.integer  "dietitian_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quality_reviewable_id"
+    t.string   "quality_reviewable_type"
   end
 
   add_index "quality_reviews", ["dietitian_id"], name: "index_quality_reviews_on_dietitian_id", using: :btree
+  add_index "quality_reviews", ["quality_reviewable_id", "quality_reviewable_type"], name: "quality_reviewable_id_index", using: :btree
 
   create_table "recipe_steps", force: true do |t|
     t.integer  "step_number"

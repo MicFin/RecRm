@@ -2,7 +2,7 @@ class Recipe < ActiveRecord::Base
 	has_many :ingredients_recipes
 	has_many :ingredients, through: :ingredients_recipes
 	has_many :recipe_steps
-  has_and_belongs_to_many :characteristics
+  has_and_belongs_to_many :characteristics, :uniq => true
   has_and_belongs_to_many :patient_groups, :uniq => true
   belongs_to :dietitian
   validates :name, :presence => {:message => 'cannot be blank, Recipe not saved'}
@@ -15,7 +15,7 @@ class Recipe < ActiveRecord::Base
   # accepts_nested_attributes_for :ingredients_recipes
   # quality reviews polymoprhic
   has_many :quality_reviews, as: :quality_reviewable 
-
+  has_many :marketing_items, as: :marketing_itemable 
   # return a recipe's ingredients that have already been tagged with allergens
   def ingredients_tagged
     tagged_ingredients = []

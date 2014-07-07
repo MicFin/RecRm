@@ -5,4 +5,6 @@ class Dietitian < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   has_many :appointments
+  has_many :marketing_items
+  has_many :quality_reviews
 end

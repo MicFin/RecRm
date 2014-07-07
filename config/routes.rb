@@ -43,11 +43,17 @@ Rails.application.routes.draw do
       resources :allergens_ingredients
       resources :recipes_patient_groups
       resources :recipe_steps
-      resources :ingredients
-      resources :ingredients
       resources :allergens 
-      resources :articles
+      resources :ingredients do 
+        resources :quality_reviews
+      end
+      resources :articles do 
+        resources :quality_reviews
+        resources :marketing_items
+      end
       resources :recipes do
+        resources :quality_reviews
+        resources :marketing_items
         get :autocomplete_ingredient_name, :on => :collection
       end
     end

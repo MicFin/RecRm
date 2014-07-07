@@ -91,7 +91,7 @@ class IngredientsRecipesController < ApplicationController
     end
 
     def set_units
-      @units = ["cup", "teaspoon", "tablespoon", "ounce", "pound", "fluid ounce", "gill", "pint", "quart" "gallon", "milliliter", "liter", "deciliter", "milligram", "gram", "kilogram", "pinch", "handful", "dash", "to taste", "bushel", "drop", "piece", "whole", "half", "slice"]
+      @units = ["cup", "teaspoon", "tablespoon", "ounce", "pound", "fluid ounce", "gill", "pint", "quart" "gallon", "milliliter", "liter", "deciliter", "milligram", "gram", "kilogram", "pinch", "handful", "dash", "to taste", "bushel", "drop", "piece", "whole", "half", "slice", "cloves", "each", "as needed", "sprig", "dash", "once around the pot", "spear", "stalk", "splash", "dollop", "loaf", "square", "pat", "sheet", "wedge", "ear", "section"]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

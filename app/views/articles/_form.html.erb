@@ -12,12 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= f.input :name %>
+    <%= f.input :title %>
   </div>
   <div class="field">
     <%= f.input :content %>
   </div>
+        <span class="attribute-title">Age Group</span>
+        <%= f.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: false, as: :check_boxes, :required => true %>
+  
+        <span class="attribute-title">Scenario</span>
+        <%= f.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: false,  as: :check_boxes %>
+ 
+          <span class="attribute-title orange-font">Holidays</span>
+          <%= f.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: false,  as: :check_boxes %>
+   
+          <span class="attribute-title orange-font">Cultures</span>
+          <%= f.association :characteristics, collection: @cultures, prompt: "Select Culture", label: false,  as: :check_boxes %>
+   
+
+            <span class="attribute-title orange-font">Allergies</span>
+            <%= f.association :patient_groups, collection: @allergies, label: false,  as: :check_boxes %>
+    
+            <span class="attribute-title orange-font">Inolerances</span>
+            <%= f.association :patient_groups, collection: @intolerances, label: false,  as: :check_boxes %>
+
+            <span class="attribute-title orange-font">Diseases</span>
+            <%= f.association :patient_groups, collection: @diseases, label: false,  as: :check_boxes %>
+  <%= f.input :dietitian_id, :as => :hidden, :input_html => { :value => @dietitian_id } %>
   <div class="actions">
-    <%= f.input :submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>

@@ -106,7 +106,6 @@ class RecipesController < ApplicationController
       @scenarios = @recipe.characteristics.where(category: "Scenario")
       @holidays = @recipe.characteristics.where(category: "Holiday")
       @cultures = @recipe.characteristics.where(category: "Culture")
-      binding.pry
     end
 
     def set_characteristic_forms

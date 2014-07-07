@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @dietitian_id = current_dietitian.id
   end
 
   # GET /articles/1/edit
@@ -25,7 +26,6 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
@@ -62,6 +62,13 @@ class ArticlesController < ApplicationController
   end
 
   private
+    def set_characteristic_forms
+    # set instance variables for form fields
+      @age_groups = Characteristic.where(category: "Age Group")
+      @scenarios = Characteristic.where(category: "Scenario")
+      @holidays = Characteristic.where(category: "Holiday")
+      @cultures = Characteristic.where(category: "Culture")
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
@@ -69,6 +76,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:name, :content)
+      params.require(:article).permit(:title, :content, :dietitian_id)
     end
 end

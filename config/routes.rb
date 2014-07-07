@@ -4,9 +4,12 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-devise_scope :admin_user do
-  root to: "admin/dashboard#index"
-end
+
+  devise_scope :admin_user do
+    authenticated :admin_user do 
+      root to: "admin/dashboard#index"
+    end
+  end
 
 
   resources :appointments
@@ -42,7 +45,8 @@ end
       resources :recipe_steps
       resources :ingredients
       resources :ingredients
-      resources :allergens
+      resources :allergens 
+      resources :articles
       resources :recipes do
         get :autocomplete_ingredient_name, :on => :collection
       end

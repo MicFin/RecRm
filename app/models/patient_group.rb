@@ -2,6 +2,7 @@ class PatientGroup < ActiveRecord::Base
 	has_and_belongs_to_many :users
 	has_and_belongs_to_many :allergens
   has_and_belongs_to_many :recipes
+  has_many :marketing_items # polymoprhic relationship 
 
   # returns all Patient Groups with the category allergy and a Patient Group named "Other Allergy" with an input field true boolean
   def self.allergies_with_other

@@ -13,6 +13,8 @@ class Recipe < ActiveRecord::Base
   # validate :has_mandatory_characteristics
   # removed until can utlilize AJAX to render nested forms for recipe form or to submit for ingredients_recipes forms
   # accepts_nested_attributes_for :ingredients_recipes
+  # quality reviews polymoprhic
+  has_many :quality_reviews, as: :quality_reviewable 
 
   # return a recipe's ingredients that have already been tagged with allergens
   def ingredients_tagged

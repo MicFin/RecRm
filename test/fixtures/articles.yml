@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  content: MyText
+  content: MyString
+  dietitian_id: 
+  title: MyString
 
 two:
-  name: MyString
-  content: MyText
+  content: MyString
+  dietitian_id: 
+  title: MyString

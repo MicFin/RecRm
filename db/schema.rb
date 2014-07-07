@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707051642) do
+ActiveRecord::Schema.define(version: 20140707052513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,9 +179,12 @@ ActiveRecord::Schema.define(version: 20140707051642) do
     t.integer  "dietitian_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "marketing_itemable_id"
+    t.string   "marketing_itemable_type"
   end
 
   add_index "marketing_items", ["dietitian_id"], name: "index_marketing_items_on_dietitian_id", using: :btree
+  add_index "marketing_items", ["marketing_itemable_id", "marketing_itemable_type"], name: "marketing_itemable_id_index", using: :btree
 
   create_table "patient_groups", force: true do |t|
     t.string   "name"

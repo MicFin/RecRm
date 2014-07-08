@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707194247) do
+ActiveRecord::Schema.define(version: 20140707224717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,22 @@ ActiveRecord::Schema.define(version: 20140707194247) do
   end
 
   add_index "articles", ["dietitian_id"], name: "index_articles_on_dietitian_id", using: :btree
+
+  create_table "articles_characteristics", id: false, force: true do |t|
+    t.integer "article_id"
+    t.integer "characteristic_id"
+  end
+
+  add_index "articles_characteristics", ["article_id"], name: "index_articles_characteristics_on_article_id", using: :btree
+  add_index "articles_characteristics", ["characteristic_id"], name: "index_articles_characteristics_on_characteristic_id", using: :btree
+
+  create_table "articles_patient_groups", id: false, force: true do |t|
+    t.integer "article_id"
+    t.integer "patient_group_id"
+  end
+
+  add_index "articles_patient_groups", ["article_id"], name: "index_articles_patient_groups_on_article_id", using: :btree
+  add_index "articles_patient_groups", ["patient_group_id"], name: "index_articles_patient_groups_on_patient_group_id", using: :btree
 
   create_table "characteristics", force: true do |t|
     t.string   "category"

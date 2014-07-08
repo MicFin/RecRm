@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_characteristic_forms, only: [:new]
   # GET /articles
   # GET /articles.json
   def index
@@ -16,6 +16,9 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @dietitian_id = current_dietitian.id
+    @allergies = PatientGroup.allergies
+    @diseases = PatientGroup.diseases
+    @intolerances = PatientGroup.intolerances
   end
 
   # GET /articles/1/edit

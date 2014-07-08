@@ -1,45 +1,45 @@
-<%= simple_form_for(@article, html: {class: 'form-horizontal' }) do |f| %>
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+<div class="col-xs-12" id="new-article-form">
+  <%= simple_form_for(@article, html: {class: 'form-horizontal' }) do |f| %>
+    <% if @article.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-      <ul>
-      <% @article.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.input :title %>
+    </div>
+    <div class="field">
+      <%= f.input :content %>
+    </div>
+    <div class="col-xs-12">
+      <span class="attribute-title">Age Group</span>
+      <%= f.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: false, as: :check_boxes, :required => true %>
+
+      <span class="attribute-title">Scenario</span>
+      <%= f.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: false,  as: :check_boxes %>
+   
+      <span class="attribute-title orange-font">Holidays</span>
+      <%= f.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: false,  as: :check_boxes %>
+
+      <span class="attribute-title orange-font">Cultures</span>
+      <%= f.association :characteristics, collection: @cultures, prompt: "Select Culture", label: false,  as: :check_boxes %>
+      <span class="attribute-title orange-font">Allergies</span>
+      <%= f.association :patient_groups, collection: @allergies, label: false,  as: :check_boxes %>      
+      <span class="attribute-title orange-font">Inolerances</span>
+      <%= f.association :patient_groups, collection: @intolerances, label: false,  as: :check_boxes %>
+      <span class="attribute-title orange-font">Diseases</span>
+      <%= f.association :patient_groups, collection: @diseases, label: false,  as: :check_boxes %>
+      <%= f.input :dietitian_id, :as => :hidden, :input_html => { :value => @dietitian_id } %>
+    </div>
+    <div class="actions">
+      <%= f.button :submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.input :title %>
-  </div>
-  <div class="field">
-    <%= f.input :content %>
-  </div>
-        <span class="attribute-title">Age Group</span>
-        <%= f.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: false, as: :check_boxes, :required => true %>
-  
-        <span class="attribute-title">Scenario</span>
-        <%= f.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: false,  as: :check_boxes %>
- 
-          <span class="attribute-title orange-font">Holidays</span>
-          <%= f.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: false,  as: :check_boxes %>
-   
-          <span class="attribute-title orange-font">Cultures</span>
-          <%= f.association :characteristics, collection: @cultures, prompt: "Select Culture", label: false,  as: :check_boxes %>
-   
-
-            <span class="attribute-title orange-font">Allergies</span>
-            <%= f.association :patient_groups, collection: @allergies, label: false,  as: :check_boxes %>
-    
-            <span class="attribute-title orange-font">Inolerances</span>
-            <%= f.association :patient_groups, collection: @intolerances, label: false,  as: :check_boxes %>
-
-            <span class="attribute-title orange-font">Diseases</span>
-            <%= f.association :patient_groups, collection: @diseases, label: false,  as: :check_boxes %>
-  <%= f.input :dietitian_id, :as => :hidden, :input_html => { :value => @dietitian_id } %>
-  <div class="actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>

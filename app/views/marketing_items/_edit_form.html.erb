@@ -13,11 +13,11 @@
       <% end %>
 
       <div class="field">
-        <strong><%= @marketing_item.category %></strong>
+        <strong><%= @marketing_item.category.capitalize %></strong>
         <p><%= f.text_area :content, rows: 2 %></p>
       </div>
       <div class="actions">
-        <%= f.submit %>
+        <%= f.submit "Update"%>
         <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
       </div>
     <% end %>

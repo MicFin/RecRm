@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
     #   @articles = Article.where(dietitian_id: current_dietitian.id)
     # else
       @articles = []
-    end
+    # end
 
   end
   # GET /recipes/1

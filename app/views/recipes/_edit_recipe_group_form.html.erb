@@ -46,52 +46,11 @@
           </div>     
         </div>  
         <div class="row">
-          <div class="col-xs-6 bg-success" id="ingredient-success">
-            <h3 class="text-center"><strong>REMEMBER</strong></h3>
-            <ul>
-            <li><strong class="white-font">Cook Time:</strong>
-            <span class="green-font"> <%= @cook_time.name %></span></li>
-            <li><strong class="white-font">Prep Time:</strong>
-            <span class="green-font"><%= @prep_time.name %></span></li>
-            <li><strong class="white-font">Difficulty:</strong>
-            <span class="green-font"><%= @difficulty.name %></span></li>
-            <li><strong class="white-font">Courses:</strong>
-              <ul>
-                <% @courses.each do |course| %>
-                  <li><%= course.name %></li>
-                <% end %>
-              </ul>
-            </li>
-            <li><strong class="white-font">Age Groups:</strong>
-              <ul>
-                <% @age_groups.each do |age_group| %>
-                  <li><span class="green-font"><%= age_group.name %></span></li>
-                <% end %>
-              </ul>
-            </li>
-            <li><strong class="white-font">Scenarios:</strong>
-              <ul>
-                <% @scenarios.each do |scenario| %>
-                  <li><span class="green-font"><%= scenario.name %></span></li>
-                <% end %>
-              </ul>
-            </li>
-            <li><strong class="white-font">Holidays:</strong>
-              <ul>
-                <% @holidays.each do |holiday| %>
-                  <li><span class="green-font"><%= holiday.name %></span></li>
-                <% end %>
-              </ul>
-            </li>
-            <li><strong class="white-font">Cultural:</strong>
-              <ul>
-                <% @cultures.each do |culture| %>
-                  <li><span class="green-font"><%= culture.name %></span></li>
-                <% end %>
-              </ul>
-          </li>
-            </ul>
-          </div>
+          
+
+          <%= render "recipe_remember_info" %>
+
+
           <div class="col-xs-6 form-group">
             <p><span class="attribute-title orange-font">Recipe Description</span> </p>
             <p><span class="larger-paragraph">What makes this recipe the perfect match for the patient groups and other characteristics?</span> </p>

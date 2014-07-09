@@ -1,0 +1,8 @@
+<div id="marketing-items">
+  <% @marketing_items.each do |marketing_item| %>
+    <div class="marketing-item">
+      <%= simple_format marketing_item.content %>
+      <%= simple_format marketing_item.category %>
+    </div>
+  <% end %>
+</div>

@@ -15,9 +15,9 @@
 //= require jquery.ui.autocomplete
 //= require autocomplete-rails
 //= require bootstrap
-//= require turbolinks
 //= require_self
 //= require recipes_form
+//= require articles_form
 //= require_tree .
 
 

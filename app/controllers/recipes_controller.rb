@@ -9,8 +9,10 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
+  ## this method and view is being used as the dietitian dashboard right now, it should be moved to a home controller or another controller
   def dietitian_recipes_index
     @recipes = Recipe.where(dietitian_id: current_dietitian.id)
+    @articles = Article.where(dietitian_id: current_dietitian.id)
   end
   # GET /recipes/1
   # GET /recipes/1.json
@@ -96,6 +98,7 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find(params[:id])
     end
 
+    ### make as global helper method because also used in marketing_items_controller
     def set_characteristic_display
       @cook_time = @recipe.characteristics.where(category: "Cook Time").first
       @prep_time = @recipe.characteristics.where(category: "Prep Time").first

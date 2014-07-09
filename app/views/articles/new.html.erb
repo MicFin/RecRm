@@ -1,9 +1,10 @@
 <div class="container">
-	<header>
-		<h1>Write an Article</h1>
-	</header>
-	<div id="new-article-form-container">
-		<%= render 'form' %>
+	<div id="recipe-new-form-container" class="article-form-container">
+		<div class="recipe-form-section row" id="recipe-form-section-0">
+			<h1 id="add-recipe-title-message">Alright! Let's write a <span class="attribute-title">NEW ARTICLE</span></h1>
+		</div>
+		<div id="new-article-form-container">
+			<%= render 'form' %>
+		</div>
 	</div>
-	<%= link_to 'Back', articles_path %>
 </div>

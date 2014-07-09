@@ -59,14 +59,14 @@
   padding: 10px;
 }
 
-.recipe-form-section input, button, textarea {
+.recipe-form-section input, .recipe-form-section button, .recipe-form-section textarea {
   font-family: inherit;
   font-size: 50px;
   line-height: inherit;
   text-align: center;
 }
 
-#ingredients-recipe-form input, button, textarea{
+#ingredients-recipe-form input, #ingredients-recipe-form button, #ingredients-recipe-form textarea{
   font-family: inherit;
   font-size: 50px;
   line-height: inherit;
@@ -94,6 +94,17 @@
   font-size: 50px;
   border-radius: 15px; 
 
+}
+
+.link-as-button{
+  font-family: inherit;
+  font-size: 50px;
+  line-height: inherit;
+  text-align: center; 
+  height: 100px;
+  font-size: 50px;
+  border-radius: 15px; 
+  background-color: grey;
 }
 /*#name-field::-webkit-input-placeholder { 
   color: #F16521;
@@ -353,6 +364,14 @@ label.checkbox input {
   font-size: 30px;
 }
 
+#article-success{
+  border-radius: 15px;
+  border: 2px solid green;
+  color: green;
+  margin-right: 5%;
+  margin-top: 2%;
+  font-size: 30px;
+}
 
 #recipe-group-form h3 strong {
   font-size: 50px;
@@ -372,4 +391,49 @@ label.checkbox input {
 
 .recipe-show-links{
   margin-bottom: 5%;
+}
+
+#pencil-container{
+  margin-right: -10px;
+}
+
+.grow {
+  display: inline-block;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.grow:hover {
+  -webkit-transform: scale(1.1) rotate(7deg); /* Opera, Chrome, and Safari */
+  -ms-transform: scale(1.1) rotate(7deg); /* IE 9 */
+  transform: scale(1.1) rotate(7deg);
+
+}
+
+.article-form-container textarea, .article-form-container input {
+  font-family: inherit;
+  font-size: 20px;
+  line-height: inherit;
+  text-align: left;
+}
+
+.article-form-container input[type="submit"]{
+  font-family: inherit;
+  font-size: 50px;
+  line-height: inherit;
+  text-align: center;
+}
+
+.small-font-button input[type="submit"]{
+  font-family: inherit;
+  font-size: 16px;
+  line-height: inherit;
+  text-align: center;
 }

@@ -1,0 +1,15 @@
+// remove the marketing_items form and add the show
+var marketing_item = "<%=@marketing_item.category%>";
+
+if (marketing_item == "introduction") { 
+	$("#new-introduction-form").remove();
+	$('#new-introduction-content').append('<%= j render(@marketing_item) %>');
+} else if (marketing_item == "tweet"){
+	$("#new-tweet-form").remove();
+	$('#new-tweet-content').append('<%= j render(@marketing_item) %>');	
+} else {
+	$("#new-headline-form").remove();
+	$('#new-headline-content').append('<%= j render(@marketing_item) %>');
+};
+
+

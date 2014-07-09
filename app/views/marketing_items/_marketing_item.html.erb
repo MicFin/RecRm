@@ -1,0 +1,5 @@
+    <div id="marketing-item-<%=@marketing_item.id%>">
+      <strong><%= simple_format @marketing_item.category.capitalize %></strong>
+      <p><%= simple_format @marketing_item.content %></p>
+			<%= link_to "Edit", edit_article_marketing_item_path(@marketing_item, article_id: @marketing_itemable.id), class: "edit-marketing-item", remote: true %>
+    </div>

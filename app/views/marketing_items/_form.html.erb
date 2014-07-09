@@ -1,0 +1,92 @@
+<div class="row">
+  <div id="tweet-container" class="row form-group">
+    <div id="new-tweet-content" class="col-xs-6"></div>
+    <div id="new-tweet-form" class="col-xs-6">
+      <%= form_for [@marketing_itemable, @new_tweet], :remote => true do |f| %>
+        <% if @new_tweet.errors.any? %>
+          <div class="error_messages">
+            <h2>Please correct the following errors.</h2>
+            <ul>
+            <% @new_tweet.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <strong><%= @new_tweet.category.capitalize %></strong>
+          <p><%= f.text_area :content, rows: 2, class: "col-xs-11 text-left form-group" %></p>
+        </div>
+        <div class="actions small-font-button">
+          <%= f.submit "Save"%>
+          <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+          <%= f.hidden_field :order, value: 1 %>
+          <%= f.hidden_field :category, value: "tweet" %>
+          <%= f.hidden_field :dietitian_id, value: current_dietitian.id %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div id="introduction-container" class="row form-group">
+    <div id="new-introduction-content" class="col-xs-6"></div>
+    <div id="new-introduction-form" class="col-xs-6">
+      <%= form_for [@marketing_itemable, @new_introduction], :remote => true do |f| %>
+        <% if @new_introduction.errors.any? %>
+          <div class="error_messages">
+            <h2>Please correct the following errors.</h2>
+            <ul>
+            <% @new_introduction.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <strong><%= @new_introduction.category.capitalize %> </strong>
+          <p><%= f.text_area :content, rows: 2, class: "col-xs-11 text-left form-group" %></p>
+        </div>
+        <div class="actions small-font-button">
+          <%= f.submit "Save" %>
+          <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+          <%= f.hidden_field :order, value: 1 %>
+          <%= f.hidden_field :category, value: "introduction" %>
+          <%= f.hidden_field :dietitian_id, value: current_dietitian.id %> 
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div id="headline-container" class="row form-group">
+    <div id="new-headline-content" class="col-xs-6"></div>
+    <div id="new-headline-form" class="col-xs-6">
+      <%= form_for [@marketing_itemable, @new_headline], :remote => true do |f| %>
+        <% if @new_headline.errors.any? %>
+          <div class="error_messages">
+            <h2>Please correct the following errors.</h2>
+            <ul>
+            <% @new_headline.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <strong><%= @new_headline.category.capitalize %> </strong>
+          <p><%= f.text_area :content, rows: 2, class: "col-xs-11 text-left form-group" %></p>
+        </div>
+        <div class="actions small-font-button">
+          <%= f.submit "Save"%>
+          <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+          <%= f.hidden_field :order, value: 1 %>
+          <%= f.hidden_field :category, value: "headline" %>
+          <%= f.hidden_field :dietitian_id, value: current_dietitian.id %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row text-center">
+    <%= link_to "Finish Article", article_path(@marketing_itemable), class: "btn btn-default btn-lg link-as-button" %>
+  </div>
+</div>

@@ -12,11 +12,6 @@ class RecipesController < ApplicationController
   ## this method and view is being used as the dietitian dashboard right now, it should be moved to a home controller or another controller
   def dietitian_recipes_index
     @recipes = Recipe.where(dietitian_id: current_dietitian.id)
-    if Article.where(dietitian_id: current_dietitian.id)
-      @articles = Article.where(dietitian_id: current_dietitian.id)
-    else
-      @articles = []
-    end
 
   end
   # GET /recipes/1

@@ -313,6 +313,8 @@ label.checkbox input {
   border-radius: 15px;
   margin: 2%;
   padding: 2%;
+  height: 300px;
+  overflow: scroll;
 }
 
 #ingredient-comment-row{
@@ -436,4 +438,17 @@ label.checkbox input {
   font-size: 16px;
   line-height: inherit;
   text-align: center;
+}
+
+.content-badge{
+  border-radius: 10px;
+  height: 40px;
+  background-color: white;
+}
+
+.content-icon{
+  height: 30px; 
+  margin: 0 auto; 
+  position: relative; 
+  top: 10%;
 }

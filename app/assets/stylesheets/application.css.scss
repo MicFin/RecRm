@@ -17,9 +17,31 @@
 
  @import "bootstrap";
 
-// add SASS
-// $greentextlight: #399E48;
-// $orangetext: #F68D3C;
-// $orangecarrot: #F16521;
-// $greencarrot: #009344;
-// $greentextdark: #11753B;
+// GLOBAL COLORS
+$greentextlight: #399E48;
+$orangetext: #F68D3C;
+$orangecarrot: #F16521;
+$greencarrot: #009344;
+$greentextdark: #11753B;
+$globalDarkText: #333333;
+$globalLightText: #b4b4b4;
+
+
+
+
+// RECIPE THUMB STYLES
+.recipesHomeTitle {padding-left: 15px;}
+.recipesThumbsHome {position: relative; width:855px;margin:20px 0 0 0;}
+.recipeThumbLeft {position: relative;float: left;width:270px;height: 270px; display: block;margin:0 0 40px 15px;}
+.recipeThumbTitle {color: $globalDarkText; font-size:20px; line-height: 24px;background-color: #fff;padding: 5px; border-radius:5px ;cursor: pointer;-webkit-transition:color 0.3s; }
+.recipeThumbTitle:hover{color: $orangetext}
+.recipeThumbImage {position: absolute;z-index: 1;top:0;left:0; width:100%;min-height: 100%;border-radius:5px}
+.recipeThumbImageContainer {position: relative;width:270px;height: 270px; display: block;overflow: hidden;border-radius:5px;cursor: pointer; }
+.recipeThumbImage {position: absolute;z-index: 1;top:0;left:0; width:100%;min-height: 100%; }
+.recipeThumbCover {position: absolute;z-index: 2;top:0;left:0; width:100%;min-height: 100%;background-color:rgba(255,255,255,0.5);-webkit-transition:opacity 0.3s; opacity: 0;}
+.recipeThumbCover:hover {opacity:1; }
+.recipeThumbDietitianImage {position: absolute;z-index: 1;bottom:10px;right:10px; width:50px; height: 50px; background-color:rgba(255,255,255,1);border: 2px solid $greentextlight; border-radius: 30px;}
+
+.recipeThumbIngredients {text-align:right;padding:0 5px 0 5px;font-size: 20px;line-height: 34px; color: $orangetext  }
+.recipeThumbSteps {text-align: center;color:$globalDarkText;font-size: 26px;width: 100%;line-height: 270px;}
+.recipeThumbCharacteristics {text-align: left;color: #fff;font-size: 16px;line-height: 30px;padding:0px 10px 0px 10px}

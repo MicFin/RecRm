@@ -1,4 +1,8 @@
 class Recipe < ActiveRecord::Base
+  attr_accessor :ingredient_list
+  attr_accessor :step_list
+  attr_accessor :characteristic_list
+
 	has_many :ingredients_recipes
 	has_many :ingredients, through: :ingredients_recipes
 	has_many :recipe_steps

@@ -7,4 +7,5 @@ class Dietitian < ActiveRecord::Base
   has_many :appointments
   has_many :marketing_items
   has_many :quality_reviews
+  has_many :articles
 end

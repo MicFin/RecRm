@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :families
 
   
-  get 'welcome/index'
+  get 'welcome/index', to: "welcome#index", as: "welcome"
   get 'home', to: 'home#index', as: 'home'
 
   devise_for :users
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       root to: 'welcome#index', as: :user_authenticated_root
     end
     unauthenticated :user do
-      root :to => 'devise/registrations#new', as: :user_unauthenticated_root
+      root :to => "welcome#index", as: :user_unauthenticated_root
     end   
   end
 
@@ -56,17 +56,18 @@ Rails.application.routes.draw do
         resources :marketing_items
         get :autocomplete_ingredient_name, :on => :collection
       end
-    end
-    unauthenticated :dietitian do
-      root :to => 'devise/registrations#new', as: :dietitian_unauthenticated_root
-    end   
-  end
-  
-
       # dietitian recipes index page
       get '/recipes/dietitian_recipes_index/:id', to: 'recipes#dietitian_recipes_index', as: 'dietitian_recipes'
       # recipes edit recipe group page
       get '/recipes/edit_recipe_group/:id', to: 'recipes#edit_recipe_group', as: 'edit_recipe_group'
+    end
+    unauthenticated :dietitian do
+      root :to => "welcome#index", as: :dietitian_unauthenticated_root
+    end   
+  end
+  
+
+
 
 
 

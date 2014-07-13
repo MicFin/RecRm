@@ -12,22 +12,7 @@
 
 <div class="container">
 	
-	<div class="nav nav-tabs">
-		<% if current_user %>
-			<li> <%= link_to 'HOME', user_authenticated_root_path %> </li>
-			<li><%= link_to 'SIGN OUT', destroy_user_session_path, :method => :delete %></li>
-
-		<% elsif current_dietitian %>
-			<li> <%= link_to 'HOME', dietitian_recipes_path(current_dietitian) %> </li>
-			<li><%= link_to 'SIGN OUT', destroy_dietitian_session_path, :method => :delete %></li>
-		<% else %>
-			<li> <%= link_to 'HOME', user_unauthenticated_root_path %> </li>
-			<li> <%= link_to 'SIGN UP USER', new_user_registration_path %>  </li>
-			<li> <%= link_to 'SIGN UP DIETITIAN', new_dietitian_registration_path %>  </li>
-			<li> <%= link_to 'LOGIN USER',  new_user_session_path %>  </li>
-			<li> <%= link_to 'LOGIN DIETITIAN',  new_dietitian_session_path %>  </li>
-		<% end %>
-	</div>
+	<%= render "/layouts/nav" %>
 
 	<% if flash[:notice] %>
 		<div class="alert alert-success">

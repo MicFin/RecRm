@@ -78,9 +78,9 @@
       <div class="recipe-form-section row" id="recipe-form-section-6">
         <div class="recipe-form-steps-container">
           <div class="col-xs-12 recipe-form-steps text-center">
-            <div class="recipe-form-section-submit actions">
+            <div class="recipe-form-section-submit actions green-button">
               <p>Ok, now that we have an idea of who we are writing this article for, let's get to the fun stuff...</p>
-              <button id="start-writing-button" type="button" class="btn">Start Writing</button>
+              <button id="start-writing-button" type="button" class="btn large-button">Start Writing</button>
             </div>
           </div>
         </div>
@@ -95,18 +95,16 @@
               <%= f.input :title, label: false, input_html: { maxlength: 55, class: "col-xs-11 text-left" }  %>
             </div>
             <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="recipe-form-selector-6">
-              <span class="attribute-title orange-font">Your Article's Body</span>
-              <%= f.input :content, label: false, input_html: { :rows=>20,maxlength: 1000, class: "col-xs-11 text-left" } %>
+              <span class="attribute-title orange-font">Type your article here!</span>
+              <%= f.input :content, label: false, input_html: { :rows=>20, class: "col-xs-11 text-left" } %>
             </div>
-            <div class="text-center actions">
+            <div class="text-center actions green-button">
               <%= f.button :submit %>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
     <%= f.input :dietitian_id, :as => :hidden, :input_html => { :value => @dietitian_id } %>
   <% end %>
 </div>

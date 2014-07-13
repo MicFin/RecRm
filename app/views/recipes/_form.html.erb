@@ -120,7 +120,7 @@
           <%= recipe_form.association :characteristics, collection: @cultures, prompt: "Select Culture", label: false,  as: :check_boxes %>
         </div>
         <div class="hidden-xs hidden-sm hidden-md col-lg-4 recipe-form-steps" id="recipe-steps-form-selector-9">
-          <p>Please email <a href="mailto:Mike@Kindrdfood.com?Subject=Recipe%Categories" target="_top">here</a> if you have ideas for categories or selections to add.</p>
+          <p>Please email <a href="mailto:Mike@Kindrdfood.com?Subject=Recipe Categories" target="_top">here</a> if you have ideas for categories or selections to add.</p>
         </div>
       </div>
     </div>
@@ -158,7 +158,7 @@
           <%= recipe_form.button :submit, "Save Changes", class: "btn btn-default btn-lg" %>
         </div>
         <% else %>
-        <div class="recipe-form-section-submit actions">
+        <div class="recipe-form-section-submit actions green-button">
           <p>Ok, now that we have an idea of who we are making this recipe for, let's get to the fun stuff...</p>
           <%= recipe_form.button :submit, "Add Ingredients" %>
         </div>

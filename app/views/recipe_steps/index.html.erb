@@ -15,18 +15,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="row button-row text-center" id="ingredient-comment-row">
-			<p>Add all of the recipe steps before moving forward.</p>
-			<p>Scroll down to double check the steps before saving.</p>
-		</div>
 		<div class="row button-row" id="recipe-steps-container">	
 			<% @recipe.recipe_steps.each do |recipe_step| %>
 			<div class="col-xs-3 ingredient-list" id="recipe-step-<%=recipe_step.id%>">
-				<p><span class="attribute-title white-font">Step#:</span></p> 
-				<p class="recipe-step-item light-green-font"><%= recipe_step.step_number%></p>
-				<p><span class="attribute-title white-font">Directions:</span></p> 
+				<p><span class="attribute-title white-font">Step #<%= recipe_step.step_number%></span></p>
+				<p><span class="white-font">Directions:</span></p> 
 				<p class="recipe-step-item light-green-font"><%= recipe_step.directions%></p>
-				<p><span class="attribute-title white-font">Ingredients in Step:</span></p>
+				<p><span class="white-font">Ingredients in Step:</span></p>
 				<% recipe_step.ingredients.each do |ingredient| %>
 					<p class="recipe-step-item light-green-font">	<%= ingredient.name %></p>
 				<% end %>
@@ -36,14 +31,13 @@
 			<% end %>
 		</div>
 		<div class="row button-row text-center" id="ingredient-comment-row">
-
 			<p>Once all of the steps have been added,</p>
-			<p>you may continue.</p>
+			<p>please save.</p>
 		</div>
 		<div class="row recipe-form-section">
 			<div class="col-xs-4"></div>
-			<div class="col-xs-4 recipe-form-section-submit actions ">
-				<%= link_to "Save All Steps", edit_recipe_group_path(id: @recipe_id), class: "btn btn-default btn-lg kindrd-button", id: "recipe-group-button"%>
+			<div class="col-xs-4 recipe-form-section-submit actions green-button">
+				<%= link_to "Save Steps", edit_recipe_group_path(id: @recipe_id), class: "btn btn-lg", id: "review-ingredients"%>
 			</div>
 		</div>
 	</div>

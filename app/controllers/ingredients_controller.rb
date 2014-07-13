@@ -49,6 +49,9 @@ class IngredientsController < ApplicationController
       allergen = Allergen.create(name: @ingredient.name)
       allergen.save!
       params["ingredient"]["allergen_ids"].push(allergen.id)
+    else
+      allergen = Allergen.where(name: @ingredient.name).first
+      params["ingredient"]["allergen_ids"].push(allergen.id)
     end
     # recipe ID passed from allergens ingredients index add allergy to ingredient button
     @recipe_id = params["ingredient"]["recipe_id"].to_i

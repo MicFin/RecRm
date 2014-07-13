@@ -1,6 +1,5 @@
 class RecipeStepsController < ApplicationController
   before_action :set_recipe_step, only: [:show, :edit, :update, :destroy]
-
   # GET /recipe_steps
   # GET /recipe_steps.json
   def index
@@ -26,7 +25,10 @@ class RecipeStepsController < ApplicationController
 
   # GET /recipe_steps/1/edit
   def edit
-    @ingredients = @recipe_step.ingredients
+    @recipe_id = params["recipe_id"]
+    @recipe = Recipe.find(@recipe_id)
+    @ingredients = @recipe.ingredients
+
   end
 
   # POST /recipe_steps

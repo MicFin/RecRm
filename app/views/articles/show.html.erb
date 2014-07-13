@@ -14,8 +14,6 @@
     <div class="col-xs-4">
       <h3>Name:</h3>
       <p><%= @article.title %></p>
-		  <h3>Content:</h3>
-		  <p><%= @article.content %></p>
 		</div>
 		<div class="col-xs-4">
 		  <h3>Age Groups:</h3>
@@ -50,6 +48,10 @@
 		    <p><%=  disease.name %></p>
 		  <% end %>
 		</div>
+		<div class="col-xs-12">
+			<h3>Content:</h3>
+		  <p><%= @article.content %></p>
+		</div>
 	</div>
 	<div class="row recipe-show-container">
   		<h3>Marketing Items:</h3>
@@ -63,14 +65,12 @@
   		<% end %>
 	</div>
 	<div class="row text-center recipe-show-links recipe-form-section-submit actions">
-	  <div class="col-xs-12">
+	  <div class="col-xs-12 green-button">
 	    <%= link_to 'Add Another Article', new_article_path, class: "btn btn-default btn-lg", id: "save-ingredients-button"%>
 	  </div>
 	  <div class="col-xs-12"><h4>OR</h4></div>
 	  <div class="col-xs-12">
-	    <%= link_to 'See All Your Articles', dietitian_recipes_path(current_dietitian), class: "btn btn-default btn-lg" %>
+	    <%= link_to 'See All Your Content', dietitian_recipes_path(current_dietitian), class: "btn btn-default btn-lg" %>
 	  </div> 
 	</div>
 </div>
-
-

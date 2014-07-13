@@ -5,20 +5,23 @@
       <div class="recipe-form-steps-container">
         <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-8">
           <div class="form-group col-xs-3">
-            <span class="attribute-title white-font">STEP NUMBER</span> 
-            <%= recipe_step_form.input :step_number, label: false %>
+            <span class="attribute-title white-font">STEP #</span> 
+            <%= recipe_step_form.input :step_number, label: false, placeholder: "#" %>
           </div>
-          <div class="form-group col-xs-9">
+          <div class="form-group col-xs-8" id="ingredients-in-step">
+            <span class="attribute-title white-font">INGREDIENTS IN STEP</span>  
+            <div class="ingredient-allergen-container" id="ingredient-step-container">    
+            <%= recipe_step_form.association :ingredients, collection: @ingredients, label: false,  as: :check_boxes, :item_wrapper_class => 'inline' %>
+            </div>
+          </div>    
+          <div class="form-group col-xs-12">
             <span class="attribute-title white-font">DIRECTIONS</span> 
             <%= recipe_step_form.input :directions, label: false %>
           </div>
-          <div class="form-group col-xs-12">
-            <span class="attribute-title white-font">INGREDIENTS IN STEP</span>      
-            <%= recipe_step_form.association :ingredients, collection: @ingredients, label: false,  as: :check_boxes %>
-          </div>    
+          
             <%= recipe_step_form.hidden_field :recipe_id, value: @recipe_id.to_i %>
-          <div class="recipe-form-section-submit actions text-center">
-            <%= recipe_step_form.button :submit, class: "btn btn-default btn-lg" %>
+          <div class="recipe-form-section-submit green-button actions text-center">
+            <%= recipe_step_form.button :submit, "Create Step", class: "btn btn-default btn-lg" %>
           </div>
         </div>
       </div>

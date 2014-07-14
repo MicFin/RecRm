@@ -1,7 +1,7 @@
 module RecipesHelper
 
 	def get_recipe_list!(type)
-		recipes = Recipe.all
+		@unfiltered_recipes = Recipe.all
 		if type == "family"
 			ingredient_ids = @family_ingredients.collect(&:id)
 		else
@@ -9,17 +9,26 @@ module RecipesHelper
 		end
 
 		ingredient_ids = @user_ingredients.collect(&:id)
-		@recipe_list = []
+		@filtered_recipes = []
 
-		recipes.map do | recipe |
-			array = recipe.ingredients
-		        match = array.where.not(id: ingredient_ids).pluck(:id)
+		@unfiltered_recipes.map do | recipe |
+			recipe_ingredients_list = recipe.ingredients
+
+			#Check if recipe includes bad ingredients
+		    match = recipe_ingredients_list.where.not(id: ingredient_ids).pluck(:id)
+
+		    # Filtered Recipes with ingredients, images, steps and other details
 			if !match.empty?
-				@recipe_list << recipe 
+				recipe.ingredient_list = recipe_ingredients_list
+				recipe.step_list = recipe.recipe_steps
+				recipe.characteristic_list = recipe.characteristics
+				@filtered_recipes << recipe 
 			end
 		end
-		gon.recipe_list = @recipe_list
-		#Rails.logger.debug("MY RECIPES: #{@recipe_list}")
+
+		#Rable tutorial https://github.com/nesquena/rabl
+		gon.rabl as: 'filtered_recipes'
+
 	end
 
 	def get_recipe!

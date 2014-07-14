@@ -58,6 +58,8 @@ gem 'aws-sdk'
 #http://railscasts.com/episodes/324-passing-data-to-javascript?view=asciicast
 gem 'gon'
 
+gem 'rabl'
+
 # creates AdminUser model, migrations, controllers, routing, views, etc for an administrative user with dashboard.  Very Ruby friendly and customizable.  Will use AdminUser as our tech admin but can register other User models with ActiveAdmin and give certain permissions
 # http://activeadmin.info/
 gem 'activeadmin', github: 'gregbell/active_admin'

@@ -17,31 +17,40 @@ var Home = {
         var ingredients = "";
         var steps = "";
 
+
     	//loop through data and add html
     	for (ri = 0; ri < length; ri++){
             recipe = data[ri].recipe
 
-            ingredients = Home.getIngredientsHTML(recipe.ingredients)
+            //ingredients = Home.getIngredientsHTML(recipe.ingredients)
             //characteristics = Home.getCharacteristicsHTML(recipe.characteristics)
+            ingredients = recipe.ingredients.length
             steps = recipe.recipe_steps.length
 
-    		recipeListHTML += "<div class='recipeThumbLeft'>"
-            + "<div class='recipeThumbTitle' onclick='location.href=\"recipe/" + recipe.id + "\"'>" + recipe.name + "</div>"
-            + "<div class='recipeThumbImageContainer' onclick='location.href=\"recipe/" + recipe.id + "\"'>"
-                + "<img class='recipeThumbImage' src='" + recipe.image_url + "' \>"
-                + "<div class='recipeThumbCover'>"
-                    + "<div class='recipeThumbSteps'>" + steps + " steps</div>"
-                    //+ "<div class='recipeThumbSteps'>" + characteristics + "</div>"
+    		recipeListHTML += "<div class='recipeThumbLeft' onclick='location.href=\"recipe/" + recipe.id + "\"'>"
+                + "<div class='recipeThumbBackground'></div>"
+                + "<div class='recipeThumbImageContainer'>"
+                    + "<img class='recipeThumbImage' src='" + recipe.image_url + "' \>"
                 + "</div>"
-                + "<div class='recipeThumbDietitianImage'></div>"
+                + "<div class='recipeThumbCover'>"
+                    + "<div class='recipeThumbTitle' onclick='location.href=\"recipe/" + recipe.id + "\"'>" + recipe.name + "</div>"
+                    + "<div class='recipeThumbSteps'><b>" + steps + "</b> steps &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>" + ingredients + "</b> ingredients</div>"
+                + "</div>"
+
+            
             + "</div>"
-            + "<div class='recipeThumbIngredients'>" + ingredients + "</div>" 
-            + '</div>'
             
     	}
+        recipeListHTML += "<div class='clear'></div>"
 
     	// display in html
     	$('#recipeList').html("<div class='recipesThumbsHome'>" + recipeListHTML + "</div>");
+
+        $('.recipeThumbLeft').hover(function() { 
+            $(this).find(".recipeThumbBackground").toggleClass("recipeThumbBackgroundActive"); 
+            $(this).find(".recipeThumbCover").toggleClass("recipeThumbCoverActive"); 
+
+        });
     }, 
 
     getIngredientsHTML: function(data){
@@ -53,7 +62,7 @@ var Home = {
         for (ii = 0; ii < length; ii ++){
             ingredient = data[ii].ingredient
 
-            ingredientsHTML += "&nbsp;&nbsp;&nbsp;" + ingredient.name;
+            ingredientsHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + ingredient.name;
 
         }
         return ingredientsHTML; 

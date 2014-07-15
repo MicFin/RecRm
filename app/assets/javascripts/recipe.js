@@ -51,7 +51,7 @@ var Recipe = {
                 + steps 
             + "</div>"
        // + "<div class='recipeThumbIngredients'>" + ingredients + "</div>" 
-        + '</div>';
+        + "</div>";
             
 
 

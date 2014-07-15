@@ -45,7 +45,7 @@ $globalLightText: #9a9a9a;
 .recipeThumbLeft {position: relative;float: left;width:210px;height: 250px; display: block;margin:0 0 0px 5px;cursor: pointer;}
 
 .recipeThumbImageContainer {position: absolute;z-index: 2;top:35px;left:15px;width:180px;min-height: 180px; display: block;overflow: hidden;cursor: pointer;background-color: #fff; }
-.recipeThumbImage {position: absolute;z-index: 1;top:0;left:0; width:100%;min-height: 100%;}
+.recipeThumbImage {position: absolute;z-index: 1;top:0;left:0; min-width:100%;height: 100%;webkit-transform: translate3d(-50%,0,0);}
 .recipeThumbBackground {position: absolute;z-index: 1;top:30px;left:10px; width:190px;height: 190px;background-color:#f0f0f0;-webkit-transition:-webkit-transform 0.2s; @include scale(1.0, 1.0);border-radius: 3px;border: 1px solid #e6e6e6}
 .recipeThumbBackgroundActive {@include scale(1.04, 1.3)}
 

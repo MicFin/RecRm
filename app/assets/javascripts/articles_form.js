@@ -6,4 +6,8 @@ $(document).ready(function() {
 		$("#main-article-form-container").show("slow");		
 	})
 
+	$("#new-tweet-content").hide();
+	$("#new-introduction-content").hide();
+	$("#new-headline-content").hide();
+
 });

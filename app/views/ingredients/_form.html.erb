@@ -21,7 +21,7 @@
           <div class="form-group col-xs-10 ingredient-allergen-fields">
             <div class="field text-center form-group">
               <span class="attribute-title">SELECT FOOD GROUP</span>
-             <%= f.input :category, collection: ["Fruit", "Vegetable", "Protein", "Grain", "Dairy", "Meat", "Fish", "Raw", "Legume", "Bean"], label: false, prompt: "Select Food Category" %>
+             <%= f.input :category, collection: ["Fruit", "Vegetable", "Protein", "Grain", "Dairy", "Meat", "Fish", "Raw", "Legume", "Bean"], label: false, prompt: "Food Category" %>
             </div>
 
             <div class="form-group" style="margin-left: 20px">
@@ -38,7 +38,7 @@
             </div>
           </div>
 
-          <div class="actions text-center">
+          <div class="actions text-center green-button">
             <%= f.button :submit %>
           </div>
         </div>

@@ -24,7 +24,8 @@ class IngredientsRecipesController < ApplicationController
     @ingredient = Ingredient.new 
     # set recipe_id sent from ingredients_recipe index form remote true
     @recipe_id = params["recipe_id"]
-    # need to decide where to pull this list from
+    # set optional description of an ingredient
+    @prep_options = ["chopped", "steamed", "minced", "julianed", "quartered", "cored", "sliced", "cubed", "diced", "chiffonade", "shredded", "shifted", "seeded", "soaked", "rinsed", "drained", "mashed", "peeled", "halved", "whipped", "pressed", "grated", "zested", "pounded", "pulled", "salted", "stewed", "smashed", "ground", "washed", "beaten", "melted"].sort
   end
 
   # GET /ingredients_recipes/1/edit
@@ -91,11 +92,11 @@ class IngredientsRecipesController < ApplicationController
     end
 
     def set_units
-      @units = ["cup", "teaspoon", "tablespoon", "ounce", "pound", "fluid ounce", "gill", "pint", "quart" "gallon", "milliliter", "liter", "deciliter", "milligram", "gram", "kilogram", "pinch", "handful", "dash", "to taste", "bushel", "drop", "piece", "whole", "half", "slice", "cloves", "each", "as needed", "sprig", "dash", "once around the pot", "spear", "stalk", "splash", "dollop", "loaf", "square", "pat", "sheet", "wedge", "ear", "section"]
+      @units = ["cup", "teaspoon", "tablespoon", "ounce", "pound", "fluid ounce", "gill", "pint", "quart", "gallon", "milliliter", "liter", "deciliter", "milligram", "gram", "kilogram", "pinch", "handful", "dash", "to taste", "bushel", "drop", "piece", "whole", "half", "slice", "cloves", "each", "as needed", "sprig", "dash", "once around the pot", "spear", "stalk", "splash", "dollop", "loaf", "square", "pat", "sheet", "wedge", "ear", "section"].sort
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredients_recipe_params
-      params.require(:ingredients_recipe).permit(:amount, :amount_unit, :recipe_id )
+      params.require(:ingredients_recipe).permit(:amount, :amount_unit, :recipe_id, :prep )
     end
 end

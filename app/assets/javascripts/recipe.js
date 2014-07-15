@@ -9,8 +9,9 @@ var Recipe = {
        
     	//using rails gon and rabl gems - Rable tutorial https://github.com/nesquena/rabl
     	var data = gon.recipe;
+        console.log(data)
         var recipe = data.recipe;
-        //console.log(recipe)
+ 
 
     	var recipeHTML = "";
         var steps = recipe.recipe_steps

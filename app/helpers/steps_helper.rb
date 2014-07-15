@@ -4,11 +4,11 @@ module StepsHelper
 	steps = @recipe.recipe_steps
 	@recipe_steps = []
 
-	steps.map do | step |
-		step_ingredients_list = step.ingredients
-		step.ingredient_list = step_ingredients_list
-		@recipe_steps << step
-	end
+		steps.map do | step |
+			step_ingredients_list = step.ingredients
+			step.ingredient_list = step_ingredients_list
+			@recipe_steps << step
+		end
 
 	end
 

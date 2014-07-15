@@ -9,6 +9,7 @@ var Home = {
        
     	//using rails gon and rabl gems - Rable tutorial https://github.com/nesquena/rabl
     	var data = gon.filtered_recipes;
+        // are we loading?
         console.log(data)
     	var length = data.length;
     	var recipeListHTML = "";

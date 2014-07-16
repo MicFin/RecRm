@@ -21,6 +21,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients/1/edit
   def edit
     @allergens = Allergen.first(10)
+    @suggested_allergens = @ingredient.suggested_allergens
     @recipe = Recipe.find(params[:recipe_id])
     @other_allergens = @ingredient.other_allergens
   end

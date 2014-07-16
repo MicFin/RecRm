@@ -23,9 +23,14 @@
               <span class="attribute-title">SELECT FOOD GROUP</span>
              <%= f.input :category, collection: ["Fruit", "Vegetable", "Grain", "Dairy", "Meat", "Fish", "Legume", "Bean", "Herbs/Spices"].sort, label: false, prompt: "Food Category" %>
             </div>
-
             <div class=" col-xs-12 form-group" style="margin-left: 20px">
-              <span class="attribute-title">SELECT COMMON ALLERGENS</span>
+              <div class="col-xs-12"><span class="attribute-title">Suggested Allergens</span></div>
+              <div class="col-xs-4">
+                <%= f.association :allergens, collection: @suggested_allergens, label: false,  as: :check_boxes %>
+              </div>
+            </div>
+            <div class=" col-xs-12 form-group" style="margin-left: 20px">
+              <div class="col-xs-12"><span class="attribute-title">Common Allergens</span></div>
               <div class="col-xs-4">
                 <%= f.association :allergens, collection: @allergens, label: false,  as: :check_boxes %>
               </div>

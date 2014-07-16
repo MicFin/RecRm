@@ -25,4 +25,33 @@ class Ingredient < ActiveRecord::Base
     return other_allergens
   end
 
+  def split_ingredient_by_word
+    array_of_words = self.name.gsub(/\s+/m, ' ').gsub(/^\s+|\s+$/m, '').split(" ")
+    return array_of_words
+  end
+
+  def suggested_allergens
+    suggested_allergens = []
+    words_in_name = self.split_ingredient_by_word
+    words_in_name.each do |word_in_name|
+      Allergen.all.each do |allergen|
+        allergen.split_allergen_by_word.each do |allergen_word|
+          if allergen_word == word_in_name
+            suggested_allergens << allergen
+          end
+        end
+      end
+      Ingredient.all.each do| ingredient|
+        ingredient.split_ingredient_by_word.each do |ingredient_word|
+          if ingredient_word == word_in_name
+            ingredient.allergens.each do |allergen|
+              suggested_allergens << allergen
+            end
+          end
+        end
+      end
+    end
+    return suggested_allergens
+  end
+
 end

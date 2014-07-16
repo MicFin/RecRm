@@ -16,7 +16,7 @@
           </div>    
           <div class="form-group col-xs-12">
             <span class="attribute-title white-font">DIRECTIONS</span> 
-            <%= recipe_step_form.input :directions, label: false %>
+            <%= recipe_step_form.input :directions, label: false, placeholder: "Enter directions" %>
           </div>
           
             <%= recipe_step_form.hidden_field :recipe_id, value: @recipe_id.to_i %>

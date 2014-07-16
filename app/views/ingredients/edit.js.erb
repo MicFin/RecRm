@@ -2,3 +2,8 @@
 $("#ingredient-lists-container").hide();
 // insert ingredients  _form.html.erb
 $('#allergen-form-container').after("<%= j render('form') %>");
+$("#add-allergen").click(function(){
+  var allergen_name = $("input[name='ingredient[allergen][name]']").val();
+  // var allergen = $('name="ingredient[allergen][name]"').val();
+  $("#added-allergens ul").append('<label class="checkbox"><input class="check_boxes optional" name="extra_allergens[]" type="checkbox" value="'+allergen_name+ '" checked>'+allergen_name+'</label');
+});

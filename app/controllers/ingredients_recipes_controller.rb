@@ -31,7 +31,6 @@ class IngredientsRecipesController < ApplicationController
   # GET /ingredients_recipes/1/edit
   def edit
     @recipe = Recipe.find(params["recipe_id"])
-    @prep_options = @prep_options
   end
 
   # POST /ingredients_recipes

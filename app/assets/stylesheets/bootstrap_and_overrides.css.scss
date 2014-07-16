@@ -645,3 +645,16 @@ textarea#ingredient-recipe-form select {
 .unselect-all-button {
   background-color: red;
 }
+
+#allergen-form input[type="text"] {
+   height: 50px;
+   width: 100%;
+   border-color: rgba(241, 101, 33, 0.5);
+   border-width: 1px;
+   border-radius: 15px;
+   font-size: 16px;
+}
+
+#allergen-form button {
+   font-size: 16px;
+}

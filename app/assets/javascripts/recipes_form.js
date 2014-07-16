@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 
+
     // hide all hidden options for recupe form
   $(".hidden-options").hide();
   // set click for buton to show hidden options when clicked
@@ -11,6 +12,7 @@ $(document).ready(function() {
       $(this).next().show();
     };
   }); 
+
 
   // set select all buttons for recipe form
   $('.select-all-button').click(function(){

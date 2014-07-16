@@ -98,11 +98,15 @@
       </div>
       <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
         <span class="attribute-title">Age Group</span>
+        <button type="button" class="select-all-button btn btn-small" id="select-all-age-groups">Select All</button>
         <%= recipe_form.association :characteristics, collection: @age_groups, prompt: "Select Age Group", label: false, as: :check_boxes, :required => true %>
       </div>
       <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-6">
         <span class="attribute-title">Scenario</span>
-        <%= recipe_form.association :characteristics, collection: @scenarios, prompt: "Select Scenario", label: false,  as: :check_boxes %>
+        <button type="button" class="display-options-button btn btn-small" id="add-scenarios-button">View Scenarios</button>
+        <div class="hidden-options">
+          <%= recipe_form.association :characteristics, collection: @scenarios, id: "scenarios-list", prompt: "Select Scenario", label: false,  as: :check_boxes %>
+        </div>
       </div>
     </div>
   </div>
@@ -113,13 +117,19 @@
       <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-5">
         <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-7">
           <span class="attribute-title orange-font">Holidays</span>
-          <%= recipe_form.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: false,  as: :check_boxes %>
+          <button type="button" class="display-options-button btn btn-small" id="add-holidays-button" >View Holidays</button>
+          <div class="hidden-options">
+            <%= recipe_form.association :characteristics, collection: @holidays, prompt: "Select Holidays", label: false,  as: :check_boxes %>
+          </div>
         </div>
         <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-8">
           <span class="attribute-title orange-font">Cultures</span>
-          <%= recipe_form.association :characteristics, collection: @cultures, prompt: "Select Culture", label: false,  as: :check_boxes %>
+          <button type="button" class="display-options-button btn btn-small"  id="add-cultures-button" >View Cultures</button>
+          <div class="hidden-options">
+            <%= recipe_form.association :characteristics, collection: @cultures, prompt: "Select Culture", label: false,  as: :check_boxes %>
+          </div>
         </div>
-        <div class="hidden-xs hidden-sm hidden-md col-lg-4 recipe-form-steps" id="recipe-steps-form-selector-9">
+        <div class="hidden-xs hidden-sm hidden-md col-lg-12 recipe-form-steps" id="recipe-steps-form-selector-9">
           <p>Please email <a href="mailto:Mike@Kindrdfood.com?Subject=Recipe Categories" target="_top">here</a> if you have ideas for categories or selections to add.</p>
         </div>
       </div>

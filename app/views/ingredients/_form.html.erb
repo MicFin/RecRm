@@ -18,22 +18,46 @@
         <div class="col-xs-12 recipe-form-steps" id="ingredient-allergen-section">
           <h3 class="less-margin-top"><span class="attribute-title white-font"><%= @ingredient.name %></span> </h3>
           <div class="col-xs-1"></div>
-          <div class="form-group col-xs-10 ingredient-allergen-fields">
-            <div class="field text-center form-group">
+          <div class="form-group col-xs-10 ingredient-allergen-fields" id="allergen-form">
+            <div class=" col-xs-12 field text-center form-group">
               <span class="attribute-title">SELECT FOOD GROUP</span>
-             <%= f.input :category, collection: ["Fruit", "Vegetable", "Protein", "Grain", "Dairy", "Meat", "Fish", "Raw", "Legume", "Bean"], label: false, prompt: "Food Category" %>
+             <%= f.input :category, collection: ["Fruit", "Vegetable", "Grain", "Dairy", "Meat", "Fish", "Legume", "Bean", "Herbs/Spices"].sort, label: false, prompt: "Food Category" %>
             </div>
 
-            <div class="form-group" style="margin-left: 20px">
+            <div class=" col-xs-12 form-group" style="margin-left: 20px">
               <span class="attribute-title">SELECT COMMON ALLERGENS</span>
-              <%= f.association :allergens, collection: @allergens, label: false,  as: :check_boxes %>
+              <div class="col-xs-4">
+                <%= f.association :allergens, collection: @allergens, label: false,  as: :check_boxes %>
+              </div>
             </div>
               <%= f.hidden_field :recipe_id, value: @recipe.id %>
- <div class="col-xs-12">
+            <div class="col-xs-12">
               <p>All ingredients are automatically marked as their own allergen.</p>
               <ul>
-                <li>Example: You do not need to mark ingredient "Apple" with allergen "Apple"</li>
-                <li>Example: You do need to mark "Cheese" with the allergen "Dairy"</li>
+                <li>Examples: </li>
+                <li>You DO NOT need to mark ingredient "Apple" with allergen "Apple"</li>
+                <li>You DO need to mark "Apple Sauce" with the allergen "Apple"</li>
+                <li>You DO need to mark "Cheese" with the allergen "Dairy"</li>
+              </ul>
+            </div>
+            <p>Search for or create other allergens.</p>
+            <div class="col-xs-1"></div>
+            <div class="form-group col-xs-8">
+              <%= f.fields_for :allergen, @allergen do |allergen_form| %>
+                <%= allergen_form.input :name, :url => autocomplete_allergen_name_ingredients_path, :as => :autocomplete, placeholder: "Allergen Name", label: false, :full => true%>                  
+              <% end %> 
+            </div>
+            <div class="col-xs-1"></div>
+            <div class="form-group col-xs-2">
+              <button type="button" class="btn btn-lg" id="add-allergen" >Add</button>
+            </div>
+            <div class="col-xs-12" id="added-allergens">
+              <ul>
+                <% if @ingredient.allergens.count > 1 %>
+                  <% @other_allergens.each do |allergen| %>
+                    <label class="checkbox"><input class="check_boxes optional" name="ingredient[allergen_ids][]" type="checkbox" value="<%=allergen.id%>" checked><%=allergen.name%></label>
+                  <% end %>
+                <% end %>
               </ul>
             </div>
           </div>

@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
-
+  autocomplete :allergen, :name
   # GET /ingredients
   # GET /ingredients.json
   def index
@@ -22,6 +22,7 @@ class IngredientsController < ApplicationController
   def edit
     @allergens = Allergen.first(10)
     @recipe = Recipe.find(params[:recipe_id])
+    @other_allergens = @ingredient.other_allergens
   end
 
   # POST /ingredients
@@ -50,6 +51,7 @@ class IngredientsController < ApplicationController
       allergen.save!
       params["ingredient"]["allergen_ids"].push(allergen.id)
     else
+      # else add self-allergen to allergen array
       allergen = Allergen.where(name: @ingredient.name).first
       params["ingredient"]["allergen_ids"].push(allergen.id)
     end
@@ -57,6 +59,15 @@ class IngredientsController < ApplicationController
     @recipe_id = params["ingredient"]["recipe_id"].to_i
     # delete recipe ID from the params before saving ingredient
     params["ingredient"].delete("recipe_id")
+    # delete input field for new allergens from params
+    params["ingredient"].delete("allergen")
+    # find or create new allergen and add to allergen params
+    if params["extra_allergens"]
+      params["extra_allergens"].each do |allergen_name|
+        allergen = Allergen.find_or_create_by(name: allergen_name)
+        params["ingredient"]["allergen_ids"].push(allergen.id)
+      end
+    end
     respond_to do |format|
       if @ingredient.update(ingredient_params)
        # redirect to list of recipe ingredients and allergens

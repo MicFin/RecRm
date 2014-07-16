@@ -1,65 +1,16 @@
 $(document).ready(function() {
 
-  // // on page load recipes#new
-  // // hide submit recipe button
-  //  $("#recipe-form-section-submit").hide();
-  // // hide all recipe form sections
-  // $(".recipe-form-section").hide();
-  //  // hide all recipe form nav buttons
-  //  $(".recipe-form-nav-buttons").hide();   
-  // // show first form section
-  // $("#recipe-form-section-1").show();
-  // $("#recipe-form-nav-buttons-1").show(); 
-  // $("#next-recipe-form-buttons-1").click(function(){
-  //   if ($("#recipe_name").val() != ""){
-  //     if ($("#recipe-form-selector-1").children().first().val() != ""){
-  //       if ($("#recipe-form-selector-2").children().first().val() != ""){
-  //         if ($("#recipe-form-selector-3").children().first().val() != ""){
-  //           // hide all recipe form sections
-  //           $(".recipe-form-section").hide();
-  //            // hide all recipe form nav buttons
-  //            $(".recipe-form-nav-buttons").hide();
-  //           // show second form section
-  //           $("#recipe-form-section-2").show();
-  //           $("#recipe-form-nav-buttons-2").show(); 
-  //         };
-  //       };
-  //     };
 
-  //   };
-  // }); 
-
-  // $("#next-recipe-form-buttons-2").click(function(){
-  //   // hide all recipe form sections
-  //   $(".recipe-form-section").hide();
-  //    // hide all recipe form nav buttons
-  //    $(".recipe-form-nav-buttons").hide();
-  //   // show second form section
-  //   $("#recipe-form-section-3").show();
-  //   $("#recipe-form-nav-buttons-3").show(); 
-  // }); 
-
-  // $("#previous-recipe-form-buttons-2").click(function(){
-  //   // hide all recipe form sections
-  //   $(".recipe-form-section").hide();
-  //    // hide all recipe form nav buttons
-  //    $(".recipe-form-nav-buttons").hide();
-  //   // show second form section
-  //   $("#recipe-form-section-1").show();
-  //   $("#recipe-form-nav-buttons-1").show(); 
-  // }); 
-
-  // $("#previous-recipe-form-buttons-3").click(function(){
-  //   // hide all recipe form sections
-  //   $(".recipe-form-section").hide();
-  //    // hide all recipe form nav buttons
-  //    $(".recipe-form-nav-buttons").hide();
-  //   // show second form section
-  //   $("#recipe-form-section-2").show();
-  //   $("#recipe-form-nav-buttons-2").show(); 
-  // // show submit recipe button
-  //  $("#recipe-form-section-submit").show();
-  // }); 
+    // hide all hidden form options
+  $(".hidden-options").hide();
+  $(".display-options-button").click(function(){
+    debugger;
+    if ($(this).next().is(":visible")){
+      $(this).next().hide();     
+    } else {
+      $(this).next().show();
+    };
+  }); 
 
 	// validate new recipe form with JS
   $("#new_recipe").validate({

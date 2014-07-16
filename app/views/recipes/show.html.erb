@@ -68,7 +68,7 @@
           <div class="col-xs-3 ingredient-list" id="ingredients-recipe-<%=ingredient.id%>">
             <p><span class="white-font">Amount: </span><span class="attribute-title white-font"><%= ingredient.amount%> <%= ingredient.amount_unit%></span> 
             </p>
-            <p><span class="white-font">Ingredient: </span><span class="attribute-title white-font"><%=ingredient.ingredient.name %></span>
+            <p><span class="white-font">Ingredient: </span><span class="attribute-title white-font"><%=ingredients_recipe.prep %> <%=ingredients_recipe.ingredient.name %></span>
             <p><span class="white-font">Allergens: </span></p>
               <div class="ingredient-allergen-container">
                 <% ingredient.ingredient.allergens.each do |allergen| %>

@@ -264,9 +264,6 @@ label.checkbox input {
   border-radius: 15px;
   background: #F16521;
   color: white;
-  position: absolute;
-  bottom: 2%;
-  right: 2%;
   text-align: center;
   padding: 2% 2% 0 2%;
 }
@@ -631,4 +628,11 @@ textarea#ingredient-recipe-form select {
 
 #new-article-form{
   padding: 0px;
+}
+
+#add-cultures-button, #add-holidays-button, #add-scenarios-button{
+  font-family: inherit;
+  font-size: 16px;
+  line-height: inherit;
+  text-align: center;
 }

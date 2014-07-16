@@ -630,9 +630,18 @@ textarea#ingredient-recipe-form select {
   padding: 0px;
 }
 
-#add-cultures-button, #add-holidays-button, #add-scenarios-button{
+#add-cultures-button, #add-holidays-button, #add-scenarios-button, #select-all-age-groups{
   font-family: inherit;
   font-size: 16px;
   line-height: inherit;
   text-align: center;
+}
+
+.select-all-button {
+  background-color: #399E48;
+  color: white;
+}
+
+.unselect-all-button {
+  background-color: red;
 }

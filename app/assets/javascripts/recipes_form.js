@@ -1,16 +1,34 @@
 $(document).ready(function() {
 
 
-    // hide all hidden form options
+    // hide all hidden options for recupe form
   $(".hidden-options").hide();
+  // set click for buton to show hidden options when clicked
   $(".display-options-button").click(function(){
-    debugger;
     if ($(this).next().is(":visible")){
       $(this).next().hide();     
     } else {
       $(this).next().show();
     };
   }); 
+
+  // set select all buttons for recipe form
+  $('.select-all-button').click(function(){
+    if ($(this).val() !== "uncheck all"){
+      $(this).next().children().children().each(function(i, e){
+        $(e).children().prop('checked', true);
+      }); 
+      $(this).val('uncheck all');
+      $(this).addClass('unselect-all-button');
+    } else {
+      $(this).next().children().children().each(function(i, e){
+        $(e).children().prop('checked', false);
+      });
+      $(this).val('check all');
+      $(this).removeClass('unselect-all-button');
+    };     
+  });
+
 
 	// validate new recipe form with JS
   $("#new_recipe").validate({

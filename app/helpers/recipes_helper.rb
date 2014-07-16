@@ -25,7 +25,6 @@ module RecipesHelper
 				@filtered_recipes << recipe 
 			end
 		end
-
 		#Rable tutorial https://github.com/nesquena/rabl
 		gon.rabl as: 'filtered_recipes'
 

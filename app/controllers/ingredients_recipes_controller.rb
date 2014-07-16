@@ -1,7 +1,8 @@
 class IngredientsRecipesController < ApplicationController
+  include IngredientsRecipesHelper
   # skip_before_action :verify_authenticity_token
   before_action :set_ingredients_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :set_units, only: [:new, :edit]
+  before_action :set_options, only: [:new, :edit]
 
   # GET /ingredients_recipes
   # GET /ingredients_recipes.json
@@ -24,14 +25,13 @@ class IngredientsRecipesController < ApplicationController
     @ingredient = Ingredient.new 
     # set recipe_id sent from ingredients_recipe index form remote true
     @recipe_id = params["recipe_id"]
-    # set optional description of an ingredient
-    @prep_options = ["chopped", "steamed", "minced", "julianed", "quartered", "cored", "sliced", "cubed", "diced", "chiffonade", "shredded", "shifted", "seeded", "soaked", "rinsed", "drained", "mashed", "peeled", "halved", "whipped", "pressed", "grated", "zested", "pounded", "pulled", "salted", "stewed", "smashed", "ground", "washed", "beaten", "melted"].sort
+
   end
 
   # GET /ingredients_recipes/1/edit
   def edit
     @recipe = Recipe.find(params["recipe_id"])
-    # need to decide where to pull this list from
+    @prep_options = @prep_options
   end
 
   # POST /ingredients_recipes
@@ -91,8 +91,9 @@ class IngredientsRecipesController < ApplicationController
       @ingredients_recipe = IngredientsRecipe.find(params[:id])
     end
 
-    def set_units
+    def set_options
       @units = ["cup", "teaspoon", "tablespoon", "ounce", "pound", "fluid ounce", "gill", "pint", "quart", "gallon", "milliliter", "liter", "deciliter", "milligram", "gram", "kilogram", "pinch", "handful", "dash", "to taste", "bushel", "drop", "piece", "whole", "half", "slice", "cloves", "each", "as needed", "sprig", "dash", "once around the pot", "spear", "stalk", "splash", "dollop", "loaf", "square", "pat", "sheet", "wedge", "ear", "section"].sort
+      get_ingredient_prep_options!
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

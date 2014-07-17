@@ -37,8 +37,8 @@
             </div>
             <div class="row">
               <div class="form-group col-xs-4">
-                <span class="attribute-title white-font">Optional:</span> 
-                <%= ingredients_recipe_form.input :prep, placeholder: 'diced, chopped, peeled, etc', :collection => @prep_options, :include_blank => true %>
+                <span class="attribute-title white-font">optional:</span> 
+                <%= ingredients_recipe_form.input :prep, placeholder: 'diced, chopped, peeled, etc', :collection => @prep_options, :include_blank => true, label: false %>
               </div>
               <div class="form-group col-xs-8">
                 <% if !@ingredients_recipe.ingredient.name %>
@@ -53,34 +53,12 @@
                   <%= ingredients_recipe_form.hidden_field :recipe_id, value: params["recipe_id"].to_i %>
                 <% end %>
               </div>
-            <div class="col-xs-1"></div>
-            <div class="form-group col-xs-4">
-              <span class="attribute-title white-font">AMOUNT</span> 
-              <%= ingredients_recipe_form.input :amount, placeholder: "###", label: false %>
-            </div>
-            <div class="form-group col-xs-6">
-              <span class="attribute-title white-font">UNIT</span> 
-              <%= ingredients_recipe_form.input :amount_unit, label: false, :collection => @units, html: {class: "form-control"}, :include_blank => false %>
-            </div>
-            <div class="form-group col-xs-12">
-              <% if !@ingredients_recipe.ingredient.name %>
-                <span class="attribute-title white-font">INGREDIENT</span> 
-                <%= ingredients_recipe_form.fields_for :ingredient, @ingredient do |ingredient_form| %>
-                    <%= ingredient_form.input :name, :url => autocomplete_ingredient_name_recipes_path, :as => :autocomplete, input_html: {value: ingredient_form.object.name ||= nil}, placeholder: "Ingredient Name", label: false %>
-                <% end %> 
-              <% end %>
-              <% if @recipe %>
-                <%= ingredients_recipe_form.hidden_field :recipe_id, value: @recipe.id %>
-              <% else %>
-                <%= ingredients_recipe_form.hidden_field :recipe_id, value: params["recipe_id"].to_i %>
-              <% end %>
-            </div>
-          </div>      
-         <div class="recipe-form-section-submit actions text-center green-button">
+            </div>   
+          </div>  
+          <div class="recipe-form-section-submit actions text-center green-button">
              <%= ingredients_recipe_form.button :submit, "Save Ingredient", class: "btn btn-lg" %>
-         </div>
-         </div>
-
+          </div>
+        </div>
       </div>
     </div> 
   <% end %>

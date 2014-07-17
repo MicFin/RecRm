@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       resources :recipe_steps
       resources :allergens 
       resources :ingredients do 
+        get :autocomplete_allergen_name, :on => :collection
         resources :quality_reviews
       end
       resources :articles do 

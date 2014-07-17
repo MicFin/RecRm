@@ -9,47 +9,48 @@ var Recipe = {
        
     	//using rails gon and rabl gems - Rable tutorial https://github.com/nesquena/rabl
     	var data = gon.recipe;
-        console.log(data)
         var recipe = data.recipe;
  
 
     	var recipeHTML = "";
         var steps = recipe.recipe_steps
 
-        var badges = Recipe.getRecipeBadges();
+        //var badges = Recipe.getRecipeBadges();
         steps = Recipe.getRecipeSteps(steps);
-        //ingredients = Home.getIngredientsHTML(recipe.ingredients)
+        ingredients = Recipe.getIngredientsHTML(recipe.ingredients)
     
 
 		recipeHTML += "<div class='recipeContainer'>"
-            + "<div class='recipeTitle'>" + recipe.name + badges + "</div>"
+            + "<div class='recipeTitle'>" + recipe.name + "</div>"
+            + "<div class='recipeCharacteristicsContainer'>"
+                + "<div class='recipeCharacteristicsRow'>COOK TIME<br><span class='recipeCharacteristics'>" + recipe.cook_time.name + "</span></div>"
+                + "<div class='recipeCharacteristicsRow'>PREP TIME<br><span class='recipeCharacteristics'>" + recipe.prep_time.name + "</span></div>"
+                + "<div class='recipeCharacteristicsRow'>DIFFICULTY<br><span class='recipeCharacteristics'>" + recipe.difficulty.name + "</span></div>"
+                + "<div class='recipeCharacteristicsRow'>BEST FOR<br><span class='recipeCharacteristics'>" + recipe.courses[0].name + "</span></div>"
+                if (recipe.age_groups[0]){
+                    recipeHTML += "<div class='recipeCharacteristicsRow'>AGE GROUPS<br><span class='recipeCharacteristics'>" + recipe.age_groups[0].name + "</span></div>"
+                }
+                if (recipe.scenarios[0]){
+                    recipeHTML += "<div class='recipeCharacteristicsRow'>SCENERIOS<br><span class='recipeCharacteristics'>" + recipe.scenarios[0].name + "</span></div>"
+                }
+                if (recipe.holidays[0]){
+                    recipeHTML += "<div class='recipeCharacteristicsRow'>HOLIDAYS<br><span class='recipeCharacteristics'>" + recipe.holidays[0].name + "</span></div>"
+                }
+                if (recipe.cultures[0]){
+                    recipeHTML += "<div class='recipeCharacteristicsRow'>CULTURES<br><span class='recipeCharacteristics'>" + recipe.cultures[0].name + "</span></div>"
+                }
+            recipeHTML += "</div>"
             + "<div class='recipeImageContainer'>"
                 + "<img class='recipeImage' src='" + recipe.image_url + "' \>"
                 + "<div class='recipeLikeIcon'></div>"
             + "</div>"
             + "<div class='recipeDescriptionContainer'>" + recipe.description + "</div>"
-            + "<div class='recipeCharacteristicsContainer'>"
-                + "<div class='recipeCharacteristicsRow'>Cook Time<br><span class='recipeCharacteristics'>" + recipe.cook_time.name + "</span></div>"
-                + "<div class='recipeCharacteristicsRow'>Prep Time<br><span class='recipeCharacteristics'>" + recipe.prep_time.name + "</span></div>"
-                + "<div class='recipeCharacteristicsRow'>Difficulty<br><span class='recipeCharacteristics'>" + recipe.difficulty.name + "</span></div>"
-                + "<div class='recipeCharacteristicsRow'>Best for<br><span class='recipeCharacteristics'>" + recipe.courses[0].name + "</span></div>"
-                if (recipe.age_groups[0]){
-                    recipeHTML += "<div class='recipeCharacteristicsRow'>Age Groups<br><span class='recipeCharacteristics'>" + recipe.age_groups[0].name + "</span></div>"
-                }
-                if (recipe.scenarios[0]){
-                    recipeHTML += "<div class='recipeCharacteristicsRow'>Scenerios<br><span class='recipeCharacteristics'>" + recipe.scenarios[0].name + "</span></div>"
-                }
-                if (recipe.holidays[0]){
-                    recipeHTML += "<div class='recipeCharacteristicsRow'>Scenerios<br><span class='recipeCharacteristics'>" + recipe.holidays[0].name + "</span></div>"
-                }
-                if (recipe.cultures[0]){
-                    recipeHTML += "<div class='recipeCharacteristicsRow'>Scenerios<br><span class='recipeCharacteristics'>" + recipe.cultures[0].name + "</span></div>"
-                }
-            recipeHTML += "</div>"
-            + "<div class='recipeStepsContainer'>"
-                + "<div class='letsCook'>Let's Cook</div>" 
-                + steps 
+            + "<div class='recipeIngredientsContainer'>"
+                + "<div class='recipeIngredientsTitle'>INGREDIENTS</div>"
+                    + ingredients
             + "</div>"
+            + steps 
+
        // + "<div class='recipeThumbIngredients'>" + ingredients + "</div>" 
         + "</div>";
             
@@ -96,45 +97,34 @@ var Recipe = {
 
             }
 
-            stepsHTML += "<div class='recipeStep'><div class='recipeNumber'>" + step.step_number + "</div>" + step.directions + "<div class='recipeStepIngredients'>" + ingredientsHTML + "</div></div>";
+            stepsHTML += "<div class='recipeStep'><span class='recipeNumber'>" + step.step_number + "&nbsp;&nbsp;&nbsp;</span>" + step.directions + "<span class='recipeStepIngredients'>" + ingredientsHTML + "</span></div>";
             
 
          }
          return stepsHTML;
     },
 
-    // getIngredientsHTML: function(data){
-    //     var length = data.length
-    //     var ingredient = "";
+    getIngredientsHTML: function(data) {
+        var length = data.length;
+        var ingredient = "";
+        var ingredientsHTML = "";
+         
 
-    //     var ingredientsHTML = "";
+         for (ii = 0; ii < length; ii ++){
+            ingredient = data[ii].ingredient
+            characteristic_list = ingredient.ingredients_recipe
 
-    //     for (ii = 0; ii < length; ii ++){
-    //         ingredient = data[ii].ingredient
 
-    //         ingredientsHTML += "&nbsp;&nbsp;&nbsp;" + ingredient.name;
+           
+          
+            ingredientsHTML += characteristic_list.amount + "&nbsp;&nbsp; " + ingredient.name + " " + characteristic_list.amount_unit + " " +  characteristic_list.prep + "<br>";
+            
 
-    //     }
-    //     return ingredientsHTML; 
-    // },
+         }
+         return ingredientsHTML;
+    },
 
-    // getCharacteristicsHTML: function(data){
-    //     var length = data.length
-    //     var characteristic = "";
 
-    //     var characteristicsHTML = "";
-
-    //     for (ci = 0; ci < length; ci ++){
-    //         characteristic = data[ci].characteristic
-
-    //         characteristicsHTML +=  characteristic.category + ": " + characteristic.name  + "<br>";
-    //         if (ci > 2) {
-    //             break
-    //         }
-
-    //     }
-    //     return characteristicsHTML; 
-    // },
 
     nextFunction: function(){
     	// someting awesome

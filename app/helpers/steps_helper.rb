@@ -1,8 +1,8 @@
 module StepsHelper
 
 	def get_recipe_steps!
-	steps = @recipe.recipe_steps
-	@recipe_steps = []
+		steps = @recipe.recipe_steps
+		@recipe_steps = []
 
 		steps.map do | step |
 			step_ingredients_list = step.ingredients

@@ -1,4 +1,5 @@
 class Ingredient < ActiveRecord::Base
+  attr_accessor :ingredient_characteristics
 
 	has_many :ingredients_recipes
 	has_many :recipes, through: :ingredients_recipes

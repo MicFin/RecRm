@@ -117,7 +117,8 @@ var Recipe = {
 
            
           
-            ingredientsHTML += characteristic_list.amount + "&nbsp;&nbsp; " + ingredient.name + " " + characteristic_list.amount_unit + " " +  characteristic_list.prep + "<br>";
+            ingredientsHTML += characteristic_list.amount + "&nbsp;&nbsp; " + ingredient.name + " " + characteristic_list.amount_unit + "<br>";
+             //+ " " +  characteristic_list.prep
             
 
          }

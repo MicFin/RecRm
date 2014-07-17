@@ -86,6 +86,7 @@ var Recipe = {
          
 
          for (si = 0; si < l; si ++){
+            thumbPosition = (si % 2 == 0) ? 'recipeStepLeft' : 'recipeStepRight';
             step = data[si].recipe_step
             var ingredients = step.ingredients
             var ingredientsHTML = "";
@@ -97,7 +98,7 @@ var Recipe = {
 
             }
 
-            stepsHTML += "<div class='recipeStep'><span class='recipeNumber'>" + step.step_number + "&nbsp;&nbsp;&nbsp;</span>" + step.directions + "<span class='recipeStepIngredients'>" + ingredientsHTML + "</span></div>";
+            stepsHTML += "<div class='" + thumbPosition + "'><span class='recipeNumber'>" + step.step_number + "&nbsp;&nbsp;&nbsp;</span>" + step.directions + "<span class='recipeStepIngredients'>" + ingredientsHTML + "</span></div>";
             
 
          }

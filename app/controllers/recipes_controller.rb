@@ -1,4 +1,9 @@
 class RecipesController < ApplicationController
+	include CharacteristicsHelper
+	include StepsHelper
+	include IngredientsHelper
+
+
   before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group, :review_recipe]
   before_action :set_characteristic_forms, only: [:new, :edit]
   before_action :set_characteristic_display, only: [:edit_recipe_group, :show, :review_recipe]
@@ -16,9 +21,33 @@ class RecipesController < ApplicationController
   end
   # GET /recipes/1
   # GET /recipes/1.json
-  def show
 
-  end
+	def show
+		# make sure to call this first
+		@recipe = Recipe.find(params[:id])
+
+		# ingredients_helper
+		get_ingredients!
+
+		# steps_helper
+		get_recipe_steps!
+
+		# characteristics_helper
+		get_recipe_characteristics!
+
+		@recipe.ingredient_list = @recipe_ingredients
+		@recipe.step_list = @recipe_steps
+		@recipe.cook_time = @cook_time
+		@recipe.prep_time = @prep_time
+		@recipe.difficulty = @difficulty
+		@recipe.courses = @courses
+		@recipe.age_groups = @age_groups
+		@recipe.scenarios = @scenarios
+		@recipe.holidays = @holidays
+		@recipe.cultures = @cultures
+
+		gon.rabl as: 'recipe'
+	end
 
   # GET /review_recipe/1
   # GET /review_recipe/1.json

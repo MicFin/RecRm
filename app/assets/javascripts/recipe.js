@@ -32,7 +32,7 @@ var Recipe = {
                 + "<div class='recipeIngredientsTitle'>INGREDIENTS</div>"
                     + ingredients
             + "</div>"
-            + steps 
+            + "<div class='recipeStepContainer'>" + steps + "</div>" 
            + "<div class='recipeCharacteristicsContainer'>"
                 + "<div class='recipeCharacteristicsRow'>COOK TIME<br><span class='recipeCharacteristics'>" + recipe.cook_time.name + "</span></div>"
                 + "<div class='recipeCharacteristicsRow'>PREP TIME<br><span class='recipeCharacteristics'>" + recipe.prep_time.name + "</span></div>"

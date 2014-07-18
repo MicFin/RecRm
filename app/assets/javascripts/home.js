@@ -27,7 +27,7 @@ var Home = {
             ingredients = recipe.ingredients.length
             steps = recipe.recipe_steps.length
 
-    		recipeListHTML += "<div class='recipeThumbLeft' onclick='location.href=\"recipe/" + recipe.id + "\"'>"
+    		recipeListHTML += "<div class='recipeThumbLeft' onclick='location.href=\"recipes/" + recipe.id + "\"'>"
                 + "<div class='recipeThumbBackground'></div>"
                 + "<div class='recipeThumbImageContainer'>"
                     + "<img class='recipeThumbImage' src='" + recipe.image_url + "' \>"

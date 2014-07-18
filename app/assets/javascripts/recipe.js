@@ -32,7 +32,6 @@ var Recipe = {
                 + "<div class='recipeIngredientsTitle'>INGREDIENTS</div>"
                     + ingredients
             + "</div>"
-            + "<div class='recipeStepContainer'>" + steps + "</div>" 
            + "<div class='recipeCharacteristicsContainer'>"
                 + "<div class='recipeCharacteristicsRow'>COOK TIME<br><span class='recipeCharacteristics'>" + recipe.cook_time.name + "</span></div>"
                 + "<div class='recipeCharacteristicsRow'>PREP TIME<br><span class='recipeCharacteristics'>" + recipe.prep_time.name + "</span></div>"
@@ -51,6 +50,8 @@ var Recipe = {
                     recipeHTML += "<div class='recipeCharacteristicsRow'>CULTURES<br><span class='recipeCharacteristics'>" + recipe.cultures[0].name + "</span></div>"
                 }
             recipeHTML += "</div>"
+            + "<div class='recipeStepContainer'>" + steps + "</div>" 
+
 
       
         + "<div class='clear'></div></div>";

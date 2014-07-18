@@ -52,13 +52,13 @@ var Recipe = {
                 }
             recipeHTML += "</div>"
 
-       // + "<div class='recipeThumbIngredients'>" + ingredients + "</div>" 
-        + "</div>";
-        + "<div class='clear'></div>"   
+      
+        + "<div class='clear'></div></div>";
+
 
 
     	// display in html
-    	$('#recipe').html("<div class='recipesThumbsHome'>" + recipeHTML + "</div>");
+    	$('#recipe').html(recipeHTML);
 
         $('.recipeLikeIcon').click(function() {  
             $(this).addClass('recipeLikeIconActive');

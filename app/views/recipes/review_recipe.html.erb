@@ -1,0 +1,111 @@
+<div class="container">
+    <div class="recipe-form-section row" id="recipe-form-section-0">
+      <h1 id="add-recipe-title-message"><span class="attribute-title"><%=@recipe.name%></span></h1>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 text-center recipe-show-message">
+        <h1>This recipe is saved, please scroll down to review the recipe one last time!</h1>
+      </div>
+  
+    </div>
+    <div class="row recipe-show-container">
+      <div class="col-xs-12">
+        <h3><%= link_to 'Edit Recipe Info and Categories', edit_recipe_path(@recipe) %></h3>
+      </div>
+      <div class="col-xs-4">
+    <%#= image_tag @recipe.avatar.url %>
+        <h3>Name:</h3>
+        <p><%= @recipe.name %></p>
+        <h3>Cook Time:</h3>
+        <p><%= @cook_time.name %></p>
+        <h3>Prep Time:</h3>
+        <p><%= @prep_time.name %></p>
+        <h3>Difficulty:</h3>
+        <p><%= @difficulty.name %></p>
+      </div>
+      <div class="col-xs-4">
+        <h3>Courses:</h3>
+        <% @courses.each do |course| %>
+          <p><%= course.name %></p>
+        <% end %>
+        <h3>Age Groups:</h3>
+        <% @age_groups.each do |age_group| %>
+          <p><%= age_group.name %></p>
+        <% end %>
+        <h3>Scenarios:</h3>
+        <% @scenarios.each do |scenario| %>
+          <p><%= scenario.name %></p>
+        <% end %>
+        <h3>Holidays:</h3>
+        <% @holidays.each do |holiday| %>
+          <p><%= holiday.name %></p>
+        <% end %>
+        <h3>Cultural:</h3>
+        <% @cultures.each do |culture| %>
+          <p><%= culture.name %></p>
+        <% end %>
+      </div>
+      <div class="col-xs-4">
+        <h3>Patient Groups:</h3>
+        <p><strong>Allergies:</strong></p>
+        <% @allergies.each do |allergy| %>
+          <p><%=  allergy.name %></p>
+        <% end %>
+        <p><strong>Intolerances:</strong></p>
+        <% @intolerances.each do |intolerance| %>
+          <p><%=  intolerance.name %></p>
+        <% end %>
+        <p><strong>Diseases:</strong></p>
+        <% @diseases.each do |disease| %>
+          <p><%=  disease.name %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="row recipe-show-container">
+      <div class="col-xs-12">
+        <h3>Ingredients: <%= link_to 'Edit Ingredients', ingredients_recipes_path(recipe_id: @recipe.id) %></h3> 
+        <% @ingredients.each do |ingredient| %>
+          <div class="col-xs-3 ingredient-list" id="ingredients-recipe-<%=ingredient.id%>">
+            <p><span class="white-font">Amount: </span><span class="attribute-title white-font"><%= ingredient.amount%> <%= ingredient.amount_unit%></span> 
+            </p>
+            <p><span class="white-font">Ingredient: </span><span class="attribute-title white-font"><%=ingredients_recipe.prep %> <%=ingredients_recipe.ingredient.name %></span>
+            <p><span class="white-font">Allergens: </span></p>
+              <div class="ingredient-allergen-container">
+                <% ingredient.ingredient.allergens.each do |allergen| %>
+                  <p><span class="attribute-title dark-orange-font"><%= allergen.name %></span></p>
+                <% end %>
+              </div>
+          </div>
+        <% end %>
+      </div>
+
+
+
+      <div class="col-xs-12">
+        <div class="col-xs-12">
+          <h3>Steps: <%= link_to 'Edit Steps', recipe_steps_path(recipe_id: @recipe.id) %></h3> 
+        </div>
+        <% @recipe_steps.each do |step| %>
+        <div class="col-xs-5 ingredient-list" id="recipe-step-<%=step.id%>">
+          <p><span class="attribute-title white-font">Step #<%= step.step_number%></span></p>
+          <p><span class="white-font">Directions:</span></p> 
+          <p class="recipe-step-item light-green-font"><%= step.directions%></p>
+          <p><span class="white-font">Ingredients in Step:</span></p>
+          <% step.ingredients.each do |ingredient| %>
+            <p class="recipe-step-item light-green-font"> <%= ingredient.name %></p>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row text-center recipe-show-links recipe-form-section-submit actions">
+      <div class="col-xs-12 green-button">
+        <%= link_to 'Add Another Recipe', new_recipe_path, class: "btn btn-default btn-lg", id: "save-ingredients-button"%>
+      </div>
+      <div class="col-xs-12"><h4>OR</h4></div>
+      <div class="col-xs-12">
+        <%= link_to 'See All Your Content', dietitian_recipes_path(current_dietitian), class: "btn btn-default btn-lg" %>
+      </div> 
+    </div>
+  </div>
+</div>

@@ -21,18 +21,24 @@ var Recipe = {
     
 
 		recipeHTML += "<div class='recipeContainer'>"
-            + "<div class='recipeTitle'>" + recipe.name + "</div>"
+
+            + "<div class='recipeContainerLeft'>"
+                + "<div class='recipeTitle'>" + recipe.name + "</div>"
+                + "<div class='recipeRDText'>RECOMMENDED <span class='recipeRDNormal'>by</span> <span class='recipeRDName'>Susan</span></div>"
+                + "<div class='recipeDescriptionContainer'>" + recipe.description + "</div>"
+                + "<div class='recipeIngredientsContainer'>"
+                    + "<div class='recipeIngredientsTitle'>INGREDIENTS</div>"
+                        + ingredients
+                + "</div>"
+                + "<div class='recipeStepContainer'>" + steps + "</div>" 
+            + "</div>"
+
+            + "<div class='recipeContainerRight'>"
             + "<div class='recipeImageContainer'>"
                 + "<img class='recipeImage' src='" + recipe.image_url + "' \>"
                 + "<div class='recipeLikeIcon'></div>"
             + "</div>"
-            + "<div class='recipeRDText'>RECOMMENDED <span class='recipeRDNormal'>by</span> <span class='recipeRDName'>Susan</span></div>"
-            + "<div class='recipeDescriptionContainer'>" + recipe.description + "</div>"
-            + "<div class='recipeIngredientsContainer'>"
-                + "<div class='recipeIngredientsTitle'>INGREDIENTS</div>"
-                    + ingredients
-            + "</div>"
-           + "<div class='recipeCharacteristicsContainer'>"
+            + "<div class='recipeCharacteristicsContainer'>"
                 + "<div class='recipeCharacteristicsRow'>COOK TIME<br><span class='recipeCharacteristics'>" + recipe.cook_time.name + "</span></div>"
                 + "<div class='recipeCharacteristicsRow'>PREP TIME<br><span class='recipeCharacteristics'>" + recipe.prep_time.name + "</span></div>"
                 + "<div class='recipeCharacteristicsRow'>DIFFICULTY<br><span class='recipeCharacteristics'>" + recipe.difficulty.name + "</span></div>"
@@ -49,9 +55,8 @@ var Recipe = {
                 if (recipe.cultures[0]){
                     recipeHTML += "<div class='recipeCharacteristicsRow'>CULTURES<br><span class='recipeCharacteristics'>" + recipe.cultures[0].name + "</span></div>"
                 }
-            recipeHTML += "</div>"
-            + "<div class='recipeStepContainer'>" + steps + "</div>" 
-
+                recipeHTML += "</div>"
+            + "</div>"
 
       
         + "<div class='clear'></div></div>";
@@ -95,7 +100,7 @@ var Recipe = {
 
             var ilength = ingredients.length;
             for (ii = 0; ii < ilength; ii ++){
-                ingredientsHTML += "&nbsp;&nbsp;&nbsp;" + ingredients[ii].ingredient.name
+                ingredientsHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + ingredients[ii].ingredient.name
                
 
             }

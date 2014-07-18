@@ -95,12 +95,12 @@ $recipeFontMain: Open Sans;
 /*.recipeStepLeft {position: relative;float: left;clear: left; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:20px;margin-top: 10px;}
 .recipeStepRight {position: relative;float: right;clear:right; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:20px;margin-top: 10px;}*/
 
-.recipeStepContainer {position: relative; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:30px;margin-top: 10px;}
+.recipeStepContainer {position: relative; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:30px;margin-top: 30px;}
 .recipeStep {position: relative; margin-bottom: 13px;}
 
 
 .recipeNumber {font-size: 13px;color: $globalDarkText;font-weight: bold; }
-.recipeStepIngredients {position: relative;float: right; color:  $orangetext;padding:3px 3px 3px 3px;background-color:#f7f7f7;margin:0px 0 2px 2px;}
+.recipeStepIngredients {position: relative;float: right; color:  $orangecarrot;padding:3px 3px 3px 3px;background-color:#f7f7f7;margin:3px 3px 0 0;}
 
 
 // EXTRAS

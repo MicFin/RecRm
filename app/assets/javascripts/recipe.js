@@ -100,10 +100,12 @@ var Recipe = {
 
             var ilength = ingredients.length;
             for (ii = 0; ii < ilength; ii ++){
-                ingredientsHTML += "<div class='recipeStepIngredients'>" + ingredients[ii].ingredient.name + "</div>"
+                ingredientsHTML += "&nbsp;&nbsp;&nbsp;" + ingredients[ii].ingredient.name
+               
+
             }
 
-            stepsHTML += "<div class='recipeStep'><span class='recipeNumber'>" + step.step_number + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>" + step.directions + ingredientsHTML + "<div class='clear'></div></div>";
+            stepsHTML += "<div class='recipeStep'><span class='recipeNumber'>" + step.step_number + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>" + step.directions + "<span class='recipeStepIngredients'>" + ingredientsHTML + "</span></div>";
             
 
          }

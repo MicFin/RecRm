@@ -68,39 +68,39 @@ $recipeFontMain: Open Sans;
 .recipeContainerLeft {position: relative;float: left;width: 350px; }
 .recipeContainerRight {position: relative;float: right;width: 350px; }
 
-.recipeTitle {position: relative;float: left; clear: left;width: 350px; color: $globalDarkText; font-size:24px; line-height: 28px; padding:0 30px 0 0; margin-bottom:0px;}
+.recipeTitle {position: relative;width: 350px; color: $globalDarkText; font-size:24px; line-height: 28px; padding:0 30px 0 0; margin-bottom:0px;}
 
-.recipeRDText {position: relative;float: left; font-size: 13px; font-weight: bold;color: $orangetext;padding-top:3px;}
-.recipeRDName{color: #348ed4;}
+.recipeRDText {position: relative;; font-size: 13px; font-weight: bold;color: $orangetext;padding-top:3px;}
+.recipeRDName{color: #7e7e7e;}
 .recipeRDNormal {color: #7e7e7e;font-weight: normal;}
 
-.recipeImageContainer {position: relative; float:right;clear: right; width:350px;height: 350px; display: block;overflow: hidden;background-color:#f0f0f0; margin-bottom: 0px;@include box-sizing(border-box);padding:5px;}
+.recipeImageContainer {position: relative;; width:350px;height: 350px; display: block;overflow: hidden;background-color:#f0f0f0; margin-bottom: 0px;@include box-sizing(border-box);padding:5px;}
 
 .recipeImage {position: absolute;z-index: 1;top:5px;left:5px; min-width:338px;height: 338px;}
 
 .recipeLikeIcon {position: absolute;z-index: 1;bottom:15px;right:20px; width:30px;height: 40px;background:url(/assets/like_icon_unclicked.png) no-repeat center;background-size: 30px;cursor: pointer;}
 .recipeLikeIconActive{background-image:url(/assets/like_icon_clicked.png)}
 
-.recipeDescriptionContainer {position: relative;float: left ;clear: left;width:300px;font-size: 13px;color: $globalDarkText;padding:15px 0px 0 0px;line-height: 18px; @include box-sizing(border-box);color: #7e7e7e;}
+.recipeDescriptionContainer {position: relative;width:300px;font-size: 13px;color: $globalDarkText;padding:15px 0px 0 0px;line-height: 18px; @include box-sizing(border-box);color: #7e7e7e;}
 
-.recipeCharacteristicsContainer {position:relative;float: right;clear: right; width:350px; display: block;font-size: 12px;color: $globalDarkText; padding:10px 0px 15px 10px;line-height: 18px; @include box-sizing(border-box);}
+.recipeCharacteristicsContainer {position:relative; width:350px; display: block;font-size: 12px;color: $globalDarkText; padding:10px 0px 15px 10px;line-height: 18px; @include box-sizing(border-box);}
 .recipeCharacteristicsRow {position: relative;float: left;padding:10px 20px 10px 25px;background-color:#f7f7f7;margin:2px 2px 0 0; }
 .recipeCharacteristics {color: #7e7e7e;font-weight: normal;font-size: 12px;}
 
 
-.recipeIngredientsContainer {position: relative;float: left;clear: left; width:350px; display: block;font-size: 13px;line-height: 17px;color: #7e7e7e; @include box-sizing(border-box); margin:25px 0 20px 0;}
+.recipeIngredientsContainer {position: relative; width:350px; display: block;font-size: 13px;line-height: 17px;color: #7e7e7e; @include box-sizing(border-box); margin:25px 0 20px 0;}
 .recipeIngredientsTitle{ color: $globalDarkText; font-size:16px; line-height: 30px;}
 
 
 /*.recipeStepLeft {position: relative;float: left;clear: left; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:20px;margin-top: 10px;}
 .recipeStepRight {position: relative;float: right;clear:right; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:20px;margin-top: 10px;}*/
 
-.recipeStepContainer {position: relative;float: left;clear: left; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:30px;margin-top: 10px;}
+.recipeStepContainer {position: relative; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:30px;margin-top: 10px;}
 .recipeStep {position: relative; margin-bottom: 13px;}
 
 
 .recipeNumber {font-size: 13px;color: $globalDarkText;font-weight: bold; }
-.recipeStepIngredients { color: $orangetext}
+.recipeStepIngredients {position: relative;float: right; color:  $orangetext;padding:3px 3px 3px 3px;background-color:#f7f7f7;margin:0px 0 2px 2px;}
 
 
 // EXTRAS

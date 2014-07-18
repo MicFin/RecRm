@@ -22,7 +22,18 @@ var Recipe = {
 
 		recipeHTML += "<div class='recipeContainer'>"
             + "<div class='recipeTitle'>" + recipe.name + "</div>"
-            + "<div class='recipeCharacteristicsContainer'>"
+            + "<div class='recipeImageContainer'>"
+                + "<img class='recipeImage' src='" + recipe.image_url + "' \>"
+                + "<div class='recipeLikeIcon'></div>"
+            + "</div>"
+            + "<div class='recipeRDText'>RECOMMENDED <span class='recipeRDNormal'>by</span> <span class='recipeRDName'>Susan</span></div>"
+            + "<div class='recipeDescriptionContainer'>" + recipe.description + "</div>"
+            + "<div class='recipeIngredientsContainer'>"
+                + "<div class='recipeIngredientsTitle'>INGREDIENTS</div>"
+                    + ingredients
+            + "</div>"
+            + steps 
+           + "<div class='recipeCharacteristicsContainer'>"
                 + "<div class='recipeCharacteristicsRow'>COOK TIME<br><span class='recipeCharacteristics'>" + recipe.cook_time.name + "</span></div>"
                 + "<div class='recipeCharacteristicsRow'>PREP TIME<br><span class='recipeCharacteristics'>" + recipe.prep_time.name + "</span></div>"
                 + "<div class='recipeCharacteristicsRow'>DIFFICULTY<br><span class='recipeCharacteristics'>" + recipe.difficulty.name + "</span></div>"
@@ -40,20 +51,10 @@ var Recipe = {
                     recipeHTML += "<div class='recipeCharacteristicsRow'>CULTURES<br><span class='recipeCharacteristics'>" + recipe.cultures[0].name + "</span></div>"
                 }
             recipeHTML += "</div>"
-            + "<div class='recipeImageContainer'>"
-                + "<img class='recipeImage' src='" + recipe.image_url + "' \>"
-                + "<div class='recipeLikeIcon'></div>"
-            + "</div>"
-            + "<div class='recipeDescriptionContainer'>" + recipe.description + "</div>"
-            + "<div class='recipeIngredientsContainer'>"
-                + "<div class='recipeIngredientsTitle'>INGREDIENTS</div>"
-                    + ingredients
-            + "</div>"
-            + steps 
 
        // + "<div class='recipeThumbIngredients'>" + ingredients + "</div>" 
         + "</div>";
-            
+        + "<div class='clear'></div>"   
 
 
     	// display in html
@@ -86,7 +87,7 @@ var Recipe = {
          
 
          for (si = 0; si < l; si ++){
-            thumbPosition = (si % 2 == 0) ? 'recipeStepLeft' : 'recipeStepRight';
+
             step = data[si].recipe_step
             var ingredients = step.ingredients
             var ingredientsHTML = "";
@@ -98,7 +99,7 @@ var Recipe = {
 
             }
 
-            stepsHTML += "<div class='" + thumbPosition + "'><span class='recipeNumber'>" + step.step_number + "&nbsp;&nbsp;&nbsp;</span>" + step.directions + "<span class='recipeStepIngredients'>" + ingredientsHTML + "</span></div>";
+            stepsHTML += "<div class='recipeStep'><span class='recipeNumber'>" + step.step_number + "&nbsp;&nbsp;&nbsp;</span>" + step.directions + "<span class='recipeStepIngredients'>" + ingredientsHTML + "</span></div>";
             
 
          }

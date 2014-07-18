@@ -84,7 +84,7 @@ $recipeFontMain: Open Sans;
 .recipeDescriptionContainer {position: relative;float: left ;clear: left;width:300px;font-size: 13px;color: $globalDarkText;padding:15px 0px 0 0px;line-height: 18px; @include box-sizing(border-box);color: #7e7e7e;}
 
 .recipeCharacteristicsContainer {position:relative;float: right;clear: right; width:350px; display: block;font-size: 12px;color: $globalDarkText; padding:10px 0px 15px 10px;line-height: 18px; @include box-sizing(border-box);}
-.recipeCharacteristicsRow {position: relative;float: left;padding:10px 20px 10px 25px;background-color:#f0f0f0;margin:1px 1px 0 0; }
+.recipeCharacteristicsRow {position: relative;float: left;padding:10px 20px 10px 25px;background-color:#f7f7f7;margin:2px 2px 0 0; }
 .recipeCharacteristics {color: #7e7e7e;font-weight: normal;font-size: 12px;}
 
 

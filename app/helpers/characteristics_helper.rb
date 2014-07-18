@@ -13,4 +13,5 @@ module CharacteristicsHelper
 
 	def do_somthing!
 	end
+
 end

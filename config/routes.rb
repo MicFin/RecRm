@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   
   get 'welcome/index', to: "welcome#index", as: "welcome"
   get 'home', to: 'home#index', as: 'home'
-  get 'recipe/:id', to: 'recipe#show', as: 'recipe'
+  get 'recipes/review_recipe/:id', to: 'recipes#review_recipe', as: 'review_recipe'
 
   devise_for :users
   

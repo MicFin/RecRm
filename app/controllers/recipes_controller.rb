@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group, :review_recipe]
   before_action :set_characteristic_forms, only: [:new, :edit]
-  before_action :set_characteristic_display, only: [:edit_recipe_group, :show]
+  before_action :set_characteristic_display, only: [:edit_recipe_group, :show, :review_recipe]
   autocomplete :ingredient, :name
   # GET /recipes
   # GET /recipes.json
@@ -17,12 +17,19 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+
+  end
+
+  # GET /review_recipe/1
+  # GET /review_recipe/1.json
+  def review_recipe
     @ingredients = @recipe.ingredients_recipes
     @allergies = @recipe.allergies
     @diseases = @recipe.diseases
     @intolerances = @recipe.intolerances
     @recipe_steps = @recipe.recipe_steps
   end
+
 
   # GET /recipes/new
   def new
@@ -72,7 +79,7 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
+        format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
         set_characteristic_forms

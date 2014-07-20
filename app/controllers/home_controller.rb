@@ -6,6 +6,8 @@ class HomeController < ApplicationController
 
 	#home page loads list of recipes that are safe for families.  Will combine user and family helper in the future
 	def index
+
+		
 		#UserHelper
 		get_user_patient_groups!
 		get_user_allergens!

@@ -1,6 +1,7 @@
 class RecipeController < ApplicationController
 	include CharacteristicsHelper
 	include StepsHelper
+	include IngredientsHelper
 
 	def show
 		
@@ -10,13 +11,18 @@ class RecipeController < ApplicationController
 		# make sure to call this first
 		@recipe = Recipe.find(params[:id])
 
-		# characteristics_helper
-		get_recipe_characteristics!
+		# ingredients_helper
+		get_ingredients!
 
 		# steps_helper
 		get_recipe_steps!
 
-		@recipe.ingredient_list = @recipe.ingredients
+		# characteristics_helper
+		get_recipe_characteristics!
+
+
+
+		@recipe.ingredient_list = @recipe_ingredients
 		@recipe.step_list = @recipe_steps
 		@recipe.cook_time = @cook_time
 		@recipe.prep_time = @prep_time

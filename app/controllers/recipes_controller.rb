@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group, :review_recipe]
-  before_action :set_characteristic_forms, only: [:new, :edit]
-  before_action :set_characteristic_display, only: [:edit_recipe_group, :show, :review_recipe]
+  before_action :set_recipe, only: [ :show, :edit, :update, :destroy, :edit_recipe_group, :review_recipe ]
+  before_action :set_characteristic_forms, only: [ :new, :edit ]
+  before_action :set_characteristic_display, only: [ :edit_recipe_group, :show, :review_recipe ]
   autocomplete :ingredient, :name
   # GET /recipes
   # GET /recipes.json

@@ -9,7 +9,7 @@
 				<p>Write an Article</p>
 			</div>
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
-				<p><%= link_to image_tag("chef-hat.png", class: "grow"), new_recipe_path %>	</p>
+				<p><%= link_to image_tag("chef-hat.png", class: "grow"), :controller => "recipes", :action => "new" %>	</p>
 				<p>Create a Recipe</p>
 			</div>
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">

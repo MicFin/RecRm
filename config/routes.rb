@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   get 'welcome/index', to: "welcome#index", as: "welcome"
   get 'home', to: 'home#index', as: 'home'
   get 'recipes/review_recipe/:id', to: 'recipes#review_recipe', as: 'review_recipe'
-  get 'recipes/:id', to: 'recipes#show', as: 'recipes'
 
   devise_for :users
   
@@ -30,6 +29,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
       root to: 'welcome#index', as: :user_authenticated_root
+        resources :recipes 
     end
     unauthenticated :user do
       root :to => "welcome#index", as: :user_unauthenticated_root

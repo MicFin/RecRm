@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   
   get 'welcome/index', to: "welcome#index", as: "welcome"
   get 'home', to: 'home#index', as: 'home'
-  get 'recipes/review_recipe/:id', to: 'recipes#review_recipe', as: 'review_recipe'
+
 
   devise_for :users
   
@@ -65,6 +65,7 @@ Rails.application.routes.draw do
       get '/recipes/dietitian_recipes_index/:id', to: 'recipes#dietitian_recipes_index', as: 'dietitian_recipes'
       # recipes edit recipe group page
       get '/recipes/edit_recipe_group/:id', to: 'recipes#edit_recipe_group', as: 'edit_recipe_group'
+      get 'recipes/review_recipe/:id', to: 'recipes#review_recipe', as: 'review_recipe'
     end
     unauthenticated :dietitian do
       root :to => "welcome#index", as: :dietitian_unauthenticated_root

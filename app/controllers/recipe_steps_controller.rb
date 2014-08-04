@@ -28,7 +28,6 @@ class RecipeStepsController < ApplicationController
     @recipe_id = params["recipe_id"]
     @recipe = Recipe.find(@recipe_id)
     @ingredients = @recipe.ingredients
-
   end
 
   # POST /recipe_steps

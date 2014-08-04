@@ -15,7 +15,7 @@
   <% end %>
     </div>
 
-    <div class="recipe-form-section row" id="recipe-form-section-8">
+    <div class="row" id="recipe-form-section-8">
       <div class="recipe-form-steps-container">
         <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-8">
           <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="ingredient-recipe-form">
@@ -25,7 +25,7 @@
               <p class="ingredient-allergen-fields">To change ingredient name, please remove ingredient and enter a new one</p>
             </div> 
           <% end %>
-            <div class="row">
+            <div class="row form-group">
               <div class="form-group col-xs-6">
                 <span class="attribute-title white-font">AMOUNT</span> 
                 <%= ingredients_recipe_form.input :amount, placeholder: "###", label: false %>
@@ -36,11 +36,11 @@
               </div>
             </div>
             <div class="row">
-              <div class="form-group col-xs-4">
-                <span class="attribute-title white-font">optional:</span> 
+              <div class="form-group col-xs-3">
+                <span class="white-font">optional prep:</span> 
                 <%= ingredients_recipe_form.input :prep, placeholder: 'diced, chopped, peeled, etc', :collection => @prep_options, :include_blank => true, label: false %>
               </div>
-              <div class="form-group col-xs-8">
+              <div class="form-group col-xs-6">
                 <% if !@ingredients_recipe.ingredient.name %>
                   <span class="attribute-title white-font">INGREDIENT</span> 
                   <%= ingredients_recipe_form.fields_for :ingredient, @ingredient do |ingredient_form| %>
@@ -53,7 +53,21 @@
                   <%= ingredients_recipe_form.hidden_field :recipe_id, value: params["recipe_id"].to_i %>
                 <% end %>
               </div>
+              <div class="form-group col-xs-3">
+                <span class="white-font">optional prep:</span> 
+                <%= ingredients_recipe_form.input :prep2, placeholder: 'diced, chopped, peeled, etc', :collection => @prep_options, :include_blank => true, label: false %>
+              </div>
             </div>   
+            <div class="row">
+              <div class="form-group col-xs-6 text-center">
+              <h4><span class="white-font"><u>THE</u> Main Ingredient</span></h4>
+                <%= ingredients_recipe_form.input :main_ingredient, label: false %>
+              </div>
+              <div class="form-group col-xs-6 text-center">
+              <h4><span class="white-font">An Optional Ingredient</span></h4>
+                <%= ingredients_recipe_form.input :optional_ingredient, label: false%>
+              </div>
+            </div>
           </div>  
           <div class="recipe-form-section-submit actions text-center green-button">
              <%= ingredients_recipe_form.button :submit, "Save Ingredient", class: "btn btn-lg" %>

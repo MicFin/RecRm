@@ -94,6 +94,25 @@ class Recipe < ActiveRecord::Base
     return allergens.uniq
   end
 
+  # return recipes that are made for patient groups entered as an array of strings
+  def self.made_for(*patient_groups)
+    num_groups = patient_groups.count
+    arrays = Array.new(num_groups) { [] }
+
+    patient_groups.each_with_index do |patient_group, index|
+        arrays[index] << Recipe.includes(:patient_groups).where('patient_groups.name = ?', patient_group).references(:patient_group)
+    end
+    made_for_array = []
+    for i in 0...num_groups
+      if made_for_array != []
+        made_for_array.flatten!
+        made_for_array = arrays[i].flatten & made_for_array
+      else
+        made_for_array = arrays[i].flatten
+      end
+    end
+    return made_for_array
+  end
   # def has_mandatory_characteristics
   #   binding.pry
   # end

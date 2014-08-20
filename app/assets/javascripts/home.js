@@ -53,38 +53,38 @@ var Home = {
         });
     }, 
 
-    getIngredientsHTML: function(data){
-        var length = data.length
-        var ingredient = "";
+    // getIngredientsHTML: function(data){
+    //     var length = data.length
+    //     var ingredient = "";
 
-        var ingredientsHTML = "";
+    //     var ingredientsHTML = "";
 
-        for (ii = 0; ii < length; ii ++){
-            ingredient = data[ii].ingredient
+    //     for (ii = 0; ii < length; ii ++){
+    //         ingredient = data[ii].ingredient
 
-            ingredientsHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + ingredient.name;
+    //         ingredientsHTML += "&nbsp;&nbsp;&nbsp;&nbsp;" + ingredient.name;
 
-        }
-        return ingredientsHTML; 
-    },
+    //     }
+    //     return ingredientsHTML; 
+    // },
 
-    getCharacteristicsHTML: function(data){
-        var length = data.length
-        var characteristic = "";
+    // getCharacteristicsHTML: function(data){
+    //     var length = data.length
+    //     var characteristic = "";
 
-        var characteristicsHTML = "";
+    //     var characteristicsHTML = "";
 
-        for (ci = 0; ci < length; ci ++){
-            characteristic = data[ci].characteristic
+    //     for (ci = 0; ci < length; ci ++){
+    //         characteristic = data[ci].characteristic
 
-            characteristicsHTML +=  characteristic.category + ": " + characteristic.name  + "<br>";
-            if (ci > 2) {
-                break
-            }
+    //         characteristicsHTML +=  characteristic.category + ": " + characteristic.name  + "<br>";
+    //         if (ci > 2) {
+    //             break
+    //         }
 
-        }
-        return characteristicsHTML; 
-    },
+    //     }
+    //     return characteristicsHTML; 
+    // },
 
     nextFunction: function(){
     	// someting awesome

@@ -72,7 +72,6 @@ var Recipe = {
         });
     },
 
-
     getRecipeBadges: function(){
 
         var badgeHTML = "";
@@ -86,6 +85,7 @@ var Recipe = {
         
     },
 
+    // builds html for gon.data 
     getRecipeSteps: function(data) {
         var l = data.length;
         var step = "";

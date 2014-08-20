@@ -27,6 +27,7 @@ $globalDarkText: #333333;
 $globalLightText: #9a9a9a;
 $recipeFontMain: Open Sans;
 
+// 100% height and width
 @mixin box-sizing($border){
 	-webkit-box-sizing: $border; 	
 	-moz-box-sizing: $border;   

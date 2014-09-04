@@ -6,12 +6,12 @@ class IngredientsRecipesController < ApplicationController
 
   # GET /ingredients_recipes
   # GET /ingredients_recipes.json
-  def index
-    @ingredients_recipes = IngredientsRecipe.all
-    # set recipe_id sent as param from recipe create method 
-    @recipe_id = params["recipe_id"]
-    @recipe = Recipe.find(@recipe_id.to_i)
-  end
+  # def index
+  #   @ingredients_recipes = IngredientsRecipe.all
+  #   # set recipe_id sent as param from recipe create method 
+  #   @recipe_id = params["recipe_id"]
+  #   @recipe = Recipe.find(@recipe_id.to_i)
+  # end
 
   # GET /ingredients_recipes/1
   # GET /ingredients_recipes/1.json
@@ -28,11 +28,30 @@ class IngredientsRecipesController < ApplicationController
 
   end
 
-  # GET /ingredients_recipes/1/edit
-  def edit
-    @recipe = Recipe.find(params["recipe_id"])
+  def create_and_add
+    # create new ingredients recipe with params
+    @ingredients_recipe = IngredientsRecipe.new(ingredients_recipe_params)
+    # set ingredient name to see if it exists yet
+    ingredient_name = params["ingredients_recipe"]["ingredient_attributes"]["name"]
+    # finds of creates the ingredient and saves as the ingredients_recipe's ingredient_id
+    @ingredients_recipe.find_or_create_ingredient(ingredient_name)
+    # respond to...
+    respond_to do |format|
+      if @ingredients_recipe.save
+        format.html { redirect_to @ingredients_recipe, notice: 'ingredients_recipe was successfully created.' }
+        format.json { render :show, status: :created, location: @ingredients_recipe }
+        # we are responding to JS right now, create_and_add.js.erb
+        format.js 
+        ### put on rigt side of screen
+        ### want it to change form to a new ingredient
+      else
+        format.html { render :new }
+        format.json { render json: @ingredients_recipe.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
   end
-
+  
   # POST /ingredients_recipes
   # POST /ingredients_recipes.json
   def create
@@ -49,12 +68,19 @@ class IngredientsRecipesController < ApplicationController
         format.json { render :show, status: :created, location: @ingredients_recipe }
         # we are responding to JS right now, create.js.erb
         format.js 
+        ### want it to put on rigt side of screen
+        ### want it to change form to steps form
       else
         format.html { render :new }
         format.json { render json: @ingredients_recipe.errors, status: :unprocessable_entity }
         format.js
       end
     end
+  end
+
+  # GET /ingredients_recipes/1/edit
+  def edit
+    @recipe = Recipe.find(params["recipe_id"])
   end
 
   # PATCH/PUT /ingredients_recipes/1

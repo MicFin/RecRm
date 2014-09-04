@@ -22,32 +22,32 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
 
-	def show
-		# make sure to call this first
-		@recipe = Recipe.find(params[:id])
+	# def show
+	# 	# make sure to call this first
+	# 	@recipe = Recipe.find(params[:id])
 
-		# ingredients_helper
-		get_ingredients!
+	# 	# ingredients_helper
+	# 	get_ingredients!
 
-		# steps_helper
-		get_recipe_steps!
+	# 	# steps_helper
+	# 	get_recipe_steps!
 
-		# characteristics_helper
-		get_recipe_characteristics!
+	# 	# characteristics_helper
+	# 	get_recipe_characteristics!
 
-		@recipe.ingredient_list = @recipe_ingredients
-		@recipe.step_list = @recipe_steps
-		@recipe.cook_time = @cook_time
-		@recipe.prep_time = @prep_time
-		@recipe.difficulty = @difficulty
-		@recipe.courses = @courses
-		@recipe.age_groups = @age_groups
-		@recipe.scenarios = @scenarios
-		@recipe.holidays = @holidays
-		@recipe.cultures = @cultures
+	# 	@recipe.ingredient_list = @recipe_ingredients
+	# 	@recipe.step_list = @recipe_steps
+	# 	@recipe.cook_time = @cook_time
+	# 	@recipe.prep_time = @prep_time
+	# 	@recipe.difficulty = @difficulty
+	# 	@recipe.courses = @courses
+	# 	@recipe.age_groups = @age_groups
+	# 	@recipe.scenarios = @scenarios
+	# 	@recipe.holidays = @holidays
+	# 	@recipe.cultures = @cultures
 
-		gon.rabl as: 'recipe'
-	end
+	# 	gon.rabl as: 'recipe'
+	# end
 
   # GET /review_recipe/1
   # GET /review_recipe/1.json
@@ -65,6 +65,95 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  # POST /recipes
+  # POST /recipes.json
+  def create
+    @recipe = Recipe.new(recipe_params)
+    # assign dieititan to recipe
+    @recipe.dietitian_id = current_dietitian.id
+    respond_to do |format|
+      # if recipe saves correctly
+      if @recipe.save
+        # will need a html version with no JS
+        # if html send to ingredients_index index 
+        # pass recipe_id to ingredients_recipe index method
+        format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
+        format.json { render :show, status: :created, location: @recipe }
+        # will need to send recipe_id through this, insert a form field with the id into the page/template
+        # want to send to ingrdients recipes controller new
+        format.js
+      else
+        set_characteristic_forms
+        format.html { render :new }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
+  # end
+  # def create
+  #   # remove empty strings from the characteristic_ids array, these are from the placeholder label on the form
+  #   params["recipe"]["characteristic_ids"].reject! { |characteristic_id| characteristic_id.empty? }
+  #   # convert remaining strings in array to integers, not sure why they are coming over as strings
+  #   params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
+  #   @recipe = Recipe.new(recipe_params)
+  #   # assign dieititan to recipe
+  #   @recipe.dietitian_id = current_dietitian.id
+  #   respond_to do |format|
+  #     # if recipe saves correctly
+  #     if @recipe.save
+  #       # if html send to ingredients_index index 
+  #       # pass recipe_id to ingredients_recipe index method
+  #       format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
+  #       format.json { render :show, status: :created, location: @recipe }
+  #     else
+  #       set_characteristic_forms
+  #       format.html { render :new }
+  #       format.json { render json: @recipe.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
+  def select_health_groups
+    @allergies = PatientGroup.allergies
+    @diseases = PatientGroup.diseases
+    @intolerances = PatientGroup.intolerances
+  end
+
+  def add_health_groups
+    respond_to do |format|
+      if @recipe.update(recipe_params)
+        format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
+        format.json { render :show, status: :ok, location: @recipe }
+        # we want it to add to right and go to select meal_info
+        format.js
+      else
+        set_characteristic_forms
+        format.html { render :edit }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def select_meal_info
+    @courses = PatientGroup.allergies
+    @meals = PatientGroup.diseases
+    @culture = PatientGroup.intolerances
+  end
+
+  def add_meal_info
+    respond_to do |format|
+      if @recipe.update(recipe_params)
+        format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
+        format.json { render :show, status: :ok, location: @recipe }
+        # we want it to add to right and go to marketing new
+        format.js
+      else
+        set_characteristic_forms
+        format.html { render :edit }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /recipes/1/edit
   def edit
     @allergies = PatientGroup.allergies
@@ -76,31 +165,6 @@ class RecipesController < ApplicationController
     @allergies = PatientGroup.safe_allergy_groups(@recipe.allergens)
     @diseases = PatientGroup.safe_disease_groups(@recipe.allergens)
     @intolerances = PatientGroup.safe_intolerance_groups(@recipe.allergens)
-  end
-
-  # POST /recipes
-  # POST /recipes.json
-  def create
-    # remove empty strings from the characteristic_ids array, these are from the placeholder label on the form
-    params["recipe"]["characteristic_ids"].reject! { |characteristic_id| characteristic_id.empty? }
-    # convert remaining strings in array to integers, not sure why they are coming over as strings
-    params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
-    @recipe = Recipe.new(recipe_params)
-    # assign dieititan to recipe
-    @recipe.dietitian_id = current_dietitian.id
-    respond_to do |format|
-      # if recipe saves correctly
-      if @recipe.save
-        # if html send to ingredients_index index 
-        # pass recipe_id to ingredients_recipe index method
-        format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
-        format.json { render :show, status: :created, location: @recipe }
-      else
-        set_characteristic_forms
-        format.html { render :new }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /recipes/1

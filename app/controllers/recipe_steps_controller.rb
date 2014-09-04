@@ -2,12 +2,12 @@ class RecipeStepsController < ApplicationController
   before_action :set_recipe_step, only: [:show, :edit, :update, :destroy]
   # GET /recipe_steps
   # GET /recipe_steps.json
-  def index
-    @recipe_steps = RecipeStep.all
-    # params sent from allergens_ingredients index 
-    @recipe_id = params["recipe_id"]
-    @recipe = Recipe.find(@recipe_id.to_i)
-  end
+  # def index
+  #   @recipe_steps = RecipeStep.all
+  #   # params sent from allergens_ingredients index 
+  #   @recipe_id = params["recipe_id"]
+  #   @recipe = Recipe.find(@recipe_id.to_i)
+  # end
 
   # GET /recipe_steps/1
   # GET /recipe_steps/1.json
@@ -20,14 +20,7 @@ class RecipeStepsController < ApplicationController
     # set recipe_id sent from ingredients_recipe index form remote true
     @recipe_id = params["recipe_id"]
     @recipe = Recipe.find(@recipe_id)
-    @ingredients = @recipe.ingredients
-  end
-
-  # GET /recipe_steps/1/edit
-  def edit
-    @recipe_id = params["recipe_id"]
-    @recipe = Recipe.find(@recipe_id)
-    @ingredients = @recipe.ingredients
+    @ingredients = @recipe.ingredients_recipes
   end
 
   # POST /recipe_steps
@@ -39,6 +32,7 @@ class RecipeStepsController < ApplicationController
       if @recipe_step.save
         format.html { redirect_to @recipe_step, notice: 'Recipe step was successfully created.' }
         format.json { render :show, status: :created, location: @recipe_step }
+        ## want it to  change to allergen tagging
         format.js
       else
         format.html { render :new }
@@ -46,6 +40,32 @@ class RecipeStepsController < ApplicationController
       end
     end
   end
+
+  # POST /recipe_steps
+  # POST /recipe_steps.json
+  def create_and_add
+    @recipe_step = RecipeStep.new(recipe_step_params)
+
+    respond_to do |format|
+      if @recipe_step.save
+        format.html { redirect_to @recipe_step, notice: 'Recipe step was successfully created.' }
+        format.json { render :show, status: :created, location: @recipe_step }
+        ## want it to change to new allergen form and show on right
+        format.js
+      else
+        format.html { render :new }
+        format.json { render json: @recipe_step.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # GET /recipe_steps/1/edit
+  def edit
+    @recipe_id = params["recipe_id"]
+    @recipe = Recipe.find(@recipe_id)
+    @ingredients = @recipe.ingredients
+  end
+
 
   # PATCH/PUT /recipe_steps/1
   # PATCH/PUT /recipe_steps/1.json

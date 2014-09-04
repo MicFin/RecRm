@@ -10,12 +10,56 @@ class MarketingItemsController < ApplicationController
     @new_headline = @marketing_itemable.marketing_items.new(category: "headline", order: 1, dietitian_id: current_dietitian.id)
   end
 
+  def new_titles
+    # need logic to create as many titles as there are patient groups
+    @new_title = @marketing_itemable.marketing_items.new(category: "title", order: 1, dietitian_id: current_dietitian.id)
+  end
+
+  def create_titles
+    # need logic to create as many titles as there are patient groups
+    @marketing_item = @marketing_itemable.marketing_items.new(marketing_item_params)
+    respond_to do |format|
+      if @marketing_item.save
+        format.html { redirect_to [@marketing_itemable, :marketing_items], notice: "Marketing Item created."}
+        format.json { render :show, status: :created, location: @marketing_item} 
+        # want it to put on right and go to new descriptions
+        format.js
+      else
+        format.html { render :new }
+        format.json { render json: @marketing_itemable.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
+  end
+
+  def new_descriptions
+    # need logic to create as many descriptions as there are patient groups
+    @new_title = @marketing_itemable.marketing_items.new(category: "description", order: 1, dietitian_id: current_dietitian.id)
+  end
+  
+  def create_descriptions
+    # need logic to create as many descriptions as there are patient groups
+    @marketing_item = @marketing_itemable.marketing_items.new(marketing_item_params)
+    respond_to do |format|
+      if @marketing_item.save
+        format.html { redirect_to [@marketing_itemable, :marketing_items], notice: "Marketing Item created."}
+        format.json { render :show, status: :created, location: @marketing_item} 
+        # want it to put on right and go to recipes_review page
+        format.js
+      else
+        format.html { render :new }
+        format.json { render json: @marketing_itemable.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
+  end
+
   def new
     @new_tweet = @marketing_itemable.marketing_items.new(category: "tweet", order: 1, dietitian_id: current_dietitian.id)
     @new_introduction = @marketing_itemable.marketing_items.new(category: "introduction", order: 1, dietitian_id: current_dietitian.id)
     @new_headline = @marketing_itemable.marketing_items.new(category: "headline", order: 1, dietitian_id: current_dietitian.id)
   end
-  
+
   def edit
   end
 

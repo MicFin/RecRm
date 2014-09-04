@@ -1,22 +1,22 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
   autocomplete :allergen, :name
-  # GET /ingredients
-  # GET /ingredients.json
-  def index
-    @ingredients = Ingredient.all
-    @recipe_id = params["id"]
-  end
+  # # GET /ingredients
+  # # GET /ingredients.json
+  # def index
+  #   @ingredients = Ingredient.all
+  #   @recipe_id = params["id"]
+  # end
 
-  # GET /ingredients/1
-  # GET /ingredients/1.json
-  def show
-  end
+  # # GET /ingredients/1
+  # # GET /ingredients/1.json
+  # def show
+  # end
 
-  # GET /ingredients/new
-  def new
-    @ingredient = Ingredient.new
-  end
+  # # GET /ingredients/new
+  # def new
+  #   @ingredient = Ingredient.new
+  # end
 
   # GET /ingredients/1/edit
   def edit
@@ -26,21 +26,21 @@ class IngredientsController < ApplicationController
     @other_allergens = @ingredient.other_allergens
   end
 
-  # POST /ingredients
-  # POST /ingredients.json
-  def create
-    @ingredient = Ingredient.new(ingredient_params)
+  # # POST /ingredients
+  # # POST /ingredients.json
+  # def create
+  #   @ingredient = Ingredient.new(ingredient_params)
 
-    respond_to do |format|
-      if @ingredient.save
-        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }
-        format.json { render :show, status: :created, location: @ingredient }
-      else
-        format.html { render :new }
-        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @ingredient.save
+  #       format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }
+  #       format.json { render :show, status: :created, location: @ingredient }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @ingredient.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /ingredients/1
   # PATCH/PUT /ingredients/1.json
@@ -74,6 +74,9 @@ class IngredientsController < ApplicationController
        # redirect to list of recipe ingredients and allergens
         format.html { redirect_to allergens_ingredients_path(recipe_id: @recipe_id), notice: 'Ingredient was successfully updated.' }
         format.json { render :show, status: :ok, location: @ingredient }
+        ## want it to go to the next one, and add to the right
+        ## if last one then go to review
+        format.js 
       else
         format.html { render :edit }
         format.json { render json: @ingredient.errors, status: :unprocessable_entity }
@@ -81,15 +84,19 @@ class IngredientsController < ApplicationController
     end
   end
 
-  # DELETE /ingredients/1
-  # DELETE /ingredients/1.json
-  def destroy
-    @ingredient.destroy
-    respond_to do |format|
-      format.html { redirect_to ingredients_url, notice: 'Ingredient was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  def review
+    # create
   end
+  
+  # # DELETE /ingredients/1
+  # # DELETE /ingredients/1.json
+  # def destroy
+  #   @ingredient.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to ingredients_url, notice: 'Ingredient was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

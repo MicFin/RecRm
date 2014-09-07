@@ -1,0 +1,81 @@
+<div class="container" id="recipe-list-page-container">
+	<div class="row">
+		<div class="recipe-form-section row" id="recipe-list-section-0">
+			<h1 id="add-recipe-title-message"><span class="attribute-title">Welcome</span></h1>
+		</div>
+		<div class="row button-row recipe-form-section">
+			<div id="pencil-container" class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+				<p><%= link_to image_tag("pencil.png", class: "grow"), new_article_path %>	</p>
+				<p>Write an Article</p>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+				<p><%= link_to image_tag("chef-hat.png", class: "grow"), :controller => "recipes", :action => "new" %>	</p>
+				<p>Create a Recipe</p>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+				<p><%= link_to image_tag("computer.png", class: "grow"), "http://www.kindrdcare.com/sign_in" %></p>
+				<p>See a Client</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 items-container">
+			<% @recipes.each do |recipe| %>
+			<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+				<div class="col-xs-12 ingredient-list" id="ingredients-recipe-<%=recipe.id%>">
+					<div class="col-xs-12 content-badge form-group" >
+						<%= image_tag("chef-hat.png", class: "img-responsive content-icon") %>
+					</div>
+					<p><span class="white-font">Title:</span></p>
+					<p><span class="attribute-title white-font">
+							<%= recipe.name%> 
+						</span>
+					</p>
+					<p><span class="white-font">Ingredients:</span></p>
+					<% recipe.ingredients.each do |ingredient| %>
+					<p>
+						<span class="attribute-title white-font">
+						<%= ingredient.name%>
+						</span>
+					</p>
+					<% end %>
+				</div>
+				<div class="col-xs-6 text-right">
+					<%= link_to "Edit", edit_recipe_path(recipe, recipe_id: recipe.id), class: "edit-recipe" %>
+				</div>
+				<div class="col-xs-6 text-left">
+					<%= link_to 'View', recipe %>
+				</div>
+			</div>
+			<% end %>
+
+			<% @articles.each do |article| %>
+			<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+				<div class="col-xs-12 ingredient-list" id="ingredients-article-<%=article.id%>">
+					<div class="col-xs-12 content-badge form-group" >
+						<%= image_tag("pencil.png", class: "img-responsive content-icon") %>
+					</div>
+					<p><span class="white-font">Title:</span></p>
+					<p>
+						<span class="attribute-title white-font">
+							<%= article.title%> 
+						</span>
+					</p>
+					<p><span class="white-font">Body:</span></p>
+					<p>
+						<span class="attribute-title white-font">
+						<%= article.content%>
+						</span>
+					</p>
+				</div>
+				<div class="col-xs-6 text-right">
+					<%= link_to "Edit", edit_article_path(article, article_id: article.id), class: "edit-article" %>
+				</div>
+				<div class="col-xs-6 text-left">
+					<%= link_to 'View', article %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

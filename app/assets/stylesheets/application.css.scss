@@ -15,95 +15,113 @@
  *= require bootstrap_and_overrides
  */
 
- @import "bootstrap";
+@import "bootstrap";
+// vendor
+@import "vendor/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
 
+// partials
+@import "partials/base";
+@import "partials/navbar";
+@import "partials/footer";
+@import "partials/recipe_breadcrumb";
+@import "partials/add_recipe_main";
+@import "partials/recipe_basic_info_form";
+@import "partials/recipe_essentials_preview";
+@import "partials/new_ingredient_form";
+@import "partials/new_steps_form";
+@import "partials/recipe_allergens_form";
+@import "partials/nutrition_groups_form";
+@import "partials/fonts";
+@import "partials/review_recipe";
+@import "partials/dietitian_sign_in_page";
+@import "partials/dietitian_dashboard";
 // GLOBAL COLORS
-$greentextlight: #399E48;
-$orangetext: #F68D3C;
-$orangecarrot: #F16521;
-$greencarrot: #009344;
-$greentextdark: #11753B;
-$globalDarkText: #333333;
-$globalLightText: #9a9a9a;
-$recipeFontMain: Open Sans;
+// $greentextlight: #399E48;
+// $orangetext: #F68D3C;
+// $orangecarrot: #F16521;
+// $greencarrot: #009344;
+// $greentextdark: #11753B;
+// $globalDarkText: #333333;
+// $globalLightText: #9a9a9a;
+// $recipeFontMain: Open Sans;
 
-// 100% height and width
-@mixin box-sizing($border){
-	-webkit-box-sizing: $border; 	
-	-moz-box-sizing: $border;   
-	-ms-box-sizing: $border;
-	box-sizing: border-box$border;  
-}
+// // 100% height and width
+// @mixin box-sizing($border){
+// 	-webkit-box-sizing: $border; 	
+// 	-moz-box-sizing: $border;   
+// 	-ms-box-sizing: $border;
+// 	box-sizing: border-box$border;  
+// }
 
-@mixin scale($x, $y){
-	-webkit-transform: scale($x, $y); 	
-}
-
-
-
-// RECIPE THUMB 
-
-.recipesThumbsHome {position: relative; width:655px;margin:20px auto 0 auto;padding: 5px; }
-.recipeThumbLeft {position: relative;float: left;width:210px;height: 250px; display: block;margin:0 0 0px 5px;cursor: pointer;}
-
-.recipeThumbImageContainer {position: absolute;z-index: 2;top:35px;left:15px;width:180px;min-height: 180px; display: block;overflow: hidden;cursor: pointer;background-color: #fff; }
-.recipeThumbImage {position: absolute;z-index: 1;top:0;left:0; min-width:100%;height: 100%;webkit-transform: translate3d(-50%,0,0);}
-.recipeThumbBackground {position: absolute;z-index: 1;top:30px;left:10px; width:190px;height: 190px;background-color:#f0f0f0;-webkit-transition:-webkit-transform 0.2s; @include scale(1.0, 1.0);border-radius: 3px;border: 1px solid #e6e6e6}
-.recipeThumbBackgroundActive {@include scale(1.04, 1.3)}
-
-.recipeThumbCover {position: absolute;top:35px;left:15px;z-index: 3;width:180px;min-height: 180px; display: block;background-color:rgba(255,255,255,0.0);-webkit-transition:opacity 0.3s;opacity:0; }
-.recipeThumbCoverActive {opacity:1;}
-
-.recipeThumbTitle {position: absolute; top:-33px;color:$orangecarrot; font-size:15px; line-height: 18px;width: 100%;@include box-sizing(border-box);padding:7px 5px 7px 5px;font-family: $recipeFontMain;-webkit-transition:color 0.3s;background-color:rgba(237,237,237,1);border-radius: 3px 3px 0 0; font-weight: bold}
-.recipeThumbTitle:hover {color:$orangetext}
-.recipeThumbSteps {position: absolute;bottom:-33px; text-align: center;color:$globalLightText;font-size: 13px;width: 100%;line-height: 33px;font-family: $recipeFontMain;}
-
-.recipeThumbIngredients {text-align:right;padding:0 5px 0 5px;font-size: 14px;line-height: 34px; color: $orangetext;font-weight: bold;  }
-
-.recipeThumbCharacteristics {text-align: left;color: #fff;font-size: 16px;line-height: 26px;padding:0px 10px 0px 10px}
+// @mixin scale($x, $y){
+// 	-webkit-transform: scale($x, $y); 	
+// }
 
 
 
-// RECIPE PAGE 
-.recipeContainer {position: relative; width:700px;margin:40px auto 80px auto;font-family: $recipeFontMain;}
-.recipeContainerLeft {position: relative;float: left;width: 350px; }
-.recipeContainerRight {position: relative;float: right;width: 350px; }
+// // RECIPE THUMB 
 
-.recipeTitle {position: relative;width: 350px; color: $globalDarkText; font-size:24px; line-height: 28px; padding:0 30px 0 0; margin-bottom:0px;}
+// .recipesThumbsHome {position: relative; width:655px;margin:20px auto 0 auto;padding: 5px; }
+// .recipeThumbLeft {position: relative;float: left;width:210px;height: 250px; display: block;margin:0 0 0px 5px;cursor: pointer;}
 
-.recipeRDText {position: relative;; font-size: 13px; font-weight: bold;color: $orangetext;padding-top:3px;}
-.recipeRDName{color: #7e7e7e;}
-.recipeRDNormal {color: #7e7e7e;font-weight: normal;}
+// .recipeThumbImageContainer {position: absolute;z-index: 2;top:35px;left:15px;width:180px;min-height: 180px; display: block;overflow: hidden;cursor: pointer;background-color: #fff; }
+// .recipeThumbImage {position: absolute;z-index: 1;top:0;left:0; min-width:100%;height: 100%;webkit-transform: translate3d(-50%,0,0);}
+// .recipeThumbBackground {position: absolute;z-index: 1;top:30px;left:10px; width:190px;height: 190px;background-color:#f0f0f0;-webkit-transition:-webkit-transform 0.2s; @include scale(1.0, 1.0);border-radius: 3px;border: 1px solid #e6e6e6}
+// .recipeThumbBackgroundActive {@include scale(1.04, 1.3)}
 
-.recipeImageContainer {position: relative;; width:350px;height: 350px; display: block;overflow: hidden;background-color:#f0f0f0; margin-bottom: 0px;@include box-sizing(border-box);padding:5px;}
+// .recipeThumbCover {position: absolute;top:35px;left:15px;z-index: 3;width:180px;min-height: 180px; display: block;background-color:rgba(255,255,255,0.0);-webkit-transition:opacity 0.3s;opacity:0; }
+// .recipeThumbCoverActive {opacity:1;}
 
-.recipeImage {position: absolute;z-index: 1;top:5px;left:5px; min-width:338px;height: 338px;}
+// .recipeThumbTitle {position: absolute; top:-33px;color:$orangecarrot; font-size:15px; line-height: 18px;width: 100%;@include box-sizing(border-box);padding:7px 5px 7px 5px;font-family: $recipeFontMain;-webkit-transition:color 0.3s;background-color:rgba(237,237,237,1);border-radius: 3px 3px 0 0; font-weight: bold}
+// .recipeThumbTitle:hover {color:$orangetext}
+// .recipeThumbSteps {position: absolute;bottom:-33px; text-align: center;color:$globalLightText;font-size: 13px;width: 100%;line-height: 33px;font-family: $recipeFontMain;}
 
-.recipeLikeIcon {position: absolute;z-index: 1;bottom:15px;right:20px; width:30px;height: 40px;background:url(/assets/like_icon_unclicked.png) no-repeat center;background-size: 30px;cursor: pointer;}
-.recipeLikeIconActive{background-image:url(/assets/like_icon_clicked.png)}
+// .recipeThumbIngredients {text-align:right;padding:0 5px 0 5px;font-size: 14px;line-height: 34px; color: $orangetext;font-weight: bold;  }
 
-.recipeDescriptionContainer {position: relative;width:300px;font-size: 13px;color: $globalDarkText;padding:15px 0px 0 0px;line-height: 18px; @include box-sizing(border-box);color: #7e7e7e;}
-
-.recipeCharacteristicsContainer {position:relative; width:350px; display: block;font-size: 12px;color: $globalDarkText; padding:10px 0px 15px 10px;line-height: 18px; @include box-sizing(border-box);}
-.recipeCharacteristicsRow {position: relative;float: left;padding:10px 20px 10px 25px;background-color:#f7f7f7;margin:2px 2px 0 0; }
-.recipeCharacteristics {color: #7e7e7e;font-weight: normal;font-size: 12px;}
+// .recipeThumbCharacteristics {text-align: left;color: #fff;font-size: 16px;line-height: 26px;padding:0px 10px 0px 10px}
 
 
-.recipeIngredientsContainer {position: relative; width:350px; display: block;font-size: 13px;line-height: 17px;color: #7e7e7e; @include box-sizing(border-box); margin:25px 0 20px 0;}
-.recipeIngredientsTitle{ color: $globalDarkText; font-size:16px; line-height: 30px;}
+
+// // RECIPE PAGE 
+// .recipeContainer {position: relative; width:700px;margin:40px auto 80px auto;font-family: $recipeFontMain;}
+// .recipeContainerLeft {position: relative;float: left;width: 350px; }
+// .recipeContainerRight {position: relative;float: right;width: 350px; }
+
+// .recipeTitle {position: relative;width: 350px; color: $globalDarkText; font-size:24px; line-height: 28px; padding:0 30px 0 0; margin-bottom:0px;}
+
+// .recipeRDText {position: relative;; font-size: 13px; font-weight: bold;color: $orangetext;padding-top:3px;}
+// .recipeRDName{color: #7e7e7e;}
+// .recipeRDNormal {color: #7e7e7e;font-weight: normal;}
+
+// .recipeImageContainer {position: relative;; width:350px;height: 350px; display: block;overflow: hidden;background-color:#f0f0f0; margin-bottom: 0px;@include box-sizing(border-box);padding:5px;}
+
+// .recipeImage {position: absolute;z-index: 1;top:5px;left:5px; min-width:338px;height: 338px;}
+
+// .recipeLikeIcon {position: absolute;z-index: 1;bottom:15px;right:20px; width:30px;height: 40px;background:url(/assets/like_icon_unclicked.png) no-repeat center;background-size: 30px;cursor: pointer;}
+// .recipeLikeIconActive{background-image:url(/assets/like_icon_clicked.png)}
+
+// .recipeDescriptionContainer {position: relative;width:300px;font-size: 13px;color: $globalDarkText;padding:15px 0px 0 0px;line-height: 18px; @include box-sizing(border-box);color: #7e7e7e;}
+
+// .recipeCharacteristicsContainer {position:relative; width:350px; display: block;font-size: 12px;color: $globalDarkText; padding:10px 0px 15px 10px;line-height: 18px; @include box-sizing(border-box);}
+// .recipeCharacteristicsRow {position: relative;float: left;padding:10px 20px 10px 25px;background-color:#f7f7f7;margin:2px 2px 0 0; }
+// .recipeCharacteristics {color: #7e7e7e;font-weight: normal;font-size: 12px;}
 
 
-/*.recipeStepLeft {position: relative;float: left;clear: left; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:20px;margin-top: 10px;}
-.recipeStepRight {position: relative;float: right;clear:right; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:20px;margin-top: 10px;}*/
-
-.recipeStepContainer {position: relative; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:30px;margin-top: 30px;}
-.recipeStep {position: relative; margin-bottom: 13px;}
+// .recipeIngredientsContainer {position: relative; width:350px; display: block;font-size: 13px;line-height: 17px;color: #7e7e7e; @include box-sizing(border-box); margin:25px 0 20px 0;}
+// .recipeIngredientsTitle{ color: $globalDarkText; font-size:16px; line-height: 30px;}
 
 
-.recipeNumber {font-size: 13px;color: $globalDarkText;font-weight: bold; }
-.recipeStepIngredients {color:  $orangetext;}
+// /*.recipeStepLeft {position: relative;float: left;clear: left; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:20px;margin-top: 10px;}
+// .recipeStepRight {position: relative;float: right;clear:right; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:20px;margin-top: 10px;}*/
+
+// .recipeStepContainer {position: relative; width:350px; display: block;font-size: 13px;color: #7e7e7e; position: relative; @include box-sizing(border-box);padding-right:30px;margin-top: 30px;}
+// .recipeStep {position: relative; margin-bottom: 13px;}
 
 
-// EXTRAS
-.clear {clear:both;}
+// .recipeNumber {font-size: 13px;color: $globalDarkText;font-weight: bold; }
+// .recipeStepIngredients {color:  $orangetext;}
+
+
+// // EXTRAS
+// .clear {clear:both;}
 

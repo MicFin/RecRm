@@ -88,7 +88,7 @@ class RecipesController < ApplicationController
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
-  # end
+  end
   # def create
   #   # remove empty strings from the characteristic_ids array, these are from the placeholder label on the form
   #   params["recipe"]["characteristic_ids"].reject! { |characteristic_id| characteristic_id.empty? }

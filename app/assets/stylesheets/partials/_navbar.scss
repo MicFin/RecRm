@@ -1,0 +1,53 @@
+#kindrd-navbar{
+	background-color: $carrotorange;
+	margin-bottom: -1px;
+}
+
+#kindrd-navbar li a {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#sign_in_nav{
+	margin-bottom: 0px;
+	min-height: auto;
+}
+#navbar-logo{
+	height: 100px;
+	padding-left: 20px;
+}
+
+#navbar-logo-large{
+	height: 150px;
+	padding-left: 20px;
+}
+
+
+#navbar-help{
+	float: right;
+}
+
+.large-image{
+	-webkit-transform: scale(1.6);
+  -ms-transform: scale(1.6);
+  transform: scale(1.6);
+}
+
+.affix {
+  top: 50px;
+  width:100%;
+}
+
+.below-navbar-container {
+	margin-top: 200px;
+
+}
+
+.below_sign_in_nav {
+	margin-top: 202px;
+}
+
+.below_signed_in_nav {
+	margin-top: 150px;
+}
+

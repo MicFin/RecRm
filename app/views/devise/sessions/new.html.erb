@@ -1,34 +1,42 @@
-<div class="row">
-	<div class="col-xs-12">
-		<div class="col-xs-6 col-centered ">
-			<div class="col-xs-12 col-centered">
-				<div class="col-xs-4" style="margin-left: 2%">
-				<%= image_tag("carrot-large1.png", class: "img-responsive") %> 
-				</div>
-				<div class="col-xs-7">
-					<h2><span class="attribute-title" style="line-height: 2">Log In</span></h2>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-xs-12">
-		<div class="col-xs-4"></div>
-		<div id="sign-in-form" class="col-xs-4">
-			<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal' }) do |f| %>
- 				<div class="col-xs-12 form-group"><%= f.label :email %><br />
-			  	<%= f.email_field :email, autofocus: true %>
-				</div>
-			  <div class="col-xs-12 form-group"><%= f.label :password %><br />
-			    <%= f.password_field :password, autocomplete: "off" %>
-			  </div>
 
-  			<div class="col-xs-12 form-group text-center">
-			  <%= f.button :submit, "Log In" %>
-			  </div>
-			<% end %>
-				<div class="col-xs-12">
+<div class="col-xs-12 wide-image-container wood-background">
+	<div class="hidden-xs col-sm-6 col-md-6 col-lg-6">
+	</div>
+	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+		<div class="col-xs-12 form-group">
+			<h2>WELCOME</h2>
+			<h4>Thank you for joining the <i>nutrition revolution</i>!</h4>
+			<h4>Please sign in with your Kindrdfood email address and password.</h4>
+		</div>
+		<div class="col-xs-8 col-xs-offset-2 sign_in_form">
+			<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-inline', role:"form" }) do |f| %>
+				<div class="col-xs-12 form-group">
+					<div class="form-group col-xs-12">
+						<h3><span class="white-font">Let's get you started!</span></h3>
+					</div>
+				  <div class="form-group">
+				    <div class="input-group">
+				      <%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "Enter email" %>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="sr-only" for="exampleInputPassword2">Password</label>
+				    <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password", type: "password" %>
+				  </div>
+				</div>
+				<div class="col-xs-12 form-group">
+				  <div class="checkbox">
+				    <label>
+				      <input type="checkbox"><span class="white-font"> Remember </span>
+				    </label>
+				  </div>
+				  <%= f.button :submit, "Sign In", class: "btn btn-success", type: "submit" %>
+				</div>
+				<div class="col-xs-12 text-left">
 					<%= render "devise/shared/links" %>
 				</div>
+			<% end %>
+			<!-- </form> -->
 		</div>
 	</div>
 </div>

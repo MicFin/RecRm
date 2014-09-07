@@ -30,6 +30,8 @@ gem 'bootstrap-sass', '~> 3.1.1.1'
 
 gem 'devise'
 
+gem 'jquery-turbolinks'
+
 # unitwise is a cross platform list of units and their conversions
 # https://github.com/joshwlewis/unitwise
 # I found this tutorial useful for adding units to the ingredients_recipes model 

@@ -1,0 +1,21 @@
+#recipe-essentials-preview, #allergens-preview{
+	background-color: $white;
+	height: 500px;
+	margin: 30px 20px 30px 20px;
+	overflow: scroll;
+}
+
+.preview-title{
+	padding-top: 10px;
+}
+
+.preview-info{
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.preview-heading{
+	text-align: left;
+	margin-left: 20px;
+	color: $gray;
+}

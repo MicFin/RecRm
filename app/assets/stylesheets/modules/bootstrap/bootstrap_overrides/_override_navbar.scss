@@ -1,0 +1,47 @@
+.navbar-inverse {
+	background-color: white;
+	border-color: #090909;
+}
+
+.navbar-inverse .navbar-nav > #feedback-button > a {
+	background-color: $lightgreen;
+	-webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.navbar-inverse .navbar-nav > #feedback-button > a:hover {
+	background-color: lighten($lightgreen, 20%);
+	color: $darkgreen;
+}
+
+.navbar-inverse{
+	border-color: transparent;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: $white;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+	color: $carrotorange;
+	background-color: $white;
+}
+
+.navbar-inverse .navbar-brand {
+	color: $white;
+}
+
+.panel-default > .panel-heading {
+	color: #333333;
+	background-color: white;
+	border-color: #dddddd;
+} 
+
+.panel-default {
+	border-color: white;
+}
+
+.form-inline .form-group{
+	margin-bottom: 15px;
+}

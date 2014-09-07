@@ -1,0 +1,42 @@
+#basic-info-form {
+	padding: 30px 20px 0 20px;
+}
+
+#basic-info-form{
+	width: 400px;
+}
+
+#basic-info-form .form-group{
+	margin-bottom: 35px;
+}
+
+#basic-info-form .slider{
+	margin-top: 15px;
+}
+#basic-info-form .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	border: none;
+	// border-image-source: initial;
+	// border-image-slice: initial;
+	// border-image-width: initial;
+	// border-image-outset: initial;
+	// border-image-repeat: initial;
+	// background: url("../../images/logo.jpg") 50% 50% repeat-x rgb(246, 246, 246);
+		background: url("../images/kindrd-carrot-small.png") 48% 60%;
+font-weight: bold;
+color: rgb(0, 147, 68);
+}
+
+#basic-info-form .ui-slider .ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 22px;
+	height: 38px;
+	cursor: default;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
+#basic-info-form .ui-slider-horizontal .ui-slider-handle {
+	top: -1em;
+	margin-left: -.6em;
+}

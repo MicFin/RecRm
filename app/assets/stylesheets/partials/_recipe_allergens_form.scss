@@ -1,0 +1,43 @@
+// Other CSS 
+// _recipe_essentials_preview.scss
+
+// #recipe-essentials-preview, #allergens-preview{
+// 	background-color: $white;
+// 	height: 500px;
+// 	margin: 30px 20px 30px 20px;
+// 	overflow: scroll;
+// }
+
+.allergen-tag{
+	color: $carrotorange;
+	margin-left: 50px;
+}
+
+#allergens-form{
+	margin-top: 20px;
+}
+
+#allergens-form li{
+	list-style-type: none;
+}
+
+.checkbox + .checkbox {
+margin-top: 10px;
+}
+
+#suggested-allergen-list li{
+   display: inline;
+   padding: 5px;
+}
+
+.light-orange-font {
+	color: $lightorange;
+}
+
+#allergens-form li .alert {
+	margin: 10px;
+}
+
+#allergens-form .review-ingredient button {
+	margin-left: 20px;
+}

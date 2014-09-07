@@ -1,8 +1,219 @@
-<div class="container">
-	<div id="recipe-new-form-container">
-		<div class="recipe-form-section row" id="recipe-form-section-0">
-			<h1 id="add-recipe-title-message">Yay! Let's add a <span class="attribute-title">NEW RECIPE</span></h1>
-		</div>
-		<%= render 'form' %>
-	</div>
-</div>
+<!-- BREADCRUMB
+FOR 
+RECIPE -->
+   <%= render "/recipes/new_recipe_breadcrumbs" %>
+<!-- RECIPE PAGE BACKGROUND-->
+    <div id="recipe-background">
+      <div class="container">
+        <div class="col-xs-6">
+
+
+<!-- BASIC INFO FORM -->
+           <div id="basic-info-form">
+            <form role="form">
+              <div class="form-group">
+                <label for="exampleInputEmail1">What would you like the name of your recipe to be?</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter recipe name here">
+              </div>
+              <div class="form-group">
+                <label for="preptime">Preperation Time</label>
+                <select name="preptime" id="preptime">
+                  <option>Under 15mins</option>
+                  <option>15-30mins</option>
+                  <option>30-45mins</option>
+                  <option>45-60mins</option>
+                  <option>60-90mins</option>
+                  <option>90-120mins</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="cooktime">Cook Time</label>
+                <select name="cooktime" id="cooktime">
+                  <option>Under 15mins</option>
+                  <option>15-30mins</option>
+                  <option>30-45mins</option>
+                  <option>45-60mins</option>
+                  <option>60-90mins</option>
+                  <option>90-120mins</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="difficulty">Difficulty</label>
+                <select name="difficulty" id="difficulty">
+                  <option>Tween</option>
+                  <option>Teen</option>
+                  <option>Adult</option>
+                  <option>Expert</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="serves">Serves</label>
+                <select name="serves" id="serves">
+                  <option>1 kid</option>
+                  <option>1 adult or 2 kids</option>
+                  <option>2 adults or 3 kids</option>
+                  <option>Family of 4</option>
+                  <option>2 Families</option>
+                  <option>Party Size</option>
+                </select>
+              </div>
+              <div class="form-group text-center"> 
+                <button type="submit" class="btn btn-success btn-lg">NEXT</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div id="recipe-essentials-preview">
+
+<!--      BASIC 
+          INFO 
+          PREVIEW -->
+            <div id="basic-info-container">
+              <div class="preview-title text-center">
+                <h1>Spaghettios</h1>
+              </div>
+              <div class="row preview-info text-center">
+                <div class="col-xs-3">
+                  <p>Prep Time:</p>
+                  <h4 id="preptime-preview"></h4>
+                </div>
+                <div class="col-xs-3">
+                  <p>Cook Time:</p>
+                  <h4 id="cooktime-preview"></h4>
+                </div>
+                <div class="col-xs-3">
+                  <p>Difficulty:</p>
+                  <h4 id="difficulty-preview"></h4>
+                </div>
+                <div class="col-xs-3">
+                  <p>Serves:</p>
+                  <h4 id="serves-preview"></h4>
+                </div>
+              </div>
+            </div>
+            <div id="ingredients-container">
+              <div class="row text-center preview-info"> 
+                <h3 class="preview-heading">Ingredients:</h3>
+                <div class="col-xs-4">
+                  <img src="images/avocado.png">
+                </div>
+                <div class="col-xs-4">
+                  <img src="images/chili.png">
+                </div>
+                <div class="col-xs-4">
+                  <img src="images/apple.png">
+                </div>
+              </div>
+            </div>
+            <div id="steps-container">
+              <div class="row text-center preview-info"> 
+                <h3 class="preview-heading">Steps:</h3>
+                <div class="col-xs-4">
+                  <img src="images/salad_bowl.png">
+                </div>
+                <div class="col-xs-4">
+                  <img src="images/grill.png">
+                </div>
+                <div class="col-xs-4">
+                  <img src="images/chef.png">
+                </div>
+              </div>
+            </div> <!-- #steps container -->
+          </div> <!-- #recipe essentials preview -->
+        </div> <!-- half screen -->
+      </div><!--  container -->
+    </div> <!-- recipe background -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="jquery-ui/external/jquery/jquery.js"></script>
+    <script src="jquery-ui/jquery-ui.min.js"></script>
+    <script src="sass/vendor/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        //hover for feedback and help
+        $('.always-hover').tooltip({trigger: 'manual'}).tooltip('show');
+        $('.always-hover').on('click',function(){$(this).tooltip('destroy');});
+
+        var preptime = $( "#preptime" );
+        var preptimeslider = $( "<div class='slider'></div>" ).insertAfter( preptime ).slider({
+          min: 1,
+          max: 6,
+          range: "min",
+          value: preptime[ 0 ].selectedIndex + 1,
+          slide: function( event, ui ) {
+            preptime[ 0 ].selectedIndex = ui.value - 1;
+            // changes preview when bar changed
+            $("#preptime-preview").replaceWith("<h4 id='preptime-preview'>"+$( "#preptime option:selected" ).text() + "</h4>");
+          }
+        });
+        // makes select box change the slider
+        $( "#preptime" ).change(function() {
+          preptimeslider.slider( "value", this.selectedIndex + 1 );
+          // changes preview when select changed
+          $("#preptime-preview").replaceWith("<h4 id='preptime-preview'>"+$( "#preptime option:selected" ).text() + "</h4>");
+        });
+
+        var cooktime = $("#cooktime");
+        var cooktimeslider = $( "<div class='slider'></div>" ).insertAfter( cooktime ).slider({
+          min: 1,
+          max: 6,
+          range: "min",
+          value: cooktime[ 0 ].selectedIndex + 1,
+          slide: function( event, ui ) {
+            cooktime[ 0 ].selectedIndex = ui.value - 1;
+           // changes preview when bar changed
+            $("#cooktime-preview").replaceWith("<h4 id='cooktime-preview'>"+$( "#cooktime option:selected" ).text() + "</h4>");
+          }
+        });
+        // makes select box change the slider
+        $( "#cooktime" ).change(function() {
+          cooktimeslider.slider( "value", this.selectedIndex + 1 );          
+          // changes preview when select changed
+          $("#cooktime-preview").replaceWith("<h4 id='cooktime-preview'>"+$( "#cooktime option:selected" ).text() + "</h4>");
+        });
+
+        var difficulty = $( "#difficulty" );
+        var difficultyslider = $( "<div class='slider'></div>" ).insertAfter( difficulty ).slider({
+          min: 1,
+          max: 4,
+          range: "min",
+          value: difficulty[ 0 ].selectedIndex + 1,
+          slide: function( event, ui ) {
+            difficulty[ 0 ].selectedIndex = ui.value - 1;
+            // changes preview when bar changed
+            $("#difficulty-preview").replaceWith("<h4 id='difficulty-preview'>"+$( "#difficulty option:selected" ).text() + "</h4>");
+          }
+        });
+        // makes select box change the slider
+        $( "#difficulty" ).change(function() {
+          difficultyslider.slider( "value", this.selectedIndex + 1 );
+          // changes preview when select changed
+          $("#difficulty-preview").replaceWith("<h4 id='difficulty-preview'>"+$( "#difficulty option:selected" ).text() + "</h4>");
+        });
+
+        var serves = $( "#serves" );
+        var servesslider = $( "<div class='slider'></div>" ).insertAfter( serves ).slider({
+          min: 1,
+          max: 6,
+          range: "min",
+          value: serves[ 0 ].selectedIndex + 1,
+          slide: function( event, ui ) {
+            serves[ 0 ].selectedIndex = ui.value - 1;
+          // changes preview when select changed
+          $("#serves-preview").replaceWith("<h4 id='serves-preview'>"+$( "#serves option:selected" ).text() + "</h4>");
+          }
+        });
+        // makes select box change the slider
+        $( "#serves" ).change(function() {
+          servesslider.slider( "value", this.selectedIndex + 1 );
+          // changes preview when select changed
+          $("#serves-preview").replaceWith("<h4 id='serves-preview'>"+$( "#serves option:selected" ).text() + "</h4>");
+        });
+
+      });
+
+    </script>

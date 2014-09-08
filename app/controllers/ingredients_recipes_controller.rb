@@ -28,29 +28,29 @@ class IngredientsRecipesController < ApplicationController
 
   end
 
-  def create_and_add
-    # create new ingredients recipe with params
-    @ingredients_recipe = IngredientsRecipe.new(ingredients_recipe_params)
-    # set ingredient name to see if it exists yet
-    ingredient_name = params["ingredients_recipe"]["ingredient_attributes"]["name"]
-    # finds of creates the ingredient and saves as the ingredients_recipe's ingredient_id
-    @ingredients_recipe.find_or_create_ingredient(ingredient_name)
-    # respond to...
-    respond_to do |format|
-      if @ingredients_recipe.save
-        format.html { redirect_to @ingredients_recipe, notice: 'ingredients_recipe was successfully created.' }
-        format.json { render :show, status: :created, location: @ingredients_recipe }
-        # we are responding to JS right now, create_and_add.js.erb
-        format.js 
-        ### put on rigt side of screen
-        ### want it to change form to a new ingredient
-      else
-        format.html { render :new }
-        format.json { render json: @ingredients_recipe.errors, status: :unprocessable_entity }
-        format.js
-      end
-    end
-  end
+  # def create_and_add
+  #   # create new ingredients recipe with params
+  #   @ingredients_recipe = IngredientsRecipe.new(ingredients_recipe_params)
+  #   # set ingredient name to see if it exists yet
+  #   ingredient_name = params["ingredients_recipe"]["ingredient_attributes"]["name"]
+  #   # finds of creates the ingredient and saves as the ingredients_recipe's ingredient_id
+  #   @ingredients_recipe.find_or_create_ingredient(ingredient_name)
+  #   # respond to...
+  #   respond_to do |format|
+  #     if @ingredients_recipe.save
+  #       format.html { redirect_to @ingredients_recipe, notice: 'ingredients_recipe was successfully created.' }
+  #       format.json { render :show, status: :created, location: @ingredients_recipe }
+  #       # we are responding to JS right now, create_and_add.js.erb
+  #       format.js 
+  #       ### put on rigt side of screen
+  #       ### want it to change form to a new ingredient
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @ingredients_recipe.errors, status: :unprocessable_entity }
+  #       format.js
+  #     end
+  #   end
+  # end
   
   # POST /ingredients_recipes
   # POST /ingredients_recipes.json
@@ -58,18 +58,25 @@ class IngredientsRecipesController < ApplicationController
     # create new ingredients recipe with params
     @ingredients_recipe = IngredientsRecipe.new(ingredients_recipe_params)
     # set ingredient name to see if it exists yet
-    ingredient_name = params["ingredients_recipe"]["ingredient_attributes"]["name"]
+    ingredient_name  = params["ingredients_recipe"]["ingredient_attributes"]["name"]
     # finds of creates the ingredient and saves as the ingredients_recipe's ingredient_id
     @ingredients_recipe.find_or_create_ingredient(ingredient_name)
+    @recipe_id = params["recipe_id"]
+    @ingredients_recipe.recipe_id = @recipe_id
+    binding.pry
     # respond to...
     respond_to do |format|
       if @ingredients_recipe.save
-        format.html { redirect_to @ingredients_recipe, notice: 'ingredients_recipe was successfully created.' }
+        format.html { redirect_to @ingredients_recipe, notice: 'Recipe ingredient was successfully created.' }
         format.json { render :show, status: :created, location: @ingredients_recipe }
         # we are responding to JS right now, create.js.erb
+        @ingredients_recipe = IngredientsRecipe.new
+        @ingredients_recipe.build_ingredient
+        @ingredient = Ingredient.new 
+        @all_ingredients = Ingredient.order(:name).map(&:name)
+        @recipe_id = @recipe_id
+        @ingredients = Recipe.find(@recipe_id).ingredients_recipes
         format.js 
-        ### want it to put on rigt side of screen
-        ### want it to change form to steps form
       else
         format.html { render :new }
         format.json { render json: @ingredients_recipe.errors, status: :unprocessable_entity }
@@ -123,6 +130,6 @@ class IngredientsRecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredients_recipe_params
-      params.require(:ingredients_recipe).permit(:amount, :amount_unit, :recipe_id, :prep, :prep2, :optional_ingredient, :main_ingredient)
+      params.require(:ingredients_recipe).permit(:amount, :amount_unit, :recipe_id, :optional_ingredient, :main_ingredient, :display_name)
     end
 end

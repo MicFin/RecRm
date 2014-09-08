@@ -11,15 +11,20 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.turbolinks
+//= require jquery.ui.slider
 //= require jquery.ui.autocomplete
-//= require autocomplete-rails
+
+
 //= require bootstrap
-//= require_self
+//= require dietitian_nav
 //= require recipes_form
 //= require articles_form
-//= require_tree .
+//= require recipe_basic_info_form
+//= require new_ingredient_form
+
+
 
 
 

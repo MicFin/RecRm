@@ -1,5 +1,5 @@
 #basic-info-form {
-	padding: 30px 20px 0 20px;
+	padding: 10px 20px 0 20px;
 }
 
 #basic-info-form{
@@ -21,9 +21,10 @@
 	// border-image-outset: initial;
 	// border-image-repeat: initial;
 	// background: url("../../images/logo.jpg") 50% 50% repeat-x rgb(246, 246, 246);
-		background: url("../images/kindrd-carrot-small.png") 48% 60%;
-font-weight: bold;
-color: rgb(0, 147, 68);
+	background: url("add_recipe_images/kindrd-carrot-small.png") 48% 60%;
+	background-repeat: no-repeat;
+	font-weight: bold;
+	color: rgb(0, 147, 68);
 }
 
 #basic-info-form .ui-slider .ui-slider-handle {
@@ -37,6 +38,15 @@ color: rgb(0, 147, 68);
 }
 
 #basic-info-form .ui-slider-horizontal .ui-slider-handle {
-	top: -1em;
-	margin-left: -.6em;
+	margin-left: -15px;
+	top: -20px;
 }
+
+#basic-info-form h3 {
+	margin-left: -50px;
+}
+
+// #basic-info-form .ui-slider-horizontal .ui-slider-handle {
+// top: 1em;
+// margin-left: .5em;
+// }

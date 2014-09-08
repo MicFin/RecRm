@@ -2,9 +2,6 @@ class Recipe < ActiveRecord::Base
   attr_accessor :ingredient_list
   attr_accessor :step_list
   attr_accessor :characteristic_list
-  attr_accessor :cook_time
-  attr_accessor :prep_time
-  attr_accessor :difficulty
   attr_accessor :courses
   attr_accessor :age_groups
   attr_accessor :scenarios

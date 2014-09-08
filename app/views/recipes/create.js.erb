@@ -1,0 +1,15 @@
+// add preview of basic info
+$("#basic-info-container").replaceWith("<%= j render(:partial => 'basic_info_show') %>");
+
+
+$("#basic-info-form").replaceWith("<%= j render(:partial => 'new_ingredient_form') %>");
+$(".hidden-form").hide();
+$( ".ingredient-name" ).autocomplete({
+      source: $('.ingredient-name').data('autocomplete-source')
+ });
+
+// add hash and add to history
+$(document).ready(function() {
+	window.location.hash = 'ingredients';
+	history.pushState(null, document.title, this.href);
+});

@@ -43,9 +43,9 @@ gem 'unitwise'
 #   Inside your views, use the 'simple_form_for' with one of the Bootstrap form classes, '.form-horizontal', '.form-inline', '.form-search' or '.form-vertical', as the following: simple_form_for(@user, html: {class: 'form-horizontal' }) do |form|
 gem 'simple_form'
 
-# For autofilling fields form database. It is rails 4 compatible, don't be fooled by the name.
-# https://github.com/crowdint/rails3-jquery-autocomplete
-gem 'rails3-jquery-autocomplete'
+# # For autofilling fields form database. It is rails 4 compatible, don't be fooled by the name.
+# # https://github.com/crowdint/rails3-jquery-autocomplete
+# gem 'rails3-jquery-autocomplete'
 
 # Required to use with gem 'rails3-jquery-autocomplete' 
 # only requiring widget //= require jquery.ui.autocomplete

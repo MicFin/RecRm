@@ -40,7 +40,9 @@ Rails.application.routes.draw do
       # root :to => 'recipes#dietitian_recipes_index', :constraints => lambda { |request| request.env['warden'].user.class.name == 'Dietitian' }, :as => "dietitian_authenticated_root"
       root :to => 'recipes#dietitian_recipes_index', as: :dietitian_authenticated_root
       resources :characteristics
-      resources :ingredients_recipes
+      resources :ingredients_recipes do 
+        get :autocomplete_ingredient_name, :on => :collection
+      end
       resources :allergens_ingredients
       resources :recipes_patient_groups
       resources :recipe_steps

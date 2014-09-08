@@ -1,11 +1,8 @@
-// remove the ingredients recipe form
-$("#ingredients-recipe-form").remove();
 
+$("#ingredients-container").replaceWith("<%= j render(:partial => 'ingredients_recipe_list') %>");
 
-// insert the ingredients_recipes show.html.erb of current ingredients_recipe
-$('#ingredients-container').append('<%= j render(@ingredients_recipe) %>');
-
-$(".edit-ingredient").show();
-$("#review-ingredients").show();
-$(".remove-ingredient").show();
-$("#add-ingredients-recipe").show();
+$("#new-ingredient-form").replaceWith("<%= j render(:partial => '/recipes/new_ingredient_form') %>");
+$(".hidden-form").show();
+$( ".ingredient-name" ).autocomplete({
+      source: $('.ingredient-name').data('autocomplete-source')
+ });

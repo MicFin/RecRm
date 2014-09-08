@@ -3,11 +3,10 @@ class RecipesController < ApplicationController
 	include StepsHelper
 	include IngredientsHelper
 
-
   before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group, :review_recipe]
   before_action :set_characteristic_forms, only: [:new, :edit]
   before_action :set_characteristic_display, only: [:edit_recipe_group, :show, :review_recipe]
-  autocomplete :ingredient, :name
+
   # GET /recipes
   # GET /recipes.json
   def index
@@ -63,6 +62,12 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+   # characteristics_helper
+    get_recipe_characteristics!
+    @cook_times = @cook_times
+    @prep_times = @prep_times
+    @difficulties = @difficulties
+    
   end
 
   # POST /recipes
@@ -74,13 +79,15 @@ class RecipesController < ApplicationController
     respond_to do |format|
       # if recipe saves correctly
       if @recipe.save
-        # will need a html version with no JS
-        # if html send to ingredients_index index 
-        # pass recipe_id to ingredients_recipe index method
         format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
-        # will need to send recipe_id through this, insert a form field with the id into the page/template
-        # want to send to ingrdients recipes controller new
+
+        @ingredients_recipe = IngredientsRecipe.new
+        @ingredients_recipe.build_ingredient
+        @ingredient = Ingredient.new 
+        @all_ingredients = Ingredient.order(:name).map(&:name)
+        @recipe_id = @recipe.id
+        # set recipe_id sent from ingredients_recipe index form remote true
         format.js
       else
         set_characteristic_forms
@@ -212,19 +219,19 @@ class RecipesController < ApplicationController
 
     def set_characteristic_forms
     # set instance variables for form fields
-      @cook_times = Characteristic.where(category: "Cook Time")
-      @prep_times = Characteristic.where(category: "Prep Time")
-      @difficulties = Characteristic.where(category: "Difficulty")
-      @courses = Characteristic.where(category: "Course")
-      @age_groups = Characteristic.where(category: "Age Group")
-      @scenarios = Characteristic.where(category: "Scenario")
-      @holidays = Characteristic.where(category: "Holiday")
-      @cultures = Characteristic.where(category: "Culture")
+      # @cook_times = Characteristic.where(category: "Cook Time")
+      # @prep_times = Characteristic.where(category: "Prep Time")
+      # @difficulties = Characteristic.where(category: "Difficulty")
+      # @courses = Characteristic.where(category: "Course")
+      # @age_groups = Characteristic.where(category: "Age Group")
+      # @scenarios = Characteristic.where(category: "Scenario")
+      # @holidays = Characteristic.where(category: "Holiday")
+      # @cultures = Characteristic.where(category: "Culture")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     # need to change :image_url to :avatar when paperclip is working
     def recipe_params
-      params.require(:recipe).permit(:image_url, :name, :description, :dietitian_id, :characteristic_ids => [], :patient_group_ids => [])
+      params.require(:recipe).permit(:image_url, :name, :description, :dietitian_id, :cook_time, :prep_time, :difficulty, :characteristic_ids => [], :patient_group_ids => [])
     end
 end

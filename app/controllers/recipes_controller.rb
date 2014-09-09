@@ -2,11 +2,12 @@ class RecipesController < ApplicationController
 	include CharacteristicsHelper
 	include StepsHelper
 	include IngredientsHelper
+  include IngredientsRecipesHelper
 
   before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group, :review_recipe]
   before_action :set_characteristic_forms, only: [:new, :edit]
   before_action :set_characteristic_display, only: [:edit_recipe_group, :show, :review_recipe]
-
+  before_action :set_options, only: [:new, :edit, :create]
   # GET /recipes
   # GET /recipes.json
   def index
@@ -87,6 +88,7 @@ class RecipesController < ApplicationController
         @ingredient = Ingredient.new 
         @all_ingredients = Ingredient.order(:name).map(&:name)
         @recipe_id = @recipe.id
+        @units = @units
         # set recipe_id sent from ingredients_recipe index form remote true
         format.js
       else
@@ -203,6 +205,11 @@ class RecipesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe
       @recipe = Recipe.find(params[:id])
+    end
+
+    def set_options
+      get_units!
+      @units = @units
     end
 
     ### make as global helper method because also used in marketing_items_controller

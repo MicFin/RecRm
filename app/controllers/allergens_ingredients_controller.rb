@@ -23,10 +23,19 @@ class AllergensIngredientsController < ApplicationController
 
   # GET /allergens_ingredients/new
   def new
+    @recipe = Recipe.find(params[:recipe_id])
+    if @recipe.ingredients_not_tagged.count > 0
+      @ingredient = @recipe.ingredients_not_tagged.first
+    else
+    end
     @allergens_ingredient = AllergensIngredient.new
     @allergens_ingredient.build_allergen
-    @allergen = Allergen.new 
-    @allergens = Allergen.find(:all, :limit => 10)
+    @allergens = Allergen.first(10)
+    @suggested_allergens = @ingredient.suggested_allergens
+    @other_allergens = @ingredient.other_allergens
+    data = {}
+    data["allergens"] = @allergens
+    render json: data.to_json
   end
 
   # GET /allergens_ingredients/1/edit

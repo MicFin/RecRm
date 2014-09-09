@@ -1,0 +1,47 @@
+            <div id="new-steps-form" class="form-group">
+            <%= simple_form_for @recipe_step, remote: true  do |recipe_step_form| %>
+              <div class=" form-group row text-center">
+              <div class="col-xs-12">
+                <h2>Add your steps!</h2>
+                <p>Some recipes require steps to be divided into groups (like for a recipe that prepares fish and a salad).   Please select the number of groups you need if 1 is not enough.</p>
+              </div>
+              <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                  <select class="form-control">
+                    <option value="one">One Set of Steps</option>
+                    <option value="two">Two</option>
+                    <option value="three">Three</option>
+                    <option value="four">Four</option>
+                    <option value="five">Five</option>
+                  </select>
+                </div>
+              </div>
+              <div class="steps-preview">
+                <div class="form-group col-xs-12">
+                  <label for="exampleInputEmail1">New Step</label>
+                  <textarea class="form-control" rows="3" name="recipe_step[directions]" placeholder="Add 3 cups of milk and 1 cup of water to pot..."></textarea>
+                </div>
+                <div class="form-group col-xs-12">
+                  <label for="steps">Select the ingredients used in this step</label>
+                  <%= recipe_step_form.association :ingredients_recipes, as: :check_boxes, collection: @ingredients, label_method: :full_name, value_method: :id, label: false, :include_hidden => false%>
+                </div>
+              </div>
+              <div class="row text-center">
+                <div class="form-group"> 
+                  <%= recipe_step_form.input :recipe_id, as: :hidden, :input_html => { id: "hidden-recipe", :value => @recipe_id }%>
+                  <button type="submit" class="glyphicon glyphicon-plus-sign btn btn-success btn-lg">Add</button>
+                </div>
+              </div>
+            <% end%>
+              <div class="row form-grouphidden-form">
+                <div class="form-group text-center">
+                  <p>Finished adding all of your steps?
+                  </p>
+                </div>
+                <div class="form-group text-center"> 
+                  <button type="button" class="next-button btn btn-success btn-lg">NEXT</button>
+                </div>
+              </div>
+          </div>
+
+

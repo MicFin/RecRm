@@ -15,9 +15,10 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#about">Appointments</a></li>
-          <li><a href="#contact">Recipes</a></li>
+          <li id="navbar-dashboard" class="active"><a href="#">Dashboard</a></li>
+          <li id="navbar-appointments" ><a  href="#about">Appointments</a></li>
+          <li id="navbar-recipes"><a  href="#contact">Recipes</a></li>
+          <li><%= link_to 'SIGN OUT', destroy_dietitian_session_path, :method => :delete %></li>
         </ul>
         <ul class="nav navbar-nav" id="navbar-help">
           <li ><a class="always-hover" href="#support" data-toggle="tooltip" data-placement="top" title="Support"><span class="large-image glyphicon glyphicon-question-sign"></span></a></li>

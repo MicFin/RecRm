@@ -12,10 +12,10 @@
 	margin-top: 6px;
 }
 
-#recipe-breadcrumb .navbar-nav > li > a {
-	color: $gray;
+// #recipe-breadcrumb .navbar-nav > li > a {
+// 	color: $gray;
 
-}
+// }
 
 #recipe-breadcrumb .navbar-nav > li > a:hover, #recipe-breadcrumb .navbar-nav > li > a:focus {
 	color: $carrotgreen;
@@ -23,6 +23,7 @@
   -ms-transform: scale(1.1);
   transform: scale(1.1);
 }
+
 
 #recipe-breadcrumb .navbar-nav > li > a {
 	padding-top: 10px;

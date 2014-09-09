@@ -45,7 +45,9 @@ Rails.application.routes.draw do
       end
       resources :allergens_ingredients
       resources :recipes_patient_groups
-      resources :recipe_steps
+      resources :recipe_steps do 
+        collection { post :sort }
+      end
       resources :allergens 
       resources :ingredients do 
         get :autocomplete_allergen_name, :on => :collection

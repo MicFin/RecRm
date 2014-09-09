@@ -1,0 +1,29 @@
+<div id="allergens-preview">
+<div id="basic-info-container">
+  <div class="preview-title text-center">
+    <h1>Spaghettios</h1>
+  </div>
+</div>
+<div id="allergens-ingredient-preview">
+  <div id="ingredients-container">
+    <div class="row preview-info"> 
+      <h3 class="active-preview-heading">Ingredients and Allergens:</h3>
+      <% @ingredients_not_tagged.each do| ingredient| %>
+      <div class="col-xs-12">
+        <h4 class="ingredient-preview"><%= ingredient.name%></h4> 
+        <% if ingredient.allergens.count > 0 %>
+        	<% ingredient.allergens.each do |allergen| %>
+        		<div class="col-xs-3">
+        			<p> <span class="allergen-tag text-left"><%=allergen%></span></p>
+        		</div>
+        	<% end %>
+        <% else %>
+        	<div class="col-xs-6 alert alert-danger">
+        		<p>Allergens: Unknown</p>
+        	</div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

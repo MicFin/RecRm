@@ -32,6 +32,16 @@
 	color: $white;
 }
 
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+	color: $carrotorange;
+	background-color: $white;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	text-decoration: underline;
+	background-color: transparent;
+}
+
 .panel-default > .panel-heading {
 	color: #333333;
 	background-color: white;

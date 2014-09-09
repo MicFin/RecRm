@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904181553) do
+ActiveRecord::Schema.define(version: 20140909003637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,14 +169,6 @@ ActiveRecord::Schema.define(version: 20140904181553) do
     t.datetime "updated_at"
   end
 
-  create_table "ingredients_recipe_steps", id: false, force: true do |t|
-    t.integer "ingredient_id",  null: false
-    t.integer "recipe_step_id", null: false
-  end
-
-  add_index "ingredients_recipe_steps", ["ingredient_id"], name: "index_ingredients_recipe_steps_on_ingredient_id", using: :btree
-  add_index "ingredients_recipe_steps", ["recipe_step_id"], name: "index_ingredients_recipe_steps_on_recipe_step_id", using: :btree
-
   create_table "ingredients_recipes", force: true do |t|
     t.integer  "ingredient_id"
     t.integer  "recipe_id"
@@ -191,6 +183,14 @@ ActiveRecord::Schema.define(version: 20140904181553) do
 
   add_index "ingredients_recipes", ["ingredient_id"], name: "index_ingredients_recipes_on_ingredient_id", using: :btree
   add_index "ingredients_recipes", ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id", using: :btree
+
+  create_table "ingredients_recipes_recipe_steps", force: true do |t|
+    t.integer "ingredients_recipe_id"
+    t.integer "recipe_step_id"
+  end
+
+  add_index "ingredients_recipes_recipe_steps", ["ingredients_recipe_id"], name: "index_ingredients_recipes_recipe_steps_on_ingredients_recipe_id", using: :btree
+  add_index "ingredients_recipes_recipe_steps", ["recipe_step_id"], name: "index_ingredients_recipes_recipe_steps_on_recipe_step_id", using: :btree
 
   create_table "marketing_items", force: true do |t|
     t.string   "category"
@@ -242,11 +242,11 @@ ActiveRecord::Schema.define(version: 20140904181553) do
   add_index "quality_reviews", ["quality_reviewable_id", "quality_reviewable_type"], name: "quality_reviewable_id_index", using: :btree
 
   create_table "recipe_steps", force: true do |t|
-    t.integer  "step_number"
     t.text     "directions"
     t.integer  "recipe_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   add_index "recipe_steps", ["recipe_id"], name: "index_recipe_steps_on_recipe_id", using: :btree

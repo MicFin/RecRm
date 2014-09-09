@@ -3,6 +3,70 @@ $("#ingredients-container").replaceWith("<%= j render(:partial => 'ingredients_r
 
 $("#new-ingredient-form").replaceWith("<%= j render(:partial => '/recipes/new_ingredient_form') %>");
 $(".hidden-form").show();
-$( ".ingredient-name" ).autocomplete({
-      source: $('.ingredient-name').data('autocomplete-source')
+// if next button is clicked then go to new step
+$(".next-button").on("click", function(){
+  // recplace ingredient form with new step form
+  $("#new-ingredient-form").replaceWith("<%= j render(:partial => '/recipes/new_step_form') %>"); 
+  // validate new step form
+  $("#new_recipe_step").validate({
+    rules: {
+      "recipe_step[directions]":{
+        required: true,
+        minlength: 10
+      }
+    },
+    messages: {
+      "recipe_step[directions]":{
+        required: "Enter directions",
+        minlength: "At least 10 letters"
+      }
+    }
+  });
+});
+// (similar as recipes/create.js.erb)
+// autocomplete
+$( ".ingredient-name-autofill" ).autocomplete({
+      source: $('.ingredient-name-autofill').data('autocomplete-source')
  });
+$(".unit-autofill").autocomplete({
+      source: $('.unit-autofill').data('autocomplete-source')
+ });
+
+// validate form
+$("#new_ingredients_recipe").validate({
+  rules: {
+    "ingredients_recipe[amount]":{
+      required: true,
+    },
+    "ingredients_recipe[amount_unit]":{
+      required: true,
+      minlength: 2
+    },
+    "ingredients_recipe[display_name]":{
+      required: true,
+      minlength: 2
+    },
+    "ingredients_recipe[ingredient_attributes][name]":{
+      required: true,
+      minlength: 2
+    },
+  },
+  messages: {
+    "ingredients_recipe[amount]":{
+      required: "Enter amount",
+      range: "Between 0 and 100"
+    },
+    "ingredients_recipe[amount_unit]":{
+      required: "Enter unit",
+      minlength: "At least 2 letters"
+    },
+    "ingredients_recipe[display_name]":{
+    	required: "Enter name",
+    	minlength: "At least 2 letters"
+    },
+    "ingredients_recipe[ingredient_attributes][name]":{
+    	required: "Enter name",
+    	minlength: "At least 2 letters"
+    },
+  }
+});

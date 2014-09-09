@@ -17,10 +17,10 @@
   background-repeat: no-repeat;
 	height: 430px;
 	width: 100%;
-	border: 5px solid $lightgreen;
+	border-top: 5px solid $lightgreen;
+	border-bottom: 5px solid $lightgreen;
 }
 
 .wide-image-container {
 	padding: 0px;
-	margin-top: -100px;
 }

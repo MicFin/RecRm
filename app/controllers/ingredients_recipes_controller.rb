@@ -2,7 +2,7 @@ class IngredientsRecipesController < ApplicationController
   include IngredientsRecipesHelper
   # skip_before_action :verify_authenticity_token
   before_action :set_ingredients_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :set_options, only: [:new, :edit]
+  before_action :set_options, only: [:new, :edit, :create]
 
   # GET /ingredients_recipes
   # GET /ingredients_recipes.json
@@ -55,6 +55,14 @@ class IngredientsRecipesController < ApplicationController
   # POST /ingredients_recipes
   # POST /ingredients_recipes.json
   def create
+    #mark as main or optional
+    if params["ingredients_recipe"]["options"] == "main"
+      params["ingredients_recipe"]["main_ingredient"] = true
+      params["ingredients_recipe"].delete("options")
+    elsif params["ingredients_recipe"]["options"] == "optional"
+      params["ingredients_recipe"]["optional_ingredient"] = true
+      params["ingredients_recipe"].delete("options")
+    end
     # create new ingredients recipe with params
     @ingredients_recipe = IngredientsRecipe.new(ingredients_recipe_params)
     # set ingredient name to see if it exists yet
@@ -63,8 +71,6 @@ class IngredientsRecipesController < ApplicationController
     @ingredients_recipe.find_or_create_ingredient(ingredient_name)
     @recipe_id = params["recipe_id"]
     @ingredients_recipe.recipe_id = @recipe_id
-    binding.pry
-    # respond to...
     respond_to do |format|
       if @ingredients_recipe.save
         format.html { redirect_to @ingredients_recipe, notice: 'Recipe ingredient was successfully created.' }
@@ -75,7 +81,12 @@ class IngredientsRecipesController < ApplicationController
         @ingredient = Ingredient.new 
         @all_ingredients = Ingredient.order(:name).map(&:name)
         @recipe_id = @recipe_id
+        # for preview of ingredients
         @ingredients = Recipe.find(@recipe_id).ingredients_recipes
+        # for filling unit auto fill options for next ingredient
+        @units = @units
+        # for when user clicks next and goes to new step
+        @recipe_step = RecipeStep.new
         format.js 
       else
         format.html { render :new }
@@ -124,8 +135,8 @@ class IngredientsRecipesController < ApplicationController
     end
 
     def set_options
-      @units = ["cup", "teaspoon", "tablespoon", "ounce", "pound", "fluid ounce", "gill", "pint", "quart", "gallon", "milliliter", "liter", "deciliter", "milligram", "gram", "kilogram", "pinch", "handful", "dash", "to taste", "bushel", "drop", "piece", "whole", "half", "slice", "cloves", "each", "as needed", "sprig", "dash", "once around the pot", "spear", "stalk", "splash", "dollop", "loaf", "square", "pat", "sheet", "wedge", "ear", "section"].sort
-      get_ingredient_prep_options!
+      get_units!
+      @units = @units
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

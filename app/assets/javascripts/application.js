@@ -7,22 +7,25 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // compiled file.
 //
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets/directives) for details
 // about supported directives.
 //
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require jquery.ui.core
+//= require jquery.ui.widget
+//= require jquery.ui.mouse
+//= require jquery.ui.position
 //= require jquery.ui.slider
 //= require jquery.ui.autocomplete
-
+//= require jquery.ui.sortable
 
 //= require bootstrap
 //= require dietitian_nav
-//= require recipes_form
 //= require articles_form
 //= require recipe_basic_info_form
-//= require new_ingredient_form
+//= require new_recipe
 
 
 

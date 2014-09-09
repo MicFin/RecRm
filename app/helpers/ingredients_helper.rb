@@ -15,5 +15,4 @@ module IngredientsHelper
 
 	end
 
-
 end

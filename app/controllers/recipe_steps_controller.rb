@@ -26,13 +26,33 @@ class RecipeStepsController < ApplicationController
   # POST /recipe_steps
   # POST /recipe_steps.json
   def create
+    params["recipe_step"]["ingredients_recipe_ids"] = params["recipe_step"]["ingredients_recipe_ids"].reject! { |c| c.empty? }
     @recipe_step = RecipeStep.new(recipe_step_params)
-
     respond_to do |format|
       if @recipe_step.save
         format.html { redirect_to @recipe_step, notice: 'Recipe step was successfully created.' }
         format.json { render :show, status: :created, location: @recipe_step }
-        ## want it to  change to allergen tagging
+        ## to show preview of steps
+        @recipe = Recipe.find(params["recipe_step"]["recipe_id"])
+        ### should sort by position
+        @steps = @recipe.recipe_steps
+        # for ingredients to select for next step
+        @ingredients = @recipe.ingredients_recipes
+        # for adding next step
+        @recipe_step = RecipeStep.new
+        # for hidden form of next step
+        @recipe_id = @recipe.id
+        # for allergen form 
+        @ingredient = @recipe.ingredients.first
+        # recipe ingredients that are already tagged with allergens
+        @ingredients_tagged = @recipe.ingredients_tagged
+        # recipe ingredients that are not tagged with allergens yet
+        @ingredients_not_tagged = @recipe.ingredients_not_tagged
+        @top_allergens = Allergen.first(15)
+        @all_allergens = Allergen.order(:name).map(&:name)
+        if @ingredient.suggested_allergens
+          @suggested_allergens = @ingredient.suggested_allergens     
+        end 
         format.js
       else
         format.html { render :new }
@@ -41,23 +61,30 @@ class RecipeStepsController < ApplicationController
     end
   end
 
-  # POST /recipe_steps
-  # POST /recipe_steps.json
-  def create_and_add
-    @recipe_step = RecipeStep.new(recipe_step_params)
-
-    respond_to do |format|
-      if @recipe_step.save
-        format.html { redirect_to @recipe_step, notice: 'Recipe step was successfully created.' }
-        format.json { render :show, status: :created, location: @recipe_step }
-        ## want it to change to new allergen form and show on right
-        format.js
-      else
-        format.html { render :new }
-        format.json { render json: @recipe_step.errors, status: :unprocessable_entity }
-      end
+  # when sortable list is adjusted, it calls this method to save
+  def sort
+    params[:steps].each_with_index do |id, index|
+      RecipeStep.find(id).update(position: index+1)
+      # Faq.update_all({position: index+1}, {id: id})
     end
+    render nothing: true
   end
+  # # POST /recipe_steps
+  # # POST /recipe_steps.json
+  # def create_and_add
+  #   @recipe_step = RecipeStep.new(recipe_step_params)
+
+  #   respond_to do |format|
+  #     if @recipe_step.save
+  #       format.html { redirect_to @recipe_step, notice: 'Recipe step was successfully created.' }
+  #       format.json { render :show, status: :created, location: @recipe_step }
+  #       format.js
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @recipe_step.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # GET /recipe_steps/1/edit
   def edit
@@ -100,6 +127,6 @@ class RecipeStepsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_step_params
-      params.require(:recipe_step).permit(:step_number, :directions, :recipe_id, :ingredient_ids => [])
+      params.require(:recipe_step).permit(:step_number, :directions, :recipe_id, :ingredients_recipe_ids => [])
     end
 end

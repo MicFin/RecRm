@@ -5,7 +5,7 @@ class IngredientsRecipe < ActiveRecord::Base
 	belongs_to :ingredient
 	belongs_to :recipe
   accepts_nested_attributes_for :ingredient
-
+  has_and_belongs_to_many :recipe_steps
   # could not get client side validation to work on this new ingredients recipe form so removed server validation until both are working)
   # validates :amount, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
 
@@ -42,19 +42,9 @@ class IngredientsRecipe < ActiveRecord::Base
   def autosave_associated_records_for_ingredient
   end
 
-  ## return the full name of the ingredient including both prep terms
-  # def full_name
-  #   prep1 = self.prep
-  #   prep2 = self.prep2
-  #   if prep1 != nil 
-  #     full_name = prep1 + " " + self.ingredient.name
-  #   else
-  #     full_name = self.ingredient.name
-  #   end
-  #   if prep2 != nil 
-  #     full_name += " " + prep2 
-  #   end
-  #   return full_name
-  # end
+  # return the full name of the ingredient including both prep terms
+  def full_name
+    return "#{self.amount} #{self.amount_unit} #{self.display_name}" 
+  end
 
 end

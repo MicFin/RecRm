@@ -1,13 +1,54 @@
-// add preview of basic info
+// 
 $("#basic-info-container").replaceWith("<%= j render(:partial => 'basic_info_show') %>");
 
 
 $("#basic-info-form").replaceWith("<%= j render(:partial => 'new_ingredient_form') %>");
 $(".hidden-form").hide();
-$( ".ingredient-name" ).autocomplete({
-      source: $('.ingredient-name').data('autocomplete-source')
+// autcomplte forms
+$( ".ingredient-name-autofill" ).autocomplete({
+      source: $('.ingredient-name-autofill').data('autocomplete-source')
  });
-
+$(".unit-autofill").autocomplete({
+      source: $('.unit-autofill').data('autocomplete-source')
+ });
+// validate form
+$("#new_ingredients_recipe").validate({
+  rules: {
+    "ingredients_recipe[amount]":{
+      required: true,
+    },
+    "ingredients_recipe[amount_unit]":{
+      required: true,
+      minlength: 2
+    },
+    "ingredients_recipe[display_name]":{
+      required: true,
+      minlength: 2
+    },
+    "ingredients_recipe[ingredient_attributes][name]":{
+      required: true,
+      minlength: 2
+    },
+  },
+  messages: {
+    "ingredients_recipe[amount]":{
+      required: "Enter amount",
+      range: "Between 0 and 100"
+    },
+    "ingredients_recipe[amount_unit]":{
+      required: "Enter unit",
+      minlength: "At least 2 letters"
+    },
+    "ingredients_recipe[display_name]":{
+    	required: "Enter name",
+    	minlength: "At least 2 letters"
+    },
+    "ingredients_recipe[ingredient_attributes][name]":{
+    	required: "Enter name",
+    	minlength: "At least 2 letters"
+    },
+  }
+});
 // add hash and add to history
 $(document).ready(function() {
 	window.location.hash = 'ingredients';

@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
-  autocomplete :allergen, :name
+
   # # GET /ingredients
   # # GET /ingredients.json
   # def index
@@ -41,32 +41,42 @@ class IngredientsController < ApplicationController
   #     end
   #   end
   # end
+  def new_method
+    binding.pry
+  end
 
   # PATCH/PUT /ingredients/1
   # PATCH/PUT /ingredients/1.json
   def update
-    # if ingredient is not marked as its own allergen 
+    params["ingredient"]["allergen_ids"] = params["ingredient"]["allergen_ids"].reject! { |c| c.empty? }
+    # if ingredient is not tagged as its own allergen then tag it
     if @ingredient.allergens.where(name: @ingredient.name).count != 1
-      # create allergen and add to ingredient allergens param
-      allergen = Allergen.create(name: @ingredient.name)
-      allergen.save!
-      params["ingredient"]["allergen_ids"].push(allergen.id)
+      # if it is a common allergen mark it
+      if params["ingredient"]["common_allergen"]
+        @ingredient.common_allergen = true 
+        @allergen = Allergen.create(name: @ingredient.name, common_allergen: true)
+        @allergen.common_allergen = true
+        params["ingredient"].delete("common_allergen")
+      else
+        @allergen = Allergen.create(name: @ingredient.name) 
+      end  
+      @allergen.save!
+      params["ingredient"]["allergen_ids"].push(@allergen.id)
     else
-      # else add self-allergen to allergen array
-      allergen = Allergen.where(name: @ingredient.name).first
-      params["ingredient"]["allergen_ids"].push(allergen.id)
+      # else add self-allergen to allergen array for update of new selects
+      @allergen = Allergen.where(name: @ingredient.name).first
+      params["ingredient"]["allergen_ids"].push(@allergen.id)
     end
-    # recipe ID passed from allergens ingredients index add allergy to ingredient button
-    @recipe_id = params["ingredient"]["recipe_id"].to_i
-    # delete recipe ID from the params before saving ingredient
-    params["ingredient"].delete("recipe_id")
-    # delete input field for new allergens from params
-    params["ingredient"].delete("allergen")
+    # recipe ID passed 
+    @recipe_id = params["recipe_id"].to_i
     # find or create new allergen and add to allergen params
-    if params["extra_allergens"]
-      params["extra_allergens"].each do |allergen_name|
-        allergen = Allergen.find_or_create_by(name: allergen_name)
-        params["ingredient"]["allergen_ids"].push(allergen.id)
+    if params["ingredient"]["extra_allergens"]
+      params["ingredient"]["extra_allergens"].each do |allergen_name|
+        added_allergen = Allergen.where(name: allergen_name).first 
+        if added_allergen == nil
+          added_allergen = Allergen.create(name: allergen_name, manual_enter: true)
+        end
+        params["ingredient"]["allergen_ids"].push(added_allergen.id)
       end
     end
     respond_to do |format|
@@ -76,6 +86,28 @@ class IngredientsController < ApplicationController
         format.json { render :show, status: :ok, location: @ingredient }
         ## want it to go to the next one, and add to the right
         ## if last one then go to review
+        @recipe = Recipe.find(@recipe_id)
+        # for allergen form 
+        if @recipe.ingredients_not_tagged.count >= 1
+          @ingredient = @recipe.ingredients_not_tagged.first
+          @tagging_done = false
+          if @ingredient.suggested_allergens
+            @suggested_allergens = @ingredient.suggested_allergens  
+          end 
+        else
+          @tagging_done = true
+        end
+          # for patient group forms (needs to be available even when doing another ingredient)
+          @allergies = PatientGroup.allergies
+          @diseases = PatientGroup.diseases
+          @intolerances = PatientGroup.intolerances
+        # recipe ingredients that are already tagged with allergens
+        @ingredients_tagged = @recipe.ingredients_tagged
+        # recipe ingredients that are not tagged with allergens yet
+        @ingredients_not_tagged = @recipe.ingredients_not_tagged
+        @top_allergens = Allergen.first(15)
+        @all_allergens = Allergen.order(:name).map(&:name)
+   
         format.js 
       else
         format.html { render :edit }
@@ -106,6 +138,6 @@ class IngredientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :category, :allergen_ids => [])
+      params.require(:ingredient).permit(:name, :category, :common_allergen, :allergen_ids => [])
     end
 end

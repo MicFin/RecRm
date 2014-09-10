@@ -15,11 +15,11 @@ module CharacteristicsHelper
       
       @difficulties = Characteristic.where(category: "Difficulty")
       @difficulty_count = @difficulties.count
-      # @courses = @recipe.characteristics.where(category: "Course")
+      @courses = Characteristic.where(category: "Course")
       # @age_groups = @recipe.characteristics.where(category: "Age Group")
-      # @scenarios = @recipe.characteristics.where(category: "Scenario")
+      @scenarios = Characteristic.where(category: "Scenario")
       # @holidays = @recipe.characteristics.where(category: "Holiday")
-      # @cultures = @recipe.characteristics.where(category: "Culture")
+      @cultures = @recipe.characteristics.where(category: "Culture")
     end
 
 	def do_somthing!

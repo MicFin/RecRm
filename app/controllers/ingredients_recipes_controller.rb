@@ -64,6 +64,7 @@ class IngredientsRecipesController < ApplicationController
       params["ingredients_recipe"].delete("options")
     end
     # create new ingredients recipe with params
+    ## drops ingredient_attribuets since now allowed in params
     @ingredients_recipe = IngredientsRecipe.new(ingredients_recipe_params)
     # set ingredient name to see if it exists yet
     ingredient_name  = params["ingredients_recipe"]["ingredient_attributes"]["name"]

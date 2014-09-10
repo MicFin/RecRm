@@ -1,6 +1,22 @@
-// remove the ingredients edit form
-$("#edit-ingredient-form").remove();
-// show the link to add allergens
-$("#ingredient-lists-container").show();
-// insert the ingredients_recipes show.html.erb of current ingredients_recipe
-$('#tagged-ingredients').append('<%= j render(@ingredient) %>');
+// if more ingredients need to be tagged then
+if (<%= @tagging_done %> === false){
+	$("#allergens-form").replaceWith("<%= j render(:partial => '/recipe_steps/allergens_ingredient_form') %>");
+  $("#allergens-preview").replaceWith("<%= j render(:partial => '/recipes/allergens_ingredient_preview') %>");
+  $( ".allergen-autofill" ).autocomplete({
+      source: $('.allergen-autofill').data('autocomplete-source')
+  });
+  // when add allergen is clicked add html form
+  $("#add-allergen").on("click", function(){
+    var html = "<li><label class='checkbox'><input class='check_boxes optional' name='ingredient[extra_allergens][]' type='checkbox' value='"+$("#ingredient_allergen_name").val()+"' checked>"+$("#ingredient_allergen_name").val()+"</label></li>";
+    $("#added-allergens ul").append(html);
+  });
+
+} else if (<%= @tagging_done %> === true){
+	$("#allergens-form").replaceWith("<%= j render(:partial => '/recipes/nutrition_groups_form') %>");
+  $("#allergens-preview").replaceWith("<%= j render(:partial => '/recipes/groups_preview') %>");
+    // change breadcrumb to allergy info
+  $("#recipe-breadcrumb li").removeClass("active");
+  $("#breadcrumb-recipe-group").addClass("active");
+} else {
+	alert("none")
+};

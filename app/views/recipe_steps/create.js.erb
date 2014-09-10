@@ -22,22 +22,21 @@ $("#sortable").sortable({
 
 $( "#sortable" ).disableSelection();
 
-// next button goes to next step
+// next button goes to tag allergens
 $(".next-button").on("click", function(){
   $("#new-steps-form").replaceWith("<%= j render(:partial => 'allergens_ingredient_form') %>");
   $("#recipe-essentials-preview").replaceWith("<%= j render(:partial => '/recipes/allergens_ingredient_preview') %>");
   $( ".allergen-autofill" ).autocomplete({
       source: $('.allergen-autofill').data('autocomplete-source')
   });
-});
-
-
-
-$( ".ingredient-name-autofill" ).autocomplete({
-      source: $('.ingredient-name-autofill').data('autocomplete-source')
-});
-$(".unit-autofill").autocomplete({
-      source: $('.unit-autofill').data('autocomplete-source')
+  // change breadcrumb to allergy info
+  $("#recipe-breadcrumb li").removeClass("active");
+  $("#breadcrumb-allergy-information").addClass("active");
+  // when add allergen is clicked add html form
+  $("#add-allergen").on("click", function(){
+    var html = "<li><label class='checkbox'><input class='check_boxes optional' name='ingredient[extra_allergens][]' type='checkbox' value='"+$("#ingredient_allergen_name").val()+"' checked>"+$("#ingredient_allergen_name").val()+"</label></li>";
+    $("#added-allergens ul").append(html);
+  })
 });
 
 

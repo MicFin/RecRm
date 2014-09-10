@@ -1,4 +1,5 @@
 class MarketingItemsController < ApplicationController
+  include CharacteristicsHelper
   before_filter :load_marketing_itemable
   before_filter :set_marketing_item, only: [:update, :edit]
   before_filter :set_characteristic_display, only: [:new]
@@ -10,49 +11,49 @@ class MarketingItemsController < ApplicationController
     @new_headline = @marketing_itemable.marketing_items.new(category: "headline", order: 1, dietitian_id: current_dietitian.id)
   end
 
-  def new_titles
-    # need logic to create as many titles as there are patient groups
-    @new_title = @marketing_itemable.marketing_items.new(category: "title", order: 1, dietitian_id: current_dietitian.id)
-  end
+  # def new_titles
+  #   # need logic to create as many titles as there are patient groups
+  #   @new_title = @marketing_itemable.marketing_items.new(category: "title", order: 1, dietitian_id: current_dietitian.id)
+  # end
 
-  def create_titles
-    # need logic to create as many titles as there are patient groups
-    @marketing_item = @marketing_itemable.marketing_items.new(marketing_item_params)
-    respond_to do |format|
-      if @marketing_item.save
-        format.html { redirect_to [@marketing_itemable, :marketing_items], notice: "Marketing Item created."}
-        format.json { render :show, status: :created, location: @marketing_item} 
-        # want it to put on right and go to new descriptions
-        format.js
-      else
-        format.html { render :new }
-        format.json { render json: @marketing_itemable.errors, status: :unprocessable_entity }
-        format.js
-      end
-    end
-  end
+  # def create_titles
+  #   # need logic to create as many titles as there are patient groups
+  #   @marketing_item = @marketing_itemable.marketing_items.new(marketing_item_params)
+  #   respond_to do |format|
+  #     if @marketing_item.save
+  #       format.html { redirect_to [@marketing_itemable, :marketing_items], notice: "Marketing Item created."}
+  #       format.json { render :show, status: :created, location: @marketing_item} 
+  #       # want it to put on right and go to new descriptions
+  #       format.js
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @marketing_itemable.errors, status: :unprocessable_entity }
+  #       format.js
+  #     end
+  #   end
+  # end
 
-  def new_descriptions
-    # need logic to create as many descriptions as there are patient groups
-    @new_title = @marketing_itemable.marketing_items.new(category: "description", order: 1, dietitian_id: current_dietitian.id)
-  end
+  # def new_descriptions
+  #   # need logic to create as many descriptions as there are patient groups
+  #   @new_title = @marketing_itemable.marketing_items.new(category: "description", order: 1, dietitian_id: current_dietitian.id)
+  # end
   
-  def create_descriptions
-    # need logic to create as many descriptions as there are patient groups
-    @marketing_item = @marketing_itemable.marketing_items.new(marketing_item_params)
-    respond_to do |format|
-      if @marketing_item.save
-        format.html { redirect_to [@marketing_itemable, :marketing_items], notice: "Marketing Item created."}
-        format.json { render :show, status: :created, location: @marketing_item} 
-        # want it to put on right and go to recipes_review page
-        format.js
-      else
-        format.html { render :new }
-        format.json { render json: @marketing_itemable.errors, status: :unprocessable_entity }
-        format.js
-      end
-    end
-  end
+  # def create_descriptions
+  #   # need logic to create as many descriptions as there are patient groups
+  #   @marketing_item = @marketing_itemable.marketing_items.new(marketing_item_params)
+  #   respond_to do |format|
+  #     if @marketing_item.save
+  #       format.html { redirect_to [@marketing_itemable, :marketing_items], notice: "Marketing Item created."}
+  #       format.json { render :show, status: :created, location: @marketing_item} 
+  #       # want it to put on right and go to recipes_review page
+  #       format.js
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @marketing_itemable.errors, status: :unprocessable_entity }
+  #       format.js
+  #     end
+  #   end
+  # end
 
   def new
     @new_tweet = @marketing_itemable.marketing_items.new(category: "tweet", order: 1, dietitian_id: current_dietitian.id)
@@ -70,6 +71,11 @@ class MarketingItemsController < ApplicationController
         format.html { redirect_to [@marketing_itemable, :marketing_items], notice: "Marketing Item created."}
         format.json { render :show, status: :created, location: @marketing_item} 
         format.js
+        @recipe = @marketing_item.marketing_itemable
+        get_recipe_characteristics!
+        @cook_times = @cook_times
+        @prep_times = @prep_times
+        @difficulties = @difficulties
       else
         format.html { render :new }
         format.json { render json: @marketing_itemable.errors, status: :unprocessable_entity }
@@ -83,9 +89,11 @@ class MarketingItemsController < ApplicationController
   def update
     respond_to do |format|
       if @marketing_item.update(marketing_item_params)
+        binding.pry
         format.html { redirect_to @marketing_item, notice: 'Marketing Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @marketing_item }
         format.js
+
       else
         format.html { render :edit }
         format.json { render json: @marketing_item.errors, status: :unprocessable_entity }

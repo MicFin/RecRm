@@ -3,11 +3,11 @@ class RecipesController < ApplicationController
 	include StepsHelper
 	include IngredientsHelper
   include IngredientsRecipesHelper
-
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy,:edit_recipe_group, :review_recipe]
+  before_filter :load_marketing_itemable, only: [:update]
+  ## might not need load marketing itemable
+  before_action :set_recipe, only: [:show, :edit, :destroy,:edit_recipe_group, :review_recipe]
   before_action :set_characteristic_forms, only: [:new, :edit]
   before_action :set_characteristic_display, only: [:edit_recipe_group, :show, :review_recipe]
-  before_action :set_options, only: [:new, :edit, :create]
   # GET /recipes
   # GET /recipes.json
   def index
@@ -121,47 +121,48 @@ class RecipesController < ApplicationController
   #   end
   # end
 
-  def select_health_groups
-    @allergies = PatientGroup.allergies
-    @diseases = PatientGroup.diseases
-    @intolerances = PatientGroup.intolerances
-  end
+  # def select_health_groups
+  #   @allergies = PatientGroup.allergies
+  #   @diseases = PatientGroup.diseases
+  #   @intolerances = PatientGroup.intolerances
+  # end
 
-  def add_health_groups
-    respond_to do |format|
-      if @recipe.update(recipe_params)
-        format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
-        format.json { render :show, status: :ok, location: @recipe }
-        # we want it to add to right and go to select meal_info
-        format.js
-      else
-        set_characteristic_forms
-        format.html { render :edit }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def add_health_groups
+  #   binding.pry
+  #   respond_to do |format|
+  #     if @recipe.update(recipe_params)
+  #       format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @recipe }
+  #       # we want it to add to right and go to select meal_info
+  #       format.js
+  #     else
+  #       set_characteristic_forms
+  #       format.html { render :edit }
+  #       format.json { render json: @recipe.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
-  def select_meal_info
-    @courses = PatientGroup.allergies
-    @meals = PatientGroup.diseases
-    @culture = PatientGroup.intolerances
-  end
+  # def select_meal_info
+  #   @courses = PatientGroup.allergies
+  #   @meals = PatientGroup.diseases
+  #   @culture = PatientGroup.intolerances
+  # end
 
-  def add_meal_info
-    respond_to do |format|
-      if @recipe.update(recipe_params)
-        format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
-        format.json { render :show, status: :ok, location: @recipe }
-        # we want it to add to right and go to marketing new
-        format.js
-      else
-        set_characteristic_forms
-        format.html { render :edit }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def add_meal_info
+  #   respond_to do |format|
+  #     if @recipe.update(recipe_params)
+  #       format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @recipe }
+  #       # we want it to add to right and go to marketing new
+  #       format.js
+  #     else
+  #       set_characteristic_forms
+  #       format.html { render :edit }
+  #       format.json { render json: @recipe.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # GET /recipes/1/edit
   def edit
@@ -177,14 +178,38 @@ class RecipesController < ApplicationController
   end
 
   # PATCH/PUT /recipes/1
-  # PATCH/PUT /recipes/1.json
+  # PATCH/PUdT /recipes/1.json
   def update
+    if params["recipe"]["patient_group_ids"]
+      params["recipe"]["patient_group_ids"] = params["recipe"]["patient_group_ids"].reject! { |c| c.empty? }
+    elsif params["recipe"]["characteristic_ids"]
+      params["recipe"]["characteristic_ids"] = params["recipe"]["characteristic_ids"].reject! { |c| c.empty? }
+    end
+    @recipe = Recipe.find(params["recipe_id"])
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
+          ## for meal tagging
+        @courses = Characteristic.where(category: "Course")
+        @scenarios = Characteristic.where(category: "Scenario")
+        @cultures = Characteristic.where(category: "Culture")
+        ## FOR REVIEW
+        @cook_times = Characteristic.where(category: "Cook Time")
+        @prep_times = Characteristic.where(category: "Prep Time")
+        @difficulties = Characteristic.where(category: "Difficulty")
+          # for marketing tagging
+          if @recipe.patient_groups.count >=1
+            @marketing_items ={}
+            @recipe.patient_groups.each do |patient_group|
+              @marketing_items[patient_group] = {"title"=> @marketing_itemable.marketing_items.new(category: "title", dietitian_id: current_dietitian.id)}, {"description" => @marketing_itemable.marketing_items.new(category: "description", dietitian_id: current_dietitian.id)}
+            end
+          else
+            @marketing_items ={}
+            @marketing_items["General Health"] = {"title" => @marketing_itemable.marketing_items.new(category: "title", dietitian_id: current_dietitian.id)}, {"description" => @marketing_itemable.marketing_items.new(category: "description", dietitian_id: current_dietitian.id)}
+          end
+        format.js
       else
-        set_characteristic_forms
         format.html { render :edit }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
@@ -207,11 +232,6 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find(params[:id])
     end
 
-    def set_options
-      get_units!
-      @units = @units
-    end
-
     ### make as global helper method because also used in marketing_items_controller
     def set_characteristic_display
       @cook_time = @recipe.characteristics.where(category: "Cook Time").first
@@ -222,6 +242,11 @@ class RecipesController < ApplicationController
       @scenarios = @recipe.characteristics.where(category: "Scenario")
       @holidays = @recipe.characteristics.where(category: "Holiday")
       @cultures = @recipe.characteristics.where(category: "Culture")
+    end
+
+    def load_marketing_itemable
+      klass = [Article, Recipe].detect { |c| params["#{c.name.underscore}_id"]}
+      @marketing_itemable = klass.find(params["#{klass.name.underscore}_id"])
     end
 
     def set_characteristic_forms

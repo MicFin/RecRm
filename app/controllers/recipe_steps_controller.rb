@@ -42,17 +42,23 @@ class RecipeStepsController < ApplicationController
         @recipe_step = RecipeStep.new
         # for hidden form of next step
         @recipe_id = @recipe.id
-        # for allergen form 
-        @ingredient = @recipe.ingredients.first
+        ##### for allergen form 
+       if @recipe.ingredients_not_tagged.count >= 1
+          @ingredient = @recipe.ingredients_not_tagged.first
+          @tagging_done = false
+          if @ingredient.suggested_allergens
+            @suggested_allergens = @ingredient.suggested_allergens  
+          end 
+        else
+          @tagging_done = true
+        end
         # recipe ingredients that are already tagged with allergens
         @ingredients_tagged = @recipe.ingredients_tagged
         # recipe ingredients that are not tagged with allergens yet
         @ingredients_not_tagged = @recipe.ingredients_not_tagged
+        #### should only be safe for the recipe
         @top_allergens = Allergen.first(15)
         @all_allergens = Allergen.order(:name).map(&:name)
-        if @ingredient.suggested_allergens
-          @suggested_allergens = @ingredient.suggested_allergens     
-        end 
         format.js
       else
         format.html { render :new }

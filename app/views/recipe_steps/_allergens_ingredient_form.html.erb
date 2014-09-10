@@ -5,7 +5,7 @@
                   <h2>Identify all allergens for:</h2>
                 </div>
                 <div class="form-group col-xs-12">
-                  <h1> Chicken </h1>
+                  <h1> <%=@ingredient.name%></h1>
                   <div class="col-xs-8 col-xs-offset-2 alert alert-danger" role="alert">
                     <p>You are the first person to enter this ingredient.</p>
                     <p>Take careful consideration when tagging.</p>
@@ -20,7 +20,7 @@
                   	<%= ingredient_form.association :allergens, as: :check_boxes, collection: @top_allergens, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-2 select-allergen-box"%>
                   </div>
                 </div>
-                <% if @suggested_allergens.count > 1 %>
+                <% if @suggested_allergens %>
                 <div class="form-group col-xs-12">
                   <div class="col-xs-12 text-left">
                     <label>Does the ingredient contain any of these suggested allergens?</label>
@@ -35,14 +35,19 @@
                     <label>Need to find an allergen no listed?  Search our database.</label>
                   </div>
                   <div class="row text-left">
+                  <input type="hidden" name="recipe_id" id: "hidden-recipe" value="<%=@recipe_id%>">
                     <div class="col-xs-6 col-xs-offset-1">
                       <%= ingredient_form.fields_for :allergen, @allergen do |allergen_form| %>
                         <%= allergen_form.input :name, input_html: { class: "allergen-autofill form-control", data: {autocomplete_source: @all_allergens}}, placeholder: "peanut", label: false %>                  
                       <% end %> 
                     </div>
-
-                       <%#= ingredient_form.input :name,  input_html: { class: "ingredient-name-autofill form-control", data: {autocomplete_source: @all_ingredients}}, placeholder: "banana", label: false %>
-                      <%# end %> 
+                    <div class="form-group col-xs-4">
+                      <button type="button" class="glyphicon glyphicon-plus-sign btn btn-success btn-lg" id="add-allergen">Add</button>
+                    </div>
+                    <div class="col-xs-12" id="added-allergens">
+                      <ul>
+                      </ul>
+                    </div>
                     <div class="col-xs-5 alert alert-warning text-center" role="alert">
                       Looking for an allergen that is not in our database, please let us know. <a href="">Click here!</a>
                     </div>
@@ -53,13 +58,12 @@
                     <label>This ingredient is a common allergen found in other ingredients. </label>
                     <p>(examples: peanut, strawberry, or rice)    
                     <label class="light-orange-font">
-                      <input type="checkbox" value="">
+                      <input type="checkbox" name="ingredient[common_allergen]" value="true">
                       yes
                     </label></p>
                   </div>
                 </div>
               </div>
-              <% end %>
               <div class="row text-center">
                 <div class="form-group">
                   <p>Done tagging this ingredient?
@@ -69,5 +73,5 @@
               <div class="form-group text-center"> 
                 <button type="submit" class=" btn btn-success btn-lg">NEXT</button>
               </div>
-            </form>
+             <% end %>
           </div>

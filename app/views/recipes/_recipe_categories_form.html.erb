@@ -1,0 +1,40 @@
+<div id="recipe-categories-form">
+    <%= simple_form_for @recipe, 
+    :url => url_for(:action => 'update', :controller => 'recipes'),
+    :method => 'patch', remote: true, :multipart => true do |f| %>
+    <div class=" form-group row text-center">
+      <div class="col-xs-12 form-group">
+        <h2>How would you categorize this recipe?</h2>
+        <p>(only check if applicable)</p>
+      </div>
+      <div class="form-group col-xs-12">
+          <div class="col-xs-12">
+            <label>Meal:</label>
+          </div>
+          <div class="col-xs-12 text-left">
+               <%= f.association :characteristics, as: :check_boxes, collection: @scenarios, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-2 select-allergen-box" %>
+          </div>
+        <div class="col-xs-12 text-left">
+          <div class="col-xs-12">
+            <label>Courses:</label>
+          </div>
+          <div class="col-xs-12 text-left">
+              <%= f.association :characteristics, as: :check_boxes, collection: @courses, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-2 select-allergen-box" %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12 text-left">
+        <div class="col-xs-12">
+          <label>Is your recipe a cultural dish?</label>
+        </div>
+        <div class="col-xs-12 checkbox">
+              <%= f.association :characteristics, as: :check_boxes, collection: @cultures, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-2 select-allergen-box" %>           
+        </div>
+      </div>
+    </div>
+    <input type="hidden" name="recipe_id" id: "hidden-recipe" value="<%=@recipe.id%>">
+    <div class="form-group text-center"> 
+      <button type="submit" class=" btn btn-success btn-lg">NEXT</button>
+    </div>
+  <% end %>
+</div>

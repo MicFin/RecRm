@@ -26,7 +26,8 @@
 //= require articles_form
 //= require recipe_basic_info_form
 //= require new_recipe
-
+//= require recipe_ingredient_form
+//= require recipe_step_list
 
 
 

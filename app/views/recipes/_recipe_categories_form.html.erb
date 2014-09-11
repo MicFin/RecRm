@@ -1,7 +1,7 @@
 <div id="recipe-categories-form">
     <%= simple_form_for @recipe, 
     :url => url_for(:action => 'update', :controller => 'recipes'),
-    :method => 'patch', remote: true, :multipart => true do |f| %>
+    :method => 'patch', :multipart => true do |f| %>
     <div class=" form-group row text-center">
       <div class="col-xs-12 form-group">
         <h2>How would you categorize this recipe?</h2>

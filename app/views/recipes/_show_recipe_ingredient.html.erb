@@ -1,0 +1,13 @@
+<div id="ingredients-container">
+  <div class="row text-center preview-info"> 
+			<div class="col-xs-12">
+        <h4 class="ingredient-preview"><%=ingredient.amount%> <%=ingredient.amount_unit%> <%= ingredient.display_name%> (<%=ingredient.ingredient.name%>) 
+        	<% if ingredient.main_ingredient == true %>
+        		 <span class="main-tag">main</span>
+					<% elsif ingredient.optional_ingredient == true %>
+					  <span class="main-tag">optional</span>
+					<% end %>
+        </h4>
+      </div>
+  </div>
+</div>

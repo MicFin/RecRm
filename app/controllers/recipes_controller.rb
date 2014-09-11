@@ -22,41 +22,49 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
 
-	# def show
-	# 	# make sure to call this first
-	# 	@recipe = Recipe.find(params[:id])
+	def show
+		# make sure to call this first
+		@recipe = Recipe.find(params[:id])
 
-	# 	# ingredients_helper
-	# 	get_ingredients!
+		# ingredients_helper
+		get_ingredients!
 
-	# 	# steps_helper
-	# 	get_recipe_steps!
+		# steps_helper
+		get_recipe_steps!
 
-	# 	# characteristics_helper
-	# 	get_recipe_characteristics!
+		# characteristics_helper
+		get_recipe_characteristics!
 
-	# 	@recipe.ingredient_list = @recipe_ingredients
-	# 	@recipe.step_list = @recipe_steps
-	# 	@recipe.cook_time = @cook_time
-	# 	@recipe.prep_time = @prep_time
-	# 	@recipe.difficulty = @difficulty
-	# 	@recipe.courses = @courses
-	# 	@recipe.age_groups = @age_groups
-	# 	@recipe.scenarios = @scenarios
-	# 	@recipe.holidays = @holidays
-	# 	@recipe.cultures = @cultures
+		@recipe.ingredient_list = @recipe_ingredients
+		@recipe.step_list = @recipe_steps
+		@recipe.cook_time = @cook_time
+		@recipe.prep_time = @prep_time
+		@recipe.difficulty = @difficulty
+		@recipe.courses = @courses
+		@recipe.age_groups = @age_groups
+		@recipe.scenarios = @scenarios
+		@recipe.holidays = @holidays
+		@recipe.cultures = @cultures
 
-	# 	gon.rabl as: 'recipe'
-	# end
+		gon.rabl as: 'recipe'
+	end
 
   # GET /review_recipe/1
   # GET /review_recipe/1.json
   def review_recipe
+    get_units!
+    @cook_times = Characteristic.where(category: "Cook Time")
+    @prep_times = Characteristic.where(category: "Prep Time")
+    @difficulties = Characteristic.where(category: "Difficulty")
     @ingredients = @recipe.ingredients_recipes
-    @allergies = @recipe.allergies
-    @diseases = @recipe.diseases
-    @intolerances = @recipe.intolerances
-    @recipe_steps = @recipe.recipe_steps
+    @ingredients_count = @ingredients.count
+    @units = @units
+    @steps = @recipe.recipe_steps
+    # @allergies = @recipe.allergies
+    # @diseases = @recipe.diseases
+    # @intolerances = @recipe.intolerances
+
+    # @marketing_items = @recipe.marketing_items
   end
 
 
@@ -177,6 +185,23 @@ class RecipesController < ApplicationController
     @intolerances = PatientGroup.safe_intolerance_groups(@recipe.allergens)
   end
 
+
+  def quick_update
+    @recipe = Recipe.find(params["recipe_id"])
+    respond_to do |format|
+      if @recipe.update(recipe_params)
+        format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
+        format.json { render :show, status: :ok, location: @recipe }
+        @cook_times = Characteristic.where(category: "Cook Time")
+        @prep_times = Characteristic.where(category: "Prep Time")
+        @difficulties = Characteristic.where(category: "Difficulty")
+        format.js
+      else
+        format.html { render :edit }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # PATCH/PUT /recipes/1
   # PATCH/PUdT /recipes/1.json
   def update
@@ -188,6 +213,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params["recipe_id"])
     respond_to do |format|
       if @recipe.update(recipe_params)
+        ### notice how this redirects to review recipe
         format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
           ## for meal tagging

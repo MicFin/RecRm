@@ -1,0 +1,43 @@
+<div id="basic-info-form">
+  <div class="col-xs-12">
+      <h3>Start with the basics:</h3>
+  </div>
+  <%= simple_form_for @recipe, :remote => true, :url => {:controller => 'recipes', :action => 'quick_update'}, :html => {:method => "get", :multipart => true} do |f| %>
+    <% if @recipe.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+        <ul>
+        <% @recipe.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">What would you like the name of your recipe to be?</label>
+      <%= f.input :name, label: false,input_html: { class: "form-control", id: "recipe-name", placeholder: "Enter recipe name here"} %>
+    </div>
+    <div class="col-xs-12 form-group">
+      <label for="preptime">Preperation Time</label>
+      <%=  select_tag "recipe[prep_time]", options_from_collection_for_select(@prep_times, "name", "name")%>
+    </div>
+    <div class="col-xs-12 form-group">
+      <label for="cooktime">Cook Time</label>
+      <%=  select_tag "recipe[cook_time]", options_from_collection_for_select(@cook_times, "name", "name")%>
+    </div>
+    <div class="col-xs-12 form-group">
+      <label for="difficulty">Difficulty</label>
+      <%=  select_tag "recipe[difficulty]", options_from_collection_for_select(@difficulties, "name", "name")%>
+    </div>
+    <div class="col-xs-12 form-group">
+      <label for="serves">Serves</label>
+      <%#=  select_tag "serves", options_from_collection_for_select(@serves, "id", "name")%>
+    </div>
+    <input type="hidden" name="recipe_id" id="hidden-recipe" value="<%=@recipe.id%>">
+    <div class="form-group text-center"> 
+      <%= f.button :submit, "NEXT", class: "btn btn-success btn-lg", id: "basic-form-button", type: "submit" %>
+    </div>
+  <% end %>
+</div>

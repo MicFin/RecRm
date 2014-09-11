@@ -104,12 +104,13 @@ class IngredientsRecipesController < ApplicationController
 
   # PATCH/PUT /ingredients_recipes/1
   # PATCH/PUT /ingredients_recipes/1.json
-  def update
+  def updated
     respond_to do |format|
       if @ingredients_recipe.update(ingredients_recipe_params)
         recipe_id = params["ingredients_recipe"]["recipe_id"].to_i
         format.html { redirect_to ingredients_recipes_path(recipe_id: recipe_id), notice: 'ingredients_recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @ingredients_recipe }
+        @ingredients_recipe_id = @ingredients_recipe.id
         format.js
       else
         format.html { render :edit }

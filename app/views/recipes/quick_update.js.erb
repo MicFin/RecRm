@@ -1,29 +1,8 @@
-$(document).ready(function() {
-  $( "#recipe-name" ).keyup(function() {
-  	$("#recipe-title").replaceWith("<h2 id='recipe-title'>"+$("#recipe-name").val() + "</h2>");
-  		if ($("#recipe-name").val() === ""){
-  		$("#recipe-title").replaceWith("<h2 id='recipe-title' class='light-gray-font'>YOUR RECIPE TITLE</h2>");
-  	};
-  });
-  // validate new recipe form with JS
-  $("#new_recipe").validate({
-    rules: {
-      "recipe[name]":{
-        required: true,
-        minlength: 2
-      }
-    },
-    messages: {
-      "recipe[name]":{
-        required: "Enter recipe name",
-        minlength: "Must be at least 2 letters"
-      }
-
-    },
-
-  });
-/// CAN  CUT THIS INTO 1/3 AMOUNT OF CODE
-  var preptime = $( "#recipe_prep_time" );
+$("#basic-info-container").replaceWith("<%= j render(:partial => '/recipes/basic_info_show') %>");	
+$("#basic-info-form").replaceWith("<%= j render(:partial => '/recipes/review_basic_info') %>");
+$("#collapseOne").collapse('hide');
+// set sliders
+var preptime = $( "#recipe_prep_time" );
   var preptimeslider = $( "<div class='slider'></div>" ).insertAfter( preptime ).slider({
     min: 1,
     max: $("#recipe_prep_time option").length,
@@ -98,6 +77,3 @@ $(document).ready(function() {
     // changes preview when select changed
     $("#serves-preview").replaceWith("<h4 id='serves-preview'>"+$( "#serves option:selected" ).text() + "</h4>");
   });
-
-
-});

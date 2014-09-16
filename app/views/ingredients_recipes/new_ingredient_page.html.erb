@@ -1,0 +1,32 @@
+
+<%= render "/recipes/new_recipe_breadcrumbs" %>
+<div id="recipe-background">
+  <div class="container">
+    <div class="col-xs-6">
+      <div id="new-ingredient-form">
+        <div class=" form-group row text-center">
+          <h2>Add your ingredients!</h2>
+        </div>
+        <div class="individual-ingredient-form">
+          <%= render "new_ingredient_form" %>
+        </div>
+        <div class="row hidden-form">
+          <div class="form-group text-center">
+            <p>Finished adding all of your ingredients?
+            </p>
+          </div>
+          <div class="form-group text-center"> 
+            <%= link_to "NEXT", new_recipe_step_path(recipe_id: @recipe_id), :class => "btn btn-success btn-lg" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div id="recipe-essentials-preview">
+        <%= render "/recipes/basic_info_show" %> 
+        <%= render "ingredients_recipe_list" %>
+        <%= render "recipe_steps/steps_list" %>
+      </div> <!-- #recipe essentials preview -->
+    </div> 
+  </div>
+</div> 

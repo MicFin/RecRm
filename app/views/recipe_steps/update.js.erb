@@ -1,10 +1,15 @@
-// remove the step edit form
-$("#recipe-steps-form").remove();
-$('#recipe-step-<%= @recipe_step.id %>').remove();
-// show the link to edit step
-$("#recipe-step-form-container").show();
-$('#recipe-steps-container').append('<%= j render(@recipe_step) %>');
-$("#recipe-group-button").show();
-$(".edit-recipe-step").show();
-$(".remove-step").show();
-$("#add-recipe-step").show();
+$("#steps-container").replaceWith("<%= j render(:partial => 'steps_list') %>");
+// FormValidations.sortableIngredientList();
+// method would not work so had to manually input sortable 
+$("#sortable").sortable({
+        placeholder: "ui-state-highlight",
+        connectWith: ".column",
+        start: function(e, ui){
+            ui.placeholder.height(ui.item.height())
+        },
+        axis: 'y',
+        update: function() {
+          return $.post($(this).data('update-url'), $(this).sortable("serialize"))
+        }
+      });
+$( "#sortable" ).disableSelection();

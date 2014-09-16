@@ -1,5 +1,0 @@
-    <div class="marketing-container" id="marketing-item-<%=@marketing_item.id%>">
-      <p><span class="white-font"><%= @marketing_item.category.capitalize %></span></p>
-      <p><span class="attribute-title white-font"><%= @marketing_item.content %></span></p>
-			<%= link_to "Edit", edit_article_marketing_item_path(@marketing_item, article_id: @marketing_itemable.id), class: "edit-marketing-item", remote: true %>
-    </div>

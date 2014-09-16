@@ -1,9 +1,10 @@
-// hide buttons to add a allergens
-$("#add-recipe-step").hide();
-$(".edit-recipe-step").hide();
-$("#recipe-group-button").hide();
-$(".remove-step").hide();
-// insert edit recipe_steps _form.html.erb
-$('#recipe-step-form-container').after("<%= j render('form') %>");
 
+// if a ingredient form is already present then replace it
+if ($('.individual-step-form').length > 0) { 
+	$(".individual-step-form").replaceWith("<%= j render(:partial => 'new_step_form') %>");
+	// else add the new ingredient to a div meant to receieve it called individual ingredient form
+} else {
+	$(".individual-step-form").append("<%= j render(:partial => 'recipe_steps/new_step_form') %>");
+};
 
+FormValidation.stepsValidations();

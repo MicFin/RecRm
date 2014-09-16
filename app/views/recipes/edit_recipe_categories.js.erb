@@ -1,0 +1,8 @@
+
+$("#nutrition-groups-form").replaceWith("<%= j render(:partial => 'recipe_categories_form') %>");
+// set form to update categories-container from recipes categories preview
+$("#breadcrumb-categories").removeClass("disabled");
+$("#breadcrumb-categories").tooltip("disable");
+$("#breadcrumb-categories").on("click", function(e){
+	return true;
+});

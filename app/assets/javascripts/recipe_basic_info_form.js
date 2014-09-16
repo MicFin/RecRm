@@ -80,24 +80,24 @@ $(document).ready(function() {
     $("#difficulty-preview").replaceWith("<h4 id='difficulty-preview'>"+$( "#recipe_difficulty option:selected" ).text() + "</h4>");
   });
 
-  var serves = $( "#serves" );
-  var servesslider = $( "<div class='slider'></div>" ).insertAfter( serves ).slider({
-    min: 1,
-    max: 6,
-    range: "min",
-    value: serves[ 0 ].selectedIndex + 1,
-    slide: function( event, ui ) {
-      serves[ 0 ].selectedIndex = ui.value - 1;
-    // changes preview when select changed
-    $("#serves-preview").replaceWith("<h4 id='serves-preview'>"+$( "#serves option:selected" ).text() + "</h4>");
-    }
-  });
-  // makes select box change the slider
-  $( "#serves" ).change(function() {
-    servesslider.slider( "value", this.selectedIndex + 1 );
-    // changes preview when select changed
-    $("#serves-preview").replaceWith("<h4 id='serves-preview'>"+$( "#serves option:selected" ).text() + "</h4>");
-  });
+    var serves = $( "#recipe_serving_size" );
+    var servesslider = $( "<div class='slider'></div>" ).insertAfter( serves ).slider({
+      min: 1,
+      max: $("#recipe_serving_size option").length,
+      range: "min",
+      value: serves[ 0 ].selectedIndex + 1,
+      slide: function( event, ui ) {
+        serves[ 0 ].selectedIndex = ui.value - 1;
+      // changes preview when select changed
+      $("#serving-size-preview").replaceWith("<h4 id='serving-size-preview'>"+$( "#recipe_serving_size option:selected" ).text() + "</h4>");
+      }
+    });
+    // makes select box change the slider
+    $( "#recipe_serving_size" ).change(function() {
+      servesslider.slider( "value", this.selectedIndex + 1 );
+      // changes preview when select changed
+      $("#serving-size-preview").replaceWith("<h4 id='serving-size-preview'>"+$( "#recipe_serving_size option:selected" ).text() + "</h4>");
+    });
 
 
 });

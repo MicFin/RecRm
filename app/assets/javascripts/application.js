@@ -22,12 +22,16 @@
 //= require jquery.ui.sortable
 
 //= require bootstrap
+//= require new_recipe_bread_crumb
+//= require allergen_ingredient_preview
 //= require dietitian_nav
 //= require articles_form
+//= require recipe_step_list
+
+// above recipe basic form for document ready
 //= require recipe_basic_info_form
 //= require new_recipe
-//= require recipe_ingredient_form
-//= require recipe_step_list
+//= require form_validations
 
 
 

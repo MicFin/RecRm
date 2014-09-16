@@ -1,7 +1,5 @@
           <div id="nutrition-groups-form">
-            <%= simple_form_for @recipe, 
-    :url => url_for(:action => 'update', :controller => 'recipes'),
-    :method => 'patch', remote: true do |f| %>
+            <%= simple_form_for @recipe, :url => {:controller => 'recipes', :action => 'update_patient_groups'}, remote: true do |f| %>
               <div class=" form-group row text-center">
                 <div class="col-xs-12 form-group">
                   <p>Your recipe will be helpful for people with many different nutritional needs, but</p>

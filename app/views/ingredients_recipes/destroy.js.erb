@@ -1,1 +1,1 @@
-$('#ingredients-recipe-<%= @ingredients_recipe.id %>').remove();
+$("#ingredients-container").replaceWith("<%= j render(:partial => 'ingredients_recipe_list') %>");

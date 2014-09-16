@@ -20,7 +20,16 @@ class RecipeStepsController < ApplicationController
     # set recipe_id sent from ingredients_recipe index form remote true
     @recipe_id = params["recipe_id"]
     @recipe = Recipe.find(@recipe_id)
+    if @recipe.creation_stage < 3
+      @recipe.creation_stage = 3
+      @recipe.save
+    end
     @ingredients = @recipe.ingredients_recipes
+    respond_to do |format|
+      format.js { render "new" and return}
+      @steps = @recipe.recipe_steps
+      format.html { render "new_steps_page" and return}
+    end
   end
 
   # POST /recipe_steps
@@ -28,37 +37,22 @@ class RecipeStepsController < ApplicationController
   def create
     params["recipe_step"]["ingredients_recipe_ids"] = params["recipe_step"]["ingredients_recipe_ids"].reject! { |c| c.empty? }
     @recipe_step = RecipeStep.new(recipe_step_params)
+    @recipe_id = params["recipe_step"]["recipe_id"]
+    @recipe = Recipe.find(@recipe_id)
+    if @recipe.creation_stage < 3
+      @recipe.creation_stage = 3
+      @recipe.save
+    end
     respond_to do |format|
       if @recipe_step.save
         format.html { redirect_to @recipe_step, notice: 'Recipe step was successfully created.' }
         format.json { render :show, status: :created, location: @recipe_step }
         ## to show preview of steps
-        @recipe = Recipe.find(params["recipe_step"]["recipe_id"])
+        @recipe = @recipe
         ### should sort by position
         @steps = @recipe.recipe_steps
-        # for ingredients to select for next step
-        @ingredients = @recipe.ingredients_recipes
-        # for adding next step
-        @recipe_step = RecipeStep.new
         # for hidden form of next step
         @recipe_id = @recipe.id
-        ##### for allergen form 
-       if @recipe.ingredients_not_tagged.count >= 1
-          @ingredient = @recipe.ingredients_not_tagged.first
-          @tagging_done = false
-          if @ingredient.suggested_allergens
-            @suggested_allergens = @ingredient.suggested_allergens  
-          end 
-        else
-          @tagging_done = true
-        end
-        # recipe ingredients that are already tagged with allergens
-        @ingredients_tagged = @recipe.ingredients_tagged
-        # recipe ingredients that are not tagged with allergens yet
-        @ingredients_not_tagged = @recipe.ingredients_not_tagged
-        #### should only be safe for the recipe
-        @top_allergens = Allergen.first(15)
-        @all_allergens = Allergen.order(:name).map(&:name)
         format.js
       else
         format.html { render :new }
@@ -96,7 +90,9 @@ class RecipeStepsController < ApplicationController
   def edit
     @recipe_id = params["recipe_id"]
     @recipe = Recipe.find(@recipe_id)
-    @ingredients = @recipe.ingredients
+    @ingredients = @recipe.ingredients_recipes
+    @recipe_step = RecipeStep.find(params[:id])
+    @step_id = @recipe_step.id
   end
 
 
@@ -107,6 +103,9 @@ class RecipeStepsController < ApplicationController
       if @recipe_step.update(recipe_step_params)
         format.html { redirect_to @recipe_step, notice: 'Recipe step was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe_step }
+        @recipe_id = @recipe_step.recipe_id
+        @recipe = Recipe.find(@recipe_id)
+        @steps = @recipe.recipe_steps
         format.js
       else
         format.html { render :edit }
@@ -118,6 +117,9 @@ class RecipeStepsController < ApplicationController
   # DELETE /recipe_steps/1
   # DELETE /recipe_steps/1.json
   def destroy
+    @recipe_id = @recipe_step.recipe_id
+    @recipe = Recipe.find(@recipe_id)
+    @steps = @recipe.recipe_steps
     @recipe_step.destroy
     respond_to do |format|
       format.html { redirect_to recipe_steps_url, notice: 'Recipe step was successfully destroyed.' }

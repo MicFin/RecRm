@@ -1,56 +1,51 @@
 
+// update steps list
 $("#steps-container").replaceWith("<%= j render(:partial => 'steps_list') %>");
-
-$("#new-steps-form").replaceWith("<%= j render(:partial => '/recipes/new_step_form') %>");
-$(".hidden-form").show();
-
-// creates sortable list of steps //
-
-
-
+// FormValidations.sortableIngredientList();
+// method would not work so had to manually input sortable 
 $("#sortable").sortable({
-  placeholder: "ui-state-highlight",
-  connectWith: ".column",
-  start: function(e, ui){
-      ui.placeholder.height(ui.item.height())
-  },
-  axis: 'y',
-  update: function() {
-    return $.post($(this).data('update-url'), $(this).sortable("serialize"))
-  }
-});
-
+        placeholder: "ui-state-highlight",
+        connectWith: ".column",
+        start: function(e, ui){
+            ui.placeholder.height(ui.item.height())
+        },
+        axis: 'y',
+        update: function() {
+          return $.post($(this).data('update-url'), $(this).sortable("serialize"))
+        }
+      });
 $( "#sortable" ).disableSelection();
 
-// next button goes to tag allergens
+
+// show next button
+$(".hidden-form").show();
+// get new steps form//
+$.ajax({
+   type: "GET",
+   datatype: "script",
+   url: "/recipe_steps/new",
+   data: {recipe_id:"<%=@recipe_id%>"},
+   success: function(response){
+    // could alert that step was created
+   } 
+});
+// update breadcrumb steps now enabled
+$("#breadcrumb-steps").removeClass("disabled");
+$("#breadcrumb-steps").tooltip("disable");
+// set next button from hidden form
+// if next button is clicked then go to tag allergens
 $(".next-button").on("click", function(){
-  $("#new-steps-form").replaceWith("<%= j render(:partial => 'allergens_ingredient_form') %>");
-  $("#recipe-essentials-preview").replaceWith("<%= j render(:partial => '/recipes/allergens_ingredient_preview') %>");
-  $( ".allergen-autofill" ).autocomplete({
-      source: $('.allergen-autofill').data('autocomplete-source')
+  // go to add allergens 
+  $.ajax({
+     type: "GET",
+     datatype: "script",
+     url: "/ingredients/edit_allergens/<%=@recipe_id%>",
+     data: {recipe_id:"<%=@recipe_id%>"},
+     success: function(response){
+      // after loaded then replace breadcrumbs
+      $("#recipe-breadcrumb").replaceWith("<%= j render(:partial => 'recipes/new_recipe_breadcrumbs') %>");
+      RecipeBreadcrumb.setUp();
+    }
   });
-  // change breadcrumb to allergy info
-  $("#recipe-breadcrumb li").removeClass("active");
-  $("#breadcrumb-allergy-information").addClass("active");
-  // when add allergen is clicked add html form
-  $("#add-allergen").on("click", function(){
-    var html = "<li><label class='checkbox'><input class='check_boxes optional' name='ingredient[extra_allergens][]' type='checkbox' value='"+$("#ingredient_allergen_name").val()+"' checked>"+$("#ingredient_allergen_name").val()+"</label></li>";
-    $("#added-allergens ul").append(html);
-  })
 });
 
-
-$("#new_recipe_step").validate({
-  rules: {
-    "recipe_step[directions]":{
-      required: true,
-      minlength: 10
-    }
-  },
-  messages: {
-    "recipe_step[directions]":{
-      required: "Enter directions",
-      minlength: "At least 10 letters"
-    }
-  }
-});

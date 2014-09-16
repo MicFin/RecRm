@@ -165,7 +165,16 @@
 # Characteristic.create(category: "Culture", name: "English")
 # Characteristic.create(category: "Culture", name: "Portuguese")
 
-
+Characteristic.create(category: "Serving Size", name: "1 person")
+Characteristic.create(category: "Serving Size", name: "2 people")
+Characteristic.create(category: "Serving Size", name: "3 people")
+Characteristic.create(category: "Serving Size", name: "4 people")
+Characteristic.create(category: "Serving Size", name: "5 people")
+Characteristic.create(category: "Serving Size", name: "6 people")
+Characteristic.create(category: "Serving Size", name: "7 people")
+Characteristic.create(category: "Serving Size", name: "8 people")
+Characteristic.create(category: "Serving Size", name: "9 people")
+Characteristic.create(category: "Serving Size", name: "10 or more people")
 # # 
 # #
 

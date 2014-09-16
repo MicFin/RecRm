@@ -32,8 +32,8 @@
       <%=  select_tag "recipe[difficulty]", options_from_collection_for_select(@difficulties, "name", "name")%>
     </div>
     <div class="col-xs-12 form-group">
-      <label for="serves">Serves</label>
-      <%#=  select_tag "serves", options_from_collection_for_select(@serves, "id", "name")%>
+      <label for="servingsize">Serves</label>
+      <%=  select_tag "recipe[serving_size]", options_from_collection_for_select(@serving_sizes, "name", "name")%>
     </div>
     <div class="form-group text-center"> 
       <%= f.button :submit, "NEXT", class: "btn btn-success btn-lg", id: "basic-form-button", type: "submit" %>

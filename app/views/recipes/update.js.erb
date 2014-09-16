@@ -1,9 +1,9 @@
-//  from recipe category view to marketing items
-if ( $("#recipe-categories-form").length ) {
-	$("#recipe-categories-form").replaceWith("<%= j render(:partial => '/marketing_items/new_titles') %>");
-};
-
-// from patient group review to recipe category review
-$("#nutrition-groups-form").replaceWith("<%= j render(:partial => '/recipes/recipe_categories_form') %>");
-
-
+$('#basic-info-container').replaceWith("<%= j render(:partial => 'basic_info_show') %>");
+$.ajax({
+           type: "GET",
+           datatype: "script",
+           url: "/recipes/<%=@recipe.id%>/edit",
+           data: {recipe_id:"<%=@recipe.id%>"},
+           success: function(response){
+           } 
+       });

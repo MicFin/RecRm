@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909160750) do
+ActiveRecord::Schema.define(version: 20140916072833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,6 +219,14 @@ ActiveRecord::Schema.define(version: 20140909160750) do
     t.datetime "updated_at"
   end
 
+  create_table "patient_groups_marketing_items", id: false, force: true do |t|
+    t.integer "patient_group_id"
+    t.integer "marketing_item_id"
+  end
+
+  add_index "patient_groups_marketing_items", ["marketing_item_id"], name: "index_patient_groups_marketing_items_on_marketing_item_id", using: :btree
+  add_index "patient_groups_marketing_items", ["patient_group_id", "marketing_item_id"], name: "patient_marketing_index", using: :btree
+
   create_table "patient_groups_recipes", id: false, force: true do |t|
     t.integer "recipe_id"
     t.integer "patient_group_id"
@@ -271,6 +279,8 @@ ActiveRecord::Schema.define(version: 20140909160750) do
     t.string   "cook_time"
     t.string   "difficulty"
     t.boolean  "complete"
+    t.integer  "creation_stage"
+    t.boolean  "completed",           default: false
   end
 
   create_table "users", force: true do |t|

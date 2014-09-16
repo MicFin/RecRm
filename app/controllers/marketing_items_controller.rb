@@ -2,14 +2,13 @@ class MarketingItemsController < ApplicationController
   include CharacteristicsHelper
   before_filter :load_marketing_itemable
   before_filter :set_marketing_item, only: [:update, :edit]
-  before_filter :set_characteristic_display, only: [:new]
 
-  def index
-    @marketing_items = @marketing_itemable.marketing_items
-    @new_tweet = @marketing_itemable.marketing_items.new(category: "tweet", order: 1, dietitian_id: current_dietitian.id)
-    @new_introduction = @marketing_itemable.marketing_items.new(category: "introduction", order: 1, dietitian_id: current_dietitian.id)
-    @new_headline = @marketing_itemable.marketing_items.new(category: "headline", order: 1, dietitian_id: current_dietitian.id)
-  end
+  # def index
+  #   @marketing_items = @marketing_itemable.marketing_items
+  #   @new_tweet = @marketing_itemable.marketing_items.new(category: "tweet", order: 1, dietitian_id: current_dietitian.id)
+  #   @new_introduction = @marketing_itemable.marketing_items.new(category: "introduction", order: 1, dietitian_id: current_dietitian.id)
+  #   @new_headline = @marketing_itemable.marketing_items.new(category: "headline", order: 1, dietitian_id: current_dietitian.id)
+  # end
 
   # def new_titles
   #   # need logic to create as many titles as there are patient groups
@@ -18,7 +17,7 @@ class MarketingItemsController < ApplicationController
 
   # def create_titles
   #   # need logic to create as many titles as there are patient groups
-  #   @marketing_item = @marketing_itemable.marketing_items.new(marketing_item_params)
+    # @marketing_item = @marketing_itemable.marketing_items.new(marketing_item_params)
   #   respond_to do |format|
   #     if @marketing_item.save
   #       format.html { redirect_to [@marketing_itemable, :marketing_items], notice: "Marketing Item created."}
@@ -56,9 +55,30 @@ class MarketingItemsController < ApplicationController
   # end
 
   def new
-    @new_tweet = @marketing_itemable.marketing_items.new(category: "tweet", order: 1, dietitian_id: current_dietitian.id)
-    @new_introduction = @marketing_itemable.marketing_items.new(category: "introduction", order: 1, dietitian_id: current_dietitian.id)
-    @new_headline = @marketing_itemable.marketing_items.new(category: "headline", order: 1, dietitian_id: current_dietitian.id)
+    @marketing_items = {}
+    if @marketing_itemable.patient_groups.count > 0
+      @marketing_itemable.patient_groups.each do |patient_group|
+        @marketing_items[patient_group] = {title: @marketing_itemable.marketing_items.new(category: "title", dietitian_id: current_dietitian.id), description: @marketing_itemable.marketing_items.new(category: "description", dietitian_id: current_dietitian.id)} 
+      end
+    else
+      @marketing_items["General Health"] = {title: @marketing_itemable.marketing_items.new(category: "title", dietitian_id: current_dietitian.id), description: @marketing_itemable.marketing_items.new(category: "description", dietitian_id: current_dietitian.id)} 
+    end
+    if @marketing_itemable.creation_stage < 6
+      @marketing_itemable.creation_stage = 6
+      @marketing_itemable.save
+    end
+    # forced js response
+    respond_to do |format|
+      @marketing_items = @marketing_items
+      @marketing_itemable = @marketing_itemable
+      # for preview
+      @patient_groups = @marketing_itemable.patient_groups
+      # for breadcrumb must be sent as recipe and recipe_id
+      @recipe_id = @marketing_itemable.id
+      @recipe = @marketing_itemable
+      format.js {render "new" and return}
+      format.html { render "new_items_page"}
+    end
   end
 
   def edit
@@ -68,14 +88,12 @@ class MarketingItemsController < ApplicationController
     @marketing_item = @marketing_itemable.marketing_items.new(marketing_item_params)
     respond_to do |format|
       if @marketing_item.save
+        binding.pry
         format.html { redirect_to [@marketing_itemable, :marketing_items], notice: "Marketing Item created."}
         format.json { render :show, status: :created, location: @marketing_item} 
+        # for preview
+        @marketing_item = @marketing_item
         format.js
-        @recipe = @marketing_item.marketing_itemable
-        get_recipe_characteristics!
-        @cook_times = @cook_times
-        @prep_times = @prep_times
-        @difficulties = @difficulties
       else
         format.html { render :new }
         format.json { render json: @marketing_itemable.errors, status: :unprocessable_entity }
@@ -87,9 +105,9 @@ class MarketingItemsController < ApplicationController
   # PATCH/PUT /articles/:id/marketing_item/:id
   # PATCH/PUT /articles/:id/marketing_item/:id.json
   def update
+    binding.pry
     respond_to do |format|
       if @marketing_item.update(marketing_item_params)
-        binding.pry
         format.html { redirect_to @marketing_item, notice: 'Marketing Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @marketing_item }
         format.js
@@ -124,15 +142,6 @@ class MarketingItemsController < ApplicationController
 
   def set_marketing_item
     @marketing_item = MarketingItem.find(params[:id])
-  end
-
-  ### make as global helper method because also used in recipes_controller
-  def set_characteristic_display
-    @age_groups = @marketing_itemable.characteristics.where(category: "Age Group")
-    @scenarios = @marketing_itemable.characteristics.where(category: "Scenario")
-    @holidays = @marketing_itemable.characteristics.where(category: "Holiday")
-    @cultures = @marketing_itemable.characteristics.where(category: "Culture")
-    @patient_groups = @marketing_itemable.patient_groups
   end
 
 

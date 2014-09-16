@@ -1,6 +1,1 @@
-
-$("#ingredient-<%=@ingredients_recipe_id%>-accordion-top #ingredients-container").replaceWith("<%= j render(:partial => '/recipes/show_recipe_ingredient', :locals => {ingredient: @ingredients_recipe}) %>");
-
-$("#ingredient-<%=@ingredients_recipe.id%>-accordion-bottom #new-ingredient-form").replaceWith("<%= j render(:partial => '/recipes/edit_recipe_ingredient', :locals => {ingredient: @ingredients_recipe}) %>");
-
-$("#collapse-ingredient-<%= @ingredients_recipe_id %>").collapse('hide');
+$("#ingredient-form-<%=@ingredient_id%>").replaceWith("<%= j render(:partial => 'show_ingredients_recipe') %>");

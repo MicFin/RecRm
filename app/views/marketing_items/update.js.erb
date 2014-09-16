@@ -1,8 +1,0 @@
-
-$("#marketing-item-<%=@marketing_item.id%>-form").remove();
-$("#marketing-item-<%=@marketing_item.id%>").remove();
-
-// insert the marketing_items show.html.erb of current marketing_item
-$('#new-tweet-content').append('<%= j render(@marketing_item) %>');
-
-

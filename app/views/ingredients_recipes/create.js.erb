@@ -1,72 +1,38 @@
 
+// update ingredients recipe list
 $("#ingredients-container").replaceWith("<%= j render(:partial => 'ingredients_recipe_list') %>");
-
-$("#new-ingredient-form").replaceWith("<%= j render(:partial => '/recipes/new_ingredient_form') %>");
-$(".hidden-form").show();
-// if next button is clicked then go to new step
-$(".next-button").on("click", function(){
-  // recplace ingredient form with new step form
-  $("#new-ingredient-form").replaceWith("<%= j render(:partial => '/recipes/new_step_form') %>"); 
-  // validate new step form
-  $("#new_recipe_step").validate({
-    rules: {
-      "recipe_step[directions]":{
-        required: true,
-        minlength: 10
-      }
-    },
-    messages: {
-      "recipe_step[directions]":{
-        required: "Enter directions",
-        minlength: "At least 10 letters"
-      }
-    }
-  });
+// show next button
+$("#breadcrumb-steps").removeClass("disabled");
+$("#breadcrumb-steps").tooltip("disable");
+$("#breadcrumb-steps").on("click", function(){
+  return true;
 });
-// (similar as recipes/create.js.erb)
-// autocomplete
-$( ".ingredient-name-autofill" ).autocomplete({
-      source: $('.ingredient-name-autofill').data('autocomplete-source')
- });
-$(".unit-autofill").autocomplete({
-      source: $('.unit-autofill').data('autocomplete-source')
- });
 
-// validate form
-$("#new_ingredients_recipe").validate({
-  rules: {
-    "ingredients_recipe[amount]":{
-      required: true,
-    },
-    "ingredients_recipe[amount_unit]":{
-      required: true,
-      minlength: 2
-    },
-    "ingredients_recipe[display_name]":{
-      required: true,
-      minlength: 2
-    },
-    "ingredients_recipe[ingredient_attributes][name]":{
-      required: true,
-      minlength: 2
-    },
-  },
-  messages: {
-    "ingredients_recipe[amount]":{
-      required: "Enter amount",
-      range: "Between 0 and 100"
-    },
-    "ingredients_recipe[amount_unit]":{
-      required: "Enter unit",
-      minlength: "At least 2 letters"
-    },
-    "ingredients_recipe[display_name]":{
-    	required: "Enter name",
-    	minlength: "At least 2 letters"
-    },
-    "ingredients_recipe[ingredient_attributes][name]":{
-    	required: "Enter name",
-    	minlength: "At least 2 letters"
-    },
-  }
+$(".hidden-form").show();
+// set new ingredient form
+$.ajax({
+   type: "GET",
+   datatype: "script",
+   url: "/ingredients_recipes/new",
+   data: {recipe_id:"<%=@recipe_id%>"},
+   success: function(response){
+    // could alert that ingrdient was created
+   } 
+});
+// set next button from hidden form
+// if next button is clicked then go to new step
+$(".next-button").on("click", function(e){
+  e.preventDefault;
+  // recplace ingredient form with add new steps form
+  $("#new-ingredient-form").replaceWith("<%= j render(:partial => '/recipes/add_steps_form') %>"); 
+  $(".hidden-form").hide();
+  $.ajax({
+     type: "GET",
+     datatype: "script",
+     url: "/recipe_steps/new",
+     data: {recipe_id:"<%=@recipe_id%>"},
+     success: function(response){
+      // could alert that all ingredients are saved  and now do steps
+     } 
+  });
 });

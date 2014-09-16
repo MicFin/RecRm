@@ -1,0 +1,17 @@
+
+// next step after updating patient group is to go to edit recipe categories 
+$.ajax({
+   type: "GET",
+   datatype: "script",
+   url: "/recipes/<%=@recipe_id%>/edit_recipe_categories",
+   data: {recipe_id:"<%=@recipe_id%>"},
+   success: function(response){
+    // could alert that patient groupis were saved
+   } 
+});
+// update breadcrumb to show categorie link
+$("#breadcrumb-categories").removeClass("disabled");
+$("#breadcrumb-categories").tooltip("disable");
+$("#breadcrumb-categories").on("click", function(){
+	return true;
+});

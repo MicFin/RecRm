@@ -1,3 +1,5 @@
+<%= render "new_recipe_breadcrumbs" %>
+
 <div id="recipe-background">
   <div class="container">
     <div class="col-xs-8 col-xs-offset-2">
@@ -21,35 +23,24 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse">
               <div class="panel-body" id="basic-info-accordion-bottom">
-               <%= render "review_basic_info" %>
+               <%= render "edit_basic_info_form" %>
               </div>
             </div>
-            <% @ingredients.each_with_index do | ingredient | %> 
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <a data-toggle="collapse" id="ingredient-<%=ingredient.id%>-accordion-top" data-parent="#accordion" class="ingredient-collapse" href="#collapse-ingredient-<%=ingredient.id%>">
-                  <%= render "show_recipe_ingredient", :ingredient => ingredient %>
-                  </a>
+                  <%= render "ingredients_recipes/ingredients_recipe_list" %>
                 </h4>
               </div>
             </div>
-            <div id="collapse-ingredient-<%=ingredient.id%>" class="panel-collapse collapse">
-              <div class="panel-body" id="ingredient-<%=ingredient.id%>-accordion-bottom">
-                <%= render "edit_recipe_ingredient", :ingredient => ingredient, :units => @units  %>
-              </div>
-            </div>
-            <% end %>
             <div class="panel panel-default">
               <div class="panel-heading">
-                  <%= render "/recipe_steps/steps_list" %>
               </div>
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                  </a>
+                  <%= render "recipe_steps/steps_list" %>
                 </h4>
               </div>
             </div>
@@ -71,6 +62,7 @@
             </div>
           </div>
         </div>
+        <%= link_to "Finish", complete_recipe_path(@recipe), :class => "btn btn-success btn-lg"  %>
       </div>
     </div>
   </div>

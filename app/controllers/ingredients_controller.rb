@@ -41,13 +41,64 @@ class IngredientsController < ApplicationController
   #     end
   #   end
   # end
-  def new_method
-    binding.pry
+
+  def edit_allergens
+    ## when coming from js the recipe id is params["recipe_id"]
+    if params["recipe_id"]
+      @recipe_id = params["recipe_id"].to_i
+    else
+      @recipe_id = params[:id]
+    end
+    @recipe = Recipe.find(@recipe_id)
+    # recipe ingredients that are already tagged with allergens
+    @ingredients_tagged = @recipe.ingredients_tagged
+    # recipe ingredients that are not tagged with allergens yet
+    @ingredients_not_tagged = @recipe.ingredients_not_tagged
+    @top_allergens = Allergen.first(15)
+    @all_allergens = Allergen.order(:name).map(&:name)
+     # if there are other ingredients tha tneed to be tagged
+    if @recipe.ingredients_not_tagged.count >= 1
+      # make ingredient variable the next to be tagge
+      @ingredient = @recipe.ingredients_not_tagged.first
+      # set tagging_done to false
+      @tagging_done = false
+      # if there are suggested allerens then grab them
+      if @ingredient.suggested_allergens
+        @suggested_allergens = @ingredient.suggested_allergens  
+      end 
+      respond_to do|format|
+        # return so that it doesn't read next respond_to or format.html
+        format.js {render "edit_allergens" and return}
+        format.html {render "edit_allergens_page"}
+      end
+      # but if there are no other ingredients to tag
+    else
+      #if a JS requiest then go to patient groups
+      if params["recipe_id"]
+        respond_to do|format|
+          format.js {redirect_to edit_patient_groups_path(@recipe) and return}
+          format.html {redirect_to edit_patient_groups_path(@recipe) and return}
+        end
+      else
+        # if html then it was from navbar (for now) and should go to edit page of ingredient
+        if params["ingredient_id"]
+          # if there is an ingredient specified 
+          @ingredient = Ingredient.find(params["ingredient_id"])
+        else
+          @ingredient = @recipe.ingredients_tagged.first
+        end
+        if @ingredient.suggested_allergens
+          @suggested_allergens = @ingredient.suggested_allergens  
+        end 
+        respond_to do|format|
+          format.html { render "ingredients/edit_allergens_page", :locals => {:ingredient => @ingredient}}
+        end
+      end
+    end
   end
 
-  # PATCH/PUT /ingredients/1
-  # PATCH/PUT /ingredients/1.json
-  def update
+  def update_allergens
+    @ingredient = Ingredient.find(params["ingredient_id"])
     params["ingredient"]["allergen_ids"] = params["ingredient"]["allergen_ids"].reject! { |c| c.empty? }
     # if ingredient is not tagged as its own allergen then tag it
     if @ingredient.allergens.where(name: @ingredient.name).count != 1
@@ -67,47 +118,41 @@ class IngredientsController < ApplicationController
       @allergen = Allergen.where(name: @ingredient.name).first
       params["ingredient"]["allergen_ids"].push(@allergen.id)
     end
-    # recipe ID passed 
-    @recipe_id = params["recipe_id"].to_i
-    # find or create new allergen and add to allergen params
+    # if user added extra allergens to the list
     if params["ingredient"]["extra_allergens"]
       params["ingredient"]["extra_allergens"].each do |allergen_name|
         added_allergen = Allergen.where(name: allergen_name).first 
+        # if it is new then create it 
         if added_allergen == nil
           added_allergen = Allergen.create(name: allergen_name, manual_enter: true)
         end
+        # add it to the allergen_id params
         params["ingredient"]["allergen_ids"].push(added_allergen.id)
       end
     end
     respond_to do |format|
       if @ingredient.update(ingredient_params)
+        format.js { render "update_allergens" and return}
+       # redirect to list of recipe ingredients and allergens
+        format.html { redirect_to edit_allergens_path(recipe_id: @recipe_id), notice: 'Ingredient was successfully updated.' }
+        format.json { render :show, status: :ok, location: @ingredient }
+        @recipe_id = params["id"]
+      else
+        format.html { render :edit }
+        format.json { render json: @ingredient.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  # PATCH/PUT /ingredients/1
+  # PATCH/PUT /ingredients/1.json
+  def update
+    # recipe ID passed 
+    @recipe_id = params["id"]
+    respond_to do |format|
+      if @ingredient.update(ingredient_params)
        # redirect to list of recipe ingredients and allergens
         format.html { redirect_to allergens_ingredients_path(recipe_id: @recipe_id), notice: 'Ingredient was successfully updated.' }
         format.json { render :show, status: :ok, location: @ingredient }
-        ## want it to go to the next one, and add to the right
-        ## if last one then go to review
-        @recipe = Recipe.find(@recipe_id)
-        # for allergen form 
-        if @recipe.ingredients_not_tagged.count >= 1
-          @ingredient = @recipe.ingredients_not_tagged.first
-          @tagging_done = false
-          if @ingredient.suggested_allergens
-            @suggested_allergens = @ingredient.suggested_allergens  
-          end 
-        else
-          @tagging_done = true
-        end
-          # for patient group forms (needs to be available even when doing another ingredient)
-          @allergies = PatientGroup.allergies
-          @diseases = PatientGroup.diseases
-          @intolerances = PatientGroup.intolerances
-        # recipe ingredients that are already tagged with allergens
-        @ingredients_tagged = @recipe.ingredients_tagged
-        # recipe ingredients that are not tagged with allergens yet
-        @ingredients_not_tagged = @recipe.ingredients_not_tagged
-        @top_allergens = Allergen.first(15)
-        @all_allergens = Allergen.order(:name).map(&:name)
-   
         format.js 
       else
         format.html { render :edit }
@@ -116,9 +161,6 @@ class IngredientsController < ApplicationController
     end
   end
 
-  def review
-    # create
-  end
   
   # # DELETE /ingredients/1
   # # DELETE /ingredients/1.json

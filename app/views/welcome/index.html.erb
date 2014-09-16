@@ -1,3 +1,29 @@
+<div id="dashboard-container" class="">
+<!-- 				<p><%= link_to image_tag("pencil.png", class: "grow"), new_article_path %>	</p>
+				<p>Write an Article</p>
+ -->
+ 	<div class="form-group col-xs-12 form-group text-center">
+ 		<h2>Welcome back to the kitchen, <%=current_dietitian.email %>!</h2>
+ 	</div>
+	<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center">
+		<p><%= link_to image_tag("chef-hat.png", class: "tilt"), :controller => "recipes", :action => "new" %>	</p>
+		<p>Create a Recipe</p>
+	</div>
+	<div id="appointment-update-container" class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center alert alert-danger">
+		<p>Your next upcoming appointment is in</p> <h3>3</h3><p>days</p>
+		<h4>Tuesday, September 20th from 4pm-5m</h4>
+		<a class="alert-link" href="">Join Here</a></p>
+	</div>
+	<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center">
+		<p><%= link_to image_tag("computer.png", class: "tilt"), "http://www.kindrdcare.com/sign_in" %></p>
+		<p>See a Client</p>
+	</div>
+</div>
 
-
-	welcome index
+<div id="dietitian-recipes-container" class="container">
+	<%# @recipes.each do |recipe| %>
+	<div class="col-xs-3">
+	<%#= recipe.name %>
+	
+	</div>
+</div>

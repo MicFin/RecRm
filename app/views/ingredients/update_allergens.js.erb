@@ -1,0 +1,8 @@
+$.ajax({
+   type: "GET",
+   datatype: "script",
+   url: "/ingredients/edit_allergens/<%=@recipe_id%>",
+   data: {recipe_id:"<%=@recipe_id%>"},
+   success: function(response){
+   } 
+});

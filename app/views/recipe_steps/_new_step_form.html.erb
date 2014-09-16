@@ -1,0 +1,30 @@
+<% if @recipe_step.directions != nil %>
+  <div id="steps_<%=@recipe_step.id%>" class="individual-step-form">
+<% else %>
+  <div class="individual-step-form">
+<% end %>
+  <%= simple_form_for @recipe_step, remote: true  do |recipe_step_form| %>
+    <div class="steps-preview">
+      <div class="form-group col-xs-12">
+        <% if @recipe_step.directions == nil %>
+          <label for="exampleInputEmail1">New Step</label>
+        <% end %>
+        <%= recipe_step_form.input :directions, as: :text, label: false, input_html: {class: "form-control", rows: "3", placeholder: "Add 3 cups of milk and 1 cup of water to pot..."} %>
+      </div>
+      <div class="form-group col-xs-12">
+        <label for="steps">Select the ingredients used in this step</label>
+        <%= recipe_step_form.association :ingredients_recipes, as: :check_boxes, collection: @ingredients, label_method: :full_name, value_method: :id, label: false, :include_hidden => false%>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="form-group"> 
+        <%= recipe_step_form.input :recipe_id, as: :hidden, :input_html => { id: "hidden-recipe", :value => @recipe_id }%>
+        <% if @recipe_step.directions != nil %>
+          <button type="submit" class="glyphicon glyphicon-plus-sign btn btn-success btn-lg">Update</button>
+        <% else %>
+          <button type="submit" class="glyphicon glyphicon-plus-sign btn btn-success btn-lg">Add</button>
+        <% end %>
+      </div>
+    </div>
+  <% end%>
+</div>

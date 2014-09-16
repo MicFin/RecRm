@@ -1,0 +1,19 @@
+<div id="groups-container">
+<% if @patient_groups %>
+  <% @patient_groups.each do |patient_group| %>
+  <div class="form-group">
+    <div id="marketing-preview-container">
+      <h2 class="active-preview-heading"><%=patient_group.name%></h2>
+      <div class="preview-info"> 
+        <div class="col-xs-12">
+          <h2 class="light-gray-font">TITLE</h2>
+        </div>
+        <div class="col-xs-12 form-group">
+          <h2 class="light-gray-font">DESCRIPTION</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+</div> 

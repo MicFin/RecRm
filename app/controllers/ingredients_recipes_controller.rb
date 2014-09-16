@@ -23,9 +23,16 @@ class IngredientsRecipesController < ApplicationController
     @ingredients_recipe = IngredientsRecipe.new
     @ingredients_recipe.build_ingredient
     @ingredient = Ingredient.new 
-    # set recipe_id sent from ingredients_recipe index form remote true
+    @all_ingredients = Ingredient.order(:name).map(&:name)
     @recipe_id = params["recipe_id"]
-
+    get_units!
+    @units = @units
+    @recipe = Recipe.find(@recipe_id)
+    respond_to do |format|
+      format.js { render "new" and return}
+      @ingredients = @recipe.ingredients_recipes
+      format.html { render "new_ingredient_page" and return}
+    end
   end
 
   # def create_and_add
@@ -64,30 +71,23 @@ class IngredientsRecipesController < ApplicationController
       params["ingredients_recipe"].delete("options")
     end
     # create new ingredients recipe with params
-    ## drops ingredient_attribuets since now allowed in params
+ 
     @ingredients_recipe = IngredientsRecipe.new(ingredients_recipe_params)
-    # set ingredient name to see if it exists yet
-    ingredient_name  = params["ingredients_recipe"]["ingredient_attributes"]["name"]
     # finds of creates the ingredient and saves as the ingredients_recipe's ingredient_id
-    @ingredients_recipe.find_or_create_ingredient(ingredient_name)
+    @ingredients_recipe.find_or_create_ingredient(params["ingredients_recipe"]["ingredient_attributes"]["name"])
     @recipe_id = params["recipe_id"]
     @ingredients_recipe.recipe_id = @recipe_id
+    @recipe = Recipe.find(@recipe_id)
+    if @recipe.creation_stage < 2
+      @recipe.creation_stage = 2
+      @recipe.save
+    end
     respond_to do |format|
       if @ingredients_recipe.save
         format.html { redirect_to @ingredients_recipe, notice: 'Recipe ingredient was successfully created.' }
         format.json { render :show, status: :created, location: @ingredients_recipe }
-        # we are responding to JS right now, create.js.erb
-        @ingredients_recipe = IngredientsRecipe.new
-        @ingredients_recipe.build_ingredient
-        @ingredient = Ingredient.new 
-        @all_ingredients = Ingredient.order(:name).map(&:name)
-        @recipe_id = @recipe_id
-        # for preview of ingredients
+        # for updating ingredients_list
         @ingredients = Recipe.find(@recipe_id).ingredients_recipes
-        # for filling unit auto fill options for next ingredient
-        @units = @units
-        # for when user clicks next and goes to new step
-        @recipe_step = RecipeStep.new
         format.js 
       else
         format.html { render :new }
@@ -99,18 +99,24 @@ class IngredientsRecipesController < ApplicationController
 
   # GET /ingredients_recipes/1/edit
   def edit
-    @recipe = Recipe.find(params["recipe_id"])
+    @ingredient_id = params[:id]
+    @ingredients_recipe = IngredientsRecipe.find(@ingredient_id)
+    @ingredient = @ingredients_recipe.ingredient
+    @all_ingredients = Ingredient.all
+    get_units!
+    @units = @units
   end
 
   # PATCH/PUT /ingredients_recipes/1
   # PATCH/PUT /ingredients_recipes/1.json
-  def updated
+  def update
     respond_to do |format|
       if @ingredients_recipe.update(ingredients_recipe_params)
         recipe_id = params["ingredients_recipe"]["recipe_id"].to_i
         format.html { redirect_to ingredients_recipes_path(recipe_id: recipe_id), notice: 'ingredients_recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @ingredients_recipe }
-        @ingredients_recipe_id = @ingredients_recipe.id
+        @ingredient = @ingredients_recipe
+        @ingredient_id = @ingredient.id
         format.js
       else
         format.html { render :edit }
@@ -122,10 +128,13 @@ class IngredientsRecipesController < ApplicationController
   # DELETE /ingredients_recipes/1
   # DELETE /ingredients_recipes/1.json
   def destroy
+    @ingredient_id = @ingredients_recipe.id
+    @ingredients = Recipe.find(@ingredients_recipe.recipe_id).ingredients_recipes    
     @ingredients_recipe.destroy
     respond_to do |format|
       format.html { redirect_to ingredients_recipes_url, notice: 'ingredients_recipe was successfully destroyed.' }
       format.json { head :no_content }
+      binding.pry
       format.js
     end
   end
@@ -137,8 +146,7 @@ class IngredientsRecipesController < ApplicationController
     end
 
     def set_options
-      get_units!
-      @units = @units
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,1 +1,16 @@
-$('#recipe-step-<%=@recipe_step.id %>').remove();
+// update steps list
+$("#steps-container").replaceWith("<%= j render(:partial => 'steps_list') %>");
+// FormValidations.sortableIngredientList();
+// method would not work so had to manually input sortable 
+$("#sortable").sortable({
+        placeholder: "ui-state-highlight",
+        connectWith: ".column",
+        start: function(e, ui){
+            ui.placeholder.height(ui.item.height())
+        },
+        axis: 'y',
+        update: function() {
+          return $.post($(this).data('update-url'), $(this).sortable("serialize"))
+        }
+      });
+$( "#sortable" ).disableSelection();

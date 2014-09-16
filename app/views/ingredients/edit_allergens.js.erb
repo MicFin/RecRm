@@ -1,0 +1,26 @@
+
+	// if a allergens form is already present then replace it
+	if ($('#allergens-form').length > 0) { 
+		$("#allergens-form").replaceWith("<%= j render(:partial => 'edit_allergens_form') %>");
+		$("#allergens-preview").replaceWith("<%= j render(:partial => '/recipes/allergens_ingredient_preview') %>");
+		// else add the new add allergens form to a div meant to receieve it, in this case the new steps form
+	} else {
+		$("#new-steps-form").replaceWith("<%= j render(:partial => 'edit_allergens_form') %>"); 
+		$("#recipe-essentials-preview").replaceWith("<%= j render(:partial => '/recipes/allergens_ingredient_preview') %>");
+	};
+// FormValidations.ingredientAllergensValidations();
+// formvalidation method did not work so added manually
+  $( ".allergen-autofill" ).autocomplete({
+    source: $('.allergen-autofill').data('autocomplete-source')
+  });
+  // when add allergen is clicked add html form
+  $("#add-allergen").on("click", function(){
+    var html = "<li><label class='checkbox'><input class='check_boxes optional' name='ingredient[extra_allergens][]' type='checkbox' value='"+$("#ingredient_allergen_name").val()+"' checked>"+$("#ingredient_allergen_name").val()+"</label></li>";
+    $("#added-allergens ul").append(html);
+  });
+  // set breadcrumb to allow allergy information clickable
+	$("#breadcrumb-allergy-information").removeClass("disabled");
+	$("#breadcrumb-allergy-information").tooltip("disable");
+	$("#breadcrumb-allergy-information").on("click", function(){
+		return true;
+	};

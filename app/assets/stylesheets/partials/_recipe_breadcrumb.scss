@@ -22,6 +22,7 @@ background-color: transparent;
 color: #555555;
 }
 
+
 #recipe-breadcrumb .navbar-nav > li > a:hover, #recipe-breadcrumb .navbar-nav > li > a:focus {
 	color: $carrotgreen;
   -webkit-transform: scale(1.1);
@@ -29,8 +30,15 @@ color: #555555;
   transform: scale(1.1);
 }
 
-#recipe-breadcrumb .navbar-nav > li.disabled> a:hover, #recipe-breadcrumb .navbar-nav > li.disabled > a:focus {
-	color: #555555;
+#recipe-breadcrumb .navbar-nav > li.disabled > a:hover, #recipe-breadcrumb .navbar-nav > li.disabled > a:focus {
+	color: $carrotgreen;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+#recipe-breadcrumb .navbar-nav > li.disabled > a:hover, #recipe-breadcrumb .navbar-nav > li.disabled > a:focus {
+	color: #cccccc;
 }
 
 #recipe-breadcrumb .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {

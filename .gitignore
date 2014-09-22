@@ -17,3 +17,4 @@
 /config/secrets.yml
 /config/config.yml
 .DS_Store
+.elasticbeanstalk/

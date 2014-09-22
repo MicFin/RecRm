@@ -29,7 +29,7 @@ class Article < ActiveRecord::Base
     return allergies
   end
 
-  # return a article's Patient Groups with the category disease
+  # return article's Patient Groups with the category disease
   def diseases
     diseases=[]
     self.patient_groups.each do |patient_group|

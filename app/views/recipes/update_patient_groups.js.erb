@@ -8,6 +8,7 @@ $.ajax({
    success: function(response){
     // could alert that patient groupis were saved
    } 
+
 });
 // update breadcrumb to show categorie link
 $("#breadcrumb-categories").removeClass("disabled");
@@ -15,3 +16,4 @@ $("#breadcrumb-categories").tooltip("disable");
 $("#breadcrumb-categories").on("click", function(){
 	return true;
 });
+$("html, body").animate({ scrollTop: 0 }, "slow");

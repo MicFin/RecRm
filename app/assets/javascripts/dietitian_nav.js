@@ -25,8 +25,6 @@ $(document).ready(function() {
         return this.optional(element) || re.test(value);
     }
   );
-$('#accordion').on('show hide', function() {
-    $(this).css('height', 'auto');
-});
 
 });
+

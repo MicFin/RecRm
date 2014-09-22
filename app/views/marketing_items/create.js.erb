@@ -1,8 +1,6 @@
 
 if ("<%=@item_category%>" === "title") {
-	$('#marketing-title-<%=@patient_group_id%>').replaceWith("<%= j render(:partial => 'marketing_item_preview') %>");
-	$('#marketing-item-<%=@patient_group_id%>-title').remove();
+	$('#marketing-item-<%=@patient_group_id%>-title').replaceWith("<%= j render(:partial => 'marketing_item_preview') %>");
 } else {
-	$('#marketing-description-<%=@patient_group_id%>').replaceWith("<%= j render(:partial => 'marketing_item_preview') %>");
-	$('#marketing-item-<%=@patient_group_id%>-description').remove();
+	$('#marketing-item-<%=@patient_group_id%>-description').replaceWith("<%= j render(:partial => 'marketing_item_preview') %>");
 };

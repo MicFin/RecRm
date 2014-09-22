@@ -16,9 +16,3 @@
 /tmp
 /config/secrets.yml
 /config/config.yml
-.DS_Store
-
-/public/monthlyDataPoints.json                                         
-/public/weeklyDataPoints.json
-/public/deviceLogDataPoints.json
-/config/database.yml

@@ -18,7 +18,7 @@ class Article < ActiveRecord::Base
     return intolerances
   end
 
-  # return a article's PAtient Groups with  category allergy
+  # return article's PAtient Groups with  category allergy
   def allergies
     allergies=[]
     self.patient_groups.each do |patient_group|

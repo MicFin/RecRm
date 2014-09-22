@@ -17,4 +17,8 @@
 /config/secrets.yml
 /config/config.yml
 .DS_Store
-.elasticbeanstalk/
+
+/public/monthlyDataPoints.json                                         
+/public/weeklyDataPoints.json
+/public/deviceLogDataPoints.json
+/config/database.yml

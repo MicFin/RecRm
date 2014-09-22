@@ -11,9 +11,9 @@
 		<% @recipes.each do |recipe| %>
 		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
 			<h3><%=recipe.name%></h3>
-			<p><%=link_to "Edit", edit_recipe_path(recipe) %></p>
-			<p><%=link_to "View", recipe_path(recipe) %></p>
-			<p><%=link_to "QA", new_recipe_quality_review_path(recipe) %></p>
+			<p><%=link_to "Edit", review_recipe_path(recipe) %></p>
+			<p><%#=link_to "View", recipe_path(recipe) %></p>
+			<p><%#=link_to "QA", new_recipe_quality_review_path(recipe) %></p>
 		</div>
 		<% end %>
 	</div>

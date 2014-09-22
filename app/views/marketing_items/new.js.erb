@@ -1,14 +1,13 @@
 $("#recipe-categories-form").replaceWith("<%= j render(:partial => 'marketing_items_form') %>");
-$("#groups-preview").replaceWith("<%= j render(:partial => 'marketing_items_preview') %>");
 // update breadcrumb to show categorie link
 $("#breadcrumb-personalize-group").removeClass("disabled");
 $("#breadcrumb-personalize-group").tooltip("disable");
 $("#breadcrumb-personalize-group").on("click", function(){
 	return true;
 });
-// if next button is clicked then go to tag allergens
+// NOT SURE  THIS IS NECESSARY COME BACK TO AND DELETE IF NOT
 $(".next-button").on("click", function(){
-  // go to add allergens 
+  // go to  
   window.location.href = '/recipes/dietitian_recipes_index/<%=@marketing_itemable.id%>';
     alert("Your recipe was successfully created!")
 });

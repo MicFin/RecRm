@@ -21,7 +21,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
+
 
 
 gem 'bootstrap-sass', '~> 3.1.1.1'
@@ -67,19 +67,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 # This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list. The class that has this specified needs to have a position column defined as an integer on the mapped database table. https://github.com/swanandp/acts_as_list
 gem 'acts_as_list'
 
-group :development do
-# Better error gives you better explanations for errors
-# https://github.com/charliesome/better_errors
-  gem "better_errors"
-# binding of caller allows you to do variable inspection with better errors  
-  gem "binding_of_caller"
-# Pry allows you to debug, place a binding.pry in ruby code and you can debug from that place in the console
-  gem 'pry'
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 
-
-end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

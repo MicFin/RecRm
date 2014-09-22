@@ -1,5 +1,6 @@
 
-
-$('#new-tweet-content').after("<%= j render('edit_form') %>");
-$("#marketing-item-"+<%=@marketing_item.id%>).hide();
-
+if ("<%=@item_category%>" == "title"){
+	$('#marketing-title-<%=@patient_group_id%>').replaceWith("<%= j render(:partial => 'edit_form') %>");
+} else {
+	$('#marketing-description-<%=@patient_group_id%>').replaceWith("<%= j render(:partial => 'edit_form') %>");
+};

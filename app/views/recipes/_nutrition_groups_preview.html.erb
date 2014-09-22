@@ -13,6 +13,13 @@
     <div class="preview-info"> 
       <h4 class="preview-heading">Made with love for people with:</h4>
       <div id="health-groups-container">
+      <% if @health_groups.count > 0 %>
+        <div class='preview-info'>
+          <% @health_groups.each do |health_group| %>
+          <div class='col-xs-3 health-group-list-item'><h4><%=health_group.name%></h4></div>
+          <% end %>
+        </div>
+      <% else %>
         <div class=" text-center preview-info"> 
 
           <div class="col-xs-4">
@@ -28,21 +35,30 @@
    
           </div>
         </div>
+      <% end%>
       </div>
     </div>
-    <div class="preview-info" id="categories-container">
-      <div class="row text-center preview-info"> 
-        <h4 class="preview-heading">Recipe Categories:</h4>
-        <div class="col-xs-4">
-                <%= image_tag("add_recipe_images/breakfast.png") %>
+    <div class="col-xs-12 preview-info" id="categories-container">
+      <h4 class="preview-heading">Recipe Categories:</h4>
+      <% if @categories.count > 0 %>
+        <div class='preview-info'>
+          <% @categories.each do |category| %>
+          <div class='col-xs-3 health-group-list-item'><h4><%=category.name%></h4></div>
+          <% end %>
         </div>
-        <div class="col-xs-4">
-                <%= image_tag("add_recipe_images/plate.png") %>
+      <% else %>
+        <div class="col-xs-12 text-center preview-info"> 
+          <div class="col-xs-4">
+                  <%= image_tag("add_recipe_images/breakfast.png") %>
+          </div>
+          <div class="col-xs-4">
+                  <%= image_tag("add_recipe_images/plate.png") %>
+          </div>
+          <div class="col-xs-4">
+                  <%= image_tag("add_recipe_images/table.png") %>
+          </div>
         </div>
-        <div class="col-xs-4">
-                <%= image_tag("add_recipe_images/table.png") %>
-        </div>
-      </div>
+      <% end %>
     </div> <!-- #steps container -->
   </div>
 </div>

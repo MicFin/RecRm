@@ -1,0 +1,25 @@
+   <%= render "/recipes/new_recipe_breadcrumbs" %>
+<!-- RECIPE PAGE BACKGROUND-->
+    <div id="recipe-background">
+      <div class="container">
+        <div id="marketing-info-form">
+          <div class=" form-group row text-center">
+            <div class="col-xs-12">
+              <p>Personalize your recipe for the nutritional needs of each group</p>
+              <h2>Create alternate names and descriptions</h2>
+            </div>
+            <div class="col-xs-10 col-xs-offset-1">
+              <%= render "marketing_items_list" %>
+            </div> 
+          </div>
+        </div>
+        <div class="row form-group hidden-form">
+          <div class="form-group text-center">
+            <p>One more step and your recipe is complete.</p>  
+          </div>
+          <div class="form-group text-center"> 
+            <%= link_to "REVIEW", review_recipe_path(@marketing_itemable), :class => "next-button btn btn-success btn-lg" %>
+          </div>
+        </div>
+      </div>
+    </div> 

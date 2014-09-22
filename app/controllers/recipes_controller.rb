@@ -59,15 +59,22 @@ class RecipesController < ApplicationController
     @difficulties = @difficulties
     @serving_sizes = @serving_sizes
     get_units!
+    @units = @units
     @ingredients = @recipe.ingredients_recipes
     @ingredients_count = @ingredients.count
-    @units = @units
     @steps = @recipe.recipe_steps
     @recipe_id = @recipe.id
     if @recipe.creation_stage < 7
       @recipe.creation_stage = 7
       @recipe.save
     end
+    @all_ingredient_display_names = IngredientsRecipe.all_ingredient_display_names
+    @all_ingredients = Ingredient.order(:name).map(&:name)
+    @ingredients_tagged = @recipe.ingredients_tagged
+    @ingredients_not_tagged = @recipe.ingredients_not_tagged
+    @health_groups = @recipe.patient_groups
+    @categories = @recipe.characteristics
+    @marketing_items_by_group = @recipe.marketing_items_by_group
     # @allergies = @recipe.allergies
     # @diseases = @recipe.diseases
     # @intolerances = @recipe.intolerances
@@ -92,6 +99,7 @@ class RecipesController < ApplicationController
     @prep_times = @prep_times
     @difficulties = @difficulties
     @serving_sizes = @serving_sizes
+    @all_recipe_names = Recipe.all_recipe_names
   end
 
   # POST /recipes
@@ -127,6 +135,9 @@ class RecipesController < ApplicationController
     @intolerances = @intolerances
     @allergies = @allergies
     @recipe_id = @recipe.id
+    # for preview
+    @health_groups = @recipe.patient_groups 
+    @categories = @recipe.characteristics
     respond_to do |format|
       format.js {render "edit_patient_groups" and return}
       format.html {render "edit_patient_groups_page" and return}
@@ -159,6 +170,9 @@ class RecipesController < ApplicationController
     @scenarios = @scenarios
     @cultures = @cultures
     @courses = @courses
+    # for preview
+    @health_groups = @recipe.patient_groups 
+    @categories = @recipe.characteristics
     respond_to do |format|
       format.js {render "edit_recipe_categories" and return}
       format.html {render "edit_recipe_categories_page" and return}

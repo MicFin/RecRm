@@ -17,7 +17,7 @@
 
     <div class="form-group">
       <label for="exampleInputEmail1">What would you like the name of your recipe to be?</label>
-      <%= f.input :name, label: false,input_html: { class: "form-control", id: "recipe-name", placeholder: "Enter recipe name here"} %>
+      <%= f.input :name, label: false, input_html: { class: "recipe-name-autofill form-control", id: "recipe-name", placeholder: "Enter recipe name here", data: {autocomplete_source: @all_recipe_names}} %>
     </div>
     <div class="col-xs-12 form-group">
       <label for="preptime">Preperation Time</label>

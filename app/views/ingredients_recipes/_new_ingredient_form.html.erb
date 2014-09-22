@@ -16,23 +16,19 @@
 
       <div class="form-group col-xs-5">
         <label for="exampleInputEmail1">Ingredient</label>
-        <%= ingredients_recipe_form.input :display_name, label: false, input_html: { class: "form-control", placeholder: "sliced frozen banana"} %>
+        <%= ingredients_recipe_form.input :display_name, input_html: { class: "display-name-autofill form-control", data: {autocomplete_source: @all_ingredient_display_names}}, placeholder: "sliced frozen banana", label: false  %>
       </div>
     </div>
     <div class="row">
       <div class="add-button-div form-group col-xs-4">
         <label for="exampleInputEmail1">Shopping List Item</label>
-        <% if @ingredient.name == nil %> 
           <%= ingredients_recipe_form.fields_for :ingredient, @ingredient do |ingredient_form| %>
            <%= ingredient_form.input :name,  input_html: { class: "ingredient-autofill form-control", data: {autocomplete_source: @all_ingredients}}, placeholder: "banana", label: false %>
           <% end %> 
-        <% else %>
-          <h3><%=@ingredient.name %></h3>
-          <p>delete and add new to change</p>
-        <% end %>
       </div>
       <div class="form-group control-group">
         <label class="control-label">Only select if applicable</label>
+        <button type="button" class="btn btn-xs btn-warning unselect-ingredient-options">Unselect Both</button>
         <div class="controls">
           <ul id="ingredient-radio-list" class="list-inline">
             <li> 

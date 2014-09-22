@@ -1,13 +1,12 @@
 
-  <div id="marketing-item-<%=@marketing_item.id%>-form" class="col-xs-6 col-centered">
-    <%= form_for [@marketing_itemable, @marketing_item], :remote => true do |f| %>
-      <div class="field">
-        <strong><%= @marketing_item.category.capitalize %></strong>
-        <p><%= f.text_area :content, rows: 2, class: "col-xs-11 text-left form-group" %></p>
-      </div>
-      <div class="actions small-orange-button">
-        <%= f.submit "Save"%>
-        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
-      </div>
-    <% end %>
-  </div>
+<div id="marketing-item-<%=@patient_group_id%>-<%=@item_category%>" class="col-xs-12 col-centered">
+  <%= simple_form_for [@marketing_itemable, @marketing_item], :remote => true do |f| %>
+    <div class="col-xs-9 form-group">
+      <%= f.input :content, label: "Recipe #{@item_category}", input_html: { class: "form-control", placeholder: "Gluten Free Pasta Primavera"} %>
+    </div>
+    <%= f.hidden_field :category, value: @item_category %>
+    <div class="col-xs-3 form-group text-left"> 
+      <button type="submit" class=" btn btn-success btn-lg">Update</button>
+    </div>
+  <% end %>
+</div>

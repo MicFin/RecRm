@@ -59,7 +59,10 @@ Rails.application.routes.draw do
         resources :marketing_items
       end
       resources :recipes do
-        resources :quality_reviews
+        resources :quality_reviews do 
+          ### might not want to nest this deep
+          resources :review_conflicts 
+        end
         resources :marketing_items
 
         get :autocomplete_ingredient_name, :on => :collection

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916072833) do
+ActiveRecord::Schema.define(version: 20140921200713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -204,10 +204,12 @@ ActiveRecord::Schema.define(version: 20140916072833) do
     t.datetime "updated_at"
     t.integer  "marketing_itemable_id"
     t.string   "marketing_itemable_type"
+    t.integer  "patient_group_id"
   end
 
   add_index "marketing_items", ["dietitian_id"], name: "index_marketing_items_on_dietitian_id", using: :btree
   add_index "marketing_items", ["marketing_itemable_id", "marketing_itemable_type"], name: "marketing_itemable_id_index", using: :btree
+  add_index "marketing_items", ["patient_group_id"], name: "index_marketing_items_on_patient_group_id", using: :btree
 
   create_table "patient_groups", force: true do |t|
     t.string   "name"
@@ -218,14 +220,6 @@ ActiveRecord::Schema.define(version: 20140916072833) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "patient_groups_marketing_items", id: false, force: true do |t|
-    t.integer "patient_group_id"
-    t.integer "marketing_item_id"
-  end
-
-  add_index "patient_groups_marketing_items", ["marketing_item_id"], name: "index_patient_groups_marketing_items_on_marketing_item_id", using: :btree
-  add_index "patient_groups_marketing_items", ["patient_group_id", "marketing_item_id"], name: "patient_marketing_index", using: :btree
 
   create_table "patient_groups_recipes", id: false, force: true do |t|
     t.integer "recipe_id"
@@ -238,15 +232,15 @@ ActiveRecord::Schema.define(version: 20140916072833) do
   end
 
   create_table "quality_reviews", force: true do |t|
-    t.string   "date_due_by"
-    t.string   "date_completed_on"
-    t.string   "type"
-    t.string   "sub_type"
     t.integer  "dietitian_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "quality_reviewable_id"
     t.string   "quality_reviewable_type"
+    t.datetime "date_due_by"
+    t.datetime "date_completed_on"
+    t.boolean  "passed"
+    t.boolean  "completed"
   end
 
   add_index "quality_reviews", ["dietitian_id"], name: "index_quality_reviews_on_dietitian_id", using: :btree
@@ -282,6 +276,28 @@ ActiveRecord::Schema.define(version: 20140916072833) do
     t.integer  "creation_stage"
     t.boolean  "completed",           default: false
   end
+
+  create_table "review_conflicts", force: true do |t|
+    t.integer  "risk_level"
+    t.string   "category"
+    t.string   "item"
+    t.text     "first_suggestion"
+    t.text     "issue"
+    t.boolean  "resolved"
+    t.text     "second_suggestion"
+    t.text     "third_suggestion"
+    t.integer  "review_stage"
+    t.integer  "quality_review_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "first_reviewer_id"
+    t.integer  "second_reviewer_id"
+    t.integer  "third_reviewer_id"
+  end
+
+  add_index "review_conflicts", ["first_reviewer_id"], name: "index_review_conflicts_on_first_reviewer_id", using: :btree
+  add_index "review_conflicts", ["second_reviewer_id"], name: "index_review_conflicts_on_second_reviewer_id", using: :btree
+  add_index "review_conflicts", ["third_reviewer_id"], name: "index_review_conflicts_on_third_reviewer_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

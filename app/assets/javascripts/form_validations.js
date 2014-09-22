@@ -13,12 +13,19 @@
       });
     }, //ingrdientAutofill
 
+    displayNameAutofill:  function() {
+      $(".display-name-autofill").autocomplete({
+        source: $('.display-name-autofill').data('autocomplete-source')
+      });
+    }, //ingrdientdisplaynameAutofill
+
     // validates ingredients_recipe form fields
     ingredientValidations: function(){
       $("#new_ingredients_recipe").validate({
         rules: {
           "ingredients_recipe[amount]":{
             required: true,
+            regex: /^(\d+(?:(?: \d+)*\/\d+)?)$/
           },
           "ingredients_recipe[amount_unit]":{
             required: true,
@@ -36,7 +43,8 @@
         messages: {
           "ingredients_recipe[amount]":{
             required: "Enter amount",
-            range: "Between 0 and 100"
+            range: "Between 0 and 100",
+            regex: "Format: 2 1/4"
           },
           "ingredients_recipe[amount_unit]":{
             required: "Enter unit",
@@ -51,8 +59,60 @@
           	minlength: "At least 2 letters"
           },
         }
-      })
+      });
+        // set unselect button for new form
+      $(".unselect-ingredient-options").on("click", function(){
+        var radio_container = $(this).next();
+        radio_container.find("input").prop('checked', false);
+      });
     }, // ingredientValidations
+    // same as new ingredient but uses class not id to attach to form
+    editIngredientValidations: function(){
+      $(".edit_ingredients_recipe").validate({
+        rules: {
+          "ingredients_recipe[amount]":{
+            required: true,
+
+          },
+          "ingredients_recipe[amount_unit]":{
+            required: true,
+            minlength: 2
+          },
+          "ingredients_recipe[display_name]":{
+            required: true,
+            minlength: 2
+          },
+          "ingredients_recipe[ingredient_attributes][name]":{
+            required: true,
+            minlength: 2
+          },
+        },
+        messages: {
+          "ingredients_recipe[amount]":{
+            required: "Enter amount",
+            range: "Between 0 and 100",
+            regex: "1 1/2 or 1.5 only"
+          },
+          "ingredients_recipe[amount_unit]":{
+            required: "Enter unit",
+            minlength: "At least 2 letters"
+          },
+          "ingredients_recipe[display_name]":{
+            required: "Enter name",
+            minlength: "At least 2 letters"
+          },
+          "ingredients_recipe[ingredient_attributes][name]":{
+            required: "Enter name",
+            minlength: "At least 2 letters"
+          },
+        }
+      });
+      // set unselect button for edit form
+      $(".unselect-ingredient-options").on("click", function(){
+        var radio_container = $(this).next();
+        radio_container.find("input").prop('checked', false);
+      });
+    }, // editingredientValidations
     stepsValidations: function(){
       $("#new_recipe_step").validate({
         rules: {
@@ -67,6 +127,31 @@
             minlength: "Must be at least 5 characters"
           }
         },
+      });
+      // set select all button for ingredients in step
+      $(".select-all-ingredients-button").on("click", function(){
+        $(this).next().find("input").prop('checked', true)
+      });
+    }, // stepsValidations
+    // same as new step except uses class to attach to form
+    editStepsValidations: function(){
+      $(".edit_recipe_step").validate({
+        rules: {
+          "recipe_step[directions]":{
+            required: true,
+            minlength: 5
+          }
+        },
+        messages: {
+          "recipe_step[directions]":{
+            required: "Enter recipe step",
+            minlength: "Must be at least 5 characters"
+          }
+        },
+      });
+      // set select all button for ingredients in step
+      $(".select-all-ingredients-button").on("click", function(){
+        $(this).next().find("input").prop('checked', true)
       });
     }, // stepsValidations
     ingredientAllergensValidations: function(){
@@ -93,4 +178,5 @@
       });
       $( "#sortable" ).disableSelection();
     }, // sortableIngrdientList
+
   } //Formvalidation   

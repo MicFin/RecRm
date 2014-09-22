@@ -3,7 +3,7 @@ class PatientGroup < ActiveRecord::Base
 	has_and_belongs_to_many :allergens
   has_and_belongs_to_many :recipes
   has_and_belongs_to_many :articles
-  has_and_belongs_to_many :marketing_items
+  has_many :marketing_items
 
 
   # returns all Patient Groups with the category allergy and a Patient Group named "Other Allergy" with an input field true boolean

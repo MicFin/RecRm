@@ -7,47 +7,60 @@
       <h2>Create alternate names and descriptions</h2>
     </div>
     <div id="marketing-forms-container">
-      <% @marketing_items.each_with_index do |patient_group, index| %>
-      <div class="form-group col-xs-12 text-left">
+    <% @marketing_items.each_with_index do |patient_group, index| %>
+      <% if patient_group.first == "General" %>
+        <div id="health-group-items-0" class="form-group col-xs-12 text-left">
+      <% else %>
+        <div id="health-group-items-<%=patient_group.first.id%>" class="form-group col-xs-12 text-left">
+      <% end %>
         <div class="col-xs-12">
-          <% if patient_group.first == "General Health" %>
-            <label>General Health</label>  
+          <% if patient_group.first == "General" %>
+            <h3>General</h3>  
           <% else %>   
-            <label><%=patient_group.first.name%></label>
+            <h3><%=patient_group.first.name%></h3>
           <% end %>
-        </div><%= binding.pry %>
-        <div id="marketing-item-<%=index%>-title" class="title-form col-xs-12">
+        </div>
+        <% if patient_group.first == "General" %>
+          <div id="marketing-item-0-title" class="title-form col-xs-12">
+        <% else %>
+          <div id="marketing-item-<%=patient_group.first.id%>-title" class="title-form col-xs-12">
+        <% end %>
           <%= simple_form_for [@marketing_itemable, patient_group.last[:title]], :remote => true do |f| %>
             <%= f.hidden_field :order, value: 1 %>
             <%= f.hidden_field :category, value: "title" %>
             <%= f.hidden_field :dietitian_id, value: current_dietitian.id %>
             <div class="col-xs-9 form-group">
-              <%= f.input :content, label: false, input_html: { class: "form-control", placeholder: "Gluten Free Pasta Primavera"} %>
+              <%= f.input :content, label: "Recipe Title", input_html: { class: "form-control", placeholder: "Gluten Free Pasta Primavera"} %>
             </div>
             <div class="col-xs-3 form-group text-left"> 
-            <% if patient_group.first != "General Health" %>
+            <% if patient_group.first != "General" %>
               <%= f.hidden_field :patient_group_id, value: patient_group.first.id %>
             <% end %>
               <button type="submit" class=" btn btn-success btn-lg">save</button>
             </div>
           <% end %>
-        </div>
-        <div id="marketing-item-<%=index%>-description" class="description-form col-xs-12">
+          </div>
+        <% if patient_group.first == "General" %>
+          <div id="marketing-item-0-description" class="title-form col-xs-12">
+        <% else %>
+          <div id="marketing-item-<%=patient_group.first.id%>-description" class="description-form col-xs-12">
+        <% end %>
           <%= simple_form_for [@marketing_itemable, patient_group.last[:description]], :remote => true do |f| %>
             <%= f.hidden_field :order, value: 1 %>
             <%= f.hidden_field :category, value: "description" %>
             <%= f.hidden_field :dietitian_id, value: current_dietitian.id %>
             <div class="col-xs-9 form-group">
+              <label>Recipe Description</label>
               <textarea class="form-control" rows="3" name="marketing_item[content]" placeholder="The perfect meal to start a..."></textarea>
             </div>
             <div class="col-xs-3 form-group text-left"> 
-            <% if patient_group.first != "General Health" %>
+            <% if patient_group.first != "General" %>
               <%= f.hidden_field :patient_group_id, value: patient_group.first.id %>
             <% end %>
               <button type="submit" class=" btn btn-success btn-lg">save</button>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
       <% end %>  
     </div>

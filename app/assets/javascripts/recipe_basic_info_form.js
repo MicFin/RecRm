@@ -18,10 +18,23 @@ $(document).ready(function() {
         required: "Enter recipe name",
         minlength: "Must be at least 2 letters"
       }
-
     },
-
   });
+
+  // create a warning header that the autofilled names are already taken
+  var addAutofillHeading = function() {
+    var auto_fill_heading='<li class="ui-menu-item-header" role="presentation"><div class="alert alert-danger">These names are already taken</div></li>';
+    $("ul.ui-autocomplete[style*='block']").prepend(auto_fill_heading);
+  };
+  // autofill recipe names 
+  $(".recipe-name-autofill").autocomplete({
+    source: $('.recipe-name-autofill').data('autocomplete-source'),
+    open: addAutofillHeading,
+    select: function( event, ui ) {
+      return false;
+    },
+  });
+
 /// CAN  CUT THIS INTO 1/3 AMOUNT OF CODE
   var preptime = $( "#recipe_prep_time" );
   var preptimeslider = $( "<div class='slider'></div>" ).insertAfter( preptime ).slider({

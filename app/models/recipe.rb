@@ -25,6 +25,35 @@ class Recipe < ActiveRecord::Base
   # quality reviews polymoprhic
   has_many :quality_reviews, as: :quality_reviewable 
   has_many :marketing_items, as: :marketing_itemable 
+  has_many :quality_reviews
+  has_many :review_conflicts, through: :quality_reviews
+  # return hash of recipe marketing items by patient group and by title ad description
+  def marketing_items_by_group
+    items_by_group = {}
+    self.marketing_items.each do |marketing_item|
+      if marketing_item.patient_group_id == nil 
+        group = "General"
+        group_id = 0
+      else
+        group_id = marketing_item.patient_group_id
+        group = PatientGroup.find(group_id).name
+      end
+      if (items_by_group.has_key?(group) == false)
+        items_by_group[group] = {"group_id" => group_id}
+        items_by_group[group]["items"] = {}
+      end
+      if marketing_item.category == "title"
+        items_by_group[group]["items"]["title"] = marketing_item
+      elsif marketing_item.category == "description"
+        items_by_group[group]["items"]["description"] = marketing_item
+      end 
+    end
+    return items_by_group
+  end
+  # return an array of all unique recipe titles
+  def self.all_recipe_names
+    return self.all.map(&:name).uniq!
+  end
   # return a recipe's ingredients that have already been tagged with allergens
   def ingredients_tagged
     tagged_ingredients = []

@@ -23,10 +23,11 @@
 
 //= require bootstrap
 //= require new_recipe_bread_crumb
-//= require allergen_ingredient_preview
+//= require health_groups_and_categories_preview
 //= require dietitian_nav
 //= require articles_form
 //= require recipe_step_list
+//= require on_page_load
 
 // above recipe basic form for document ready
 //= require recipe_basic_info_form

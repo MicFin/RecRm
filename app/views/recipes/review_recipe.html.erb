@@ -29,30 +29,48 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
+                  <div class="col-xs-12 alert alert-warning">
+                    <p>To add an ingredient, use the navigation at the top of the page.  Be sure to add it to the appropriate steps</p>
+                  </div>
                   <%= render "ingredients_recipes/ingredients_recipe_list" %>
                 </h4>
               </div>
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
                 <h4 class="panel-title">
+                  <div class="col-xs-12 alert alert-warning">
+                    <p>To add a step, use the navigation at the top of the page.</p>
+                  </div>
                   <%= render "recipe_steps/steps_list" %>
                 </h4>
               </div>
             </div>
-            <div id="collapseFour" class="panel-collapse collapse">
-              <div class="panel-body">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <%= render "recipes/allergens_ingredient_preview" %>
+                </h4>
               </div>
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                  </a>
+                  <%= render "recipes/nutrition_groups_preview" %>
+                </h4>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <%= render "marketing_items/marketing_items_list" %>
+                </h4>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Collapse</a>
                 </h4>
               </div>
             </div>
@@ -62,7 +80,9 @@
             </div>
           </div>
         </div>
-        <%= link_to "Finish", complete_recipe_path(@recipe), :class => "btn btn-success btn-lg"  %>
+        <div class="form-group text-center"> 
+          <%= link_to "Finish", complete_recipe_path(@recipe), :class => "btn btn-success btn-lg"  %>
+        </div>
       </div>
     </div>
   </div>

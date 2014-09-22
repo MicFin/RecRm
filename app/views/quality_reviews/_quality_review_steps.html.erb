@@ -1,0 +1,22 @@
+<div id="steps-review-container">
+  <div class="row text-left active-preview-info"> 
+    <h3 class="active-preview-heading">Steps: <span class="small-font">(click and drag step to re-order)</span></h3>
+    <div class="col-xs-12">
+    <% if @steps %>
+      <ol>
+        <% @steps.each do | step | %>
+          <li id="steps_<%=step.id%>"> 
+            <h4 class="ingredient-preview">
+              <%=step.directions%>
+            </h4>
+            <p> <span class="main-tag text-left">
+              <% step.ingredients_recipes.each do |ingredient|%>
+                <%= ingredient.display_name %>
+              <% end %></span></p>
+          </li>
+        <% end %>
+      </ol>
+    <% end %>
+    </div> 
+  </div> 
+</div>

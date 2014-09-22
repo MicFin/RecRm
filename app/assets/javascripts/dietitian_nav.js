@@ -17,5 +17,16 @@ $(document).ready(function() {
 		$("#kindrd-navbar li").removeClass("active");
 		$("#navbar-appointments").addClass("active");
 	};
+	// add regex method to jquery validation
+  $.validator.addMethod(
+    "regex",
+    function(value, element, regexp) {
+        var re = new RegExp(regexp);
+        return this.optional(element) || re.test(value);
+    }
+  );
+$('#accordion').on('show hide', function() {
+    $(this).css('height', 'auto');
+});
 
 });

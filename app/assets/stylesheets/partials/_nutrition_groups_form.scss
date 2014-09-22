@@ -6,6 +6,13 @@
 	list-style-type: none;
 }
 
+// same as select_allergens.scss checkboxes
+#recipe-categories-form .checkbox, #nutrition-groups-form .checkbox{
+	display: inline-block;
+	padding: 0px;
+	margin: 0px;
+}
+
 #recipe-categories-container li, #categories-container li, {
 	list-style-type: none;
 	padding: 10px;
@@ -13,4 +20,12 @@
 
 #categories-container img {
 	padding-top: 20px;
+}
+
+.health-group-list-item{
+	background-color: white;
+	border-radius: 5px;
+	text-align: center;
+	border: 1px solid black;
+	margin: 2px;
 }

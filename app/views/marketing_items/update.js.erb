@@ -1,0 +1,7 @@
+
+
+	if ("<%=@item_category%>" === "title") {
+		$('#marketing-item-<%=@patient_group_id%>-title').replaceWith("<%= j render(:partial => 'marketing_item_preview') %>");
+	} else {
+		$('#marketing-item-<%=@patient_group_id%>-description').replaceWith("<%= j render(:partial => 'marketing_item_preview') %>");
+	};

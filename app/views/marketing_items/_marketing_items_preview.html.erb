@@ -2,13 +2,13 @@
 <% if @patient_groups %>
   <% @patient_groups.each do |patient_group| %>
   <div class="form-group">
-    <div id="marketing-preview-container">
+    <div id="marketing-preview-container-<%=patient_group.id%>">
       <h2 class="active-preview-heading"><%=patient_group.name%></h2>
       <div class="preview-info"> 
-        <div class="col-xs-12">
+        <div class="col-xs-12" id="marketing-title-<%=patient_group.id%>">
           <h2 class="light-gray-font">TITLE</h2>
         </div>
-        <div class="col-xs-12 form-group">
+        <div class="col-xs-12 form-group" id="marketing-description-<%=patient_group.id%>">
           <h2 class="light-gray-font">DESCRIPTION</h2>
         </div>
       </div>
@@ -16,4 +16,17 @@
   </div>
   <% end %>
 <% end %>
+  <div class="form-group">
+      <div id="marketing-preview-container-0">
+        <h2 class="active-preview-heading">General</h2>
+        <div class="preview-info"> 
+          <div class="col-xs-12" id="marketing-title-0">
+            <h2 class="light-gray-font">TITLE</h2>
+          </div>
+          <div class="col-xs-12 form-group" id="marketing-description-0">
+            <h2 class="light-gray-font">DESCRIPTION</h2>
+          </div>
+        </div>
+      </div>
+    </div>
 </div> 

@@ -52,7 +52,7 @@ class Recipe < ActiveRecord::Base
   end
   # return an array of all unique recipe titles
   def self.all_recipe_names
-    return self.all.map(&:name).uniq!
+    return self.all.map(&:name).uniq
   end
   # return a recipe's ingredients that have already been tagged with allergens
   def ingredients_tagged

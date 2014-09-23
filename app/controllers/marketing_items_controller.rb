@@ -5,16 +5,16 @@ class MarketingItemsController < ApplicationController
 
   def new
     @marketing_items = {}
+    if @marketing_itemable.creation_stage < 6
+      @marketing_itemable.creation_stage = 6
+      @marketing_itemable.save
+    end
     if @marketing_itemable.patient_groups.count > 0
       @marketing_itemable.patient_groups.each do |patient_group|
         @marketing_items[patient_group] = {title: @marketing_itemable.marketing_items.new(category: "title", dietitian_id: current_dietitian.id), description: @marketing_itemable.marketing_items.new(category: "description", dietitian_id: current_dietitian.id)} 
       end
     end
     @marketing_items["General"] = {title: @marketing_itemable.marketing_items.new(category: "title", dietitian_id: current_dietitian.id), description: @marketing_itemable.marketing_items.new(category: "description", dietitian_id: current_dietitian.id)} 
-    if @marketing_itemable.creation_stage < 6
-      @marketing_itemable.creation_stage = 6
-      @marketing_itemable.save
-    end
     # forced js response
     respond_to do |format|
       @marketing_items = @marketing_items

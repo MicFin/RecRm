@@ -29,7 +29,7 @@ Rails.application.routes.draw do
         resources :recipes 
     end
     unauthenticated :user do
-      root :to => "welcome#index", as: :user_unauthenticated_root
+      root :to => "devise/sessions#new", as: :user_unauthenticated_root
     end   
   end
 
@@ -83,7 +83,7 @@ Rails.application.routes.draw do
       get 'recipes/:id/complete_recipe', to: 'recipes#complete_recipe', as: 'complete_recipe'
     end
     unauthenticated :dietitian do
-      root :to => "welcome#index", as: :dietitian_unauthenticated_root
+      root :to => "devise/sessions#new", as: :dietitian_unauthenticated_root
     end   
   end
   

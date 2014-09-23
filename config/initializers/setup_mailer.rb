@@ -6,6 +6,6 @@ ActionMailer::Base.smtp_settings = {
 :authentication => :plain,
 :user_name      => ENV['SENDGRID_USERNAME'],
 :password       => ENV['SENDGRID_PASSWORD'],
-:domain         => 'ec2-54-213-224-62.us-west-2.compute.amazonaws.com',
+:domain         => 'http://54.191.134.234',
 :enable_starttls_auto => true
 }

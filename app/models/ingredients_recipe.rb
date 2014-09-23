@@ -28,7 +28,7 @@ class IngredientsRecipe < ActiveRecord::Base
 
   def self.all_ingredient_display_names
     # remove nil, or empty values and return unique display names
-    return self.all.map(&:display_name).compact.reject!(&:empty?).uniq!
+    return self.all.map(&:display_name).compact.reject!(&:empty?).uniq
   end
   # find or create ingredient by name
   def find_or_create_ingredient(name)

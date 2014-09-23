@@ -1,5 +1,21 @@
   var FormValidation = {
-
+    // new user sign in form validations
+    signInValidations: function(){
+      $("#new_user").validate({
+        rules: {
+          "user[email]":{
+            email: true,
+            required: true,
+          }
+        },
+        messages: {
+          "user[email]":{
+            email: "Enter valid email",
+            required: "Enter valid email"
+          }
+        },
+      });
+    },
     // auto fills form with data-autocomplete-source attribute value
     unitAutofill:  function() {
       $(".unit-autofill").autocomplete({

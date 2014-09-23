@@ -19,19 +19,19 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index', as: 'home'
 
 
-  # devise_for :users
+  devise_for :users
   
   # # root to: "welcome#index"
 
-  # devise_scope :user do
-  #   authenticated :user do
-  #     root to: 'welcome#index', as: :user_authenticated_root
-  #       resources :recipes 
-  #   end
-  #   unauthenticated :user do
-  #     root :to => "devise/sessions#new", as: :user_unauthenticated_root
-  #   end   
-  # end
+  devise_scope :user do
+    authenticated :user do
+      root to: 'welcome#index', as: :user_authenticated_root
+        resources :recipes 
+    end
+    # unauthenticated :user do
+    #   root :to => "devise/sessions#new", as: :user_unauthenticated_root
+    # end   
+  end
 
   devise_for :dietitians
 

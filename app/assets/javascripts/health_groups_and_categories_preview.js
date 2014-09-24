@@ -11,7 +11,7 @@ var CategoriesPreview = {
 			$("#categories-container .preview-info").remove();
 			$("#categories-container").append("<div class='preview-info'></div>");
 			$( "input:checked" ).parent().each(function(){
-				$("#categories-container .preview-info").append("<div class='col-xs-3 health-group-list-item'><h4>"+$(this).text()+"</h4></div>"); 
+				$("#categories-container .preview-info").append("<div class='col-xs-3 category-list-item'><h4>"+$(this).text()+"</h4></div>"); 
 			});
 		});
 	}

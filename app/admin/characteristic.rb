@@ -15,5 +15,6 @@ ActiveAdmin.register Characteristic do
   # end
   filter :name
   filter :category
-  permit_params :name, :category
+  filter :order
+  permit_params :name, :category, :order
 end

@@ -15,7 +15,7 @@
 
                 <div class="form-group col-xs-12">
                   <div class="col-xs-12 text-left">
-                    <label>Does this ingredient contain any of the Top 15 allergens?</label>
+                    <label>Does this ingredient contain any of these common allergens?</label>
                   </div>
                   <div class="col-xs-10 col-xs-offset-1 text-left">
                   	<%= ingredient_form.association :allergens, as: :check_boxes, collection: @top_allergens, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box"%>

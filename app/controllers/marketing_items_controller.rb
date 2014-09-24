@@ -4,17 +4,18 @@ class MarketingItemsController < ApplicationController
   before_filter :set_marketing_item, only: [:update, :edit]
 
   def new
-    @marketing_items = {}
+    # must come before setting marketing items or they save 
     if @marketing_itemable.creation_stage < 6
       @marketing_itemable.creation_stage = 6
       @marketing_itemable.save
     end
+    @marketing_items = {}
+    @marketing_items["General"] = {title: @marketing_itemable.marketing_items.new(category: "title", dietitian_id: current_dietitian.id), description: @marketing_itemable.marketing_items.new(category: "description", dietitian_id: current_dietitian.id)} 
     if @marketing_itemable.patient_groups.count > 0
       @marketing_itemable.patient_groups.each do |patient_group|
         @marketing_items[patient_group] = {title: @marketing_itemable.marketing_items.new(category: "title", dietitian_id: current_dietitian.id), description: @marketing_itemable.marketing_items.new(category: "description", dietitian_id: current_dietitian.id)} 
       end
     end
-    @marketing_items["General"] = {title: @marketing_itemable.marketing_items.new(category: "title", dietitian_id: current_dietitian.id), description: @marketing_itemable.marketing_items.new(category: "description", dietitian_id: current_dietitian.id)} 
     # forced js response
     respond_to do |format|
       @marketing_items = @marketing_items

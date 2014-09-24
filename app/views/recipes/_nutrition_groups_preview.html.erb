@@ -11,7 +11,7 @@
   <!--       HEALTH GROUP PREIVEW     -->  
   <div id="recipe-categories-container">
     <div class="preview-info"> 
-      <h4 class="preview-heading">Made with love for people with:</h4>
+      <h4><span class="large-green-font">Made for</span> a person with these dietary restrictions:</h4>
       <div id="health-groups-container">
       <% if @health_groups.count > 0 %>
         <div class='preview-info'>
@@ -39,11 +39,11 @@
       </div>
     </div>
     <div class="col-xs-12 preview-info" id="categories-container">
-      <h4 class="preview-heading">Recipe Categories:</h4>
+      <h4>Recipe Categories:</h4>
       <% if @categories.count > 0 %>
         <div class='preview-info'>
           <% @categories.each do |category| %>
-          <div class='col-xs-3 health-group-list-item'><h4><%=category.name%></h4></div>
+          <div class='col-xs-3 category-list-item'><h4><%=category.name%></h4></div>
           <% end %>
         </div>
       <% else %>

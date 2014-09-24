@@ -393,72 +393,72 @@ ActiveAdmin.register_page "Dashboard" do
 
     # # Here is an example of a simple dashboard with columns and panels.
     # #
-    h3 "By Chef"
-    groups = Dietitian.all.in_groups(2)
-    columns do
-    groups[0].each do |dietitian|
-      column do
-        panel "#{dietitian.email}" do
-          ul do
-          # Post.recent(5).map do |post|
-          #   li link_to(post.title, admin_post_path(post))
-              li "Total: #{dietitian.recipes.count}"
-              li "This Week: #{dietitian.recipes.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day).count}"
-              li "Last Week: #{dietitian.recipes.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day).count}"
-              li "2 Weeks Ago: #{dietitian.recipes.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day).count}"
-              li "3 Weeks Ago: #{dietitian.recipes.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day).count}"
-              li "4 Weeks Ago: #{dietitian.recipes.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day).count}"
-              br
-              li "Breakfast: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-              li "Lunch: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
-              li "Dinner: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
-              li "Snacks: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-              br
-              li "Made for Dairy: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).count}"
-              li "Made for Egg: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).count}"
-              li "Made for Soy: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).count}"
-              li "Made for Wheat: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).count}"
-              li "Made for Fish: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).count}"
-              li "Made for Shellfish: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).count}"
-              li "Made for Tree Nut: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).count}"
-              li "Made for Peanut: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).count}"
-          end
-        end
-      end
-    end
-    end
-    columns do
-    groups[1].compact!.each do |dietitian|
-      column do
-        panel "#{dietitian.email}" do
-          ul do
-          # Post.recent(5).map do |post|
-          #   li link_to(post.title, admin_post_path(post))
-              li "Total: #{dietitian.recipes.count}"
-              li "This Week: #{dietitian.recipes.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day).count}"
-              li "Last Week: #{dietitian.recipes.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day).count}"
-              li "2 Weeks Ago: #{dietitian.recipes.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day).count}"
-              li "3 Weeks Ago: #{dietitian.recipes.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day).count}"
-              li "4 Weeks Ago: #{dietitian.recipes.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day).count}"
-              br
-              li "Breakfast: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-              li "Lunch: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
-              li "Dinner: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
-              li "Snacks: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-              br
-              li "Made for Dairy: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).count}"
-              li "Made for Egg: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).count}"
-              li "Made for Soy: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).count}"
-              li "Made for Wheat: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).count}"
-              li "Made for Fish: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).count}"
-              li "Made for Shellfish: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).count}"
-              li "Made for Tree Nut: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).count}"
-              li "Made for Peanut: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).count}"
-          end
-        end
-      end
-    end
-    end # columns
+    # h3 "By Chef"
+    # groups = Dietitian.all.in_groups(2)
+    # columns do
+    # groups[0].each do |dietitian|
+    #   column do
+    #     panel "#{dietitian.email}" do
+    #       ul do
+    #       # Post.recent(5).map do |post|
+    #       #   li link_to(post.title, admin_post_path(post))
+    #           li "Total: #{dietitian.recipes.count}"
+    #           li "This Week: #{dietitian.recipes.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day).count}"
+    #           li "Last Week: #{dietitian.recipes.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day).count}"
+    #           li "2 Weeks Ago: #{dietitian.recipes.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day).count}"
+    #           li "3 Weeks Ago: #{dietitian.recipes.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day).count}"
+    #           li "4 Weeks Ago: #{dietitian.recipes.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day).count}"
+    #           br
+    #           li "Breakfast: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+    #           li "Lunch: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
+    #           li "Dinner: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
+    #           li "Snacks: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+    #           br
+    #           li "Made for Dairy: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).count}"
+    #           li "Made for Egg: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).count}"
+    #           li "Made for Soy: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).count}"
+    #           li "Made for Wheat: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).count}"
+    #           li "Made for Fish: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).count}"
+    #           li "Made for Shellfish: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).count}"
+    #           li "Made for Tree Nut: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).count}"
+    #           li "Made for Peanut: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).count}"
+    #       end
+    #     end
+    #   end
+    # end
+    # end
+    # columns do
+    # groups[1].compact!.each do |dietitian|
+    #   column do
+    #     panel "#{dietitian.email}" do
+    #       ul do
+    #       # Post.recent(5).map do |post|
+    #       #   li link_to(post.title, admin_post_path(post))
+    #           li "Total: #{dietitian.recipes.count}"
+    #           li "This Week: #{dietitian.recipes.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day).count}"
+    #           li "Last Week: #{dietitian.recipes.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day).count}"
+    #           li "2 Weeks Ago: #{dietitian.recipes.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day).count}"
+    #           li "3 Weeks Ago: #{dietitian.recipes.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day).count}"
+    #           li "4 Weeks Ago: #{dietitian.recipes.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day).count}"
+    #           br
+    #           li "Breakfast: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+    #           li "Lunch: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
+    #           li "Dinner: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
+    #           li "Snacks: #{dietitian.recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+    #           br
+    #           li "Made for Dairy: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).count}"
+    #           li "Made for Egg: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).count}"
+    #           li "Made for Soy: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).count}"
+    #           li "Made for Wheat: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).count}"
+    #           li "Made for Fish: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).count}"
+    #           li "Made for Shellfish: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).count}"
+    #           li "Made for Tree Nut: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).count}"
+    #           li "Made for Peanut: #{dietitian.recipes.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).count}"
+    #       end
+    #     end
+    #   end
+    # end
+    # end # columns
 
   end # content
 

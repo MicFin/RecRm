@@ -20,7 +20,7 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients/1/edit
   def edit
-    @allergens = Allergen.first(10)
+    @allergens = Allergen.top_allergens
     @suggested_allergens = @ingredient.suggested_allergens
     @recipe = Recipe.find(params[:recipe_id])
     @other_allergens = @ingredient.other_allergens
@@ -54,7 +54,7 @@ class IngredientsController < ApplicationController
     @ingredients_tagged = @recipe.ingredients_tagged
     # recipe ingredients that are not tagged with allergens yet
     @ingredients_not_tagged = @recipe.ingredients_not_tagged
-    @top_allergens = Allergen.first(15)
+    @top_allergens = Allergen.top_allergens
     @all_allergens = Allergen.order(:name).map(&:name)
      # if there are other ingredients tha tneed to be tagged
     if @recipe.ingredients_not_tagged.count >= 1

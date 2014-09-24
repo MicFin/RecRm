@@ -7,5 +7,7 @@ class Allergen < ActiveRecord::Base
     return array_of_words
   end
 
-
+  def self.top_allergens
+    self.where(top_allergen: true)
+  end
 end

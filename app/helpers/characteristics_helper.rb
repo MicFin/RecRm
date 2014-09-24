@@ -9,9 +9,9 @@ module CharacteristicsHelper
       @difficulty_count = @difficulties.count
       @serving_sizes = Characteristic.where(category: "Serving Size")
       
-      @courses = Characteristic.where(category: "Course")
-      @scenarios = Characteristic.where(category: "Scenario")
-      @cultures = Characteristic.where(category: "Culture")
+      @courses = Characteristic.where(category: "Course").order(:order)
+      @meals = Characteristic.where(category: "Meal").order(:order)
+      @cultures = Characteristic.where(category: "Culture").order(:name)
     end
 
 	def do_somthing!

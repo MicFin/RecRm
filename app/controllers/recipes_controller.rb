@@ -43,8 +43,7 @@ class RecipesController < ApplicationController
 		@recipe.difficulty = @difficulty
 		@recipe.courses = @courses
 		@recipe.age_groups = @age_groups
-		@recipe.scenarios = @scenarios
-		@recipe.holidays = @holidays
+		@recipe.meals = @meals
 		@recipe.cultures = @cultures
 
 		gon.rabl as: 'recipe'
@@ -167,7 +166,7 @@ class RecipesController < ApplicationController
       @recipe.save
     end
     get_recipe_characteristics!
-    @scenarios = @scenarios
+    @meals = @meals
     @cultures = @cultures
     @courses = @courses
     # for preview

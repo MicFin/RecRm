@@ -11,7 +11,7 @@
           <label>Meal:</label>
         </div>
         <div class="col-xs-12 text-left">
-          <%= f.association :characteristics, as: :check_boxes, collection: @scenarios, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+          <%= f.association :characteristics, as: :check_boxes, collection: @meals, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
         </div>
       </div>
       <div class="col-xs-12 text-left">

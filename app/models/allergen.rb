@@ -10,4 +10,8 @@ class Allergen < ActiveRecord::Base
   def self.top_allergens
     self.where(top_allergen: true)
   end
+
+  def self.common_allergens
+    self.where(common_allergen: true).order(:name)
+  end
 end

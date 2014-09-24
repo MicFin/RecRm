@@ -54,8 +54,8 @@ class IngredientsController < ApplicationController
     @ingredients_tagged = @recipe.ingredients_tagged
     # recipe ingredients that are not tagged with allergens yet
     @ingredients_not_tagged = @recipe.ingredients_not_tagged
-    @top_allergens = Allergen.top_allergens
-    @all_allergens = Allergen.order(:name).map(&:name)
+    @top_allergens = Allergen.top_allergens.order(:name)
+    @all_allergens = Allergen.common_allergens.map(&:name)
      # if there are other ingredients tha tneed to be tagged
     if @recipe.ingredients_not_tagged.count >= 1
       # make ingredient variable the next to be tagge

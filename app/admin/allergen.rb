@@ -19,7 +19,8 @@ ActiveAdmin.register Allergen do
     end
     column :description
     column :manual_enter
-    column :top_allergen   
+    column :top_allergen 
+    column :common_allergen    
     column :created_at
     column :updated_at
     actions
@@ -28,8 +29,9 @@ ActiveAdmin.register Allergen do
   filter :name
   filter :description
   filter :manual_enter
-  filter :top_allergen   
+  filter :top_allergen  
+  filter :common_allergen   
   filter :created_at
   filter :updated_at
-  permit_params :name, :description
+  permit_params :name, :description, :manual_enter, :top_allergen, :common_allergen
 end

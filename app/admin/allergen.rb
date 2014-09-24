@@ -13,8 +13,23 @@ ActiveAdmin.register Allergen do
   #  permitted << :other if resource.something?
   #  permitted
   # end
+  index do
+    column "Name" do |allergen|
+      link_to allergen.name, admin_allergen_path(allergen.id)
+    end
+    column :description
+    column :manual_enter
+    column :top_allergen   
+    column :created_at
+    column :updated_at
+    actions
+  end
+
   filter :name
   filter :description
-
+  filter :manual_enter
+  filter :top_allergen   
+  filter :created_at
+  filter :updated_at
   permit_params :name, :description
 end

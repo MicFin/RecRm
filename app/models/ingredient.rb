@@ -22,7 +22,7 @@ class Ingredient < ActiveRecord::Base
     main_allergens = Allergen.first(10)
     other_allergens = other_allergens - main_allergens
     other_allergens = other_allergens - Allergen.where(name: self.name)
-    return other_allergens
+    return other_allergens.uniq
   end
 
   def split_ingredient_by_word
@@ -60,7 +60,7 @@ class Ingredient < ActiveRecord::Base
         end
       end
     end
-    return suggested_allergens
+    return suggested_allergens.uniq
   end
 
 end

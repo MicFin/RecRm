@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921200713) do
+ActiveRecord::Schema.define(version: 20140924161505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 20140921200713) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "description",     default: "No Description"
-    t.boolean  "common_allergen"
+    t.text     "description",  default: "No Description"
     t.boolean  "manual_enter"
+    t.boolean  "top_allergen"
   end
 
   create_table "allergens_ingredients", id: false, force: true do |t|

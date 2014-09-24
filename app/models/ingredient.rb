@@ -41,11 +41,13 @@ class Ingredient < ActiveRecord::Base
     # iterate through each word in the ingredient
     words_in_name.each do |word_in_name|
       # iterate trough each ingredient
-      Allergen.all.each do |allergen|       
-        allergen.split_allergen_by_word.each do |allergen_word|
-          # if word in allergen matches word in ingredient then add to suggested
-          if allergen_word == word_in_name
-            suggested_allergens << allergen
+      Allergen.where(common_allergen: true).each do |allergen| 
+        if allergen.common_allergen == true    
+          allergen.split_allergen_by_word.each do |allergen_word|
+            # if word in allergen matches word in ingredient then add to suggested
+            if allergen_word == word_in_name
+              suggested_allergens << allergen
+            end
           end
         end
       end
@@ -54,13 +56,16 @@ class Ingredient < ActiveRecord::Base
           # if word in other ingredient names match word in ingredient then add to suggested
           if ingredient_word == word_in_name
             ingredient.allergens.each do |allergen|
-              suggested_allergens << allergen
+              # if allergen is a common allergen
+              if allergen.common_allergen == true
+                suggested_allergens << allergen
+              end
             end
           end
         end
       end
     end
-    return suggested_allergens.uniq
+    return suggested_allergens.uniq.first(9)
   end
 
 end

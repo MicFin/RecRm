@@ -133,13 +133,14 @@ class RecipesController < ApplicationController
     @diseases = @diseases
     @intolerances = @intolerances
     @allergies = @allergies
+    @diets = @diets
     @recipe_id = @recipe.id
     # for preview
     @health_groups = @recipe.patient_groups 
     @categories = @recipe.characteristics
     respond_to do |format|
       format.js {render "edit_patient_groups" and return}
-      format.html {render "edit_patient_groups_page" and return}
+      format.html {render "edit_patient_groups_page"}
     end
   end
 

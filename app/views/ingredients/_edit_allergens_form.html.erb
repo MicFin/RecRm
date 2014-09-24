@@ -12,7 +12,18 @@
                     <p>Take careful consideration when tagging.</p>
                   </div>
                 </div>
+                <div class="form-group col-xs-12">
+                  <div class="col-xs-12 text-left alert alert-warning">
+                    <label>Is <%=@ingredient.name%> an allergen that is found in other ingredients?                     <label class="light-orange-font">
+                      <input type="checkbox" name="ingredient[common_allergen]" value="true">
+                      yes
+                    </label></label>
+                    <p>Examples:</p>
+                    <p>YES: avocado , strawberry, rice</p>   
 
+                    <p>NO: guocamole, strawberry jam, rice pasta </p>
+                  </div>
+                </div>
                 <div class="form-group col-xs-12">
                   <div class="col-xs-12 text-left">
                     <label>Does this ingredient contain any of these common allergens?</label>
@@ -21,19 +32,21 @@
                   	<%= ingredient_form.association :allergens, as: :check_boxes, collection: @top_allergens, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box"%>
                   </div>
                 </div>
-                <% if @suggested_allergens.count > 0 %>
                 <div class="form-group col-xs-12">
                   <div class="col-xs-12 text-left">
                     <label>Does the ingredient contain any of these suggested allergens?</label>
                   </div>
                   <div class="col-xs-10 col-xs-offset-1 text-left">
+                  <% if @suggested_allergens.count > 0 %>
                     <%= ingredient_form.association :allergens, as: :check_boxes, collection: @suggested_allergens, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+                  <% else %>
+                    <h5> No suggestions</h5>
+                  <% end %>
                   </div>
                 </div>
-                <% end %>
                 <div class="form-group col-xs-12">
                   <div class="form-group col-xs-12 text-left">
-                    <label>Need to find an allergen no listed?  Search our database.</label>
+                    <label>Need to find an allergen not listed?  Search our database or add your own.</label>
                   </div>
                   <div class="row text-left">
                   <input type="hidden" name="ingredient_id" id: "hidden-recipe" value="<%=@ingredient.id%>">
@@ -49,19 +62,6 @@
                       <ul>
                       </ul>
                     </div>
-                    <div class="col-xs-12 alert alert-warning text-center" role="alert">
-                      Looking for an allergen that is not in our database, please let us know. <a href="">Click here!</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group col-xs-12">
-                  <div class="col-xs-12 text-left">
-                    <label>This ingredient is a common allergen found in other ingredients. </label>
-                    <p>(examples: peanut, strawberry, or rice)    
-                    <label class="light-orange-font">
-                      <input type="checkbox" name="ingredient[common_allergen]" value="true">
-                      yes
-                    </label></p>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,10 @@
 <% @marketing_items_by_group.each do |health_group, marketing_items_hash| %>
 	<div id="marketing-preview-container-<%=marketing_items_hash['group_id']%>">
-		<h2 class="active-preview-heading"><%=health_group%></h2>
+		<% if health_group == "General"%>
+			<h2 class="active-preview-heading">For an average eater with no restrictions</h2>
+		<% else %>
+			<h2 class="active-preview-heading">For someone with dietary restrictions due to <%=health_group%></h2>
+		<% end %>
 		<div class="preview-info">
 			<div id="marketing-title-<%=marketing_items_hash['group_id']%>">
 				<h4 class="active-preview-heading">

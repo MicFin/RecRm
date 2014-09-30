@@ -60,8 +60,8 @@ class IngredientsController < ApplicationController
     if @recipe.ingredients_not_tagged.count >= 1
       # make ingredient variable the next to be tagge
       @ingredient = @recipe.ingredients_not_tagged.first
-      # set tagging_done to false
-      @tagging_done = false
+      # # set tagging_done to false
+      # @tagging_done = false
       # if there are suggested allerens then grab them
       if @ingredient.suggested_allergens
         @suggested_allergens = @ingredient.suggested_allergens  
@@ -132,11 +132,18 @@ class IngredientsController < ApplicationController
     end
     respond_to do |format|
       if @ingredient.update(ingredient_params)
+        @recipe_id = params["id"]
+        @recipe = Recipe.find(@recipe_id)
+        if @recipe.ingredients_not_tagged.count >= 1
+          # set tagging_done to false
+          @tagging_done = false
+        else
+          @tagging_done = true
+        end
         format.js { render "update_allergens" and return}
        # redirect to list of recipe ingredients and allergens
         format.html { redirect_to edit_allergens_path(recipe_id: @recipe_id), notice: 'Ingredient was successfully updated.' }
         format.json { render :show, status: :ok, location: @ingredient }
-        @recipe_id = params["id"]
       else
         format.html { render :edit }
         format.json { render json: @ingredient.errors, status: :unprocessable_entity }

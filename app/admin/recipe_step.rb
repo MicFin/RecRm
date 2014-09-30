@@ -8,7 +8,7 @@ ActiveAdmin.register RecipeStep do
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :step_numer, :directions, :recipe_id
+  permit_params :step_number, :directions, :recipe_id
 
   # or
   #

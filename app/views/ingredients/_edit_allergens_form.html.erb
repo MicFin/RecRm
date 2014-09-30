@@ -1,6 +1,6 @@
 
           <div id="allergens-form">
-  				<%= simple_form_for @ingredient, :url => {:controller => 'ingredients', :action => 'update_allergens'} do |ingredient_form| %>
+  				<%= simple_form_for @ingredient, :url => {:controller => 'ingredients', :action => 'update_allergens'}, remote: true do |ingredient_form| %>
               <div class=" form-group row text-center">
                 <div class="col-xs-12">
                   <h2>Identify all allergens for:</h2>

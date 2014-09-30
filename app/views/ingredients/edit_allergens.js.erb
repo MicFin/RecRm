@@ -7,8 +7,10 @@
 	} else {
 		$("#new-steps-form").replaceWith("<%= j render(:partial => 'edit_allergens_form') %>"); 
 		$("#recipe-essentials-preview").replaceWith("<%= j render(:partial => '/recipes/allergens_ingredient_preview') %>");
+
 	};
-// FormValidations.ingredientAllergensValidations();
+
+
 // formvalidation method did not work so added manually
   $( ".allergen-autofill" ).autocomplete({
     source: $('.allergen-autofill').data('autocomplete-source')
@@ -19,8 +21,4 @@
     $("#added-allergens ul").append(html);
   });
   // set breadcrumb to allow allergy information clickable
-	$("#breadcrumb-allergy-information").removeClass("disabled");
-	$("#breadcrumb-allergy-information").tooltip("disable");
-	$("#breadcrumb-allergy-information").on("click", function(){
-		return true;
-	};
+  $("html, body").animate({ scrollTop: 0 }, "slow");

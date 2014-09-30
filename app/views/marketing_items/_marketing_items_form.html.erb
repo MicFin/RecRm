@@ -15,9 +15,9 @@
       <% end %>
         <div class="col-xs-12">
           <% if patient_group.first == "General" %>
-            <h3>General</h3>  
+            <h3>For an average eater with no restrictions</h3>  
           <% else %>   
-            <h3><%=patient_group.first.name%></h3>
+            <h3>For someone with dietary restrictions due to <%=patient_group.first.name%></h3>
           <% end %>
         </div>
         <% if patient_group.first == "General" %>

@@ -5,7 +5,7 @@
     <% if @steps %>
       <ol id="sortable" data-update-url="<%= sort_recipe_steps_url %>">
         <% @steps.each do | step | %>
-          <li class="col-xs-12" id="steps_<%=step.id%>"> 
+          <li id="steps_<%=step.id%>"> 
             <h4 class="ingredient-preview">
               <%= link_to edit_recipe_step_path(step ,recipe_id: @recipe_id), :remote => true  do %>
                 <span class='glyphicon glyphicon-edit'></span>

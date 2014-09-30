@@ -181,18 +181,19 @@
       }); 
     }, // ingredientAllergensValidations
     sortableIngredientList: function(){
-      $("#sortable").sortable({
+      $("#ingredient-sortable").sortable({
         placeholder: "ui-state-highlight",
         connectWith: ".column",
         start: function(e, ui){
-            ui.placeholder.height(ui.item.height())
+            ui.placeholder.height(ui.item.height());
+            ui.placeholder.width(ui.item.width())
         },
         axis: 'y',
         update: function() {
           return $.post($(this).data('update-url'), $(this).sortable("serialize"))
         }
       });
-      $( "#sortable" ).disableSelection();
+      $( "#ingredient-sortable" ).disableSelection();
     }, // sortableIngrdientList
 
   } //Formvalidation   

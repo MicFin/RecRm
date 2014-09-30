@@ -24,7 +24,7 @@ class RecipeStepsController < ApplicationController
       @recipe.creation_stage = 3
       @recipe.save
     end
-    @ingredients = @recipe.ingredients_recipes
+    @ingredients = @recipe.ordered_ingredients
     respond_to do |format|
       format.js { render "new" and return}
       @steps = @recipe.steps
@@ -91,7 +91,7 @@ class RecipeStepsController < ApplicationController
   def edit
     @recipe_id = params["recipe_id"]
     @recipe = Recipe.find(@recipe_id)
-    @ingredients = @recipe.ingredients_recipes
+    @ingredients = @recipe.ordered_ingredients
     @recipe_step = RecipeStep.find(params[:id])
     @step_id = @recipe_step.id
   end

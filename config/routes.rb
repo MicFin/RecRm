@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       root :to => 'recipes#dietitian_recipes_index', as: :dietitian_authenticated_root
       resources :characteristics
       resources :ingredients_recipes do 
+        collection { post :sort }
         get :autocomplete_ingredient_name, :on => :collection
       end
       resources :allergens_ingredients

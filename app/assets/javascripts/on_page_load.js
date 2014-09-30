@@ -8,7 +8,8 @@ $(document).ready(function() {
 	FormValidation.ingredientAutofill();
 	FormValidation.displayNameAutofill();
 	FormValidation.ingredientValidations();
-
+	FormValidation.sortableIngredientList();
+	
 	// steps form on page load
 	FormValidation.stepsValidations();
 

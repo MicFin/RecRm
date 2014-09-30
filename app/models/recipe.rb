@@ -27,6 +27,12 @@ class Recipe < ActiveRecord::Base
   has_many :marketing_items, as: :marketing_itemable 
   has_many :quality_reviews
   has_many :review_conflicts, through: :quality_reviews
+ 
+  # returns recipe ingredients in order
+  def ordered_ingredients
+    self.ingredients_recipes.sort_by(&:position)
+  end
+
 
   # returns recipe steps in order
   def steps

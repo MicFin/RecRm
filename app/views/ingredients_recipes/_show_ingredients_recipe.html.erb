@@ -1,5 +1,5 @@
 
-<div id="ingredient-form-<%=@ingredient.id%>" class="col-xs-12">
+<li id="ingredient_form_<%=@ingredient.id%>">
   <h4 class="ingredient-preview">
   <%= link_to edit_ingredients_recipe_path(@ingredient, :recipe_id=> @recipe_id), :remote => true  do %>
     <span class='glyphicon glyphicon-edit'></span>
@@ -14,4 +14,4 @@
       <span class="glyphicon glyphicon-trash"></span>
     <% end %>
   </h4>
-</div>
+</li>

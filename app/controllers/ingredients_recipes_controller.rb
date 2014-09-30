@@ -31,7 +31,7 @@ class IngredientsRecipesController < ApplicationController
     @all_ingredient_display_names = IngredientsRecipe.all_ingredient_display_names
     respond_to do |format|
       format.js { render "new" and return}
-      @ingredients = @recipe.ingredients_recipes
+      @ingredients = @recipe.ordered_ingredients
       format.html { render "new_ingredient_page" and return}
     end
   end
@@ -48,13 +48,19 @@ class IngredientsRecipesController < ApplicationController
       params["ingredients_recipe"].delete("options")
     end
     # create new ingredients recipe with params
- 
     @ingredients_recipe = IngredientsRecipe.new(ingredients_recipe_params)
+
     # finds of creates the ingredient and saves as the ingredients_recipe's ingredient_id
     @ingredients_recipe.find_or_create_ingredient(params["ingredients_recipe"]["ingredient_attributes"]["name"])
+    # recipe id
     @recipe_id = params["recipe_id"]
+    # set ingredients_recipe to recipe_id
     @ingredients_recipe.recipe_id = @recipe_id
+    # recipe
     @recipe = Recipe.find(@recipe_id)
+    # set position to last 
+    @ingredients_recipe.position = @recipe.ingredients_recipes.count
+    # update creation stage
     if @recipe.creation_stage < 2
       @recipe.creation_stage = 2
       @recipe.save
@@ -64,7 +70,7 @@ class IngredientsRecipesController < ApplicationController
         format.html { redirect_to @ingredients_recipe, notice: 'Recipe ingredient was successfully created.' }
         format.json { render :show, status: :created, location: @ingredients_recipe }
         # for updating ingredients_list
-        @ingredients = Recipe.find(@recipe_id).ingredients_recipes
+        @ingredients = @recipe.ordered_ingredients
         format.js 
       else
         format.html { render :new }
@@ -134,6 +140,15 @@ class IngredientsRecipesController < ApplicationController
     end
   end
 
+
+    # when sortable list is adjusted, it calls this method to save new orders
+  def sort
+    params[:ingredients_recipes].each_with_index do |id, index|
+      IngredientsRecipe.find(id).update(position: index+1)
+    end
+    render nothing: true
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ingredients_recipe
@@ -146,6 +161,6 @@ class IngredientsRecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredients_recipe_params
-      params.require(:ingredients_recipe).permit(:amount, :amount_unit, :recipe_id, :optional_ingredient, :main_ingredient, :display_name, :ingredient_attributes => [])
+      params.require(:ingredients_recipe).permit(:amount, :amount_unit, :recipe_id, :optional_ingredient, :main_ingredient, :display_name, :position, :ingredient_attributes => [])
     end
 end

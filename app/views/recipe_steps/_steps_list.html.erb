@@ -15,10 +15,11 @@
                 <span class="glyphicon glyphicon-trash"></span>
               <% end %>
             </h4>
-            <p> <span class="main-tag text-left">
+            <div class="row ingredients-in-step-container">
               <% step.ingredients_recipes.each do |ingredient|%>
-                <%= ingredient.display_name %>
-              <% end %></span></p>
+                <div class="ingredient-in-step"><%= ingredient.display_name %></div>
+              <% end %>
+            </div>
           </li>
         <% end %>
       </ol>

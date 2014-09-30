@@ -27,6 +27,12 @@ class Recipe < ActiveRecord::Base
   has_many :marketing_items, as: :marketing_itemable 
   has_many :quality_reviews
   has_many :review_conflicts, through: :quality_reviews
+
+  # returns recipe steps in order
+  def steps
+    self.recipe_steps.sort_by(&:position)
+  end
+
   # return hash of recipe marketing items by patient group and by title ad description
   def marketing_items_by_group
     items_by_group = {}

@@ -27,7 +27,7 @@ class RecipeStepsController < ApplicationController
     @ingredients = @recipe.ingredients_recipes
     respond_to do |format|
       format.js { render "new" and return}
-      @steps = @recipe.recipe_steps
+      @steps = @recipe.steps
       format.html { render "new_steps_page" and return}
     end
   end
@@ -39,6 +39,7 @@ class RecipeStepsController < ApplicationController
     @recipe_step = RecipeStep.new(recipe_step_params)
     @recipe_id = params["recipe_step"]["recipe_id"]
     @recipe = Recipe.find(@recipe_id)
+    @recipe_step.position = @recipe.recipe_steps.count
     if @recipe.creation_stage < 3
       @recipe.creation_stage = 3
       @recipe.save
@@ -50,7 +51,7 @@ class RecipeStepsController < ApplicationController
         ## to show preview of steps
         @recipe = @recipe
         ### should sort by position
-        @steps = @recipe.recipe_steps
+        @steps = @recipe.steps
         # for hidden form of next step
         @recipe_id = @recipe.id
         format.js
@@ -135,6 +136,6 @@ class RecipeStepsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_step_params
-      params.require(:recipe_step).permit(:step_number, :directions, :recipe_id, :ingredients_recipe_ids => [])
+      params.require(:recipe_step).permit(:position, :directions, :recipe_id, :ingredients_recipe_ids => [])
     end
 end

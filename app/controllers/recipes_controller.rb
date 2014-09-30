@@ -61,7 +61,7 @@ class RecipesController < ApplicationController
     @units = @units
     @ingredients = @recipe.ingredients_recipes
     @ingredients_count = @ingredients.count
-    @steps = @recipe.recipe_steps
+    @steps = @recipe.steps
     @recipe_id = @recipe.id
     if @recipe.creation_stage < 7
       @recipe.creation_stage = 7

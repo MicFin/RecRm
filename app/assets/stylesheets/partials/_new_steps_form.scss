@@ -19,3 +19,17 @@
 #steps-container .small-font {
 	font-size: 12px;
 }
+
+.ingredient-in-step{
+	border: 1px solid $darkgreen;
+	color: $darkgreen;
+	float: left;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 5px;
+}
+
+.ingredients-in-step-container{
+	margin-bottom: 10px;
+	margin-left: 15px;
+}

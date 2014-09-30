@@ -7,7 +7,7 @@ class QualityReviewsController < ApplicationController
     @recipe_id = params[:recipe_id]
     @recipe = Recipe.find(@recipe_id)
     @ingredients = @recipe.ingredients_recipes
-    @steps = @recipe.recipe_steps
+    @steps = @recipe.steps
     @health_groups = @recipe.patient_groups
     @categories = @recipe.characteristics
     @marketing_items_by_group = @recipe.marketing_items_by_group

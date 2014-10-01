@@ -7,7 +7,7 @@ $(document).ready(function() {
 
   // change nav highlight based on url key word
   var pathname = window.location.pathname;
-  if ((pathname.search("/recipes") >= 0) || (pathname.search("/ingredients") >= 0)) {
+  if ((pathname.search("/recipes") >= 0) || (pathname.search("/ingredients") >= 0) || (pathname.search("/recipe_steps") >= 0)) {
   	$("#kindrd-navbar li").removeClass("active");
 		$("#navbar-recipes").addClass("active");
 	} else if (pathname.search("/welcome") >= 0){

@@ -46,7 +46,6 @@ class Recipe < ActiveRecord::Base
         steps_by_group["Main"] = steps_by_group["Main"].sort_by(&:position)
       end
     end
-    binding.pry
     return steps_by_group
   end
 

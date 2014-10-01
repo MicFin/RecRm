@@ -7,43 +7,43 @@ ActiveAdmin.register_page "Dashboard" do
     h1 "Total Recipes: #{Recipe.all.count}"
     today = Date.today
     beginning_of_week = today.at_beginning_of_week
-    # columns do
-    #   column do
-    #     panel "This week" do
-    #       ul do
-    #         li "#{Recipe.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day).count}"
-    #       end  
-    #     end 
-    #   end   
-    #   column do
-    #     panel "Last week" do
-    #       ul do
-    #         li "#{Recipe.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day).count}"
-    #       end  
-    #     end
-    #   end  
-    #   column do
-    #     panel "2 weeks ago" do
-    #       ul do
-    #         li "#{Recipe.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day).count}"
-    #       end  
-    #     end 
-    #   end   
-    #   column do
-    #     panel "3 weeks ago" do
-    #       ul do
-    #         li "#{Recipe.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day).count}"
-    #       end  
-    #     end 
-    #   end   
-    #   column do
-    #     panel "4 weeks ago" do
-    #       ul do
-    #         li "#{Recipe.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day).count}"
-    #       end  
-    #     end 
-    #   end   
-    # end
+    columns do
+      column do
+        panel "This week" do
+          ul do
+            li "#{Recipe.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day).count}"
+          end  
+        end 
+      end   
+      column do
+        panel "Last week" do
+          ul do
+            li "#{Recipe.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day).count}"
+          end  
+        end
+      end  
+      column do
+        panel "2 weeks ago" do
+          ul do
+            li "#{Recipe.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day).count}"
+          end  
+        end 
+      end   
+      column do
+        panel "3 weeks ago" do
+          ul do
+            li "#{Recipe.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day).count}"
+          end  
+        end 
+      end   
+      column do
+        panel "4 weeks ago" do
+          ul do
+            li "#{Recipe.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day).count}"
+          end  
+        end 
+      end   
+    end
 
 
 

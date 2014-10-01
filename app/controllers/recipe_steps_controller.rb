@@ -25,9 +25,9 @@ class RecipeStepsController < ApplicationController
       @recipe.save
     end
     @ingredients = @recipe.ordered_ingredients
+    @steps_by_group = @recipe.steps_by_group
     respond_to do |format|
       format.js { render "new" and return}
-      @steps = @recipe.steps
       format.html { render "new_steps_page" and return}
     end
   end
@@ -39,7 +39,7 @@ class RecipeStepsController < ApplicationController
     @recipe_step = RecipeStep.new(recipe_step_params)
     @recipe_id = params["recipe_step"]["recipe_id"]
     @recipe = Recipe.find(@recipe_id)
-    @recipe_step.position = @recipe.recipe_steps.count
+    @recipe_step.position = @recipe.recipe_steps.count + 1
     if @recipe.creation_stage < 3
       @recipe.creation_stage = 3
       @recipe.save
@@ -51,7 +51,7 @@ class RecipeStepsController < ApplicationController
         ## to show preview of steps
         @recipe = @recipe
         ### should sort by position
-        @steps = @recipe.steps
+        @steps_by_group = @recipe.steps_by_group
         # for hidden form of next step
         @recipe_id = @recipe.id
         format.js
@@ -64,8 +64,9 @@ class RecipeStepsController < ApplicationController
 
   # when sortable list is adjusted, it calls this method to save
   def sort
+    group_name = params[:group_name]
     params[:steps].each_with_index do |id, index|
-      RecipeStep.find(id).update(position: index+1)
+      RecipeStep.find(id).update(position: index+1, group_name: group_name)
       # Faq.update_all({position: index+1}, {id: id})
     end
     render nothing: true
@@ -106,7 +107,7 @@ class RecipeStepsController < ApplicationController
         format.json { render :show, status: :ok, location: @recipe_step }
         @recipe_id = @recipe_step.recipe_id
         @recipe = Recipe.find(@recipe_id)
-        @steps = @recipe.recipe_steps
+        @steps = @recipe.steps
         format.js
       else
         format.html { render :edit }
@@ -120,8 +121,8 @@ class RecipeStepsController < ApplicationController
   def destroy
     @recipe_id = @recipe_step.recipe_id
     @recipe = Recipe.find(@recipe_id)
-    @steps = @recipe.recipe_steps
     @recipe_step.destroy
+    @steps_by_group = @recipe.steps_by_group
     respond_to do |format|
       format.html { redirect_to recipe_steps_url, notice: 'Recipe step was successfully destroyed.' }
       format.json { head :no_content }
@@ -131,11 +132,11 @@ class RecipeStepsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe_step
-      @recipe_step = RecipeStep.find(params[:id])
+      @recipe_step = RecipeStep.find(params[:id].to_i)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_step_params
-      params.require(:recipe_step).permit(:position, :directions, :recipe_id, :ingredients_recipe_ids => [])
+      params.require(:recipe_step).permit(:position, :directions, :group_name, :recipe_id, :ingredients_recipe_ids => [])
     end
 end

@@ -30,3 +30,7 @@
 	margin-bottom: 10px;
 	margin-left: 15px;
 }
+
+#sortable li:hover, #sortable li:active, #sortable li:focus{
+	cursor:move;
+}

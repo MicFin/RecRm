@@ -1,9 +1,9 @@
 $("#steps-container").replaceWith("<%= j render(:partial => 'steps_list') %>");
 // FormValidations.sortableIngredientList();
 // method would not work so had to manually input sortable 
-$("#sortable").sortable({
+$(".steps-sortable").sortable({
         placeholder: "ui-state-highlight",
-        connectWith: ".column",
+        connectWith: ".steps-sortable",
         start: function(e, ui){
             ui.placeholder.height(ui.item.height())
         },
@@ -12,4 +12,4 @@ $("#sortable").sortable({
           return $.post($(this).data('update-url'), $(this).sortable("serialize"))
         }
       });
-$( "#sortable" ).disableSelection();
+$( ".steps-sortable" ).disableSelection();

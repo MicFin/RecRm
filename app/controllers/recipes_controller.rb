@@ -59,7 +59,7 @@ class RecipesController < ApplicationController
     @serving_sizes = @serving_sizes
     get_units!
     @units = @units
-    @ingredients = @recipe.ingredients_recipes
+    @ingredients = @recipe.ordered_ingredients
     @ingredients_count = @ingredients.count
     @steps = @recipe.steps
     @recipe_id = @recipe.id
@@ -83,7 +83,7 @@ class RecipesController < ApplicationController
 
   def complete_recipe
     @recipe = Recipe.find(params[:id])
-    @recipe.completed = true
+    @recipe.complete = true
     @recipe.save
     redirect_to dietitian_recipes_path(current_dietitian)
   end
@@ -318,6 +318,6 @@ class RecipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     # need to change :image_url to :avatar when paperclip is working
     def recipe_params
-      params.require(:recipe).permit(:image_url, :name, :description, :dietitian_id, :cook_time, :prep_time, :serving_size, :difficulty, :characteristic_ids => [], :patient_group_ids => [])
+      params.require(:recipe).permit(:image_url, :name, :description, :dietitian_id, :cook_time, :prep_time, :serving_size, :difficulty, :complete, :characteristic_ids => [], :patient_group_ids => [])
     end
 end

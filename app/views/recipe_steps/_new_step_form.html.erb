@@ -6,10 +6,14 @@
   <%= simple_form_for @recipe_step, remote: true  do |recipe_step_form| %>
     <div class="steps-preview">
       <div class="form-group col-xs-12">
-        <% if @recipe_step.directions == nil %>
-          <label for="exampleInputEmail1">New Step</label>
-        <% end %>
-        <%= recipe_step_form.input :directions, as: :text, label: false, input_html: {class: "form-control", rows: "3", placeholder: "Add 3 cups of milk and 1 cup of water to pot..."} %>
+        <div id="group-names-container" class="form-group col-xs-6">
+          <label>Step Group Name</label>
+          <%= recipe_step_form.input :group_name, label: false, :input_html=> {class: "form-control", placeholder: "Sauce"} %>
+        </div>
+        <div class="form-group col-xs-12">
+        <label>Directions</label>
+          <%= recipe_step_form.input :directions, as: :text, label: false, input_html: {class: "form-control", rows: "3", placeholder: "Add 3 cups of milk and 1 cup of water to pot..."} %>
+        </div>
       </div>
       <div class="form-group col-xs-12">
         <label for="steps">Select the ingredients used in this step</label>

@@ -54,3 +54,7 @@
 .edit_ingredients_recipe{
 	padding-left: 20px;
 }
+
+#ingredient-sortable li:hover, #ingredient-sortable li:active, #ingredient-sortable li:focus{
+	cursor:move;
+}

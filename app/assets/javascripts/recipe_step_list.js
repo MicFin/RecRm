@@ -1,8 +1,8 @@
 
 $(document).ready(function() {
-		$("#sortable").sortable({
+		$(".steps-sortable").sortable({
 		  placeholder: "ui-state-highlight",
-		  connectWith: ".column",
+		  connectWith: ".steps-sortable",
 		  start: function(e, ui){
 		      ui.placeholder.height(ui.item.height())
 		  },
@@ -11,5 +11,5 @@ $(document).ready(function() {
 		    return $.post($(this).data('update-url'), $(this).sortable("serialize"))
 		  }
 		});
-		$( "#sortable" ).disableSelection();
+		$( ".steps-sortable" ).disableSelection();
 });

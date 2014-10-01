@@ -29,6 +29,28 @@ class Recipe < ActiveRecord::Base
   has_many :review_conflicts, through: :quality_reviews
  
   # returns recipe ingredients in order
+  def steps_by_group
+    steps_groups = []
+    self.recipe_steps.map {|step| steps_groups << step.group_name}
+    steps_groups = steps_groups.compact.reject(&:empty?).uniq
+    steps_by_group = {}
+    self.recipe_steps.each do |step|
+      steps_groups.each do |group|
+        steps_by_group[group] = steps_by_group[group] || []
+        steps_by_group[group] << step if step.group_name == group
+        steps_by_group[group] = steps_by_group[group].sort_by(&:position)
+      end
+      if ( (step.group_name == nil) || (step.group_name == "") )
+        steps_by_group["Main"] = steps_by_group["Main"] || []
+        steps_by_group["Main"] << step
+        steps_by_group["Main"] = steps_by_group["Main"].sort_by(&:position)
+      end
+    end
+    binding.pry
+    return steps_by_group
+  end
+
+  # returns recipe ingredients in order
   def ordered_ingredients
     self.ingredients_recipes.sort_by(&:position)
   end

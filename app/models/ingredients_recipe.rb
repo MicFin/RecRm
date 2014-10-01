@@ -50,7 +50,7 @@ class IngredientsRecipe < ActiveRecord::Base
   def autosave_associated_records_for_ingredient
   end
 
-  # return the full name of the ingredient including both prep terms
+  # return the full name of the ingredient including amount, unit and display name
   def full_name
     return "#{self.amount} #{self.amount_unit} #{self.display_name}" 
   end

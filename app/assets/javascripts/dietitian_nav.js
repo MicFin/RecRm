@@ -31,5 +31,21 @@ $(document).ready(function() {
   } else {
     $("footer").removeClass("fixed");
   };
+
+  // hide groups container for recipe steps
+  $( "#group-names-container").hide();
+  // show container and field or hide based onf selection
+  $( "#groups-of-steps-select" ).change(function() {
+    if ($( "#groups-of-steps-select" ).val() === "one"){
+      $( "#recipe_step_group_name" ).attr('disabled','disabled')
+      $( "#group-names-container").hide();
+    } else{
+      $( "#group-names-container").show();
+      $( "#recipe_step_group_name" ).removeAttr('disabled')
+    };
+  });
+
+
+
 });
 

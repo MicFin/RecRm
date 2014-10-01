@@ -4,7 +4,8 @@ if ($('.individual-step-form').length > 0) {
 	$(".individual-step-form").replaceWith("<%= j render(:partial => 'new_step_form') %>");
 	// else add the new ingredient to a div meant to receieve it called individual ingredient form
 } else {
-	$(".individual-step-form").append("<%= j render(:partial => 'recipe_steps/new_step_form') %>");
+	$(".individual-ingredient-form").append("<%= j render(:partial => 'recipe_steps/new_step_form') %>");
 };
+
 
 FormValidation.stepsValidations();

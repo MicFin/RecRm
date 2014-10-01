@@ -31,7 +31,6 @@
 
 // above recipe basic form for document ready
 //= require recipe_basic_info_form
-//= require new_recipe
 //= require form_validations
 
 

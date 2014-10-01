@@ -7,185 +7,185 @@ ActiveAdmin.register_page "Dashboard" do
     h1 "Total Recipes: #{Recipe.all.count}"
     today = Date.today
     beginning_of_week = today.at_beginning_of_week
-    columns do
-      column do
-        panel "This week" do
-          ul do
-            li "#{Recipe.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day).count}"
-          end  
-        end 
-      end   
-      column do
-        panel "Last week" do
-          ul do
-            li "#{Recipe.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day).count}"
-          end  
-        end
-      end  
-      column do
-        panel "2 weeks ago" do
-          ul do
-            li "#{Recipe.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day).count}"
-          end  
-        end 
-      end   
-      column do
-        panel "3 weeks ago" do
-          ul do
-            li "#{Recipe.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day).count}"
-          end  
-        end 
-      end   
-      column do
-        panel "4 weeks ago" do
-          ul do
-            li "#{Recipe.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day).count}"
-          end  
-        end 
-      end   
-    end
-
-
-
-    # h3 "By Patient Group"
     # columns do
-    #     column do
-    #       panel "Dairy Allergy" do
-    #         ul do
-    #           h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).count}"
-    #           li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-    #           li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
-    #           li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
-    #           li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
-    #           br
-    #           h5 "Safe for: #{get_recipe_list_by_groups!("Dairy").count}"
-    #           li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Dairy"), 'Breakfast').count}" 
-    #           li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Dairy"), 'Lunch').count}" 
-    #           li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Dairy"), 'Dinner').count}" 
-    #           li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Dairy"), 'Snack').count}" 
-    #         end  
-    #       end 
-    #     end   
-    #     column do
-    #       panel "Egg Allergy" do
-    #         ul do
-    #           h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).count}"
-    #           li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-    #           li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
-    #           li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
-    #           li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
-    #           br
-    #           h5 "Safe for: #{get_recipe_list_by_groups!("Egg").count}"
-    #           li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Egg"), 'Breakfast').count}" 
-    #           li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Egg"), 'Lunch').count}" 
-    #           li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Egg"), 'Dinner').count}" 
-    #           li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Egg"), 'Snack').count}" 
-    #         end  
-    #       end
+    #   column do
+    #     panel "This week" do
+    #       ul do
+    #         li "#{Recipe.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day).count}"
+    #       end  
     #     end 
-    #     column do
-    #       panel "Soy Allergy" do
-    #         ul do
-    #           h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).count}"
-    #           li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-    #           li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
-    #           li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
-    #           li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
-    #           br
-    #           h5 "Safe for: #{get_recipe_list_by_groups!("Soy").count}"
-    #           li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Soy"), 'Breakfast').count}" 
-    #           li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Soy"), 'Lunch').count}" 
-    #           li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Soy"), 'Dinner').count}" 
-    #           li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Soy"), 'Snack').count}" 
-    #         end  
-    #       end
-    #     end   
-    #     column do
-    #       panel "Wheat Allergy" do
-    #         ul do
-    #           h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).count}"
-    #           li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-    #           li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
-    #           li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
-    #           li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
-    #           br
-    #           h5 "Safe for: #{get_recipe_list_by_groups!("Wheat").count}"
-    #           li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Wheat"), 'Breakfast').count}" 
-    #           li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Wheat"), 'Lunch').count}" 
-    #           li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Wheat"), 'Dinner').count}" 
-    #           li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Wheat"), 'Snack').count}" 
-    #         end  
-    #       end
-    #     end  
-    #     column do
-    #       panel "Fish Allergy" do
-    #         ul do
-    #           h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).count}"
-    #           li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-    #           li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
-    #           li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
-    #           li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
-    #           br
-    #           h5 "Safe for: #{get_recipe_list_by_groups!("Fish").count}"
-    #           li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Fish"), 'Breakfast').count}" 
-    #           li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Fish"), 'Lunch').count}" 
-    #           li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Fish"), 'Dinner').count}" 
-    #           li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Fish"), 'Snack').count}" 
-    #         end  
-    #       end
-    #     end  
-    #     column do
-    #       panel "Shellfish Allergy" do
-    #         ul do
-    #           h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).count}"
-    #           li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-    #           li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
-    #           li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
-    #           li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
-    #           br
-    #           h5 "Safe for: #{get_recipe_list_by_groups!("Shellfish").count}"
-    #           li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Shellfish"), 'Breakfast').count}" 
-    #           li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Shellfish"), 'Lunch').count}" 
-    #           li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Shellfish"), 'Dinner').count}" 
-    #           li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Shellfish"), 'Snack').count}" 
-    #         end  
-    #       end
+    #   end   
+    #   column do
+    #     panel "Last week" do
+    #       ul do
+    #         li "#{Recipe.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day).count}"
+    #       end  
+    #     end
+    #   end  
+    #   column do
+    #     panel "2 weeks ago" do
+    #       ul do
+    #         li "#{Recipe.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day).count}"
+    #       end  
     #     end 
-    #     column do
-    #       panel "Tree Nut Allergy" do
-    #         ul do
-    #           h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).count}"
-    #           li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-    #           li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
-    #           li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
-    #           li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
-    #           br
-    #           h5 "Safe for: #{get_recipe_list_by_groups!("Tree Nut").count}"
-    #           li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Tree Nut"), 'Breakfast').count}" 
-    #           li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Tree Nut"), 'Lunch').count}" 
-    #           li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Tree Nut"), 'Dinner').count}" 
-    #           li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Tree Nut"), 'Snack').count}" 
-    #         end  
-    #       end
-    #     end   
-    #     column do
-    #       panel "Peanut Allergy" do
-    #         ul do
-    #           h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).count}"
-    #           li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
-    #           li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
-    #           li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
-    #           li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
-    #           br
-    #           h5 "Safe for: #{get_recipe_list_by_groups!("Peanut").count}"
-    #           li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Peanut"), 'Breakfast').count}" 
-    #           li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Peanut"), 'Lunch').count}" 
-    #           li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Peanut"), 'Dinner').count}" 
-    #           li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Peanut"), 'Snack').count}" 
-    #         end  
-    #       end
-    #     end           
-    # end # columns
+    #   end   
+    #   column do
+    #     panel "3 weeks ago" do
+    #       ul do
+    #         li "#{Recipe.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day).count}"
+    #       end  
+    #     end 
+    #   end   
+    #   column do
+    #     panel "4 weeks ago" do
+    #       ul do
+    #         li "#{Recipe.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day).count}"
+    #       end  
+    #     end 
+    #   end   
+    # end
+
+
+
+    h3 "By Patient Group"
+    columns do
+        column do
+          panel "Dairy Allergy" do
+            ul do
+              h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).count}"
+              li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+              li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
+              li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
+              li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Dairy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
+              br
+              h5 "Safe for: #{get_recipe_list_by_groups!("Dairy").count}"
+              li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Dairy"), 'Breakfast').count}" 
+              li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Dairy"), 'Lunch').count}" 
+              li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Dairy"), 'Dinner').count}" 
+              li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Dairy"), 'Snack').count}" 
+            end  
+          end 
+        end   
+        column do
+          panel "Egg Allergy" do
+            ul do
+              h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).count}"
+              li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+              li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
+              li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
+              li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Egg').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
+              br
+              h5 "Safe for: #{get_recipe_list_by_groups!("Egg").count}"
+              li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Egg"), 'Breakfast').count}" 
+              li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Egg"), 'Lunch').count}" 
+              li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Egg"), 'Dinner').count}" 
+              li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Egg"), 'Snack').count}" 
+            end  
+          end
+        end 
+        column do
+          panel "Soy Allergy" do
+            ul do
+              h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).count}"
+              li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+              li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
+              li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
+              li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Soy').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
+              br
+              h5 "Safe for: #{get_recipe_list_by_groups!("Soy").count}"
+              li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Soy"), 'Breakfast').count}" 
+              li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Soy"), 'Lunch').count}" 
+              li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Soy"), 'Dinner').count}" 
+              li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Soy"), 'Snack').count}" 
+            end  
+          end
+        end   
+        column do
+          panel "Wheat Allergy" do
+            ul do
+              h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).count}"
+              li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+              li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
+              li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
+              li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Wheat').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
+              br
+              h5 "Safe for: #{get_recipe_list_by_groups!("Wheat").count}"
+              li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Wheat"), 'Breakfast').count}" 
+              li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Wheat"), 'Lunch').count}" 
+              li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Wheat"), 'Dinner').count}" 
+              li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Wheat"), 'Snack').count}" 
+            end  
+          end
+        end  
+        column do
+          panel "Fish Allergy" do
+            ul do
+              h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).count}"
+              li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+              li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
+              li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
+              li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Fish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
+              br
+              h5 "Safe for: #{get_recipe_list_by_groups!("Fish").count}"
+              li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Fish"), 'Breakfast').count}" 
+              li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Fish"), 'Lunch').count}" 
+              li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Fish"), 'Dinner').count}" 
+              li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Fish"), 'Snack').count}" 
+            end  
+          end
+        end  
+        column do
+          panel "Shellfish Allergy" do
+            ul do
+              h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).count}"
+              li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+              li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
+              li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
+              li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Shellfish').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
+              br
+              h5 "Safe for: #{get_recipe_list_by_groups!("Shellfish").count}"
+              li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Shellfish"), 'Breakfast').count}" 
+              li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Shellfish"), 'Lunch').count}" 
+              li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Shellfish"), 'Dinner').count}" 
+              li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Shellfish"), 'Snack').count}" 
+            end  
+          end
+        end 
+        column do
+          panel "Tree Nut Allergy" do
+            ul do
+              h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).count}"
+              li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+              li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
+              li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
+              li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Tree Nut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
+              br
+              h5 "Safe for: #{get_recipe_list_by_groups!("Tree Nut").count}"
+              li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Tree Nut"), 'Breakfast').count}" 
+              li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Tree Nut"), 'Lunch').count}" 
+              li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Tree Nut"), 'Dinner').count}" 
+              li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Tree Nut"), 'Snack').count}" 
+            end  
+          end
+        end   
+        column do
+          panel "Peanut Allergy" do
+            ul do
+              h5 "Made for: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).count}"
+              li "Breakfast: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count}"
+              li "Lunch: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count}"
+              li "Dinner: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count}"
+              li "Snack: #{Recipe.includes(:patient_groups).where('patient_groups.name = ?', 'Peanut').references(:patient_group).includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count}"
+              br
+              h5 "Safe for: #{get_recipe_list_by_groups!("Peanut").count}"
+              li "Breakfast: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Peanut"), 'Breakfast').count}" 
+              li "Lunch: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Peanut"), 'Lunch').count}" 
+              li "Dinner: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Peanut"), 'Dinner').count}" 
+              li "Snack: #{get_recipe_list_from_group_by_meal!(get_recipe_list_by_groups!("Peanut"), 'Snack').count}" 
+            end  
+          end
+        end           
+    end # columns
 
 
 

@@ -69,7 +69,9 @@ class RecipeStepsController < ApplicationController
       RecipeStep.find(id).update(position: index+1, group_name: group_name)
       # Faq.update_all({position: index+1}, {id: id})
     end
-    render nothing: true
+    respond_to do |format|
+      format.js
+    end
   end
   # # POST /recipe_steps
   # # POST /recipe_steps.json

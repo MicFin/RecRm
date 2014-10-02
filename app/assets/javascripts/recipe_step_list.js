@@ -12,4 +12,12 @@ $(document).ready(function() {
 		  }
 		});
 		$( ".steps-sortable" ).disableSelection();
+		$( ".delete-step-group" ).on("click", function(e){
+		  e.preventDefault();
+		  if ($(this).parent().parent().next().children().children().length <= 0){
+		    $(this).parent().parent().remove();
+		  }else{
+		    alert("Oops! You should not delete a group that has steps in it. Please rearrange your steps or change the name of the group.")
+		  };
+		});
 });

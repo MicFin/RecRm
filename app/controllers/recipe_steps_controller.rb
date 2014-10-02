@@ -107,7 +107,7 @@ class RecipeStepsController < ApplicationController
         format.json { render :show, status: :ok, location: @recipe_step }
         @recipe_id = @recipe_step.recipe_id
         @recipe = Recipe.find(@recipe_id)
-        @steps = @recipe.steps
+        @steps_by_group = @recipe.steps_by_group
         format.js
       else
         format.html { render :edit }

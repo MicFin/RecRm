@@ -29,6 +29,7 @@ class IngredientsRecipesController < ApplicationController
     @units = @units
     @recipe = Recipe.find(@recipe_id)
     @all_ingredient_display_names = IngredientsRecipe.all_ingredient_display_names
+    @steps_by_group = @recipe.steps_by_group
     respond_to do |format|
       format.js { render "new" and return}
       @ingredients = @recipe.ordered_ingredients

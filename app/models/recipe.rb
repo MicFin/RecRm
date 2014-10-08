@@ -31,17 +31,17 @@ class Recipe < ActiveRecord::Base
  
   def self.data_by_health_group
     data_by_health_group_hash = {}
-    # PatientGroup.all.each do |health_group|
-    #   data_by_health_group_hash[health_group.name] = {}
-    #   health_group_recipes = Recipe.includes(:patient_groups).where('patient_groups.name = ?', health_group.name).references(:patient_group)
-    #   data_by_health_group_hash[health_group.name]["Total"] = health_group_recipes.count
-    #   data_by_health_group_hash[health_group.name]["Breakfast"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count
-    #   data_by_health_group_hash[health_group.name]["Lunch"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count
-    #   data_by_health_group_hash[health_group.name]["Dinner"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count
-    #   data_by_health_group_hash[health_group.name]["Snack"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count    
-    #   data_by_health_group_hash[health_group.name]["Dessert"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Dessert').references(:characteristic).count    
-    # end
-    # return data_by_health_group_hash
+    PatientGroup.all.each do |health_group|
+      data_by_health_group_hash[health_group.name] = {}
+      health_group_recipes = Recipe.includes(:patient_groups).where('patient_groups.name = ?', health_group.name).references(:patient_group)
+      data_by_health_group_hash[health_group.name]["Total"] = health_group_recipes.count
+      data_by_health_group_hash[health_group.name]["Breakfast"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count
+      data_by_health_group_hash[health_group.name]["Lunch"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count
+      data_by_health_group_hash[health_group.name]["Dinner"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count
+      data_by_health_group_hash[health_group.name]["Snack"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count    
+      data_by_health_group_hash[health_group.name]["Dessert"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Dessert').references(:characteristic).count    
+    end
+    return data_by_health_group_hash
   end
 
   def self.data_by_total

@@ -61,6 +61,32 @@
 		  <% end %>
 		</table>
 
+		<table class="table table-striped table-bordered table-condensed table-hover" style="width:100%">
+		  <h1>Recipe Creation by Health Group</h1>
+		  <tr>
+		  	<th></th>
+		    <th>Total</th>
+		    <th>Breakfast</th>
+		    <th>Lunch</th>
+		    <th>Dinner</th>
+		    <th>Snacks</th>
+		    <th>Dessert</th>
+		  </tr>
+		  <tr>
+		  	<td>All Health Groups</td>
+		  </tr>
+		  <% @recipe_data_by_health_group.each do |health_group, data| %>
+		  <tr>
+		    <td><%=health_group%></td>
+				<td><%=data["Total"]%></td>
+		    <td><%=data["Breakfast"]%></td>
+		    <td><%=data["Lunch"]%></td>
+		    <td><%=data["Dinner"]%></td>
+		    <td><%=data["Snack"]%></td>
+		    <td><%=data["Dessert"]%></td>
+		  </tr>  
+		  <% end %>
+		</table>
 
 
 	</div>

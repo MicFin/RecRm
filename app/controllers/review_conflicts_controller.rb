@@ -104,7 +104,6 @@ class ReviewConflictsController < ApplicationController
     elsif params[:review_conflict][:category] == "Allergens"
       ingredient = params[:review_conflict][:first_suggestion][:ingredient_name] 
       allergens = params[:review_conflict][:first_suggestion][:allergens]
-      binding.pry
       if params[:review_conflict][:first_suggestion][:common] == "true"
         common = "true"
       else

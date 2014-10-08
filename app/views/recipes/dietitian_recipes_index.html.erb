@@ -7,6 +7,9 @@
 		<p>Create a Recipe</p>
 	</div>
 	<% if current_dietitian.has_role? :admin_dietitian %>
+		<div class="col-xs-12">
+    	<%= link_to "Recipe Data", recipe_data_path(current_dietitian), class: "btn btn-lg btn-success"%>
+    </div>
 		<div class="col-xs-12" id="review-recipes">
 			<h2>Assign these recipes to be reviewed:</h2>
 			<% @recipe_reviews_to_assign.each do |recipe| %>

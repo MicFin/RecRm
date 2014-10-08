@@ -29,6 +29,110 @@ class Recipe < ActiveRecord::Base
   has_many :marketing_items, as: :marketing_itemable 
   has_many :review_conflicts, through: :quality_reviews
  
+  def self.data_by_health_group
+    data_by_health_group_hash = {}
+    PatientGroup.all.each do |health_group|
+      data_by_health_group_hash[health_group.name] = {}
+      health_group_recipes = Recipe.includes(:patient_groups).where('patient_groups.name = ?', health_group.name).references(:patient_group)
+      data_by_health_group_hash[health_group.name]["Total"] = health_group_recipes.count
+      data_by_health_group_hash[health_group.name]["Breakfast"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count
+      data_by_health_group_hash[health_group.name]["Lunch"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count
+      data_by_health_group_hash[health_group.name]["Dinner"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count
+      data_by_health_group_hash[health_group.name]["Snack"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count    
+      data_by_health_group_hash[health_group.name]["Dessert"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Dessert').references(:characteristic).count    
+    end
+    return data_by_health_group_hash
+  end
+
+  def self.data_by_total
+      today = Date.today
+      beginning_of_week = today.at_beginning_of_week
+      data_by_total_hash = {}
+      all_time_array = Recipe.all
+      data_by_total_hash["total_all_time"] = all_time_array.count
+      data_by_total_hash["made_for_all_time"] = 0
+      all_time_array.each do |recipe|
+        data_by_total_hash["made_for_all_time"] += recipe.patient_groups.count
+      end
+      this_weeks_array = Recipe.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day)
+      data_by_total_hash["total_this_week"] = this_weeks_array.count
+      data_by_total_hash["made_for_this_week"] = 0
+      this_weeks_array.each do |recipe|
+        data_by_total_hash["made_for_this_week"] += recipe.patient_groups.count
+      end
+      last_weeks_array = Recipe.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day)
+      data_by_total_hash["total_last_week"] = last_weeks_array.count
+      data_by_total_hash["made_for_last_week"] = 0
+      last_weeks_array.each do |recipe|
+        data_by_total_hash["made_for_last_week"] += recipe.patient_groups.count
+      end
+      total_2_weeks_ago_array = Recipe.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day)
+      data_by_total_hash["total_2_weeks_ago"] = total_2_weeks_ago_array.count
+      data_by_total_hash["made_for_2_weeks_ago"] = 0
+      total_2_weeks_ago_array.each do |recipe|
+        data_by_total_hash["made_for_2_weeks_ago"] += recipe.patient_groups.count
+      end
+      total_3_weeks_ago_array = Recipe.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day)
+      data_by_total_hash["total_3_weeks_ago"] = total_3_weeks_ago_array.count
+      data_by_total_hash["made_for_3_weeks_ago"] = 0
+      total_3_weeks_ago_array.each do |recipe|
+        data_by_total_hash["made_for_3_weeks_ago"] += recipe.patient_groups.count
+      end
+      total_4_weeks_ago_array = Recipe.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day)
+      data_by_total_hash["total_4_weeks_ago"] = total_4_weeks_ago_array.count
+      data_by_total_hash["made_for_4_weeks_ago"] = 0
+      total_4_weeks_ago_array.each do |recipe|
+        data_by_total_hash["made_for_4_weeks_ago"] += recipe.patient_groups.count
+      end
+      return data_by_total_hash
+  end
+
+  def self.data_by_dietitian
+    today = Date.today
+    beginning_of_week = today.at_beginning_of_week
+    data_by_dietitian_hash = {}
+    Dietitian.all.each do|dietitian|
+      data_by_dietitian_hash[dietitian.email] = {}
+      all_time_array = dietitian.recipes
+      data_by_dietitian_hash[dietitian.email]["total_all_time"] = all_time_array.count
+      data_by_dietitian_hash[dietitian.email]["made_for_all_time"] = 0
+      all_time_array.each do |recipe|
+        data_by_dietitian_hash[dietitian.email]["made_for_all_time"] += recipe.patient_groups.count
+      end
+      this_weeks_array = dietitian.recipes.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day)
+      data_by_dietitian_hash[dietitian.email]["total_this_week"] = this_weeks_array.count
+      data_by_dietitian_hash[dietitian.email]["made_for_this_week"] = 0
+      this_weeks_array.each do |recipe|
+        data_by_dietitian_hash[dietitian.email]["made_for_this_week"] += recipe.patient_groups.count
+      end
+      last_weeks_array = dietitian.recipes.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day)
+      data_by_dietitian_hash[dietitian.email]["total_last_week"] = last_weeks_array.count
+      data_by_dietitian_hash[dietitian.email]["made_for_last_week"] = 0
+      last_weeks_array.each do |recipe|
+        data_by_dietitian_hash[dietitian.email]["made_for_last_week"] += recipe.patient_groups.count
+      end
+      total_2_weeks_ago_array = dietitian.recipes.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day)
+      data_by_dietitian_hash[dietitian.email]["total_2_weeks_ago"] = total_2_weeks_ago_array.count
+      data_by_dietitian_hash[dietitian.email]["made_for_2_weeks_ago"] = 0
+      total_2_weeks_ago_array.each do |recipe|
+        data_by_dietitian_hash[dietitian.email]["made_for_2_weeks_ago"] += recipe.patient_groups.count
+      end
+      total_3_weeks_ago_array = dietitian.recipes.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day)
+      data_by_dietitian_hash[dietitian.email]["total_3_weeks_ago"] = total_3_weeks_ago_array.count
+      data_by_dietitian_hash[dietitian.email]["made_for_3_weeks_ago"] = 0
+      total_3_weeks_ago_array.each do |recipe|
+        data_by_dietitian_hash[dietitian.email]["made_for_3_weeks_ago"] += recipe.patient_groups.count
+      end
+      total_4_weeks_ago_array = dietitian.recipes.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day)
+      data_by_dietitian_hash[dietitian.email]["total_4_weeks_ago"] = total_4_weeks_ago_array.count
+      data_by_dietitian_hash[dietitian.email]["made_for_4_weeks_ago"] = 0
+      total_4_weeks_ago_array.each do |recipe|
+        data_by_dietitian_hash[dietitian.email]["made_for_4_weeks_ago"] += recipe.patient_groups.count
+      end
+    end
+    return data_by_dietitian_hash
+  end
+  
   def fetch_ingredients_allergens_hash
     ingredients_allergens_hash = {}
     self.ingredients.each do |ingredient|

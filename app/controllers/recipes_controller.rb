@@ -17,7 +17,7 @@ class RecipesController < ApplicationController
 
   ## this method and view is being used as the dietitian dashboard right now, it should be moved to a home controller or another controller
   def dietitian_recipes_index
-    if current_dietitian.email == "tara@kindrdfood.com"
+    if ( (current_dietitian.email == "tara@kindrdfood.com") || (current_dietitian.email == "david@kindrdfood.com") || (current_dietitian.email == "mike@kindrdfood.com") )
       current_dietitian.add_role :admin_dietitian
     end
     @recipes = Recipe.where(dietitian_id: current_dietitian.id)
@@ -306,6 +306,16 @@ class RecipesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def recipe_data
+    if current_dietitian.has_role? :admin_dietitian
+      @recipe_data_by_total = Recipe.data_by_total
+      @recipe_data_by_dietitian = Recipe.data_by_dietitian
+      @recipe_data_by_health_group = Recipe.data_by_health_group
+    else
+      redirect_to dietitian_recipes_path(current_dietitian)
     end
   end
 

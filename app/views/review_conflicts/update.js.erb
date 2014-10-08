@@ -1,0 +1,35 @@
+
+
+<% if @item == "recipe-name" %>
+	$("#review-recipe-name").replaceWith("<%= j render(:partial => 'review_recipe_name_show') %>");
+<% elsif @item == "prep-time" %>
+	$("#review-recipe-prep-time").replaceWith("<%= j render(:partial => 'review_recipe_prep_time_show') %>");
+<% elsif @item == "cook-time" %>
+	$("#review-recipe-cook-time").replaceWith("<%= j render(:partial => 'review_recipe_cook_time_show') %>");
+<% elsif @item == "difficulty" %>
+	$("#review-recipe-difficulty").replaceWith("<%= j render(:partial => 'review_recipe_difficulty_show') %>");
+<% elsif @item == "serving-size" %>
+	$("#review-recipe-serving-size").replaceWith("<%= j render(:partial => 'review_recipe_serving_size_show') %>");
+<% elsif @item.include? "ingredient-" %>
+	$("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_ingredient_show') %>");
+<% elsif @item.include? "step-" %>
+  $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_step_show') %>");
+<% elsif @item.include? "allergen-" %>
+  $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_allergen_show') %>");
+
+<% end %>
+
+  $("#panel-<%=@item%>").removeClass('alert');
+  $("#panel-<%=@item%>").removeClass("alert-success");
+  $("#panel-<%=@item%>").removeClass("alert-info");
+  $("#panel-<%=@item%>").removeClass("alert-warning");
+  $("#panel-<%=@item%>").removeClass("alert-danger");
+  <% if @risk_level == 1 %>
+    $("#panel-<%=@item%>").addClass("alert alert-success");
+  <% elsif @risk_level == 2 %>
+    $("#panel-<%=@item%>").addClass("alert alert-info");
+  <% elsif @risk_level == 3 %>
+    $("#panel-<%=@item%>").addClass("alert alert-warning");
+  <% else %>
+    $("#panel-<%=@item%>").addClass("alert alert-danger");
+  <% end %>

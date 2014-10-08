@@ -1,0 +1,20 @@
+<% if @review_conflict.risk_level == 1 %>
+  <div id="review-recipe-difficulty" class="col-xs-12 form-group alert alert-success">
+    <h4>No Risk</h4>
+<% elsif @review_conflict.risk_level == 2 %>
+  <div id="review-recipe-difficulty" class="col-xs-12 form-group alert alert-info">
+    <h4>Low Risk</h4>
+<% elsif @review_conflict.risk_level == 3 %>
+  <div id="review-recipe-difficulty" class="col-xs-12 form-group alert alert-warning">
+    <h4>High Risk</h4>
+<% elsif @review_conflict.risk_level == 4 %>
+  <div id="review-recipe-difficulty" class="col-xs-12 form-group alert alert-danger">
+    <h4>Dangerous Risk</h4>
+<% end %>
+    <label>Difficulty</label>
+    <h3><%=@review_conflict.first_suggestion%></h3>
+    <p class="form-group"><%= @review_conflict.first_reviewer_notes %></p>
+    <div class=" col-xs-12 form-group text-center"> 
+      <%= link_to "Edit Changes", edit_recipe_quality_review_review_conflict_path(@quality_reviewable, @quality_review, @review_conflict), class: "btn btn-success btn-lg", id: "basic-form-button", :remote => true%>
+    </div>
+  </div>

@@ -6,6 +6,8 @@ class IngredientsRecipe < ActiveRecord::Base
 	belongs_to :recipe
   accepts_nested_attributes_for :ingredient
   has_and_belongs_to_many :recipe_steps
+
+  resourcify
   # could not get client side validation to work on this new ingredients recipe form so removed server validation until both are working)
   # validates :amount, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
 

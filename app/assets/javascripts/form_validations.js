@@ -195,5 +195,14 @@
       });
       $( "#ingredient-sortable" ).disableSelection();
     }, // sortableIngrdientList
-
+    ingredientAllergensReview: function(){
+      $(".add-allergen").on("click", function(){
+        var allergen = $(this).parent().prev().find("input").val();
+        var html = "<li><label class='checkbox'><input class='check_boxes optional' name='review_conflict[first_suggestion][allergens][]' type='checkbox' value='"+allergen+"' checked>"+allergen+"</label></li>";
+        $(this).parent().next().find("ul").append(html);
+      }); 
+      $( ".allergen-autofill" ).autocomplete({
+        source: $('.allergen-autofill').data('autocomplete-source')
+      });
+    }
   } //Formvalidation   

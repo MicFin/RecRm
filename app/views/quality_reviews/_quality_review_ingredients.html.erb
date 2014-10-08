@@ -1,17 +1,10 @@
-<div id="ingredients-review-container">
-  <div class="row text-center preview-info"> 
-    <h3 class="active-preview-heading">Ingredients:</h3>
-    <% @ingredients.each do | ingredient | %>
-			<div id="ingredient-form-<%=ingredient.id%>" class="col-xs-12">
-        <h4 class="ingredient-preview">
-          <%=ingredient.amount%> <%=ingredient.amount_unit%> <%= ingredient.display_name%> (<%=ingredient.ingredient.name%>) 
-          	<% if ingredient.main_ingredient == true %>
-          		 <span class="main-tag">main</span>
-  					<% elsif ingredient.optional_ingredient == true %>
-  					  <span class="optional-tag">optional</span>
-  					<% end %>
-        </h4>
-      </div>
+<div id="ingredient-show-<%=ingredient.id%>">
+  <h4 class="ingredient-preview">
+    <%=ingredient.amount%> <%=ingredient.amount_unit%> <%= ingredient.display_name%> (<%=ingredient.ingredient.name%>) 
+    <% if ingredient.main_ingredient == true %>
+    <span class="main-tag">main</span>
+    <% elsif ingredient.optional_ingredient == true %>
+    <span class="optional-tag">optional</span>
     <% end %>
-  </div>
+  </h4>
 </div>

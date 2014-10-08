@@ -1,19 +1,16 @@
-#basic-info-form {
+#basic-info-form, .basic-info-form {
 	padding: 10px 20px 0 20px;
-}
-
-#basic-info-form{
 	width: 400px;
 }
 
-#basic-info-form .form-group{
+#basic-info-form .form-group, .basic-info-form .form-group{
 	margin-bottom: 35px;
 }
 
-#basic-info-form .slider{
+#basic-info-form .slider, .basic-info-form .slider{
 	margin-top: 15px;
 }
-#basic-info-form .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+#basic-info-form .ui-state-default, .basic-info-form .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	border: none;
 	// border-image-source: initial;
 	// border-image-slice: initial;
@@ -27,7 +24,7 @@
 	color: rgb(0, 147, 68);
 }
 
-#basic-info-form .ui-slider .ui-slider-handle {
+#basic-info-form .ui-slider .ui-slider-handle, .basic-info-form .ui-slider .ui-slider-handle {
 	position: absolute;
 	z-index: 2;
 	width: 22px;
@@ -37,7 +34,7 @@
 	touch-action: none;
 }
 
-#basic-info-form .ui-slider-horizontal .ui-slider-handle {
+#basic-info-form .ui-slider-horizontal .ui-slider-handle, .basic-info-form .ui-slider-horizontal .ui-slider-handle {
 	margin-left: -15px;
 	top: -20px;
 }

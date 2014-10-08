@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/EppO/rolify.git
+  revision: a4ae77008f146ae0a0956db0b609b2b618126b79
+  specs:
+    rolify (3.4.1)
+
+GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: 8ec04cfbf8fd23093815a939f19f82b2b8079fd1
   specs:
@@ -147,6 +153,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pundit (0.2.2)
+      activesupport (>= 3.0.0)
     rabl (0.10.1)
       activesupport (>= 2.3.14)
     rack (1.5.2)
@@ -245,8 +253,10 @@ DEPENDENCIES
   paperclip (~> 4.1)
   pg
   pry
+  pundit
   rabl
   rails (= 4.1.1)
+  rolify!
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   simple_form

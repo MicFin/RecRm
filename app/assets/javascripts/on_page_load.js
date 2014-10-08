@@ -18,4 +18,17 @@ $(document).ready(function() {
 
 	// recipe categroies and health groups form set
 	CategoriesPreview.setCheckBoxes();
+
+	// qualty review allergen input form set
+	FormValidation.ingredientAllergensReview();
+
+
+
+	if ($("#quality-review-main-container").length >= 1){
+		BasicForm.validateReview();
+		BasicForm.setReviewSliders();
+	} else {
+		BasicForm.validate();
+		BasicForm.setSliders();
+	};
 });

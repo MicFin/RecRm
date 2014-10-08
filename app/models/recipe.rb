@@ -8,6 +8,8 @@ class Recipe < ActiveRecord::Base
   attr_accessor :holidays
   attr_accessor :cultures
 
+  resourcify
+
 	has_many :ingredients_recipes
 	has_many :ingredients, through: :ingredients_recipes
 	has_many :recipe_steps
@@ -25,10 +27,73 @@ class Recipe < ActiveRecord::Base
   # quality reviews polymoprhic
   has_many :quality_reviews, as: :quality_reviewable 
   has_many :marketing_items, as: :marketing_itemable 
-  has_many :quality_reviews
   has_many :review_conflicts, through: :quality_reviews
  
-  # returns recipe ingredients in order
+  def fetch_ingredients_allergens_hash
+    ingredients_allergens_hash = {}
+    self.ingredients.each do |ingredient|
+      ingredients_allergens_hash[ingredient] = []
+      ingredient.allergens.each do |allergen|
+        ingredients_allergens_hash[ingredient].push(allergen.name)
+      end
+    end
+    return ingredients_allergens_hash
+  end
+
+
+  def recipe_ingredients_full_names
+    full_names = []
+    self.ordered_ingredients.each do |ingredient|
+      full_names << ingredient.full_name
+    end
+    return full_names
+  end
+
+  def fetch_possible_review_conflicts
+    possible_review_conflicts = {}
+    possible_review_conflicts["basic_info"] = [ReviewConflict.new, ReviewConflict.new, ReviewConflict.new, ReviewConflict.new, ReviewConflict.new]
+    possible_review_conflicts["ingredients"] =[]
+    self.ordered_ingredients.each do |ingredient|
+      possible_review_conflicts["ingredients"] << ReviewConflict.new 
+    end
+    possible_review_conflicts["steps"] =[]
+    self.steps.each do |step|
+      possible_review_conflicts["steps"] << ReviewConflict.new 
+    end
+    possible_review_conflicts["allergens"] =[]
+    self.ingredients.each do |ingredient|
+      possible_review_conflicts["allergens"] << ReviewConflict.new 
+    end
+    possible_review_conflicts["health_groups"] = ReviewConflict.new
+    possible_review_conflicts["categories"] = ReviewConflict.new
+    possible_review_conflicts["marketing_items"]= []
+    self.marketing_items.each do |marketing_item|
+      possible_review_conflicts["marketing_items"] << ReviewConflict.new 
+    end
+    return possible_review_conflicts
+  end
+
+  def self.all_in_review
+    recipes_in_review = []
+    self.where(completed: true).where(live_recipe: false).each do|recipe|
+      if recipe.quality_reviews.count >= 1
+        recipes_in_review << recipe
+      end
+    end
+    return recipes_in_review
+  end
+
+  def self.all_not_reviewed_yet
+    recipes_not_reviewed = []
+    self.where(completed: true).each do |recipe|
+      if recipe.quality_reviews.count < 1
+        recipes_not_reviewed << recipe 
+      end
+    end
+    return recipes_not_reviewed
+  end
+
+  # returns recipe steps by group
   def steps_by_group
     steps_groups = []
     self.recipe_steps.map {|step| steps_groups << step.group_name}

@@ -1,5 +1,39 @@
 #quality-review-main-container{
 	margin-top: 150px;
 	padding-bottom: 50px;
-	background-color: lighten($darkgreen, 70%);
+	background-color: $lightorange;
+}
+
+#quality-review-main-container .panel-body{
+	background-color: $lightgray;
+	margin: 0 auto;
+}
+
+#quality-review-main-container label.collection_radio_buttons {
+	margin-left: 10px
+}
+
+#quality-review-main-container .basic-info-form h3{
+	margin-left: 0px;
+}
+
+#quality-review-main-container .basic-info-form {
+	margin: 0 auto;
+}
+
+#quality-review-introduction h3{
+ font-size: 40px;
+}
+
+#quality-review-introduction p{
+	font-size: 30px;
+}
+
+#quality-review-introduction ol{
+	text-align: left;
+	margin: 0 50px;
+}
+
+#quality-review-introduction li{
+	font-size: 30px;
 }

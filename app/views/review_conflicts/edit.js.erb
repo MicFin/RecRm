@@ -1,0 +1,85 @@
+
+
+<% if @item == "recipe-name" %>
+	$("#review-recipe-name").replaceWith("<%= j render(:partial => 'review_recipe_name_edit_form') %>");
+<% elsif @item == "prep-time" %>
+	$("#review-recipe-prep-time").replaceWith("<%= j render(:partial => 'review_recipe_prep_time_edit_form') %>");
+  var preptime = $( "#recipe_prep_time" );
+  var preptimeslider = $( "<div class='slider'></div>" ).insertAfter( preptime ).slider({
+    min: 1,
+    max: $("#recipe_prep_time option").length,
+    range: "min",
+    value: preptime[ 0 ].selectedIndex + 1,
+    slide: function( event, ui ) {
+      preptime[ 0 ].selectedIndex = ui.value - 1;
+    }
+  });
+// makes select box change the slider
+  $( "#recipe_prep_time" ).change(function() {
+    preptimeslider.slider( "value", this.selectedIndex + 1 );
+  });
+<% elsif @item == "cook-time" %>
+  $("#review-recipe-cook-time").replaceWith("<%= j render(:partial => 'review_recipe_cook_time_edit_form') %>");
+
+  var cooktime = $("#recipe_cook_time");
+  var cooktimeslider = $( "<div class='slider'></div>" ).insertAfter( cooktime ).slider({
+    min: 1,
+    max: $("#recipe_cook_time option").length,
+    range: "min",
+    value: cooktime[ 0 ].selectedIndex + 1,
+    slide: function( event, ui ) {
+      cooktime[ 0 ].selectedIndex = ui.value - 1;
+    }
+  });
+  // makes select box change the slider
+  $( "#recipe_cook_time" ).change(function() {
+    cooktimeslider.slider( "value", this.selectedIndex + 1 );          
+  });
+<% elsif @item == "difficulty" %>
+  $("#review-recipe-difficulty").replaceWith("<%= j render(:partial => 'review_recipe_difficulty_edit_form') %>");
+  var difficulty = $( "#recipe_difficulty" );
+  var difficultyslider = $( "<div class='slider'></div>" ).insertAfter( difficulty ).slider({
+    min: 1,
+    max: $("#recipe_difficulty option").length,
+    range: "min",
+    value: difficulty[ 0 ].selectedIndex + 1,
+    slide: function( event, ui ) {
+      difficulty[ 0 ].selectedIndex = ui.value - 1;
+    }
+  });
+  // makes select box change the slider
+  $( "#recipe_difficulty" ).change(function() {
+    difficultyslider.slider( "value", this.selectedIndex + 1 );
+  });
+<% elsif @item == "serving-size" %>
+  $("#review-recipe-serving-size").replaceWith("<%= j render(:partial => 'review_recipe_serving_size_edit_form') %>");
+    var serves = $( "#recipe_serving_size" );
+    var servesslider = $( "<div class='slider'></div>" ).insertAfter( serves ).slider({
+      min: 1,
+      max: $("#recipe_serving_size option").length,
+      range: "min",
+      value: serves[ 0 ].selectedIndex + 1,
+      slide: function( event, ui ) {
+        serves[ 0 ].selectedIndex = ui.value - 1;
+      // changes preview when select changed
+      }
+    });
+    // makes select box change the slider
+    $( "#recipe_serving_size" ).change(function() {
+      servesslider.slider( "value", this.selectedIndex + 1 );
+    });
+<% elsif @item.include? "ingredient-" %>
+  $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_ingredient_edit_form') %>");
+<% elsif @item.include? "step-" %>
+  $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_step_edit_form') %>");
+<% elsif @item.include? "allergen-" %>
+  $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_allergen_edit_form') %>");
+    FormValidation.ingredientAllergensReview();
+<% end %>
+
+
+/// CAN  CUT THIS INTO 1/3 AMOUNT OF CODE
+
+    
+
+

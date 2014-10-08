@@ -1,3 +1,14 @@
 .panel-body{
 	background-color: rgba($lightorange, 0.3);
 }
+
+.panel-default > .panel-heading {
+	color: inherit;
+	background-color: inherit;
+	border-color: inherit;
+}
+#basic-info-accordion-container{
+	width: 100%;
+	margin-left: 1px;
+	background-color: white;
+}

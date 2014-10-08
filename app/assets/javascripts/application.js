@@ -28,9 +28,9 @@
 //= require articles_form
 //= require recipe_step_list
 //= require on_page_load
-
+//= require basic_form_validate
 // above recipe basic form for document ready
-//= require recipe_basic_info_form
+
 //= require form_validations
 
 

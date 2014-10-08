@@ -1,152 +1,78 @@
 <div id="quality-review-main-container">
 	<div class="container">
     <div class="col-xs-8 col-xs-offset-2">
-        <div id="">
-          <div class="col-xs-12">
-            <div class="col-xs-6 col-xs-offset-3 alert alert-danger text-center">
-              <h3>Review:</h3>
-              <p>Please review all of the information thoroughly.</p>
+      <div id="">
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                  <%= render "quality_review_basic_info" %>
+              </h4>
             </div>
           </div>
-          <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <div class="col-xs-12 alert alert-warning">
-                    <p>Look at blah blah.</p>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                  <%= render "quality_review_ingredients" %>
+              </h4>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                  <%= render "quality_review_steps" %>
+              </h4>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                  <%= render "quality_review_allergens" %>
+              </h4>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                  <%= render "quality_review_health_groups" %>
+              </h4>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+
+                  <%= render "quality_review_categories" %>
+              </h4>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                  <%= render "quality_review_marketing_items" %>
+              </h4>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="col-xs-12 panel-heading">
+              <h3 class=" form-group">
+                  Assign to:
+              </h3>
+              <div class="col-xs-12">
+                <%= simple_form_for [@quality_reviewable, @quality_review] do |f| %>
+                  <div class="col-xs-9 form-group">
+                    <%= f.association :dietitian, as: :select, collection: @dietitians, label_method: :email, value_method: :id, label: false, :include_hidden => false, input_html: { class: "form-control"}%>
                   </div>
-                  <a data-toggle="collapse" id="basic-info-accordion-top" data-parent="#accordion" href="#collapseOne">
-                    <%= render "quality_review_basic_info" %>
-                  </a>
-                </h4>
-              </div>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse">
-              <div class="panel-body" id="basic-info-accordion-bottom">
-              change
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <div class="col-xs-12 alert alert-warning">
-                    <p>Look at blah blah blah</p>
+                  <div class="col-xs-3 form-group text-left"> 
+                    <button type="submit" class=" btn btn-success btn-lg">save</button>
                   </div>
-                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                    <%= render "quality_review_ingredients" %>
-                  </a>
-                </h4>
-              </div>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse">
-              <div class="panel-body" id="basic-info-accordion-bottom">
-              change
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <div class="col-xs-12 alert alert-warning">
-                    <p>Look at blah blah.</p>
-                  </div>
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseSteps">
-                    <%= render "quality_review_steps" %>
-                  </a>
-                </h4>
-              </div>
-            </div>
-            <div id="collapseSteps" class="panel-collapse collapse">
-              <div class="panel-body" id="basic-info-accordion-bottom">
-              change
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <div class="col-xs-12 alert alert-warning">
-                    <p>Look at blah blah.</p>
-                  </div>
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseAllergens">
-                    <%= render "quality_review_allergens" %>
-                  </a>
-                </h4>
-              </div>
-            </div>
-            <div id="collapseAllergens" class="panel-collapse collapse">
-              <div class="panel-body" id="basic-info-accordion-bottom">
-              change
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <div class="col-xs-12 alert alert-warning">
-                    <p>Look at blah blah.</p>
-                  </div>
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseHealthGroups">
-                    <%= render "quality_review_health_groups" %>
-                  </a>
-                </h4>
-              </div>
-            </div>
-            <div id="collapseHealthGroups" class="panel-collapse collapse">
-              <div class="panel-body">
-                <p>change</p>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <div class="col-xs-12 alert alert-warning">
-                    <p>Look at blah blah.</p>
-                  </div>
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseCategories">
-                    <%= render "quality_review_categories" %>
-                  </a>
-                </h4>
-              </div>
-            </div>
-            <div id="collapseCategories" class="panel-collapse collapse">
-              <div class="panel-body">
-                <p>change</p>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <div class="col-xs-12 alert alert-warning">
-                    <p>Look at blah blah.</p>
-                  </div>
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseMarketing">
-                    <%= render "quality_review_marketing_items" %>
-                  </a>
-                </h4>
-              </div>
-            </div>
-            <div id="collapseMarketing" class="panel-collapse collapse">
-              <div class="panel-body">
-                <p>change</p>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <div class="col-xs-12 alert alert-warning">
-                    <p>Look at blah blah.</p>
-                  </div>
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Collapse</a>
-                </h4>
-              </div>
-            </div>
-            <div id="collapseFive" class="panel-collapse collapse">
-              <div class="panel-body">
+                <% end %>
               </div>
             </div>
           </div>
         </div>
-        <div class="form-group text-center"> 
-          <%= link_to "Finish", complete_recipe_path(@recipe), :class => "btn btn-success btn-lg"  %>
-        </div>
+      </div>
     </div>
 	</div>
 </div>

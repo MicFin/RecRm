@@ -17,8 +17,17 @@ class RecipesController < ApplicationController
 
   ## this method and view is being used as the dietitian dashboard right now, it should be moved to a home controller or another controller
   def dietitian_recipes_index
+    if current_dietitian.email == "tara@kindrdfood.com"
+      current_dietitian.add_role :admin_dietitian
+    end
     @recipes = Recipe.where(dietitian_id: current_dietitian.id)
-    
+    @incomplete_recipes = current_dietitian.incomplete_recipes
+    @recipe_reviews_to_assign = []
+    if current_dietitian.has_role? :admin_dietitian
+      @recipe_reviews_to_assign = Recipe.all_not_reviewed_yet
+      @recipes_in_review = Recipe.all_in_review
+    end
+    @incomplete_quality_reviews = current_dietitian.incomplete_quality_reviews
   end
   # GET /recipes/1
   # GET /recipes/1.json
@@ -83,7 +92,7 @@ class RecipesController < ApplicationController
 
   def complete_recipe
     @recipe = Recipe.find(params[:id])
-    @recipe.complete = true
+    @recipe.completed = true
     @recipe.save
     redirect_to dietitian_recipes_path(current_dietitian)
   end

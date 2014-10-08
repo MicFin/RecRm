@@ -1,0 +1,27 @@
+<% if @review_conflict.risk_level == 1 %>
+  <div id="<%=@item%>" class="col-xs-12 form-group alert alert-success">
+    <h4>No Risk</h4>
+<% elsif @review_conflict.risk_level == 2 %>
+  <div id="<%=@item%>" class="col-xs-12 form-group alert alert-info">
+    <h4>Low Risk</h4>
+<% elsif @review_conflict.risk_level == 3 %>
+  <div id="<%=@item%>" class="col-xs-12 form-group alert alert-warning">
+    <h4>High Risk</h4>
+<% elsif @review_conflict.risk_level == 4 %>
+  <div id="<%=@item%>" class="col-xs-12 form-group alert alert-danger">
+    <h4>Dangerous Risk</h4>
+<% end %>
+    <label>Ingredient</label>
+    <h4 class="ingredient-preview">
+      <%= @ingredient_changes_hash[:amount]%> <%=@ingredient_changes_hash[:unit]%> <%= @ingredient_changes_hash[:display_name]%> (<%=@ingredient_changes_hash[:shopping_list_item]%>) 
+      <% if @ingredient_changes_hash[:options] == "Main" %>
+        <span class="main-tag">main</span>
+      <% elsif @ingredient_changes_hash[:options] == "Optional" %>
+        <span class="optional-tag">optional</span>
+      <% end %>
+    </h4>
+    <p class="form-group"><%= @review_conflict.first_reviewer_notes %></p>
+    <div class=" col-xs-12 form-group text-center"> 
+      <%= link_to "Edit Changes", edit_recipe_quality_review_review_conflict_path(@quality_reviewable, @quality_review, @review_conflict), class: "btn btn-success btn-lg", id: "basic-form-button", :remote => true%>
+    </div>
+  </div>

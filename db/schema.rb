@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001033745) do
+ActiveRecord::Schema.define(version: 20141004035614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,13 @@ ActiveRecord::Schema.define(version: 20141001033745) do
   add_index "dietitians", ["email"], name: "index_dietitians_on_email", unique: true, using: :btree
   add_index "dietitians", ["reset_password_token"], name: "index_dietitians_on_reset_password_token", unique: true, using: :btree
 
+  create_table "dietitians_roles", id: false, force: true do |t|
+    t.integer "dietitian_id"
+    t.integer "role_id"
+  end
+
+  add_index "dietitians_roles", ["dietitian_id", "role_id"], name: "index_dietitians_roles_on_dietitian_id_and_role_id", using: :btree
+
   create_table "families", force: true do |t|
     t.string   "name"
     t.string   "location"
@@ -242,7 +249,8 @@ ActiveRecord::Schema.define(version: 20141001033745) do
     t.datetime "date_due_by"
     t.datetime "date_completed_on"
     t.boolean  "passed"
-    t.boolean  "completed"
+    t.boolean  "completed",               default: false, null: false
+    t.datetime "date_started"
   end
 
   add_index "quality_reviews", ["dietitian_id"], name: "index_quality_reviews_on_dietitian_id", using: :btree
@@ -275,9 +283,9 @@ ActiveRecord::Schema.define(version: 20141001033745) do
     t.string   "prep_time"
     t.string   "cook_time"
     t.string   "difficulty"
-    t.boolean  "complete"
     t.integer  "creation_stage"
     t.boolean  "completed",           default: false
+    t.boolean  "live_recipe",         default: false, null: false
   end
 
   create_table "review_conflicts", force: true do |t|
@@ -296,11 +304,26 @@ ActiveRecord::Schema.define(version: 20141001033745) do
     t.integer  "first_reviewer_id"
     t.integer  "second_reviewer_id"
     t.integer  "third_reviewer_id"
+    t.text     "first_reviewer_notes"
+    t.text     "second_reviewer_notes"
+    t.text     "third_reviewer_notes"
+    t.text     "original_entry"
   end
 
   add_index "review_conflicts", ["first_reviewer_id"], name: "index_review_conflicts_on_first_reviewer_id", using: :btree
   add_index "review_conflicts", ["second_reviewer_id"], name: "index_review_conflicts_on_second_reviewer_id", using: :btree
   add_index "review_conflicts", ["third_reviewer_id"], name: "index_review_conflicts_on_third_reviewer_id", using: :btree
+
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

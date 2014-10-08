@@ -1,13 +1,61 @@
 <div id="dietitian-recipes-index-container">
  	<div class="form-group col-xs-12 form-group text-center">
  		<h2>Thanks for your <%=@recipes_count%> recipes!</h2>
-		<h5>Your <span>11,034,331</span> clients appreciate it</h5>
  	</div>
 	<div class="col-xs-12 text-center">
 		<p><%= link_to image_tag("chef-hat.png", class: "tilt"), :controller => "recipes", :action => "new" %>	</p>
 		<p>Create a Recipe</p>
 	</div>
-	<div id="current-recipes">
+	<% if current_dietitian.has_role? :admin_dietitian %>
+		<div class="col-xs-12" id="review-recipes">
+			<h2>Assign these recipes to be reviewed:</h2>
+			<% @recipe_reviews_to_assign.each do |recipe| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
+				<h3><%=recipe.name%></h3>
+				<p><%=link_to "Assign Review", new_recipe_quality_review_path(recipe) %></p>
+				<p><%#=link_to "View", recipe_path(recipe) %></p>
+				<p><%#=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
+			</div>
+			<% end %>
+		</div>
+		<div class="col-xs-12" id="review-recipes">
+			<h2>Recipes in review:</h2>
+			<% @recipes_in_review.each do |recipe| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
+				<h3><%=recipe.name%></h3>
+				<p><%=link_to "Edit Review", recipe_path(recipe) %></p>
+				<p><%=link_to "View", recipe_path(recipe) %></p>
+				<p><%#=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
+			</div>
+			<% end %>
+		</div>
+	<% end %>
+	<% if @incomplete_quality_reviews %>
+	<div class="col-xs-12" id="incomplete-recipes">
+		<h2>Review these recipes:</h2>
+		<% @incomplete_quality_reviews.each do |quality_review| %>
+		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
+			<h3><%=quality_review.quality_reviewable.name%></h3>
+			<p><%=link_to "Review", quality_reviews_start_review_path(quality_review.quality_reviewable, quality_review) %></p>
+			<p><%#=link_to "View", recipe_path(recipe) %></p>
+			<p><%#=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
+		</div>
+		<% end %>
+	</div>
+	<% end %>
+	<div class="col-xs-12" id="incomplete-recipes">
+		<h2>Complete these recipes:</h2>
+		<% @incomplete_recipes.each do |recipe| %>
+		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
+			<h3><%=recipe.name%></h3>
+			<p><%=link_to "Continue", review_recipe_path(recipe) %></p>
+			<p><%#=link_to "View", recipe_path(recipe) %></p>
+			<p><%#=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
+		</div>
+		<% end %>
+	</div>
+	<div class="col-xs-12" id="current-recipes">
+		<h2>All your recipes:</h2>
 		<% @recipes.each do |recipe| %>
 		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
 			<h3><%=recipe.name%></h3>

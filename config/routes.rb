@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
   devise_scope :dietitian do
     authenticated :dietitian do
+      get 'recipes/:recipe_id/quality_reviews/:id/start_review', to: 'quality_reviews#start_review', as: "quality_reviews_start_review"
       get 'recipes/quick_update', to: 'recipes#quick_update', as: "quick_update"
       # root :to => 'recipes#dietitian_recipes_index', :constraints => lambda { |request| request.env['warden'].user.class.name == 'Dietitian' }, :as => "dietitian_authenticated_root"
       root :to => 'recipes#dietitian_recipes_index', as: :dietitian_authenticated_root

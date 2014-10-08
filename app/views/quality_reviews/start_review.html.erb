@@ -1,0 +1,284 @@
+<div id="quality-review-main-container">
+   <div id="quality-review-introduction" class="row">
+      <div class="col-xs-12 alert alert-danger text-center">
+        <h3>Review:</h3>
+        <p>You are about to review a recipe. </p>
+        <ol>
+          <li>Before you begin to review the recipe, <span class="light-green-font"><u>please read through the recipe</u></span> once so that you can acclamate yourself to what the chef is trying to accomplish.</li>
+          <li>Next <span class="light-green-font"><u>review the recipe for nutritional safety</u></span>.  This should include reviewing the ingredients' allergens and the recipe's health groups.</li>
+          <li>Take a second glance at the ingredients, allergens, and health groups one more time. <span class="light-green-font"><em>Better safe than sorry!</em></span></li>
+          <li>Review the recipe for awesomeness.  From spelling and grammar to word choice and personalization, <span class="light-green-font"><u>help make it awesome!</u></span></li>
+          <li><span class="light-green-font"><b>Cook it!</b></span> If you think you'll like it, the more taste testers and pictures we have the higher quality our recipes will be!</li>
+        </ol
+      </div>
+    </div>
+  </div>
+	<div class="container">
+    <div class="col-xs-8 col-xs-offset-2">
+        <div id="">
+
+          <div class="panel-group" id="accordion">
+
+            <div class="col-xs-12 alert alert-black">
+              <p>Make sure that the name is spelled correctly and that it makes sense for this recipe.  The prep time, cook time, difficulty, and serving size can be adjusted if you believe they are inaccurate.</p>
+            </div>
+
+            <div id="basic-info-review-container">
+
+
+
+          <!--    TITLE PANEL -->
+              <div id="panel-recipe-name" class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" id="basic-info-quality-review" data-parent="#accordion" href="#collapseOne"> 
+                      <%= render "/quality_reviews/basic_info/recipe_title_show" %>
+                    </a>
+                  </h4>
+                </div>
+              </div>
+              <!--    TITLE COLLAPSE -->
+              <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body" id="basic-info-accordion-bottom">
+                  <%= render "/quality_reviews/basic_info/recipe_title_form" %>
+                </div>
+              </div>
+
+          <!--    COOK TIME PANEL -->
+              <div class="row" id="basic-info-accordion-container">
+                <div class="col-xs-3">
+                  <div id="panel-cook-time"class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" id="cook-time-quality-review" data-parent="#accordion" href="#collapseCookTime"> 
+                          <%= render "/quality_reviews/basic_info/recipe_cook_time_show" %>
+                        </a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <!--    PREP TIME PANEL -->
+                <div class="col-xs-3">
+                  <div id="panel-prep-time"class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" id="prep-time-quality-review" data-parent="#accordion" href="#collapsePrepTime"> 
+                          <%= render "/quality_reviews/basic_info/recipe_prep_time_show" %>
+                        </a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+
+                  <!--    DIFFICULTY PANEL -->
+                <div class="col-xs-3">
+                  <div id="panel-difficulty"class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" id="dfficulty-quality-review" data-parent="#accordion" href="#collapseDifficulty"> 
+                          <%= render "/quality_reviews/basic_info/recipe_difficulty_show" %>
+                        </a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              <!--    SERVING SIZE PANEL -->
+                <div class="col-xs-3">
+                  <div id="panel-serving-size" class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" id="serves-quality-review" data-parent="#accordion" href="#collapseServes"> 
+                          <%= render "/quality_reviews/basic_info/recipe_serves_show" %>
+                        </a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <!--    COOK TIME COLLAPSE -->
+              <div id="collapseCookTime" class="panel-collapse collapse">
+                <div class="panel-body" >
+                  <%= render "/quality_reviews/basic_info/recipe_cook_time_form" %>
+                </div>
+              </div>
+              <!--    PREP TIME COLLAPSE -->
+              <div id="collapsePrepTime" class="panel-collapse collapse">
+                <div class="panel-body" >
+                  <%= render "/quality_reviews/basic_info/recipe_prep_time_form" %>
+                </div>
+              </div>
+              <!--    DIFFICULTY COLLAPSE -->
+              <div id="collapseDifficulty" class="panel-collapse collapse">
+                <div class="panel-body" >
+                  <%= render "/quality_reviews/basic_info/recipe_difficulty_form" %>
+                </div>
+              </div>
+              <!--    SERVING SIZE COLLAPSE -->
+              <div id="collapseServes" class="panel-collapse collapse">
+                <div class="panel-body" >
+                  <%= render "/quality_reviews/basic_info/recipe_serves_form" %>
+                </div>
+              </div>
+
+            </div> <!-- basic info review container -->
+
+
+           <!--    INGREDIENT PANEL -->
+            <h3 class="active-preview-heading white-font">Ingredients:</h3>
+            <div class="col-xs-12 alert alert-black">
+              <p>Make sure the ingredients are entered correctly.  Check the units, measurement, the recipe ingredient, and the shopping list item for accuracy.</p>
+            </div>
+            <% @ingredients.each do |ingredient| %>
+              <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-ingredient-<%=ingredient.id%>">
+                      <%= render "quality_review_ingredients", :ingredient => ingredient %>
+                    </a>
+                  </h4>
+                </div>
+              </div>
+              <!--    INGREDIENT COLLAPSE -->
+              <div id="collapse-ingredient-<%=ingredient.id%>" class="panel-collapse collapse">
+                <div class="panel-body" >
+                  <%= render "quality_review_ingredients_form", :ingredient => ingredient %>
+                </div>
+              </div>
+            <% end %>
+            <!--    STEPS PANEL -->
+            <h3 class="active-preview-heading white-font">Steps:</h3>
+            <div class="col-xs-12 alert alert-black">
+              <p>Steps should be well written and easy to follow.  They should include the ingredients, measurements, equipment, and anything else that will readers make the perfect dish.</p>
+            </div>
+            <%@steps_by_group.each do |group, steps| %>
+              <h5><%=group%></h5>
+              <% steps.each do | step | %>
+                <div id="panel-step-<%=step.id%>" class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse-step-<%=step.id%>">
+                        <%= render "quality_review_steps", :step => step %>
+                      </a>
+                    </h4>
+                  </div>
+                </div>
+                 <!--    STEPS COLLAPSE -->
+                <div id="collapse-step-<%=step.id%>" class="panel-collapse collapse">
+                  <div class="panel-body" >
+                    <%= render "quality_review_steps_form", :step => step %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+
+           <!--    ALLERGENS PANEL -->
+            <h3 class="active-preview-heading white-font">Allergens:</h3>
+            <div class="col-xs-12 alert alert-black">
+              <p>ALERT ALERT IMPORTANT IMPORTANT IMPORTANT.</p>
+            </div>
+            <% @ingredients_tagged.each do| ingredient| %>
+              <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-allergen-<%=ingredient.id%>">
+                      <%= render "quality_review_allergens", :ingredient => ingredient %>
+                    </a>
+                  </h4>
+                </div>
+              </div>
+              <div id="collapse-allergen-<%=ingredient.id%>" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <%= render "quality_review_allergens_form", :ingredient => ingredient %>
+                </div>
+              </div>
+            <% end %>
+            <!--    ALLERGENS COLLAPSE -->
+
+            <h3 class="active-preview-heading white-font">Health Groups:</h3>
+            <div class="col-xs-12 alert alert-black">
+              <p>ALERT ALERT IMPORTANT IMPORTANT IMPORTANT.</p>
+            </div>
+
+
+            <!--    HEALTH GROUP PANEL-->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <div class="col-xs-12 alert alert-warning">
+                    <p>Look at blah blah.</p>
+                  </div>
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseHealthGroups">
+                    <%= render "quality_review_health_groups" %>
+                  </a>
+                </h4>
+              </div>
+            </div>
+            <div id="collapseHealthGroups" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>change</p>
+              </div>
+            </div>
+            <h3 class="active-preview-heading white-font">Recipe Categories:</h3>
+            <div class="col-xs-12 alert alert-black">
+              <p>ALERT ALERT STUFF STUFF SUTFF.</p>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <div class="col-xs-12 alert alert-warning">
+                    <p>Look at blah blah.</p>
+                  </div>
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseCategories">
+                    <%= render "quality_review_categories" %>
+                  </a>
+                </h4>
+              </div>
+            </div>
+            <div id="collapseCategories" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>change</p>
+              </div>
+            </div>
+            <h3 class="active-preview-heading white-font">Personalize by Group:</h3>
+            <div class="col-xs-12 alert alert-black">
+              <p>ALERT ALERT STUFF STUFF SUTFF.</p>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <div class="col-xs-12 alert alert-warning">
+                    <p>Look at blah blah.</p>
+                  </div>
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseMarketing">
+                    <%= render "quality_review_marketing_items" %>
+                  </a>
+                </h4>
+              </div>
+            </div>
+            <div id="collapseMarketing" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>change</p>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <div class="col-xs-12 alert alert-warning">
+                    <p>Look at blah blah.</p>
+                  </div>
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Collapse</a>
+                </h4>
+              </div>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse">
+              <div class="panel-body">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group text-center"> 
+          <%= link_to "Suggest Change", complete_recipe_path(@recipe), :class => "btn btn-success btn-lg"  %>
+        </div>
+    </div>
+	</div>
+</div>

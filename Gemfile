@@ -67,6 +67,13 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 # This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list. The class that has this specified needs to have a position column defined as an integer on the mapped database table. https://github.com/swanandp/acts_as_list
 gem 'acts_as_list'
 
+# Minimal authorization through OO design and pure Ruby classes
+# https://github.com/elabs/pundit
+gem "pundit"
+ 
+# https://github.com/RolifyCommunity/rolify
+gem 'rolify', github: 'EppO/rolify'
+
 group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors

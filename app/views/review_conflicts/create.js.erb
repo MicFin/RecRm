@@ -1,4 +1,3 @@
-
 <% if @item == "recipe-name" %>
 	$("#review-recipe-name").replaceWith("<%= j render(:partial => 'review_recipe_name_show') %>");
 <% elsif @item == "prep-time" %>
@@ -42,5 +41,4 @@
 <% else %>
 	$("#panel-<%=@item%>").addClass("alert alert-danger");
 <% end %>
-
 

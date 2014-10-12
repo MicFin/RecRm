@@ -134,7 +134,7 @@ class ReviewConflictsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /articles/:id/review_conflict/:id
+  # PATCH/PUT /review_conflicts/:id/review_conflict/:id
   # PATCH/PUT /articles/:id/review_conflict/:id.json
   def update
     if params[:review_conflict][:category] == "Recipe Ingredient"
@@ -689,6 +689,7 @@ class ReviewConflictsController < ApplicationController
   end
 
   def set_review_conflict
+    binding.pry
     @review_conflict = ReviewConflict.find(params[:id])
   end
 

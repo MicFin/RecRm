@@ -1,5 +1,5 @@
 <div id="ingredient-<%=ingredient.id%>" class="col-xs-12 form-group">
-  <%= simple_form_for [@quality_reviewable, @quality_review, @possible_review_conflicts["basic_info"][0]], :remote => true, :html => {:multipart => true} do |f| %>
+  <%= simple_form_for [@quality_reviewable, @quality_review, @possible_review_conflicts["ingredient-#{ingredient.id}"]], :remote => true, :html => {:multipart => true} do |f| %>
     <div class="row">
       <div class="form-group col-xs-2">
         <label>Amount</label>

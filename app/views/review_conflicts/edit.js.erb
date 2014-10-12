@@ -75,6 +75,12 @@
 <% elsif @item.include? "allergen-" %>
   $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_allergen_edit_form') %>");
     FormValidation.ingredientAllergensReview();
+<% elsif @item == "health-groups" %>
+  $("#review-recipe-health-groups").replaceWith("<%= j render(:partial => 'review_recipe_health_groups_edit_form') %>");
+<% elsif @item == "recipe-categories" %>
+  $("#review-recipe-categories").replaceWith("<%= j render(:partial => 'review_recipe_categories_edit_form') %>");
+<% elsif @item.include? "marketing-item-" %>
+  $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_marketing_item_edit_form') %>");
 <% end %>
 
 

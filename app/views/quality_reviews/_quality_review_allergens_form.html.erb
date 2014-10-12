@@ -1,5 +1,5 @@
 <div id="allergen-<%=ingredient.id%>">
-  <%= simple_form_for [@quality_reviewable, @quality_review, @possible_review_conflicts["basic_info"][0]], :remote => true, :html => {:multipart => true} do |f| %>
+  <%= simple_form_for [@quality_reviewable, @quality_review, @possible_review_conflicts["allergen-#{ingredient.id}"]], :remote => true, :html => {:multipart => true} do |f| %>
     <div class=" form-group row text-center">
       <div class="col-xs-12">
         <h2>Identify all allergens for:</h2>

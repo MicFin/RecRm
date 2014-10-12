@@ -1,0 +1,219 @@
+<div id="quality-review-main-container">
+  <div id="quality-review-introduction" class="row">
+    <div class="col-xs-12 alert alert-danger text-center">
+      <h3>This recipe needs your help!</h3>
+      <p>Somebody found a possible error that could be dangerou.  Please take time while reviewing the original entry, as well as the suggested change.  After looking over the recipe and making a decision you can choose from 1 of 3 options.</p>
+      <ol>
+        <li><span class="light-green-font">ACCEPT</span> the suggested change</li>
+        <li><span class="light-green-font">DECLINE</span> the suggested change and keep the original</li>
+        <li><span class="light-green-font">EDIT</span> the item yourself as another suggestion</li>
+        <li><span class="light-green-font"><b>Cook it!</b></span> Yes, you still can!  The more taste testers and pictures we have the higher quality our recipes will be.</li>
+      </ol>
+    </div>
+  </div>
+  <div id="review-conflict-container" class="container">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div id="">
+        <div class="panel-group" id="accordion">
+          <div class="col-xs-12 alert alert-black">
+            <p>Make sure that the name is spelled correctly and that it makes sense for this recipe.  The prep time, cook time, difficulty, and serving size can be adjusted if you believe they are inaccurate.</p>
+          </div>
+          <div id="basic-info-review-container">
+            <!--    TITLE PANEL -->
+            <div id="panel-recipe-name" class="panel panel-default">
+
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" id="basic-info-quality-review" data-parent="#accordion" href="#collapseOne"> 
+                    <%= render "/quality_reviews/basic_info/recipe_title_show" %>
+                  </a>
+                </h4>
+              </div>
+            </div>
+
+            <!--    COOK TIME PANEL -->
+            <div class="row" id="basic-info-accordion-container">
+              <div class="col-xs-3">
+
+                <div id="panel-cook-time"class="panel panel-default">
+
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" id="cook-time-quality-review" data-parent="#accordion" href="#collapseCookTime"> 
+                        <%= render "/quality_reviews/basic_info/recipe_cook_time_show" %>
+                      </a>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <!--    PREP TIME PANEL -->
+              <div class="col-xs-3">
+                  <div id="panel-prep-time"class="panel panel-default">
+
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" id="prep-time-quality-review" data-parent="#accordion" href="#collapsePrepTime"> 
+                        <%= render "/quality_reviews/basic_info/recipe_prep_time_show" %>
+                       </a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+
+                <!--    DIFFICULTY PANEL -->
+                <div class="col-xs-3">
+
+                  <div id="panel-difficulty"class="panel panel-default">
+
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" id="dfficulty-quality-review" data-parent="#accordion" href="#collapseDifficulty"> 
+                          <%= render "/quality_reviews/basic_info/recipe_difficulty_show" %>
+                         </a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                          <!--    SERVING SIZE PANEL -->
+                <div class="col-xs-3">
+                  <div id="panel-serving-size" class="panel panel-default">
+
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" id="serves-quality-review" data-parent="#accordion" href="#collapseServes"> 
+                          <%= render "/quality_reviews/basic_info/recipe_serves_show" %>
+                        </a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <h3 class="active-preview-heading white-font">Ingredients:</h3>
+          <% @ingredients.each do |ingredient| %>
+            <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  
+                    <%= render "quality_reviews/quality_review_ingredients", :ingredient => ingredient %>
+
+                </h4>
+              </div>
+            </div>
+          <% end %>
+          <h3 class="active-preview-heading white-font">Steps:</h3>
+          <%@steps_by_group.each do |group, steps| %>
+            <h5><%=group%></h5>
+            <% steps.each do | step | %>
+              <div id="panel-step-<%=step.id%>" class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                   
+                      <%= render "quality_reviews/quality_review_steps", :step => step %>
+          
+                  </h4>
+                </div>
+              </div>
+           <% end %>
+          <% end %>
+          <h3 class="active-preview-heading white-font">Allergens:</h3>
+          <% @ingredients_tagged.each do| ingredient| %>
+            <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                 
+                    <%= render "quality_reviews/quality_review_allergens", :ingredient => ingredient %>
+           
+                </h4>
+              </div>
+            </div>
+          <% end %>
+          <h3 class="active-preview-heading white-font">Health Groups:</h3>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                  <%= render "quality_reviews/quality_review_health_groups" %>
+              </h4>
+            </div>
+          </div>
+          <h3 class="active-preview-heading white-font">Recipe Categories:</h3>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+
+                  <%= render "quality_reviews/quality_review_categories" %>
+              </h4>
+            </div>
+          </div>
+      <!--    MARKETING TITLE PANEL--> 
+          <h3 class="active-preview-heading white-font">Personalize by Group:</h3>
+          <% @marketing_items_by_group.each do |health_group, marketing_items_hash| %>
+            <h2 class="active-preview-heading"><%=health_group%></h2>
+  <% if @item == "marketing-item-#{marketing_items_hash["items"]["title"].id}" %> 
+    <% if @review_conflict.risk_level == 1 %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default alert alert-success">
+    <% elsif @review_conflict.risk_level == 2 %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default alert alert-info">
+    <% elsif @review_conflict.risk_level == 3 %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default alert alert-warning">
+    <% elsif @review_conflict.risk_level == 4 %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default alert alert-danger">
+    <% else %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default">
+    <% end %>
+  <% else %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default">
+  <% end %>
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse-health-group-title-<%=marketing_items_hash['group_id']%>">
+                    <%= render "quality_reviews/quality_review_marketing_items", marketing_item: marketing_items_hash["items"]["title"] %>
+                  </a>
+                </h4>
+              </div>
+            </div>
+ <% if @item == "marketing-item-#{marketing_items_hash["items"]["title"].id}" %> 
+            <div id="collapse-health-group-title-<%=marketing_items_hash['group_id']%>" >
+              <div class="panel-body">
+                  <%= render "review_conflicts/review_conflict_individuals/review_conflict_marketing_item", marketing_item: marketing_items_hash["items"]["title"], marketing_item_type: "title" %>
+              </div>
+            </div>
+<% end %>
+      <!--    MARKETING DESCRIPTION PANEL-->  
+  <% if @item == "marketing-item-#{marketing_items_hash["items"]["description"].id}" %> 
+    <% if @review_conflict.risk_level == 1 %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["description"].id%>" class="panel panel-default alert alert-success">
+    <% elsif @review_conflict.risk_level == 2 %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["description"].id%>" class="panel panel-default alert alert-info">
+    <% elsif @review_conflict.risk_level == 3 %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["description"].id%>" class="panel panel-default alert alert-warning">
+    <% elsif @review_conflict.risk_level == 4 %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["description"].id%>" class="panel panel-default alert alert-danger">
+    <% else %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["description"].id%>" class="panel panel-default">
+    <% end %>
+  <% else %>
+            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["description"].id%>" class="panel panel-default">
+  <% end %>
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse-health-group-description-<%=marketing_items_hash['group_id']%>">
+                      <%= render "quality_reviews/quality_review_marketing_items", marketing_item: marketing_items_hash["items"]["description"] %>
+                  </a>
+                </h4>
+              </div>
+            </div>
+ <% if @item == "marketing-item-#{marketing_items_hash["items"]["description"].id}" %> 
+            <div id="collapse-health-group-description-<%=marketing_items_hash['group_id']%>" >
+              <div class="panel-body">
+                  <%= render "review_conflicts/review_conflict_individuals/review_conflict_marketing_item", marketing_item: marketing_items_hash["items"]["description"], marketing_item_type: "description" %>
+              </div>
+            </div>
+<% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

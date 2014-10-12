@@ -29,6 +29,30 @@ class Recipe < ActiveRecord::Base
   has_many :marketing_items, as: :marketing_itemable 
   has_many :review_conflicts, through: :quality_reviews
  
+  def ingredient_with_full_name(full_name)
+    self.ingredients_recipes.each do |ingredient|
+      if ingredient.full_name == full_name
+        return ingredient
+      end
+    end
+    return false
+  end
+
+  def review_tier
+    quality_reviews = self.quality_reviews
+    if quality_reviews.count > 0
+      if (quality_reviews.order("created_at").last.passed != true)
+        review_tier = 1
+      else
+        review_tier = 2
+      end
+    else
+      review_tier = 1
+    end
+    return review_tier
+  end
+
+  # recipe counts byt health group
   def self.data_by_health_group
     data_by_health_group_hash = {}
     PatientGroup.all.each do |health_group|
@@ -133,6 +157,14 @@ class Recipe < ActiveRecord::Base
     return data_by_dietitian_hash
   end
   
+  def fetch_categories_array
+    return self.characteristics.map(&:name).uniq
+  end
+  # returns recipe's health groups as an array of strings
+  def fetch_health_groups_array
+    return self.patient_groups.map(&:name).uniq
+  end
+
   def fetch_ingredients_allergens_hash
     ingredients_allergens_hash = {}
     self.ingredients.each do |ingredient|
@@ -153,45 +185,127 @@ class Recipe < ActiveRecord::Base
     return full_names
   end
 
-  def fetch_possible_review_conflicts
+  def fetch_possible_review_conflicts(quality_review)
     possible_review_conflicts = {}
-    possible_review_conflicts["basic_info"] = [ReviewConflict.new, ReviewConflict.new, ReviewConflict.new, ReviewConflict.new, ReviewConflict.new]
-    possible_review_conflicts["ingredients"] =[]
+    review_items_array = []
+    review_conflicts = quality_review.review_conflicts
+    review_conflicts.each do |review_conflict|
+      possible_review_conflicts[review_conflict.item] = review_conflict
+      review_items_array << review_conflict.item 
+    end
+    new_conflict = ReviewConflict.new
+    if ((review_items_array.include? "recipe-name") == false) 
+      possible_review_conflicts["recipe-name"] = new_conflict
+    end
+    if ((review_items_array.include? "prep-time") == false) 
+      possible_review_conflicts["prep-time"] = new_conflict
+    end
+    if ((review_items_array.include? "cook-time") == false) 
+      possible_review_conflicts["cook-time"] = new_conflict
+    end
+    if ((review_items_array.include? "difficulty") == false) 
+      possible_review_conflicts["difficulty"] = new_conflict
+    end
+    if ((review_items_array.include? "serving-size") == false) 
+      possible_review_conflicts["serving-size"] = new_conflict
+    end
+
     self.ordered_ingredients.each do |ingredient|
-      possible_review_conflicts["ingredients"] << ReviewConflict.new 
+      if ((review_items_array.include? "ingredient-#{ingredient.id}") == false) 
+        possible_review_conflicts["ingredient-#{ingredient.id}"] = new_conflict
+      end
     end
-    possible_review_conflicts["steps"] =[]
     self.steps.each do |step|
-      possible_review_conflicts["steps"] << ReviewConflict.new 
+      if ((review_items_array.include? "step-#{step.id}") == false) 
+        possible_review_conflicts["step-#{step.id}"] = new_conflict
+      end
     end
-    possible_review_conflicts["allergens"] =[]
     self.ingredients.each do |ingredient|
-      possible_review_conflicts["allergens"] << ReviewConflict.new 
+      if ((review_items_array.include? "allergen-#{ingredient.id}") == false) 
+        possible_review_conflicts["allergen-#{ingredient.id}"] = new_conflict
+      end
     end
-    possible_review_conflicts["health_groups"] = ReviewConflict.new
-    possible_review_conflicts["categories"] = ReviewConflict.new
-    possible_review_conflicts["marketing_items"]= []
+    if ((review_items_array.include? "health-groups") == false) 
+      possible_review_conflicts["health-groups"] = new_conflict
+    end
+    if ((review_items_array.include? "recipe-categories") == false) 
+      possible_review_conflicts["recipe-categories"] = new_conflict
+    end
     self.marketing_items.each do |marketing_item|
-      possible_review_conflicts["marketing_items"] << ReviewConflict.new 
+      if ((review_items_array.include? "marketing-item-#{marketing_item.id}") == false) 
+        possible_review_conflicts["marketing-item-#{marketing_item.id}"] = new_conflict
+      end
     end
     return possible_review_conflicts
   end
 
-  def self.all_in_review
+  def self.all_live_recipes
+    live_recipes = []
+    self.where(completed: true).where(live_recipe: true).each do |recipe|
+        live_recipes << recipe 
+    end
+    return live_recipes    
+  end
+
+  def self.all_need_original_review
+    recipes_not_reviewed = []
+    self.where(completed: true).where(live_recipe: false).each do |recipe|
+      if recipe.quality_reviews.count < 1
+        recipes_not_reviewed << recipe 
+      end
+    end
+    return recipes_not_reviewed
+  end
+
+  def self.all_in_first_tier_review
     recipes_in_review = []
     self.where(completed: true).where(live_recipe: false).each do|recipe|
       if recipe.quality_reviews.count >= 1
-        recipes_in_review << recipe
+        last_review = recipe.quality_reviews.order("created_at").last
+        if ( (last_review.tier == 1) && (last_review.completed == false) )
+          recipes_in_review << recipe
+        end
       end
     end
     return recipes_in_review
   end
 
-  def self.all_not_reviewed_yet
+  def self.all_in_second_tier_review
+    recipes_in_review = []
+    self.where(completed: true).where(live_recipe: false).each do|recipe|
+      if recipe.quality_reviews.count >= 1
+        last_review = recipe.quality_reviews.order("created_at").last
+        if ( (last_review.tier == 2) && (last_review.completed == false) )
+          recipes_in_review << recipe
+        end
+      end
+    end
+    return recipes_in_review
+  end
+
+
+  def self.all_need_first_tier_review
     recipes_not_reviewed = []
-    self.where(completed: true).each do |recipe|
-      if recipe.quality_reviews.count < 1
-        recipes_not_reviewed << recipe 
+    self.where(completed: true).where(live_recipe: false).each do|recipe|
+      if recipe.quality_reviews.count >= 1
+        last_review = recipe.quality_reviews.order("created_at").last
+        if ( (last_review.resolved == true) && (last_review.passed != true) )
+          recipes_not_reviewed << recipe
+        end
+      end
+    end
+    return recipes_not_reviewed
+  end
+
+  def self.all_need_second_tier_review
+    recipes_not_reviewed = []
+    self.where(completed: true).where(live_recipe: false).each do|recipe|
+      if recipe.quality_reviews.count >= 1
+        last_review = recipe.quality_reviews.order("created_at").last
+        last_review_passed = last_review.passed
+        if ((last_review_passed == true) && (last_review.resolved == true))
+            recipes_not_reviewed << recipe
+        end
       end
     end
     return recipes_not_reviewed

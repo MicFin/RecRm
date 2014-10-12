@@ -1,17 +1,4 @@
-<% @marketing_items_by_group.each do |health_group, marketing_items_hash| %>
-	<div id="marketing-preview-container-<%=marketing_items_hash['group_id']%>">
-		<h2 class="active-preview-heading"><%=health_group%></h2>
-		<div class="preview-info">
-			<div id="marketing-title-<%=marketing_items_hash['group_id']%>">
-				<h4 class="active-preview-heading">
-					<%= marketing_items_hash["items"]["title"].content %>
-		  	</h4>
-			</div>
-			<div id="marketing-description-<%=marketing_items_hash['group_id']%>">
-				<h4 class="active-preview-heading">
-					<%= marketing_items_hash["items"]["description"].content %>
-		  	</h4>
-			</div>
-		</div>
-	</div>
-<% end %>
+
+<h4 class="active-preview-heading">
+  <%= marketing_item.content %>
+</h4>

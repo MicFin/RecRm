@@ -1,0 +1,46 @@
+<div id="quality-review-main-container">
+  <div id="quality-review-introduction" class="row">
+    <div class="col-xs-12 alert alert-danger text-center">
+      <h3>This recipe needs your help!</h3>
+      <p>Somebody found a possible error that could be dangerou.  Please take time while reviewing the original entry, as well as the suggested change.  After looking over the recipe and making a decision you can choose from 1 of 3 options.</p>
+      <ol>
+        <li><span class="light-green-font">ACCEPT</span> the suggested change</li>
+        <li><span class="light-green-font">DECLINE</span> the suggested change and keep the original</li>
+        <li><span class="light-green-font">EDIT</span> the item yourself as another suggestion</li>
+        <li><span class="light-green-font"><b>Cook it!</b></span> Yes, you still can!  The more taste testers and pictures we have the higher quality our recipes will be.</li>
+      </ol>
+    </div>
+  </div>
+  <div id="review-conflict-container" class="container">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div id="">
+        <div class="panel-group" id="accordion">
+          <div class="col-xs-12 alert alert-black">
+            <p>Make sure that the name is spelled correctly and that it makes sense for this recipe.  The prep time, cook time, difficulty, and serving size can be adjusted if you believe they are inaccurate.</p>
+          </div>
+          
+          <h3 class="active-preview-heading white-font">Allergens:</h3>
+          <% @ingredients_tagged.each do| ingredient| %>
+            <% if @item == "allergen-#{ingredient.id}" %>
+            <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                 
+                    <%= render "quality_reviews/quality_review_allergens", :ingredient => ingredient %>
+           
+                </h4>
+              </div>
+            </div>
+
+            <div id="collapseAllergen">
+              <div class="panel-body" >
+                <%= render "/review_conflicts/review_conflict_individuals/review_conflict_allergens_form", :ingredient => ingredient %>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

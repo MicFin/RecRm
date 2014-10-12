@@ -1,0 +1,138 @@
+<div id="quality-review-main-container">
+  <div id="quality-review-introduction" class="row">
+    <div class="col-xs-12 alert alert-danger text-center">
+      <h3>This recipe needs your help!</h3>
+      <p>Somebody found a possible error that could be dangerou.  Please take time while reviewing the original entry, as well as the suggested change.  After looking over the recipe and making a decision you can choose from 1 of 3 options.</p>
+      <ol>
+        <li><span class="light-green-font">ACCEPT</span> the suggested change</li>
+        <li><span class="light-green-font">DECLINE</span> the suggested change and keep the original</li>
+        <li><span class="light-green-font">EDIT</span> the item yourself as another suggestion</li>
+        <li><span class="light-green-font"><b>Cook it!</b></span> Yes, you still can!  The more taste testers and pictures we have the higher quality our recipes will be.</li>
+      </ol>
+    </div>
+  </div>
+  <div id="review-conflict-container" class="container">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div id="">
+        <div class="panel-group" id="accordion">
+          <div class="col-xs-12 alert alert-black">
+            <p>Make sure that the name is spelled correctly and that it makes sense for this recipe.  The prep time, cook time, difficulty, and serving size can be adjusted if you believe they are inaccurate.</p>
+          </div>
+          <div id="basic-info-review-container">
+            <!--    TITLE PANEL -->
+            <div id="panel-recipe-name" class="panel panel-default">
+
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" id="basic-info-quality-review" data-parent="#accordion" href="#collapseOne"> 
+                    <%= render "/quality_reviews/basic_info/recipe_title_show" %>
+                  </a>
+                </h4>
+              </div>
+            </div>
+
+            <!--    COOK TIME PANEL -->
+            <div class="row" id="basic-info-accordion-container">
+              <div class="col-xs-3">
+
+                <div id="panel-cook-time"class="panel panel-default">
+
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" id="cook-time-quality-review" data-parent="#accordion" href="#collapseCookTime"> 
+                        <%= render "/quality_reviews/basic_info/recipe_cook_time_show" %>
+                      </a>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <!--    PREP TIME PANEL -->
+              <div class="col-xs-3">
+                  <div id="panel-prep-time"class="panel panel-default">
+
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" id="prep-time-quality-review" data-parent="#accordion" href="#collapsePrepTime"> 
+                        <%= render "/quality_reviews/basic_info/recipe_prep_time_show" %>
+                       </a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+
+                <!--    DIFFICULTY PANEL -->
+                <div class="col-xs-3">
+
+                  <div id="panel-difficulty"class="panel panel-default">
+
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" id="dfficulty-quality-review" data-parent="#accordion" href="#collapseDifficulty"> 
+                          <%= render "/quality_reviews/basic_info/recipe_difficulty_show" %>
+                         </a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                          <!--    SERVING SIZE PANEL -->
+                <div class="col-xs-3">
+                  <div id="panel-serving-size" class="panel panel-default">
+
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" id="serves-quality-review" data-parent="#accordion" href="#collapseServes"> 
+                          <%= render "/quality_reviews/basic_info/recipe_serves_show" %>
+                        </a>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <h3 class="active-preview-heading white-font">Ingredients:</h3>
+          <% @ingredients.each do |ingredient| %>
+            <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  
+                    <%= render "quality_reviews/quality_review_ingredients", :ingredient => ingredient %>
+
+                </h4>
+              </div>
+            </div>
+          <% end %>
+          <h3 class="active-preview-heading white-font">Steps:</h3>
+          <%@steps_by_group.each do |group, steps| %>
+            <h5><%=group%></h5>
+            <% steps.each do | step | %>
+              <div id="panel-step-<%=step.id%>" class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                   
+                      <%= render "quality_reviews/quality_review_steps", :step => step %>
+          
+                  </h4>
+                </div>
+              </div>
+           <% end %>
+          <% end %>
+          <h3 class="active-preview-heading white-font">Recipe Categories:</h3>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+
+                  <%= render "quality_reviews/quality_review_categories" %>
+              </h4>
+            </div>
+          </div>
+          <div id="collapseCategories">
+            <div class="panel-body" >
+              <%= render "/review_conflicts/review_conflict_individuals/review_conflict_recipe_categories_form" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <div class="basic-info-form">
   <div id="review-recipe-cook-time" class="col-xs-12 form-group">
-    <%= simple_form_for [@quality_reviewable, @quality_review, @possible_review_conflicts["basic_info"][2]], :remote => true, :html => {:multipart => true} do |f| %>
+    <%= simple_form_for [@quality_reviewable, @quality_review, @possible_review_conflicts["cook-time"]], :remote => true, :html => {:multipart => true} do |f| %>
       <label for="cooktime">Cook Time</label>
       <%=  select_tag "review_conflict[first_suggestion]", options_from_collection_for_select(@cook_times, "name", "name"), id: "recipe_cook_time"%>
       <div class="form-group">

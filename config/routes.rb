@@ -37,11 +37,23 @@ Rails.application.routes.draw do
 
   devise_scope :dietitian do
     authenticated :dietitian do
+      # start review
       get 'recipes/:recipe_id/quality_reviews/:id/start_review', to: 'quality_reviews#start_review', as: "quality_reviews_start_review"
+      # submits review to be completed and redirects to dashboard (should be PATCH?)
+      get 'recipes/:recipe_id/quality_reviews/:id/complete_review', to: 'quality_reviews#complete_review', as: "quality_reviews_complete_review"
+      # quick update deprecated?
       get 'recipes/quick_update', to: 'recipes#quick_update', as: "quick_update"
+      # recipe data
       get 'recipes/recipe_data', to: 'recipes#recipe_data', as: "recipe_data"
+      # assining reivewer to review conflict
+      get 'review_conflicts/:id/select_reviewer', to: 'review_conflicts#select_reviewer', as: "select_reviewer"
+      patch 'review_conflicts/:id/assign_reviewer', to: 'review_conflicts#assign_reviewer', as: "assign_reviewer"
+      get 'recipes/:recipe_id/review_conflicts/:id/start_review_conflict', to: 'review_conflicts#start_review_conflict', as: "start_review_conflict"
+      patch 'recipes/:recipe_id/review_conflicts/:id/accept_review_conflict', to: 'review_conflicts#accept_review_conflict', as: "accept_review_conflict"
+      patch 'recipes/:recipe_id/review_conflicts/:id/decline_review_conflict', to: 'review_conflicts#decline_review_conflict', as: "decline_review_conflict"
+      patch 'recipes/:recipe_id/review_conflicts/:id/edit_review_conflict', to: 'review_conflicts#edit_review_conflict', as: "edit_review_conflict"
       # root :to => 'recipes#dietitian_recipes_index', :constraints => lambda { |request| request.env['warden'].user.class.name == 'Dietitian' }, :as => "dietitian_authenticated_root"
-      root :to => 'recipes#dietitian_recipes_index', as: :dietitian_authenticated_root
+      root :to => 'welcome#index', as: :dietitian_authenticated_root
       resources :characteristics
       resources :ingredients_recipes do 
         collection { post :sort }

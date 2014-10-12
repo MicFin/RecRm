@@ -1,5 +1,5 @@
 <div id="step-<%=step.id%>" class="individual-step-form col-xs-12 form-group">
-  <%= simple_form_for [@quality_reviewable, @quality_review, @possible_review_conflicts["basic_info"][0]], :remote => true, :html => {:multipart => true} do |f| %>
+  <%= simple_form_for [@quality_reviewable, @quality_review, @possible_review_conflicts["step-#{step.id}"]], :remote => true, :html => {:multipart => true} do |f| %>
     <div class="steps-preview">
       <div class="form-group col-xs-12">
         <div id="group-names-container" class="form-group col-xs-6">

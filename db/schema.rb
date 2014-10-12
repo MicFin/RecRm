@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004035614) do
+ActiveRecord::Schema.define(version: 20141011233903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -251,6 +251,9 @@ ActiveRecord::Schema.define(version: 20141004035614) do
     t.boolean  "passed"
     t.boolean  "completed",               default: false, null: false
     t.datetime "date_started"
+    t.integer  "tier",                    default: 1
+    t.boolean  "resolved",                default: false
+    t.datetime "date_resolved_on"
   end
 
   add_index "quality_reviews", ["dietitian_id"], name: "index_quality_reviews_on_dietitian_id", using: :btree
@@ -294,7 +297,7 @@ ActiveRecord::Schema.define(version: 20141004035614) do
     t.string   "item"
     t.text     "first_suggestion"
     t.text     "issue"
-    t.boolean  "resolved"
+    t.boolean  "resolved",              default: false
     t.text     "second_suggestion"
     t.text     "third_suggestion"
     t.integer  "review_stage"
@@ -308,6 +311,7 @@ ActiveRecord::Schema.define(version: 20141004035614) do
     t.text     "second_reviewer_notes"
     t.text     "third_reviewer_notes"
     t.text     "original_entry"
+    t.datetime "date_resolved_on"
   end
 
   add_index "review_conflicts", ["first_reviewer_id"], name: "index_review_conflicts_on_first_reviewer_id", using: :btree

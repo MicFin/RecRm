@@ -1,3 +1,13 @@
+<% if @possible_review_conflicts %>
+  <% if @possible_review_conflicts["ingredient-#{ingredient.id}"].id %>
+    <% @item = "ingredient-#{ingredient.id}" %>
+    <% @review_conflict = @possible_review_conflicts[@item] %>
+    <% @ingredient_changes_hash = @review_conflict.ingredient_changes_hash %>
+  <% end %>
+<% else %>
+  <% @ingredient_changes_hash ||= @review_conflict.ingredient_changes_hash %>
+<% end %>
+
 <% if @review_conflict.risk_level == 1 %>
   <div id="<%=@item%>" class="col-xs-12 form-group alert alert-success">
     <h4>No Risk</h4>
@@ -12,16 +22,28 @@
     <h4>Dangerous Risk</h4>
 <% end %>
     <label>Ingredient</label>
-    <h4 class="ingredient-preview">
+    <h3 id="first-suggestion-display">Suggestion 1: 
       <%= @ingredient_changes_hash[:amount]%> <%=@ingredient_changes_hash[:unit]%> <%= @ingredient_changes_hash[:display_name]%> (<%=@ingredient_changes_hash[:shopping_list_item]%>) 
       <% if @ingredient_changes_hash[:options] == "Main" %>
         <span class="main-tag">main</span>
       <% elsif @ingredient_changes_hash[:options] == "Optional" %>
         <span class="optional-tag">optional</span>
       <% end %>
-    </h4>
+    </h3>
+    <% if @review_conflict.second_reviewer_id %>
+    <h3 id="second-suggestion-display">Suggestion 2: 
+      <%= @ingredient_changes_hash_two[:amount]%> <%=@ingredient_changes_hash_two[:unit]%> <%= @ingredient_changes_hash_two[:display_name]%> (<%=@ingredient_changes_hash_two[:shopping_list_item]%>) 
+      <% if @ingredient_changes_hash_two[:options] == "Main" %>
+        <span class="main-tag">main</span>
+      <% elsif @ingredient_changes_hash_two[:options] == "Optional" %>
+        <span class="optional-tag">optional</span>
+      <% end %>
+    </h3>
+    <% end %>
     <p class="form-group"><%= @review_conflict.first_reviewer_notes %></p>
     <div class=" col-xs-12 form-group text-center"> 
-      <%= link_to "Edit Changes", edit_recipe_quality_review_review_conflict_path(@quality_reviewable, @quality_review, @review_conflict), class: "btn btn-success btn-lg", id: "basic-form-button", :remote => true%>
+      <% if @select_reviewer != true %>
+        <%= link_to "Edit Changes", edit_recipe_quality_review_review_conflict_path(@quality_reviewable, @quality_review, @review_conflict), class: "btn btn-success btn-lg", id: "basic-form-button", :remote => true%>
+      <% end %>
     </div>
   </div>

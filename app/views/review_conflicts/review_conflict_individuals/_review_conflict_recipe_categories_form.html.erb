@@ -1,0 +1,56 @@
+<% if @review_conflict.risk_level == 1 %>
+  <div id="review-recipe-name" class="col-xs-12 form-group alert alert-success">
+    <h4>No Risk</h4>
+<% elsif @review_conflict.risk_level == 2 %>
+  <div id="review-recipe-name" class="col-xs-12 form-group alert alert-info">
+    <h4>Low Risk</h4>
+<% elsif @review_conflict.risk_level == 3 %>
+  <div id="review-recipe-name" class="col-xs-12 form-group alert alert-warning">
+    <h4>High Risk</h4>
+<% elsif @review_conflict.risk_level == 4 %>
+  <div id="review-recipe-name" class="col-xs-12 form-group alert alert-danger">
+    <h4>Dangerous Risk</h4>
+<% end %>
+    <label>Recipe Categories</label>
+    <h4 class="ingredient-preview">
+    <% if @recipe_categories_changes_array.count > 0 %>
+      <% @recipe_categories_changes_array.each do |category| %>
+        <%= category %>
+      <% end %>
+    <% else %>
+      This recipe should have no recipe categories
+    <% end %>
+    </h4>
+    <div class=" col-xs-12 form-group text-center"> 
+      <button class="btn btn-lg btn-success">ACCEPT</button>
+      <button class="btn btn-lg btn-success">Decline</button>
+      <button class="btn btn-lg btn-success">Edit</button>
+    </div>
+    <div class="col-xs-12">
+      <%= simple_form_for [@recipe, @review_conflict], :url => {:controller => 'review_conflicts', :method => "PATCH", :action => 'accept_review_conflict', :recipe_id => @recipe.id, :id => @review_conflict.id}, :html => {:multipart => true} do |f| %>
+        <textarea class="form-control form-group" placeholder="Please share your reasoning" name="<%=@reviewer_notes%>" rows="3"></textarea>
+          <div id="hidden-suggestion-container">
+        </div>
+          <div class=" col-xs-12 form-group text-center"> 
+            <%= f.button :submit, "Accept Suggestion", class: "btn btn-success btn-lg", type: "submit" %>
+          </div> 
+      <% end %>
+    </div>
+    <div class="col-xs-12">
+      <%= simple_form_for [@recipe, @review_conflict], :url => {:controller => 'review_conflicts', :method => "PATCH", :action => 'decline_review_conflict', :recipe_id => @recipe.id, :id => @review_conflict.id}, :html => {:multipart => true} do |f| %>
+        <textarea class="form-control form-group" placeholder="Please share your reasoning" name="<%=@reviewer_notes%>" rows="3"></textarea>
+          <div class=" col-xs-12 form-group text-center"> 
+            <%= f.button :submit, "Decline Suggestion", class: "btn btn-success btn-lg", type: "submit" %>
+          </div> 
+      <% end %>
+    </div>
+    <div class="col-xs-12">
+      <%= simple_form_for [@recipe, @review_conflict], :url => {:controller => 'review_conflicts', :method => "PATCH", :action => 'edit_review_conflict', :recipe_id => @recipe.id, :id => @review_conflict.id}, :html => {:multipart => true} do |f| %>
+        <textarea class="form-control form-group" placeholder="Please share your reasoning" name="<%=@reviewer_notes%>" rows="3"></textarea>
+          <div class=" col-xs-12 form-group text-center"> 
+            <%= f.button :submit, "Edit Suggestion", class: "btn btn-success btn-lg", type: "submit" %>
+          </div> 
+      <% end %>
+    </div>
+
+  </div>

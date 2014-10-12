@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+	// override bootstrap accordion
+	OverrideBootstrap.setAccordion();
+
 	// sign in form on pageload
 	FormValidation.signInValidations();
 

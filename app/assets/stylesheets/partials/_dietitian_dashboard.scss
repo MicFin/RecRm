@@ -29,3 +29,33 @@
 #dietitian-recipes-container {
   margin-top: 150px;
 }
+
+#dietitian-recipes-index-container .review-recipes {
+  height: 375px;
+  background-color: lightgrey;
+  margin: 25px;
+  border-radius: 5px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+#dietitian-recipes-index-container .recipe-mini-view {
+  background-color: white;
+  border-radius: 5px;
+  height: 300px;
+  margin: 15px;
+  text-align: left;
+  float: none;
+  display: inline-block;
+  margin-top: 40px;
+};
+
+#admin-assign-container{
+  background-color: $lightorange;
+}
+
+#currently-in-review-container .dashboard-heading, #all-dieitians-dashboard-container .dashboard-heading{
+  color: $lightorange;
+  margin-left: 2%;
+}

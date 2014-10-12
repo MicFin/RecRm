@@ -29,7 +29,7 @@
 //= require recipe_step_list
 //= require on_page_load
 //= require basic_form_validate
-// above recipe basic form for document ready
+//= require override_bootstrap
 
 //= require form_validations
 

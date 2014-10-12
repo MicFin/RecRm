@@ -14,4 +14,14 @@ class Allergen < ActiveRecord::Base
   def self.common_allergens
     self.where(common_allergen: true).order(:name)
   end
+
+  def self.find_or_create_allergen(name)
+    allergen = Allergen.find_by(name: name.downcase)
+    if !allergen
+      # if not create the allergen
+      allergen = Allergen.new(name: name.downcase)
+      allergen.save!
+    end
+    return allergen
+  end
 end

@@ -10,7 +10,7 @@ $(document).ready(function() {
   if ((pathname.search("/recipes") >= 0) || (pathname.search("/ingredients") >= 0) || (pathname.search("/recipe_steps") >= 0)) {
   	$("#kindrd-navbar li").removeClass("active");
 		$("#navbar-recipes").addClass("active");
-	} else if (pathname.search("/welcome") >= 0){
+	} else if ((pathname.search("/welcome") >= 0) || (pathname.search("/") >= 0)){
 		$("#kindrd-navbar li").removeClass("active");
 		$("#navbar-dashboard").addClass("active");
 	} else if (pathname.search("/appointments") >= 0){
@@ -45,8 +45,50 @@ $(document).ready(function() {
     };
   });
 
-      
-
-
+  $("#accept-review-form").hide();
+  $("#edit-review-form").hide();
+  $("#decline-review-form").hide();
+  $("#decline-review-button").on("click", function(){
+    $("#accept-review-form").hide();
+    $("#edit-review-form").hide();
+    $("#decline-review-form").toggle(); 
+    $("#first-suggestion-display").removeClass("selected-suggestion");
+    $("#second-suggestion-display").removeClass("selected-suggestion");
+  });
+  $("#accept-review-button").on("click", function(){
+    $("#edit-review-form").hide();
+    $("#decline-review-form").hide();
+    $("#accept-review-form").toggle();   
+  });
+  $("#edit-review-button").on("click", function(){
+    $("#decline-review-form").hide();
+    $("#accept-review-form").hide();
+    $("#edit-review-form").toggle();
+    $("#first-suggestion-display").removeClass("selected-suggestion");
+    $("#second-suggestion-display").removeClass("selected-suggestion");
+  });
+  $(".accept-review-button-choice").on("click", function(){
+    $("#decline-review-form").hide();
+    $("#edit-review-form").hide();
+    $("#accept-review-form").show();
+    if ($(this).data('suggestion') == "first"){
+      $("#second-suggestion-display").removeClass("selected-suggestion");
+      $("#first-suggestion-display").addClass("selected-suggestion");
+    } else if ($(this).data('suggestion') == "second"){
+      $("#first-suggestion-display").removeClass("selected-suggestion");
+      $("#second-suggestion-display").addClass("selected-suggestion");
+    } else {
+      $("#first-suggestion-display").removeClass("selected-suggestion");
+      $("#second-suggestion-display").removeClass("selected-suggestion");
+    };
+    $("#hidden-suggestion-container").replaceWith("<div id='hidden-suggestion-container'><input type='hidden' name='suggestion' value='"+$(this).data('suggestion')+"'></div>");
+  });
+  $("#add-new-suggestion-button").on("click", function(){
+    $("#decline-review-form").hide();
+    $("#accept-review-form").hide();
+    $("#edit-review-form").show();
+    $("#first-suggestion-display").removeClass("selected-suggestion");
+    $("#second-suggestion-display").removeClass("selected-suggestion");
+  });
 });
 

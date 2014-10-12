@@ -1,3 +1,10 @@
+<% if @possible_review_conflicts %>
+  <% if @possible_review_conflicts["cook-time"].id %>
+    <% @review_conflict = @possible_review_conflicts["cook-time"] %>
+  <% end %>
+<% end %>
+
+
 <% if @review_conflict.risk_level == 1 %>
   <div id="review-recipe-cook-time" class="col-xs-12 form-group alert alert-success">
     <h4>No Risk</h4>
@@ -15,6 +22,11 @@
     <h3><%=@review_conflict.first_suggestion%></h3>
     <p><%= @review_conflict.first_reviewer_notes %></p>
     <div class=" col-xs-12 form-group text-center"> 
-      <%= link_to "Edit Changes", edit_recipe_quality_review_review_conflict_path(@quality_reviewable, @quality_review, @review_conflict), class: "btn btn-success btn-lg", :remote => true%>
+      <% if @select_reviewer != true %>
+        <%= link_to "Edit Changes", edit_recipe_quality_review_review_conflict_path(@quality_reviewable, @quality_review, @review_conflict), class: "btn btn-success btn-lg", id: "basic-form-button", :remote => true%>
+      <% else %>
+        <h3><%=@review_conflict.second_suggestion%></h3>
+        <p><%= @review_conflict.second_reviewer_notes %></p>
+      <% end %>
     </div>
   </div>

@@ -18,10 +18,21 @@
 
 	$("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_allergen_show') %>");
 
+<% elsif @item == "health-groups" %>
+
+	$("#review-recipe-health-groups").replaceWith("<%= j render(:partial => 'review_recipe_health_groups_show') %>");
+
+<% elsif @item == "recipe-categories" %>
+
+	$("#review-recipe-categories").replaceWith("<%= j render(:partial => 'review_recipe_categories_show') %>");
+
+<% elsif @item.include? "marketing-item-" %>
+
+	$("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_marketing_item_show') %>");
+
 <% else %>
 
 <% end %>
-
 <% if @risk_level == 1 %>
 	$("#panel-<%=@item%>").addClass("alert alert-success");
 <% elsif @risk_level == 2 %>

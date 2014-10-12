@@ -5,10 +5,113 @@ class ReviewConflict < ActiveRecord::Base
   belongs_to :third_reviewer, :class_name => 'Dietitian', :foreign_key => 'third_reviewer_id'
   resourcify
   
+  def self.assigned_to_dietitian(dietitian_id)
+    assigned = []
+    assigned += ReviewConflict.where(second_reviewer_id: dietitian_id).where(resolved: false).where(review_stage: 1)
+    assigned += ReviewConflict.where(third_reviewer_id: dietitian_id).where(resolved: false)
+    return assigned
+  end
 
-  def allergens_changes_hash
+  def needs_to_be_assigned?
+    if self.review_stage  == 3
+        return false
+    elsif self.review_stage  == 2
+      if self.third_reviewer_id == nil
+        return true
+      else
+        return false
+      end
+    else
+      if self.second_reviewer_id == nil
+        return true
+      else
+        return false
+      end
+    end
+  end
+
+  def self.assign_by_risk_level
+    conflicts_by_risk_level = {}
+    conflicts_by_risk_level[1] = []
+    conflicts_by_risk_level[2] = []
+    conflicts_by_risk_level[3] = []
+    conflicts_by_risk_level[4] = []
+    
+    self.where(resolved: false).each do |review_conflict|
+          
+      if review_conflict.needs_to_be_assigned?
+        
+        conflicts_by_risk_level[review_conflict.risk_level] << review_conflict
+      end
+    end
+
+    return conflicts_by_risk_level
+  end
+
+  def self.in_review_by_risk_level
+    conflicts_by_risk_level = {}
+    conflicts_by_risk_level[1] = []
+    conflicts_by_risk_level[2] = []
+    conflicts_by_risk_level[3] = []
+    conflicts_by_risk_level[4] = []
+    self.where(resolved: false).each do |review_conflict|
+      
+      if (review_conflict.needs_to_be_assigned? == false)
+
+        conflicts_by_risk_level[review_conflict.risk_level] << review_conflict
+      end
+    end
+
+    return conflicts_by_risk_level
+  end
+
+
+  def recipe_categories_changes_array(*suggestion)
+    recipes_categories_changes = []
+    if suggestion 
+      if suggestion == "third"
+        recipes_categories_changes = self.third_suggestion.split(" <3<* ")
+      elsif suggestion == "second"
+        recipes_categories_changes = self.second_suggestion.split(" <3<* ")
+      else
+        recipes_categories_changes = self.first_suggestion.split(" <3<* ")
+      end
+    else
+      recipes_categories_changes = self.first_suggestion.split(" <3<* ")
+    end
+    return recipes_categories_changes.uniq
+  end  
+  
+  def health_groups_changes_array(*suggestion)
+    health_groups_array = []
+    if suggestion 
+      if suggestion == "third"
+        health_groups_array = self.third_suggestion.split(" <3<* ")
+      elsif suggestion == "second"
+        health_groups_array = self.second_suggestion.split(" <3<* ")
+      else
+        health_groups_array = self.first_suggestion.split(" <3<* ")
+      end
+    else
+      health_groups_array = self.first_suggestion.split(" <3<* ")
+    end
+    return health_groups_array.uniq
+  end  
+
+  def allergens_changes_hash(*suggestion)
     allergens_changes = {}
-    allergens_changes_array = self.first_suggestion.split(" <3<* ")
+    if suggestion 
+      if suggestion == "third"
+        allergens_changes_array = self.third_suggestion.split(" <3<* ")
+      elsif suggestion == "second"
+        allergens_changes_array = self.second_suggestion.split(" <3<* ")
+      else
+        allergens_changes_array = self.first_suggestion.split(" <3<* ")
+      end
+    else
+      allergens_changes_array = self.first_suggestion.split(" <3<* ")
+    end
+
     allergens_changes["ingredient"] = allergens_changes_array[0]
     allergens_changes["common"] = allergens_changes_array[1]
     allergens_changes_array = allergens_changes_array.drop(2)
@@ -18,20 +121,41 @@ class ReviewConflict < ActiveRecord::Base
     end
     return allergens_changes
   end
-  def ingredient_changes_hash
-    ingredient_changes_hash = {}
-    suggestion_array = self.first_suggestion.split("'")
-    ingredient_changes_hash[:amount] = suggestion_array[1]
-    ingredient_changes_hash[:unit] = suggestion_array[3]
-    ingredient_changes_hash[:display_name] = suggestion_array[5]
-    ingredient_changes_hash[:shopping_list_item] = suggestion_array[7]
-    ingredient_changes_hash[:options] = suggestion_array[9]
-    return ingredient_changes_hash
+
+  def ingredient_changes_hash(*suggestion)
+    ingredient_changes = {}
+    if suggestion 
+      if suggestion == "third"
+        suggestion_array = self.third_suggestion.split("'")
+      elsif suggestion.first == "second"
+        suggestion_array = self.second_suggestion.split("'")
+      else
+        suggestion_array = self.first_suggestion.split("'")
+      end
+    else
+      suggestion_array = self.first_suggestion.split("'")
+    end
+    ingredient_changes[:amount] = suggestion_array[1]
+    ingredient_changes[:unit] = suggestion_array[3]
+    ingredient_changes[:display_name] = suggestion_array[5]
+    ingredient_changes[:shopping_list_item] = suggestion_array[7]
+    ingredient_changes[:options] = suggestion_array[9]
+    return ingredient_changes
   end
 
-  def step_changes_hash
+  def step_changes_hash(*suggestion)
     step_changes_hash = {}
-    suggestion_array = self.first_suggestion.split(" <3<* ")
+    if suggestion 
+      if suggestion == "third"
+        suggestion_array = self.third_suggestion.split(" <3<* ")
+      elsif suggestion == "second"
+        suggestion_array = self.second_suggestion.split(" <3<* ")
+      else
+        suggestion_array = self.first_suggestion.split(" <3<* ")
+      end
+    else
+      suggestion_array = self.first_suggestion.split(" <3<* ")
+    end
     step_changes_hash[:step_group_name] = suggestion_array[0]
     step_changes_hash[:directions] = suggestion_array[1]
     step_changes_hash[:ingredients] = suggestion_array[2]

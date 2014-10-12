@@ -24,10 +24,19 @@ class RecipesController < ApplicationController
     @incomplete_recipes = current_dietitian.incomplete_recipes
     @recipe_reviews_to_assign = []
     if current_dietitian.has_role? :admin_dietitian
-      @recipe_reviews_to_assign = Recipe.all_not_reviewed_yet
-      @recipes_in_review = Recipe.all_in_review
+      @recipes_need_original_review = Recipe.all_need_original_review
+      @recipes_need_first_tier_review = Recipe.all_need_first_tier_review
+      @recipes_need_second_tier_review = Recipe.all_need_second_tier_review
+      @recipes_in_second_tier_review = Recipe.all_in_second_tier_review
+      @recipes_in_first_tier_review = Recipe.all_in_first_tier_review
+      @all_live_recipes = Recipe.all_live_recipes
+      @assign_review_conflicts_hash = ReviewConflict.assign_by_risk_level
+      @review_conflicts_in_review_hash = ReviewConflict.in_review_by_risk_level
+      @resolved_quality_revews = QualityReview.where(resolved: true)
+      @resolved_review_conflicts = ReviewConflict.where(resolved: true)
     end
     @incomplete_quality_reviews = current_dietitian.incomplete_quality_reviews
+    @incomplete_review_conflicts = ReviewConflict.assigned_to_dietitian(current_dietitian.id)
   end
   # GET /recipes/1
   # GET /recipes/1.json
@@ -337,6 +346,6 @@ class RecipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     # need to change :image_url to :avatar when paperclip is working
     def recipe_params
-      params.require(:recipe).permit(:image_url, :name, :description, :dietitian_id, :cook_time, :prep_time, :serving_size, :difficulty, :complete, :characteristic_ids => [], :patient_group_ids => [])
+      params.require(:recipe).permit(:image_url, :name, :description, :dietitian_id, :cook_time, :prep_time, :serving_size, :difficulty, :complete, :live_recipe, :characteristic_ids => [], :patient_group_ids => [])
     end
 end

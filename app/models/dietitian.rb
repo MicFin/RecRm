@@ -16,6 +16,7 @@ class Dietitian < ActiveRecord::Base
   has_many :second_reviewers, :class_name => "ReviewConflict", :foreign_key => "second_reviewer_id"
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "third_reviewer_id"
 
+
   def incomplete_recipes
     incomplete_recipes = []
     self.recipes.each do |recipe|
@@ -33,6 +34,7 @@ class Dietitian < ActiveRecord::Base
         incomplete_quality_reviews << quality_review
       end
     end
+    return incomplete_quality_reviews
   end
 
   def completed_quality_reviews
@@ -42,6 +44,7 @@ class Dietitian < ActiveRecord::Base
         complete_quality_reviews << quality_review
       end
     end
+    return complete_quality_reviews
   end
   
 end

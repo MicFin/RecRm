@@ -16,7 +16,15 @@
   $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_step_show') %>");
 <% elsif @item.include? "allergen-" %>
   $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_allergen_show') %>");
+  
+<% elsif @item == "health-groups" %>
 
+  $("#review-recipe-health-groups").replaceWith("<%= j render(:partial => 'review_recipe_health_groups_show') %>");
+<% elsif @item == "recipe-categories" %>
+
+  $("#review-recipe-categories").replaceWith("<%= j render(:partial => 'review_recipe_categories_show') %>");
+<% elsif @item.include? "marketing-item-" %>
+  $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_marketing_item_show') %>");
 <% end %>
 
   $("#panel-<%=@item%>").removeClass('alert');

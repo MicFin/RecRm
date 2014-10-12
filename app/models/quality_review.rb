@@ -6,4 +6,13 @@ class QualityReview < ActiveRecord::Base
 
   resourcify
   
+  def conflicts_cleared?
+    self.review_conflicts.each do |conflict|
+      if conflict.resolved == false
+        return false
+      end
+    end
+    return true
+  end
+  
 end

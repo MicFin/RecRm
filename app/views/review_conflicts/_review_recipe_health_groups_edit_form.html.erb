@@ -1,0 +1,112 @@
+					<div id="review-recipe-health-groups">
+  					<%= simple_form_for [@quality_reviewable, @quality_review, @review_conflict], :remote => true, :html => {:multipart => true} do |f| %>
+              <div class=" form-group row text-center">
+                <div class="col-xs-12 form-group">
+                  <p>Your recipe will be helpful for people with many different nutritional needs, but</p>
+                  <h2>Who did you make this recipe for?</h2>
+                </div>
+                <div class="form-group col-xs-12">
+                  <div class="col-xs-12 text-left">
+                    <label>Common Food Allergies:</label>
+                  </div>
+                  <div class="col-xs-10 col-xs-offset-1 text-left">
+					          <ul>
+					            <% @allergies.each do |allergy| %>
+					                <div class="col-xs-6 select-allergen-box">
+					                  <% if @health_groups_changes_array.include? allergy.name %>
+					                    <%= check_box_tag "review_conflict[first_suggestion][health_groups][]", allergy.name, {:checked => "checked"}  %>
+					                  <% else %>
+					                    <%= check_box_tag "review_conflict[first_suggestion][health_groups][]", allergy.name %>
+					                  <% end %>
+					                  <%= h allergy.name %>
+					                </div	>
+					            <% end %>
+					          </ul>
+					        </div>
+                </div>
+                <div class="form-group col-xs-12">
+                  <div class="col-xs-12 text-left">
+                    <label>Common Food Intolerances:</label>
+                  </div>
+<!--                   <div class="col-xs-12 text-left">
+                    <%#= f.association :patient_groups, as: :check_boxes, collection: @intolerances, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-6 select-allergen-box" %>
+                  </div> -->
+                  <div class="col-xs-10 col-xs-offset-1 text-left">
+					          <ul>
+					            <% @intolerances.each do |intolerance| %>
+					                <li>
+					                  <% if @health_groups_changes_array.include? intolerance.name %>
+					                    <%= check_box_tag "review_conflict[first_suggestion][health_groups][]", intolerance.name, {:checked => "checked"}  %>
+					                  <% else %>
+					                    <%= check_box_tag "review_conflict[first_suggestion][health_groups][]", intolerance.name %>
+					                  <% end %>
+					                  <%= h intolerance.name %>
+					                </li>
+					            <% end %>
+					          </ul>
+					        </div>
+
+
+                </div>
+                <div class="form-group col-xs-12">
+                  <div class="col-xs-12 text-left">
+                    <label>Nutrition Related Diseases:</label>
+                  </div>
+<!--                   <div class="col-xs-12 text-left form-group">
+                      <%#= f.association :patient_groups, as: :check_boxes, collection: @diseases, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-6 select-allergen-box" %>
+                  </div> -->
+                  <div class="col-xs-10 col-xs-offset-1 text-left">
+					          <ul>
+					            <% @diseases.each do |disease| %>
+					                <li>
+					                  <% if @health_groups_changes_array.include? disease.name %>
+					                    <%= check_box_tag "review_conflict[first_suggestion][health_groups][]", disease.name, {:checked => "checked"}  %>
+					                  <% else %>
+					                    <%= check_box_tag "review_conflict[first_suggestion][health_groups][]", disease.name %>
+					                  <% end %>
+					                  <%= h disease.name %>
+					                </li>
+					            <% end %>
+					          </ul>
+					        </div>
+
+                </div>
+                <div class="form-group col-xs-12">
+                  <div class="col-xs-12 text-left">
+                    <label>Diet Specific:</label>
+                  </div>
+       <!--            <div class="col-xs-12 text-left form-group">
+                      <%#= f.association :patient_groups, as: :check_boxes, collection: @diets, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-6 select-allergen-box" %>
+                  </div> -->
+           				<div class="col-xs-10 col-xs-offset-1 text-left">
+					          <ul>
+					            <% @diets.each do |diet| %>
+					                <li>
+					                  <% if @health_groups_changes_array.include? diet.name %>
+					                    <%= check_box_tag "review_conflict[first_suggestion][health_groups][]", diet.name, {:checked => "checked"}  %>
+					                  <% else %>
+					                    <%= check_box_tag "review_conflict[first_suggestion][health_groups][]", diet.name %>
+					                  <% end %>
+					                  <%= h diet.name %>
+					                </li>
+					            <% end %>
+					          </ul>
+					        </div>
+                </div>
+              </div>
+						<div class="form-group">
+				      <%= f.input :category, as: :hidden, :input_html => { :value => "Health Groups" }%>
+				      <%= f.input :item, as: :hidden, :input_html => { :value => "health-groups" } %>
+				      <%= f.input :original_entry, as: :hidden, :input_html => { :value => @health_groups_changes_array }%>
+				    </div>
+				    <div class=" col-xs-6 col-xs-offset-3 form-group">
+				      <%= f.collection_radio_buttons :risk_level, [["Dangerous", 4], ["High Risk", 3], ["Low Risk", 2], ["No Risk", 1]], :last, :first, :item_wrapper_class=>"form-control" %>
+				    </div>
+				    <textarea class="form-control form-group" placeholder="Why did you make this improvement?" name="review_conflict[first_reviewer_notes]" rows="3"></textarea>
+					    <div class=" col-xs-12 form-group text-center"> 
+					      <%= f.button :submit, "Suggest Change", class: "btn btn-success btn-lg", type: "submit" %>
+					    </div> 
+             <% end %>
+          </div>
+
+

@@ -1,5 +1,8 @@
 var BasicForm = {
   validate: function(){
+    $(".recipe-name-autofill ").autocomplete({
+      source: $('.recipe-name-autofill ').data('autocomplete-source')
+    });
     $( "#recipe-name" ).keyup(function() {
     	$("#recipe-title").replaceWith("<h2 id='recipe-title'>"+$("#recipe-name").val() + "</h2>");
     		if ($("#recipe-name").val() === ""){
@@ -166,6 +169,9 @@ var BasicForm = {
     });
   },
   validateReview: function(){
+      $(".recipe-name-autofill").autocomplete({
+        source: $('.recipe-name-autofill').data('autocomplete-source')
+      });
     // validate new recipe form with JS
     $("#new_recipe").validate({
       rules: {

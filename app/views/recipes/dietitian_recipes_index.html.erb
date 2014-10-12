@@ -1,56 +1,380 @@
 <div id="dietitian-recipes-index-container">
  	<div class="form-group col-xs-12 form-group text-center">
- 		<h2>Thanks for your <%=@recipes_count%> recipes!</h2>
+ 		<h3>Hooray For Recipes!</h3>
  	</div>
 	<div class="col-xs-12 text-center">
 		<p><%= link_to image_tag("chef-hat.png", class: "tilt"), :controller => "recipes", :action => "new" %>	</p>
 		<p>Create a Recipe</p>
 	</div>
 	<% if current_dietitian.has_role? :admin_dietitian %>
+		<h1>ADMIN DIETITIAN ONLY</h1>
 		<div class="col-xs-12">
     	<%= link_to "Recipe Data", recipe_data_path(current_dietitian), class: "btn btn-lg btn-success"%>
     </div>
-		<div class="col-xs-12" id="review-recipes">
-			<h2>Assign these recipes to be reviewed:</h2>
-			<%# @recipe_reviews_to_assign.each do |recipe| %>
-			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
-				<h3><%#=recipe.name%></h3>
-				<p><%#=link_to "Assign Review", new_recipe_quality_review_path(recipe) %></p>
-				<p><%##=link_to "View", recipe_path(recipe) %></p>
-				<p><%##=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
-			</div>
-			<%# end %>
-		</div>
-		<div class="col-xs-12" id="review-recipes">
-			<h2>Recipes in review:</h2>
-			<% @recipes_in_review.each do |recipe| %>
-			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
-				<h3><%=recipe.name%></h3>
-				<p><%=link_to "Edit Review", recipe_path(recipe) %></p>
-				<p><%=link_to "View", recipe_path(recipe) %></p>
-				<p><%#=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
+
+<!-- ASSIGN RECIPES FOR REVIEW-->
+<div id="admin-assign-container" class="col-xs-12">
+	<h1 class="text-center">Assign For Review</h1>
+		<h3 class="dashboard-heading">New Recipes:</h3>
+		<div class="row review-recipes">
+			<% @recipes_need_original_review.each do |recipe| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=recipe.name%></h4>
+				<p>Made by: </p>
+				<p><%=recipe.dietitian.email%></p>
+				<p>Created on:<p>
+				<p><%=recipe.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </p>
+				<p><%=recipe.ingredients_recipes.count%> ingredients</p>
+				<p><%=recipe.recipe_steps.count%> steps</p>
+				<p><%=recipe.difficulty%> </p>
+				<p><%=link_to "Assign Review", new_recipe_quality_review_path(recipe) %></p>
 			</div>
 			<% end %>
 		</div>
+		<h3 class="dashboard-heading">Tier 1 Quality Review:</h3>
+		<div class="row review-recipes">
+			<% @recipes_need_first_tier_review.each do |recipe| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=recipe.name%></h4>
+				<p>Made by: </p>
+				<p><%=recipe.dietitian.email%></p>
+				<p>Created on:<p>
+				<p><%=recipe.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </p>
+				<p><%=recipe.ingredients_recipes.count%> ingredients</p>
+				<p><%=recipe.recipe_steps.count%> steps</p>
+				<p><%=recipe.difficulty%> </p>
+				<p><%=link_to "Assign Review", new_recipe_quality_review_path(recipe) %></p>
+			</div>
+			<% end %>
+		</div>
+		<h3 class="dashboard-heading">Tier 2 Quality Review:</h3>
+		<div class="row review-recipes">	
+			<% @recipes_need_second_tier_review.each do |recipe| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=recipe.name%></h4>
+				<p>Made by: </p>
+				<p><%=recipe.dietitian.email%></p>
+				<p>Created on:<p>
+				<p><%=recipe.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </p>
+				<p><%=recipe.ingredients_recipes.count%> ingredients</p>
+				<p><%=recipe.recipe_steps.count%> steps</p>
+				<p><%=recipe.difficulty%> </p>
+				<p><%=link_to "Assign Review", new_recipe_quality_review_path(recipe) %></p>
+			</div>
+			<% end %>
+		</div>
+
+<!-- ASSIGN REVIEW CONFLICTS -->
+		<h3 class="dashboard-heading">High Risk Conflicts</h3>
+		<div class="row review-recipes">
+			<% @assign_review_conflicts_hash[4].each do |review_conflict| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
+				<p><%=review_conflict.category%></p>
+				<p>Creator: <%=review_conflict.quality_review.dietitian.email%>
+	<% if review_conflict.first_reviewer_id %>
+				<p>1st Reviewer: <%=review_conflict.first_reviewer.email%></p>
 	<% end %>
+	<% if review_conflict.second_reviewer_id %>
+				<p>2nd Reviewer: <%=review_conflict.second_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.third_reviewer_id %>
+				<p>3rd Reviewer: <%=review_conflict.third_reviewer.email%></p>
+	<% end %>
+				<h3 class="dashboard-heading">Stage: <%=review_conflict.review_stage%></h4>
+				<p><%=link_to "Assign Conflict", select_reviewer_path(review_conflict) %></p>				
+			</div>
+			<% end %>
+		</div>
+			<h3 class="dashboard-heading">Medium Risk Conflicts</h3>
+		<div class="row review-recipes">
+
+			<% @assign_review_conflicts_hash[3].each do |review_conflict| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
+				<p><%=review_conflict.category%></p>
+				<p>Creator: <%=review_conflict.quality_review.dietitian.email%>
+	<% if review_conflict.first_reviewer_id %>
+				<p>1st Reviewer: <%=review_conflict.first_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.second_reviewer_id %>
+				<p>2nd Reviewer: <%=review_conflict.second_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.third_reviewer_id %>
+				<p>3rd Reviewer: <%=review_conflict.third_reviewer.email%></p>
+	<% end %>
+			<h3 class="dashboard-heading">Stage: <%=review_conflict.review_stage%></h4>
+			<p><%=link_to "Assign Conflict", select_reviewer_path(review_conflict) %></p>		
+			</div>
+			<% end %>
+		</div>
+			<h3 class="dashboard-heading">Low Risk Conflicts</h3>
+		<div class="row review-recipes">
+
+			<% @assign_review_conflicts_hash[2].each do |review_conflict| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
+				<p><%=review_conflict.category%></p>
+				<p>Creator: <%=review_conflict.quality_review.dietitian.email%>
+	<% if review_conflict.first_reviewer_id %>
+				<p>1st Reviewer: <%=review_conflict.first_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.second_reviewer_id %>
+				<p>2nd Reviewer: <%=review_conflict.second_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.third_reviewer_id %>
+				<p>3rd Reviewer: <%=review_conflict.third_reviewer.email%></p>
+	<% end %>
+				<h3 class="dashboard-heading">Stage: <%=review_conflict.review_stage%></h4>
+			<p><%=link_to "Assign Conflict", select_reviewer_path(review_conflict) %></p>		
+			</div>
+			<% end %>
+		</div>
+			<h3 class="dashboard-heading">No Risk Conflicts:</h3>
+		<div class="row review-recipes">
+
+			<% @assign_review_conflicts_hash[1].each do |review_conflict| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
+				<p><%=review_conflict.category%></p>
+				<p>Creator: <%=review_conflict.quality_review.dietitian.email%>
+	<% if review_conflict.first_reviewer_id %>
+				<p>1st Reviewer: <%=review_conflict.first_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.second_reviewer_id %>
+				<p>2nd Reviewer: <%=review_conflict.second_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.third_reviewer_id %>
+				<p>3rd Reviewer: <%=review_conflict.third_reviewer.email%></p>
+	<% end %>
+				<h3 class="dashboard-heading">Stage: <%=review_conflict.review_stage%></h4>
+			<p><%=link_to "Assign Conflict", select_reviewer_path(review_conflict) %></p>		
+			</div>
+			<% end %>
+		</div>
+</div>
+<div id="currently-in-review-container" class="col-xs-12">
+	<h1>Currently in Review</h1>
+<!-- ASSIGN REVIEW CONFLICTS -->
+			<h3 class="dashboard-heading">High Risk Conflicts:</h3>
+		<div class="row review-recipes">
+
+			<% @review_conflicts_in_review_hash[4].each do |review_conflict| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
+				<p><%=review_conflict.category%></p>
+				<p>Creator: <%=review_conflict.quality_review.dietitian.email%>
+	<% if review_conflict.first_reviewer_id %>
+				<p>1st Reviewer: <%=review_conflict.first_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.second_reviewer_id %>
+				<p>2nd Reviewer: <%=review_conflict.second_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.third_reviewer_id %>
+				<p>3rd Reviewer: <%=review_conflict.third_reviewer.email%></p>
+	<% end %>
+			</div>
+			<% end %>
+		</div>
+			<h3 class="dashboard-heading">Medium Risk Conflicts:</h3>
+		<div class="row review-recipes">
+
+			<% @review_conflicts_in_review_hash[3].each do |review_conflict| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
+				<p><%=review_conflict.category%></p>
+				<p>Creator: <%=review_conflict.quality_review.dietitian.email%>
+	<% if review_conflict.first_reviewer_id %>
+				<p>1st Reviewer: <%=review_conflict.first_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.second_reviewer_id %>
+				<p>2nd Reviewer: <%=review_conflict.second_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.third_reviewer_id %>
+				<p>3rd Reviewer: <%=review_conflict.third_reviewer.email%></p>
+	<% end %>	
+			</div>
+			<% end %>
+		</div>
+			<h3 class="dashboard-heading">Low Risk Conflicts:</h3>
+		<div class="row review-recipes">
+
+			<% @review_conflicts_in_review_hash[2].each do |review_conflict| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
+				<p><%=review_conflict.category%></p>
+				<p>Creator: <%=review_conflict.quality_review.dietitian.email%>
+	<% if review_conflict.first_reviewer_id %>
+				<p>1st Reviewer: <%=review_conflict.first_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.second_reviewer_id %>
+				<p>2nd Reviewer: <%=review_conflict.second_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.third_reviewer_id %>
+				<p>3rd Reviewer: <%=review_conflict.third_reviewer.email%></p>
+	<% end %>
+
+			</div>
+			<% end %>
+		</div>
+			<h3 class="dashboard-heading">No Risk Conflicts</h3>
+		<div class="row review-recipes">
+
+			<% @review_conflicts_in_review_hash[1].each do |review_conflict| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
+				<p><%=review_conflict.category%></p>
+				<p>Creator: <%=review_conflict.quality_review.dietitian.email%>
+	<% if review_conflict.first_reviewer_id %>
+				<p>1st Reviewer: <%=review_conflict.first_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.second_reviewer_id %>
+				<p>2nd Reviewer: <%=review_conflict.second_reviewer.email%></p>
+	<% end %>
+	<% if review_conflict.third_reviewer_id %>
+				<p>3rd Reviewer: <%=review_conflict.third_reviewer.email%></p>
+	<% end %>	
+			</div>
+			<% end %>
+		</div>
+
+<!-- RECIPES IN REVIEW -->
+
+			<h3 class="dashboard-heading">1st Tier Quality Review:</h3>
+		<div class="row review-recipes">
+			<% @recipes_in_first_tier_review.each do |recipe| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=recipe.name%></h4>
+				<p>Made by: </p>
+				<p><%=recipe.dietitian.email%></p>
+				<p>Created on:<p>
+				<p><%=recipe.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </p>
+				<p><%=recipe.ingredients_recipes.count%> ingredients</p>
+				<p><%=recipe.recipe_steps.count%> steps</p>
+				<p><%=recipe.difficulty%> </p>
+			</div>
+			<% end %>
+		</div>
+			<h3 class="dashboard-heading">2nd Tier Quality Review:</h3>
+		<div class="row review-recipes">
+			<% @recipes_in_second_tier_review.each do |recipe| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=recipe.name%></h4>
+				<p>Made by: </p>
+				<p><%=recipe.dietitian.email%></p>
+				<p>Created on:<p>
+				<p><%=recipe.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </p>
+				<p><%=recipe.ingredients_recipes.count%> ingredients</p>
+				<p><%=recipe.recipe_steps.count%> steps</p>
+				<p><%=recipe.difficulty%> </p>
+			</div>
+			<% end %>
+		</div>
+
+
+	<h1>Completed</h1>
+<!-- LIVE RECIPES -->
+			<h3 class="dashboard-heading">Live Recipes:</h3>
+		<div class="row review-recipes">
+			<% @all_live_recipes.each do |recipe| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=recipe.name%></h4>
+				<p>Made by: </p>
+				<p><%=recipe.dietitian.email%></p>
+				<p>Created on:<p>
+				<p><%=recipe.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </p>
+				<p><%=recipe.ingredients_recipes.count%> ingredients</p>
+				<p><%=recipe.recipe_steps.count%> steps</p>
+				<p><%=recipe.difficulty%> </p>
+			</div>
+			<% end %>
+		</div>
+
+<!-- COMPLETED QUALITY REVIEWS -->
+			<h3 class="dashboard-heading">Resolved Quality Reviews:</h3>
+			<div class="row review-recipes">
+			<% @resolved_quality_revews.each do |quality_review| %>
+				<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+					<h4><%=quality_review.quality_reviewable.name%></h4>
+					<p>Tier: <%=quality_review.tier %></p>
+					<p>Date Created: <%=quality_review.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></p>
+					<p>Date Completed: <%=quality_review.date_completed_on %></p>
+					<p>Review Conflicts: <%=quality_review.review_conflicts.count %></p>
+					<% if quality_review.date_resolved_on %>
+					<p>Date Resolved: <%=quality_review.date_resolved_on.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></p>
+					<% end%>
+					<p>KRDN: <%=quality_review.dietitian.email%></p>
+				</div>
+			<% end %>
+			</div>
+
+
+<!-- COMPLETED REVIEW CONFLICTS  -->
+			<h3 class="dashboard-heading">Resolved Review Conflicts:</h3>
+		<div class="row review-recipes">
+			<% @resolved_review_conflicts.each do |review_conflict| %>
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
+				<p>Risk Level: <%=review_conflict.risk_level %></p>
+				<p>Category: <%=review_conflict.category %></p>
+				<p>Date Created: <%=review_conflict.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></p>
+				<% if review_conflict.date_resolved_on %>
+				<p>Date Resolved: <%=review_conflict.date_resolved_on.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></p>
+				<% end %>	
+				<p>1st KRDN: <%=review_conflict.first_reviewer.email%></p>
+				<% if review_conflict.second_reviewer_id %>
+					<p>2nd KRDN: <%=review_conflict.second_reviewer.email%></p>
+				<% end %>
+				<% if review_conflict.third_reviewer_id %>
+					<p>3rd KRDN: <%=review_conflict.third_reviewer.email%></p>
+				<% end %>
+			</div>
+			<% end %>
+		</div>
+
+
+	<% end %>
+</div>
+<div id="all-dieitians-dashboard-container" class="col-xs-12">
+<h1>ALL DIETITIANS</h1>
+
+<!-- REVIEWS FOR USER TO COMPLETE -->
 	<% if @incomplete_quality_reviews %>
-	<div class="col-xs-12" id="incomplete-recipes">
-		<h2>Review these recipes:</h2>
+		<h3 class="dashboard-heading">Review these recipes:</h3>
+	<div class="row review-recipes" id="incomplete-recipes">
 		<% @incomplete_quality_reviews.each do |quality_review| %>
-		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
-			<h3><%=quality_review.quality_reviewable.name%></h3>
+		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+			<h4><%=quality_review.quality_reviewable.name%></h4>
+			<p><%=quality_review.quality_reviewable.ingredients_recipes.count%> ingredients</p>
+			<p><%=quality_review.quality_reviewable.recipe_steps.count%> steps</p>
 			<p><%=link_to "Review", quality_reviews_start_review_path(quality_review.quality_reviewable, quality_review) %></p>
-			<p><%#=link_to "View", recipe_path(recipe) %></p>
-			<p><%#=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
 		</div>
 		<% end %>
 	</div>
 	<% end %>
-	<div class="col-xs-12" id="incomplete-recipes">
-		<h2>Complete these recipes:</h2>
+
+<!-- CONFLICTS FOR USER TO COMPLETE -->
+	<% if @incomplete_review_conflicts %>
+		<h3 class="dashboard-heading">Review these conflicts:</h3>
+	<div class="row review-recipes" id="incomplete-recipes">
+
+		<% @incomplete_review_conflicts.each do |review_conflict| %>
+		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+			<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
+			<p><%=review_conflict.category%></p>
+			<h3 class="dashboard-heading">Stage: <%=review_conflict.review_stage%></h4>
+			<p><%=link_to "Review", start_review_conflict_path(review_conflict.quality_review.quality_reviewable, review_conflict) %></p>
+		</div>
+		<% end %>
+	</div>
+	<% end %>
+
+</div>
+	<!-- <div class="col-xs-12" id="incomplete-recipes">
+		<h4>Complete these recipes:</h4>
 		<% @incomplete_recipes.each do |recipe| %>
-		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
-			<h3><%=recipe.name%></h3>
+		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+			<h4><%=recipe.name%></h4>
 			<p><%=link_to "Continue", review_recipe_path(recipe) %></p>
 			<p><%#=link_to "View", recipe_path(recipe) %></p>
 			<p><%#=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
@@ -58,15 +382,15 @@
 		<% end %>
 	</div>
 	<div class="col-xs-12" id="current-recipes">
-		<h2>All your recipes:</h2>
+		<h4>All your recipes:</h4>
 		<% @recipes.each do |recipe| %>
-		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center">
-			<h3><%=recipe.name%></h3>
+		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
+			<h4><%=recipe.name%></h4>
 			<p><%=link_to "Edit", review_recipe_path(recipe) %></p>
 			<p><%#=link_to "View", recipe_path(recipe) %></p>
 			<p><%#=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
 		</div>
 		<% end %>
-	</div>
+	</div> -->
 </div>
 

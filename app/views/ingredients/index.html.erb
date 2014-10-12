@@ -1,0 +1,97 @@
+<div id="recipe-data-container">
+ 	<div class="form-group col-xs-12 form-group text-center">
+		<table class="table table-striped table-bordered table-condensed table-hover" style="width:100%">
+		  <h1>Health Groups</h1>
+		  <tr>
+		  	<th>Name</th>
+		    <th>Allergens</th>
+		  </tr>
+	  <% @health_groups.each do |health_group| %>
+		  <tr>
+		    <td><%=health_group.name%></td>
+		    <td>
+		    <% health_group.allergens.each do |allergen| %>
+		    	<p><%=allergen.name%></p>
+		    <% end %>
+		    </td>
+		  </tr>  
+		  <% end %>
+		</table>
+		<table class="table table-striped table-bordered table-condensed table-hover" style="width:100%">
+		  <h1>Ingredients</h1>
+		  <tr>
+		  	<th>Ingredient</th>
+		  	<th >Allergens</th>
+		  	<th>Is a Common Allergen?</th>
+		  	<th>Category</th>
+		  </tr>
+		  <% @ingredients.each do |ingredient| %>
+		  <tr>
+		    <td><%=ingredient.name%></td>
+		    <td>
+		    <% ingredient.allergens.each do |allergen| %>
+		    	<p><%=allergen.name%></p>
+		    <% end %>
+		    </td>
+		    <td><%=ingredient.common_allergen%></td>
+		    <td><%=ingredient.category%></td>
+		  </tr>
+		  <% end %>
+		</table>
+		<table class="table table-striped table-bordered table-condensed table-hover" style="width:100%">
+		  <h1>Top Allergens</h1>
+		  <tr>
+		  	<th>Name</th>
+		    <th>Description</th>
+		    <th>Top Allergen</th>
+		    <th>Common Allergen</th>
+		  </tr>
+	  <% @top_allergens.each do |allergen| %>
+		  <tr>
+		    <td><%=allergen.name%></td>
+				<td><%=allergen.description%></td>
+		    <td><%=allergen.top_allergen%></td>
+		    <td><%=allergen.common_allergen%></td>
+		  </tr>  
+		  <% end %>
+		</table>
+		<table class="table table-striped table-bordered table-condensed table-hover" style="width:100%">
+		  <h1>Common Allergens</h1>
+		  <tr>
+		  	<th>Name</th>
+		    <th>Description</th>
+		    <th>Top Allergen</th>
+		    <th>Common Allergen</th>
+		  </tr>
+	  <% @common_allergens.each do |allergen| %>
+		  <tr>
+		    <td><%=allergen.name%></td>
+				<td><%=allergen.description%></td>
+		    <td><%=allergen.top_allergen%></td>
+		    <td><%=allergen.common_allergen%></td>
+		  </tr>  
+		  <% end %>
+		</table>
+		<table class="table table-striped table-bordered table-condensed table-hover" style="width:100%">
+		  <h1>All Allergens</h1>
+		  <tr>
+		  	<th>Allergen</th>
+		    <th>Description</th>
+		    <th>Top Allergen</th>
+		    <th>Common Allergen</th>
+		  </tr>
+	  <% @allergens.each do |allergen| %>
+		  <tr>
+		    <td><%=allergen.name%></td>
+				<td><%=allergen.description%></td>
+		    <td><%=allergen.top_allergen%></td>
+		    <td><%=allergen.common_allergen%></td>
+		  </tr>  
+		 <% end %>
+		</table>
+
+
+
+	</div>
+</div>
+

@@ -3,10 +3,13 @@ class IngredientsController < ApplicationController
 
   # # GET /ingredients
   # # GET /ingredients.json
-  # def index
-  #   @ingredients = Ingredient.all
-  #   @recipe_id = params["id"]
-  # end
+  def index
+    @ingredients = Ingredient.all.sort_by{|a| a.name.downcase}
+    @allergens = Allergen.all.sort_by{|a| a.name.downcase}
+    @health_groups = PatientGroup.all.sort_by{|a| a.name.downcase}
+    @top_allergens = Allergen.where(top_allergen: true).sort_by{|a| a.name.downcase}
+    @common_allergens = Allergen.where(common_allergen: true).sort_by{|a| a.name.downcase}
+  end
 
   # # GET /ingredients/1
   # # GET /ingredients/1.json

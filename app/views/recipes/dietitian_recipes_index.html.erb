@@ -365,36 +365,46 @@
 		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
 			<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
 			<p><%=review_conflict.category%></p>
-			<h3 class="dashboard-heading">Stage: <%=review_conflict.review_stage%></h4>
+			<h3 class="dashboard-heading">Stage: <%=review_conflict.review_stage%></h3>
 			<p><%=link_to "Review", start_review_conflict_path(review_conflict.quality_review.quality_reviewable, review_conflict) %></p>
 		</div>
 		<% end %>
 	</div>
 	<% end %>
 
-</div>
-	<!-- <div class="col-xs-12" id="incomplete-recipes">
-		<h4>Complete these recipes:</h4>
+		<h3 class="dashboard-heading">Complete These Recipes:</h3>
+	<div class="row review-recipes" id="incomplete-recipes">
+
 		<% @incomplete_recipes.each do |recipe| %>
 		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
 			<h4><%=recipe.name%></h4>
+				<p>Created on:<p>
+				<p><%=recipe.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </p>
+				<p><%=recipe.ingredients_recipes.count%> ingredients</p>
+				<p><%=recipe.recipe_steps.count%> steps</p>
+				<p><%=recipe.difficulty%> </p>
 			<p><%=link_to "Continue", review_recipe_path(recipe) %></p>
-			<p><%#=link_to "View", recipe_path(recipe) %></p>
-			<p><%#=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
+
 		</div>
 		<% end %>
 	</div>
-	<div class="col-xs-12" id="current-recipes">
-		<h4>All your recipes:</h4>
+			<h3 class="dashboard-heading">Al Your Recipes:</h3>
+	<div class="row review-recipes" id="current-recipes">
 		<% @recipes.each do |recipe| %>
 		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
 			<h4><%=recipe.name%></h4>
+				<p>Created on:<p>
+				<p><%=recipe.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </p>
+				<p><%=recipe.ingredients_recipes.count%> ingredients</p>
+				<p><%=recipe.recipe_steps.count%> steps</p>
+				<p><%=recipe.difficulty%> </p>
+			<p class="alert alert-danger">this link may not work at the moment</p>
 			<p><%=link_to "Edit", review_recipe_path(recipe) %></p>
-			<p><%#=link_to "View", recipe_path(recipe) %></p>
-			<p><%#=link_to "QA", new_recipe_quality_review_path(recipe)%></p>
+
+
 
 		</div>
 		<% end %>
-	</div> -->
+	</div>
 </div>
-
+</div>

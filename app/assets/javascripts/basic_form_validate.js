@@ -106,67 +106,72 @@ var BasicForm = {
     });
   },
   setReviewSliders: function(){
-  /// CAN  CUT THIS INTO 1/3 AMOUNT OF CODE
-    var preptime = $( "#recipe_prep_time" );
-    var preptimeslider = $( "<div class='slider'></div>" ).insertAfter( preptime ).slider({
-      min: 1,
-      max: $("#recipe_prep_time option").length,
-      range: "min",
-      value: preptime[ 0 ].selectedIndex + 1,
-      slide: function( event, ui ) {
-        preptime[ 0 ].selectedIndex = ui.value - 1;
-      }
-    });
-    // makes select box change the slider
-    $( "#recipe_prep_time" ).change(function() {
-      preptimeslider.slider( "value", this.selectedIndex + 1 );
-    });
+    if ($( "#recipe_prep_time" ).length > 0) {
+    /// CAN  CUT THIS INTO 1/3 AMOUNT OF CODE
+      var preptime = $( "#recipe_prep_time" );
+      var preptimeslider = $( "<div class='slider'></div>" ).insertAfter( preptime ).slider({
+        min: 1,
+        max: $("#recipe_prep_time option").length,
+        range: "min",
+        value: preptime[ 0 ].selectedIndex + 1,
+        slide: function( event, ui ) {
+          preptime[ 0 ].selectedIndex = ui.value - 1;
+        }
+      });
+      // makes select box change the slider
+      $( "#recipe_prep_time" ).change(function() {
+        preptimeslider.slider( "value", this.selectedIndex + 1 );
+      });
+    };
+    if ($( "#recipe_cook_time" ).length > 0) {
+      var cooktime = $("#recipe_cook_time");
+      var cooktimeslider = $( "<div class='slider'></div>" ).insertAfter( cooktime ).slider({
+        min: 1,
+        max: $("#recipe_cook_time option").length,
+        range: "min",
+        value: cooktime[ 0 ].selectedIndex + 1,
+        slide: function( event, ui ) {
+          cooktime[ 0 ].selectedIndex = ui.value - 1;
+        }
+      });
+      // makes select box change the slider
+      $( "#recipe_cook_time" ).change(function() {
+        cooktimeslider.slider( "value", this.selectedIndex + 1 );          
 
-    var cooktime = $("#recipe_cook_time");
-    var cooktimeslider = $( "<div class='slider'></div>" ).insertAfter( cooktime ).slider({
-      min: 1,
-      max: $("#recipe_cook_time option").length,
-      range: "min",
-      value: cooktime[ 0 ].selectedIndex + 1,
-      slide: function( event, ui ) {
-        cooktime[ 0 ].selectedIndex = ui.value - 1;
-      }
-    });
-    // makes select box change the slider
-    $( "#recipe_cook_time" ).change(function() {
-      cooktimeslider.slider( "value", this.selectedIndex + 1 );          
-
-    });
-
-    var difficulty = $( "#recipe_difficulty" );
-    var difficultyslider = $( "<div class='slider'></div>" ).insertAfter( difficulty ).slider({
-      min: 1,
-      max: $("#recipe_difficulty option").length,
-      range: "min",
-      value: difficulty[ 0 ].selectedIndex + 1,
-      slide: function( event, ui ) {
-        difficulty[ 0 ].selectedIndex = ui.value - 1;
-      }
-    });
-    // makes select box change the slider
-    $( "#recipe_difficulty" ).change(function() {
-      difficultyslider.slider( "value", this.selectedIndex + 1 );
-    });
-
-    var serves = $( "#recipe_serving_size" );
-    var servesslider = $( "<div class='slider'></div>" ).insertAfter( serves ).slider({
-      min: 1,
-      max: $("#recipe_serving_size option").length,
-      range: "min",
-      value: serves[ 0 ].selectedIndex + 1,
-      slide: function( event, ui ) {
-        serves[ 0 ].selectedIndex = ui.value - 1;
-      }
-    });
-    // makes select box change the slider
-    $( "#recipe_serving_size" ).change(function() {
-      servesslider.slider( "value", this.selectedIndex + 1 );
-    });
+      });
+    };
+    if ($( "#recipe_difficulty" ).length > 0) {
+      var difficulty = $( "#recipe_difficulty" );
+      var difficultyslider = $( "<div class='slider'></div>" ).insertAfter( difficulty ).slider({
+        min: 1,
+        max: $("#recipe_difficulty option").length,
+        range: "min",
+        value: difficulty[ 0 ].selectedIndex + 1,
+        slide: function( event, ui ) {
+          difficulty[ 0 ].selectedIndex = ui.value - 1;
+        }
+      });
+      // makes select box change the slider
+      $( "#recipe_difficulty" ).change(function() {
+        difficultyslider.slider( "value", this.selectedIndex + 1 );
+      });
+    };
+    if ($( "#recipe_serving_size" ).length > 0) {
+      var serves = $( "#recipe_serving_size" );
+      var servesslider = $( "<div class='slider'></div>" ).insertAfter( serves ).slider({
+        min: 1,
+        max: $("#recipe_serving_size option").length,
+        range: "min",
+        value: serves[ 0 ].selectedIndex + 1,
+        slide: function( event, ui ) {
+          serves[ 0 ].selectedIndex = ui.value - 1;
+        }
+      });
+      // makes select box change the slider
+      $( "#recipe_serving_size" ).change(function() {
+        servesslider.slider( "value", this.selectedIndex + 1 );
+      });
+    }    
   },
   validateReview: function(){
       $(".recipe-name-autofill").autocomplete({

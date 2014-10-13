@@ -380,23 +380,23 @@
 			<h4><%=recipe.name%></h4>
 				<p>Created on:<p>
 				<p><%=recipe.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </p>
-				<p><%=recipe.ingredients_recipes.count%> ingredients</p>
-				<p><%=recipe.recipe_steps.count%> steps</p>
+				<p><%#=recipe.ingredients_recipes.count%> ingredients</p>
+				<p><%#=recipe.recipe_steps.count%> steps</p>
 				<p><%=recipe.difficulty%> </p>
 			<p><%=link_to "Continue", review_recipe_path(recipe) %></p>
 
 		</div>
 		<% end %>
 	</div>
-			<h3 class="dashboard-heading">Al Your Recipes:</h3>
+			<h3 class="dashboard-heading">All Your Recipes:</h3>
 	<div class="row review-recipes" id="current-recipes">
 		<% @recipes.each do |recipe| %>
 		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
 			<h4><%=recipe.name%></h4>
 				<p>Created on:<p>
 				<p><%=recipe.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </p>
-				<p><%=recipe.ingredients_recipes.count%> ingredients</p>
-				<p><%=recipe.recipe_steps.count%> steps</p>
+				<p><%#=recipe.ingredients_recipes.count%> ingredients</p>
+				<p><%#=recipe.recipe_steps.count%> steps</p>
 				<p><%=recipe.difficulty%> </p>
 			<p class="alert alert-danger">this link may not work at the moment</p>
 			<p><%=link_to "Edit", review_recipe_path(recipe) %></p>

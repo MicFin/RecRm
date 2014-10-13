@@ -68,14 +68,8 @@ class ReviewConflict < ActiveRecord::Base
 
   def recipe_categories_changes_array(*suggestion)
     recipes_categories_changes = []
-    if suggestion 
-      if suggestion == "third"
-        recipes_categories_changes = self.third_suggestion.split(" <3<* ")
-      elsif suggestion == "second"
-        recipes_categories_changes = self.second_suggestion.split(" <3<* ")
-      else
-        recipes_categories_changes = self.first_suggestion.split(" <3<* ")
-      end
+    if suggestion.include? " <3<* "
+      recipes_categories_changes = suggestion.split(" <3<* ")
     else
       recipes_categories_changes = self.first_suggestion.split(" <3<* ")
     end
@@ -84,14 +78,8 @@ class ReviewConflict < ActiveRecord::Base
   
   def health_groups_changes_array(*suggestion)
     health_groups_array = []
-    if suggestion 
-      if suggestion == "third"
-        health_groups_array = self.third_suggestion.split(" <3<* ")
-      elsif suggestion == "second"
-        health_groups_array = self.second_suggestion.split(" <3<* ")
-      else
-        health_groups_array = self.first_suggestion.split(" <3<* ")
-      end
+    if suggestion.include? " <3<* "
+        health_groups_array = suggestion.split(" <3<* ")
     else
       health_groups_array = self.first_suggestion.split(" <3<* ")
     end
@@ -100,18 +88,11 @@ class ReviewConflict < ActiveRecord::Base
 
   def allergens_changes_hash(*suggestion)
     allergens_changes = {}
-    if suggestion 
-      if suggestion == "third"
-        allergens_changes_array = self.third_suggestion.split(" <3<* ")
-      elsif suggestion == "second"
-        allergens_changes_array = self.second_suggestion.split(" <3<* ")
-      else
-        allergens_changes_array = self.first_suggestion.split(" <3<* ")
-      end
+    if suggestion.include? " <3<* "
+      allergens_changes_array = suggestion.split(" <3<* ")
     else
       allergens_changes_array = self.first_suggestion.split(" <3<* ")
     end
-
     allergens_changes["ingredient"] = allergens_changes_array[0]
     allergens_changes["common"] = allergens_changes_array[1]
     allergens_changes_array = allergens_changes_array.drop(2)
@@ -124,14 +105,8 @@ class ReviewConflict < ActiveRecord::Base
 
   def ingredient_changes_hash(*suggestion)
     ingredient_changes = {}
-    if suggestion 
-      if suggestion == "third"
-        suggestion_array = self.third_suggestion.split("'")
-      elsif suggestion.first == "second"
-        suggestion_array = self.second_suggestion.split("'")
-      else
-        suggestion_array = self.first_suggestion.split("'")
-      end
+     if suggestion.include? "'"
+        suggestion_array = suggestion.split("'")
     else
       suggestion_array = self.first_suggestion.split("'")
     end
@@ -145,14 +120,8 @@ class ReviewConflict < ActiveRecord::Base
 
   def step_changes_hash(*suggestion)
     step_changes_hash = {}
-    if suggestion 
-      if suggestion == "third"
-        suggestion_array = self.third_suggestion.split(" <3<* ")
-      elsif suggestion == "second"
-        suggestion_array = self.second_suggestion.split(" <3<* ")
-      else
-        suggestion_array = self.first_suggestion.split(" <3<* ")
-      end
+    if suggestion.include? " <3<* " 
+        suggestion_array = suggestion.split(" <3<* ")
     else
       suggestion_array = self.first_suggestion.split(" <3<* ")
     end

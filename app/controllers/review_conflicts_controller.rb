@@ -299,6 +299,7 @@ class ReviewConflictsController < ApplicationController
   end
 
   def accept_review_conflict
+    binding.pry
     # make changes and save
     review_stage = @review_conflict.review_stage 
     if review_stage == 1
@@ -306,20 +307,22 @@ class ReviewConflictsController < ApplicationController
       @review_conflict.second_suggestion = "ACCEPT FIRST SUGGESTION"
       suggestion = "first"
     elsif review_stage == 2
+      binding.pry
       @review_conflict.third_reviewer_notes = params[:review_conflict][:third_reviewer_notes]
       # ## send which suggestion to accept
       
-      if params[:review_conflict][:suggestion] == "first"
-        @review_conflict.third_suggestion = "ACCEPT FIRST SUGGESTION"
+      if params[:suggestion] == "first"
+        @review_conflict.third_suggestion = @review_conflict.first_suggestion
         suggestion = @review_conflict.first_suggestion
-      elsif params[:review_conflict][:suggestion] == "second"
-        @review_conflict.third_suggestion = "ACCEPT SECOND SUGGESTION"
+      elsif params[:suggestion] == "second"
+        @review_conflict.third_suggestion = @review_conflict.second_suggestion
         suggestion = @review_conflict.second_suggestion
       else
-        suggestion = params[:review_conflict][:third_suggestion]
+        suggestion = params[:third_suggestion]
         @review_conflict.third_suggestion = suggestion
       end
     end
+    binding.pry
     @review_conflict.resolved = true
     respond_to do |format|
       if @review_conflict.save
@@ -514,64 +517,24 @@ class ReviewConflictsController < ApplicationController
   end
 
   def update_item_with_suggestion(suggestion, review_conflict)
-    ## should just send the actual suggestion and not "first" "second"
       recipe = review_conflict.quality_review.quality_reviewable
       item = review_conflict.item
+      binding.pry
       if item.include? "recipe-name"
-        if suggestion == "first"
-          recipe.name = review_conflict.first_suggestion
+          recipe.name = suggestion
           recipe.save
-        elsif suggestion == "second"
-          recipe.name = review_conflict.second_suggestion
-          recipe.save
-        else 
-          recipe.name = review_conflict.third_suggestion
-          recipe.save
-        end
       elsif item.include? "prep-time"
-        if suggestion == "first"
-          recipe.prep_time = review_conflict.first_suggestion
+          recipe.prep_time = suggestion
           recipe.save
-        elsif suggestion == "second"
-          recipe.prep_time = review_conflict.second_suggestion
-          recipe.save
-        else 
-          recipe.prep_time = review_conflict.third_suggestion
-          recipe.save
-        end
       elsif item.include? "cook-time" 
-        if suggestion == "first"
-          recipe.cook_time = review_conflict.first_suggestion
+          recipe.cook_time = suggestion
           recipe.save
-        elsif suggestion == "second"
-          recipe.cook_time = review_conflict.second_suggestion
-          recipe.save
-        else 
-          recipe.cook_time = review_conflict.third_suggestion
-          recipe.save
-        end
       elsif item.include? "difficulty"
-        if suggestion == "first"
-          recipe.difficulty = review_conflict.first_suggestion
+          recipe.difficulty = suggestion
           recipe.save
-        elsif suggestion == "second"
-          recipe.difficulty = review_conflict.second_suggestion
-          recipe.save
-        else 
-          recipe.difficulty = review_conflict.third_suggestion
-          recipe.save
-        end
       elsif item.include? "serving-size" 
-         if suggestion == "first"
-          recipe.serving_size = review_conflict.first_suggestion
+          recipe.serving_size = suggestion
           recipe.save
-        elsif suggestion == "second"
-          recipe.serving_size = review_conflict.second_suggestion
-          recipe.save
-        else 
-          recipe.serving_size = review_conflict.third_suggestion
-          recipe.save
-        end
       elsif item.include? "ingredient-"
         update_ingredient(suggestion, item, review_conflict)
       elsif item.include? "step-"   
@@ -689,7 +652,7 @@ class ReviewConflictsController < ApplicationController
   end
 
   def set_review_conflict
-    binding.pry
+  
     @review_conflict = ReviewConflict.find(params[:id])
   end
 

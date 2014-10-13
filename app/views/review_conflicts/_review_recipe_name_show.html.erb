@@ -18,14 +18,15 @@
     <h4>Dangerous Risk</h4>
 <% end %>
     <label>What would you like the name of your recipe to be?</label>
-    <h3><%=@review_conflict.first_suggestion%></h3>
-    <p class="form-group"><%= @review_conflict.first_reviewer_notes %></p>
-    <div class=" col-xs-12 form-group text-center"> 
+    <h3>First Suggestion: <%=@review_conflict.first_suggestion%></h3>
+    <p class="form-group">Notes: <%= @review_conflict.first_reviewer_notes %></p>
       <% if @select_reviewer != true %>
+        <div class=" col-xs-12 form-group text-center"> 
         <%= link_to "Edit Changes", edit_recipe_quality_review_review_conflict_path(@quality_reviewable, @quality_review, @review_conflict), class: "btn btn-success btn-lg", id: "basic-form-button", :remote => true%>
+        </div>
       <% else %>
-        <h3><%=@review_conflict.second_suggestion%></h3>
-        <p><%= @review_conflict.second_reviewer_notes %></p>
+        <h3>Second Suggestion: <%=@review_conflict.second_suggestion%></h3>
+        <p>Notes: <%= @review_conflict.second_reviewer_notes %></p>
       <% end %>
-    </div>
+
   </div>

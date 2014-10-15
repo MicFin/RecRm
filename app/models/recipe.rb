@@ -10,14 +10,14 @@ class Recipe < ActiveRecord::Base
 
   resourcify
 
-	has_many :ingredients_recipes
-	has_many :ingredients, through: :ingredients_recipes
-	has_many :recipe_steps
+  has_many :ingredients_recipes
+  has_many :ingredients, through: :ingredients_recipes
+  has_many :recipe_steps
   has_and_belongs_to_many :characteristics, :uniq => true
   has_and_belongs_to_many :patient_groups, :uniq => true
   belongs_to :dietitian
   validates :name, :presence => {:message => 'cannot be blank, Recipe not saved'}
-  # paperclip loaded image 
+  # paperclip loaded image
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   # validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   do_not_validate_attachment_file_type :avatar
@@ -25,10 +25,10 @@ class Recipe < ActiveRecord::Base
   # removed until can utlilize AJAX to render nested forms for recipe form or to submit for ingredients_recipes forms
   # accepts_nested_attributes_for :ingredients_recipes
   # quality reviews polymoprhic
-  has_many :quality_reviews, as: :quality_reviewable 
-  has_many :marketing_items, as: :marketing_itemable 
+  has_many :quality_reviews, as: :quality_reviewable
+  has_many :marketing_items, as: :marketing_itemable
   has_many :review_conflicts, through: :quality_reviews
- 
+
   def ingredient_with_full_name(full_name)
     self.ingredients_recipes.each do |ingredient|
       if ingredient.full_name == full_name
@@ -62,53 +62,53 @@ class Recipe < ActiveRecord::Base
       data_by_health_group_hash[health_group.name]["Breakfast"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Breakfast').references(:characteristic).count
       data_by_health_group_hash[health_group.name]["Lunch"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Lunch').references(:characteristic).count
       data_by_health_group_hash[health_group.name]["Dinner"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Dinner').references(:characteristic).count
-      data_by_health_group_hash[health_group.name]["Snack"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count    
-      data_by_health_group_hash[health_group.name]["Dessert"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Dessert').references(:characteristic).count    
+      data_by_health_group_hash[health_group.name]["Snack"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Snack').references(:characteristic).count
+      data_by_health_group_hash[health_group.name]["Dessert"] = health_group_recipes.includes(:characteristics).where('characteristics.name = ?', 'Dessert').references(:characteristic).count
     end
     return data_by_health_group_hash
   end
 
   def self.data_by_total
-      today = Date.today
-      beginning_of_week = today.at_beginning_of_week
-      data_by_total_hash = {}
-      all_time_array = Recipe.all
-      data_by_total_hash["total_all_time"] = all_time_array.count
-      data_by_total_hash["made_for_all_time"] = 0
-      all_time_array.each do |recipe|
-        data_by_total_hash["made_for_all_time"] += recipe.patient_groups.count
-      end
-      this_weeks_array = Recipe.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day)
-      data_by_total_hash["total_this_week"] = this_weeks_array.count
-      data_by_total_hash["made_for_this_week"] = 0
-      this_weeks_array.each do |recipe|
-        data_by_total_hash["made_for_this_week"] += recipe.patient_groups.count
-      end
-      last_weeks_array = Recipe.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day)
-      data_by_total_hash["total_last_week"] = last_weeks_array.count
-      data_by_total_hash["made_for_last_week"] = 0
-      last_weeks_array.each do |recipe|
-        data_by_total_hash["made_for_last_week"] += recipe.patient_groups.count
-      end
-      total_2_weeks_ago_array = Recipe.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day)
-      data_by_total_hash["total_2_weeks_ago"] = total_2_weeks_ago_array.count
-      data_by_total_hash["made_for_2_weeks_ago"] = 0
-      total_2_weeks_ago_array.each do |recipe|
-        data_by_total_hash["made_for_2_weeks_ago"] += recipe.patient_groups.count
-      end
-      total_3_weeks_ago_array = Recipe.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day)
-      data_by_total_hash["total_3_weeks_ago"] = total_3_weeks_ago_array.count
-      data_by_total_hash["made_for_3_weeks_ago"] = 0
-      total_3_weeks_ago_array.each do |recipe|
-        data_by_total_hash["made_for_3_weeks_ago"] += recipe.patient_groups.count
-      end
-      total_4_weeks_ago_array = Recipe.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day)
-      data_by_total_hash["total_4_weeks_ago"] = total_4_weeks_ago_array.count
-      data_by_total_hash["made_for_4_weeks_ago"] = 0
-      total_4_weeks_ago_array.each do |recipe|
-        data_by_total_hash["made_for_4_weeks_ago"] += recipe.patient_groups.count
-      end
-      return data_by_total_hash
+    today = Date.today
+    beginning_of_week = today.at_beginning_of_week
+    data_by_total_hash = {}
+    all_time_array = Recipe.all
+    data_by_total_hash["total_all_time"] = all_time_array.count
+    data_by_total_hash["made_for_all_time"] = 0
+    all_time_array.each do |recipe|
+      data_by_total_hash["made_for_all_time"] += recipe.patient_groups.count
+    end
+    this_weeks_array = Recipe.where(:created_at => beginning_of_week.beginning_of_day..today.end_of_day)
+    data_by_total_hash["total_this_week"] = this_weeks_array.count
+    data_by_total_hash["made_for_this_week"] = 0
+    this_weeks_array.each do |recipe|
+      data_by_total_hash["made_for_this_week"] += recipe.patient_groups.count
+    end
+    last_weeks_array = Recipe.where(:created_at => 1.week.ago.beginning_of_week.beginning_of_day..1.week.ago.end_of_week.end_of_day)
+    data_by_total_hash["total_last_week"] = last_weeks_array.count
+    data_by_total_hash["made_for_last_week"] = 0
+    last_weeks_array.each do |recipe|
+      data_by_total_hash["made_for_last_week"] += recipe.patient_groups.count
+    end
+    total_2_weeks_ago_array = Recipe.where(:created_at => 2.week.ago.beginning_of_week.beginning_of_day..2.week.ago.end_of_week.end_of_day)
+    data_by_total_hash["total_2_weeks_ago"] = total_2_weeks_ago_array.count
+    data_by_total_hash["made_for_2_weeks_ago"] = 0
+    total_2_weeks_ago_array.each do |recipe|
+      data_by_total_hash["made_for_2_weeks_ago"] += recipe.patient_groups.count
+    end
+    total_3_weeks_ago_array = Recipe.where(:created_at => 3.week.ago.beginning_of_week.beginning_of_day..3.week.ago.end_of_week.end_of_day)
+    data_by_total_hash["total_3_weeks_ago"] = total_3_weeks_ago_array.count
+    data_by_total_hash["made_for_3_weeks_ago"] = 0
+    total_3_weeks_ago_array.each do |recipe|
+      data_by_total_hash["made_for_3_weeks_ago"] += recipe.patient_groups.count
+    end
+    total_4_weeks_ago_array = Recipe.where(:created_at => 4.week.ago.beginning_of_week.beginning_of_day..4.week.ago.end_of_week.end_of_day)
+    data_by_total_hash["total_4_weeks_ago"] = total_4_weeks_ago_array.count
+    data_by_total_hash["made_for_4_weeks_ago"] = 0
+    total_4_weeks_ago_array.each do |recipe|
+      data_by_total_hash["made_for_4_weeks_ago"] += recipe.patient_groups.count
+    end
+    return data_by_total_hash
   end
 
   def self.data_by_dietitian
@@ -156,7 +156,7 @@ class Recipe < ActiveRecord::Base
     end
     return data_by_dietitian_hash
   end
-  
+
   def fetch_categories_array
     return self.characteristics.map(&:name).uniq
   end
@@ -191,48 +191,48 @@ class Recipe < ActiveRecord::Base
     review_conflicts = quality_review.review_conflicts
     review_conflicts.each do |review_conflict|
       possible_review_conflicts[review_conflict.item] = review_conflict
-      review_items_array << review_conflict.item 
+      review_items_array << review_conflict.item
     end
     new_conflict = ReviewConflict.new
-    if ((review_items_array.include? "recipe-name") == false) 
+    if ((review_items_array.include? "recipe-name") == false)
       possible_review_conflicts["recipe-name"] = new_conflict
     end
-    if ((review_items_array.include? "prep-time") == false) 
+    if ((review_items_array.include? "prep-time") == false)
       possible_review_conflicts["prep-time"] = new_conflict
     end
-    if ((review_items_array.include? "cook-time") == false) 
+    if ((review_items_array.include? "cook-time") == false)
       possible_review_conflicts["cook-time"] = new_conflict
     end
-    if ((review_items_array.include? "difficulty") == false) 
+    if ((review_items_array.include? "difficulty") == false)
       possible_review_conflicts["difficulty"] = new_conflict
     end
-    if ((review_items_array.include? "serving-size") == false) 
+    if ((review_items_array.include? "serving-size") == false)
       possible_review_conflicts["serving-size"] = new_conflict
     end
 
     self.ordered_ingredients.each do |ingredient|
-      if ((review_items_array.include? "ingredient-#{ingredient.id}") == false) 
+      if ((review_items_array.include? "ingredient-#{ingredient.id}") == false)
         possible_review_conflicts["ingredient-#{ingredient.id}"] = new_conflict
       end
     end
     self.steps.each do |step|
-      if ((review_items_array.include? "step-#{step.id}") == false) 
+      if ((review_items_array.include? "step-#{step.id}") == false)
         possible_review_conflicts["step-#{step.id}"] = new_conflict
       end
     end
     self.ingredients.each do |ingredient|
-      if ((review_items_array.include? "allergen-#{ingredient.id}") == false) 
+      if ((review_items_array.include? "allergen-#{ingredient.id}") == false)
         possible_review_conflicts["allergen-#{ingredient.id}"] = new_conflict
       end
     end
-    if ((review_items_array.include? "health-groups") == false) 
+    if ((review_items_array.include? "health-groups") == false)
       possible_review_conflicts["health-groups"] = new_conflict
     end
-    if ((review_items_array.include? "recipe-categories") == false) 
+    if ((review_items_array.include? "recipe-categories") == false)
       possible_review_conflicts["recipe-categories"] = new_conflict
     end
     self.marketing_items.each do |marketing_item|
-      if ((review_items_array.include? "marketing-item-#{marketing_item.id}") == false) 
+      if ((review_items_array.include? "marketing-item-#{marketing_item.id}") == false)
         possible_review_conflicts["marketing-item-#{marketing_item.id}"] = new_conflict
       end
     end
@@ -242,16 +242,16 @@ class Recipe < ActiveRecord::Base
   def self.all_live_recipes
     live_recipes = []
     self.where(completed: true).where(live_recipe: true).each do |recipe|
-        live_recipes << recipe 
+      live_recipes << recipe
     end
-    return live_recipes    
+    return live_recipes
   end
 
   def self.all_need_original_review
     recipes_not_reviewed = []
     self.where(completed: true).where(live_recipe: false).each do |recipe|
       if recipe.quality_reviews.count < 1
-        recipes_not_reviewed << recipe 
+        recipes_not_reviewed << recipe
       end
     end
     return recipes_not_reviewed
@@ -304,7 +304,7 @@ class Recipe < ActiveRecord::Base
         last_review = recipe.quality_reviews.order("created_at").last
         last_review_passed = last_review.passed
         if ((last_review_passed == true) && (last_review.resolved == true))
-            recipes_not_reviewed << recipe
+          recipes_not_reviewed << recipe
         end
       end
     end
@@ -347,7 +347,7 @@ class Recipe < ActiveRecord::Base
   def marketing_items_by_group
     items_by_group = {}
     self.marketing_items.each do |marketing_item|
-      if marketing_item.patient_group_id == nil 
+      if marketing_item.patient_group_id == nil
         group = "General"
         group_id = 0
       else
@@ -362,7 +362,7 @@ class Recipe < ActiveRecord::Base
         items_by_group[group]["items"]["title"] = marketing_item
       elsif marketing_item.category == "description"
         items_by_group[group]["items"]["description"] = marketing_item
-      end 
+      end
     end
     return items_by_group
   end
@@ -385,7 +385,7 @@ class Recipe < ActiveRecord::Base
   def ingredients_not_tagged
     not_tagged_ingredients = []
     self.ingredients.each do |ingredient|
-      if ingredient.need_allergens? == true 
+      if ingredient.need_allergens? == true
         not_tagged_ingredients << ingredient
       end
     end
@@ -442,7 +442,7 @@ class Recipe < ActiveRecord::Base
     arrays = Array.new(num_groups) { [] }
 
     patient_groups.each_with_index do |patient_group, index|
-        arrays[index] << Recipe.includes(:patient_groups).where('patient_groups.name = ?', patient_group).references(:patient_group)
+      arrays[index] << Recipe.includes(:patient_groups).where('patient_groups.name = ?', patient_group).references(:patient_group)
     end
     made_for_array = []
     for i in 0...num_groups

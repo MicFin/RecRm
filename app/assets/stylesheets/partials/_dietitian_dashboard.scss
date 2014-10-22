@@ -40,7 +40,7 @@
   white-space: nowrap;
 }
 
-#dietitian-recipes-index-container .recipe-mini-view {
+.recipe-mini-view {
   background-color: white;
   border-radius: 5px;
   height: 300px;
@@ -49,6 +49,9 @@
   float: none;
   display: inline-block;
   margin-top: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
 };
 
 #admin-assign-container{

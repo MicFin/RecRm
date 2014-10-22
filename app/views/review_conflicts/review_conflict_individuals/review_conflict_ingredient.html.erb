@@ -86,14 +86,12 @@
           <h3 class="active-preview-heading white-font">Ingredients:</h3>
           <% @ingredients.each do |ingredient| %>
   <% if @item == "ingredient-#{ingredient.id}" %> 
-    <% if @review_conflict.risk_level == 1 %>
-            <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-success">
-    <% elsif @review_conflict.risk_level == 2 %>
+    <% if @review_conflict.risk_level == 100 %>
             <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-info">
-    <% elsif @review_conflict.risk_level == 3 %>
+    <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-warning">
-    <% elsif @review_conflict.risk_level == 4 %>
-            <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-danger">
+    <% elsif @review_conflict.risk_level == 300 %>
+            <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-success">
     <% else %>
             <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default">
     <% end %>

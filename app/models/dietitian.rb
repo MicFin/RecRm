@@ -12,10 +12,11 @@ class Dietitian < ActiveRecord::Base
   has_many :articles
   has_many :recipes
   has_many :review_conflicts
+  has_many :content_quotas
   has_many :first_reviewers, :class_name => "ReviewConflict", :foreign_key => "first_reviewer_id"
   has_many :second_reviewers, :class_name => "ReviewConflict", :foreign_key => "second_reviewer_id"
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "third_reviewer_id"
-
+  has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "fourth_reviewer_id"
 
   def incomplete_recipes
     incomplete_recipes = []

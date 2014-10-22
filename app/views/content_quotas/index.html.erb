@@ -1,0 +1,82 @@
+<div id="roles-index-container">
+  <div class="col-xs-12">
+    <h1>Weekly Content Goals</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Dietitian</th>
+          <th>New Recipes Completed</th>
+          <th>New Recipes Target</th>
+          <th>Quality Reviews Compeleted</th>
+          <th>Quality Reviews Target</th>
+          <th>Conflict Resolutions Compeleted</th>
+          <th>Conflict Resolutions Target</th>
+          <th>Weekly Total Completed</th>
+          <th>Weekly Total Target</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+            <%total_recipes_quota = 0%>
+            <%total_recipes_actual = 0%>
+            <%total_quality_reviews_actual = 0%>
+            <%total_quality_reviews_quota = 0%>
+            <%total_review_conflicts_actual = 0%>
+            <%total_review_conflicts_quota = 0%>
+            <%total_content_actual = 0%>
+            <%total_content_quota = 0%>
+
+        <% @dietitians.each do |dietitian| %>
+          <tr>
+          <td><%=dietitian.email%></td>
+          <td></td>
+          <% if dietitian.content_quotas != [] %>
+            <td><%=dietitian.content_quotas.first.recipes%></td>
+            <td></td>
+            <td><%=dietitian.content_quotas.first.quality_reviews%></td>
+            <td></td>
+            <td><%=dietitian.content_quotas.first.review_conflicts%></td>
+            <td></td>
+            <td><%=dietitian.content_quotas.first.review_conflicts + dietitian.content_quotas.first.quality_reviews + dietitian.content_quotas.first.recipes%></td>
+          <td><%= link_to 'Edit', edit_content_quota_path(dietitian.content_quotas.first) %></td>
+            <%total_recipes_quota += dietitian.content_quotas.first.recipes%>
+            <%total_recipes_actual += 0%>
+            <%total_quality_reviews_actual += 0%>
+            <%total_quality_reviews_quota += dietitian.content_quotas.first.quality_reviews%>
+            <%total_review_conflicts_actual += 0%>
+            <%total_review_conflicts_quota += dietitian.content_quotas.first.review_conflicts%>
+            <%total_content_actual += 0%>
+            <%total_content_quota += dietitian.content_quotas.first.review_conflicts + dietitian.content_quotas.first.quality_reviews + dietitian.content_quotas.first.recipes%>
+          <% else %>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><%= link_to 'Create Quota', new_content_quota_path(dietitian_id: dietitian.id) %></td>
+          <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>TEAM TOTALS</th>
+          <th><%=total_recipes_actual%></th>
+          <th><%=total_recipes_quota %></th>
+          <th><%=total_quality_reviews_actual%></th>
+          <th><%=total_quality_reviews_quota %></th>
+          <th><%=total_review_conflicts_actual%></th>
+          <th><%=total_review_conflicts_quota %></th>
+          <th><%=total_content_actual%></th>
+          <th><%=total_content_quota %></th>
+          <th></th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <br>
+</div>
+</div>

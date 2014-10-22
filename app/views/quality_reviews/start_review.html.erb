@@ -27,12 +27,12 @@
 
 
             <!--    TITLE PANEL -->
-            <% if @possible_review_conflicts["recipe-name"].risk_level == 1 %>
-              <div id="panel-recipe-name" class="panel panel-default alert alert-success">
-            <% elsif @possible_review_conflicts["recipe-name"].risk_level == 2 %>
+            <% if @possible_review_conflicts["recipe-name"].risk_level == 100 %>
               <div id="panel-recipe-name" class="panel panel-default alert alert-info">
-            <% elsif @possible_review_conflicts["recipe-name"].risk_level == 3 %>
+            <% elsif @possible_review_conflicts["recipe-name"].risk_level == 200 %>
               <div id="panel-recipe-name" class="panel panel-default alert alert-warning">
+            <% elsif @possible_review_conflicts["recipe-name"].risk_level == 300 %>
+              <div id="panel-recipe-name" class="panel panel-default alert alert-danger">
             <% elsif @possible_review_conflicts["recipe-name"].risk_level == 4 %>
               <div id="panel-recipe-name" class="panel panel-default alert alert-danger">
             <% else %>
@@ -40,14 +40,14 @@
             <% end %>
                   <div class="panel-heading">
                     <h4 class="panel-title">
-                      <a data-toggle="collapse" id="basic-info-quality-review" data-parent="#accordion" href="#collapseOne"> 
+                      <a data-toggle="collapse" id="basic-info-quality-review" data-parent="#accordion" href="#collapse-recipe-title"> 
                         <%= render "/quality_reviews/basic_info/recipe_title_show" %>
                       </a>
                     </h4>
                   </div>
                 </div>
                 <!--    TITLE COLLAPSE -->
-                <div id="collapseOne" class="panel-collapse collapse">
+                <div id="collapse-recipe-title" class="panel-collapse collapse">
                   <div class="panel-body" id="basic-info-accordion-bottom">
                     <% if @possible_review_conflicts["recipe-name"].id %>
                      <%= render "/review_conflicts/review_recipe_name_show" %>
@@ -60,12 +60,12 @@
             <!--    COOK TIME PANEL -->
                 <div class="row" id="basic-info-accordion-container">
                   <div class="col-xs-3">
-                  <% if @possible_review_conflicts["cook-time"].risk_level == 1 %>
-                    <div id="panel-cook-time" class="panel panel-default alert alert-success">
-                  <% elsif @possible_review_conflicts["cook-time"].risk_level == 2 %>
+                  <% if @possible_review_conflicts["cook-time"].risk_level == 100 %>
                     <div id="panel-cook-time" class="panel panel-default alert alert-info">
-                  <% elsif @possible_review_conflicts["cook-time"].risk_level == 3 %>
+                  <% elsif @possible_review_conflicts["cook-time"].risk_level == 200 %>
                     <div id="panel-cook-time" class="panel panel-default alert alert-warning">
+                  <% elsif @possible_review_conflicts["cook-time"].risk_level == 300 %>
+                    <div id="panel-cook-time" class="panel panel-default alert alert-danger">
                   <% elsif @possible_review_conflicts["cook-time"].risk_level == 4 %>
                     <div id="panel-cook-time" class="panel panel-default alert alert-danger">
                   <% else %>
@@ -73,7 +73,7 @@
                   <% end %>
                       <div class="panel-heading">
                         <h4 class="panel-title">
-                          <a data-toggle="collapse" id="cook-time-quality-review" data-parent="#accordion" href="#collapseCookTime"> 
+                          <a data-toggle="collapse" id="cook-time-quality-review" data-parent="#accordion" href="#collapse-cook-time"> 
                             <%= render "/quality_reviews/basic_info/recipe_cook_time_show" %>
                           </a>
                         </h4>
@@ -82,12 +82,12 @@
                   </div>
                   <!--    PREP TIME PANEL -->
                   <div class="col-xs-3">
-                  <% if @possible_review_conflicts["prep-time"].risk_level == 1 %>
-                    <div id="panel-prep-time" class="panel panel-default alert alert-success">
-                  <% elsif @possible_review_conflicts["prep-time"].risk_level == 2 %>
+                  <% if @possible_review_conflicts["prep-time"].risk_level == 100 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-info">
-                  <% elsif @possible_review_conflicts["prep-time"].risk_level == 3 %>
+                  <% elsif @possible_review_conflicts["prep-time"].risk_level == 200 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-warning">
+                  <% elsif @possible_review_conflicts["prep-time"].risk_level == 300 %>
+                    <div id="panel-prep-time" class="panel panel-default alert alert-danger">
                   <% elsif @possible_review_conflicts["prep-time"].risk_level == 4 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-danger">
                   <% else %>
@@ -95,7 +95,7 @@
                   <% end %>
                       <div class="panel-heading">
                         <h4 class="panel-title">
-                          <a data-toggle="collapse" id="prep-time-quality-review" data-parent="#accordion" href="#collapsePrepTime"> 
+                          <a data-toggle="collapse" id="prep-time-quality-review" data-parent="#accordion" href="#collapse-prep-time"> 
                             <%= render "/quality_reviews/basic_info/recipe_prep_time_show" %>
                           </a>
                         </h4>
@@ -105,12 +105,12 @@
 
                     <!--    DIFFICULTY PANEL -->
                   <div class="col-xs-3">
-                  <% if @possible_review_conflicts["difficulty"].risk_level == 1 %>
-                    <div id="panel-difficulty" class="panel panel-default alert alert-success">
-                  <% elsif @possible_review_conflicts["difficulty"].risk_level == 2 %>
+                  <% if @possible_review_conflicts["difficulty"].risk_level == 100 %>
                     <div id="panel-difficulty" class="panel panel-default alert alert-info">
-                  <% elsif @possible_review_conflicts["difficulty"].risk_level == 3 %>
+                  <% elsif @possible_review_conflicts["difficulty"].risk_level == 200 %>
                     <div id="panel-difficulty" class="panel panel-default alert alert-warning">
+                  <% elsif @possible_review_conflicts["difficulty"].risk_level == 300 %>
+                    <div id="panel-difficulty" class="panel panel-default alert alert-danger">
                   <% elsif @possible_review_conflicts["difficulty"].risk_level == 4 %>
                     <div id="panel-difficulty" class="panel panel-default alert alert-danger">
                   <% else %>
@@ -118,7 +118,7 @@
                   <% end %>
                       <div class="panel-heading">
                         <h4 class="panel-title">
-                          <a data-toggle="collapse" id="dfficulty-quality-review" data-parent="#accordion" href="#collapseDifficulty"> 
+                          <a data-toggle="collapse" id="dfficulty-quality-review" data-parent="#accordion" href="#collapse-difficulty"> 
                             <%= render "/quality_reviews/basic_info/recipe_difficulty_show" %>
                           </a>
                         </h4>
@@ -127,20 +127,18 @@
                   </div>
                 <!--    SERVING SIZE PANEL -->
                   <div class="col-xs-3">
-                  <% if @possible_review_conflicts["serving-size"].risk_level == 1 %>
-                    <div id="panel-serving-size" class="panel panel-default alert alert-success">
-                  <% elsif @possible_review_conflicts["serving-size"].risk_level == 2 %>
+                  <% if @possible_review_conflicts["serving-size"].risk_level == 100 %>
                     <div id="panel-serving-size" class="panel panel-default alert alert-info">
-                  <% elsif @possible_review_conflicts["serving-size"].risk_level == 3 %>
+                  <% elsif @possible_review_conflicts["serving-size"].risk_level == 200 %>
                     <div id="panel-serving-size" class="panel panel-default alert alert-warning">
-                  <% elsif @possible_review_conflicts["serving-size"].risk_level == 4 %>
+                  <% elsif @possible_review_conflicts["serving-size"].risk_level == 300 %>
                     <div id="panel-serving-size" class="panel panel-default alert alert-danger">
                   <% else %>
                     <div id="panel-serving-size" class="panel panel-default">
                   <% end %>
                       <div class="panel-heading">
                         <h4 class="panel-title">
-                          <a data-toggle="collapse" id="serves-quality-review" data-parent="#accordion" href="#collapseServes"> 
+                          <a data-toggle="collapse" id="serves-quality-review" data-parent="#accordion" href="#collapse-serving-size"> 
                             <%= render "/quality_reviews/basic_info/recipe_serves_show" %>
                           </a>
                         </h4>
@@ -150,7 +148,7 @@
                 </div>
 
                   <!--    COOK TIME COLLAPSE -->
-                <div id="collapseCookTime" class="panel-collapse collapse">
+                <div id="collapse-cook-time" class="panel-collapse collapse">
                   <div class="panel-body" >
                     <% if @possible_review_conflicts["cook-time"].id %>
                       <%= render "/review_conflicts/review_recipe_cook_time_show" %>
@@ -160,7 +158,7 @@
                   </div>
                 </div>
                 <!--    PREP TIME COLLAPSE -->
-                <div id="collapsePrepTime" class="panel-collapse collapse">
+                <div id="collapse-prep-time" class="panel-collapse collapse">
                   <div class="panel-body" >
                     <% if @possible_review_conflicts["prep-time"].id %>
                       <%= render "/review_conflicts/review_recipe_prep_time_show" %>
@@ -170,7 +168,7 @@
                   </div>
                 </div>
                 <!--    DIFFICULTY COLLAPSE -->
-                <div id="collapseDifficulty" class="panel-collapse collapse">
+                <div id="collapse-difficulty" class="panel-collapse collapse">
                   <div class="panel-body" >
                     <% if @possible_review_conflicts["difficulty"].id %>
                       <%= render "/review_conflicts/review_recipe_difficulty_show" %>
@@ -180,7 +178,7 @@
                   </div>
                 </div>
                 <!--    SERVING SIZE COLLAPSE -->
-                <div id="collapseServes" class="panel-collapse collapse">
+                <div id="collapse-serving-size" class="panel-collapse collapse">
                   <div class="panel-body" >
                     <% if @possible_review_conflicts["serving-size"].id %>
                       <%= render "/review_conflicts/review_recipe_serving_size_show" %>
@@ -200,17 +198,15 @@
                 <p>Make sure the ingredients are entered correctly.  Check the units, measurement, the recipe ingredient, and the shopping list item for accuracy.</p>
               </div>
               <% @ingredients.each do |ingredient| %>
-                  <% if @possible_review_conflicts["ingredient-#{ingredient.id}"].risk_level == 1 %>
-                    <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-success">
-                  <% elsif @possible_review_conflicts["ingredient-#{ingredient.id}"].risk_level == 2 %>
+                  <% if @possible_review_conflicts["ingredient-#{ingredient.id}"].risk_level == 100 %>
                     <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-info">
-                  <% elsif @possible_review_conflicts["ingredient-#{ingredient.id}"].risk_level == 3 %>
+                  <% elsif @possible_review_conflicts["ingredient-#{ingredient.id}"].risk_level == 200 %>
                     <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-warning">
-                  <% elsif @possible_review_conflicts["ingredient-#{ingredient.id}"].risk_level == 4 %>
+                  <% elsif @possible_review_conflicts["ingredient-#{ingredient.id}"].risk_level == 300 %>
                     <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-danger">
                   <% else %>
-                <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default">
-                <% end %>
+                    <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default">
+                  <% end %>
                   <div class="panel-heading">
                     <h4 class="panel-title">
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapse-ingredient-<%=ingredient.id%>">
@@ -238,13 +234,11 @@
               <%@steps_by_group.each do |group, steps| %>
                 <h5><%=group%></h5>
                 <% steps.each do | step | %>
-                  <% if @possible_review_conflicts["step-#{step.id}"].risk_level == 1 %>
-                    <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-success">
-                  <% elsif @possible_review_conflicts["step-#{step.id}"].risk_level == 2 %>
+                  <% if @possible_review_conflicts["step-#{step.id}"].risk_level == 100 %>
                     <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-info">
-                  <% elsif @possible_review_conflicts["step-#{step.id}"].risk_level == 3 %>
+                  <% elsif @possible_review_conflicts["step-#{step.id}"].risk_level == 200 %>
                     <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-warning">
-                  <% elsif @possible_review_conflicts["step-#{step.id}"].risk_level == 4 %>
+                  <% elsif @possible_review_conflicts["step-#{step.id}"].risk_level == 300 %>
                     <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-danger">
                   <% else %>
                   <div id="panel-step-<%=step.id%>" class="panel panel-default">
@@ -276,13 +270,11 @@
                 <p>ALERT ALERT IMPORTANT IMPORTANT IMPORTANT.</p>
               </div>
               <% @ingredients_tagged.each do| ingredient| %>
-                  <% if @possible_review_conflicts["allergen-#{ingredient.id}"].risk_level == 1 %>
-                    <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default alert alert-success">
-                  <% elsif @possible_review_conflicts["allergen-#{ingredient.id}"].risk_level == 2 %>
+                  <% if @possible_review_conflicts["allergen-#{ingredient.id}"].risk_level == 100 %>
                     <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default alert alert-info">
-                  <% elsif @possible_review_conflicts["allergen-#{ingredient.id}"].risk_level == 3 %>
+                  <% elsif @possible_review_conflicts["allergen-#{ingredient.id}"].risk_level == 200 %>
                     <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default alert alert-warning">
-                  <% elsif @possible_review_conflicts["allergen-#{ingredient.id}"].risk_level == 4 %>
+                  <% elsif @possible_review_conflicts["allergen-#{ingredient.id}"].risk_level == 300 %>
                     <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default alert alert-danger">
                   <% else %>
                     <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default">
@@ -312,26 +304,24 @@
               <div class="col-xs-12 alert alert-black">
                 <p>ALERT ALERT IMPORTANT IMPORTANT IMPORTANT.</p>
               </div>
-              <% if @possible_review_conflicts["health-groups"].risk_level == 1 %>
-                <div id="panel-health-groups" class="panel panel-default alert alert-success">
-              <% elsif @possible_review_conflicts["health-groups"].risk_level == 2 %>
+              <% if @possible_review_conflicts["health-groups"].risk_level == 100 %>
                 <div id="panel-health-groups" class="panel panel-default alert alert-info">
-              <% elsif @possible_review_conflicts["health-groups"].risk_level == 3 %>
+              <% elsif @possible_review_conflicts["health-groups"].risk_level == 200 %>
                 <div id="panel-health-groups" class="panel panel-default alert alert-warning">
-              <% elsif @possible_review_conflicts["health-groups"].risk_level == 4 %>
+              <% elsif @possible_review_conflicts["health-groups"].risk_level == 300 %>
                 <div id="panel-health-groups" class="panel panel-default alert alert-danger">
               <% else %>
               <div id="panel-health-groups" class="panel panel-default">
               <% end %>
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseHealthGroups">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-health-group">
                       <%= render "quality_review_health_groups" %>
                     </a>
                   </h4>
                 </div>
               </div>
-              <div id="collapseHealthGroups" class="panel-collapse collapse">
+              <div id="collapse-health-group" class="panel-collapse collapse">
                 <div class="panel-body">
                     <% if @possible_review_conflicts["health-groups"].id %>
                       <%= render "/review_conflicts/review_recipe_health_groups_show" %>
@@ -346,27 +336,25 @@
               <div class="col-xs-12 alert alert-black">
                 <p>ALERT ALERT STUFF STUFF SUTFF.</p>
               </div>
-              <% if @possible_review_conflicts["recipe-categories"].risk_level == 1 %>
-                <div id="panel-recipe-categories" class="panel panel-default alert alert-success">
-              <% elsif @possible_review_conflicts["recipe-categories"].risk_level == 2 %>
+              <% if @possible_review_conflicts["recipe-categories"].risk_level == 100 %>
                 <div id="panel-recipe-categories" class="panel panel-default alert alert-info">
-              <% elsif @possible_review_conflicts["recipe-categories"].risk_level == 3 %>
+              <% elsif @possible_review_conflicts["recipe-categories"].risk_level == 200 %>
                 <div id="panel-recipe-categories" class="panel panel-default alert alert-warning">
-              <% elsif @possible_review_conflicts["recipe-categories"].risk_level == 4 %>
+              <% elsif @possible_review_conflicts["recipe-categories"].risk_level == 300 %>
                 <div id="panel-recipe-categories" class="panel panel-default alert alert-danger">
               <% else %>
                 <div id="panel-recipe-categories" class="panel panel-default">
               <% end %>
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseCategories">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-recipe-categories">
                       <%= render "quality_review_categories" %>
                     </a>
                   </h4>
                 </div>
               </div>
         <!--    CATEGORIES COLLAPSE-->
-              <div id="collapseCategories" class="panel-collapse collapse">
+              <div id="collapse-recipe-categories" class="panel-collapse collapse">
                 <div class="panel-body">
                     <% if @possible_review_conflicts["recipe-categories"].id %>
                       <%= render "/review_conflicts/review_recipe_categories_show" %>
@@ -384,27 +372,26 @@
               </div>      
               <% @marketing_items_by_group.each do |health_group, marketing_items_hash| %>
                 <h2 class="active-preview-heading"><%=health_group%></h2>
-              <% if @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['title'].id}"].risk_level == 1 %>
-                <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-success">
-              <% elsif @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['title'].id}"].risk_level == 2 %>
-                <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-info">
-              <% elsif @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['title'].id}"].risk_level == 3 %>
-                <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-warning">
-              <% elsif @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['title'].id}"].risk_level == 4 %>
-                <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-danger">
-              <% else %>
-                <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default">
-              <% end %>
+                <% if @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['title'].id}"].risk_level == 100 %>
+                  <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-info">
+                <% elsif @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['title'].id}"].risk_level == 200 %>
+                  <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-warning">
+                <% elsif @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['title'].id}"].risk_level == 300 %>
+                  <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-danger">
+                <% else %>
+                  <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default">
+                <% end %>
                   <div class="panel-heading">
                     <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse-health-group-title-<%=marketing_items_hash['group_id']%>">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse-marketing-item-<%=marketing_items_hash['items']['title'].id%>">
                         <%= render "quality_review_marketing_items", marketing_item: marketing_items_hash["items"]["title"] %>
                       </a>
                     </h4>
                   </div>
                 </div>
+                
            <!--    MARKETING TITLE COLLAPSE-->   
-                <div id="collapse-health-group-title-<%=marketing_items_hash['group_id']%>" class="panel-collapse collapse">
+                <div id="collapse-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel-collapse collapse">
                   <div class="panel-body">
                     <% if @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['title'].id}"].id %>
                       <%= render "review_conflicts/review_recipe_marketing_item_show", marketing_item: marketing_items_hash["items"]["title"], marketing_item_type: "title" %>
@@ -413,60 +400,43 @@
                     <% end %>
                   </div>
                 </div>
+                
           <!--    MARKETING DESCRIPTION PANEL-->  
-              <% if @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['description'].id}"].risk_level == 1 %>
-                <div id="panel-marketing-item-<%=marketing_items_hash['items']['description'].id%>" class="panel panel-default alert alert-success">
-              <% elsif @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['description'].id}"].risk_level == 2 %>
+              <% if @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['description'].id}"].risk_level == 100 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['description'].id%>" class="panel panel-default alert alert-info">
-              <% elsif @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['description'].id}"].risk_level == 3 %>
+              <% elsif @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['description'].id}"].risk_level == 200 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['description'].id%>" class="panel panel-default alert alert-warning">
-              <% elsif @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['description'].id}"].risk_level == 4 %>
+              <% elsif @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['description'].id}"].risk_level == 300 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['description'].id%>" class="panel panel-default alert alert-danger">
               <% else %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['description'].id%>" class="panel panel-default">
               <% end %>
                   <div class="panel-heading">
                     <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse-health-group-description-<%=marketing_items_hash['group_id']%>">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#marketing-item-<%=marketing_items_hash['items']['description'].id%>">
                           <%= render "quality_review_marketing_items", marketing_item: marketing_items_hash["items"]["description"] %>
                       </a>
                     </h4>
                   </div>
                 </div>
+                
            <!--    MARKETING DESCRIPTION COLLAPSE-->   
-                <div id="collapse-health-group-description-<%=marketing_items_hash['group_id']%>" class="panel-collapse collapse">
+                <div id="collapse-marketing-item-<%=marketing_items_hash['items']['description'].id%>" class="panel-collapse collapse">
                   <div class="panel-body">
                     <% if @possible_review_conflicts["marketing-item-#{marketing_items_hash['items']['description'].id}"].id %>
                       <%= render "review_conflicts/review_recipe_marketing_item_show", marketing_item: marketing_items_hash["items"]["description"], marketing_item_type: "description" %>
                     <% else %>
                       <%= render "quality_review_marketing_items_form", marketing_item: marketing_items_hash["items"]["description"], marketing_item_type: "description"%>
                     <% end %>
-
                   </div>
                 </div>
-              <% end %>
+            <% end %> 
+          </div>
+        </div>
         
-
-
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <div class="col-xs-12 alert alert-warning">
-                      <p>Look at blah blah.</p>
-                    </div>
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Collapse</a>
-                  </h4>
-                </div>
-              </div>
-              <div id="collapseFive" class="panel-collapse collapse">
-                <div class="panel-body">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group text-center"> 
-            <%= link_to "COMPLETE REVIEW", quality_reviews_complete_review_path(@quality_reviewable, @quality_review), :class => "btn btn-success btn-lg"  %>
-          </div>
+      <div class="form-group text-center"> 
+        <%= link_to "COMPLETE REVIEW", quality_reviews_complete_review_path(@quality_reviewable, @quality_review), :class => "btn btn-success btn-lg"  %>
+      </div>
     </div>
 	</div>
 </div>

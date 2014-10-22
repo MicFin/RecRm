@@ -17,13 +17,10 @@ class RecipesController < ApplicationController
 
   ## this method and view is being used as the dietitian dashboard right now, it should be moved to a home controller or another controller
   def dietitian_recipes_index
-    if ( (current_dietitian.email == "tara@kindrdfood.com") || (current_dietitian.email == "david@kindrdfood.com") || (current_dietitian.email == "mike@kindrdfood.com") )
-      current_dietitian.add_role :admin_dietitian
-    end
     @recipes = Recipe.where(dietitian_id: current_dietitian.id)
     @incomplete_recipes = current_dietitian.incomplete_recipes
     @recipe_reviews_to_assign = []
-    if current_dietitian.has_role? :admin_dietitian
+    if current_dietitian.has_role? "Admin Dietitian"
       @recipes_need_original_review = Recipe.all_need_original_review
       @recipes_need_first_tier_review = Recipe.all_need_first_tier_review
       @recipes_need_second_tier_review = Recipe.all_need_second_tier_review
@@ -34,6 +31,7 @@ class RecipesController < ApplicationController
       @review_conflicts_in_review_hash = ReviewConflict.in_review_by_risk_level
       @resolved_quality_revews = QualityReview.where(resolved: true)
       @resolved_review_conflicts = ReviewConflict.where(resolved: true)
+      @test_recipes = Recipe.where(dietitian_id: 11).where(:created_at => Date.today.at_beginning_of_week.beginning_of_day..Date.tomorrow.end_of_day)
     end
     @incomplete_quality_reviews = current_dietitian.incomplete_quality_reviews
     @incomplete_review_conflicts = ReviewConflict.assigned_to_dietitian(current_dietitian.id)
@@ -319,7 +317,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_data
-    if current_dietitian.has_role? :admin_dietitian
+    if current_dietitian.has_role? "Admin Dietitian"
       @recipe_data_by_total = Recipe.data_by_total
       @recipe_data_by_dietitian = Recipe.data_by_dietitian
       @recipe_data_by_health_group = Recipe.data_by_health_group

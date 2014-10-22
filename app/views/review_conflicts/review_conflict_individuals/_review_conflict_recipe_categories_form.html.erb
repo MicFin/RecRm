@@ -1,15 +1,12 @@
-<% if @review_conflict.risk_level == 1 %>
-  <div id="review-recipe-name" class="col-xs-12 form-group alert alert-success">
-    <h4>No Risk</h4>
-<% elsif @review_conflict.risk_level == 2 %>
+<% if @review_conflict.risk_level == 100 %>
   <div id="review-recipe-name" class="col-xs-12 form-group alert alert-info">
     <h4>Low Risk</h4>
-<% elsif @review_conflict.risk_level == 3 %>
+<% elsif @review_conflict.risk_level == 200 %>
   <div id="review-recipe-name" class="col-xs-12 form-group alert alert-warning">
-    <h4>High Risk</h4>
-<% elsif @review_conflict.risk_level == 4 %>
+    <h4>Medium Risk</h4>
+<% elsif @review_conflict.risk_level == 300 %>
   <div id="review-recipe-name" class="col-xs-12 form-group alert alert-danger">
-    <h4>Dangerous Risk</h4>
+    <h4>High Risk</h4>
 <% end %>
     <label>Recipe Categories</label>
     <h4 class="ingredient-preview">

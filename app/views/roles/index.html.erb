@@ -1,0 +1,42 @@
+<div id="roles-index-container">
+  <div class="col-xs-12">
+    <h1>Roles</h1>
+    <h3><%= link_to 'New Role', new_role_path %> | <%= link_to 'Assign Roles', roles_assignments_path %></h3>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+          <tr>
+            <th>Role</th>
+            <th>Content Type</th>
+            <th>Content ID</th>
+            <th></th>
+            <th></th>
+          </tr>
+
+        <% @roles.each do |role| %>
+          <tr>
+            <td><%= role.name %></td>
+            <% if role.resource_type != nil %>
+              <td><%= role.resource_type %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <% if role.resource != nil %>
+              <td><%= role.resource.id %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <td><%= link_to 'Edit', edit_role_path(role) %></td>
+            <td><%= link_to 'Delete', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -32,7 +32,7 @@ class QualityReviewsController < ApplicationController
     # for steps review
     @steps_by_group = @recipe.steps_by_group
     # For allergen review
-    @ingredients_tagged = @recipe.ingredients_tagged
+    @ingredients_tagged = @recipe.ingredients
     @top_allergens = Allergen.top_allergens.order(:name)
     @all_allergens = Allergen.common_allergens.map(&:name)
     @ingredients_allergens_hash = @recipe.fetch_ingredients_allergens_hash

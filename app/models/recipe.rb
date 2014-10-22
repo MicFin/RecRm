@@ -29,6 +29,33 @@ class Recipe < ActiveRecord::Base
   has_many :marketing_items, as: :marketing_itemable
   has_many :review_conflicts, through: :quality_reviews
 
+  def number_of_reviewers_hash
+    reviewers_hash = {}
+    total_count = 0
+    unique_array = []
+    unique_count = 0
+    if self.quality_reviews != []
+      self.quality_reviews.each do |quality_review|
+        total_count += 1
+        if unique_array.exclude? quality_review.dietitian_id
+          unique_count += 1
+          unique_array << quality_review.dietitian_id
+        end
+        if quality_review.review_conflicts != []
+          quality_review.review_conflicts.each do |review_conflict|
+            total_count += 1
+            if unique_array.exclude? quality_review.dietitian_id
+              unique_count += 1
+              unique_array << quality_review.dietitian_id
+            end
+          end
+        end
+      end
+    end
+    reviewers_hash = {:total=>total_count, :unique=> unique_count}
+    return reviewers_hash
+  end
+
   def ingredient_with_full_name(full_name)
     self.ingredients_recipes.each do |ingredient|
       if ingredient.full_name == full_name
@@ -270,6 +297,19 @@ class Recipe < ActiveRecord::Base
     return recipes_in_review
   end
 
+  def self.first_tier_not_resolved
+    recipes_in_review = []
+    self.where(completed: true).where(live_recipe: false).each do|recipe|
+      if recipe.quality_reviews.count >= 1
+        last_review = recipe.quality_reviews.order("created_at").last
+        if ( (last_review.tier == 1) && (last_review.completed == true) && (last_review.resolved == false ) )
+          recipes_in_review << recipe
+        end
+      end
+    end
+    return recipes_in_review
+  end
+
   def self.all_in_second_tier_review
     recipes_in_review = []
     self.where(completed: true).where(live_recipe: false).each do|recipe|
@@ -282,6 +322,20 @@ class Recipe < ActiveRecord::Base
     end
     return recipes_in_review
   end
+
+  def self.second_tier_not_resolved
+    recipes_in_review = []
+    self.where(completed: true).where(live_recipe: false).each do|recipe|
+      if recipe.quality_reviews.count >= 1
+        last_review = recipe.quality_reviews.order("created_at").last
+        if ( (last_review.tier == 2) && (last_review.completed == true) && (last_review.resolved == false) )
+          recipes_in_review << recipe
+        end
+      end
+    end
+    return recipes_in_review
+  end
+
 
 
   def self.all_need_first_tier_review

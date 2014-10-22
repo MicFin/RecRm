@@ -1,0 +1,31 @@
+
+    <%= simple_form_for @dietitian, :url => {:action => "update_assignments"}, :html => { :multipart => true }, :method=>"patch"  do |f|%>
+      <table class="table">
+        <thead>
+          <tr>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <th>Dietitan</th>
+              <% @roles.each do |role| %>
+                <th><%=role%></th>
+              <% end %>
+            </tr>
+            <tr>
+              <td><%= @dietitian.email %></td>
+              <% @roles.each do |role| %>
+                <% if @dietitian.has_role? role %>
+                  <td><input name="roles[]" value="<%=role%>" type="checkbox" checked></td>
+                <% else %>
+                  <td><input name="roles[]" value="<%=role%>" type="checkbox"></td>
+                <% end %>
+              <% end %>
+              <%= f.button :submit %>
+              <td><button type="submit" class="btn btn-default">Submit</button></td>
+            </tr>
+        </tbody>
+      </table>
+    <% end %>

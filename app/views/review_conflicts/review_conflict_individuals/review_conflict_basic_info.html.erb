@@ -21,14 +21,13 @@
           <div id="basic-info-review-container">
             <!--    TITLE PANEL -->
 <% if @item == "recipe-name" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
             <div id="panel-recipe-name" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-recipe-name" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
             <div id="panel-recipe-name" class="panel panel-default alert alert-warning">
-  <% elsif @review_conflict.risk_level == 4 %>
-            <div id="panel-recipe-name" class="panel panel-default alert alert-danger">
+  
   <% else %>  
             <div id="panel-recipe-name" class="panel panel-default">
   <% end %>
@@ -55,11 +54,11 @@
             <div class="row" id="basic-info-accordion-container">
               <div class="col-xs-3">
 <% if @item == "cook-time" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
                 <div id="panel-cook-time" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
                 <div id="panel-cook-time" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
                 <div id="panel-cook-time" class="panel panel-default alert alert-warning">
   <% elsif @review_conflict.risk_level == 4 %>
                 <div id="panel-cook-time" class="panel panel-default alert alert-danger">
@@ -81,11 +80,11 @@
               <!--    PREP TIME PANEL -->
               <div class="col-xs-3">
 <% if @item == "prep-time" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-warning">
   <% elsif @review_conflict.risk_level == 4 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-danger">
@@ -108,11 +107,11 @@
                 <!--    DIFFICULTY PANEL -->
                 <div class="col-xs-3">
 <% if @item == "difficulty" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
                   <div id="panel-difficulty" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
                   <div id="panel-difficulty" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
                   <div id="panel-difficulty" class="panel panel-default alert alert-warning">
   <% elsif @review_conflict.risk_level == 4 %>
                   <div id="panel-difficulty" class="panel panel-default alert alert-danger">
@@ -134,11 +133,11 @@
                           <!--    SERVING SIZE PANEL -->
                 <div class="col-xs-3">
 <% if @item == "serving-size" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
                   <div id="panel-serving-size" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
                   <div id="panel-serving-size" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
                   <div id="panel-serving-size" class="panel panel-default alert alert-warning">
   <% elsif @review_conflict.risk_level == 4 %>
                   <div id="panel-serving-size" class="panel panel-default alert alert-danger">

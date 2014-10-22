@@ -151,13 +151,11 @@
           <% @marketing_items_by_group.each do |health_group, marketing_items_hash| %>
             <h2 class="active-preview-heading"><%=health_group%></h2>
   <% if @item == "marketing-item-#{marketing_items_hash["items"]["title"].id}" %> 
-    <% if @review_conflict.risk_level == 1 %>
-            <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default alert alert-success">
-    <% elsif @review_conflict.risk_level == 2 %>
+    <% if @review_conflict.risk_level == 100 %>
             <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default alert alert-info">
-    <% elsif @review_conflict.risk_level == 3 %>
+    <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default alert alert-warning">
-    <% elsif @review_conflict.risk_level == 4 %>
+    <% elsif @review_conflict.risk_level == 300 %>
             <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default alert alert-danger">
     <% else %>
             <div id="panel-marketing-item-<%=marketing_items_hash["items"]["title"].id%>" class="panel panel-default">
@@ -182,11 +180,11 @@
 <% end %>
       <!--    MARKETING DESCRIPTION PANEL-->  
   <% if @item == "marketing-item-#{marketing_items_hash["items"]["description"].id}" %> 
-    <% if @review_conflict.risk_level == 1 %>
+    <% if @review_conflict.risk_level == 100 %>
             <div id="panel-marketing-item-<%=marketing_items_hash["items"]["description"].id%>" class="panel panel-default alert alert-success">
-    <% elsif @review_conflict.risk_level == 2 %>
+    <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-marketing-item-<%=marketing_items_hash["items"]["description"].id%>" class="panel panel-default alert alert-info">
-    <% elsif @review_conflict.risk_level == 3 %>
+    <% elsif @review_conflict.risk_level == 300 %>
             <div id="panel-marketing-item-<%=marketing_items_hash["items"]["description"].id%>" class="panel panel-default alert alert-warning">
     <% elsif @review_conflict.risk_level == 4 %>
             <div id="panel-marketing-item-<%=marketing_items_hash["items"]["description"].id%>" class="panel panel-default alert alert-danger">

@@ -52,43 +52,7 @@ class ReviewConflictsController < ApplicationController
   end
 
   def create
-    if params[:review_conflict][:category] == "Recipe Ingredient"
-      params[:review_conflict][:first_suggestion] = "'#{params[:review_conflict][:first_suggestion][:amount]}' '#{params[:review_conflict][:first_suggestion][:unit]}' '#{params[:review_conflict][:first_suggestion][:display_name]}' '#{params[:review_conflict][:first_suggestion][:shopping_list_item]}' '#{params[:review_conflict][:first_suggestion][:options]}'"
-    elsif params[:review_conflict][:category] == "Recipe Step"
-      params[:review_conflict][:first_suggestion] = "#{params[:review_conflict][:first_suggestion][:step_group_name]} <3<* #{params[:review_conflict][:first_suggestion][:directions]} <3<* #{params[:review_conflict][:first_suggestion][:ingredients]}"
-    elsif params[:review_conflict][:category] == "Allergens"
-      ingredient = params[:review_conflict][:first_suggestion][:ingredient_name] 
-      allergens = params[:review_conflict][:first_suggestion][:allergens]
-      if params[:review_conflict][:first_suggestion][:common] == "true"
-        common = "true"
-      else
-        common = "false"
-      end
-      params[:review_conflict][:first_suggestion] = ingredient + " <3<* " + common + " <3<* "
-      allergens.each do |allergen|
-        params[:review_conflict][:first_suggestion] += "#{allergen} <3<* "
-      end
-    elsif params[:review_conflict][:category] == "Health Groups"
-      if params[:review_conflict][:first_suggestion] != nil
-        health_groups = params[:review_conflict][:first_suggestion][:health_groups]
-        params[:review_conflict][:first_suggestion] = ""
-          health_groups.each do |health_group|
-            params[:review_conflict][:first_suggestion] += "#{health_group} <3<* "
-        end
-      else
-        params[:review_conflict][:first_suggestion] = ""
-      end
-    elsif params[:review_conflict][:category] == "Recipe Categories"
-      if params[:review_conflict][:first_suggestion] != nil
-        categories = params[:review_conflict][:first_suggestion][:categories]
-        params[:review_conflict][:first_suggestion] = ""
-        categories.each do |category|
-          params[:review_conflict][:first_suggestion] += "#{category} <3<* "
-        end
-      else
-        params[:review_conflict][:first_suggestion] = ""
-      end
-    end
+    clean_create_params(params)
     # create new review conflict
     @review_conflict = ReviewConflict.new(review_conflict_params)
     # add current dietitian as first reviewer
@@ -104,19 +68,19 @@ class ReviewConflictsController < ApplicationController
     respond_to do |format|
       if @review_conflict.save
         if ( params[:review_conflict][:category] == "Recipe Ingredient" )
-          @ingredient_changes_hash = @review_conflict.ingredient_changes_hash
+          @ingredient_changes_hash = @review_conflict.ingredient_changes_hash(@review_conflict.first_suggestion)
           @item = params[:review_conflict][:item]
         elsif (params[:review_conflict][:category] == "Recipe Step")
-          @step_changes_hash = @review_conflict.step_changes_hash
+          @step_changes_hash = @review_conflict.step_changes_hash(@review_conflict.first_suggestion)
           @item = params[:review_conflict][:item]
         elsif (params[:review_conflict][:category] == "Allergens")
-          @allergens_changes_hash = @review_conflict.allergens_changes_hash
+          @allergens_changes_hash = @review_conflict.allergens_changes_hash(@review_conflict.first_suggestion)
           @item = params[:review_conflict][:item]
         elsif (params[:review_conflict][:category] == "Health Groups")
-          @health_groups_changes_array = @review_conflict.health_groups_changes_array
+          @health_groups_changes_array = @review_conflict.health_groups_changes_array(@review_conflict.first_suggestion)
           @item = params[:review_conflict][:item]
         elsif (params[:review_conflict][:category] == "Recipe Categories")
-          @recipe_categories_changes_array = @review_conflict.recipe_categories_changes_array
+          @recipe_categories_changes_array = @review_conflict.recipe_categories_changes_array(@review_conflict.first_suggestion)
           @item = params[:review_conflict][:item]
         else
           @item = @review_conflict.item
@@ -238,6 +202,29 @@ class ReviewConflictsController < ApplicationController
     end
   end
 
+  def assign_reviewer
+      #assign high risk level conflicts first
+    @recipes_need_original_review = Recipe.all_need_original_review
+    @recipes_need_first_tier_review = Recipe.all_need_first_tier_review
+    @recipes_need_second_tier_review = Recipe.all_need_second_tier_review
+    @assign_review_conflicts_hash = ReviewConflict.assign_by_risk_level
+    if params[:review_conflict][:second_reviewer_id]
+      @review_conflict.second_reviewer_id = params[:review_conflict][:second_reviewer_id].to_i
+    else       
+      @review_conflict.third_reviewer_id = params[:review_conflict][:third_reviewer].to_i
+    end
+    respond_to do |format|
+      if @review_conflict.save
+      
+        format.html {redirect_to dietitian_recipes_path(current_dietitian)}
+      else
+        format.html { render :select_reviewer }
+        format.json { render json: @review_conflict.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+
   def start_review_conflict
     if @review_conflict.review_stage == 1
       @suggestion = "review_conflict[second_suggestion]"
@@ -246,6 +233,8 @@ class ReviewConflictsController < ApplicationController
       @suggestion = "review_conflict[third_suggestion]"
       @reviewer_notes = "review_conflict[third_reviewer_notes]"
     else
+      @suggestion = "review_conflict[fourth_suggestion]"
+      @reviewer_notes = "review_conflict[fourth_reviewer_notes]"  
     end
       ## for recipe preview
       @recipe = Recipe.find(params[:recipe_id])
@@ -294,42 +283,72 @@ class ReviewConflictsController < ApplicationController
         @difficulties = @difficulties
         @serving_sizes = @serving_sizes
         @all_recipe_names = Recipe.all_recipe_names
-       render "review_conflicts/review_conflict_individuals/review_conflict_basic_info"
+        render "review_conflicts/review_conflict_individuals/review_conflict_basic_info"
       end  
   end
 
+
   def accept_review_conflict
-    binding.pry
     # make changes and save
     review_stage = @review_conflict.review_stage 
     if review_stage == 1
       @review_conflict.second_reviewer_notes = params[:review_conflict][:second_reviewer_notes]
-      @review_conflict.second_suggestion = "ACCEPT FIRST SUGGESTION"
-      suggestion = "first"
+      @review_conflict.second_suggestion = @review_conflict.first_suggestion
+      suggestion = @review_conflict.first_suggestion
+      # first stage accept revie conlifct resolves so update item
+      update_item = true
     elsif review_stage == 2
-      binding.pry
       @review_conflict.third_reviewer_notes = params[:review_conflict][:third_reviewer_notes]
-      # ## send which suggestion to accept
-      
+      # if choose first review suggestion
       if params[:suggestion] == "first"
         @review_conflict.third_suggestion = @review_conflict.first_suggestion
         suggestion = @review_conflict.first_suggestion
+        @review_conflict.review_stage = 3
       elsif params[:suggestion] == "second"
         @review_conflict.third_suggestion = @review_conflict.second_suggestion
         suggestion = @review_conflict.second_suggestion
+        # if 3 match then close
+        if @review_conflict.third_suggestion == @review_conflict.original_entry
+          update_item = true
+        # if not then increase review stage
+        else
+          @review_conflict.review_stage = 3
+        end
       else
         suggestion = params[:third_suggestion]
         @review_conflict.third_suggestion = suggestion
+        @review_conflict.review_stage = 3
       end
+    elsif review_stage == 3
+      @review_conflict.fourth_review_notes = params[:review_conflict][:fourth_reviewer_notes]
+      if params[:suggestion] == "first"
+        @review_conflict.fourth_suggestion = @review_conflict.first_suggestion
+        suggestion = @review_conflict.first_suggestion
+      elsif params[:suggestion] == "second"
+        @review_conflict.fourth_suggestion = @review_conflict.second_suggestion
+        suggestion = @review_conflict.second_suggestion
+        # second stage accept review conlifct resolves so update item
+      elsif params[:suggestion] == "third"
+        @review_conflict.fourth_suggestion = @review_conflict.third_suggestion
+        @review_conflict.fourth_suggestion = suggestion
+        # second stage accept review conlifct resolves so update item
+      else
+        suggestion = params[:fourth_suggestion]
+        @review_conflict.fourth_suggestion = suggestion
+      end 
+      update_item = true
     end
-    binding.pry
-    @review_conflict.resolved = true
     respond_to do |format|
       if @review_conflict.save
         # update item
-        update_item_with_suggestion(suggestion, @review_conflict)
-        # update quality review
-        update_quality_review_status(@review_conflict)
+        if update_item == true
+          update_item_with_suggestion(suggestion, @review_conflict)
+          # update quality review
+          update_quality_review_status(@review_conflict)
+          @review_conflict.resolved = true
+          @review_conflict.date_resolved_on = DateTime.now
+          @review_conflict.save
+        end
         # return format
         format.html { redirect_to dietitian_recipes_path(current_dietitian), notice: 'Review was successfully accepted.' }
         format.json { render :show, status: :created, location: @review_conflict} 
@@ -345,15 +364,29 @@ class ReviewConflictsController < ApplicationController
     # make changes and save
     if @review_conflict.review_stage == 1
       @review_conflict.second_reviewer_notes = params[:review_conflict][:second_reviewer_notes]
-      @review_conflict.second_suggestion = "KEEP ORIGINAL, DECLINE FIRST SUGGESTION"
+      @review_conflict.second_suggestion = @review_conflict.original_entry
       @review_conflict.review_stage = 2
     elsif @review_conflict.review_stage == 2
       @review_conflict.third_reviewer_notes = params[:review_conflict][:third_reviewer_notes]
-      @review_conflict.third_suggestion = "KEEP ORIGINAL"
-      @review_conflict.resolved = true
-      @review_conflict.save
+      @review_conflict.third_suggestion = @review_conflict.original_entry
+      if (@review_conflict.second_suggestion == @@review_conflict.third_suggestion)
+        @review_conflict.resolved = true
+        @review_conflict.date_resolved_on = DateTime.now
+        @review_conflict.save
+        suggestion = @review_conflict.third_suggestion
+        update_item_with_suggestion(suggestion, @review_conflict)
+        update_quality_review_status(@review_conflict)
+      else
+        @review_conflict.review_stage = 3
+      end
       ## make no changes to item since suggestions were declined and update quality review status
       # update quality review
+    else
+      @review_conflict.resolved = true
+      @review_conflict.date_resolved_on = DateTime.now
+      @review_conflict.save
+      suggestion = @review_conflict.third_suggestion
+      update_item_with_suggestion(suggestion, @review_conflict)
       update_quality_review_status(@review_conflict)
     end
     respond_to do |format|
@@ -465,6 +498,7 @@ class ReviewConflictsController < ApplicationController
       end  
 
       @review_conflict.resolved = true
+      @review_conflict.date_resolved_on = DateTime.now
       @review_conflict.save
       # update item
       update_item_with_suggestion("third", @review_conflict)
@@ -483,25 +517,54 @@ class ReviewConflictsController < ApplicationController
     end
   end
 
-  def assign_reviewer
-    
-    if params[:review_conflict][:second_reviewer_id]
-      @review_conflict.second_reviewer_id = params[:review_conflict][:second_reviewer_id].to_i
-    else       
-      @review_conflict.third_reviewer_id = params[:review_conflict][:third_reviewer].to_i
-    end
-    respond_to do |format|
-      if @review_conflict.save
-      
-        format.html {redirect_to dietitian_recipes_path(current_dietitian)}
+  private
+
+  def resolve_conflict?
+
+  end
+
+  def clean_create_params(params)
+
+    params = params
+    if params[:review_conflict][:category] == "Recipe Ingredient"
+      params[:review_conflict][:first_suggestion] = "'#{params[:review_conflict][:first_suggestion][:amount]}' '#{params[:review_conflict][:first_suggestion][:unit]}' '#{params[:review_conflict][:first_suggestion][:display_name]}' '#{params[:review_conflict][:first_suggestion][:shopping_list_item]}' '#{params[:review_conflict][:first_suggestion][:options]}'"
+    elsif params[:review_conflict][:category] == "Recipe Step"
+      params[:review_conflict][:first_suggestion] = "#{params[:review_conflict][:first_suggestion][:step_group_name]} <3<* #{params[:review_conflict][:first_suggestion][:directions]} <3<* #{params[:review_conflict][:first_suggestion][:ingredients]}"
+    elsif params[:review_conflict][:category] == "Allergens"
+      ingredient = params[:review_conflict][:first_suggestion][:ingredient_name] 
+      allergens = params[:review_conflict][:first_suggestion][:allergens]
+      if params[:review_conflict][:first_suggestion][:common] == "true"
+        common = "true"
       else
-        format.html { render :select_reviewer }
-        format.json { render json: @review_conflict.errors, status: :unprocessable_entity }
+        common = "false"
+      end
+      params[:review_conflict][:first_suggestion] = ingredient + " <3<* " + common + " <3<* "
+      allergens.each do |allergen|
+        params[:review_conflict][:first_suggestion] += "#{allergen} <3<* "
+      end
+    elsif params[:review_conflict][:category] == "Health Groups"
+      if params[:review_conflict][:first_suggestion] != nil
+        health_groups = params[:review_conflict][:first_suggestion][:health_groups]
+        params[:review_conflict][:first_suggestion] = ""
+          health_groups.each do |health_group|
+            params[:review_conflict][:first_suggestion] += "#{health_group} <3<* "
+        end
+      else
+        params[:review_conflict][:first_suggestion] = ""
+      end
+    elsif params[:review_conflict][:category] == "Recipe Categories"
+      if params[:review_conflict][:first_suggestion] != nil
+        categories = params[:review_conflict][:first_suggestion][:categories]
+        params[:review_conflict][:first_suggestion] = ""
+        categories.each do |category|
+          params[:review_conflict][:first_suggestion] += "#{category} <3<* "
+        end
+      else
+        params[:review_conflict][:first_suggestion] = ""
       end
     end
+    return params
   end
-  
-  private
 
   def update_quality_review_status(review_conflict)
     quality_review = review_conflict.quality_review
@@ -519,7 +582,6 @@ class ReviewConflictsController < ApplicationController
   def update_item_with_suggestion(suggestion, review_conflict)
       recipe = review_conflict.quality_review.quality_reviewable
       item = review_conflict.item
-      binding.pry
       if item.include? "recipe-name"
           recipe.name = suggestion
           recipe.save
@@ -648,7 +710,7 @@ class ReviewConflictsController < ApplicationController
 
 
   def review_conflict_params
-    params.require(:review_conflict).permit(:risk_level, :category, :item, :first_suggestion, :second_suggestion, :third_suggestion, :issue, :resolved, :quality_review_id, :first_reviewer_id, :second_reviewer_id, :third_reviewer_id, :review_stage, :first_reviewer_notes, :second_reviewer_notes, :third_reviewer_notes, :original_entry)
+    params.require(:review_conflict).permit(:risk_level, :category, :item, :first_suggestion, :second_suggestion, :third_suggestion, :fourth_suggestion, :issue, :resolved, :quality_review_id, :first_reviewer_id, :second_reviewer_id, :third_reviewer_id, :fourth_reviewer_id, :review_stage, :first_reviewer_notes, :second_reviewer_notes, :third_reviewer_notes, :fourth_reviewer_notes, :original_entry)
   end
 
   def set_review_conflict

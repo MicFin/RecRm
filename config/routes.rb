@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
   devise_scope :dietitian do
     authenticated :dietitian do
+      get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
+      get 'dashboard/recipe_status', to: 'dashboard#recipe_status', as: 'dashboard_recipe_status'
       # start review
       get 'recipes/:recipe_id/quality_reviews/:id/start_review', to: 'quality_reviews#start_review', as: "quality_reviews_start_review"
       # submits review to be completed and redirects to dashboard (should be PATCH?)
@@ -54,6 +56,14 @@ Rails.application.routes.draw do
       patch 'recipes/:recipe_id/review_conflicts/:id/edit_review_conflict', to: 'review_conflicts#edit_review_conflict', as: "edit_review_conflict"
       # root :to => 'recipes#dietitian_recipes_index', :constraints => lambda { |request| request.env['warden'].user.class.name == 'Dietitian' }, :as => "dietitian_authenticated_root"
       root :to => 'welcome#index', as: :dietitian_authenticated_root
+      # role assignments index
+      get 'roles/assignments', to: 'roles#assignments', as: 'roles_assignments'
+      # role assignments
+      get 'roles/assignments/edit/:id', to: 'roles#edit_assignments', as: 'edit_assignments'
+      # role assignments
+      patch 'roles/assignments/update/:id', to: 'roles#update_assignments', as: 'update_assignments'
+      resources :roles
+      resources :content_quotas
       resources :characteristics
       resources :ingredients_recipes do 
         collection { post :sort }

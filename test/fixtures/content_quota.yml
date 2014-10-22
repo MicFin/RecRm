@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quality_reviews: 1
+  review_conflicts: 1
+  recipes: 1
+  dietitian_id: 
+
+two:
+  quality_reviews: 1
+  review_conflicts: 1
+  recipes: 1
+  dietitian_id: 

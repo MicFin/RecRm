@@ -32,13 +32,14 @@
 <% else %>
 
 <% end %>
-<% if @risk_level == 1 %>
-	$("#panel-<%=@item%>").addClass("alert alert-success");
-<% elsif @risk_level == 2 %>
-	$("#panel-<%=@item%>").addClass("alert alert-info");
-<% elsif @risk_level == 3 %>
-	$("#panel-<%=@item%>").addClass("alert alert-warning");
-<% else %>
-	$("#panel-<%=@item%>").addClass("alert alert-danger");
-<% end %>
+
+	$("#collapse-<%=@item%>").collapse("hide");
+   <% if @risk_level == 100 %>
+    $("#panel-<%=@item%>").addClass("alert alert-info");
+  <% elsif @risk_level == 200 %>
+    $("#panel-<%=@item%>").addClass("alert alert-warning");
+  <% else %>
+    $("#panel-<%=@item%>").addClass("alert alert-danger");
+  <% end %>
+	$("html, body").animate({ scrollTop: $('#panel-<%=@item%>').offset().top - 150}, "slow");
 

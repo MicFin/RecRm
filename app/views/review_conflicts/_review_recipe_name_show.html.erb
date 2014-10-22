@@ -4,29 +4,37 @@
   <% end %>
 <% end %>
 
-<% if @review_conflict.risk_level == 1 %>
-  <div id="review-recipe-name" class="col-xs-12 form-group alert alert-success">
-    <h4>No Risk</h4>
-<% elsif @review_conflict.risk_level == 2 %>
+<% if @review_conflict.risk_level == 100 %>
   <div id="review-recipe-name" class="col-xs-12 form-group alert alert-info">
     <h4>Low Risk</h4>
-<% elsif @review_conflict.risk_level == 3 %>
+<% elsif @review_conflict.risk_level == 200 %>
   <div id="review-recipe-name" class="col-xs-12 form-group alert alert-warning">
-    <h4>High Risk</h4>
-<% elsif @review_conflict.risk_level == 4 %>
+    <h4>Medium Risk</h4>
+<% elsif @review_conflict.risk_level == 300 %>
   <div id="review-recipe-name" class="col-xs-12 form-group alert alert-danger">
-    <h4>Dangerous Risk</h4>
+    <h4>High Risk</h4>
+ 
 <% end %>
-    <label>What would you like the name of your recipe to be?</label>
-    <h3>First Suggestion: <%=@review_conflict.first_suggestion%></h3>
-    <p class="form-group">Notes: <%= @review_conflict.first_reviewer_notes %></p>
-      <% if @select_reviewer != true %>
-        <div class=" col-xs-12 form-group text-center"> 
+    <label>Recipe Name</label>
+    <h4 class="ingredient-preview">Suggestion #1: <%=@review_conflict.first_suggestion%></h4>
+    <p>Notes: <%= @review_conflict.first_reviewer_notes %></p>
+    <p class="form-group"><%= @review_conflict.first_reviewer_notes %></p>
+    <% if @review_conflict.second_reviewer_id %>
+      <h4 class="ingredient-preview">Suggestion #2: <%=@review_conflict.second_suggestion%></h4>
+      <p>Notes: <%= @review_conflict.second_reviewer_notes %></p>
+    <% end %>
+    <% if @review_conflict.third_reviewer_id %>
+      <h4 class="ingredient-preview">Suggestion #3: <%=@review_conflict.third_suggestion%></h4>
+      <p>Notes: <%= @review_conflict.third_reviewer_notes %></p>
+    <% end %>
+    <% if @review_conflict.fourth_reviewer_id %>
+      <h4 class="ingredient-preview">Suggestion #4: <%=@review_conflict.fourth_suggestion%></h4>
+      <p>Notes: <%= @review_conflict.fourth_reviewer_notes %></p>
+    <% end %>
+    <% if @select_reviewer != true %>
+      <div class=" col-xs-12 form-group text-center"> 
         <%= link_to "Edit Changes", edit_recipe_quality_review_review_conflict_path(@quality_reviewable, @quality_review, @review_conflict), class: "btn btn-success btn-lg", id: "basic-form-button", :remote => true%>
-        </div>
-      <% else %>
-        <h3>Second Suggestion: <%=@review_conflict.second_suggestion%></h3>
-        <p>Notes: <%= @review_conflict.second_reviewer_notes %></p>
-      <% end %>
+      </div>
+    <% end %>
 
   </div>

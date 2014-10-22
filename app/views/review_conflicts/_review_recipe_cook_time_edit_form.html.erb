@@ -8,8 +8,7 @@
       <%= f.input :original_entry, as: :hidden, :input_html => { :value => @quality_reviewable.prep_time }%>
     </div>
     <div class=" col-xs-12 form-group">
-    <%= f.collection_radio_buttons :risk_level, [["Dangerous", 4], ["High Risk", 3], ["Low Risk", 2], ["No Risk", 1]], :last, :first, :item_wrapper_class=>"form-control" %>
-    </div>
+      <%= f.collection_radio_buttons :risk_level, [["High Risk", 300], ["Medium Risk", 200]], :last, :first, :item_wrapper_class=>"form-control", :checked => (["Medium Risk", 200])%>
     <textarea class="form-control form-group" placeholder="<%=@review_conflict.first_reviewer_notes%>" name="review_conflict[first_reviewer_notes]" rows="3"></textarea>
     <div class=" col-xs-12 form-group text-center"> 
       <%= f.button :submit, "Suggest Change", class: "btn btn-success btn-lg", type: "submit" %>

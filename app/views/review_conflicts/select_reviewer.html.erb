@@ -11,13 +11,11 @@
         <div class="panel-group" id="accordion">
 
 <% if @item == "recipe-name" %> 
-  <% if @review_conflict.risk_level == 1 %>
-            <div id="panel-recipe-name" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% if @review_conflict.risk_level == 100 %>
             <div id="panel-recipe-name" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-recipe-name" class="panel panel-default alert alert-warning">
-  <% elsif @review_conflict.risk_level == 4 %>
+  <% elsif @review_conflict.risk_level == 300 %>
             <div id="panel-recipe-name" class="panel panel-default alert alert-danger">
   <% else %>  
             <div id="panel-recipe-name" class="panel panel-default">
@@ -45,11 +43,11 @@
             <div class="row" id="basic-info-accordion-container">
               <div class="col-xs-3">
 <% if @item == "cook-time" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
                 <div id="panel-cook-time" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
                 <div id="panel-cook-time" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
                 <div id="panel-cook-time" class="panel panel-default alert alert-warning">
   <% elsif @review_conflict.risk_level == 4 %>
                 <div id="panel-cook-time" class="panel panel-default alert alert-danger">
@@ -71,11 +69,11 @@
               <!--    PREP TIME PANEL -->
               <div class="col-xs-3">
 <% if @item == "prep-time" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-warning">
   <% elsif @review_conflict.risk_level == 4 %>
                     <div id="panel-prep-time" class="panel panel-default alert alert-danger">
@@ -98,11 +96,11 @@
                 <!--    DIFFICULTY PANEL -->
                 <div class="col-xs-3">
 <% if @item == "difficulty" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
                   <div id="panel-difficulty" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
                   <div id="panel-difficulty" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
                   <div id="panel-difficulty" class="panel panel-default alert alert-warning">
   <% elsif @review_conflict.risk_level == 4 %>
                   <div id="panel-difficulty" class="panel panel-default alert alert-danger">
@@ -124,11 +122,11 @@
                           <!--    SERVING SIZE PANEL -->
                 <div class="col-xs-3">
 <% if @item == "serving-size" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
                   <div id="panel-serving-size" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
                   <div id="panel-serving-size" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
                   <div id="panel-serving-size" class="panel panel-default alert alert-warning">
   <% elsif @review_conflict.risk_level == 4 %>
                   <div id="panel-serving-size" class="panel panel-default alert alert-danger">
@@ -185,15 +183,13 @@
           <h3 class="active-preview-heading white-font">Ingredients:</h3>
 <% @ingredients.each do |ingredient| %>
   <% if @item == "ingredient-#{ingredient.id}" %> 
-    <% if @review_conflict.risk_level == 1 %>
+    <% if @review_conflict.risk_level == 100 %>
             <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-success">
-    <% elsif @review_conflict.risk_level == 2 %>
+    <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-info">
-    <% elsif @review_conflict.risk_level == 3 %>
+    <% elsif @review_conflict.risk_level == 300 %>
             <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-warning">
-    <% elsif @review_conflict.risk_level == 4 %>
-            <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default alert alert-danger">
-    <% else %>
+ 
             <div id="panel-ingredient-<%=ingredient.id%>" class="panel panel-default">
     <% end %>
   <% else %>
@@ -224,11 +220,11 @@
             <h5><%=group%></h5>
   <% steps.each do | step | %>
     <% if @item == "step-#{step.id}" %> 
-      <% if @review_conflict.risk_level == 1 %>
+      <% if @review_conflict.risk_level == 100 %>
             <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-success">
-      <% elsif @review_conflict.risk_level == 2 %>
+      <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-info">
-      <% elsif @review_conflict.risk_level == 3 %>
+      <% elsif @review_conflict.risk_level == 300 %>
             <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-warning">
       <% elsif @review_conflict.risk_level == 4 %>
             <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-danger">
@@ -260,11 +256,11 @@
           <h3 class="active-preview-heading white-font">Allergens:</h3>
 <% @ingredients_tagged.each do| ingredient| %>
   <% if @item == "allergen-#{ingredient.id}" %> 
-    <% if @review_conflict.risk_level == 1 %>
+    <% if @review_conflict.risk_level == 100 %>
             <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default alert alert-success">
-    <% elsif @review_conflict.risk_level == 2 %>
+    <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default alert alert-info">
-    <% elsif @review_conflict.risk_level == 3 %>
+    <% elsif @review_conflict.risk_level == 300 %>
             <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default alert alert-warning">
     <% elsif @review_conflict.risk_level == 4 %>
             <div id="panel-allergen-<%=ingredient.id%>" class="panel panel-default alert alert-danger">
@@ -294,11 +290,11 @@
    
           <h3 class="active-preview-heading white-font">Health Groups:</h3>
 <% if @item == "health-groups" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
             <div id="panel-health-groups" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-health-groups" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
             <div id="panel-health-groups" class="panel panel-default alert alert-warning">
   <% elsif @review_conflict.risk_level == 4 %>
             <div id="panel-health-groups" class="panel panel-default alert alert-danger">
@@ -316,11 +312,11 @@
           </div>
           <h3 class="active-preview-heading white-font">Recipe Categories:</h3>
 <% if @item == "recipe-categories" %> 
-  <% if @review_conflict.risk_level == 1 %>
+  <% if @review_conflict.risk_level == 100 %>
             <div id="panel-recipe-categories" class="panel panel-default alert alert-success">
-  <% elsif @review_conflict.risk_level == 2 %>
+  <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-recipe-categories" class="panel panel-default alert alert-info">
-  <% elsif @review_conflict.risk_level == 3 %>
+  <% elsif @review_conflict.risk_level == 300 %>
             <div id="panel-recipe-categories" class="panel panel-default alert alert-warning">
   <% elsif @review_conflict.risk_level == 4 %>
             <div id="panel-recipe-categories" class="panel panel-default alert alert-danger">
@@ -342,11 +338,11 @@
 <% @marketing_items_by_group.each do |health_group, marketing_items_hash| %>
             <h2 class="active-preview-heading"><%=health_group%></h2>
   <% if @item == "marketing-item-#{marketing_items_hash['items']['title'].id}" %> 
-    <% if @review_conflict.risk_level == 1 %>
+    <% if @review_conflict.risk_level == 100 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-success">
-    <% elsif @review_conflict.risk_level == 2 %>
+    <% elsif @review_conflict.risk_level == 200 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-info">
-    <% elsif @review_conflict.risk_level == 3 %>
+    <% elsif @review_conflict.risk_level == 300 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-warning">
     <% elsif @review_conflict.risk_level == 4 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['title'].id%>" class="panel panel-default alert alert-danger">
@@ -374,11 +370,11 @@
   <% end %>
       <!--    MARKETING DESCRIPTION PANEL-->  
   <% if @item == "marketing-item-#{marketing_items_hash['items']['description'].id}" %> 
-    <% if @review_conflict.risk_level == 1 %>
+    <% if @review_conflict.risk_level == 100 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['description'].id%>" class="panel panel-default alert alert-success">
-    <% elsif @review_conflict.risk_level == 2 %>
+    <% elsif @review_conflict.risk_level == 200 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['description'].id%>" class="panel panel-default alert alert-info">
-    <% elsif @review_conflict.risk_level == 3 %>
+    <% elsif @review_conflict.risk_level == 300 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['description'].id%>" class="panel panel-default alert alert-warning">
     <% elsif @review_conflict.risk_level == 4 %>
                 <div id="panel-marketing-item-<%=marketing_items_hash['items']['description'].id%>" class="panel panel-default alert alert-danger">

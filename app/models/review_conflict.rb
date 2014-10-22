@@ -3,6 +3,7 @@ class ReviewConflict < ActiveRecord::Base
   belongs_to :first_reviewer, :class_name => 'Dietitian', :foreign_key => 'first_reviewer_id'
   belongs_to :second_reviewer, :class_name => 'Dietitian', :foreign_key => 'second_reviewer_id'
   belongs_to :third_reviewer, :class_name => 'Dietitian', :foreign_key => 'third_reviewer_id'
+  belongs_to :fourth_reviewer, :class_name => 'Dietitian', :foreign_key => 'fourth_reviewer_id'
   resourcify
   
   def self.assigned_to_dietitian(dietitian_id)
@@ -13,19 +14,27 @@ class ReviewConflict < ActiveRecord::Base
   end
 
   def needs_to_be_assigned?
-    if self.review_stage  == 3
-        return false
-    elsif self.review_stage  == 2
-      if self.third_reviewer_id == nil
-        return true
-      else
-        return false
-      end
+    # only review conflicts that have a completed qualit review should be assigned 
+    if self.quality_review.completed != true 
+      return false
     else
-      if self.second_reviewer_id == nil
-        return true
+      # if its at the 3rd review stage then do not assign
+      if self.review_stage  == 3
+          return false
+      # if at the 2nd review stage and third reviewer not assigned then return true
+      elsif self.review_stage  == 2
+        if self.third_reviewer_id == nil
+          return true
+        else
+          return false
+        end
+      # if not 3rd or second stage and second reviewer not assigned then return true
       else
-        return false
+        if self.second_reviewer_id == nil
+          return true
+        else
+          return false
+        end
       end
     end
   end

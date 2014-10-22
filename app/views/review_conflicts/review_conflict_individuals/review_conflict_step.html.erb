@@ -101,13 +101,11 @@
             <h5><%=group%></h5>
   <% steps.each do | step | %>
     <% if @item == "step-#{step.id}" %> 
-      <% if @review_conflict.risk_level == 1 %>
-            <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-success">
-      <% elsif @review_conflict.risk_level == 2 %>
+      <% if @review_conflict.risk_level == 100 %>
             <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-info">
-      <% elsif @review_conflict.risk_level == 3 %>
+      <% elsif @review_conflict.risk_level == 200 %>
             <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-warning">
-      <% elsif @review_conflict.risk_level == 4 %>
+      <% elsif @review_conflict.risk_level == 300 %>
             <div id="panel-step-<%=step.id%>" class="panel panel-default alert alert-danger">
       <% else %>
             <div id="panel-step-<%=step.id%>" class="panel panel-default">

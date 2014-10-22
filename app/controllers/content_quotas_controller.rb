@@ -25,6 +25,7 @@ class ContentQuotasController < ApplicationController
   # GET /content_quota/1/edit
   def edit
     @dietitians = Dietitian.all
+    @dietitian = @content_quota.dietitian
   end
 
   # POST /content_quota

@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
   # GET /recipe_status
   def recipe_status
     @live_recipes = Recipe.where(live_recipe: true).order("created_at").reverse
-    @recipes_with_unresolved_high_risk_conflicts = ReviewConflict.where(resolved: false).where(risk_level: 300).map { |review_conflict| review_conflict.recipe}.uniq
+    @recipes_with_unresolved_high_risk_conflicts = ReviewConflict.where(resolved: false).where(risk_level: 300).map { |review_conflict| review_conflict.quality_review.quality_reviewable}.uniq
     @recipes_quality_review_stage_2_not_assigned = Recipe.all_need_second_tier_review
     @recipes_quality_review_stage_2_awaiting_resolutions = Recipe.second_tier_not_resolved
     @recipes_quality_review_stage_2_assigned = Recipe.all_in_second_tier_review

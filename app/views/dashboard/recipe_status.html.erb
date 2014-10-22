@@ -42,7 +42,6 @@
               <th>Unresolved Conflict Resolutions</th>
               <th># of Total Reviewers</th>
               <th># of Unique Reviewers</th>
-
             </tr>
         </thead>
         <tbody>
@@ -51,16 +50,19 @@
   					<% @recipes_with_unresolved_high_risk_conflicts.each do |live_recipe| %>
             <tr>
               <td><%= live_recipe.name %></td>
+              <td><%= live_recipe.dietitian.email %></td>
               <td><%= live_recipe.quality_reviews.last.tier %></td>
-              <% live_recipe.quality_reviews.last.review_conflicts.each do |review_conflict| %>
               <td>
+              <% live_recipe.quality_reviews.last.review_conflicts.each do |review_conflict| %>
               	<% if (review_conflict.resolved == false) %>
               		<p><%= review_conflict.category%>: Stage <%= review_conflict.review_stage%></p>
               	<% end %>
-              </td>
               <% end %>
+              </td>
+              <td><%= live_recipe.number_of_reviewers_hash[:total] %></td>
+              <td><%= live_recipe.number_of_reviewers_hash[:unique] %></td>
             </tr>
-          <% end %>
+            <% end %>
         </tbody>
       </table>
     </div>
@@ -96,6 +98,7 @@
         </tbody>
       </table>
     </div>
+
     <div class="col-xs-10 col-xs-offset-1 form-group">
     	<h3>Recipes in Quality Review Stage 2 Assigned</h3>		
   		<table class="table table-bordered">

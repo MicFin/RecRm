@@ -41,10 +41,9 @@ class ReviewConflict < ActiveRecord::Base
 
   def self.assign_by_risk_level
     conflicts_by_risk_level = {}
-    conflicts_by_risk_level[1] = []
-    conflicts_by_risk_level[2] = []
-    conflicts_by_risk_level[3] = []
-    conflicts_by_risk_level[4] = []
+    conflicts_by_risk_level[100] = []
+    conflicts_by_risk_level[200] = []
+    conflicts_by_risk_level[300] = []
     
     self.where(resolved: false).each do |review_conflict|
           
@@ -59,10 +58,9 @@ class ReviewConflict < ActiveRecord::Base
 
   def self.in_review_by_risk_level
     conflicts_by_risk_level = {}
-    conflicts_by_risk_level[1] = []
-    conflicts_by_risk_level[2] = []
-    conflicts_by_risk_level[3] = []
-    conflicts_by_risk_level[4] = []
+    conflicts_by_risk_level[100] = []
+    conflicts_by_risk_level[200] = []
+    conflicts_by_risk_level[300] = []
     self.where(resolved: false).each do |review_conflict|
       
       if (review_conflict.needs_to_be_assigned? == false)

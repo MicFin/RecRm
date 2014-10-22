@@ -147,7 +147,7 @@
 <!-- ASSIGN REVIEW CONFLICTS -->
 		<h3 class="dashboard-heading">High Risk Conflicts</h3>
 		<div class="row review-recipes">
-			<% @assign_review_conflicts_hash[4].each do |review_conflict| %>
+			<% @assign_review_conflicts_hash[300].each do |review_conflict| %>
 			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
 				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
 				<p><%=review_conflict.category%></p>
@@ -169,7 +169,7 @@
 			<h3 class="dashboard-heading">Medium Risk Conflicts</h3>
 		<div class="row review-recipes">
 
-			<% @assign_review_conflicts_hash[3].each do |review_conflict| %>
+			<% @assign_review_conflicts_hash[200].each do |review_conflict| %>
 			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
 				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
 				<p><%=review_conflict.category%></p>
@@ -191,29 +191,7 @@
 			<h3 class="dashboard-heading">Low Risk Conflicts</h3>
 		<div class="row review-recipes">
 
-			<% @assign_review_conflicts_hash[2].each do |review_conflict| %>
-			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
-				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
-				<p><%=review_conflict.category%></p>
-				<p>Creator: <%=review_conflict.quality_review.dietitian.email%>
-	<% if review_conflict.first_reviewer_id %>
-				<p>1st Reviewer: <%=review_conflict.first_reviewer.email%></p>
-	<% end %>
-	<% if review_conflict.second_reviewer_id %>
-				<p>2nd Reviewer: <%=review_conflict.second_reviewer.email%></p>
-	<% end %>
-	<% if review_conflict.third_reviewer_id %>
-				<p>3rd Reviewer: <%=review_conflict.third_reviewer.email%></p>
-	<% end %>
-				<h3 class="dashboard-heading">Stage: <%=review_conflict.review_stage%></h4>
-			<p><%=link_to "Assign Conflict", select_reviewer_path(review_conflict) %></p>		
-			</div>
-			<% end %>
-		</div>
-			<h3 class="dashboard-heading">No Risk Conflicts:</h3>
-		<div class="row review-recipes">
-
-			<% @assign_review_conflicts_hash[1].each do |review_conflict| %>
+			<% @assign_review_conflicts_hash[100].each do |review_conflict| %>
 			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 text-center recipe-mini-view">
 				<h4><%=review_conflict.quality_review.quality_reviewable.name%></h4>
 				<p><%=review_conflict.category%></p>

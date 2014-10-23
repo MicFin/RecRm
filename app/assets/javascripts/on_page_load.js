@@ -25,7 +25,8 @@ $(document).ready(function() {
 	// qualty review allergen input form set
 	FormValidation.ingredientAllergensReview();
 
-
+	// Content Quota form
+	FormValidation.contentQuotaValidations();
 
 	if ($("#quality-review-main-container").length >= 1){
 		BasicForm.validateReview();

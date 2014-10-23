@@ -204,5 +204,37 @@
       $( ".allergen-autofill" ).autocomplete({
         source: $('.allergen-autofill').data('autocomplete-source')
       });
+    },
+    contentQuotaValidations: function(){
+      $("#new_content_quota").validate({
+        rules: {
+          "content_quota[recipes]":{
+            required: true,
+            range: [0, 50]
+          },
+          "content_quota[quality_reviews]":{
+            required: true,
+            range: [0, 50]
+          },
+          "content_quota[review_conflicts]":{
+            required: true,
+            range: [0, 50]
+          }
+        },
+        messages: {
+          "content_quota[recipes]":{
+            required: "Please enter a number between 0-50",
+            range: "Please enter a number between 0-50"
+          },
+          "content_quota[quality_reviews]":{
+            required: "Please enter a number between 0-50",
+            range: "Please enter a number between 0-50"
+          },
+          "content_quota[review_conflicts]":{
+            required: "Please enter a number between 0-50",
+            range: "Please enter a number between 0-50"
+          }
+        },
+      });
     }
   } //Formvalidation   

@@ -90,5 +90,6 @@ $(document).ready(function() {
     $("#first-suggestion-display").removeClass("selected-suggestion");
     $("#second-suggestion-display").removeClass("selected-suggestion");
   });
+
 });
 

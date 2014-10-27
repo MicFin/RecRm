@@ -18,6 +18,8 @@ class Dietitian < ActiveRecord::Base
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "third_reviewer_id"
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "fourth_reviewer_id"
 
+  
+
   def incomplete_recipes
     incomplete_recipes = []
     self.recipes.each do |recipe|

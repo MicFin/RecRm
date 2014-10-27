@@ -7,10 +7,13 @@
         <tr>
           <th>Dietitian</th>
           <th>New Recipes Completed</th>
+          <th>New Recipes Assigned</th>
           <th>New Recipes Target</th>
           <th>Quality Reviews Compeleted</th>
+          <th>Quality Reviews Assigned</th>
           <th>Quality Reviews Target</th>
           <th>Conflict Resolutions Compeleted</th>
+          <th>Conflict Resolutions Assigned</th>
           <th>Conflict Resolutions Target</th>
           <th>Weekly Total Completed</th>
           <th>Weekly Total Target</th>
@@ -30,16 +33,19 @@
         <% @dietitians.each do |dietitian| %>
           <tr>
           <td><%=dietitian.email%></td>
-          <td></td>
           <% if dietitian.content_quotas != [] %>
+            <td></td>
             <td><%=dietitian.content_quotas.first.recipes%></td>
+            <td><%=dietitian.incomplete_recipes.count%></td>
             <td></td>
             <td><%=dietitian.content_quotas.first.quality_reviews%></td>
+            <td><%=dietitian.incomplete_quality_reviews.count%></td>
             <td></td>
             <td><%=dietitian.content_quotas.first.review_conflicts%></td>
             <td></td>
+            <td></td>
             <td><%=dietitian.content_quotas.first.review_conflicts + dietitian.content_quotas.first.quality_reviews + dietitian.content_quotas.first.recipes%></td>
-          <td><%= link_to 'Edit', edit_content_quota_path(dietitian.content_quotas.first) %></td>
+            <td><%= link_to 'Edit', edit_content_quota_path(dietitian.content_quotas.first) %></td>
             <%total_recipes_quota += dietitian.content_quotas.first.recipes%>
             <%total_recipes_actual += 0%>
             <%total_quality_reviews_actual += 0%>
@@ -49,6 +55,7 @@
             <%total_content_actual += 0%>
             <%total_content_quota += dietitian.content_quotas.first.review_conflicts + dietitian.content_quotas.first.quality_reviews + dietitian.content_quotas.first.recipes%>
           <% else %>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -78,5 +85,6 @@
     </table>
 
     <br>
-</div>
+  </div>
+  <%=link_to "Assign Content", assign_content_path %>
 </div>

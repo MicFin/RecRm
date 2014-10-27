@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       # role assignments
       patch 'roles/assignments/update/:id', to: 'roles#update_assignments', as: 'update_assignments'
       resources :roles
+      get 'content_quotas/assign_content', to: 'content_quotas#assign_content', as: 'assign_content'  
       resources :content_quotas
       resources :characteristics
       resources :ingredients_recipes do 

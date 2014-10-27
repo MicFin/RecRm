@@ -41,8 +41,8 @@
             <td><%=dietitian.content_quotas.first.quality_reviews%></td>
             <td><%=dietitian.incomplete_quality_reviews.count%></td>
             <td></td>
-            <td><%=dietitian.content_quotas.first.review_conflicts%></td>
             <td></td>
+            <td><%=dietitian.content_quotas.first.review_conflicts%></td>
             <td></td>
             <td><%=dietitian.content_quotas.first.review_conflicts + dietitian.content_quotas.first.quality_reviews + dietitian.content_quotas.first.recipes%></td>
             <td><%= link_to 'Edit', edit_content_quota_path(dietitian.content_quotas.first) %></td>
@@ -55,6 +55,9 @@
             <%total_content_actual += 0%>
             <%total_content_quota += dietitian.content_quotas.first.review_conflicts + dietitian.content_quotas.first.quality_reviews + dietitian.content_quotas.first.recipes%>
           <% else %>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>

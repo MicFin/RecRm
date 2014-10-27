@@ -77,42 +77,45 @@ class ContentQuotasController < ApplicationController
     dietitians.each do |dietitian|
       # the dietitians quota amount
       quota = dietitian.content_quotas.first.quality_reviews - dietitian.incomplete_quality_reviews.count
-      # second tier reviews needing review
-      second_tier = Recipe.all_need_second_tier_review
-      if second_tier.count > 0
-        sorted = second_tier.sort! { |a,b| a.created_at <=> b.created_at }
-      # add to dietitian list of review
-        sorted.first(quota).each do |recipe| 
-          
-          quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 2)
-          quota = quota - 1 
-          quality_review.save
-        end
-      end
 
-      # original reviews needing review
-      original_reviews = Recipe.all_need_original_review
-      if original_reviews.count > 0
-        sorted = original_reviews.sort! { |a,b| a.created_at <=> b.created_at }
-      # add to dietitian list of review
-        sorted.first(quota).each do |recipe| 
-          quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 1)
-          quota = quota - 1 
-          quality_review.save
+      if quota > 0 
+              # second tier reviews needing review
+        second_tier = Recipe.all_need_second_tier_review
+        if second_tier.count > 0
+          sorted = second_tier.sort! { |a,b| a.created_at <=> b.created_at }
+        # add to dietitian list of review
+          sorted.first(quota).each do |recipe| 
+            
+            quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 2)
+            quota = quota - 1 
+            quality_review.save
+          end
         end
-      end
-      # first tiwer reviews needing review
-      first_tier = Recipe.all_need_first_tier_review
-      if first_tier.count > 0
-        sorted = first_tier.sort! { |a,b| a.created_at <=> b.created_at }
-      # add to dietitian list of review
-        sorted.first(quota).each do |recipe| 
-          quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 1)
-          quota = quota - 1  
-          quality_review.save
+
+        # original reviews needing review
+        original_reviews = Recipe.all_need_original_review
+        if original_reviews.count > 0
+          sorted = original_reviews.sort! { |a,b| a.created_at <=> b.created_at }
+        # add to dietitian list of review
+          sorted.first(quota).each do |recipe| 
+            quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 1)
+            quota = quota - 1 
+            quality_review.save
+          end
         end
+        # first tiwer reviews needing review
+        first_tier = Recipe.all_need_first_tier_review
+        if first_tier.count > 0
+          sorted = first_tier.sort! { |a,b| a.created_at <=> b.created_at }
+        # add to dietitian list of review
+          sorted.first(quota).each do |recipe| 
+            quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 1)
+            quota = quota - 1  
+            quality_review.save
+          end
+        end
+        dietitian.save
       end
-      dietitian.save
     end
     respond_to do |format|
         format.html { redirect_to content_quotas_path, notice: 'Content quotum was successfully created.' }

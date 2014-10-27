@@ -17,7 +17,8 @@ class RecipesController < ApplicationController
 
   ## this method and view is being used as the dietitian dashboard right now, it should be moved to a home controller or another controller
   def dietitian_recipes_index
-    @recipes = Recipe.where(dietitian_id: current_dietitian.id)
+    @all_completed_recipes = Recipe.where(completed: true).order("created_at").reverse
+    @recipes = Recipe.where(dietitian_id: current_dietitian.id, completed: true).order("created_at").reverse
     @incomplete_recipes = current_dietitian.incomplete_recipes
     @recipe_reviews_to_assign = []
     if current_dietitian.has_role? "Admin Dietitian"
@@ -39,32 +40,44 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
 
-	def show
-		# make sure to call this first
-		@recipe = Recipe.find(params[:id])
+	# def show #old
+	# 	# make sure to call this first
+	# 	@recipe = Recipe.find(params[:id])
 
-		# ingredients_helper
-		get_ingredients!
+	# 	# ingredients_helper
+	# 	get_ingredients!
 
-		# steps_helper
-		get_recipe_steps!
+	# 	# steps_helper
+	# 	get_recipe_steps!
 
-		# characteristics_helper
-		get_recipe_characteristics!
+	# 	# characteristics_helper
+	# 	get_recipe_characteristics!
 
-		@recipe.ingredient_list = @recipe_ingredients
-		@recipe.step_list = @recipe_steps
-		@recipe.cook_time = @cook_time
-		@recipe.prep_time = @prep_time
-		@recipe.difficulty = @difficulty
-		@recipe.courses = @courses
-		@recipe.age_groups = @age_groups
-		@recipe.meals = @meals
-		@recipe.cultures = @cultures
+	# 	@recipe.ingredient_list = @recipe_ingredients
+	# 	@recipe.step_list = @recipe_steps
+	# 	@recipe.cook_time = @cook_time
+	# 	@recipe.prep_time = @prep_time
+	# 	@recipe.difficulty = @difficulty
+	# 	@recipe.courses = @courses
+	# 	@recipe.age_groups = @age_groups
+	# 	@recipe.meals = @meals
+	# 	@recipe.cultures = @cultures
 
-		gon.rabl as: 'recipe'
-	end
+	# 	gon.rabl as: 'recipe'
+	# end
 
+  def show
+    @recipe_id = params[:id]
+    @recipe = Recipe.find(@recipe_id)
+    @ingredients = @recipe.ordered_ingredients
+    @steps_by_group = @recipe.steps_by_group
+    @ingredients_tagged = @recipe.ingredients_tagged
+    @ingredients_not_tagged = @recipe.ingredients_not_tagged
+    @ingredients_allergens_hash = @recipe.fetch_ingredients_allergens_hash
+    @health_groups_array = @recipe.fetch_health_groups_array
+    @categories_array = @recipe.fetch_categories_array
+    @marketing_items_by_group = @recipe.marketing_items_by_group
+  end
   # GET /recipes/:id/review_recipe
   # GET /recipes/:id/review_recipe.json
   def review_recipe

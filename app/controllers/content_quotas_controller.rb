@@ -79,12 +79,11 @@ class ContentQuotasController < ApplicationController
       quota = dietitian.content_quotas.first.quality_reviews - dietitian.incomplete_quality_reviews.count
       # second tier reviews needing review
       second_tier = Recipe.all_need_second_tier_review
-      binding.pry
       if second_tier.count > 0
         sorted = second_tier.sort! { |a,b| a.created_at <=> b.created_at }
       # add to dietitian list of review
         sorted.first(quota).each do |recipe| 
-          binding.pry
+          
           quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 2)
           quota = quota - 1 
           quality_review.save

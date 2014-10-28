@@ -2,7 +2,7 @@ class ReviewConflictsController < ApplicationController
   include CharacteristicsHelper
   include IngredientsRecipesHelper
   include PatientGroupsHelper
-  before_filter :set_review_conflict, only: [:update, :edit, :select_reviewer, :assign_reviewer, :start_review_conflict, :accept_review_conflict, :decline_review_conflict, :edit_review_conflict]
+  before_filter :set_review_conflict, only: [:update, :edit, :start_review_conflict, :accept_review_conflict, :decline_review_conflict, :edit_review_conflict]
 
   def new
   end
@@ -182,12 +182,14 @@ class ReviewConflictsController < ApplicationController
 
 
   def select_reviewer
-    @item = @review_conflict.item
-    @quality_review = @review_conflict.quality_review
-    @quality_reviewable = @quality_review.quality_reviewable
+
+    # @item = @review_conflict.item
+    # @quality_review = @review_conflict.quality_review
+    # @quality_reviewable = @quality_review.quality_reviewable
     @dietitians = Dietitian.all
-    @recipe_id = params[:recipe_id]
-    @recipe = @quality_reviewable
+    # @recipe_id = params[:recipe_id]
+    @recipe_id = params[:id]
+    @recipe = Recipe.find(@recipe_id)
     @ingredients = @recipe.ordered_ingredients
     @steps_by_group = @recipe.steps_by_group
     @ingredients_tagged = @recipe.ingredients_tagged
@@ -197,6 +199,8 @@ class ReviewConflictsController < ApplicationController
     @categories_array = @recipe.fetch_categories_array
     @marketing_items_by_group = @recipe.marketing_items_by_group
     @select_reviewer = true
+    @review_conflict = ReviewConflict.new
+    @item = 0
     if ((@review_conflict.review_stage == 2) && (@review_conflict.item.include? "ingredient-"))
       @ingredient_changes_hash_two = @review_conflict.ingredient_changes_hash("second")
     end
@@ -204,23 +208,31 @@ class ReviewConflictsController < ApplicationController
 
   def assign_reviewer
       #assign high risk level conflicts first
-    @recipes_need_original_review = Recipe.all_need_original_review
-    @recipes_need_first_tier_review = Recipe.all_need_first_tier_review
-    @recipes_need_second_tier_review = Recipe.all_need_second_tier_review
-    @assign_review_conflicts_hash = ReviewConflict.assign_by_risk_level
+    # @recipes_need_original_review = Recipe.all_need_original_review
+    # @recipes_need_first_tier_review = Recipe.all_need_first_tier_review
+    # @recipes_need_second_tier_review = Recipe.all_need_second_tier_review
+    # @assign_review_conflicts_hash = ReviewConflict.assign_by_risk_level
+
     if params[:review_conflict][:second_reviewer_id]
-      @review_conflict.second_reviewer_id = params[:review_conflict][:second_reviewer_id].to_i
+      # @review_conflict.second_reviewer_id = params[:review_conflict][:second_reviewer_id].to_i
+      recipe = Recipe.find(params[:id])
+      current_review = recipe.quality_reviews.last
+      current_review.dietitian = nil
+      current_review.save
+      current_review.dietitian = Dietitian.find(params[:review_conflict][:second_reviewer_id].to_i)
+      current_review.save
     else       
       @review_conflict.third_reviewer_id = params[:review_conflict][:third_reviewer].to_i
     end
+
     respond_to do |format|
-      if @review_conflict.save
+      # if @review_conflict.save
       
-        format.html {redirect_to dietitian_recipes_path(current_dietitian)}
-      else
-        format.html { render :select_reviewer }
-        format.json { render json: @review_conflict.errors, status: :unprocessable_entity }
-      end
+        format.html {redirect_to dashboard_recipe_status_path}
+      # else
+      #   format.html { render :select_reviewer }
+      #   format.json { render json: @review_conflict.errors, status: :unprocessable_entity }
+      # end
     end
   end
   

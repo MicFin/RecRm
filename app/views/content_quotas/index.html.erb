@@ -33,17 +33,17 @@
           <% data_object[dietitian.id] = {completed_recipes: "", completed_quality_reviews: "", incomplete_quality_reviews: ""}  %>
 <% if dietitian.recipes.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count > 0 %>
           <%dietitian.recipes.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).each do |recipe| %>
-            <% data_object[dietitian.id][:completed_recipes] += "<h5>"+recipe.name+"</h5>" %>
+            <% data_object[dietitian.id][:completed_recipes] += "<h5>#{recipe.name}</h5>" %>
           <% end %>
 <% end %>
 <% if dietitian.quality_reviews.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count > 0 %>
           <%dietitian.quality_reviews.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).each do |quality_review| %>
-            <% data_object[dietitian.id][:completed_quality_reviews] += "<h5>"+quality_review.quality_reviewable.name+"</h5>" %>
+            <% data_object[dietitian.id][:completed_quality_reviews] += "<h5>#{quality_review.quality_reviewable.name}</h5>" %>
           <% end %>
 <% end %>
 <% if dietitian.incomplete_quality_reviews.count > 0 %>
           <%dietitian.incomplete_quality_reviews.each do |quality_review| %>
-            <% temp_string = "<h5>"+quality_review.quality_reviewable.name+"</h5>"%>
+            <% temp_string = "<h5>#{quality_review.quality_reviewable.name}</h5>"%>
             <% data_object[dietitian.id][:incomplete_quality_reviews] += temp_string%>
           <% end %>
 <% end %>

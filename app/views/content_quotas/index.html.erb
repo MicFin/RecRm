@@ -28,15 +28,27 @@
             <%total_review_conflicts_quota = 0%>
             <%total_content_actual = 0%>
             <%total_content_quota = 0%>
-
+            <% data_object = {} %>
         <% @dietitians.each do |dietitian| %>
+          <% data_object[dietitian.id] = {completed_recipes: "", completed_quality_reviews: "", incomplete_quality_reviews: ""}  %>
+          <%dietitian.recipes.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).each do |recipe| %>
+            <% data_object[dietitian.id][:completed_recipes] += "<h5>"+recipe.name+"</h5>" %>
+          <% end %>
+          <%dietitian.quality_reviews.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).each do |quality_review| %>
+            <% data_object[dietitian.id][:completed_quality_reviews] += "<h5>"+quality_review.quality_reviewable.name+"</h5>" %>
+          <% end %>
+          <%dietitian.incomplete_quality_reviews.each do |quality_review| %>
+            <% temp_string = "<h5>"+quality_review.quality_reviewable.name+"</h5>"%>
+            <% data_object[dietitian.id][:incomplete_quality_reviews] += temp_string%>
+          <% end %>
           <tr>
+
           <td><%=dietitian.email%></td>
           <% if dietitian.content_quotas != [] %>
-            <td><%=dietitian.recipes.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count%></td>
+            <td class="quota-data-tooltip" data-toggle="tooltip" data-placement="right" data-html="true" title="<%=data_object[dietitian.id][:completed_recipes]%>"><%=dietitian.recipes.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count%></td>
             <td><%=dietitian.content_quotas.first.recipes%></td>
-            <td><%=dietitian.quality_reviews.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count%></td>
-            <td><%=dietitian.incomplete_quality_reviews.count%></td>
+            <td class="quota-data-tooltip" data-toggle="tooltip" data-placement="right" data-html="true" title="<%=data_object[dietitian.id][:completed_quality_reviews]%>"><%=dietitian.quality_reviews.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count%></td>
+            <td class="quota-data-tooltip" data-toggle="tooltip" data-placement="right" data-html="true" title="<%=data_object[dietitian.id][:incomplete_quality_reviews]%>"><%=dietitian.incomplete_quality_reviews.count%></td>
             <td><%=dietitian.content_quotas.first.quality_reviews%></td>
             <td><%#=dietitian.review_conflicts.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true)%></td>
             <td><%#=dietitian.incomplete_review_conflicts.count%></td>

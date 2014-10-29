@@ -357,6 +357,6 @@ class RecipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     # need to change :image_url to :avatar when paperclip is working
     def recipe_params
-      params.require(:recipe).permit(:image_url, :name, :description, :dietitian_id, :cook_time, :prep_time, :serving_size, :difficulty, :complete, :live_recipe, :characteristic_ids => [], :patient_group_ids => [])
+      params.require(:recipe).permit(:image_url, :avatar, :name, :description, :dietitian_id, :cook_time, :prep_time, :serving_size, :difficulty, :complete, :live_recipe, :characteristic_ids => [], :patient_group_ids => [])
     end
 end

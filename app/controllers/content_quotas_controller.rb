@@ -7,7 +7,7 @@ class ContentQuotasController < ApplicationController
     @dietitians = Dietitian.all
     @content_quotas = ContentQuota.all
     @today = Date.today
-    @beginning_of_week = @today.at_beginning_of_week(:wednesday)
+    @beginning_of_week = @today.at_beginning_of_week(:thursday)
   end
 
   # GET /content_quota/1

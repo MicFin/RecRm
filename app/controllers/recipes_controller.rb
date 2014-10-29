@@ -28,10 +28,10 @@ class RecipesController < ApplicationController
       @recipes_in_second_tier_review = Recipe.all_in_second_tier_review
       @recipes_in_first_tier_review = Recipe.all_in_first_tier_review
       @all_live_recipes = Recipe.all_live_recipes
-      @assign_review_conflicts_hash = ReviewConflict.assign_by_risk_level
-      @review_conflicts_in_review_hash = ReviewConflict.in_review_by_risk_level
+      # @assign_review_conflicts_hash = ReviewConflict.assign_by_risk_level
+      # @review_conflicts_in_review_hash = ReviewConflict.in_review_by_risk_level
       @resolved_quality_revews = QualityReview.where(resolved: true)
-      @resolved_review_conflicts = ReviewConflict.where(resolved: true)
+      # @resolved_review_conflicts = ReviewConflict.where(resolved: true)
       @test_recipes = Recipe.where(dietitian_id: 11).where(:created_at => Date.today.at_beginning_of_week.beginning_of_day..Date.tomorrow.end_of_day)
     end
     @incomplete_quality_reviews = current_dietitian.incomplete_quality_reviews

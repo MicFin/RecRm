@@ -7,7 +7,6 @@
         <tr>
           <th>Dietitian</th>
           <th>New Recipes Completed</th>
-          <th>New Recipes Assigned</th>
           <th>New Recipes Target</th>
           <th>Quality Reviews Compeleted</th>
           <th>Quality Reviews Assigned</th>
@@ -34,15 +33,14 @@
           <tr>
           <td><%=dietitian.email%></td>
           <% if dietitian.content_quotas != [] %>
-            <td></td>
-            <td><%=dietitian.incomplete_recipes.count%></td>
+            <td><%=dietitian.recipes.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count%></td>
             <td><%=dietitian.content_quotas.first.recipes%></td>
-            <td></td>
+            <td><%=dietitian.quality_reviews.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count%></td>
             <td><%=dietitian.incomplete_quality_reviews.count%></td>
             <td><%=dietitian.content_quotas.first.quality_reviews%></td>
-            <td></td>
-            <td></td>
-            <td><%=dietitian.content_quotas.first.review_conflicts%></td>
+            <td><%#=dietitian.review_conflicts.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true)%></td>
+            <td><%#=dietitian.incomplete_review_conflicts.count%></td>
+            <td><%#=dietitian.content_quotas.first.review_conflicts%></td>
             <td></td>
             <td><%=dietitian.content_quotas.first.review_conflicts + dietitian.content_quotas.first.quality_reviews + dietitian.content_quotas.first.recipes%></td>
             <td><%= link_to 'Edit', edit_content_quota_path(dietitian.content_quotas.first) %></td>
@@ -65,7 +63,6 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
             <td><%= link_to 'Create Quota', new_content_quota_path(dietitian_id: dietitian.id) %></td>
           <% end %>
           </tr>
@@ -77,9 +74,11 @@
           <th><%=total_recipes_actual%></th>
           <th><%=total_recipes_quota %></th>
           <th><%=total_quality_reviews_actual%></th>
+          <th></th>
           <th><%=total_quality_reviews_quota %></th>
-          <th><%=total_review_conflicts_actual%></th>
-          <th><%=total_review_conflicts_quota %></th>
+          <th><%#=total_review_conflicts_actual%></th>
+          <th></th>
+          <th><%#=total_review_conflicts_quota %></th>
           <th><%=total_content_actual%></th>
           <th><%=total_content_quota %></th>
           <th></th>

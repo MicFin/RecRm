@@ -49,5 +49,25 @@ class Dietitian < ActiveRecord::Base
     end
     return complete_quality_reviews
   end
-  
+
+  # def incomplete_review_conflicts
+  #   incomplete_review_conflicts = []
+  #   self.review_conflicts.each do |review_conflict|
+  #     if review_conflict.completed == false 
+  #       incomplete_review_conflicts << review_conflict
+  #     end
+  #   end
+  #   return incomplete_review_conflicts
+  # end
+
+  # def completed_review_conflicts
+  #   complete_review_conflicts = []
+  #   self.review_conflicts.each do |review_conflict|
+  #     if review_conflict.resolved == true 
+  #       complete_review_conflicts << review_conflict
+  #     end
+  #   end
+  #   return complete_review_conflicts
+  # end
+
 end

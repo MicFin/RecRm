@@ -6,6 +6,8 @@ class ContentQuotasController < ApplicationController
   def index
     @dietitians = Dietitian.all
     @content_quotas = ContentQuota.all
+    @today = Date.today
+    @beginning_of_week = @today.at_beginning_of_week(:wednesday)
   end
 
   # GET /content_quota/1

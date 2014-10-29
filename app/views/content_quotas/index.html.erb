@@ -31,7 +31,7 @@
             <% data_object = {} %>
         <% @dietitians.each do |dietitian| %>
           <% data_object[dietitian.id] = {completed_recipes: "", completed_quality_reviews: "", incomplete_quality_reviews: ""}  %>
-          <%dietitian.recipes.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).each do |recipe| %>
+          <%dietitian.recipes.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).compact.each do |recipe| %>
             <% data_object[dietitian.id][:completed_recipes] += "<h5>"+recipe.name+"</h5>" %>
           <% end %>
           <%dietitian.quality_reviews.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).each do |quality_review| %>

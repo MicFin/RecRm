@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
       @test_recipes = Recipe.where(dietitian_id: 11).where(:created_at => Date.today.at_beginning_of_week.beginning_of_day..Date.tomorrow.end_of_day)
     end
     @incomplete_quality_reviews = current_dietitian.incomplete_quality_reviews
-    @incomplete_review_conflicts = ReviewConflict.assigned_to_dietitian(current_dietitian.id)
+    # @incomplete_review_conflicts = ReviewConflict.assigned_to_dietitian(current_dietitian.id)
   end
   # GET /recipes/1
   # GET /recipes/1.json

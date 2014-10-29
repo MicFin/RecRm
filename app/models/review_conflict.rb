@@ -13,48 +13,48 @@ class ReviewConflict < ActiveRecord::Base
     return assigned
   end
 
-  def needs_to_be_assigned?
-    # only review conflicts that have a completed qualit review should be assigned 
-    if self.quality_review.completed != true 
-      return false
-    else
-      # if its at the 3rd review stage then do not assign
-      if self.review_stage  == 3
-          return false
-      # if at the 2nd review stage and third reviewer not assigned then return true
-      elsif self.review_stage  == 2
-        if self.third_reviewer_id == nil
-          return true
-        else
-          return false
-        end
-      # if not 3rd or second stage and second reviewer not assigned then return true
-      else
-        if self.second_reviewer_id == nil
-          return true
-        else
-          return false
-        end
-      end
-    end
-  end
+  # def needs_to_be_assigned?
+  #   # only review conflicts that have a completed qualit review should be assigned 
+  #   if self.quality_review.completed != true 
+  #     return false
+  #   else
+  #     # if its at the 3rd review stage then do not assign
+  #     if self.review_stage  == 3
+  #         return false
+  #     # if at the 2nd review stage and third reviewer not assigned then return true
+  #     elsif self.review_stage  == 2
+  #       if self.third_reviewer_id == nil
+  #         return true
+  #       else
+  #         return false
+  #       end
+  #     # if not 3rd or second stage and second reviewer not assigned then return true
+  #     else
+  #       if self.second_reviewer_id == nil
+  #         return true
+  #       else
+  #         return false
+  #       end
+  #     end
+  #   end
+  # end
 
-  def self.assign_by_risk_level
-    conflicts_by_risk_level = {}
-    conflicts_by_risk_level[100] = []
-    conflicts_by_risk_level[200] = []
-    conflicts_by_risk_level[300] = []
+  # def self.assign_by_risk_level
+  #   conflicts_by_risk_level = {}
+  #   conflicts_by_risk_level[100] = []
+  #   conflicts_by_risk_level[200] = []
+  #   conflicts_by_risk_level[300] = []
     
-    self.where(resolved: false).each do |review_conflict|
+  #   self.where(resolved: false).each do |review_conflict|
           
-      if review_conflict.needs_to_be_assigned?
+  #     if review_conflict.needs_to_be_assigned?
         
-        conflicts_by_risk_level[review_conflict.risk_level] << review_conflict
-      end
-    end
+  #       conflicts_by_risk_level[review_conflict.risk_level] << review_conflict
+  #     end
+  #   end
 
-    return conflicts_by_risk_level
-  end
+  #   return conflicts_by_risk_level
+  # end
 
   def self.in_review_by_risk_level
     conflicts_by_risk_level = {}

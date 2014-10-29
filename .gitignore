@@ -16,3 +16,10 @@
 /tmp
 /config/secrets.yml
 /config/config.yml
+
+
+# Ignore DS_Store.
+.DS_Store
+/public/.DS_Store
+
+.env 

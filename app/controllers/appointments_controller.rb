@@ -1,5 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_filter :config_opentok,:except => [:index, :show, :new, :edit, :create, :destroy]
 
   # GET /appointments
   # GET /appointments.json
@@ -70,5 +71,11 @@ class AppointmentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
       params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :date, :room_id, :note, :client_note, :created_at, :updated_at)
+    end
+  
+    def config_opentok
+      if @opentok.nil?
+       @opentok = OpenTok::OpenTok.new ENV["API_KEY"], ENV["API_SECRET"]
+      end
     end
 end

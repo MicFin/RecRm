@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022081840) do
+ActiveRecord::Schema.define(version: 20141029034521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,14 +175,6 @@ ActiveRecord::Schema.define(version: 20141022081840) do
 
   add_index "families", ["head_of_family_id"], name: "index_families_on_head_of_family_id", using: :btree
 
-  create_table "families_users", id: false, force: true do |t|
-    t.integer "user_id"
-    t.integer "family_id"
-  end
-
-  add_index "families_users", ["family_id"], name: "index_families_users_on_family_id", using: :btree
-  add_index "families_users", ["user_id"], name: "index_families_users_on_user_id", using: :btree
-
   create_table "ingredients", force: true do |t|
     t.string   "name"
     t.string   "category"
@@ -344,6 +336,22 @@ ActiveRecord::Schema.define(version: 20141022081840) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
+  create_table "rooms", force: true do |t|
+    t.string   "name"
+    t.string   "sessionId"
+    t.boolean  "public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_families", force: true do |t|
+    t.integer "user_id"
+    t.integer "family_id"
+  end
+
+  add_index "user_families", ["family_id"], name: "index_user_families_on_family_id", using: :btree
+  add_index "user_families", ["user_id"], name: "index_user_families_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -357,9 +365,18 @@ ActiveRecord::Schema.define(version: 20141022081840) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone_number"
+    t.date     "date_of_birth"
+    t.string   "sex"
+    t.integer  "height_inches"
+    t.integer  "weight_ounces"
   end
 
+  add_index "users", ["date_of_birth"], name: "index_users_on_date_of_birth", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["last_name"], name: "index_users_on_last_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

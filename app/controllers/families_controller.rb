@@ -10,11 +10,21 @@ class FamiliesController < ApplicationController
   # GET /families/1
   # GET /families/1.json
   def show
+    @user = current_user
+    @family_dietary_restrictions = @family.dietary_restrictions
+    @family_members = @family.users 
   end
 
   # GET /families/new
   def new
+    @user = current_user
     @family = Family.new
+    @family.users.build
+    @new_user = User.new(last_name: @user.last_name)
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # GET /families/1/edit
@@ -25,7 +35,11 @@ class FamiliesController < ApplicationController
   # POST /families.json
   def create
     @family = Family.new(family_params)
-
+    @user = current_user
+    # if no user is selected for appointment then default to main user
+    if params["patient_focus"] == nil
+      params["patient_focus"] = @user.id
+    end
     respond_to do |format|
       if @family.save
         format.html { redirect_to @family, notice: 'Family was successfully created.' }

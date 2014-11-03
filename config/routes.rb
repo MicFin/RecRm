@@ -27,6 +27,10 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: 'welcome#index', as: :user_authenticated_root
         resources :recipes 
+      resources :families
+      resources :appointments
+      resources :rooms
+      match '/session/:id', :to => "rooms#session", :as => :party, :via => :get
     end
     # unauthenticated :user do
     #   root :to => "devise/sessions#new", as: :user_unauthenticated_root

@@ -52,7 +52,17 @@ gem 'jquery-ui-rails'
 # allows image uploads
 # gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem "paperclip", "~> 4.1"
+## storing images in aws s3 bucket
 gem 'aws-sdk'
+## for datepickers
+gem 'momentjs-rails', '~> 2.5.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
+
+# manages phone number validation
+gem 'phony_rails'
+
+# video conferencing 
+gem "opentok"
 
 #allows you to set variables within controller and access them in javascript 
 #http://railscasts.com/episodes/324-passing-data-to-javascript?view=asciicast

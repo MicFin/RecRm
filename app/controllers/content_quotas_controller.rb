@@ -87,10 +87,11 @@ class ContentQuotasController < ApplicationController
           sorted = second_tier.sort! { |a,b| a.created_at <=> b.created_at }
         # add to dietitian list of review
           sorted.first(quota).each do |recipe| 
-            
-            quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 2)
-            quota = quota - 1 
-            quality_review.save
+           if recipe.dietitan != dietitian 
+              quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 2)
+              quota = quota - 1 
+              quality_review.save
+            end
           end
         end
 
@@ -100,9 +101,11 @@ class ContentQuotasController < ApplicationController
           sorted = original_reviews.sort! { |a,b| a.created_at <=> b.created_at }
         # add to dietitian list of review
           sorted.first(quota).each do |recipe| 
-            quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 1)
-            quota = quota - 1 
-            quality_review.save
+            if recipe.dietitan != dietitian
+              quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 1)
+              quota = quota - 1 
+              quality_review.save
+            end
           end
         end
         # first tiwer reviews needing review
@@ -111,9 +114,11 @@ class ContentQuotasController < ApplicationController
           sorted = first_tier.sort! { |a,b| a.created_at <=> b.created_at }
         # add to dietitian list of review
           sorted.first(quota).each do |recipe| 
-            quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 1)
-            quota = quota - 1  
-            quality_review.save
+            if recipe.dietitan != dietitian
+              quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 1)
+              quota = quota - 1  
+              quality_review.save
+            end
           end
         end
         dietitian.save

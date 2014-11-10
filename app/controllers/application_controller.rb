@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
 private
 
 	def dietitian_activity
-	  current_dietitian.try(:touch, :last_response_at) 
+	  current_dietitian.try :touch
 	end
 
 end

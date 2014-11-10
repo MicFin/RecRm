@@ -84,6 +84,10 @@ gem "pundit"
 # https://github.com/RolifyCommunity/rolify
 gem 'rolify', github: 'EppO/rolify'
 
+# Gemfile
+gem 'redis-rails' # Will install several other redis-* gems
+gem 'websocket-rails'
+
 group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors

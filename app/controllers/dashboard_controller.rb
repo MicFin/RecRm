@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
   # GET /admin_dashboard
   def index
-
+    @online_dietitians = Dietitian.online
   end
 
   # GET /recipe_status

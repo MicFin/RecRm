@@ -1,6 +1,6 @@
 class Dietitian < ActiveRecord::Base
   rolify
-
+  scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -18,7 +18,9 @@ class Dietitian < ActiveRecord::Base
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "third_reviewer_id"
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "fourth_reviewer_id"
 
-  
+  def online?
+    updated_at > 10.minutes.ago
+  end
 
   def incomplete_recipes
     incomplete_recipes = []

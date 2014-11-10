@@ -11,6 +11,16 @@
 	}
 }
 
+.dashboard-button-container.no-hover{
+	background: $lightorange;
+}
+
+.dashboard-button-container.no-hover:hover{
+	background: $lightorange;
+	h3{
+		color: $white;
+	}
+}
 
 .dashboard-button-container:hover{
 	background: $lightgreen;
@@ -18,6 +28,8 @@
 		color: $black;
 	}
 }
+
+
 
 .online-dietitians{
 	margin-top: 50px;

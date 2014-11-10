@@ -97,7 +97,7 @@ class Recipe < ActiveRecord::Base
 
   def self.data_by_total
     today = Date.today
-    beginning_of_week = today.at_beginning_of_week
+    beginning_of_week = today.at_beginning_of_week(:thursday)
     data_by_total_hash = {}
     all_time_array = Recipe.all
     data_by_total_hash["total_all_time"] = all_time_array.count
@@ -140,7 +140,7 @@ class Recipe < ActiveRecord::Base
 
   def self.data_by_dietitian
     today = Date.today
-    beginning_of_week = today.at_beginning_of_week
+    beginning_of_week = today.at_beginning_of_week(:thursday)
     data_by_dietitian_hash = {}
     Dietitian.all.each do|dietitian|
       data_by_dietitian_hash[dietitian.email] = {}

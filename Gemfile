@@ -85,7 +85,7 @@ gem "pundit"
 gem 'rolify', github: 'EppO/rolify'
 
 # Gemfile
-gem 'redis-rails' # Will install several other redis-* gems
+gem 'redis'
 gem 'websocket-rails'
 
 group :development do

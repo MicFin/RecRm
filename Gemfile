@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'redis'
-# gem 'websocket-rails'
+gem 'websocket-rails'
 
 gem 'bootstrap-sass', '~> 3.1.1.1'
 

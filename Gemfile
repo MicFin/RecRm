@@ -85,8 +85,8 @@ gem "pundit"
 gem 'rolify', github: 'EppO/rolify'
 
 # Gemfile
-gem 'redis'
-gem 'websocket-rails'
+# gem 'redis'
+# gem 'websocket-rails'
 
 group :development do
 # Better error gives you better explanations for errors

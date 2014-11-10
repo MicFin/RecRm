@@ -23,7 +23,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+
 gem 'redis'
+
+# https://github.com/websocket-rails/websocket-rails/wiki/Installation-and-Setup
 gem 'websocket-rails'
 
 gem 'bootstrap-sass', '~> 3.1.1.1'

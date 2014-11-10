@@ -1,15 +1,9 @@
 <div id="roles-index-container">
-	<div class="online-dietitians col-xs-4 col-xs-offset-4 alert alert-info">
-		<h4>Current Dietitians Online</h4>
-	 	<%@online_dietitians.each do |dietitian| %>
-	 		<h5><%=dietitian.email%></h5>
-	 	<% end %>
-	</div>
   <div class="col-xs-12">
 		<div class="col-xs-3 dashboard-button-container ">
 		<h3>Dietitians Online</h3>
 	 	<%@online_dietitians.each do |dietitian| %>
-	 		<h4><%=dietitian.email%></h4>
+	 		<h4 class="white-font"><%=dietitian.email%></h4>
 	 	<% end %>
  		</div>
 		<%= link_to roles_path do %>

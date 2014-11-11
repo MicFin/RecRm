@@ -8,12 +8,13 @@ class ApplicationController < ActionController::Base
 
 	def after_sign_in_path_for(resource)
 		if resource.class == User
+
 		    if resource.sign_in_count <= 1
 		      # if first time give first time user experience
-		      home_path
+		      new_user_intro_path(resource.id)
 		    else
 		      # if not take them to their home page
-		      home_path
+		      new_user_intro_path(resource.id)
 		    end
 		elsif resource.class == Dietitian
 				if resource.sign_in_count <= 1
@@ -21,10 +22,10 @@ class ApplicationController < ActionController::Base
 		      # would rather it direct to dietitian_authenticated_root_path but failing
 		      ### dietitian_authenticated_root_path(current_dietitian)
 		      ### dietitian_authenticated_root_path
-					dietitian_recipes_path(current_dietitian)
+					dietitian_recipes_path(resource)
 		    else
 		      # if not take them to their home page
-					dietitian_recipes_path(current_dietitian)
+					dietitian_recipes_path(resource)
 		    end
 		elsif resource.class == AdminUser
 				if resource.sign_in_count <= 1
@@ -46,5 +47,7 @@ private
 	def dietitian_activity
 	  current_dietitian.try :touch
 	end
+
+  
 
 end

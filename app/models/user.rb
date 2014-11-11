@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable
 
+
+
+
   has_many :user_families
   has_many :families, through: :user_families
   has_many :head_of_families, :class_name => "Family", :foreign_key => "head_of_family_id"
@@ -31,26 +34,24 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Checks whether a password is needed or not. For validations only.
+  # Passwords are always required if it's a new record, or if the password
+  # or confirmation are being set somewhere.
   def password_required?
-    ### until roles are created to define what needs validation, the password and email requirements are handled on the front end with JS so that child users can be created by main users without needing to add a password or email to the child
-    # if user roll x then
-    # !persisted? || !password.nil? || !password_confirmation.nil?
-    # else
-    false
-    # end
+    !persisted? || !password.nil? || !password_confirmation.nil?
   end
 
   def email_required?
-    # ## if user roll x then 
-    # true
-    ## else
-    false
-    # end
+    true
   end
 
   def uppercase_name
-    self.first_name.capitalize!
-    self.last_name.capitalize!
+    if first_name || last_name 
+      self.first_name.capitalize!
+      self.last_name.capitalize!
+    else
+      return true
+    end
   end
 
   def age
@@ -81,4 +82,6 @@ class User < ActiveRecord::Base
       return "#{pounds} pounds"
     end
   end
+
+
 end

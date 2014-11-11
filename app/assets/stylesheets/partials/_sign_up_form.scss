@@ -1,0 +1,21 @@
+#sign-up-form input[type="email"], #sign-up-form input[type="password"] {
+	font-size: 20px;
+	height: 40px;
+}
+
+#sign-up-form label {
+	display: inline-block;
+	max-width: 100%;
+	margin-bottom: 5px;
+	font-weight: bold;
+	margin-right: 1em;
+}
+
+#sign-up-form .wide-image-container {
+	padding-bottom: 2%;
+}
+
+#sign-up-form input[type="submit"].btn-block, #sign-up-form input[type="reset"].btn-block, #sign-up-form input[type="button"].btn-block {
+	width: 100%;
+	height: 50px;
+}

@@ -19,14 +19,16 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index', as: 'home'
 
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "users/registrations" }
   
   # # root to: "welcome#index"
 
   devise_scope :user do
     authenticated :user do
-      root to: 'welcome#index', as: :user_authenticated_root
-        resources :recipes 
+      root to: 'users/regististration#new_user_intro', as: :user_authenticated_root
+      get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
+      get 'registrations/new_user_family/:id', to: 'users/registrations#new_user_family', as: 'new_user_family'
+      resources :recipes 
       resources :families
       resources :appointments
       resources :rooms

@@ -1,0 +1,95 @@
+
+
+<div class="container">
+	<div class="row bs-wizard" style="border-bottom:0;">
+
+		<div class="col-xs-3 bs-wizard-step complete">
+			<div class="text-center bs-wizard-stepnum">Step 1</div>
+			<div class="progress"><div class="progress-bar"></div></div>
+			<a href="#" class="bs-wizard-dot"></a>
+			<div class="bs-wizard-info text-center">Nice to meet you</div>
+		</div>
+
+		<div class="col-xs-3 bs-wizard-step active">
+			<div class="text-center bs-wizard-stepnum">Step 2</div>
+			<div class="progress"><div class="progress-bar"></div></div>
+			<a href="#" class="bs-wizard-dot"></a>
+			<div class="bs-wizard-info text-center">Build your nutrition profile </div>
+		</div>
+
+		<div class="col-xs-3 bs-wizard-step disabled">
+			<div class="text-center bs-wizard-stepnum">Step 3</div>
+			<div class="progress"><div class="progress-bar"></div></div>
+			<a href="#" class="bs-wizard-dot"></a>
+			<div class="bs-wizard-info text-center">Schedule your appointment</div>
+		</div>
+
+		<div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+			<div class="text-center bs-wizard-stepnum">Step 4</div>
+			<div class="progress"><div class="progress-bar"></div></div>
+			<a href="#" class="bs-wizard-dot"></a>
+			<div class="bs-wizard-info text-center">Thank You!</div>
+		</div>
+	</div>
+</div>
+<div id="new-user-name-form" class="container">
+  	<div class="row">
+  		<div class="col-xs-12">
+  			<h3>Who is this appointment for?</h3>
+				<div class="col-xs-12 form-group">
+					<label class="radio-inline">
+					  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">Yourself (<%=@user.first_name%> <%=@user.last_name%>)
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">Another Person
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">Your Family
+					</label>
+			  </div>
+			</div>
+		</div>
+</div>
+<div id="new-user-family-form" class="container">
+	<h4><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span>Add Another Member to Your Table</h4>
+	<div class="col-xs-6 form-group">
+	<%= simple_form_for(@new_user, url: registration_path(@new_user), html: {class: 'form-inline', method: :put, remote: true }) do |f| %>
+	  <%= devise_error_messages! %>
+	  			<div class="col-xs-5 form-group">
+			    	<label for="first_name">First Name</label>
+			      <%= f.input :first_name, autofocus: true, class: "form-control", type: "text", label: false %>
+				  </div>
+				  <div class="col-xs-5 col-xs-offet-1  form-group">
+			    	<label for="last_name">Last Name</label>
+			      <%= f.input :last_name, autofocus: true, class: "form-control", type: "text", label: false %>
+				  </div>
+				  <div class="col-xs-2"><span class="glyphicon glyphicon-floppy-save"></span></div>
+	<% end %>
+	 <h3>Michael Finneran (you) <button class="btn btn-warning btn-sm">Edit Health Profile</button></h3>
+	 <h3>Michael Finneran (you) <button class="btn btn-warning btn-sm">Edit Health Profile</button></h3>
+	 <h3>Michael Finneran (you) <button class="btn btn-warning btn-sm">Edit Health Profile</button></h3>
+	 <h3>Michael Finneran (you) <button class="btn btn-warning btn-sm">Edit Health Profile</button></h3>
+	</div>
+	<div class="col-xs-6 alert alert-success">
+	<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist">
+		  <li role="presentation" class="active"><a href="#allergies" role="tab" data-toggle="tab">Food Allergies</a></li>
+		  <li role="presentation"><a href="#intolerances" role="tab" data-toggle="tab">Intolerances</a></li>
+		  <li role="presentation"><a href="#diseases" role="tab" data-toggle="tab">Diseases</a></li>
+		  <li role="presentation"><a href="#more" role="tab" data-toggle="tab">More</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+		  <div role="tabpanel" class="tab-pane active" id="allergies">...</div>
+		  <div role="tabpanel" class="tab-pane" id="intolerances">...</div>
+		  <div role="tabpanel" class="tab-pane" id="diseases">...</div>
+		  <div role="tabpanel" class="tab-pane" id="more">...</div>
+		</div>
+	</div>
+	<div class="col-xs-12 text-center">
+		<div class="col-xs-4 col-xs-offset-4">
+		<button class="btn btn-success btn-block">Next</button>
+		</div>
+	</div>
+</div>

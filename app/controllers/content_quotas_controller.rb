@@ -86,15 +86,17 @@ class ContentQuotasController < ApplicationController
         if second_tier.count > 0
           sorted = second_tier.sort! { |a,b| a.created_at <=> b.created_at }
         # add to dietitian list of review
-          sorted.first(quota).each do |recipe| 
-           if recipe.dietitan != dietitian 
+          sorted.all.each do |recipe| 
+            if recipe.dietitan != dietitian 
               quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 2)
               quota = quota - 1 
               quality_review.save
             end
+            break if quota == 0
           end
         end
-
+      end
+      if quota > 0 
         # original reviews needing review
         original_reviews = Recipe.all_need_original_review
         if original_reviews.count > 0
@@ -106,8 +108,11 @@ class ContentQuotasController < ApplicationController
               quota = quota - 1 
               quality_review.save
             end
+            break if quota == 0
           end
         end
+      end
+      if quota > 0 
         # first tiwer reviews needing review
         first_tier = Recipe.all_need_first_tier_review
         if first_tier.count > 0
@@ -119,6 +124,7 @@ class ContentQuotasController < ApplicationController
               quota = quota - 1  
               quality_review.save
             end
+            break if quota == 0
           end
         end
         dietitian.save

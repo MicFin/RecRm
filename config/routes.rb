@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :time_slots
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -12,21 +10,20 @@ Rails.application.routes.draw do
   end
 
 
-  resources :appointments
-  resources :families
 
   
   get 'welcome/index', to: "welcome#index", as: "welcome"
   get 'home', to: 'home#index', as: 'home'
 
 
-  devise_for :users, :controllers => { :registrations => "users/registrations" }
+  devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions' }
   
   # # root to: "welcome#index"
 
   devise_scope :user do
     authenticated :user do
-      root to: 'users/regististration#new_user_intro', as: :user_authenticated_root
+      root :to => 'dashboard#home', as: :user_authenticated_root
+      get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
       get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
       get 'registrations/new_user_family/:id', to: 'users/registrations#new_user_family', as: 'new_user_family'
       get 'registrations/edit_user_health_groups/:id', to: 'users/registrations#edit_user_health_groups', as: 'edit_user_health_groups'
@@ -37,10 +34,10 @@ Rails.application.routes.draw do
       resources :recipes 
       delete 'families/:id/remove_member/:member_id', to: "families#remove_member", as: 'remove_family_member'
       resources :families
-      get 'appointments/select_time/', to: 'appointments#select_time', as: 'select_time'
+      get 'appointments/:id/select_time', to: 'appointments#select_time', as: 'select_time'
       resources :appointments
       resources :rooms
-      match '/session/:id', :to => "rooms#session", :as => :party, :via => :get
+      match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_room, :via => :get
     end
     # unauthenticated :user do
     #   root :to => "devise/sessions#new", as: :user_unauthenticated_root
@@ -51,6 +48,7 @@ Rails.application.routes.draw do
 
   devise_scope :dietitian do
     authenticated :dietitian do
+      resources :appointments
       get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
       get 'dashboard/recipe_status', to: 'dashboard#recipe_status', as: 'dashboard_recipe_status'
       # start review

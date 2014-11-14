@@ -1,0 +1,18 @@
+
+  <div class="row">
+  <% if @user.class == User %>
+
+    <%= render "user_session"%>
+
+  <% elsif @user.class == Dietitian %>
+  
+    <%= render "dietitian_in_room"%>
+
+  <% elsif @user.class == AdminUser %>
+
+    <%= render "admin_in_room"%>
+  
+  <% end %>
+  </div>
+
+

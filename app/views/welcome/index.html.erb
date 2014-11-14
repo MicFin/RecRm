@@ -10,8 +10,8 @@
 		<p>Create a Recipe</p>
 	</div>
 	<div id="appointment-update-container" class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center alert alert-danger">
-		<p>Your next upcoming appointment is in</p> <h3>3</h3><p>days</p>
-		<h4>Tuesday, September 20th from 4pm-5m</h4>
+		<p>Your upcoming session is</p>
+		<h4><%=@appointment.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p"%></h4>
 		<a class="alert-link" href="">Join Here</a></p>
 	</div>
 	<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center">

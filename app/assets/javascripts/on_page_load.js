@@ -35,6 +35,9 @@ $(document).ready(function() {
 	// Time slot calendar
 	TimeSlotCalendar.set();
 	TimeSlotCalendar.initiate_date_time_picker();
+	SelectApptCalendar.set();
+
+	UserSession.javascript();
 
 	if ($("#quality-review-main-container").length >= 1){
 		BasicForm.validateReview();

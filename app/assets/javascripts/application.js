@@ -39,6 +39,7 @@
 //= require user_sign_up
 //= require form_validations
 //= require time_slots
+//= require user_session
 //= require on_page_load
 
 

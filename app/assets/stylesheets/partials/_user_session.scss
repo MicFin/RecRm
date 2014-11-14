@@ -1,0 +1,189 @@
+#kindrd-navbar{
+	background-color: $carrotorange;
+}
+
+#kindrd-navbar li a {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+///////
+#navbar-logo {
+	height: 70px;
+	padding-left: 10px;
+	background: white;
+	padding-top: 3px;
+}
+
+#tara{
+	// height: 500px;
+	margin:0 auto;
+}
+
+#navbar-help{
+	float: right;
+}
+
+.large-image{
+	-webkit-transform: scale(1.6);
+  -ms-transform: scale(1.6);
+  transform: scale(1.6);
+}
+
+.affix {
+  top: 50px;
+  width:100%;
+}
+
+#nav-bottom, {
+	overflow: scroll;
+	height: 75px;
+	-webkit-transition: ease 1s;
+	-moz-transition: ease 1s;
+	-ms-transition: ease 1s; /* IE10 is actually unprefixed */
+	-o-transition: ease 1s;
+	transition: ease 1s;
+}
+
+#recipe-background{
+		-webkit-transition: ease 1s;
+	-moz-transition: ease 1s;
+	-ms-transition: ease 1s; /* IE10 is actually unprefixed */
+	-o-transition: ease 1s;
+	transition: ease 1s;
+}
+.footer-buttons{
+	background-color: $lightgreen;
+	text-align: center;
+	list-style-type: none;
+	height: 100%;
+	#notes-button{
+		min-height: 500px;
+		background-color: $carrotorange;
+	}
+	li:not(:first-child) { 
+		height: 100%;
+		padding-left: 0px;
+		padding-right: 0px;
+		border-left: 1px solid $white;
+	}
+	h2{
+		color: $white;
+	}
+}
+
+//////// below nav
+#recipe-background{
+	// background-color: lighten($darkgreen, 70%);
+	padding-top: 5%; 
+	.row{
+		margin-left:0px;
+				margin-right:0px;
+	}
+}
+
+#dietitian-name{
+	text-align: center;
+}
+
+.dietitian-first-name {
+	color: #f68d3c;
+	font-size: 50px;
+}
+
+#left-user-tabs{
+	padding: 30px;
+}
+#right-user-tabs{
+	text-align: center;
+	span.glyphicon {
+		font-size: 100px;
+		margin-bottom: 20px;
+		color: $carrotgreen;
+	}
+	div {
+		height:200px;
+		margin-top: 20px;
+	}
+}
+#notes-container .footer-buttons{
+	background-color: $carrotorange;
+}
+
+#user-message{
+	width: 200px;
+}
+#send-message-button{
+	margin-left: 20px;
+	width: 20%%;
+	background-color: $carrotorange;
+	color: white;
+}
+#chat-container{
+	display: none;
+}
+
+#phone-container{
+	display: none;
+}
+
+////// 
+#second-version{
+	ul {
+		padding:0px;
+	}
+  #right-user-tabs{
+		text-align: center;
+		span.glyphicon {
+			font-size: 40px;
+			margin-bottom: 0px;
+			color: $carrotgreen;
+		}
+		padding: 30px;
+	div {
+		height:auto;
+		margin-top: 20px;
+	}
+	}
+}
+
+#recipe-background.second-version{
+	padding-top: 5%;
+	background-color: honeydew;
+	padding-bottom: 2%;
+}
+
+
+
+
+
+#chat-box{
+	border: 1px solid lightgray;
+	margin-top: 2%;
+	background-color: white;
+}
+
+#second-version #user-message{
+	width: 482px;
+}
+#second-version #send-message-button{
+	margin-left: 20px;
+	width: 16%;
+	background-color: $carrotorange;
+	color: white;
+}
+
+
+.height-weight-input{
+	width: 30%;
+	float: left;
+	margin-left:10%;
+}
+
+
+#main-footer-list, #nav-bottom, #family-container, #recipe-background, #nav-bottom, #notes-container, #krdn-container{
+	  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}

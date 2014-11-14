@@ -1,23 +1,23 @@
 
 
-<div class="container">
+<div id="set-appt-time" data-appt-id="<%=@appointment.id%>" class="container">
   <div class="row bs-wizard" style="border-bottom:0;">
 
-    <div class="col-xs-3 bs-wizard-step active">
+    <div class="col-xs-3 bs-wizard-step complete">
       <div class="text-center bs-wizard-stepnum">Step 1</div>
       <div class="progress"><div class="progress-bar"></div></div>
       <a href="#" class="bs-wizard-dot"></a>
       <div class="bs-wizard-info text-center">Nice to meet you</div>
     </div>
 
-    <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+    <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
       <div class="text-center bs-wizard-stepnum">Step 2</div>
       <div class="progress"><div class="progress-bar"></div></div>
       <a href="#" class="bs-wizard-dot"></a>
       <div class="bs-wizard-info text-center">Create your nutrition profile </div>
     </div>
 
-    <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+    <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
       <div class="text-center bs-wizard-stepnum">Step 3</div>
       <div class="progress"><div class="progress-bar"></div></div>
       <a href="#" class="bs-wizard-dot"></a>
@@ -35,25 +35,11 @@
 <div class="col-xs-3 col-xs-offset-1 alert alert-info">
   <p>Please select a time . </p>
 </div>
-<div id="new-user-name-form" class="container col-xs-8">
+<div id="new-appt-form" class="container col-xs-8">
 
       <div class="row">
-      </div>
-      <div class="row">
-        <div class="col-xs-10 ">
+        <div class="col-xs-12">
+          <div id="select-appt-cal"></div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-2 col-xs-offset-4">
-        </div>
-        <div class="col-xs-2 col-xs-offset-1">
-          <%#= f.button :submit, "Next", class: "btn btn-success btn-lg" %>
-        </div>
-  <%# end %>
-      </div>
-
-<div class="container" id="time-slots-page-container">
-  <div class="row">
-  <h1>Listing time_slots</h1>
-  <div class="col-xs-6" id="choose-appt-cal"></div>
 </div>

@@ -9,12 +9,16 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
 		if resource.class == User
 
-		    if resource.sign_in_count <= 1
-		      # if first time give first time user experience
-		      new_user_intro_path(resource.id)
+		    if resource.appointment_hosts.last
+		    	if resource.appointment_hosts.last.start_time
+		    		# if not take them to their home page
+		      	user_dashboard_path(resource.id)
+		     	else 
+		     		new_user_intro_path(resource.id) 
+		     	end
 		    else
-		      # if not take them to their home page
-		      new_user_intro_path(resource.id)
+		      # if first time give first time user experience
+		      new_user_intro_path(resource.id) 
 		    end
 		elsif resource.class == Dietitian
 				if resource.sign_in_count <= 1

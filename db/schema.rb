@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114002651) do
+ActiveRecord::Schema.define(version: 20141114084701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,12 +79,13 @@ ActiveRecord::Schema.define(version: 20141114002651) do
     t.integer  "patient_focus_id"
     t.integer  "appointment_host_id"
     t.integer  "dietitian_id"
-    t.datetime "date"
     t.integer  "room_id"
     t.text     "note"
     t.text     "client_note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "articles", force: true do |t|

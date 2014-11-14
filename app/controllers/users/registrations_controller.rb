@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def new_user_intro
     
-    @user = User.find(params[:id])
+    @user = current_user || User.find(params[:id])
     
   end
 
@@ -223,8 +223,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    
-    @user = User.find(current_user.id)
+
+    @user = current_user
 
     successfully_updated = if needs_password?(@user, params)
       @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
@@ -238,10 +238,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     if successfully_updated
-      
+
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case their password changed
       sign_in @user, :bypass => true
+
       redirect_to after_update_path_for(@user)
     else
       render "edit"

@@ -1,0 +1,97 @@
+<!--     NEW RECIPE BACKGRUOND -->
+
+    <div id="recipe-background">
+      <div class="row">
+        <div id="left-user-tabs" class="col-xs-3">
+          <div class="col-xs-6">
+            <h1 class="font-light-green ">Goals</h1>
+          </div>
+          <div class="col-xs-12">
+          <ul>
+            <li><h4><%=@appointment.client_note%></h4></li>
+
+          </ul>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="video-center" id="user-video">
+          <div class="col-xs-12" id="videobox">
+        </div>
+      </div>
+        <div id="dietitian-name" class="col-xs-12">
+          <h1><span class="dietitian-first-name">Tara</span> McCarthy R.D.N. L.S.N.</h1>
+        </div>
+        </div>
+        <div class="col-xs-3">
+          <div id="chat-container" class="row">
+            <div id="chat-box" class="col-xs-12 form-group">
+              <h4><span class="font-light-orange">Tara:</span>        Welcome! </h4>
+              <h4><span class="font-light-green">Julie:</span>        Hi, Tara! </h4>
+              <h4><span class="font-light-orange">Tara:</span>        Now that we are all set up, let's being! </h4>
+              <h4><span class="font-light-orange">Julie:</span>        Sounds GREAT! </h4>
+            </div>
+            <form class="form-inline" role="form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="email" class="family-member-name form-control" id="user-message" placeholder="   Write Message Here">
+                </div>
+              </div>
+              <button id="send-message-button" type="submit" class="btn btn-default">Send</button>
+            </form>
+          </div>
+        </div>
+        <div id="right-user-tabs" class=" col-xs-3">
+          <div id="message-button-container" class="col-xs-12"><a id="show-chat-button" href="">
+            <span class="glyphicon glyphicon-comment">
+            </span></a>
+          </div>
+          <div id="phone-button-container"class="col-xs-12">
+            <a id="show-phone-button" href="">
+              <span class="glyphicon glyphicon-earphone">
+            </span>
+            </a>
+          </div>
+                    <div id="phone-container" class="col-xs-12">
+            <h1>Call</h1>
+            <h1>(781)749-9172</h1>
+          </div>
+        </div>
+      </div>
+    </div> <!-- recipe background -->
+    <nav id="nav-bottom" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+      <ul id="main-footer-list" class="row footer-buttons">
+        <li class="col-xs-4"><a class="family-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your Family</h2></div></a></li>
+        <li id="notes-button" class="col-xs-4"><a class="notes-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Take Notes</h2></div></a></li>
+        <li class="col-xs-4"><a class="krdn-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your KRDN</h2></div></a></li>
+      </ul>
+      <div id="family-container" class="hidden row" >
+        <ul class="row footer-buttons">
+          <li class="col-xs-3"><a class="family-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your Family</h2></div></a><%= render "/users/registrations/new_user_family_list" %></li>
+          <li class="col-xs-9"><%= render "/users/registrations/edit_user_health_groups_small" %></li>
+        </ul>
+      </div>
+      <div id="notes-container" class="hidden row" style="height:500px">
+        <ul class="row footer-buttons">
+          <li class="col-xs-4 col-xs-offset-4"><a class="family-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Take Notes</h2></div></a></li>
+          <li class="col-xs-10 col-xs-offset-1">
+          <textarea class="form-control form-group" rows="4" id="comment">You can look back at your notes and add to them after the consultation.  Don't worry about being neat, this is for your eyes only!</textarea>
+            <button class="btn btn-success">Save</button>
+        </li>
+        </ul>
+      </div>
+      <div id="krdn-container" class="hidden row" style="height:500px">
+        <ul class="row footer-buttons">
+          <li class="col-xs-4 col-xs-offset-8"><a class="krdn-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your KRDN</h2></div></a></li>
+        </ul>
+        <div class="col-xs-3">
+        </div>
+        <div class="col-xs-4">
+        </div>
+        <div class="col-xs-5">
+        </div>
+      </div>
+    </nav>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->

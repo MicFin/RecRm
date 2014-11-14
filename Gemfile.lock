@@ -101,6 +101,7 @@ GEM
     execjs (2.2.0)
     formtastic (2.3.0.rc3)
       actionpack (>= 3.0)
+    fullcalendar-rails (2.0.2.0)
     gon (5.1.0)
       actionpack (>= 2.3.0)
       json
@@ -267,6 +268,7 @@ DEPENDENCIES
   bootstrap3-datetimepicker-rails (~> 3.0.0)
   coffee-rails (~> 4.0.0)
   devise
+  fullcalendar-rails
   gon
   jbuilder (~> 2.0)
   jquery-rails

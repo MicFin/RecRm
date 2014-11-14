@@ -1,0 +1,2 @@
+$("#family-member-<%=@removed_member_id%>").remove();
+$("#new-user-family-form").children().last().replaceWith("<%= j render(:partial => '/users/registrations/new_user_nutrition_complete') %>");

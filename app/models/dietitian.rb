@@ -1,5 +1,5 @@
 class Dietitian < ActiveRecord::Base
-  rolify
+  rolify :role_cname => 'Role'
   scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

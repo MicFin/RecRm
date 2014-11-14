@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :time_slots
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -28,8 +29,15 @@ Rails.application.routes.draw do
       root to: 'users/regististration#new_user_intro', as: :user_authenticated_root
       get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
       get 'registrations/new_user_family/:id', to: 'users/registrations#new_user_family', as: 'new_user_family'
+      get 'registrations/edit_user_health_groups/:id', to: 'users/registrations#edit_user_health_groups', as: 'edit_user_health_groups'
+      # update health gorups
+      patch 'registrations/update_user_health_groups/:id', to: 'users/registrations#update_user_health_groups', as: 'update_user_health_groups'
+      get 'registrations/new_family_member/', to: 'users/registrations#new_family_member', as: 'new_family_member'
+      post 'registrations/create_family_member', to: 'users/registrations#create_family_member', as: 'create_family_member'
       resources :recipes 
+      delete 'families/:id/remove_member/:member_id', to: "families#remove_member", as: 'remove_family_member'
       resources :families
+      get 'appointments/select_time/', to: 'appointments#select_time', as: 'select_time'
       resources :appointments
       resources :rooms
       match '/session/:id', :to => "rooms#session", :as => :party, :via => :get
@@ -72,6 +80,7 @@ Rails.application.routes.draw do
       get 'content_quotas/assign_content', to: 'content_quotas#assign_content', as: 'assign_content'  
       resources :content_quotas
       resources :characteristics
+      resources :time_slots
       resources :ingredients_recipes do 
         collection { post :sort }
         get :autocomplete_ingredient_name, :on => :collection

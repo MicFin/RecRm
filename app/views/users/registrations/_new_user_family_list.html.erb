@@ -1,0 +1,15 @@
+		<div id="family-member-list">
+			<% family_members ||= @family_members%>
+			<%family_members.each do |family_member|%>
+				<div id="family-member-<%=family_member.id%>">
+				 	<h3><%=family_member.first_name%> <%=family_member.last_name%> <%=link_to "Edit Nutrition Profile", edit_user_health_groups_path(family_member), {class: "btn btn-warning btn-sm", :remote => true}  %></h3>
+				 	<% if family_member.patient_groups.count >= 1 %>
+					 	<%family_member.patient_groups.each do |patient_group| %>
+					 		<div class="btn btn-danger btn-sm">
+					 			<%= patient_group.name%>
+					 		</div>
+					 	<% end %>
+				 	<% end %>
+				</div>
+			<% end %>
+		</div>

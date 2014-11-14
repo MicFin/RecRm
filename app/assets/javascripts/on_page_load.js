@@ -28,6 +28,14 @@ $(document).ready(function() {
 	// Content Quota form
 	FormValidation.contentQuotaValidations();
 
+	// User sign up form
+	UserSignUp.appoint_self_checkbox();
+	UserSignUp.nutrition_buttons();
+
+	// Time slot calendar
+	TimeSlotCalendar.set();
+	TimeSlotCalendar.initiate_date_time_picker();
+
 	if ($("#quality-review-main-container").length >= 1){
 		BasicForm.validateReview();
 		BasicForm.setReviewSliders();
@@ -35,4 +43,6 @@ $(document).ready(function() {
 		BasicForm.validate();
 		BasicForm.setSliders();
 	};
+
+
 });

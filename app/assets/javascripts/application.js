@@ -20,21 +20,27 @@
 //= require jquery.ui.slider
 //= require jquery.ui.autocomplete
 //= require jquery.ui.sortable
+//= require jquery.ui.draggable
+//= require jquery.ui.resizable
 
+//= require moment
 //= require bootstrap
+//= require bootstrap-datetimepicker
+//= require fullcalendar
+
+
 //= require new_recipe_bread_crumb
 //= require health_groups_and_categories_preview
 //= require dietitian_nav
 //= require articles_form
 //= require recipe_step_list
-//= require on_page_load
 //= require basic_form_validate
 //= require override_bootstrap
-
+//= require user_sign_up
 //= require form_validations
+//= require time_slots
+//= require on_page_load
 
 
 
-
-// }
 

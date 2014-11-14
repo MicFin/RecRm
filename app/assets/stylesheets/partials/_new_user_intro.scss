@@ -1,4 +1,4 @@
-.bs-wizard {margin-top: 40px;}
+.bs-wizard {margin-top: 50px;}
 
 /*Form Wizard*/
 .bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
@@ -21,12 +21,14 @@
 .bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
 /*END Form Wizard*/
 
+
+
 #new-user-name-form{
-	text-align:center;
-	margin-top: 20px;
+	text-align:left;
+	margin-top: 2%;
 }
 
-#new-user-name-form input[type="text"] {
+#new-user-name-form input[type="text"]  {
 	font-size: 20px;
 	height: 40px;
 }
@@ -37,7 +39,7 @@
 }
 
 #new-user-name-form h3{
-	margin-bottom: 50px;
+	line-height: 2;
 }
 
 #new-user-name-form input[type="submit"].btn-lg, #new-user-name-form input[type="reset"].btn-lg, #new-user-name-form input[type="button"].btn-lg {
@@ -46,7 +48,173 @@
 	margin-bottom: 50px;
 }
 
+#new-user-name-form input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:30px;
+    height:30px;
+    background:white;
+    border-radius:100%;
+		border: 1px solid #cccccc;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+#new-user-name-form input[type='checkbox']:checked {
+    background: $lightorange;
+    border:2px solid $lightorange;
+}
+
+#new-user-family-form {
+	margin-top: 2%
+}
+
 #new-user-family-form .glyphicon-floppy-save{
 	font-size: 30px;
 	line-height: 2.4;
 }
+
+#new-user-family-form .nav-tabs li {
+	padding-left: 0px;
+	padding-right: 0px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#new-user-family-form a {
+	color: $darkgreen;
+	text-decoration: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#new-user-family-form a:hover {
+	color: $carrotorange;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#new-user-family-form a:active{
+	color: $lightorange;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#new-user-family-form a:visited{
+	color: $darkgreen;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#new-user-family-form .nav-tabs {
+  border-bottom: none;
+  text-align: center;
+  margin-bottom: 3%;
+	background-color: $white;
+  padding-bottom: 2%;
+}
+
+#new-user-family-form .nav-tabs > li > a:hover, #new-user-family-form .nav-tabs > li > a:focus {
+	border-color: transparent;
+	text-decoration: inherit;
+	background-color: inherit;
+	margin-top: 5%;
+	border-bottom: 5px solid $carrotorange;
+}
+
+#new-user-family-form .nav-tabs > li.active > a, #new-user-family-form .nav-tabs > li.active > a:hover, #new-user-family-form .nav-tabs > li.active > a:focus {
+	color: $lightorange;
+	background-color: transparent;
+	border: transparent;
+	border-bottom-color: transparent;
+	cursor: default;
+	margin-top: 0px;
+  font-size: 1.2em;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#new-user-family-form #bottom-button-container{
+	background-color: white;
+	padding: 3% 0;
+	p {
+		margin-top: 2%;
+	}
+}
+
+#new-user-family-form #new-user-options{
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+
+#new-user-family-form .tab-pane > div{
+	padding-bottom: 3%;
+	padding-left: 6%;
+	padding-right: 6%;
+	padding-top: 3%;
+}
+
+#new-user-family-form .radio {
+	margin-top: 0px;
+}
+
+#new-user-completed {
+	margin-top: 10%;
+	text-align: center;
+	span.glyphicon {
+		font-size: 50px;
+	}
+	#complete-family-container{
+		margin-top: 4%;
+	}
+}
+
+#new-user-options input[type="text"]  {
+	font-size: 20px;
+	height: 40px;
+	width: 100%;
+	margin-top: 7%;
+}
+
+#new-user-options input[type="number"]  {
+	width: 100%;
+}
+
+#new-user-family-form #top-container {
+	background-color: white;
+	padding: 3% 0;
+	#preferences-title {
+		padding-right: 0px;
+	}
+	#preferences-first-name {
+		padding-left: 0px;
+	}
+}
+
+#height-attributes, #weight-attributes {
+	padding-left: 0px;
+}
+
+#height-attributes div, #weight-attributes div {
+	padding-right: 0px;
+}
+
+#family-member-list .btn-sm, #family-member-list .btn-group-sm > .btn {
+	margin: 1%;
+}
+
+#family-member-list .btn-sm.btn-danger{
+		cursor: default;
+	}

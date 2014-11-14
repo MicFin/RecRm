@@ -75,6 +75,20 @@ class FamiliesController < ApplicationController
     end
   end
 
+
+  # DELETE /families/:id/remove_member/:member_id
+  def remove_member
+    @removed_member_id = params[:member_id]
+    family_member = User.find(@removed_member_id)
+    family_member.destroy
+    respond_to do |format|
+      # format.html { redirect_to families_url, notice: 'Family was successfully destroyed.' }
+      # format.json { head :no_content }
+      format.js
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_family

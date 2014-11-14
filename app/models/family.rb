@@ -5,6 +5,8 @@ class Family < ActiveRecord::Base
 
   accepts_nested_attributes_for :users, :reject_if => :all_blank, :allow_destroy => true, :reject_if => :no_first_name
   accepts_nested_attributes_for :user_families, :reject_if => :all_blank, :allow_destroy => true
+  # resourcify makes it so Family can have roles attached to family instances
+  resourcify
   ## family can not create a user without a first name, see accepted_nested_attributes_for reject_if:
   def no_first_name(attributes)
     attributes[:first_name].blank?

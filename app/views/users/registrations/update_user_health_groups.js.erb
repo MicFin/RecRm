@@ -1,0 +1,2 @@
+$("#new-user-family-form").children().last().replaceWith("<%= j render(:partial => 'new_user_nutrition_complete') %>");
+$("#family-member-list").replaceWith("<%= j render(:partial => 'new_user_family_list', :locals => {:family_members => @family_members}) %>");

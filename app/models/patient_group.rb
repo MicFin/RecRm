@@ -55,7 +55,7 @@ class PatientGroup < ActiveRecord::Base
   end
 
   # returns array of all Patient Groups with the category disease and an Patient Group named "Other Disease" with an input field true boolean
-  def self.diseases_with_other_field
+  def self.diseases_with_other
     diseases=[]
     self.all.each do |allergy|
       if allergy.category.downcase == "disease"

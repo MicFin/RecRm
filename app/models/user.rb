@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-  resourcify
-  rolify
+  rolify :role_cname => 'UserRole'
 
   before_save :uppercase_name
 	# Include default devise modules. Others available are:
@@ -26,6 +25,24 @@ class User < ActiveRecord::Base
   # validates phone number is in a correct format
   validates :phone_number, :phony_plausible => true
 
+
+  # returns height_hash = {'feet'=> ##, 'inches' => ##}
+  def height_hash
+    height_hash = {}
+    if self.height_inches
+      feet = self.height_inches / 12
+      inches = self.height_inches % 12
+      height_hash["feet"] = feet
+      height_hash["inches"] = inches
+    else
+      height_hash["feet"] = nil
+      height_hash["inches"] = nil
+    end
+
+    return height_hash
+  end
+
+
   def singular_possessive
     if self.sex == "Male"
       return "his"
@@ -36,13 +53,26 @@ class User < ActiveRecord::Base
 
   # Checks whether a password is needed or not. For validations only.
   # Passwords are always required if it's a new record, or if the password
-  # or confirmation are being set somewhere.
+  # or confirmation are being set somewhere 
   def password_required?
-    !persisted? || !password.nil? || !password_confirmation.nil?
+    # user = self
+    # if user.has_role? "Family Member Account"
+    #   return false
+    # else
+    #   !persisted? || !password.nil? || !password_confirmation.nil?
+    # end
+    false
   end
 
   def email_required?
-    true
+
+    # user = self
+    # if user.has_role? "Family Member Account"
+    #   return false
+    # else
+    #   return true
+    # end
+    false
   end
 
   def uppercase_name

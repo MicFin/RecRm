@@ -1,0 +1,31 @@
+<div id="appointment-form" class="col-xs-12">
+<%= simple_form_for(@time_slot, remote: true) do |f| %>
+  <%= f.error_notification %>
+
+  <div style="height:75px;">
+       <div class='col-sm-6'>
+            <div class="form-group">
+            	<h5>Start Time</h5>
+                <div class='input-group date' id='datetimepicker-appt-start'>
+                    <input type="datetime" name="time_slot[start_time]" class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-6'>
+            <div class="form-group">
+            <h5>End Time</h5>
+                <div class='input-group date' id='datetimepicker-appt-end'>
+                    <input type="datetime" name="time_slot[end_time]" class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+</div>

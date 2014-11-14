@@ -8,6 +8,10 @@ class AppointmentsController < ApplicationController
     @appointments = Appointment.all
   end
 
+  def select_time
+    @time_slots = TimeSlot.all
+  end
+
   # GET /appointments/1
   # GET /appointments/1.json
   def show

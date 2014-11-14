@@ -1,0 +1,5 @@
+
+$("#new-user-family-form").children().last().replaceWith("<%= j render(:partial => 'edit_user_health_groups', :locals => {:updated_user => @updated_user}) %>");
+
+UserSignUp.nutrition_buttons();
+$('#remove-family-member-button[data-toggle="tooltip"]').tooltip();

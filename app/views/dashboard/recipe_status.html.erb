@@ -107,7 +107,7 @@
               <th>Reviewer</th>
               <th># of Total Reviewers</th>
               <th># of Unique Reviewers</th>
-
+              <th></th>
             </tr>
         </thead>
         <tbody>
@@ -120,6 +120,7 @@
               <td><%= live_recipe.quality_reviews.last.dietitian.email %></td>
               <td><%= live_recipe.number_of_reviewers_hash[:total] %></td>
               <td><%= live_recipe.number_of_reviewers_hash[:unique] %></td>
+              <td><%= link_to 'Re-Assign', select_reviewer_path(live_recipe) %></td>
             </tr>
           <% end %>
         </tbody>
@@ -136,7 +137,6 @@
               <th># of Conflict Resolutions</th>
               <th># of Total Reviewers</th>
               <th># of Unique Reviewers</th>
-
             </tr>
         </thead>
         <tbody>

@@ -41,7 +41,6 @@ var SelectApptCalendar = {
            data: {time_slot_id: calEvent.id},
            url: "/appointments/"+appt_id+"/edit",
            success: function(response){
-            alert("done");
            } 
        });
 

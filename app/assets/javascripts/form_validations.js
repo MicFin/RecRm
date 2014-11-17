@@ -404,7 +404,7 @@
           }
         },
         errorPlacement: function (error, element) {
-            $(element).tooltip({ title: $(error).text()});  
+            $(element).tooltip({ title: $(error).text(), placement: "top"});  
         },
         success: function (label, element) {
             $(element).tooltip("destroy"); 

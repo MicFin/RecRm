@@ -299,7 +299,7 @@
     //
     nutrition_form: function(){
 
-      $("#new-user-options .edit_user").validate({
+      $("#new-user-options .edit_user.simple_form").first().validate({
         rules: {
           "user[first_name]":{
             required: true,
@@ -313,6 +313,9 @@
             date: true,
           },
           "user[height][feet]":{
+            // required: function(element) {
+            //   return $(element).val().length > 0;
+            // },
             rangelength: [0, 10],
             number: true
           },
@@ -342,6 +345,7 @@
           //   date: true,
           // },
           // "user[height][feet]":{
+          //   required: "Enter feet",
           //   rangelength: "Number between 0 and 10",
           //   number: "Number between 0 and 10"
           // },
@@ -368,9 +372,14 @@
             required: true,
             minlength: 2
           },
-          "user[date_of_birth]":{
-            required: true,
-            date: true
+          "user[date_of_birth(1i)]":{
+            required: true
+          },
+          "user[date_of_birth(2i)]":{
+            required: true
+          },
+          "user[date_of_birth(3i)]":{
+            required: true
           },
           "user[height][feet]":{
             required: true,
@@ -399,9 +408,14 @@
             required: "Enter last name",
             minlength: 2
           },
-          "user[date_of_birth]":{
-            required: "Enter birthday",
-            date: true
+          "user[date_of_birth(1i)]":{
+            required: "Enter year"
+          },
+          "user[date_of_birth(2i)]":{
+            required: "Enter month"
+          },
+          "user[date_of_birth(3i)]":{
+            required: "Enter day"
           },
           "user[height][feet]":{
             required: "Enter 0 if under 1ft",

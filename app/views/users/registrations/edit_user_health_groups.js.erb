@@ -1,8 +1,10 @@
 
 $("#new-user-family-form").children().last().replaceWith("<%= j render(:partial => 'edit_user_health_groups', :locals => {:updated_user => @updated_user}) %>");
 $("#family-container .footer-buttons").children().last().replaceWith("<%= j render(:partial => 'edit_user_health_groups_small', :locals => {:updated_user => @updated_user}) %>");
+$(".selected-family-member a").show();
 $(".selected-family-member").removeClass("selected-family-member");
 $("#family-member-<%=@updated_user_id%>").addClass("selected-family-member");
+$(".selected-family-member a").hide();
 UserSignUp.nutrition_buttons();
 $('#remove-family-member-button[data-toggle="tooltip"]').tooltip();
 FormValidation.nutrition_form();

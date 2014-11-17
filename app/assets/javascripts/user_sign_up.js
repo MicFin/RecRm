@@ -40,6 +40,6 @@ var UserSignUp = {
   },
   family_buttons: function(){
     $("#family-member-list").children().first().addClass("selected-family-member");
-    $(".selected-family-member a").remove();
+    $(".selected-family-member a").hide();
   },
 }

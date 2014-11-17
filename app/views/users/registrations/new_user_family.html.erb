@@ -38,30 +38,17 @@
 	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
 		<h3>Who eats at your table?</h3>
 		<p>Whether you are juggling multiple anaphylactic tummy's or a single picky eater, your team of KindRDNutritionists will empower you to make life easier, safer, and tastier. Help us get to know you and your family, starting with . . .</p>
+		<div class="hidden-xs">
 		<%= render "new_user_family_list" %>
+		</div>
 	</div>
 	<div id="new-user-options" class="appt-focus col-xs-12 col-sm-12 col-md-8 col-lg-8 alert alert-success">
 		<%= simple_form_for @family_members[0], :url => {:controller => 'users/registrations', :action => 'update_user_health_groups'}, remote: true do |f| %>
 			<input type="hidden" name="updated_user_id" value="<%=@family_members[0].id%>"/>
 		<div id="top-container" class="col-xs-12 text-center">
-			<div id="preferences-title" class="col-xs-12 col-sm-12 col-md-12 col-lg-5 ">
-				<h3>Nutrition Preferences for</h3>
-			</div>
-			<div id="preferences-first-name" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 form-group">
-	      <%= f.input :first_name, autofocus: true, class: "form-control", type: "text", label: false %>
-		  </div>
-		  <div id="preferenes-last-name" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 form-group">
-	      <%= f.input :last_name, autofocus: true, class: "form-control", type: "text", label: false %>
-		  </div>
+			<%= render "users/registrations/forms/name_form", f: f %>
 		</div>
-		<ul id="new-user-nutrition-tabs" class="nav nav-tabs col-xs-12" role="tablist">
-		  <li role="presentation" class="active col-xs-2"><a href="#general" role="tab" data-toggle="tab">General Nutrition</a></li>
-		  <li role="presentation" class="col-xs-2"><a class="col-xs-12" href="#allergies" role="tab" data-toggle="tab">Food Allergies</a></li>
-		  <li role="presentation" class="col-xs-2"><a class="col-xs-12" href="#intolerances" role="tab" data-toggle="tab">Intolerances</a></li>
-		  <li role="presentation" class="col-xs-3"><a class="col-xs-12" href="#diseases" role="tab" data-toggle="tab">Nutrition Related Diseases</a></li>
-		  <li role="presentation" class="col-xs-2"><a class="col-xs-12" href="#diets" role="tab" data-toggle="tab">Special Diets</a></li>
-		  <li role="presentation" class="col-xs-1"><a class="col-xs-12" href="#more" role="tab" data-toggle="tab">More</a></li>
-		</ul>
+		<%= render "users/registrations/forms/new_user_nutrition_tabs", f: f %>
 		<!-- Tab panes -->
 		<div class="tab-content">
 		  <div role="tabpanel" class="tab-pane fade in active" id="general">
@@ -117,72 +104,18 @@
 		        	<%= f.input :sex, :collection => [["Female", "Female"], ["Male", 'Male']], :label_method => :last, :value_method => :first ,as: :radio_buttons, :item_wrapper_class => 'radio-inline', label: false %>
 		        </div>
 		      </div>
-			    <div class="row">
-			    	<div class="text-center col-xs-4 col-xs-offset-4">
-			    		<button id="new-user-allergies-button" class="btn btn-link">View food allergies</button>
-			    	</div>
-			    </div>
+					<p><button id="new-user-allergies-button" class="btn btn-link">Next nutrition category</button></p>
       	</div>
-		  </div>
-		  <div role="tabpanel" class="tab-pane fade" id="allergies">
-       	<div class="col-xs-12 text-left">
-       	<p>Select all that apply or add your own:</p>
-		        <%= f.association :patient_groups, as: :check_boxes, collection: @allergies, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
-
-      	</div>
-		    <div class="row">
-			    	<div class="text-center col-xs-4 col-xs-offset-4">
-			    		<button id="new-user-intolerances-button" class="btn btn-link">View food intolerances</button>
-			    	</div>
-			    </div>
-		  </div>
-		  <div role="tabpanel" class="tab-pane fade" id="intolerances">
-       	<div class="col-xs-12 text-left">
-       	<p>Select all that apply or add your own:</p>
-		        <%= f.association :patient_groups, as: :check_boxes, collection: @intolerances, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
-
-      	</div>
-		    <div class="row">
-			    	<div class="text-center col-xs-4 col-xs-offset-4">
-			    		<button id="new-user-diseases-button" class="btn btn-link">View nutrition related diseases</button>
-			    	</div>
-			    </div>
-		  </div>
-		  <div role="tabpanel" class="tab-pane fade" id="diseases">
-       	<div class="col-xs-12 text-left">
-       	<p>Select all that apply or add your own:</p>
-		        <%= f.association :patient_groups, as: :check_boxes, collection: @diseases, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
-
-      	</div>
-		    <div class="row">
-		    	<div class="text-center col-xs-4 col-xs-offset-4">
-		    		<button id="new-user-diets-button" class="btn btn-link">View special diets</button>
-		    	</div>
-			  </div>
-		  </div>
-		  <div role="tabpanel" class="tab-pane fade" id="diets">
-       	<div class="col-xs-12 text-left">
-       	<p>Select all that apply or add your own:</p>
-		        <%= f.association :patient_groups, as: :check_boxes, collection: @diets, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
-
-      	</div>
-		    <div class="row">
-		    <div class="text-center col-xs-4 col-xs-offset-4">
-		   		<button id="new-user-more-button" class="btn btn-link">Add your own notes</button>
-		    	</div>
-			  </div>
-		  </div>
-		  <div role="tabpanel" class="tab-pane fade" id="more">
-		  	<div class="col-xs-10 col-xs-offset-1">
-			  	<p>Have more to share about <%=@family_members[0].first_name%>?</p>
-			  	<textarea class="form-control form-group" placeholder="Enter any additional information here.  Anything you think is important..is!" name="user_added_info" rows="4"></textarea>
-			  </div>
-
-		  </div>
+			</div>
+			<%=render "users/registrations/forms/allergies", f: f %>
+			<%= render "users/registrations/forms/intolerances", f: f %>
+			<%= render "users/registrations/forms/diseases", f: f %>
+			<%= render "users/registrations/forms/diets", f: f %>
+			<%= render "users/registrations/forms/more", f: f %>
 		</div>
 		<div id="bottom-button-container" class="col-xs-12 text-center">
 			<div class="col-xs-8 text-right">
-				<p>Complete this nutrition profile?</p>
+				<p>Complete this nutrition profile</p>
 			</div>
 			<div class="col-xs-2">
 	  			<%= f.button :submit, "Save", class: "btn btn-success btn-block" %>

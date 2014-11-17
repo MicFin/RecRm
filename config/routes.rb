@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       patch 'registrations/update_user_health_groups/:id', to: 'users/registrations#update_user_health_groups', as: 'update_user_health_groups'
       get 'registrations/new_family_member/', to: 'users/registrations#new_family_member', as: 'new_family_member'
       post 'registrations/create_family_member', to: 'users/registrations#create_family_member', as: 'create_family_member'
+            resources :time_slots
       resources :recipes 
       delete 'families/:id/remove_member/:member_id', to: "families#remove_member", as: 'remove_family_member'
       resources :families
@@ -66,6 +67,7 @@ Rails.application.routes.draw do
       patch 'recipes/:recipe_id/review_conflicts/:id/accept_review_conflict', to: 'review_conflicts#accept_review_conflict', as: "accept_review_conflict"
       patch 'recipes/:recipe_id/review_conflicts/:id/decline_review_conflict', to: 'review_conflicts#decline_review_conflict', as: "decline_review_conflict"
       patch 'recipes/:recipe_id/review_conflicts/:id/edit_review_conflict', to: 'review_conflicts#edit_review_conflict', as: "edit_review_conflict"
+
       # root :to => 'recipes#dietitian_recipes_index', :constraints => lambda { |request| request.env['warden'].user.class.name == 'Dietitian' }, :as => "dietitian_authenticated_root"
       root :to => 'welcome#index', as: :dietitian_authenticated_root
       # role assignments index

@@ -5,6 +5,7 @@
 }
 #notepad {
   margin-top: 1em;
+  margin-left: 1em;
 }
 
 #notepad h2,p{
@@ -53,6 +54,7 @@
   -webkit-transform:rotate(-6deg);
   -o-transform:rotate(-6deg);
   -moz-transform:rotate(-6deg);
+  cursor: default;
 }
 
 #notepad ul li:nth-child(even) a{
@@ -77,14 +79,14 @@
   top:-10px;
 }
 
-#notepad ul li a:hover,ul li a:focus{
-  -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
-  -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
-  box-shadow:10px 10px 7px rgba(0,0,0,.7);
-  -webkit-transform: scale(1.25);
-  -moz-transform: scale(1.25);
-  -o-transform: scale(1.25);
-  position:relative;
-  z-index:5;
-}
+// #notepad ul li a:hover,ul li a:focus{
+//   -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
+//   -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+//   box-shadow:10px 10px 7px rgba(0,0,0,.7);
+//   -webkit-transform: scale(1.25);
+//   -moz-transform: scale(1.25);
+//   -o-transform: scale(1.25);
+//   position:relative;
+//   z-index:5;
+// }
 

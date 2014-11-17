@@ -84,9 +84,8 @@
         <td><%= appointment.client_note %></td>
         <td><%= appointment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
         <td><%= appointment.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-            <td colspan="2">
-
-            </td>
+        <td><%= link_to 'Change Dietitian', edit_appointment_path(appointment) %></td>
+        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -94,7 +93,7 @@
 
 <br>
 
-<h1>Upcoming appointments</h1>
+<h1>Previous appointments</h1>
 
 <table>
   <thead>
@@ -124,8 +123,8 @@
         <td><%= appointment.client_note %></td>
         <td><%= appointment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
         <td><%= appointment.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-        <td><%= link_to 'Assign Dietitian', edit_appointment_path(appointment) %></td>
-        <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td></td>
+        <td></td>
       </tr>
     <% end %>
   </tbody>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114084701) do
+ActiveRecord::Schema.define(version: 20141117032109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -343,7 +343,10 @@ ActiveRecord::Schema.define(version: 20141114084701) do
     t.boolean  "public"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "dietitian_id"
   end
+
+  add_index "rooms", ["dietitian_id"], name: "index_rooms_on_dietitian_id", using: :btree
 
   create_table "time_slots", force: true do |t|
     t.string   "title"

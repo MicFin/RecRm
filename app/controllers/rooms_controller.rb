@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   include PatientGroupsHelper
-before_filter :config_opentok,:except => [:index]
+# before_filter :config_opentok,:except => [:index]
 # only admin can view rooms pages
 before_filter :authenticate_admin_user!, only: [:index]
 
@@ -10,12 +10,12 @@ before_filter :authenticate_admin_user!, only: [:index]
   end
 
   def create
-    #commented out to trouble shoot, could add in
-    # session = @opentok.create_session request.remote_addr
+    ##commented out to trouble shoot, could add in
+    ## session = @opentok.create_session request.remote_addr
     # @new_session = @opentok.create_session 
     # params[:room][:sessionId] = @new_session.session_id
-    # @new_room = Room.new(params[:room])
     # @tok_token = @new_session.generate_token :session_id =>@new_session.session_id  
+    # @new_room = Room.new(params[:room])
     respond_to do |format|
       if @new_room.save
         format.html { redirect_to("/session/"+@new_room.id.to_s) }
@@ -73,9 +73,9 @@ before_filter :authenticate_admin_user!, only: [:index]
 
   private
   def config_opentok
-    # if @opentok.nil?
-    #  @opentok = OpenTok::OpenTok.new ENV["API_KEY"], ENV["API_SECRET"]
-    # end
+    if @opentok.nil?
+     @opentok = OpenTok::OpenTok.new ENV["API_KEY"], ENV["API_SECRET"]
+    end
   end
 
 

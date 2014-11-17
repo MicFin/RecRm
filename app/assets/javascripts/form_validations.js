@@ -309,9 +309,15 @@
             required: true,
             minlength: 2
           },
-          "user[date_of_birth]":{
-            date: true,
-          },
+          // "user[date_of_birth(1i)]":{
+          //   required: true
+          // },
+          // "user[date_of_birth(2i)]":{
+          //   required: true
+          // },
+          // "user[date_of_birth(3i)]":{
+          //   required: true
+          // },
           "user[height][feet]":{
             // required: function(element) {
             //   return $(element).val().length > 0;
@@ -357,6 +363,12 @@
           //   min: "Number above 1",
           //   number: "Number above 1"
           // }
+        },
+        errorPlacement: function (error, element) {
+            $(element).tooltip({ title: $(error).text()});  
+        },
+        success: function (label, element) {
+            $(element).tooltip("destroy"); 
         }
       });
     },
@@ -434,6 +446,12 @@
           "user[sex]":{
             required: "Select sex"
           }
+        },
+        errorPlacement: function (error, element) {
+            $(element).tooltip({ title: $(error).text()});  
+        },
+        success: function (label, element) {
+            $(element).tooltip("destroy"); 
         }
       })
     }

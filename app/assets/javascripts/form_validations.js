@@ -285,11 +285,9 @@
       });  
       // creates a function to override the close window prompt
       function closeEditorWarning(event){
-        debugger;
-
-          if (_isDirty === true) {
-            return 'It looks like you have been editing something -- if you leave before submitting your changes will be lost.'
-          };
+        if (_isDirty === true) {
+          return 'It looks like you have been editing something -- if you leave before submitting your changes will be lost.'
+        };
       };
       // on before unload chßeck if forms are dirty.
       window.onbeforeunload = closeEditorWarning; 
@@ -297,6 +295,132 @@
       $('form').submit(function () {
         window.onbeforeunload = null;
       });
-    }
+    },
+    //
+    nutrition_form: function(){
 
+      $("#new-user-options .edit_user").validate({
+        rules: {
+          "user[first_name]":{
+            required: true,
+            minlength: 2
+          },
+          "user[last_name]":{
+            required: true,
+            minlength: 2
+          },
+          "user[date_of_birth]":{
+            date: true,
+          },
+          "user[height][feet]":{
+            rangelength: [0, 10],
+            number: true
+          },
+          "user[height][inches]":{
+            rangelength: [0, 12],
+            number: true
+          },
+          "user[weight]":{
+            min: 1,
+            number: true
+          }
+        },
+        messages: {
+          "user[first_name]":{
+            required: "Enter first name",
+            minlength: "Must be at least 2 letter"
+          },
+          "user[last_name]":{
+            required: "Enter last name",
+            minlength: "Must be at least 2 letter"
+          },
+          "user[last_name]":{
+            required: "Enter last name",
+            minlength: "Must be at least 2 letter"
+          },
+          // "user[date_of_birth]":{
+          //   date: true,
+          // },
+          // "user[height][feet]":{
+          //   rangelength: "Number between 0 and 10",
+          //   number: "Number between 0 and 10"
+          // },
+          // "user[height][inches]":{
+          //   rangelength: ["Number between 0 and 12",
+          //   number: "Number between 0 and 12"
+          // },
+          // "user[weight]":{
+          //   min: "Number above 1",
+          //   number: "Number above 1"
+          // }
+        }
+      });
+    },
+   // checks if inputs have been motified and warns if users leaves browser
+    nutrition_form_appt_focus: function(){
+      $("#new-user-options.appt-focus .edit_user.simple_form").first().validate({
+        rules: {
+          "user[first_name]":{
+            required: true,
+            minlength: 2
+          },
+          "user[last_name]":{
+            required: true,
+            minlength: 2
+          },
+          "user[date_of_birth]":{
+            required: true,
+            date: true
+          },
+          "user[height][feet]":{
+            required: true,
+            rangelength: [0, 10],
+            number: true
+          },
+          "user[height][inches]":{
+            rangelength: [0, 12],
+            number: true
+          },
+          "user[weight]":{
+            required: true,
+            min: 1,
+            number: true
+          },
+          "user[sex]":{
+            required: true
+          }
+        },
+        messages: {
+          "user[first_name]":{
+            required: "Enter first name",
+            minlength: 2
+          },
+          "user[last_name]":{
+            required: "Enter last name",
+            minlength: 2
+          },
+          "user[date_of_birth]":{
+            required: "Enter birthday",
+            date: true
+          },
+          "user[height][feet]":{
+            required: "Enter 0 if under 1ft",
+            rangelength: "Number between 0 and 10",
+            number: "Number between 0 and 10"
+          },
+          "user[height][inches]":{
+            rangelength: "Number betweeen 0 and 12",
+            number: "Number betweeen 0 and 12"
+          },
+          "user[weight]":{
+            required: "Enter weight",
+            min: "Number above 1",
+            number: "Number above 1"
+          },
+          "user[sex]":{
+            required: "Select sex"
+          }
+        }
+      })
+    }
   } //Formvalidation   

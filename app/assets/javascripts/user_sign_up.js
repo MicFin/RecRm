@@ -37,5 +37,9 @@ var UserSignUp = {
   },
   set_intro_modal: function(){
     $("#introModal").modal("toggle");
-  }
+  },
+  family_buttons: function(){
+    $("#family-member-list").children().first().addClass("selected-family-member");
+    $(".selected-family-member a").remove();
+  },
 }

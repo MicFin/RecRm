@@ -168,7 +168,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def edit_user_health_groups
     @user = current_user
     @family = @user.head_of_families.last
-    @updated_user = User.find(params[:id])
+    @updated_user_id = params[:id]
+    @updated_user = User.find(@updated_user_id)
     get_patient_groups!
     @diseases = @diseases 
     @intolerances = @intolerances 

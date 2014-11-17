@@ -100,7 +100,7 @@
 }
 
 #new-user-family-form a:hover {
-	color: $carrotorange;
+	color: $lightorange;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -178,6 +178,9 @@
 #new-user-family-form .radio {
 	margin-top: 0px;
 }
+#new-user-family-form .first-name{
+	color: $lightorange;
+}
 
 #new-user-completed {
 	margin-top: 10%;
@@ -225,5 +228,49 @@
 }
 
 #family-member-list .btn-sm.btn-danger{
-		cursor: default;
-	}
+	cursor: default;
+}
+
+.selected-family-member {
+	background-color: $lightorange;
+	border-radius: 5px;
+	color: white;
+	padding: 1px;
+}
+
+#family-member-list .btn.btn-white{ 
+	color: $white;
+	background-color: $carrotgreen;
+	border-color: $carrotgreen;
+}
+#family-member-list .btn.btn-white:hover{ 
+	color: $white;
+	background-color: $lightorange;
+	border-color: $lightorange;
+}
+
+#family-member-list .btn.btn-white-orange{ 
+	color: $carrotorange;
+	background-color: $white;
+	border-color: $lightorange;
+}
+#family-member-list .btn.btn-white-orange:hover{ 
+	cursor: default;
+}
+
+#family-member-list .selected-family-member .btn.btn-white{ 
+	color: $carrotgreen;
+	background-color: $white;
+	border-color: $white;
+}
+#family-member-list .selected-family-member .btn.btn-white:hover{ 
+	color: $white;
+	background-color: $lightgreen;
+	border-color: $lightgreen;
+}
+
+#family-member-list .selected-family-member h3{
+	text-align: center;
+}
+
+

@@ -37,7 +37,9 @@ $(document).ready(function() {
 	UserSignUp.appoint_self_checkbox();
 	UserSignUp.nutrition_buttons();
 	UserSignUp.set_intro_modal();
+	UserSignUp.family_buttons();
 	FormValidation.user_intro();
+	FormValidation.nutrition_form_appt_focus();
 
 	// Time slot calendar
 	TimeSlotCalendar.set();

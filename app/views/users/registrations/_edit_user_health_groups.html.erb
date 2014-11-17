@@ -1,4 +1,4 @@
-	<div id="new-user-options" class=" col-xs-8 alert alert-success">
+	<div id="new-user-options" class="appt-focus col-xs-8 alert alert-success appt-focus">
 		<% updated_user ||= @updated_user %>
 		<%= simple_form_for updated_user, :url => {:controller => 'users/registrations', :action => 'update_user_health_groups'}, remote: true do |f| %>
 			<input type="hidden" name="updated_user_id" value="<%=updated_user.id%>"/>

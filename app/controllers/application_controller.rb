@@ -7,13 +7,20 @@ class ApplicationController < ActionController::Base
   	
 
 	def after_sign_in_path_for(resource)
+
 		if resource.class == User
-		    if resource.sign_in_count <= 1
-		      # if first time give first time user experience
-		      home_path
+		
+		    if resource.appointment_hosts.last
+		    	if resource.appointment_hosts.last.start_time
+		    	
+		    		# if not take them to their home page
+		      	user_dashboard_path(resource.id)
+		     	else 
+		     		new_user_intro_path(resource.id) 
+		     	end
 		    else
-		      # if not take them to their home page
-		      home_path
+		      # if first time give first time user experience
+		      new_user_intro_path(resource.id) 
 		    end
 		elsif resource.class == Dietitian
 				if resource.sign_in_count <= 1
@@ -21,10 +28,10 @@ class ApplicationController < ActionController::Base
 		      # would rather it direct to dietitian_authenticated_root_path but failing
 		      ### dietitian_authenticated_root_path(current_dietitian)
 		      ### dietitian_authenticated_root_path
-					dietitian_recipes_path(current_dietitian)
+					dietitian_recipes_path(resource)
 		    else
 		      # if not take them to their home page
-					dietitian_recipes_path(current_dietitian)
+					dietitian_recipes_path(resource)
 		    end
 		elsif resource.class == AdminUser
 				if resource.sign_in_count <= 1
@@ -46,5 +53,16 @@ private
 	def dietitian_activity
 	  current_dietitian.try :touch
 	end
+
+  private
+
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+    binding.pry
+    if resource_or_scope == :user
+      new_user_session_path
+    end
+  end
+  
 
 end

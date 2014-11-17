@@ -1,0 +1,51 @@
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Please complete this form</h4>
+      </div>
+        <%= simple_form_for(@appointment, html: {class: 'form-horizontal' }) do |f| %>
+      <div class="modal-body">
+
+          <% if @appointment.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+              <ul>
+              <% @appointment.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <p>Start Time:</p>
+          <h4>
+            <%=@time_slot.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %>
+          </h4>
+          <p>End Time:</p>
+          <h4>
+            <%=@time_slot.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %>
+         </h4>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Choose a different time and date</button>
+          <h3><%=@questions[0]%></h3>
+          <div class="field">
+            <%= f.input :note, as: :text, :input_html => { class: "form-control", :rows => 10 } %>
+          </div>
+          <h3><%=@questions[1]%></h3>
+          <div class="field">
+            <%= f.input :client_note, as: :text, :input_html => { class: "form-control", :rows => 10 } %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+        <%= f.input :start_time, as: :hidden, :input_html => { :value => @time_slot.start_time }%>
+        <%= f.input :end_time, as: :hidden, :input_html => { :value => @time_slot.end_time }%>
+            <%= f.button :submit, "Save" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

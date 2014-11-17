@@ -1,5 +1,14 @@
-<%= render "/layouts/nav" %>
-<%= render "/layouts/alerts" %>
+<div id="user-nav-layout" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="row">
+    <%= image_tag("nav_images/logo.png", id:"navbar-logo") %>
+  </div>
+  <li><%= link_to 'SIGN OUT', destroy_user_session_path, :method => :delete %></li>
+  <div id="kindrd-navbar" class="row">
+  </div>
+</div>
+
+
+<%#= render "/layouts/alerts" %>
 <div class="below_signed_in_nav">
 	<%= yield %>
 </div>

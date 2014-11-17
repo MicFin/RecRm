@@ -1,6 +1,7 @@
 class PatientGroupsController < ApplicationController
   before_action :set_patient_group, only: [:show, :edit, :update, :destroy]
 
+
   # GET /patient_groups
   # GET /patient_groups.json
   def index

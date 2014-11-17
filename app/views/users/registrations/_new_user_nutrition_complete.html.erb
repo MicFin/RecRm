@@ -1,0 +1,19 @@
+	<div id="new-user-completed" class=" col-xs-8">
+		<%= link_to(new_family_member_path, remote: true) do %>
+			<div class="col-xs-5">
+				<h4><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span></h4>
+				<h4>Add another person</h4>
+			</div>
+		<% end %>
+
+		<div id="complete-family-container" class="col-xs-6">
+			<div class="col-xs-12">
+				<div class="col-xs-4 col-xs-offset-4">
+				<%= link_to  "Next", select_time_path(@appointment), class: "btn btn-success btn-block" %>
+				</div>
+			</div>
+			<div class="col-xs-12">
+			<h4>Ready to schedule your appointment?</h4>
+			</div>
+		</div>
+	</div>

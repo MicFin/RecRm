@@ -1,0 +1,23 @@
+<div id="user-home-page" class="container">
+	<div class="form-group col-xs-12 form-group text-center">
+ 		<h2>Welcome Kindrdfood, <%=current_user.first_name %>!</h2>
+ 	</div>
+	<div id="appointment-update-container" class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center alert alert-success">
+		<p>Your upcoming appointment is</p>
+		<h4><%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></h4>
+	</div>
+	<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center">
+		<p><%= link_to image_tag("computer.png", class: "tilt"), "http://www.kindrdcare.com/sign_in" %></p>
+		<% if @appointment.room_id %>
+		<%# if (((DateTime.now.in_time_zone("Eastern Time (US & Canada)") - @appointment.start_time) / 60 / 60) > -5)%>
+			<%= link_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @appointment.room_id, appointment: @appointment.id }, class: "text-center action kindrd-button btn-block tilt"%>
+		<% else %>
+			<h5>Return 2 hours before appointment to sign in</h5>
+		<% end %>
+	</div>
+</div>
+
+
+
+
+

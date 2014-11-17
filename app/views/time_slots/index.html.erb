@@ -1,0 +1,28 @@
+<div class="container" id="time-slots-page-container">
+  <div class="row">
+  <h1>Listing time_slots</h1>
+  <div class="col-xs-6">
+      <%= link_to 'New Time slot', new_time_slot_path, remote: true %>
+    <table id="time-slots-table">
+      <thead>
+        <tr>
+          <th>Start time</th>
+          <th>End time</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @time_slots.each do |time_slot| %>
+          <tr id="time-slot-<%=time_slot.id%>">
+            <td><%= time_slot.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+            <td><%= time_slot.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+            <td><%= link_to 'Edit', edit_time_slot_path(time_slot), remote: true %></td>
+            <td><%= link_to 'Destroy', time_slot, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-xs-6" id="calendar"></div>
+</div>

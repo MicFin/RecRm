@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029034521) do
+ActiveRecord::Schema.define(version: 20141117032109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,12 +79,13 @@ ActiveRecord::Schema.define(version: 20141029034521) do
     t.integer  "patient_focus_id"
     t.integer  "appointment_host_id"
     t.integer  "dietitian_id"
-    t.datetime "date"
     t.integer  "room_id"
     t.text     "note"
     t.text     "client_note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "articles", force: true do |t|
@@ -342,6 +343,17 @@ ActiveRecord::Schema.define(version: 20141029034521) do
     t.boolean  "public"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "dietitian_id"
+  end
+
+  add_index "rooms", ["dietitian_id"], name: "index_rooms_on_dietitian_id", using: :btree
+
+  create_table "time_slots", force: true do |t|
+    t.string   "title"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_families", force: true do |t|
@@ -352,8 +364,19 @@ ActiveRecord::Schema.define(version: 20141029034521) do
   add_index "user_families", ["family_id"], name: "index_user_families_on_family_id", using: :btree
   add_index "user_families", ["user_id"], name: "index_user_families_on_user_id", using: :btree
 
+  create_table "user_roles", force: true do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_roles", ["name", "resource_type", "resource_id"], name: "index_user_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "user_roles", ["name"], name: "index_user_roles_on_name", using: :btree
+
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "email",                  default: ""
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -375,8 +398,14 @@ ActiveRecord::Schema.define(version: 20141029034521) do
   end
 
   add_index "users", ["date_of_birth"], name: "index_users_on_date_of_birth", using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["last_name"], name: "index_users_on_last_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users_user_roles", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "user_role_id"
+  end
+
+  add_index "users_user_roles", ["user_id", "user_role_id"], name: "index_users_user_roles_on_user_id_and_user_role_id", using: :btree
 
 end

@@ -1,0 +1,4 @@
+$("#new-user-family-form").children().last().replaceWith("<%= j render(:partial => 'new_family_member', :locals => {:new_user => @new_user}) %>");
+
+UserSignUp.nutrition_buttons();
+FormValidation.nutrition_form();

@@ -1,8 +1,13 @@
+
+
 $(document).ready(function() {
 
 	// override bootstrap accordion
 	OverrideBootstrap.setAccordion();
 
+
+	// dirty form catcher 
+	FormValidation.dirty_form_catcher();
 	// sign in form on pageload
 	FormValidation.signInValidations();
 
@@ -31,13 +36,17 @@ $(document).ready(function() {
 	// User sign up form
 	UserSignUp.appoint_self_checkbox();
 	UserSignUp.nutrition_buttons();
+	UserSignUp.set_intro_modal();
+	FormValidation.user_intro();
 
 	// Time slot calendar
 	TimeSlotCalendar.set();
 	TimeSlotCalendar.initiate_date_time_picker();
 	SelectApptCalendar.set();
 
+	// user in session 
 	UserSession.javascript();
+
 
 	if ($("#quality-review-main-container").length >= 1){
 		BasicForm.validateReview();

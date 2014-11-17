@@ -304,15 +304,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
     def after_update_path_for(resource)
-
       ### should be in after create??
       if resource.class == User 
         if resource.appointment_hosts.count >= 1
+          if resource.appointment_hosts.last.start_time 
           # respond_to do |format|
           #   format.js { render "/users/registrations/update.js.erb" and return }
           #   # format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
           #   # format.json { render :show, status: :created, location: @appointment }
           # end 
+          else
+            ### what to do if they go back and create another user or remove the user that was the focus
+            return new_user_family_path(resource)
+          end
         else
           @user = resource
           @family = Family.new(name: "Main Family", head_of_family_id: @user.id)
@@ -338,5 +342,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         signed_in_root_path(resource)
       end
     end
+
 
 end

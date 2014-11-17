@@ -34,5 +34,8 @@ var UserSignUp = {
       e.preventDefault();
       $('#new-user-nutrition-tabs a[href="#more"]').tab('show')
     });
+  },
+  set_intro_modal: function(){
+    $("#introModal").modal("toggle");
   }
 }

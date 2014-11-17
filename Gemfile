@@ -103,6 +103,10 @@ group :development do
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
+# find your route on a long journey over Rails with Sextant
+# go to http://localhost:3000/rails/routes to view routes, faster than rails routes
+#https://github.com/schneems/sextant
+  gem 'sextant'
 
 end
 

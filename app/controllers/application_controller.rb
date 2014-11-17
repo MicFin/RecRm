@@ -7,10 +7,12 @@ class ApplicationController < ActionController::Base
   	
 
 	def after_sign_in_path_for(resource)
-		if resource.class == User
 
+		if resource.class == User
+		
 		    if resource.appointment_hosts.last
 		    	if resource.appointment_hosts.last.start_time
+		    	
 		    		# if not take them to their home page
 		      	user_dashboard_path(resource.id)
 		     	else 
@@ -52,6 +54,15 @@ private
 	  current_dietitian.try :touch
 	end
 
+  private
+
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+    binding.pry
+    if resource_or_scope == :user
+      new_user_session_path
+    end
+  end
   
 
 end

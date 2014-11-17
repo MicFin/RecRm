@@ -25,7 +25,16 @@
 
 #new-user-name-form{
 	text-align:left;
-	margin-top: 2%;
+	margin-top: 5%;
+}
+#new-user-name-form.modal-backdrop {
+	position: relative;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	background-color: rgba(0,0,0,0.8);
 }
 
 #new-user-name-form input[type="text"]  {

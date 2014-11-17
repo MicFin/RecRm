@@ -35,22 +35,22 @@
 
   			
 <div id="new-user-family-form" class="container">
-	<div class="col-xs-4 form-group">
+	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
 		<h3>Who eats at your table?</h3>
 		<p>Whether you are juggling multiple anaphylactic tummy's or a single picky eater, your team of KindRDNutritionists will empower you to make life easier, safer, and tastier. Help us get to know you and your family, we will start with <%=@family_members[0].first_name%>!</p>
 		<%= render "new_user_family_list" %>
 	</div>
-	<div id="new-user-options" class=" col-xs-8 alert alert-success">
+	<div id="new-user-options" class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 alert alert-success">
 		<%= simple_form_for @family_members[0], :url => {:controller => 'users/registrations', :action => 'update_user_health_groups'}, remote: true do |f| %>
 			<input type="hidden" name="updated_user_id" value="<%=@family_members[0].id%>"/>
 		<div id="top-container" class="col-xs-12 text-center">
-			<div id="preferences-title" class="col-xs-5">
+			<div id="preferences-title" class="col-xs-12 col-sm-12 col-md-12 col-lg-5 ">
 				<h3>Nutrition Preferences for</h3>
 			</div>
-			<div id="preferences-first-name" class="col-xs-3 form-group">
+			<div id="preferences-first-name" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 form-group">
 	      <%= f.input :first_name, autofocus: true, class: "form-control", type: "text", label: false %>
 		  </div>
-		  <div id="preferenes-last-name" class="col-xs-3  form-group">
+		  <div id="preferenes-last-name" class="col-xs-12 col-sm-12 col-md-6 col-lg-3 form-group">
 	      <%= f.input :last_name, autofocus: true, class: "form-control", type: "text", label: false %>
 		  </div>
 		</div>

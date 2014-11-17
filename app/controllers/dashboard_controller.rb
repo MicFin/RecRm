@@ -8,37 +8,45 @@ class DashboardController < ApplicationController
 
   
   def home
-    
+  # if appointment has been made and scheduled go to dashboard home
     @user = current_user
-    @family = @user.head_of_families.last
-    @appointment = @user.appointment_hosts.last
-    @family_members = []
-    if @appointment.patient_focus 
-      appointment_focus = @appointment.patient_focus
-      @family_members << appointment_focus
-    end
-    family_count = @family.users.count
-    
-    if family_count > 0
-
-      if @user != appointment_focus
-  
-        @family_members << @user
-        @family.users.each do |family_member| 
-          if family_member != appointment_focus
-      
-            @family_members << family_member 
+    if @user.appointment_hosts.last
+      if @user.appointment_hosts.last.start_time
+# set variables for dashboard
+        @family = @user.head_of_families.last
+        @appointment = @user.appointment_hosts.last
+# create family should be a helper method on the family model
+        @family_members = []
+        if @appointment.patient_focus 
+          appointment_focus = @appointment.patient_focus
+          @family_members << appointment_focus
+        end
+        family_count = @family.users.count
+        
+        if family_count > 0
+          if @user != appointment_focus
+            @family_members << @user
+            @family.users.each do |family_member| 
+              if family_member != appointment_focus
+                @family_members << family_member 
+              end
+            end
+          else
+            @family.users.each do |family_member|
+                @family_members << family_member
+            end
           end
+        else
+          @family_members << @user
         end
-      else
-        @family.users.each do |family_member|
-            @family_members << family_member
-        end
+# if no appointment has been made goto introduction
+      else 
+        redirect_to new_user_intro_path(@user.id) 
       end
-    else
-      @family_members << @user
+    else 
+      redirect_to new_user_intro_path(@user.id) 
     end
-
+    
   end
   # GET /recipe_status
   def recipe_status

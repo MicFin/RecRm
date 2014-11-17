@@ -236,5 +236,67 @@
           }
         },
       });
+    },
+    user_intro: function(){
+      $("#new-user-name-form #edit_user").validate({
+        rules: {
+          "user[first_name]":{
+            required: true,
+            minlength: 2
+          },
+          "user[last_name]":{
+            required: true,
+            minlength: 2
+          },
+          "client_last_name":{
+            required: true,
+            minlength: 2
+          },
+          "client_first_name":{
+            required: true,
+            minlength: 2
+          },
+        },
+        messages: {
+          "user[first_name]":{
+            required: "Enter first name",
+            minlength: "Must be at least 2 letter"
+          },
+          "user[last_name]":{
+            required: "Enter last name",
+            minlength: "Must be at least 2 letter"
+          },
+          "client_last_name":{
+            required: "Enter first name",
+            minlength: "Must be at least 2 letter"
+          },
+          "client_first_name":{
+            required: "Enter last name",
+            minlength: "Must be at least 2 letter"
+          },
+        }
+      });
+    },
+    // checks if inputs have been motified and warns if users leaves browser
+    dirty_form_catcher: function(){
+      var _isDirty = false;
+      $(":input").change(function(){
+        _isDirty = true;
+      });  
+      // creates a function to override the close window prompt
+      function closeEditorWarning(event){
+        debugger;
+
+          if (_isDirty === true) {
+            return 'It looks like you have been editing something -- if you leave before submitting your changes will be lost.'
+          };
+      };
+      // on before unload chßeck if forms are dirty.
+      window.onbeforeunload = closeEditorWarning; 
+      // disable onbeforeunlaod for submits
+      $('form').submit(function () {
+        window.onbeforeunload = null;
+      });
     }
+
   } //Formvalidation   

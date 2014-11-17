@@ -308,30 +308,6 @@
           "user[last_name]":{
             required: true,
             minlength: 2
-          },
-          // "user[date_of_birth(1i)]":{
-          //   required: true
-          // },
-          // "user[date_of_birth(2i)]":{
-          //   required: true
-          // },
-          // "user[date_of_birth(3i)]":{
-          //   required: true
-          // },
-          "user[height][feet]":{
-            // required: function(element) {
-            //   return $(element).val().length > 0;
-            // },
-            rangelength: [0, 10],
-            number: true
-          },
-          "user[height][inches]":{
-            rangelength: [0, 12],
-            number: true
-          },
-          "user[weight]":{
-            min: 1,
-            number: true
           }
         },
         messages: {
@@ -342,27 +318,7 @@
           "user[last_name]":{
             required: "Enter last name",
             minlength: "Must be at least 2 letter"
-          },
-          "user[last_name]":{
-            required: "Enter last name",
-            minlength: "Must be at least 2 letter"
-          },
-          // "user[date_of_birth]":{
-          //   date: true,
-          // },
-          // "user[height][feet]":{
-          //   required: "Enter feet",
-          //   rangelength: "Number between 0 and 10",
-          //   number: "Number between 0 and 10"
-          // },
-          // "user[height][inches]":{
-          //   rangelength: ["Number between 0 and 12",
-          //   number: "Number between 0 and 12"
-          // },
-          // "user[weight]":{
-          //   min: "Number above 1",
-          //   number: "Number above 1"
-          // }
+          }
         },
         errorPlacement: function (error, element) {
             $(element).tooltip({ title: $(error).text()});  

@@ -66,7 +66,7 @@ Rails.application.routes.draw do
       patch 'recipes/:recipe_id/review_conflicts/:id/edit_review_conflict', to: 'review_conflicts#edit_review_conflict', as: "edit_review_conflict"
 
       # root :to => 'recipes#dietitian_recipes_index', :constraints => lambda { |request| request.env['warden'].user.class.name == 'Dietitian' }, :as => "dietitian_authenticated_root"
-      root :to => 'welcome#index', as: :dietitian_authenticated_root
+      root :to => 'recipes#dietitian_recipes_index', as: :dietitian_authenticated_root
       # role assignments index
       get 'roles/assignments', to: 'roles#assignments', as: 'roles_assignments'
       # role assignments

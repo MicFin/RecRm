@@ -86,39 +86,51 @@ class ContentQuotasController < ApplicationController
         if second_tier.count > 0
           sorted = second_tier.sort! { |a,b| a.created_at <=> b.created_at }
         # add to dietitian list of review
-          sorted.first(quota).each do |recipe| 
-           if recipe.dietitan != dietitian 
+          sorted.each do |recipe| 
+            ## shuold also not be any other previous reviewer
+            ## get all previous reviewers in array and check
+            ## must be a tier 2 reviewer
+            if recipe.dietitian != dietitian 
               quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 2)
               quota = quota - 1 
               quality_review.save
             end
+            break if quota == 0
           end
         end
-
+      end
+      if quota > 0 
         # original reviews needing review
         original_reviews = Recipe.all_need_original_review
         if original_reviews.count > 0
           sorted = original_reviews.sort! { |a,b| a.created_at <=> b.created_at }
         # add to dietitian list of review
-          sorted.first(quota).each do |recipe| 
-            if recipe.dietitan != dietitian
+          sorted.each do |recipe| 
+            if recipe.dietitian != dietitian
+              ### should abe all teier 2 reviewers
               quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 1)
               quota = quota - 1 
               quality_review.save
             end
+            break if quota == 0
           end
         end
-        # first tiwer reviews needing review
+      end
+      if quota > 0 
+        # first tier reviews needing review
         first_tier = Recipe.all_need_first_tier_review
         if first_tier.count > 0
           sorted = first_tier.sort! { |a,b| a.created_at <=> b.created_at }
         # add to dietitian list of review
-          sorted.first(quota).each do |recipe| 
-            if recipe.dietitan != dietitian
+          sorted.each do |recipe| 
+                  ## shuold also not be any other previous reviewer
+            ## get all previous reviewers in array and check  
+            if recipe.dietitian != dietitian
               quality_review = recipe.quality_reviews.new(dietitian_id: dietitian.id, tier: 1)
               quota = quota - 1  
               quality_review.save
             end
+            break if quota == 0
           end
         end
         dietitian.save

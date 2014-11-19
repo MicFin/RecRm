@@ -14,10 +14,10 @@ class RecipesController < ApplicationController
   def index
     @recipes = Recipe.all
   end
-
+  ###notes
   ## this method and view is being used as the dietitian dashboard right now, it should be moved to a home controller or another controller
   def dietitian_recipes_index
-    @all_completed_recipes = Recipe.where(completed: true).order("created_at").reverse
+    @all_completed_recipes = Recipe.where(completed: true).limit(20).order("created_at").reverse
     @recipes = Recipe.where(dietitian_id: current_dietitian.id, completed: true).order("created_at").reverse
     @incomplete_recipes = current_dietitian.incomplete_recipes
     @recipe_reviews_to_assign = []

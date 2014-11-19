@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
 	#home page loads list of recipes that are safe for families.  Will combine user and family helper in the future
 	def index
-binding.pry
+
 		
 		#UserHelper
 		get_user_patient_groups!
@@ -28,7 +28,7 @@ binding.pry
 	private
 
 		def check_user_logged_in! 
-			binding.pry
+			
 		  if current_user 
 		    true
 		  else

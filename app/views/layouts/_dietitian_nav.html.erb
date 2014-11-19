@@ -15,7 +15,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li id="navbar-dashboard" class="active"><%= link_to "Dashboard", welcome_path %></li>
+          <li id="navbar-dashboard" class="active"><%#= link_to "Dashboard", welcome_path %></li>
           <li id="navbar-appointments" ><a  href="#about">Appointments</a></li>
           <li id="navbar-recipes"><%= link_to "Recipes", dietitian_recipes_path(current_dietitian)%></li>
           <li><%= link_to 'SIGN OUT', destroy_dietitian_session_path, :method => :delete %></li>

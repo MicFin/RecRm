@@ -5,6 +5,10 @@ Rails.application.configure do
 
 Paperclip.options[:command_path] = "/usr/local/bin/convert"
 
+  # config.stripe.publishable_key = ENV['STRIPE_PUBLIC_KEY']
+  
+  # config.stripe.eager_load = ['user']
+
   # stops ajax from being cached and caling itself twice
   config.serve_static_assets = false
   # In the development environment your application's code is reloaded on

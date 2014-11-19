@@ -40,9 +40,6 @@ Rails.application.routes.draw do
       resources :rooms
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_room, :via => :get
     end
-    # unauthenticated :user do
-    #   root :to => "devise/sessions#new", as: :user_unauthenticated_root
-    # end   
   end
 
   devise_for :dietitians

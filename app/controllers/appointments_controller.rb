@@ -28,7 +28,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
-    ## for first sign up
+    ## for first sign up from select time
     if params[:time_slot_id]
       @questions = ["Have you met with a Registered Dietitian before?", "What are your top nutritional challenges?"]
       @time_slot = TimeSlot.find(params[:time_slot_id])

@@ -30,3 +30,16 @@
 #
 # This will export any new plans to stripe.com so that you can
 # begin using them in your API calls.
+
+
+Stripe.plan :premium do |plan|
+  plan.name = 'Premium'
+  plan.amount = 699 # $6.99
+  plan.interval = 'month'
+end
+
+Stripe.plan :basic do |plan|
+  plan.name = 'Basic'
+  plan.amount = 999 # $9.99
+  plan.interval = 'month'
+end

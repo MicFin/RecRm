@@ -8,7 +8,12 @@
 <!--     <link href="css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css"> -->
     <%= include_gon %>
+<!--     below should only run when on checkout page -->
+    <%= stripe_javascript_tag %>
+    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+<!--     above should only run when on checkout page -->
     <%= stylesheet_link_tag    'application', media: 'all' %>
+
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %> 
     <link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">

@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       resources :appointments
       resources :rooms
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_room, :via => :get
+      resources :charges
     end
   end
 

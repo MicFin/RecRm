@@ -41,6 +41,7 @@
 //= require time_slots
 //= require user_session
 //= require on_page_load
+//= require appointment
 
 var videos = 1;
 var publisherObj;

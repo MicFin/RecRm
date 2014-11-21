@@ -41,6 +41,7 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
+    
     @appointment = Appointment.new(appointment_params)
 
     respond_to do |format|
@@ -57,8 +58,15 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
+    # if update saves
     if @appointment.update(appointment_params)
-      if @appointment.dietitian_id != nil
+      # if stripe card payment update incnluded in update then user is paying 
+      if appointment_params[:stripe_card_token]
+        # pay for appointment
+        token = appointment_params[:stripe_card_token]
+        @appointment.update_with_payment
+      # or has been updated with dietitian thhen admin assigned dietitian
+      elsif @appointment.dietitian_id != nil
         @new_session = @opentok.create_session 
         @tok_token = @new_session.generate_token :session_id =>@new_session.session_id  
         @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Early Access Session")
@@ -73,6 +81,8 @@ class AppointmentsController < ApplicationController
         if @appointment.room_id == nil
           @appointment.room_id = @new_room.id
         end
+      # other updates that could happen
+      else
       end
     end
     respond_to do |format|
@@ -111,7 +121,7 @@ class AppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :start_time, :end_time, :room_id, :note, :client_note, :created_at, :updated_at)
+      params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :start_time, :end_time, :room_id, :note, :client_note, :created_at, :updated_at, :stripe_card_token)
     end
   
     def config_opentok

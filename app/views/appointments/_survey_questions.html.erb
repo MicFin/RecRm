@@ -27,8 +27,8 @@
           <p>End Time:</p>
           <h4>
             <%=@time_slot.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %>
-         </h4>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Choose a different time and date</button>
+          </h4>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Choose a different time and date</button>
           <h3><%=@questions[0]%></h3>
           <div class="field">
             <%= f.input :note, as: :text, :input_html => { class: "form-control", :rows => 10 } %>
@@ -37,6 +37,9 @@
           <div class="field">
             <%= f.input :client_note, as: :text, :input_html => { class: "form-control", :rows => 10 } %>
           </div>
+    <% if @appointment.stripe_card_token %>
+      Session has already been paid for.
+    <% else %>
           <div class="field">
             <%= label_tag :card_number, "Credit Card Number " %>
             <%= text_field_tag :card_number, nil, name: nil %>
@@ -50,12 +53,17 @@
             <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
             <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
           </div>
+          <%= f.hidden_field :stripe_card_token %>
+    <% end %>
+          <div id="stripe_error">
+            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+          </div>
       </div>
       <div class="modal-footer">
         <div class="actions">
-        <%= f.input :start_time, as: :hidden, :input_html => { :value => @time_slot.start_time }%>
-        <%= f.input :end_time, as: :hidden, :input_html => { :value => @time_slot.end_time }%>
-            <%= f.button :submit, "Save" %>
+          <%= f.input :start_time, as: :hidden, :input_html => { :value => @time_slot.start_time }%>
+          <%= f.input :end_time, as: :hidden, :input_html => { :value => @time_slot.end_time }%>
+          <%= f.button :submit, "Save", id: "btn-purchase-appt" %>
           </div>
         <% end %>
       </div>

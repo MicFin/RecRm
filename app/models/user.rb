@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
   has_many :patient_focus, :class_name => "Appointment", :foreign_key => "patient_focus_id"
   has_many :appointment_hosts, :class_name => "Appointment", :foreign_key => "appointment_host_id"
   has_many :rooms
-
+  has_many :subscriptions
+  has_many :member_plans, through: :subscriptions
   # saves phone number in normalized US format
   phony_normalize :phone_number, :default_country_code => 'US'
 

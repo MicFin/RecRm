@@ -8,6 +8,7 @@ class Recipe < ActiveRecord::Base
   attr_accessor :holidays
   attr_accessor :cultures
 
+  # for roles
   resourcify
 
   has_many :ingredients_recipes

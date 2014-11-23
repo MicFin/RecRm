@@ -358,7 +358,7 @@
             rangelength: [0, 12],
             number: true
           },
-          "user[weight]":{
+          "user[weight_ounces]":{
             required: true,
             min: 1,
             number: true
@@ -394,7 +394,7 @@
             rangelength: "Number betweeen 0 and 12",
             number: "Number betweeen 0 and 12"
           },
-          "user[weight]":{
+          "user[weight_ounces]":{
             required: "Enter weight",
             min: "Number above 1",
             number: "Number above 1"

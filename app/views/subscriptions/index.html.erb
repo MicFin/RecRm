@@ -3,10 +3,6 @@
 <table>
   <thead>
     <tr>
-      <th>Member plan</th>
-      <th>User</th>
-      <th>Start date</th>
-      <th>End date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,10 +10,6 @@
   <tbody>
     <% @subscriptions.each do |subscription| %>
       <tr>
-        <td><%= subscription.member_plan %></td>
-        <td><%= subscription.user %></td>
-        <td><%= subscription.start_date %></td>
-        <td><%= subscription.end_date %></td>
         <td><%= link_to 'Show', subscription %></td>
         <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
         <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>

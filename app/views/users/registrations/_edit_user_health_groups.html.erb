@@ -48,7 +48,7 @@
 			     	</div>
 			     	<div id="weight-attributes" class="col-xs-10">
 				     	<div class="col-xs-2">
-			        	<%= f.input :weight_ounces, label: false, placeholder: "110", input_html: {value: (updated_user.weight_ounces.to_i / 16) } %>
+			        	<%= f.input :weight_ounces, label: false, placeholder: "110", input_html: {value: ((updated_user.weight_ounces.to_i / 16)) } %>
 			        </div>
 		        	<div class="col-xs-2">
 							  <%= label_tag :inches, "pounds"%>

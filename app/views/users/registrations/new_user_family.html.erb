@@ -86,7 +86,7 @@
 			     	</div>
 			     	<div id="weight-attributes" class="col-xs-10">
 				     	<div class="col-xs-2">
-			        	<%= f.input :weight_ounces, label: false, placeholder: "110" %>
+			        	<%= f.input :weight_ounces, label: false, placeholder: "110", input_html: {value: ((@family_members[0].weight_ounces.to_i / 16)) } %>
 			        </div>
 		        	<div class="col-xs-2">
 							  <%= label_tag :inches, "pounds"%>
@@ -107,7 +107,7 @@
 					<p><button id="new-user-allergies-button" class="btn btn-link">Next nutrition category</button></p>
       	</div>
 			</div>
-			<%=render "users/registrations/forms/allergies", f: f %>
+			<%= render "users/registrations/forms/allergies", f: f %>
 			<%= render "users/registrations/forms/intolerances", f: f %>
 			<%= render "users/registrations/forms/diseases", f: f %>
 			<%= render "users/registrations/forms/diets", f: f %>

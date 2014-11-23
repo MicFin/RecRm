@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :subscriptions
 
-  resources :member_plans
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -13,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  resources :plans
 
   
   get 'welcome/index', to: "welcome#index", as: "welcome"
@@ -35,7 +33,7 @@ Rails.application.routes.draw do
       patch 'registrations/update_user_health_groups/:id', to: 'users/registrations#update_user_health_groups', as: 'update_user_health_groups'
       get 'registrations/new_family_member/', to: 'users/registrations#new_family_member', as: 'new_family_member'
       post 'registrations/create_family_member', to: 'users/registrations#create_family_member', as: 'create_family_member'
-            resources :time_slots
+      resources :time_slots
       resources :recipes 
       delete 'families/:id/remove_member/:member_id', to: "families#remove_member", as: 'remove_family_member'
       resources :families
@@ -43,7 +41,9 @@ Rails.application.routes.draw do
       resources :appointments
       resources :rooms
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_room, :via => :get
-      resources :charges
+      # resources :charges
+      resources :subscriptions
+
     end
   end
 
@@ -51,6 +51,7 @@ Rails.application.routes.draw do
 
   devise_scope :dietitian do
     authenticated :dietitian do
+      resources :member_plans
       resources :appointments
       get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
       get 'dashboard/recipe_status', to: 'dashboard#recipe_status', as: 'dashboard_recipe_status'
@@ -82,6 +83,7 @@ Rails.application.routes.draw do
       get 'content_quotas/assign_content', to: 'content_quotas#assign_content', as: 'assign_content'  
       resources :content_quotas
       resources :characteristics
+      get 'time_slots/:id/create_from_existing', to: 'time_slots#create_from_existing', as: "create_from_existing_time_slot"
       resources :time_slots
       resources :ingredients_recipes do 
         collection { post :sort }

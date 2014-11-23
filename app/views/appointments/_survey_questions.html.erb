@@ -1,10 +1,10 @@
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="surveyApptModal" tabindex="-1" role="dialog" aria-labelledby="surveyApptModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Please complete this form</h4>
+        <h4 class="modal-title" id="surveyApptModalLabel">Please complete this form</h4>
       </div>
         <%= simple_form_for(@appointment, html: {class: 'form-horizontal' }) do |f| %>
       <div class="modal-body">
@@ -53,6 +53,11 @@
             <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
             <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
           </div>
+            <div class="checkbox">
+              <label>
+                <input name="credit_card_usage" value="remember_me" type="checkbox"> Remember me
+              </label>
+            </div>
           <%= f.hidden_field :stripe_card_token %>
     <% end %>
           <div id="stripe_error">

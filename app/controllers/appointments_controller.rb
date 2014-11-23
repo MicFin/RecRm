@@ -64,7 +64,11 @@ class AppointmentsController < ApplicationController
       if appointment_params[:stripe_card_token]
         # pay for appointment
         token = appointment_params[:stripe_card_token]
-        @appointment.update_with_payment
+        binding.pry
+        # check if credit card should be saved to stripe account
+        credit_card_usage = params[:credit_card_usage]
+        binding.pry
+        @appointment.update_with_payment(credit_card_usage)
       # or has been updated with dietitian thhen admin assigned dietitian
       elsif @appointment.dietitian_id != nil
         @new_session = @opentok.create_session 
@@ -102,6 +106,7 @@ class AppointmentsController < ApplicationController
       end
     end
   end
+
 
   # DELETE /appointments/1
   # DELETE /appointments/1.json

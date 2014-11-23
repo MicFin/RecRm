@@ -13,6 +13,7 @@
             <td><%= time_slot.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
             <td><%= time_slot.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
             <td><%= link_to 'Edit', edit_time_slot_path(time_slot), remote: true %></td>
+            <td><%= link_to 'Copy', create_from_existing_time_slot_path(time_slot), remote: true %></td>
             <td><%= link_to 'Destroy', time_slot, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>

@@ -1,0 +1,57 @@
+<div class="modal fade" id="subscriptionModal" tabindex="-1" role="dialog" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="subscriptionModalLabel">Upgrade To Premium</h4>
+      </div>
+        <%= simple_form_for(@prem_subs, html: {class: 'form-horizontal' }) do |f| %>
+      <div class="modal-body">
+
+          <% if @prem_subs.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@prem_subs.errors.count, "error") %> prohibited this prem_subs from being saved:</h2>
+
+              <ul>
+              <% @prem_subs.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <%= f.input :member_plan_id, as: :hidden, :input_html => { :value => @prem_subs.member_plan_id }%>
+      <% if @credit_card != nil %>
+        <div class="form-field">
+          <h2>Upgrade to Premium</h2>
+          <p>Payment Method:</p>
+          <h3>Credit Card Type: <%=@credit_card[:brand]%></h3>
+          <h3>Last 4 Digits: <%=@credit_card[:last4]%></h3>
+        </div>
+      <% else %>
+          <div class="field">
+            <%= label_tag :card_number, "Credit Card Number " %>
+            <%= text_field_tag :card_number, nil, name: nil %>
+          </div>
+          <div class="field">
+            <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+            <%= text_field_tag :card_code, nil, name: nil %>
+          </div>
+          <div class="field">
+            <%= label_tag :card_month, "Card Expiration" %>
+            <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
+            <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
+          </div>
+          <div id="stripe_error">
+            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+          </div>
+      <% end %>
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <%= f.button :submit, "Save", id: "btn-purchase-appt" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

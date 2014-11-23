@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121050140) do
+ActiveRecord::Schema.define(version: 20141122200204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,10 @@ ActiveRecord::Schema.define(version: 20141121050140) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "stripe_card_token"
+    t.integer  "regular_price"
+    t.integer  "invoice_price"
+    t.string   "type"
+    t.integer  "duration"
   end
 
   create_table "articles", force: true do |t|
@@ -229,7 +233,18 @@ ActiveRecord::Schema.define(version: 20141121050140) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stripe_id"
+    t.integer  "amount"
+    t.string   "currency",              default: "usd"
+    t.string   "interval"
+    t.boolean  "live_mode"
+    t.integer  "interval_count"
+    t.integer  "trial_period_days"
+    t.string   "statement_description"
+    t.integer  "plan_id"
   end
+
+  add_index "member_plans", ["plan_id"], name: "index_member_plans_on_plan_id", using: :btree
 
   create_table "patient_groups", force: true do |t|
     t.string   "name"
@@ -249,6 +264,12 @@ ActiveRecord::Schema.define(version: 20141121050140) do
   create_table "patient_groups_users", id: false, force: true do |t|
     t.integer "patient_group_id", null: false
     t.integer "user_id",          null: false
+  end
+
+  create_table "plans", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "quality_reviews", force: true do |t|
@@ -363,6 +384,15 @@ ActiveRecord::Schema.define(version: 20141121050140) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "trial_end"
+    t.datetime "trial_start"
+    t.datetime "ended_at"
+    t.datetime "current_period_start"
+    t.datetime "current_period_end"
+    t.datetime "cancelled_at"
+    t.string   "status"
+    t.integer  "quantity",             default: 1
+    t.integer  "stripe_id"
   end
 
   add_index "subscriptions", ["member_plan_id"], name: "index_subscriptions_on_member_plan_id", using: :btree

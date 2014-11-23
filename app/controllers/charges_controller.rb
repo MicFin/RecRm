@@ -3,6 +3,7 @@ class ChargesController < ApplicationController
   def new
   end
   def create
+    binding.pry
     # create new customer or find current customer
     if appointment_host.stripe_id
       customer = Stripe::Customer.retrieve(appointment_host.stripe_id)
@@ -11,8 +12,8 @@ class ChargesController < ApplicationController
       self.appointment_host.stripe_id = customer.id
       save!
     end
+  begin
     customer.subscriptions.create(:plan => "3_month")
-
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to charges_path

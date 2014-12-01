@@ -123,6 +123,26 @@
   transition: all 0.3s ease-in-out;
 }
 
+#new-user-family-form #complete-family-container a {
+	color: $white;
+	height: 50px;
+	font-size: 30px;
+	color: white;
+	line-height: 1.25;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+#new-user-family-form #complete-family-container a:visited {
+	color: $white;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
 #new-user-family-form .nav-tabs {
   border-bottom: none;
   text-align: center;
@@ -170,9 +190,12 @@
 
 #new-user-family-form .tab-pane > div{
 	padding-bottom: 0;
-	padding-left: 6%;
-	padding-right: 6%;
-	padding-top: 0;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+#new-user-family-form .tab-pane > div:first-of-type{
+		padding-top: 3%;
 }
 
 #new-user-family-form .radio {
@@ -189,7 +212,7 @@
 		font-size: 50px;
 	}
 	#complete-family-container{
-		margin-top: 4%;
+		margin-top: 2%;
 	}
 }
 
@@ -200,8 +223,27 @@
 	margin-top: 7%;
 }
 
+// just to override the above
+// width is overriden by !important on width of form-control-4
+#new-user-options input[type="text"]#new-health-group-field {
+	font-size: 14px;
+	height: 34px;
+	margin-top: 0;
+}
+
+#new-user-options input[type="text"]#family-role-field{
+	font-size: 14px;
+	height: 34px;
+	margin-top: 0px;
+}
+
 #new-user-options input[type="number"]  {
 	width: 100%;
+}
+
+#new-user-options .select-allergen-box{
+	margin:0;
+	font-size: 12px;
 }
 
 #new-user-family-form #top-container {
@@ -274,10 +316,33 @@
 	text-align: center;
 }
 
-////// SELECT APPONTMENT TIME //////
+#add-group-to-list-container{
+	margin-top:2%;
+	button{
+		margin-left: 1%;
+	}
+}
+////// SELECT APPONTMENT TIME AN CREDIT CARD //////
 #select-time-message-container {
 	margin-top: 1%;
 	border: none;
 	color: green;
 	margin-left: 4%;
 }
+
+input#card_number {
+  background: url('icons/credit_card_default.png') 98% 50% no-repeat;
+  background-size: 25px 19px;
+}
+
+.credit-card-images {
+	height: 21px;
+	margin-bottom: 2%;
+	margin-left: 3%;
+}
+
+#btn-purchase-appt{
+	height: 60px;
+	font-size: 30px;
+}
+

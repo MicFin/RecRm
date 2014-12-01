@@ -27,6 +27,16 @@ class User < ActiveRecord::Base
   validates :phone_number, :phony_plausible => true
 
 
+  def unverified_health_groups
+    unverified_array = []
+    self.patient_groups.each do |group|
+      if group.unverified == true 
+        unverified_array << group
+      end
+    end
+    return unverified_array
+  end
+    
   # returns height_hash = {'feet'=> ##, 'inches' => ##}
   def height_hash
     height_hash = {}

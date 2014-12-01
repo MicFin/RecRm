@@ -19,6 +19,10 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1
   # GET /appointments/1.json
   def show
+    @dietitians = Dietitian.all
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /appointments/new
@@ -30,7 +34,7 @@ class AppointmentsController < ApplicationController
   def edit
     ## for first sign up from select time
     if params[:time_slot_id]
-      @questions = ["Have you met with a Registered Dietitian before?", "What are your top nutritional challenges?"]
+      @questions = ["Have you met with a Registered Dietitian before?", "What are your Top 3 nutritional challenges?", "What is the one thing you would really like to accomplish during this session?"]
       @time_slot = TimeSlot.find(params[:time_slot_id])
     end
     respond_to do |format|
@@ -41,7 +45,7 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
-    
+
     @appointment = Appointment.new(appointment_params)
 
     respond_to do |format|
@@ -58,18 +62,22 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
+
     # if update saves
     if @appointment.update(appointment_params)
       # if stripe card payment update incnluded in update then user is paying 
       if appointment_params[:stripe_card_token]
         # pay for appointment
         token = appointment_params[:stripe_card_token]
-        binding.pry
+    
         # check if credit card should be saved to stripe account
         credit_card_usage = params[:credit_card_usage]
-        binding.pry
+    
         @appointment.update_with_payment(credit_card_usage)
-      # or has been updated with dietitian thhen admin assigned dietitian
+        time_slot = TimeSlot.find(params[:time_slot_id])
+        time_slot.available = false 
+        time_slot.save
+      # or has recently been updated with dietitian thhen admin assigned dietitian
       elsif @appointment.dietitian_id != nil
         @new_session = @opentok.create_session 
         @tok_token = @new_session.generate_token :session_id =>@new_session.session_id  
@@ -126,7 +134,7 @@ class AppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :start_time, :end_time, :room_id, :note, :client_note, :created_at, :updated_at, :stripe_card_token)
+      params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :start_time, :end_time, :room_id, :note, :client_note, :other_note, :created_at, :updated_at, :stripe_card_token)
     end
   
     def config_opentok

@@ -3,8 +3,10 @@ class TimeSlotsController < ApplicationController
 
   # GET /time_slots
   # .json is created specifically for calendar usage right now
+  # need to change it to show all for dietitian calendar nad not user...right now uses same
   # GET /time_slots.json
   def index
+
     @time_slots = TimeSlot.order('start_time DESC').all
     @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
   end
@@ -113,6 +115,6 @@ class TimeSlotsController < ApplicationController
         #       params[:time_slot][:start_time] = params[:time_slot][:start_time] + " EST"
         # params[:time_slot][:end_time] = params[:time_slot][:end_time] + " EST"
 
-      params.require(:time_slot).permit(:title, :start_time, :end_time)
+      params.require(:time_slot).permit(:title, :start_time, :end_time, :available)
     end
 end

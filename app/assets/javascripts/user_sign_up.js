@@ -14,26 +14,13 @@ var UserSignUp = {
     })
   },
   nutrition_buttons: function(){
-    $("#new-user-allergies-button").on("click", function(e){
+    $("#new-health-group-button").on("click", function(e){
       e.preventDefault();
-      $('#new-user-nutrition-tabs a[href="#allergies"]').tab('show')
-    });
-    $("#new-user-intolerances-button").on("click", function(e){
-      e.preventDefault();
-      $('#new-user-nutrition-tabs a[href="#intolerances"]').tab('show')
-    });
-    $("#new-user-diseases-button").on("click", function(e){
-      e.preventDefault();
-      $('#new-user-nutrition-tabs a[href="#diseases"]').tab('show')
-    });
-    $("#new-user-diets-button").on("click", function(e){
-      e.preventDefault();
-      $('#new-user-nutrition-tabs a[href="#diets"]').tab('show')
-    });
-    $("#new-user-more-button").on("click", function(e){
-      e.preventDefault();
-      $('#new-user-nutrition-tabs a[href="#more"]').tab('show')
-    });
+      var group_name = $("#new-health-group-field").val();
+      $(".select-allergen-box").last().after(
+      "<label class='checkbox col-xs-4 select-allergen-box'><input class='check_boxes optional' name='new_health_groups[]' type='checkbox' value='"+group_name+"' checked>"+group_name+"</label>");
+      $("#new-health-group-field").val("");
+    })
   },
   set_intro_modal: function(){
     $("#introModal").modal("toggle");

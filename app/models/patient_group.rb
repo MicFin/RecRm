@@ -9,7 +9,7 @@ class PatientGroup < ActiveRecord::Base
   # returns all Patient Groups with the category allergy and a Patient Group named "Other Allergy" with an input field true boolean
   def self.allergies_with_other
     allergies=[]
-    self.all.each do |allergy|
+    self.where(unverified: false).each do |allergy|
       if allergy.category.downcase == "allergy"
         allergies << allergy
       end
@@ -20,7 +20,7 @@ class PatientGroup < ActiveRecord::Base
   # returns all Patient Groups with the category allergy 
   def self.allergies
     allergies=[]
-    self.all.each do |allergy|
+    self.where(unverified: false).each do |allergy|
       if allergy.category.downcase == "allergy"
         unless allergy.input_option == true
           allergies << allergy
@@ -33,7 +33,7 @@ class PatientGroup < ActiveRecord::Base
   # returns all Patient Groups with the category intolerance and a Patient Group named "Other Intolerance" with an input field true boolean
   def self.intolerances_with_other
     intolerances=[]
-    self.all.each do |allergy|
+    self.where(unverified: false).each do |allergy|
       if allergy.category.downcase == "intolerance"
         intolerances << allergy
       end
@@ -44,7 +44,7 @@ class PatientGroup < ActiveRecord::Base
   # returns all Patient Groups with the category intolerance 
   def self.intolerances
     intolerances=[]
-    self.all.each do |allergy|
+    self.where(unverified: false).each do |allergy|
       if allergy.category.downcase == "intolerance"
         unless allergy.input_option == true
           intolerances << allergy
@@ -57,7 +57,7 @@ class PatientGroup < ActiveRecord::Base
   # returns array of all Patient Groups with the category disease and an Patient Group named "Other Disease" with an input field true boolean
   def self.diseases_with_other
     diseases=[]
-    self.all.each do |allergy|
+    self.where(unverified: false).each do |allergy|
       if allergy.category.downcase == "disease"
         diseases << allergy
       end
@@ -68,7 +68,7 @@ class PatientGroup < ActiveRecord::Base
   # returns all Patient Groups with the category intolerance except other field
   def self.diseases
     diseases=[]
-    self.all.each do |allergy|
+    self.where(unverified: false).each do |allergy|
       if allergy.category.downcase == "disease"
         unless allergy.input_option == true
           diseases << allergy
@@ -83,7 +83,7 @@ class PatientGroup < ActiveRecord::Base
   def self.safe_allergy_groups(array_of_recipes_allergens)
     safe_patient_groups = []
     safe_allergy_groups = []
-    self.all.each do |patient_group|
+    self.where(unverified: false).each do |patient_group|
       if patient_group.allergens.count < 1
         safe_patient_groups << patient_group  
       end 
@@ -107,7 +107,7 @@ class PatientGroup < ActiveRecord::Base
   def self.safe_intolerance_groups(array_of_recipes_allergens)
     safe_patient_groups = []
     safe_intolerance_groups = []
-    self.all.each do |patient_group|
+    self.where(unverified: false).each do |patient_group|
       if patient_group.allergens.count < 1
         safe_patient_groups << patient_group  
       end 
@@ -130,7 +130,7 @@ class PatientGroup < ActiveRecord::Base
   def self.safe_disease_groups(array_of_recipes_allergens)
     safe_patient_groups = []
     safe_disease_groups = []
-    self.all.each do |patient_group|
+    self.where(unverified: false).each do |patient_group|
       if patient_group.allergens.count < 1
         safe_patient_groups << patient_group  
       end 

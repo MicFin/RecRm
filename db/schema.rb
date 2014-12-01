@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122200204) do
+ActiveRecord::Schema.define(version: 20141124081916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20141122200204) do
     t.integer  "invoice_price"
     t.string   "type"
     t.integer  "duration"
+    t.text     "other_note"
   end
 
   create_table "articles", force: true do |t|
@@ -254,6 +255,7 @@ ActiveRecord::Schema.define(version: 20141122200204) do
     t.boolean  "input_option"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "unverified",   default: false
   end
 
   create_table "patient_groups_recipes", id: false, force: true do |t|
@@ -404,6 +406,7 @@ ActiveRecord::Schema.define(version: 20141122200204) do
     t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "available",  default: true
   end
 
   create_table "user_families", force: true do |t|
@@ -446,6 +449,8 @@ ActiveRecord::Schema.define(version: 20141122200204) do
     t.integer  "height_inches"
     t.integer  "weight_ounces"
     t.text     "stripe_id"
+    t.text     "family_note"
+    t.string   "family_role"
   end
 
   add_index "users", ["date_of_birth"], name: "index_users_on_date_of_birth", using: :btree

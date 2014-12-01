@@ -84,6 +84,7 @@ var SelectApptCalendar = {
         eventClick: function(calEvent, jsEvent, view) {
           // on event click set up appointment by making AJAX call to edit_appointments_path
           jsEvent.preventDefault();
+          $("#surveyApptModal").remove();
           var start = calEvent.start;
           var end = calEvent.end;
           var appt_id = $("#set-appt-time").data("appt-id")

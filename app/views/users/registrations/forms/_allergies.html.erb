@@ -1,8 +1,24 @@
-		  <div role="tabpanel" class="tab-pane fade" id="allergies">
-       	<div class="col-xs-12 text-left">
-       	<p>Select all that apply or add your own:</p>
-		        <%= f.association :patient_groups, as: :check_boxes, collection: @allergies, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
-
+      	<div class="col-xs-12 form-group text-left">
+       		<label>Select nutritional needs and add your own:</label>
+	        <div class="col-xs-12">
+	        <%= f.association :patient_groups, as: :check_boxes, collection: @allergies, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+	        </div>
+	        <div class="col-xs-12">
+	        	<%= f.association :patient_groups, as: :check_boxes, collection: @intolerances, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+	        </div>
+	        <div class="col-xs-12">
+	        	<%= f.association :patient_groups, as: :check_boxes, collection: @diseases, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+	       	</div>
+	       	<div class="col-xs-12">
+	       		<%= f.association :patient_groups, as: :check_boxes, collection: @diets, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+    				<% if @unverified_health_groups %>
+    					<% @unverified_health_groups.each do |health_group| %>
+    						<label class='checkbox col-xs-4 select-allergen-box'><input class='check_boxes optional' name='user[patient_group_ids][]' type='checkbox' value='<%=health_group.id%>' checked><%=health_group.name%></label>
+    					<% end %>
+    				<% end %>
+    			</div>
+    			<div id="add-group-to-list-container" class="col-xs-12">
+    				<label>Need to add to our list?</label>
+    					<input id="new-health-group-field" type="text" placeholder="Blueberry Allergy" class="form-control-4"/><button id="new-health-group-button" class="btn btn-sm btn-warning">Add</button>
+    			</div>
       	</div>
-				<p><button id="new-user-intolerances-button" class="btn btn-link">Next nutrition category</button></p>
-		  </div>

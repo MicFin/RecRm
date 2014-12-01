@@ -123,11 +123,10 @@
        	<div class="col-xs-12 text-left">
        	<p>Select all that apply or add your own:</p>
 		        <%= f.association :patient_groups, as: :check_boxes, collection: @diets, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
-
       	</div>
 		    <div class="row">
-		    <div class="text-center col-xs-4 col-xs-offset-4">
-		   		<button id="new-user-more-button" class="btn btn-link">Add your own notes</button>
+		    	<div class="text-center col-xs-4 col-xs-offset-4">
+		   			<button id="new-user-more-button" class="btn btn-link">Add your own notes</button>
 		    	</div>
 			  </div>
 		  </div>
@@ -136,7 +135,6 @@
 			  	<p>Have more to share about <%=updated_user.first_name%>?</p>
 			  	<textarea class="form-control form-group" placeholder="Enter any additional information here.  Anything you think is important..is!" name="user_added_info" rows="4"></textarea>
 			  </div>
-
 		  </div>
 		</div>
 		<div id="bottom-button-container" class="col-xs-12 text-center">

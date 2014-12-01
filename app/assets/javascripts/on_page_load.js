@@ -49,6 +49,8 @@ $(document).ready(function() {
 	// user in session 
 	UserSession.javascript();
 
+		AppointmentsIndex.setButtons();
+
 
 	if ($("#quality-review-main-container").length >= 1){
 		BasicForm.validateReview();

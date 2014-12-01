@@ -266,11 +266,11 @@
             required: "Enter last name",
             minlength: "Must be at least 2 letter"
           },
-          "client_last_name":{
+          "client_first_name":{
             required: "Enter first name",
             minlength: "Must be at least 2 letter"
           },
-          "client_first_name":{
+          "client_last_name":{
             required: "Enter last name",
             minlength: "Must be at least 2 letter"
           },
@@ -299,7 +299,7 @@
     //
     nutrition_form: function(){
 
-      $("#new-user-options .edit_user.simple_form").first().validate({
+      $("#new-user-options form").validate({
         rules: {
           "user[first_name]":{
             required: true,
@@ -365,7 +365,11 @@
           },
           "user[sex]":{
             required: true
-          }
+          },
+          "user[family_role]":{
+            required: true,
+            minlength: 2
+          },
         },
         messages: {
           "user[first_name]":{
@@ -401,7 +405,11 @@
           },
           "user[sex]":{
             required: "Select sex"
-          }
+          },
+          "user[family_role]":{
+            required: "How are you related?",
+            minlength: "How are you related?"
+          },
         },
         errorPlacement: function (error, element) {
             $(element).tooltip({ title: $(error).text(), placement: "top"});  

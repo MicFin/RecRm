@@ -6,7 +6,7 @@
 				 	<h3><%=family_member.first_name%> <%=family_member.last_name%> <%=link_to "Edit Nutrition Profile", edit_user_health_groups_path(family_member), {class: "btn btn-white btn-sm", :remote => true}  %></h3>
 				 	<% if family_member.patient_groups.count >= 1 %>
 					 	<%family_member.patient_groups.each do |patient_group| %>
-					 		<div class="btn btn-white-orange btn-sm">
+					 		<div class="hidden-xs btn btn-white-orange btn-sm">
 					 			<%= patient_group.name%>
 					 		</div>
 					 	<% end %>

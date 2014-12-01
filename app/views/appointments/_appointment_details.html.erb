@@ -1,0 +1,36 @@
+
+<div class="modal fade" id="apptDetailModal" tabindex="-1" role="dialog" aria-labelledby="apptDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="apptDetailModalLabel"><%=image_tag "/assets/nav_images/logo.png", class: "img-responsive" %></h4>
+      </div>
+      <%= simple_form_for(appointment) do |f| %>      
+      <div class="modal-body">
+        <h2>Client: <%=appointment.appointment_host.first_name%> <%=appointment.appointment_host.last_name%></h2>
+        <h2>Patient: <%=appointment.patient_focus.first_name%> <%=appointment.patient_focus.last_name%></h2>
+        <h3>Relation:</h3>
+        <h3>Age:</h3>
+        <h3>Height:</h3>
+        <h3>Weight:</h3>
+        <h3>Health Groups:</h3>
+        <h3>Notes:</h3>
+        <h3>Other Family Members:</h3>
+        <h3>Last dietitian experience:</h3>
+        <p><%=appointment.note%></p>
+        <h3>Top 3 Issues:</h3>
+        <p><%=appointment.client_note%></p>
+        <h3>#1 Goal:</h3>
+        <p><%=appointment.other_note%></p>
+          <%=f.input :dietitian_id, collection: dietitians, :label_method => :email  %>
+      </div>
+      <div class="modal-footer">
+        <div class="actions">
+          <%= f.button :submit, "Assign KRDN", class: "btn btn-success btn-block", id: "btn-purchase-appt" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

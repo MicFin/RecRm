@@ -33,7 +33,7 @@
   </div>
 </div>
 <div id="select-time-message-container" class="col-xs-11 col-sm-10 col-md-3 col-lg-3 alert">
-  <h2>Please select a time for your appointment.</h2>
+  <h2>Please select a time for your 1-hour session.</h2>
   <p>During our Early Access program, we have limited our availability to ensure each client is connected with the perfect KindRDNutritionist.  If the available times do not match your schedule, please email us here!</p>
 
 </div>
@@ -41,7 +41,11 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <div id="select-appt-cal"></div>
+          <% if @appointment.stripe_card_token %>
+            <h2>This appointment is already set for <%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M") - @appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p")%></h2>
+          <% else %>
+            <div id="select-appt-cal"></div>
+          <% end %>
         </div>
       </div>
 </div>

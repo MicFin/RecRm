@@ -42,6 +42,7 @@
 //= require user_session
 //= require on_page_load
 //= require appointment
+//= require appointments_index
 
 var videos = 1;
 var publisherObj;

@@ -68,6 +68,6 @@ class PatientGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_group_params
-      params.require(:patient_group).permit(:name, :category, :description, :order, :input_option)
+      params.require(:patient_group).permit(:name, :category, :description, :order, :input_option, :unverified)
     end
 end

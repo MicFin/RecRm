@@ -1,0 +1,3 @@
+$("#apptDetailModal").remove();
+$("body").append("<%= j render(:partial => 'appointment_details', :locals => {:dietitians => @dietitians, :appointment => @appointment}) %>");
+$('#apptDetailModal').modal();

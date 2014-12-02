@@ -3,7 +3,7 @@ class ChargesController < ApplicationController
   def new
   end
   def create
-    binding.pry
+    
     # create new customer or find current customer
     if appointment_host.stripe_id
       customer = Stripe::Customer.retrieve(appointment_host.stripe_id)

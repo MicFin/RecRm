@@ -7,7 +7,7 @@ class MemberPlansController < ApplicationController
     @member_plans = MemberPlan.all
     @subscribers = UserRole.where(resource_type: "MemberPlan")
     @members = UserRole.where(resource_type: "Plan")
-    binding.pry
+    
   end
 
   # GET /member_plans/1

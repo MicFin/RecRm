@@ -14,11 +14,11 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/new
   def new
-    binding.pry
+    
     @prem_subs = Subscription.new(member_plan_id: 1)
     customer = Stripe::Customer.retrieve(current_user.stripe_id)
     cards = customer.cards.all(:limit => 3)
-    binding.pry
+    
     if cards[:data].count > 0
       @credit_card = { last4: cards[:data].last[:last4], brand: cards[:data].last[:brand] } 
     else
@@ -33,7 +33,7 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    binding.pry
+    
     # retrieve stripe customer
     @user = current_user
     customer = Stripe::Customer.retrieve(@user.stripe_id)
@@ -56,7 +56,7 @@ class SubscriptionsController < ApplicationController
     respond_to do |format|
       if @subscription.save
         # is subscription is saved then create roles for user 
-        binding.pry
+        
         member_plan = @subscription.member_plan 
         # subscriber of member_plan
         @user.add_role "Subscriber", member_plan

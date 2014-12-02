@@ -27,49 +27,57 @@ before_filter :authenticate_admin_user!, only: [:index]
   end
 
   def in_session
-
-    @room = Room.find(params[:id])
-    @tok_token =  @opentok.generate_token @room.sessionId  
+    @room = Room.find(params[:id]) 
     @appointment = Appointment.find(params[:appointment])
     if current_admin_user
       @user = current_admin_user
     elsif current_dietitian
       @user = current_dietitian
+      appointment_host = @appointment.appointment_host
+      @tok_token =  @opentok.generate_token(@room.sessionId, {role: :moderator, data: "Moderator"}) 
+      
+      # @tok_token =  @opentok.generate_token @room.sessionId({
+      #   :role        => :moderator
+      #   :expire_time => Time.now.to_i+(7 * 24 * 60 * 60) # in one week
+      #   :data        => 'name=Johnny'
+      # });
     else
       @user = current_user
-      @family = @user.head_of_families.last
-      appointment_focus = @appointment.patient_focus
-      @updated_user = appointment_focus
-      @family_members = []
-      @family_members << appointment_focus
+      appointment_host = @user
+      @tok_token =  @opentok.generate_token @room.sessionId 
+    end
+    @family = appointment_host.head_of_families.last
+    appointment_focus = @appointment.patient_focus
+    @updated_user = appointment_focus
+    @family_members = []
+    @family_members << appointment_focus
 
-      family_count = @family.users.count
-      
-      if family_count > 0
-
-        if @user != appointment_focus
+    family_count = @family.users.count
     
-          @family_members << @user
-          @family.users.each do |family_member| 
-            if family_member != appointment_focus
-        
-              @family_members << family_member 
-            end
-          end
-        else
-          @family.users.each do |family_member|
-              @family_members << family_member
+    if family_count > 0
+
+      if appointment_host != appointment_focus
+  
+        @family_members << appointment_host
+        @family.users.each do |family_member| 
+          if family_member != appointment_focus
+      
+            @family_members << family_member 
           end
         end
       else
-        @family_members << @user
+        @family.users.each do |family_member|
+            @family_members << family_member
+        end
       end
+    else
+      @family_members << appointment_host
+    end
     get_patient_groups!
     @diseases = @diseases 
     @intolerances = @intolerances 
     @allergies = @allergies
     @diets = @diets 
-    end
   end
 
   private

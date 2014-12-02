@@ -49,7 +49,11 @@ $(document).ready(function() {
 	// user in session 
 	UserSession.javascript();
 
-		AppointmentsIndex.setButtons();
+	AppointmentsIndex.setButtons();
+
+	// set up tox box size
+	// actual tokbox script is at view rooms in_session 
+	// TokBoxMain.responsive_screens();
 
 
 	if ($("#quality-review-main-container").length >= 1){

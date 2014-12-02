@@ -11,9 +11,16 @@
 		<p>Create a Recipe</p>
 	</div>
 	<div id="appointment-update-container" class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center alert alert-danger">
-		<p>Your upcoming session is</p>
-		<h4><%=@appointment.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p"%></h4>
-		<a class="alert-link" href="">Join Here</a></p>
+		<p>Your upcoming sessions</p>
+		<% @appointments.each do |appointment| %>
+		<h4><%#=@appointment.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p"%></h4>
+		<% if appointment.room_id %>
+		<%# if (((DateTime.now.in_time_zone("Eastern Time (US & Canada)") - @appointment.start_time) / 60 / 60) > -5)%>
+			<%= link_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => appointment.room_id, appointment: appointment.id }, class: "text-center action kindrd-button btn-block tilt"%>
+		<% else %>
+			<h5>Return 2 hours before appointment to sign in</h5>
+		<% end %>
+		<% end %>
 	</div>
 	<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center">
 		<p><%= link_to image_tag("computer.png", class: "tilt"), "http://www.kindrdcare.com/sign_in" %></p>
@@ -22,9 +29,8 @@
 </div>
 
 <div id="dietitian-recipes-container" class="container">
-	<%# @recipes.each do |recipe| %>
+
 	<div class="col-xs-3">
-	<%#= recipe.name %>
 	
 	</div>
 </div>

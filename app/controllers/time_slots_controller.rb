@@ -34,7 +34,7 @@ class TimeSlotsController < ApplicationController
     if num_create > 1
       new_params = time_slot_params
       for i in 1...num_create
-      binding.pry
+      
        TimeSlot.new(new_params).save
       end
       @time_slot = TimeSlot.new(new_params)

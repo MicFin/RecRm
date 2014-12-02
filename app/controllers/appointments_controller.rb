@@ -62,7 +62,7 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-
+    
     # if update saves
     if @appointment.update(appointment_params)
       # if stripe card payment update incnluded in update then user is paying 
@@ -79,11 +79,13 @@ class AppointmentsController < ApplicationController
         time_slot.save
       # or has recently been updated with dietitian thhen admin assigned dietitian
       elsif @appointment.dietitian_id != nil
+        
         @new_session = @opentok.create_session 
-        @tok_token = @new_session.generate_token :session_id =>@new_session.session_id  
+        @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
+        ## creating a new room each time, should either purge old rooms or assign rooms to dietitians 
         @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Early Access Session")
-        @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, name: "Early Access Session")
-        @new_room.save!
+        # @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, name: "Early Access Session")
+        @new_room.save
         dietitian = @appointment.dietitian
         dietitian.add_role "Session Host", @new_room
         user = @appointment.appointment_host
@@ -138,6 +140,7 @@ class AppointmentsController < ApplicationController
     end
   
     def config_opentok
+      
       if @opentok.nil?
        @opentok = OpenTok::OpenTok.new ENV["API_KEY"], ENV["API_SECRET"]
       end

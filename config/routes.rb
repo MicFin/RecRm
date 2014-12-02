@@ -39,7 +39,7 @@ Rails.application.routes.draw do
       resources :families
       get 'appointments/:id/select_time', to: 'appointments#select_time', as: 'select_time'
       resources :appointments
-      resources :rooms
+      resources :rooms, only: [:index, :create]
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_room, :via => :get
       # resources :charges
       resources :subscriptions
@@ -126,6 +126,8 @@ Rails.application.routes.draw do
       # review recipe
       get 'recipes/:id/review_recipe', to: 'recipes#review_recipe', as: 'review_recipe'
       get 'recipes/:id/complete_recipe', to: 'recipes#complete_recipe', as: 'complete_recipe'
+      resources :rooms, only: [:index, :create]
+      match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_dietitian_room, :via => :get
     end
     unauthenticated :dietitian do
       root :to => "devise/sessions#new", as: :dietitian_unauthenticated_root

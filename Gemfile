@@ -89,7 +89,7 @@ gem 'fullcalendar-rails'
 gem 'stripe'
 # rails stripe payment integration
 # https://github.com/thefrontside/stripe-rails
-# gem 'stripe-rails'
+gem 'stripe-rails'
 # automatic cron jobs
 # user for payments and emails?
 # https://github.com/javan/whenever

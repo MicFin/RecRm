@@ -89,11 +89,11 @@ gem 'fullcalendar-rails'
 gem 'stripe'
 # rails stripe payment integration
 # https://github.com/thefrontside/stripe-rails
-gem 'stripe-rails'
+# gem 'stripe-rails'
 # automatic cron jobs
 # user for payments and emails?
 # https://github.com/javan/whenever
-gem 'whenever', require: false
+# gem 'whenever', require: false
 
 group :development do
 # Better error gives you better explanations for errors

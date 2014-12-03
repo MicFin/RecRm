@@ -2,7 +2,7 @@
 			<% family_members ||= @family_members%>
 
 			<%family_members.each do |family_member|%>
-				<div id="family-member-<%=family_member.id%>">
+				<div id="family-member-<%=family_member.id%>" class="family-member">
 				 	<h3><%=family_member.first_name%> <%=family_member.last_name%> <%=link_to "Edit Nutrition Profile", edit_user_health_groups_path(family_member), {class: "btn btn-white btn-sm", :remote => true}  %></h3>
 				 	<% if family_member.patient_groups.count >= 1 %>
 					 	<%family_member.patient_groups.each do |patient_group| %>
@@ -13,4 +13,23 @@
 				 	<% end %>
 				</div>
 			<% end %>
+			<div class="col-xs-12 add-person-container">
+				<%= link_to(new_family_member_path, remote: true) do %>
+					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+						<h4><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span></h4>
+						<h4>Add another person</h4>
+					</div>
+				<% end %>
+
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 complete-family-container">
+					<div class="col-xs-12">
+						<div class="col-xs-12">
+						<%= link_to  "Next", select_time_path(@appointment), class: "btn btn-success btn-block" %>
+						</div>
+					</div>
+					<div class="col-xs-12">
+					<h4>Ready to schedule your appointment?</h4>
+					</div>
+				</div>
+			</div>
 		</div>

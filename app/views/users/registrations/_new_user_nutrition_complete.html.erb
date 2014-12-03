@@ -1,4 +1,4 @@
-	<div id="new-user-completed" class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 add-person-container">
 		<%= link_to(new_family_member_path, remote: true) do %>
 			<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
 				<h4><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span></h4>
@@ -6,7 +6,7 @@
 			</div>
 		<% end %>
 
-		<div id="complete-family-container" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 complete-family-container">
 			<div class="col-xs-12">
 				<div class="col-xs-6 col-xs-offset-3">
 				<%= link_to  "Next", select_time_path(@appointment), class: "btn btn-success btn-block" %>

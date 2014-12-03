@@ -27,6 +27,10 @@ var UserSignUp = {
   },
   family_buttons: function(){
     $("#family-member-list").children().first().addClass("selected-family-member");
+    $("#family-member-list .family-member:not(:first-child)").addClass("unselected-family-member");
     $(".selected-family-member a").hide();
   },
+  set_nutrition_intro_modal: function(){
+    $("#nutritionIntroModal").modal("toggle");
+  }
 }

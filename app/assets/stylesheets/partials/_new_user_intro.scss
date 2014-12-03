@@ -22,6 +22,11 @@
 /*END Form Wizard*/
 
 
+//// INTRO MODAL 
+#introModal .intro-paragraph, #nutritionIntroModal .intro-paragraph{
+	line-height: 150%;
+}
+
 
 #new-user-name-form{
 	text-align:left;
@@ -123,7 +128,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-#new-user-family-form #complete-family-container a {
+#new-user-family-form .complete-family-container a {
 	color: $white;
 	height: 50px;
 	font-size: 30px;
@@ -135,7 +140,7 @@
 	transition: all 0.3s ease-in-out;
 }
 
-#new-user-family-form #complete-family-container a:visited {
+#new-user-family-form .complete-family-container a:visited {
 	color: $white;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
@@ -186,6 +191,7 @@
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-top: 0px;
+	margin-top: 5%;
 }
 
 #new-user-family-form .tab-pane > div{
@@ -205,14 +211,15 @@
 	color: $lightorange;
 }
 
-#new-user-completed {
-	margin-top: 10%;
-	text-align: center;
+#new-user-family-form {
 	span.glyphicon {
 		font-size: 50px;
 	}
-	#complete-family-container{
+	.complete-family-container{
 		margin-top: 2%;
+	}
+	.add-person-container{
+		padding: 0px;
 	}
 }
 
@@ -273,12 +280,21 @@
 	cursor: default;
 }
 
-.selected-family-member {
+#family-member-list .selected-family-member {
 	background-color: $lightorange;
 	border-radius: 5px;
 	color: white;
-	padding: 1px;
 	margin-top: 1%;
+}
+
+#family-member-list .family-member{
+	padding: 1% 1% 1% 5%;
+}
+
+#family-member-list .unselected-family-member{
+	border-radius: 5px;
+	margin-top: 1%;
+	border: 2px solid $lightorange;
 }
 
 #family-member-list .btn.btn-white{ 
@@ -310,10 +326,6 @@
 	color: $white;
 	background-color: $lightgreen;
 	border-color: $lightgreen;
-}
-
-#family-member-list .selected-family-member h3{
-	text-align: center;
 }
 
 #add-group-to-list-container{

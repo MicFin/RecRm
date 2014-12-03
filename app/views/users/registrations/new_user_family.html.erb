@@ -36,9 +36,8 @@
   			
 <div id="new-user-family-form" class="container">
 	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
-		<h3>Who eats at your table?</h3>
-		<p>Whether you are juggling multiple anaphylactic tummy's or a single picky eater, your team of KindRDNutritionists will empower you to make life easier, safer, and tastier. Help us get to know you and your family, starting with . . .</p>
 		<div class="col-xs-12">
+		<h3>Start with</h3>
 		<%= render "new_user_family_list" %>
 		</div>
 	</div>
@@ -131,3 +130,5 @@
 	<% end %>
 	</div>
 </div>
+
+<%= render "/users/registrations/modal_nutrition_intro" %>

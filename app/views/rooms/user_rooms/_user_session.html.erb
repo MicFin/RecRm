@@ -57,22 +57,55 @@
           </div>
         </div>
       </div>
-    </div> <!-- recipe background -->
+    </div><!-- recipe background -->
     <nav id="nav-bottom" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
       <ul id="main-footer-list" class="row footer-buttons">
-        <li class="col-xs-4"><a class="family-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your Family</h2></div></a></li>
-        <li id="notes-button" class="col-xs-4"><a class="notes-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Take Notes</h2></div></a></li>
-        <li class="col-xs-4"><a class="krdn-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your KRDN</h2></div></a></li>
+        <li id="family-button-container" class="col-xs-4 footer-buttons">
+          <a class="family-button" href="dsfasdfd" >
+            <div class="col-xs-12">
+              <h2>Your Family</h2>
+            </div>
+          </a>
+        </li>
+        <li id="notes-button-container" class="col-xs-4">
+          <a id="notes-button" href="#">
+            <div class="col-xs-12">
+              <h2>Take Notes</h2>
+            </div>
+          </a>
+        </li>
+        <li id="krdn-button-container" class="col-xs-4 footer-buttons">
+          <a class="krdn-button" href="dsfasdfd" >
+            <div class="col-xs-12">
+              <h2>Your KRDN</h2>
+            </div>
+          </a>
+        </li>
       </ul>
       <div id="family-container" class="hidden row" >
         <ul class="row footer-buttons">
-          <li class="col-xs-3"><a class="family-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your Family</h2></div></a><%= render "/users/registrations/new_user_family_list" %></li>
-          <li class="col-xs-9"><%= render "/users/registrations/edit_user_health_groups_small" %></li>
+          <li class="col-xs-3">
+            <a class="family-button" href="dsfasdfd" >
+            <div class="col-xs-12">
+            <h2>Your Family</h2>
+            </div>
+            </a>
+            <%= render "/users/registrations/new_user_family_list" %>
+            </li>
+          <li class="col-xs-9">
+            <%= render "/users/registrations/edit_user_health_groups_small" %>
+            </li>
         </ul>
       </div>
       <div id="notes-container" class="hidden row" style="height:500px">
         <ul class="row footer-buttons">
-          <li class="col-xs-4 col-xs-offset-4"><a class="family-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Take Notes</h2></div></a></li>
+          <li class="col-xs-4 col-xs-offset-4">
+            <a class="family-button" href="dsfasdfd" >
+            <div class="col-xs-12">
+            <h2>Take Notes</h2>
+            </div>
+            </a>
+            </li>
           <li class="col-xs-10 col-xs-offset-1">
           <textarea class="form-control form-group" rows="4" id="comment">You can look back at your notes and add to them after the consultation.  Don't worry about being neat, this is for your eyes only!</textarea>
             <button class="btn btn-success">Save</button>
@@ -81,7 +114,13 @@
       </div>
       <div id="krdn-container" class="hidden row" style="height:500px">
         <ul class="row footer-buttons">
-          <li class="col-xs-4 col-xs-offset-8"><a class="krdn-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your KRDN</h2></div></a></li>
+          <li class="col-xs-4 col-xs-offset-8">
+            <a class="krdn-button" href="dsfasdfd" >
+            <div class="col-xs-12">
+            <h2>Your KRDN</h2>
+            </div>
+            </a>
+            </li>
         </ul>
         <div class="col-xs-3">
         </div>
@@ -91,3 +130,60 @@
         </div>
       </div>
     </nav>
+<script type="text/javascript">
+$(document).ready(function() {
+  var tour = new Tour({
+    steps: [
+      {
+        element: "#left-user-tabs",
+        title: "Your goals are our mission",
+        content: "Follow this quick guide to familiarize yourself with the room before your session starts!",
+        placement: "right"
+      },
+      {
+        element: "#family-button-container",
+        title: "Your Family",
+        content: "Help your KindRDNutritionist better understand your table's needs by creating a nutrition profile for everyone you care about.  You can update this at any time.",
+        placement: "top"
+      },
+      {
+        element: "#notes-button-container",
+        title: "Your Notes",
+        content: "We love teaching people about nutrition and we know the information can be overwhelming at times.  Type your notes so that you can look back at them after the session.",
+        placement: "top"
+      },
+      {
+        element: "#krdn-button-container",
+        title: "Your KindRDNutritionist",
+        content: "Get to know us!  We are Registered Dietitians who believe that...",
+        placement: "top"
+      },
+      {
+        element: "#phone-button-container",
+        title: "Having Trouble Connecting?",
+        content: "Sometimes things go wrong so we like to be prepared.  If we lose video connection, use this number to call us.",
+        placement: "left"
+      },
+      {
+        element: "#message-button-container",
+        title: "We Text Too",
+        content: "Need to share a link or clarify something?  We can send messages but we prefer to talk 1 on 1.",
+        placement: "left"
+      },
+      {
+        element: "#dietitian-name",
+        title: "Ready To Start?",
+        content: "We are excited to speak with you.  Just click End Tour to connect your video and begin your session!",
+        placement: "top"
+      }
+    ],
+    onEnd: function(tour){
+      TokBox.initialize();
+    }
+  });
+  // Initialize the tour
+  tour.init();
+  // Start the tour
+  tour.start(true);
+});
+</script>

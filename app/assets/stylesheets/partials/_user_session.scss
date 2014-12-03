@@ -68,7 +68,7 @@
 	text-align: center;
 	list-style-type: none;
 	height: 100%;
-	#notes-button{
+	#notes-button div{
 		min-height: 500px;
 		background-color: $carrotorange;
 	}
@@ -252,4 +252,10 @@
 
 .allow-camera-container ol li {
 	font-size: 20px;
+}
+
+/////// INTRO Tour ////
+
+.popover[class*=tour-] {
+	z-index: 1100;
 }

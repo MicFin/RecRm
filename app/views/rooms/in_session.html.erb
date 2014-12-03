@@ -19,6 +19,7 @@
 <!-- <script src="http://static.opentok.com/v0.91/js/TB.min.js" type="text/javascript"></script> -->
 <script type="text/javascript">
 
+
   window.onresize=function(){
     var layoutContainer=document.getElementById('layoutContainer');
     var window_height = $(window).height()-300;
@@ -32,6 +33,7 @@
 	var token = "<%= @tok_token %>";
 
 	var session;
+  var startTime;
         
 
 //	TB.addEventListener('exception', exceptionHandler);
@@ -39,238 +41,261 @@
 	//Video chat event listeners
 	//session.addEventListener('sessionConnected', sessionConnectedHandler);
 	//session.addEventListener('streamCreated', streamCreatedHandler);
+  var TokBox = {
+    initialize: function(){
+      TB.setLogLevel(TB.DEBUG);
+      //session.connect(apiKey, token);
 
+      // OT.checkSystemRequirements() function before you do any initialization.
+      var session = TB.initSession(sessionId);
+      session.addEventListener('sessionConnected', sessionConnectedHandler);
+      session.addEventListener('streamCreated', streamCreatedHandler);
+      session.addEventListener('sessionDisconnected', sessionDisconnectedHandler);
+      session.addEventListener('streamDestroyed', streamDestroyedHandler);
+      session.addEventListener("signal:Message", receiveSignalHandler);
+      session.addEventListener("signal:StartAlert", receiveStartAlertHandler);
+      session.connect(apiKey, token);
 
-TB.setLogLevel(TB.DEBUG);
-//session.connect(apiKey, token);
+      // function subscribe_to_stream
 
-// OT.checkSystemRequirements() function before you do any initialization.
-   var session = TB.initSession(sessionId);
-    session.addEventListener('sessionConnected', sessionConnectedHandler);
-    session.addEventListener('streamCreated', streamCreatedHandler);
-    session.addEventListener('sessionDisconnected', sessionDisconnectedHandler);
-    session.addEventListener('streamDestroyed', streamDestroyedHandler);
-    session.addEventListener("signal", receiveSignalHandler);
-    session.connect(apiKey, token);
+      var publisher;
+      function sessionConnectedHandler(event) {
+        publisher = TB.initPublisher(apiKey, 'videobox');
+        session.publish(publisher);
+        // set video container size
+        var layoutContainer = $("#layoutContainer");
+        // get height of window and subtract 300 for navs
+        var window_height = $(window).height()-300;
+        layoutContainer.css("height", window_height+"px");
+        // make publish video 100% size to be responsive
+        var pubElement = document.getElementById(publisher.id);
+        pubElement.style.width = "100%";
+        pubElement.style.height = "100%";
+        // set listeners for video acces pop ups
+        publisher.addEventListener('accessAllowed', accessAllowedHandler);
 
-    // function subscribe_to_stream
+        publisher.addEventListener('accessDenied', accessDeniedHandler);
 
-    var publisher;
-    function sessionConnectedHandler(event) {
-      publisher = TB.initPublisher(apiKey, 'videobox');
-      session.publish(publisher);
-      // set video container size
-      var layoutContainer = $("#layoutContainer");
-      // get height of window and subtract 300 for navs
-      var window_height = $(window).height()-300;
-      layoutContainer.css("height", window_height+"px");
-      // make publish video 100% size to be responsive
-      var pubElement = document.getElementById(publisher.id);
-      pubElement.style.width = "100%";
-      pubElement.style.height = "100%";
-      // set listeners for video acces pop ups
-      publisher.addEventListener('accessAllowed', accessAllowedHandler);
+        publisher.addEventListener('accessDialogOpened', accessDialogOpenedHandler);
 
-      publisher.addEventListener('accessDenied', accessDeniedHandler);
+        // publisher.addEventListener('streamDestroyed', streamDestroyedHandler);
 
-      publisher.addEventListener('accessDialogOpened', accessDialogOpenedHandler);
+        // publisher.addEventListener('accessDialogClosed', accessDialogClosedHandler);
 
-      // publisher.addEventListener('streamDestroyed', streamDestroyedHandler);
+        function accessAllowedHandler(e) {
+          // for user allow
+          $("#sessionIntroModal").modal("hide");
+          $("#user-video").show();
+          $("#user-video").removeClass("video-center").addClass("video-right");
+          // create the tour instance
 
-      // publisher.addEventListener('accessDialogClosed', accessDialogClosedHandler);
+          // $("#client-video-placeholder").hide();
+          // $(".welcome-rd-container-large").each(function(i30,e30){
+          //   $(e30).addClass("welcome-rd-container-small").removeClass("welcome-rd-container-large");
+          // });
 
-      function accessAllowedHandler(e) {
-        // for user allow
-        $("#sessionIntroModal").modal("hide");
-        $("#user-video").show();
-        $("#user-video").removeClass("video-center").addClass("video-right");
-        // create the tour instance
-        var tour = new Tour({
-          steps: [
-          {
-            element: "#nav-bottom",
-            title: "Title of my step",
-            content: "Content of my step"
-          },
-          {
-            element: "#user-video",
-            title: "Title of my step",
-            content: "Content of my step"
+          // for dietitian allow
+          $("#welcome-rd-1").hide();
+          $("#welcome-rd-2").hide();
+          $("#welcome-rd-3").show();
+          $("#dietitian-video").show();
+          $("#dietitian-video").removeClass("video-left").addClass("video-right");
+          // both 
+          addStream(event);
+        };
+
+        function accessDeniedHandler(e){
+          // if user has selected to deny the webcam after the session intro has been shown
+          if ( ($("#sessionIntroModal").data('modal')) && ($("#sessionIntroModal").data('modal').isShown) ){
+            // add denied has been selected warning
+            $("#allow-camera-row").addClass("hidden");
+            $("#allow-camera-denied-row").removeClass("hidden");
+          // else if the user selected to deny the webcam a previous session
+          } else {
+            $("#sessionIntroModal").modal({
+              backdrop: 'static',
+              keyboard: false
+            });
+            $("#allow-camera-row").addClass("hidden");
+            $("#allow-camera-denied-row").removeClass("hidden");
+            // show modal with denied warning
           }
-        ]});
+        };
 
-        // Initialize the tour
-        tour.init();
-
-        // Start the tour
-        tour.start();
-
-        // $("#client-video-placeholder").hide();
-        // $(".welcome-rd-container-large").each(function(i30,e30){
-        //   $(e30).addClass("welcome-rd-container-small").removeClass("welcome-rd-container-large");
-        // });
-
-        // for dietitian allow
-        $("#welcome-rd-1").hide();
-        $("#welcome-rd-2").hide();
-        $("#welcome-rd-3").show();
-        $("#dietitian-video").show();
-        $("#dietitian-video").removeClass("video-left").addClass("video-right");
-        // both 
-        addStream(event);
-      };
-
-      function accessDeniedHandler(e){
-        // if user has selected to deny the webcam after the session intro has been shown
-        if ( ($("#sessionIntroModal").data('modal')) && ($("#sessionIntroModal").data('modal').isShown) ){
-          // add denied has been selected warning
-          $("#allow-camera-row").addClass("hidden");
-          $("#allow-camera-denied-row").removeClass("hidden");
-        // else if the user selected to deny the webcam a previous session
-        } else {
+        function accessDialogOpenedHandler(event) {
           $("#sessionIntroModal").modal({
             backdrop: 'static',
             keyboard: false
           });
-          $("#allow-camera-row").addClass("hidden");
-          $("#allow-camera-denied-row").removeClass("hidden");
-          // show modal with denied warning
-        }
+          // when "allow video" prompt pops up
+        };
+
+        function accessDialogClosedHandler(event){
+          // when "allow video" prompt closes
+          alert("closed");
+        };
+
+        // Subscribe to streams that were in the session when we connected
+        // subscribeToStreams(event.streams);
+
+        function addStream(event){
+          subscribeToStreams(event.streams);
+        };
+
       };
 
-      function accessDialogOpenedHandler(event) {
-        $("#sessionIntroModal").modal({
-          backdrop: 'static',
-          keyboard: false
-        });
-        // when "allow video" prompt pops up
-      };
-
-      function accessDialogClosedHandler(event){
-        // when "allow video" prompt closes
-        alert("closed");
-      };
-
-      // Subscribe to streams that were in the session when we connected
-      // subscribeToStreams(event.streams);
-
-      function addStream(event){
+      function streamCreatedHandler(event) {
+        // Subscribe to any new streams that are created
         subscribeToStreams(event.streams);
       };
-
-    };
-
-    function streamCreatedHandler(event) {
-      // Subscribe to any new streams that are created
-      subscribeToStreams(event.streams);
-    };
-    function streamDestroyedHandler(event){
-      // if the moderator stream is disconnected
-      if (event.stream.connection.data === "Moderator") {
-        // if the moderator disconnected on purpose then disconnect all sessions because the session is over
-        if (event.reason === "clientDisconnected") {
-          session.disconnect();
-          $("body").append("<%= j render(:partial => '/rooms/session_surveys/post_session_user_survey') %>");
-          $('#userSessionSurveyModal').modal();
-        //trigger pop up form for post session
-        // if it was a connection problem
-        } else {
-          $("#videobox2").append("<h3 class='text-center' id='video-placeholder'>Oops, be right back!</h3>")
-        } 
-      // if the user disconnects ir was by accident since we do not let them close the session right now
-      }else {
-        $("#videobox2").append("<h3 class='text-center' id='video-placeholder'>Oops, be right back!</h3>");
-      } 
-    };
-    function sessionDisconnectedHandler(event) {
-      // if stream destroyed is dietitian
-      
-      // else is patient
-    };
-    function sessionDestroy(event) {
-       // event.streams;
-       session.disconnect();
-       // forceUnpublish(stream, completionHandler);
-    };
-    function receiveSignalHandler(event){
-      // if chat container is closed when receiving a message then open it
-      if ($("#chat-container").is(":hidden") ){
-        $("#chat-container").show("slow");
-        $("#phone-container").hide("slow");
-        $("#phone-button-container").hide("slow");
-      };
-      var $chat_box = $('#chat-box');
-      // if message was sent by self then send as orange if by other then green
-      if (publisher.stream.connection.connectionId === event.from.id) {
-        $chat_box.append("<h4><span class='font-light-orange'>You: </span>"+event.data+"</h4>");
-      } else {
-        $chat_box.append("<h4><span class='font-light-green'>Other: </span>"+event.data+"</h4>");
-      };
-      $chat_box.scrollTop($chat_box.prop("scrollHeight"));
-  // Process the event.data property, if there is any data.
-     };
-
-    function subscribeToStreams(streams) {
-      for (var i = 0; i < streams.length; i++) {
-        // Make sure we don't subscribe to ourself
-        if (streams[i].connection.connectionId == session.connection.connectionId) {
-          return;
-        }
-        // // set video container size
-        // var layoutContainer = $("#layoutContainer");
-        // // get height of window and subtract 300 for navs
-        // var window_height = $(window).height()-300;
-        // layoutContainer.css("height", window_height+"px");
-        var pubElement = document.getElementById(publisher.id);
-        pubElement.style.width = "25%";
-        pubElement.style.height = "25%";
-        $(pubElement).addClass("small-video");
-        // Create the div to put the subscriber element in to
-        var div = document.createElement('div');
-        div.setAttribute('id', 'stream' + streams[i].streamId);
-        // remove placeholder if that was in place
-        $("#video-placeholder").remove();
-        // add div to videobox
-        $("#videobox2").append(div);
-        // set size of subscriber video box
-        var subscriberProps = {
-          width: "100%", 
-          height: "100%"};
-        // Subscribe to the stream
-        session.subscribe(streams[i], div.id, subscriberProps);
-        // session.addEventListener('streamDestroyed', streamDestroyedHandler);
-
-      }
-    };
-
-    $("#end-session-button").on("click", function(e){
-      e.preventDefault();
-      var end_session_boolean = confirm("Are you sure you would like to end this session?");
-      if (end_session_boolean === true) {
-      // confirm to close session
-        sessionDestroy();
-        $("body").append("<%= j render(:partial => '/rooms/session_surveys/post_session_user_survey') %>");
-        $('#userSessionSurveyModal').modal();
-      }
-    });
-    $("#chat-container").on("click", "#send-message-button", function(e){
-      e.preventDefault();
-      var message = $("#user-message").val();
-      session.signal(
-        {
-          data: message
-        },
-        function(error) {
-          if (error) {
-            console.log("signal error ("
-                       + error.code
-                       + "): " + error.reason);
+      function streamDestroyedHandler(event){
+        // if the moderator stream is disconnected
+        if (event.stream.connection.data === "Moderator") {
+          // if the moderator disconnected on purpose then disconnect all sessions because the session is over
+          if (event.reason === "clientDisconnected") {
+            session.disconnect();
+            $("body").append("<%= j render(:partial => '/rooms/session_surveys/post_session_user_survey') %>");
+            $('#userSessionSurveyModal').modal();
+          //trigger pop up form for post session
+          // if it was a connection problem
           } else {
-            $("#user-message").val("");
-          }
+            $("#videobox2").append("<h3 class='text-center' id='video-placeholder'>Oops, be right back!</h3>")
+          } 
+        // if the user disconnects ir was by accident since we do not let them close the session right now
+        }else {
+          $("#videobox2").append("<h3 class='text-center' id='video-placeholder'>Oops, be right back!</h3>");
+        } 
+      };
+      function sessionDisconnectedHandler(event) {
+        // if stream destroyed is dietitian
+        
+        // else is patient
+      };
+      function sessionDestroy(event) {
+         // event.streams;
+         session.disconnect();
+         // forceUnpublish(stream, completionHandler);
+      };
+      function receiveSignalHandler(event){
+        // if chat container is closed when receiving a message then open it
+        if ($("#chat-container").is(":hidden") ){
+          $("#chat-container").show("slow");
+          $("#phone-container").hide("slow");
+          $("#phone-button-container").hide("slow");
+        };
+        var $chat_box = $('#chat-box');
+        // if message was sent by self then send as orange if by other then green
+        if (publisher.stream.connection.connectionId === event.from.id) {
+          $chat_box.append("<h4><span class='font-light-orange'>You: </span>"+event.data+"</h4>");
+        } else {
+          $chat_box.append("<h4><span class='font-light-green'>Other: </span>"+event.data+"</h4>");
+        };
+        $chat_box.scrollTop($chat_box.prop("scrollHeight"));
+    // Process the event.data property, if there is any data.
+      };
+      function receiveStartAlertHandler(event){
+        // alert that a StartAlert was received
+        alert("Client is connecting.");
+        // if startTime hasn't been logged yet then log start time and start count down
+        if (typeof startTime === 'undefined'){
+          startTime = moment();
+          var startTimeFormatted = moment().format('h:mm a');
+          var endTime = startTime.add(1, "hours");
+          var endTimeFormatted = endTime.format('h:mm a');
+          $("#end-session-button").after("<h5>Started at: "+startTimeFormatted+"</h5><h5>End at: "+endTimeFormatted+"</h5><p id='session-count-down'></p>");
+
+          var diffTime = 3600000;
+          var duration = moment.duration(diffTime, 'milliseconds');
+          var interval = 1000;
+          setInterval(function(){
+            duration = moment.duration(duration - interval, 'milliseconds');
+              $('#session-count-down').text(duration.hours() + ":" + duration.minutes() + ":" + duration.seconds())
+          }, interval);
         }
-      )
-    });
+      };
+      function subscribeToStreams(streams) {
+        for (var i = 0; i < streams.length; i++) {
+          // Make sure we don't subscribe to ourself
+          if (streams[i].connection.connectionId == session.connection.connectionId) {
+            return;
+          };
+          if (streams[i].connection.data === "Moderator"){
+            session.signal(
+              {
+                to: streams[i].connection,
+                data: "Start Session Alert",
+                type: "StartAlert"
+              },
+              function(error) {
+                if (error) {
+                  console.log("signal error ("
+                             + error.code
+                             + "): " + error.reason);
+                } else {
+
+                }
+              }
+            )
+          };
+          // // set video container size
+          // var layoutContainer = $("#layoutContainer");
+          // // get height of window and subtract 300 for navs
+          // var window_height = $(window).height()-300;
+          // layoutContainer.css("height", window_height+"px");
+          var pubElement = document.getElementById(publisher.id);
+          pubElement.style.width = "25%";
+          pubElement.style.height = "25%";
+          $(pubElement).addClass("small-video");
+          // Create the div to put the subscriber element in to
+          var div = document.createElement('div');
+          div.setAttribute('id', 'stream' + streams[i].streamId);
+          // remove placeholder if that was in place
+          $("#video-placeholder").remove();
+          // add div to videobox
+          $("#videobox2").append(div);
+          // set size of subscriber video box
+          var subscriberProps = {
+            width: "100%", 
+            height: "100%"};
+          // Subscribe to the stream
+          session.subscribe(streams[i], div.id, subscriberProps);
+          // session.addEventListener('streamDestroyed', streamDestroyedHandler);
+
+        }
+      }
+    }
+  };
+
+  $("#end-session-button").on("click", function(e){
+    e.preventDefault();
+    var end_session_boolean = confirm("Are you sure you would like to end this session?");
+    if (end_session_boolean === true) {
+    // confirm to close session
+      sessionDestroy();
+      $("body").append("<%= j render(:partial => '/rooms/session_surveys/post_session_user_survey') %>");
+      $('#userSessionSurveyModal').modal();
+    }
+  });
+
+  $("#chat-container").on("click", "#send-message-button", function(e){
+    e.preventDefault();
+    var message = $("#user-message").val();
+    session.signal(
+      {
+        data: message,
+        type: "Message"
+      },
+      function(error) {
+        if (error) {
+          console.log("signal error ("
+                     + error.code
+                     + "): " + error.reason);
+        } else {
+          $("#user-message").val("");
+        }
+      }
+    )
+  });
   //   $("#check-camera").click(function(event){
   //     
   //     if (!stream.hasAudio) {
@@ -280,6 +305,6 @@ TB.setLogLevel(TB.DEBUG);
   //       // You may want to adjust the user interface
   //     }
   //   })
-    
+
 
 </script>

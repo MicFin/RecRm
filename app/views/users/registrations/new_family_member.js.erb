@@ -1,4 +1,12 @@
-$("#new-user-family-form").children().last().replaceWith("<%= j render(:partial => 'new_family_member', :locals => {:new_user => @new_user}) %>");
 
+$("#new-user-family-form").children().last().replaceWith("<%= j render(:partial => 'new_family_member', :locals => {:new_user => @new_user}) %>");
+$("#family-member-list .family-member").removeClass("selected-family-member");
 UserSignUp.nutrition_buttons();
 FormValidation.nutrition_form();
+
+$("#remove-new-family-member-button").on("click", function(e){
+	e.preventDefault();
+	$("#new-user-family-form").children().last().replaceWith("<%= j render(:partial => 'new_user_nutrition_complete') %>");
+});
+
+$('#remove-family-member-button[data-toggle="tooltip"]').tooltip();

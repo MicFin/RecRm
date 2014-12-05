@@ -1,7 +1,13 @@
-.bs-wizard {margin-top: 50px;}
+.bs-wizard {margin-top: 2%;
+border-bottom: 0;
+position: fixed;
+z-index: 200;
+background-color: white;
+padding: 2% 1% 1% 1%;
+}
 
 /*Form Wizard*/
-.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
+// .bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
 .bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
 .bs-wizard > .bs-wizard-step + .bs-wizard-step {}
 .bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
@@ -78,7 +84,12 @@
 }
 
 #new-user-family-form {
-	margin-top: 2%
+	padding-top: 10%;
+	margin-top: 2%;
+}
+
+#new-user-family-form > :first-child{
+	position: fixed;
 }
 
 #new-user-family-form .glyphicon-floppy-save{
@@ -140,6 +151,8 @@
 	transition: all 0.3s ease-in-out;
 }
 
+
+
 #new-user-family-form .complete-family-container a:visited {
 	color: $white;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -195,13 +208,13 @@
 }
 
 #new-user-family-form .tab-pane > div{
-	padding-bottom: 0;
-	padding-left: 3%;
-	padding-right: 3%;
+padding-bottom: 0%;
+padding-left: 5%;
+padding-right: 5%;
 }
 
 #new-user-family-form .tab-pane > div:first-of-type{
-		padding-top: 3%;
+		padding-top: 5%;
 }
 
 #new-user-family-form .radio {
@@ -220,6 +233,17 @@
 	}
 	.add-person-container{
 		padding: 0px;
+		margin-top: 8%;
+	}
+}
+
+#new-user-family-form #family-member-list .add-person-container {
+	div:first-child{
+		margin-top: 10%;
+	}
+	.complete-family-container{
+		text-align: center;
+		margin-top: 5%;
 	}
 }
 
@@ -253,6 +277,13 @@
 	font-size: 12px;
 }
 
+#new-user-options hr.health-group-break-point{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid $white;
+}
+
 #new-user-family-form #top-container {
 	background-color: white;
 	padding: 1% 0;
@@ -280,21 +311,18 @@
 	cursor: default;
 }
 
-#family-member-list .selected-family-member {
-	background-color: $lightorange;
-	border-radius: 5px;
-	color: white;
-	margin-top: 1%;
-}
 
 #family-member-list .family-member{
 	padding: 1% 1% 1% 5%;
-}
-
-#family-member-list .unselected-family-member{
 	border-radius: 5px;
 	margin-top: 1%;
 	border: 2px solid $lightorange;
+}
+
+#family-member-list .family-member.selected-family-member {
+	background-color: $lightorange;
+	color: white;
+	border: none;
 }
 
 #family-member-list .btn.btn-white{ 

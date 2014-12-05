@@ -53,6 +53,22 @@ class User < ActiveRecord::Base
     return height_hash
   end
 
+    # returns weight_hash = {'pounds'=> ##, 'ounces' => ##}
+  def weight_hash
+    weight_hash = {}
+    if self.weight_ounces
+      pounds = self.weight_ounces / 16
+      ounces = self.weight_ounces % 16
+      weight_hash["pounds"] = pounds
+      weight_hash["ounces"] = ounces
+    else
+      weight_hash["pounds"] = nil
+      weight_hash["ounces"] = nil
+    end
+
+    return weight_hash
+  end
+
 
   def singular_possessive
     if self.sex == "Male"

@@ -81,7 +81,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @family = @user.head_of_families.last
       @family.users.build
       @new_user = User.new(last_name: @user.last_name)
-
+      @appointment = @user.appointment_hosts.last
       get_patient_groups!
       @diseases = @diseases 
       @intolerances = @intolerances 
@@ -278,7 +278,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # my custom fields are :name, :heard_how
   def configure_permitted_parameters
-    
     if params["user"]
       if params["user"]["height"]
         if (params["user"]["height"]["feet"].to_i >= 1)
@@ -289,8 +288,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
         params["user"].delete "height"
       end
-      if params["user"]["weight_ounces"]
-        params["user"]["weight_ounces"] = params["user"]["weight_ounces"].to_i * 16
+      if params["user"]["weight"]
+        if (params["user"]["weight"]["pounds"].to_i >= 1)
+          params["user"]["weight"]["pounds"] = params["user"]["weight"]["pounds"].to_i * 16
+          params["user"]["weight_ounces"] = params["user"]["weight"]["pounds"].to_i + params["user"]["weight"]["ounces"].to_i
+        else 
+            params["user"]["weight_ounces"] = params["user"]["weight"]["ounces"].to_i
+        end
+        params["user"].delete "weight"
       end
     end
     devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :patient_group_ids => [])

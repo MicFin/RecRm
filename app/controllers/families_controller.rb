@@ -79,6 +79,7 @@ class FamiliesController < ApplicationController
   # DELETE /families/:id/remove_member/:member_id
   def remove_member
     @removed_member_id = params[:member_id]
+    @appointment = current_user.appointment_hosts.last
     family_member = User.find(@removed_member_id)
     family_member.destroy
     respond_to do |format|

@@ -308,7 +308,43 @@
           "user[last_name]":{
             required: true,
             minlength: 2
-          }
+          },
+          "user[height][feet]":{
+            required: {
+              depends: function () { 
+                return ($("input[name='user[height][feet]']").val() != "" );
+              }
+            },
+            range: [0, 10],
+            number: true
+          },
+          "user[height][inches]":{
+            required: {
+              depends: function () { 
+                return ( $("input[name='user[height][inches]']").val() != "" );
+              }
+            },
+            range: [0, 120],
+            number: true
+          },
+          "user[weight][pounds]":{
+            required: {
+              depends: function () { 
+                return ( $("input[name='user[weight][pounds]']").val() != "" );
+              }
+            },
+            range: [0, 1000],
+            number: true
+          },
+          "user[weight][ounces]":{
+            required: {
+              depends: function () { 
+                return ( $("input[name='user[weight][ounces]']").val() != "" );
+              }
+            },
+            range: [0, 16],
+            number: true
+          },
         },
         messages: {
           "user[first_name]":{
@@ -318,7 +354,27 @@
           "user[last_name]":{
             required: "Enter last name",
             minlength: "Must be at least 2 letter"
-          }
+          },
+          "user[height][feet]":{
+            required: "Enter height",
+            range: "Number between 1 and 10",
+            number: "Number between 1 and 10"
+          },
+          "user[height][inches]":{
+            required: "Enter height",
+            range: "Number betweeen 1 and 120",
+            number: "Number betweeen 1 and 120"
+          },
+          "user[weight][pounds]":{
+            required: "Enter weight",
+            range: "Number between 1 and 1000",
+            number: "Number between 1 and 1000"
+          },
+          "user[weight][ounces]":{
+            required: "Enter weight",
+            range: "Number between 1 and 16",
+            number: "Number between 1 and 16"
+          },
         },
         errorPlacement: function (error, element) {
             $(element).tooltip({ title: $(error).text()});  
@@ -350,17 +406,87 @@
             required: true
           },
           "user[height][feet]":{
-            required: true,
-            rangelength: [0, 10],
+            required: function(element) {
+              return (!$("input[name='user[height][inches]']").hasClass('valid') || $("input[name='user[height][feet]']").val() != "" || ( $("input[name='user[height][inches]']").val() === "" && $("input[name='user[height][feet]']").val() === "" ));
+            },
+            range: {
+              param: [1, 10],
+              depends: function(element) {
+                  // if inches is not filled out then require range
+                if (!$("input[name='user[height][inches]']").hasClass('valid')){
+                  return true;
+                  // else if inches is filled out and feet is not blank or 0 then require range
+                } else if ( $("input[name='user[height][feet]']").val() != "" && $("input[name='user[height][feet]']").val() != "0" ) {
+                  return true;
+                  // else inches is filled out and feet is blank or 0 so do not require
+                }  else {
+                  return false;
+                }
+              }
+            },
             number: true
           },
           "user[height][inches]":{
-            rangelength: [0, 12],
+            required: function(element) {
+              return (!$("input[name='user[height][feet]']").hasClass('valid') || $("input[name='user[height][inches]']").val() != "" || ( $("input[name='user[height][inches]']").val() === "" && $("input[name='user[height][feet]']").val() === "" ));
+            },
+            range: {
+              param: [1, 120],
+              depends: function(element) {
+                  // if feet is not filled out then require range
+                if (!$("input[name='user[height][feet]']").hasClass('valid')){
+                  return true;
+                  // else if feet is filled out and inches is not blank or 0 then require range
+                } else if ( $("input[name='user[height][inches]']").val() != "" && $("input[name='user[height][inches]']").val() != "0" ) {
+                  return true;
+                  // else feet is filled out and inches is blank or 0 so do not require
+                }  else {
+                  return false;
+                }
+              }
+            },
             number: true
           },
-          "user[weight_ounces]":{
-            required: true,
-            min: 1,
+          "user[weight][pounds]":{
+            required: function(element) {
+              return (!$("input[name='user[weight][ounces]']").hasClass('valid') || $("input[name='user[weight][pounds]']").val() != ""|| ( $("input[name='user[weight][pounds]']").val() === "" && $("input[name='user[weight][inches]']").val() === "" ) );
+            },
+            range: {
+              param: [1, 1000],
+              depends: function(element) {
+                  // if ounces is not filled out then require range
+                if (!$("input[name='user[weight][ounces]']").hasClass('valid')){
+                  return true;
+                  // else if ounces is filled out and pounds is not blank or 0 then require range
+                } else if ( $("input[name='user[weight][pounds]']").val() != "" && $("input[name='user[weight][pounds]']").val() != "0" ) {
+                  return true;
+                  // else ounces is filled out and pounds is blank or 0 so do not require
+                }  else {
+                  return false;
+                }
+              }
+            },
+            number: true
+          },
+          "user[weight][ounces]":{
+            required: function(element) {
+              return (!$("input[name='user[weight][pounds]']").hasClass('valid') || $("input[name='user[weight][ounces]']").val() != "" || ( $("input[name='user[weight][pounds]']").val() === "" && $("input[name='user[weight][ounces]']").val() === "" ));
+            },
+            range: {
+              param: [1, 16],
+              depends: function(element) {
+                  // if pounds is not filled out then require range
+                if (!$("input[name='user[weight][pounds]']").hasClass('valid')){
+                  return true;
+                  // else if pounds is filled out and ounces is not blank or 0 then require range
+                } else if ( $("input[name='user[weight][ounces]']").val() != "" && $("input[name='user[weight][ounces]']").val() != "0" ) {
+                  return true;
+                  // else pounds is filled out and ounces is blank or 0 so do not require
+                }  else {
+                  return false;
+                }
+              }
+            },
             number: true
           },
           "user[sex]":{
@@ -369,7 +495,7 @@
           "user[family_role]":{
             required: true,
             minlength: 2
-          },
+          }
         },
         messages: {
           "user[first_name]":{
@@ -390,18 +516,24 @@
             required: "Enter day"
           },
           "user[height][feet]":{
-            required: "Enter 0 if under 1ft",
-            rangelength: "Number between 0 and 10",
-            number: "Number between 0 and 10"
+            required: "Enter height",
+            range: "Number between 1 and 10",
+            number: "Number between 1 and 10"
           },
           "user[height][inches]":{
-            rangelength: "Number betweeen 0 and 12",
-            number: "Number betweeen 0 and 12"
+            required: "Enter height",
+            range: "Number betweeen 1 and 120",
+            number: "Number betweeen 1 and 120"
           },
-          "user[weight_ounces]":{
+          "user[weight][pounds]":{
             required: "Enter weight",
-            min: "Number above 1",
-            number: "Number above 1"
+            range: "Number between 1 and 1000",
+            number: "Number between 1 and 1000"
+          },
+          "user[weight][ounces]":{
+            required: "Enter weight",
+            range: "Number between 1 and 16",
+            number: "Number between 1 and 16"
           },
           "user[sex]":{
             required: "Select sex"

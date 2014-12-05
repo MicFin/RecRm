@@ -1,4 +1,4 @@
-	<div id="new-user-options" class="appt-focus col-xs-12 col-sm-12 col-md-8 col-lg-8 alert alert-success appt-focus">
+	<div id="new-user-options" class="col-xs-12 col-sm-12 col-md-offset-5 col-lg-offset-5 col-md-7 col-lg-7 alert alert-success">
 		<% updated_user ||= @updated_user %>
 		<%= simple_form_for updated_user, :url => {:controller => 'users/registrations', :action => 'update_user_health_groups'}, remote: true do |f| %>
 			<input type="hidden" name="updated_user_id" value="<%=updated_user.id%>"/>
@@ -15,10 +15,12 @@
 		  <div role="tabpanel" class="tab-pane fade in active" id="general">
        	<div class="col-xs-12 text-left">
 	      	<div class="row form-group">
-			      <div class="col-xs-12">
-				      <label>Relation to You</label>
+       			<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+       				<%= label_tag :family_role, "Relation to You:" %>
+       			</div>
+       			<div class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
 				      <%= f.input :family_role, label: false, placeholder: "Daughter", input_html: {id: "family-role-field", class: "form-control-6"} %>
-			      </div>
+				    </div>
 		      </div>
 				  <div class="row form-group">
 				  	<div class="col-xs-2">
@@ -33,16 +35,16 @@
 			     		<%= label_tag :height_inches, "Height:" %>
 			     	</div>
 			     	<div id="height-attributes" class="col-xs-10">
-			        <div class="col-xs-2">
+			        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
 			          <input type="number" name="user[height][feet]" placeholder="4" style="padding-left: 10%" value="<%=updated_user.height_hash['feet']%>"/> 
 			        </div>
-			        <div class="col-xs-2">
+			        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
 			          <%= label_tag :feet, "feet"%>
 			        </div>
-			        <div class="col-xs-2">
+			        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
 			          <input type="number" name="user[height][inches]" placeholder="11" style="padding-left: 10%" value="<%=updated_user.height_hash['inches']%>"/> 
 			        </div>
-			        <div class="col-xs-2">
+			        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
 							  <%= label_tag :inches, "inches"%>
 			        </div>
 		        </div>
@@ -66,7 +68,7 @@
 			        </div>
 		        </div>
 		      </div>
-		      <div class="row form-group">
+		      <div class="row">
 				  	<div class="col-xs-2">
 			     		<%= label_tag :sex, "Sex:" %>
 			     	</div>
@@ -75,10 +77,14 @@
 	          </div>
 		      </div>
       	</div>
+        <div class="col-xs-12">
+          <hr class="health-group-break-point">
+        </div>
 				<%= render "users/registrations/forms/allergies", f: f %>
 		  	<div class="col-xs-12 form-group">
-			  	<label>Important Nutrition Information</label>
-			  	<textarea class="form-control form-group" placeholder="Nutrition can be complicated and we know that first hand.  Use this space for specific nutrition information not mentioned above" name="user[family_note]" rows="4"><%=updated_user.family_note%></textarea>
+			  	<label>Add More About <span class="dynamic-user-name"><%=updated_user.first_name%></span></label>
+			  	<p>(we will go over more together so don't feel like you have to fit it all in)</p>
+			  	<textarea class="form-control form-group" placeholder="Nutrition can be complicated and we know that first hand.  Use this space for including more health information not mentioned above" name="user[family_note]" rows="4"></textarea>
 			  </div>
 			</div>
 		</div>

@@ -26,6 +26,13 @@ class User < ActiveRecord::Base
   # validates phone number is in a correct format
   validates :phone_number, :phony_plausible => true
 
+  def sign_up_stage
+    if self.appointment_hosts.count >= 1
+      return self.appointment_hosts.last.stage 
+    else
+      return 1
+    end
+  end
 
   def unverified_health_groups
     unverified_array = []

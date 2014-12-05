@@ -32,5 +32,24 @@ var UserSignUp = {
   },
   set_nutrition_intro_modal: function(){
     $("#nutritionIntroModal").modal("toggle");
+  },
+  set_breadcrumbs: function(){
+    // change nav highlight based on url key word
+    var sign_up_stage = $(".bs-wizard").filter(":first").data("stage");
+    if (sign_up_stage === 4) {
+      $(".sign-up-step-1").removeClass("active").addClass("complete");
+      $(".sign-up-step-2").removeClass("disabled").addClass("complete");
+      $(".sign-up-step-3").removeClass("disabled").addClass("complete");
+      $(".sign-up-step-4").removeClass("disabled").addClass("active");
+    } else if (sign_up_stage === 2){
+      $(".sign-up-step-1").removeClass("active").addClass("complete");
+      $(".sign-up-step-2").removeClass("disabled").addClass("active");
+    } else if (sign_up_stage === 3){
+      $(".sign-up-step-1").removeClass("active").addClass("complete");
+      $(".sign-up-step-2").removeClass("disabled").addClass("complete");
+      $(".sign-up-step-3").removeClass("disabled").addClass("active");
+    }else{
+      // do nothing
+    };
   }
 }

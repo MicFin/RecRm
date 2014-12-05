@@ -1,9 +1,13 @@
-.bs-wizard {margin-top: 2%;
-border-bottom: 0;
-position: fixed;
-z-index: 200;
-background-color: white;
-padding: 2% 1% 1% 1%;
+.bs-wizard {
+	margin-top: 30px;
+		//  media query to make not fixed on ssmaller screens and fixed on large
+	z-index: 200;
+	background-color: white;
+	padding: 25px;
+}
+.modal-body .bs-wizard{
+	margin-top: 0px;
+	padding: 25px 0px 0px 0px;
 }
 
 /*Form Wizard*/
@@ -36,8 +40,86 @@ padding: 2% 1% 1% 1%;
 
 #new-user-name-form{
 	text-align:left;
-	margin-top: 5%;
+	margin-top: 200px;
+	//  media query to make not fixed on ssmaller screens and fixed on large
 }
+	// make media query to make not fixed on ssmaller screens and fixed on large
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+	#new-user-name-form{
+		position: relative;
+	}
+	.bs-wizard {
+		position: relative;
+		margin-bottom: -400px;
+	}
+	.modal-body .bs-wizard{
+		position: relative;
+		margin-bottom: 0px;
+	}         
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+	#new-user-name-form{
+		position: relative;
+	}
+	.bs-wizard {
+		position: relative;
+		margin-bottom: -400px;
+	}
+	.modal-body .bs-wizard{
+		position: relative;
+		margin-bottom: 0px;
+	}      
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+	#new-user-name-form{
+		position: relative;
+	}
+	.bs-wizard {
+		position: fixed;
+		border-bottom: 0;
+	}
+	.modal-body .bs-wizard{
+		position: relative;
+		margin-bottom: 0px;
+	}   
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	#new-user-name-form{
+		position: relative;
+		margin-bottom: 0px;
+	}
+	.bs-wizard {
+		position: fixed;
+		border-bottom: 0;
+	}
+	.modal-body .bs-wizard{
+		position: relative;
+		margin-bottom: 0px;
+	}   
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+	#new-user-name-form{
+		position: fixed;
+	}
+	.bs-wizard {
+		position: fixed;
+		border-bottom: 0;
+	}
+	.modal-body .bs-wizard{
+		position: relative;
+		margin-bottom: 0px;
+	}   
+}
+
 #new-user-name-form.modal-backdrop {
 	position: relative;
 	top: 0;
@@ -51,6 +133,7 @@ padding: 2% 1% 1% 1%;
 #new-user-name-form input[type="text"]  {
 	font-size: 20px;
 	height: 40px;
+	padding-left: 2%;
 }
 
 #new-user-name-form input[type="submit"].btn-block, #new-user-name-form input[type="reset"].btn-block, #new-user-name-form input[type="button"].btn-block {
@@ -84,8 +167,7 @@ padding: 2% 1% 1% 1%;
 }
 
 #new-user-family-form {
-	padding-top: 10%;
-	margin-top: 2%;
+	margin-top: 150px;
 }
 
 #new-user-family-form > :first-child{
@@ -204,7 +286,7 @@ padding: 2% 1% 1% 1%;
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-top: 0px;
-	margin-top: 5%;
+	margin-top: 50px;
 }
 
 #new-user-family-form .tab-pane > div{
@@ -247,11 +329,12 @@ padding-right: 5%;
 	}
 }
 
-#new-user-options input[type="text"]  {
+#new-user-options input[type="text"]:not(.form-control):not(.form-control-6):not(.form-control-4)  {
 	font-size: 20px;
 	height: 40px;
 	width: 100%;
 	margin-top: 7%;
+	padding-left: 5%;
 }
 
 // just to override the above

@@ -1,37 +1,7 @@
 
 
-<div class="container">
-	<div class="row bs-wizard" style="border-bottom:0;">
+<%= render "/users/registrations/sign_up_breadcrumbs/sign_up_breadcrumb" %>
 
-		<div class="col-xs-3 bs-wizard-step active">
-			<div class="text-center bs-wizard-stepnum">Step 1</div>
-			<div class="progress"><div class="progress-bar"></div></div>
-			<a href="#" class="bs-wizard-dot"></a>
-			<div class="bs-wizard-info text-center">Nice to meet you</div>
-		</div>
-
-		<div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
-			<div class="text-center bs-wizard-stepnum">Step 2</div>
-			<div class="progress"><div class="progress-bar"></div></div>
-			<a href="#" class="bs-wizard-dot"></a>
-			<div class="bs-wizard-info text-center">Create your nutrition profile </div>
-		</div>
-
-		<div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
-			<div class="text-center bs-wizard-stepnum">Step 3</div>
-			<div class="progress"><div class="progress-bar"></div></div>
-			<a href="#" class="bs-wizard-dot"></a>
-			<div class="bs-wizard-info text-center">Schedule your appointment</div>
-		</div>
-
-		<div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
-			<div class="text-center bs-wizard-stepnum">Step 4</div>
-			<div class="progress"><div class="progress-bar"></div></div>
-			<a href="#" class="bs-wizard-dot"></a>
-			<div class="bs-wizard-info text-center">Thank You!</div>
-		</div>
-	</div>
-</div>
 <div id="new-user-name-form" class="container col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 	<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-inline', method: :put }) do |f| %>
 	  <%= devise_error_messages! %>
@@ -57,18 +27,29 @@
 		  		</div>
 		  		<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 form-group">
 		  		 	<div class="checkbox">
-					    <label>
-					      <input name="appoint-self" id="appointment-self-button" type="checkbox" value="true"> Self
-					    </label>
+					 		<div class="col-xs-3">
+					    	<label>Self</label>
+					    </div>
+			  		 	<div class="col-xs-2">
+					      <input name="appoint-self" id="appointment-self-button" type="checkbox" value="true"> 
+				      </div>
 					  </div>
 		  		</div>
-				  <div class="col-xs-5 form-group">
+				  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 form-group">
 			    	<label for="first_name">client first name</label>
-			      <input type='text' autofocus="true" label="false" id="client_first_name" name='client_first_name' class="form-control" placeholder="First">
+			    	<div class="control-group ">
+			    		<div class="controls">
+			      		<input type='text' autofocus="true" label="false" id="client_first_name" name='client_first_name' placeholder="First">
+			      	</div>
+			      </div>
 				  </div>
-				  <div class="col-xs-5  form-group">
+				  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 form-group">
 			    	<label for="last_name">client last name</label>
-			      <input type='text' autofocus="true" label="false" id="client_last_name" name='client_last_name' class="form-control" placeholder="Last">
+			 		 	<div class="control-group ">
+			    		<div class="controls">
+			      		<input type='text' autofocus="true" label="false" id="client_last_name" name='client_last_name'  placeholder="Last">
+			      	</div>
+			      </div>
 				  </div>
 				</div>
 			</div>
@@ -79,7 +60,7 @@
 				<div class="col-xs-2 col-xs-offset-1">
 	  			<%= f.button :submit, "Next", class: "btn btn-success btn-lg" %>
 	  		</div>
+	  	</div>
 	<% end %>
-
 </div>
 <%= render "/users/registrations/modal_user_intro" %>

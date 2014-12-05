@@ -4,6 +4,20 @@ class Appointment < ActiveRecord::Base
   belongs_to :dietitian
   belongs_to :room
   
+  def stage
+    if self.start_time != nil 
+      return 4
+    elsif self.patient_focus != nil
+      if self.patient_focus.family_role != nil
+        return 3
+      else
+        return 2
+      end
+    else
+      return 1
+    end
+  end
+  
   def update_with_payment(credit_card_usage)
     # if appointment is valid
     if valid?

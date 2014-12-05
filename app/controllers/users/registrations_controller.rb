@@ -25,12 +25,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new_user_intro
     
     @user = current_user || User.find(params[:id])
-    
+    @sign_up_stage = @user.sign_up_stage 
+
   end
 
   def new_user_family
     @user = User.find(params[:id])
-  
+    @sign_up_stage = @user.sign_up_stage 
     @family = @user.head_of_families.last
     @appointment = @user.appointment_hosts.last
     # if params[:client_first_name]

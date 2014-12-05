@@ -14,6 +14,7 @@ class AppointmentsController < ApplicationController
 
   def select_time
     @time_slots = TimeSlot.all
+    @sign_up_stage = @appointment.stage 
   end
 
   # GET /appointments/1

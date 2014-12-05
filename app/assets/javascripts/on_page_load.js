@@ -34,6 +34,7 @@ $(document).ready(function() {
 	FormValidation.contentQuotaValidations();
 
 	// User sign up form
+	UserSignUp.set_breadcrumbs();
 	UserSignUp.appoint_self_checkbox();
 	UserSignUp.nutrition_buttons();
 	UserSignUp.set_intro_modal();

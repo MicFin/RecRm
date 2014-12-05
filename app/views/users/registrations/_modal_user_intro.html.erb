@@ -8,43 +8,12 @@
         <h4 class="modal-title" id="introModalLabel">Thanks for joining us!</h4>
       </div>
       <div class="modal-body">
-        <div class="container">
-					<div class="row bs-wizard form-group" style="border-bottom:0;">
-
-						<div class="col-xs-1 col-xs-offset-1 bs-wizard-step active">
-							<div class="text-center bs-wizard-stepnum">Step 1</div>
-							<div class="progress"><div class="progress-bar"></div></div>
-							<a href="#" class="bs-wizard-dot"></a>
-							<div class="bs-wizard-info text-center">Nice to meet you</div>
-						</div>
-
-						<div class="col-xs-1 bs-wizard-step disabled"><!-- complete -->
-							<div class="text-center bs-wizard-stepnum">Step 2</div>
-							<div class="progress"><div class="progress-bar"></div></div>
-							<a href="#" class="bs-wizard-dot"></a>
-							<div class="bs-wizard-info text-center">Create your nutrition profile </div>
-						</div>
-
-						<div class="col-xs-1 bs-wizard-step disabled"><!-- complete -->
-							<div class="text-center bs-wizard-stepnum">Step 3</div>
-							<div class="progress"><div class="progress-bar"></div></div>
-							<a href="#" class="bs-wizard-dot"></a>
-							<div class="bs-wizard-info text-center">Schedule your appointment</div>
-						</div>
-
-						<div class="col-xs-1 bs-wizard-step disabled"><!-- active -->
-							<div class="text-center bs-wizard-stepnum">Step 4</div>
-							<div class="progress"><div class="progress-bar"></div></div>
-							<a href="#" class="bs-wizard-dot"></a>
-							<div class="bs-wizard-info text-center">Thank You!</div>
-						</div>
+      	<%= render "users/registrations/sign_up_breadcrumbs/sign_up_breadcrumb" %>
+				<div class="row">
+					<div class="col-xs-10 col-xs-offset-1 text-center">
+						<h4 class="intro-paragraph">At Kindrdfood we know nutrition is more than a fad and can be much more complex than simply eating well.  We also know that time spent with family can be the best medicine so we've created 4 quick steps to help you get started.</h4> 
 					</div>
-					<div class="row">
-						<div class="col-xs-6 text-center">
-							<h4 class="intro-paragraph">At Kindrdfood we know nutrition is more than a fad and can be much more complex than simply eating well.  We also know that time spent with family can be the best medicine so we've created 4 quick steps to help you get started.</h4> 
-						</div>
-					</div>
-        </div>
+				</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" data-dismiss="modal">Start</button>

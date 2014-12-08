@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   has_many :rooms
   has_many :subscriptions
   has_many :member_plans, through: :subscriptions
+  has_many :surveys
+    ### wanted to have a user have many surveys but then also haev a user be surveyable but it looks strange and may act weird so didnt implement yet
+  has_many :surveys, :as => :surveyable
+  
   # saves phone number in normalized US format
   phony_normalize :phone_number, :default_country_code => 'US'
 

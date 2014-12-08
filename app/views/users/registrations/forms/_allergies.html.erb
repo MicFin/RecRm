@@ -1,23 +1,30 @@
       	<div class="col-xs-12 form-group text-left">
        		<label>Select nutritional needs and add your own:</label>
 	        <div class="col-xs-12">
+          
 	        <%= f.association :patient_groups, as: :check_boxes, collection: @allergies, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
 	        </div>
 	        <div class="col-xs-12">
+          
 	        	<%= f.association :patient_groups, as: :check_boxes, collection: @intolerances, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
 	        </div>
           <div class="col-xs-12">
+          
             <hr class="health-group-break-point">
           </div>
 	        <div class="col-xs-12">
+          
 	        	<%= f.association :patient_groups, as: :check_boxes, collection: @diseases, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
 	       	</div>
           <div class="col-xs-12">
+          
             <hr class="health-group-break-point">
           </div>
 	       	<div class="col-xs-12">
+          
 	       		<%= f.association :patient_groups, as: :check_boxes, collection: @diets, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
-    				<% if @unverified_health_groups %>
+            
+    				<% if (@unverified_health_groups && (@unverified_health_groups.count >= 1)) %>
     					<% @unverified_health_groups.each do |health_group| %>
     						<label class='checkbox col-xs-4 select-allergen-box'><input class='check_boxes optional' name='user[patient_group_ids][]' type='checkbox' value='<%=health_group.id%>' checked><%=health_group.name%></label>
     					<% end %>

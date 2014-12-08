@@ -44,10 +44,13 @@ $(document).ready(function() {
 	FormValidation.nutrition_form_appt_focus();
 
 	// Time slot calendar
-	TimeSlotCalendar.set();
-	TimeSlotCalendar.initiate_date_time_picker();
+	// TimeSlotCalendar.set();
+	// TimeSlotCalendar.initiate_date_time_picker();
 	SelectApptCalendar.set();
 
+	// Availability Calendar
+	AvailabilityCalendar.set();
+	
 	// user in session 
 	UserSession.javascript();
 

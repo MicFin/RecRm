@@ -21,6 +21,9 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1.json
   def show
     @dietitians = Dietitian.all
+    # @surveyable = @appointment
+    # @surveys = @surveyable.surveys
+    # @survey = Survey.new
     respond_to do |format|
       format.js
     end
@@ -34,10 +37,6 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/edit
   def edit
     ## for first sign up from select time
-    if params[:time_slot_id]
-      @questions = ["Have you met with a Registered Dietitian before?", "What are your Top 3 nutritional challenges?", "What is the one thing you would really like to accomplish during this session?"]
-      @time_slot = TimeSlot.find(params[:time_slot_id])
-    end
     respond_to do |format|
       format.js
     end
@@ -76,8 +75,14 @@ class AppointmentsController < ApplicationController
     
         @appointment.update_with_payment(credit_card_usage)
         time_slot = TimeSlot.find(params[:time_slot_id])
-        time_slot.available = false 
+        time_slot.vacancy = false
+        time_slot.status = "Appointment"
+        time_slot.appointment = @appointment
         time_slot.save
+        
+        TimeSlot.cancel_related_time_slots(time_slot) 
+        @pre_appt_survey = Survey.generate_for_appointment(@appointment, current_user)
+        
       # or has recently been updated with dietitian thhen admin assigned dietitian
       elsif @appointment.dietitian_id != nil
         
@@ -137,7 +142,7 @@ class AppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :start_time, :end_time, :room_id, :note, :client_note, :other_note, :created_at, :updated_at, :stripe_card_token)
+      params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :start_time, :end_time, :room_id, :note, :client_note, :other_note, :created_at, :updated_at, :status, :time_slot_id, :stripe_card_token)
     end
   
     def config_opentok

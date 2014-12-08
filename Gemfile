@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 3.1.2'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -55,8 +55,8 @@ gem "paperclip", "~> 4.1"
 ## storing images in aws s3 bucket
 gem 'aws-sdk'
 ## for datepickers
-gem 'momentjs-rails', '~> 2.5.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
+gem 'momentjs-rails', '~> 2.8.3'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 # manages phone number validation
 gem 'phony_rails'
@@ -84,7 +84,7 @@ gem "pundit"
 # https://github.com/RolifyCommunity/rolify
 gem 'rolify', github: 'EppO/rolify'
 
-gem 'fullcalendar-rails'
+gem 'fullcalendar-rails', '~> 2.2.0.0'
 
 gem 'stripe'
 # rails stripe payment integration

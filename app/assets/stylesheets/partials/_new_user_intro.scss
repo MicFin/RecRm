@@ -170,7 +170,7 @@
 	margin-top: 150px;
 }
 
-#new-user-family-form > :first-child{
+#new-user-family-form > :first-child, #select-time-container > :first-child,{
 	position: fixed;
 }
 
@@ -446,6 +446,11 @@ padding-right: 5%;
 	}
 }
 ////// SELECT APPONTMENT TIME AN CREDIT CARD //////
+
+#select-time-container{
+	margin-top: 150px;
+}
+
 #select-time-message-container {
 	margin-top: 1%;
 	border: none;
@@ -469,3 +474,17 @@ input#card_number {
 	font-size: 30px;
 }
 
+#paymentModalLabel {
+	.img-responsive{
+		max-height: 50px;
+	}
+}
+
+#paymentModal {
+	div.alert-warning { 
+		p {
+			line-height: 2;
+			font-size: 18px;
+		}
+	} 
+}

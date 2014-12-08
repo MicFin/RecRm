@@ -1,0 +1,9 @@
+
+<% if question.tier == 1 %>
+<div class="question-container question-container-response">
+<% else %>
+<div class="question-container question-container-response tier-2">
+<% end %>
+	<p><%=question.content%></p>
+	<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=question.id%>]" rows="4"></textarea>
+</div>

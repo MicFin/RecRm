@@ -6,9 +6,17 @@ class TimeSlotsController < ApplicationController
   # need to change it to show all for dietitian calendar nad not user...right now uses same
   # GET /time_slots.json
   def index
-
-    @time_slots = TimeSlot.order('start_time DESC').all
-    @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
+    
+    if params[:minutes] == "30"
+      @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 30)
+    elsif params[:minutes] == "60" && params[:type] == "vacant-appts"
+      @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now + 2.days])
+    elsif params[:minutes] == "60"
+      @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60)
+    else
+      @time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60).where(vacancy: true)
+      @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
+    end
   end
 
   # GET /time_slots/1
@@ -71,7 +79,7 @@ class TimeSlotsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /time_slots/:id/create_from_existing
+  # get /time_slots/:id/create_from_existing
   def create_from_existing
 
     #create new object with attributes of existing record 
@@ -86,7 +94,17 @@ class TimeSlotsController < ApplicationController
     end
   end
 
-
+  # get /time_slots/create_from_availability
+  def create_from_availability
+    
+    open_availabilities = Availability.where(status: "Set")
+    
+    @new_time_slots = TimeSlot.create_from_availabilities(open_availabilities)
+    
+      respond_to do |format|
+        format.js
+      end
+  end
 
   # DELETE /time_slots/1
   # DELETE /time_slots/1.json
@@ -115,6 +133,6 @@ class TimeSlotsController < ApplicationController
         #       params[:time_slot][:start_time] = params[:time_slot][:start_time] + " EST"
         # params[:time_slot][:end_time] = params[:time_slot][:end_time] + " EST"
 
-      params.require(:time_slot).permit(:title, :start_time, :end_time, :available)
+      params.require(:time_slot).permit(:title, :start_time, :end_time, :vacancy, :minutes, :status, :availability_id)
     end
 end

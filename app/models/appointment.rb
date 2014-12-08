@@ -3,6 +3,8 @@ class Appointment < ActiveRecord::Base
   belongs_to :patient_focus, :class_name => "User", :foreign_key => "patient_focus_id"
   belongs_to :dietitian
   belongs_to :room
+  belongs_to :time_slot
+  has_many :surveys, :as => :surveyable
   
   def stage
     if self.start_time != nil 
@@ -56,14 +58,14 @@ class Appointment < ActiveRecord::Base
           errors.add :base, "There was a problem with your credit card."
         end
       # charge custoemr
-      # if custeomr did not want to remember card
+      # if custeomr did not want to remember card need to change to not create stripe customer
       else 
         begin
           charge = Stripe::Charge.create(
           :customer    => stripe_id,
           :card        => stripe_card_token,
-          :amount      => 10000,
-          :description => 'Kindrdfood Member',
+          :amount      => 7999,
+          :description => 'Kindrdfood 1 Hour',
           :currency    => 'usd'
         )
         rescue Stripe::CardError => e

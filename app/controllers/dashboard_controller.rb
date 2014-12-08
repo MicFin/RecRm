@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+  include PatientGroupsHelper
   before_action :verify_admin, only: [:index, :recipe_status]
   before_filter :check_user_logged_in!, only: [:home]
   # GET /admin_dashboard
@@ -39,6 +40,19 @@ class DashboardController < ApplicationController
         else
           @family_members << @user
         end
+        # get survey if not filled out
+        
+        @survey = @appointment.surveys.where(survey_type: "Pre-Appointment").where(completed: false).last
+        if @survey
+          @surveyable = @appointment
+        end
+    get_patient_groups!
+    @diseases = @diseases 
+    @intolerances = @intolerances 
+    @allergies = @allergies
+    @diets =  @diets 
+        @unverified_health_groups = @family_members[0].unverified_health_groups
+        
 # if no appointment has been made goto introduction
       else 
         redirect_to new_user_intro_path(@user.id) 

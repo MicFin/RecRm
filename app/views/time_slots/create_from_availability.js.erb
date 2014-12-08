@@ -1,0 +1,54 @@
+
+$("#half-hour-time-slots-cal").fullCalendar({
+       timezone: "local",
+			 // events: '/time_slots.json'
+			 // eventSources: [ 
+			 // 		{
+    //         url: '/time_slots.json', // use the `url` property
+    //         color: 'yellow',    // an option!
+    //         textColor: 'black'  // an option!
+    //     	}
+    //     ]
+    	events: {
+        url: '/time_slots.json',
+        type: 'GET',
+        data: {
+            minutes: '30',
+        },
+        error: function() {
+            alert('there was an error while fetching events!');
+        },
+      },
+        eventRender: function(event, element) {
+          // remove fullcalendars default elements for events and add our own
+          element.find(".fc-event-title").remove();
+          element.find(".fc-event-time").remove();
+          var new_html = "<div class='event-time'>​"+event.start.format('h:mm')+" - "+event.end.format('h:mma')+"</div>";
+          // $(element).children(":first").replaceWith(html);
+          $(element).children(":first").append(new_html);
+
+        }
+});
+
+$("#one-hour-time-slots-cal").fullCalendar({
+      timezone: "local",
+    	events: {
+        url: '/time_slots.json',
+        type: 'GET',
+        data: {
+            minutes: '60',
+        },
+        error: function() {
+            alert('there was an error while fetching events!');
+        }
+      },
+        eventRender: function(event, element) {
+          // remove fullcalendars default elements for events and add our own
+          element.find(".fc-event-title").remove();
+          element.find(".fc-event-time").remove();
+          var new_html = "<div class='event-time'>​"+event.start.format('h:mm')+" - "+event.end.format('h:mma')+"</div>";
+          // $(element).children(":first").replaceWith(html);
+          $(element).children(":first").append(new_html);
+
+        }
+});

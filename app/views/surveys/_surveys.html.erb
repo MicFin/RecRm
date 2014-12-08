@@ -1,0 +1,7 @@
+<div id="surveys">
+  <% @surveys.each do |survey| %>
+    <div class="survey">
+      <%= simple_format survey.content %>
+    </div>
+  <% end %>
+</div>

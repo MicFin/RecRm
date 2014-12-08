@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124081916) do
+ActiveRecord::Schema.define(version: 20141208003515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,11 @@ ActiveRecord::Schema.define(version: 20141124081916) do
     t.string   "type"
     t.integer  "duration"
     t.text     "other_note"
+    t.integer  "time_slot_id"
+    t.string   "status"
   end
+
+  add_index "appointments", ["time_slot_id"], name: "index_appointments_on_time_slot_id", using: :btree
 
   create_table "articles", force: true do |t|
     t.text     "content"
@@ -119,6 +123,19 @@ ActiveRecord::Schema.define(version: 20141124081916) do
 
   add_index "articles_patient_groups", ["article_id"], name: "index_articles_patient_groups_on_article_id", using: :btree
   add_index "articles_patient_groups", ["patient_group_id"], name: "index_articles_patient_groups_on_patient_group_id", using: :btree
+
+  create_table "availabilities", force: true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "buffered_start_time"
+    t.datetime "buffered_end_time"
+    t.integer  "dietitian_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status"
+  end
+
+  add_index "availabilities", ["dietitian_id"], name: "index_availabilities_on_dietitian_id", using: :btree
 
   create_table "characteristics", force: true do |t|
     t.string   "category"
@@ -293,6 +310,22 @@ ActiveRecord::Schema.define(version: 20141124081916) do
   add_index "quality_reviews", ["dietitian_id"], name: "index_quality_reviews_on_dietitian_id", using: :btree
   add_index "quality_reviews", ["quality_reviewable_id", "quality_reviewable_type"], name: "quality_reviewable_id_index", using: :btree
 
+  create_table "questions", force: true do |t|
+    t.string   "question_type"
+    t.text     "content"
+    t.integer  "position"
+    t.integer  "survey_group_question_id"
+    t.string   "survey_group"
+    t.integer  "survey_id"
+    t.text     "answer"
+    t.text     "choices"
+    t.integer  "tier",                     default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
+
   create_table "recipe_steps", force: true do |t|
     t.text     "directions"
     t.integer  "recipe_id"
@@ -400,14 +433,31 @@ ActiveRecord::Schema.define(version: 20141124081916) do
   add_index "subscriptions", ["member_plan_id"], name: "index_subscriptions_on_member_plan_id", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
+  create_table "surveys", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "surveyable_id"
+    t.string   "surveyable_type"
+    t.boolean  "completed",       default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "survey_type"
+  end
+
+  add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
+
   create_table "time_slots", force: true do |t|
     t.string   "title"
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "available",  default: true
+    t.integer  "minutes"
+    t.string   "status"
+    t.integer  "availability_id"
+    t.boolean  "vacancy",         default: true
   end
+
+  add_index "time_slots", ["availability_id"], name: "index_time_slots_on_availability_id", using: :btree
 
   create_table "user_families", force: true do |t|
     t.integer "user_id"

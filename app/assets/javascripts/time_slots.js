@@ -1,7 +1,7 @@
 
 
 var TimeSlotCalendar = {
-    // new user sign in form validations
+    
     set: function(){
 		  $('#calendar').fullCalendar({
         timezone: "local",
@@ -24,7 +24,7 @@ var TimeSlotCalendar = {
 
 var SelectApptCalendar = {
 
-    // new user sign in form validations
+
     set: function(){
       var start_date = new Date(); 
       start_date.setDate( start_date.getDate() + 2 );
@@ -39,15 +39,26 @@ var SelectApptCalendar = {
         defaultDate: start_date,
         firstDay: start_day,
         timezone: "local",
-        events: '/time_slots.json',
+        events: {
+          url: '/time_slots.json',
+          type: 'GET',
+          data: {
+            minutes: '60',
+            type: 'vacant-appts'
+          },
+          error: function() {
+            alert('there was an error while fetching events!');
+          },
+        },
         displayEventEnd: {
           month: true,
           agendaWeek: true,
           'default': true
         },
-        defaultView: 'agendaWeek',
+        defaultView: 'basicWeek',
         allDaySlot: false,
         allDayText: false,
+        slotDuration: '00:30:00',
         minTime: "08:00:00",
         maxTime: "21:00:00",
         height: 500,
@@ -58,28 +69,26 @@ var SelectApptCalendar = {
           var start_moment = moment(start_date);
           var today_moment = moment(new Date());
           if (view.start.dayOfYear() === start_moment.dayOfYear() ) {
-              $(".fc-button-prev").addClass('fc-state-disabled');
-              $(".fc-button-next").removeClass('fc-state-disabled');
+              $(".fc-prev-button").addClass('fc-state-disabled');
+              $(".fc-next-button").removeClass('fc-state-disabled');
           }
           else {
-              $(".fc-button-prev").removeClass('fc-state-disabled');
-              $(".fc-button-next").addClass('fc-state-disabled');
+              $(".fc-prev-button").removeClass('fc-state-disabled');
+              $(".fc-next-button").addClass('fc-state-disabled');
           }  
         },
         eventMouseover: function( event, jsEvent, view ) { 
           jsEvent.preventDefault();
-          $(this).removeClass("fc-event");
-          $(this).addClass("appt-hover-bg");
-          $(this).children(":first").addClass("hidden");
-          $(this).append("<div class='appt-hover-text'>​Select</div>");
+          $($(this).children(":first")).children(":first").addClass("hidden");
+          $($(this).children(":first")).append("<div class='appt-hover-text'>​Select</div>");
           $(this).tooltip({placement: 'bottom', title: '<p>'+event.start.format('h:mm')+" - "+event.end.format('h:mma')+'</p>', html: true});
+          $(this).tooltip("show");
         },
         eventMouseout: function( event, jsEvent, view ) { 
           jsEvent.preventDefault();
           $(".appt-hover-text").remove();
-          $(this).removeClass("appt-hover-bg");
-          $(this).addClass("fc-event");
-          $(this).children(":first").removeClass("hidden");
+          $($(this).children(":first")).children(":first").removeClass("hidden");
+          $(this).tooltip("hide");
         },
         eventClick: function(calEvent, jsEvent, view) {
           // on event click set up appointment by making AJAX call to edit_appointments_path
@@ -99,8 +108,8 @@ var SelectApptCalendar = {
         },
         eventRender: function(event, element) {
           // remove fullcalendars default elements for events and add our own
-          element.find(".fc-event-title").remove();
-          element.find(".fc-event-time").remove();
+          element.find(".fc-title").remove();
+          element.find(".fc-time").remove();
           var new_html = "<div class='event-time'>​"+event.start.format('h:mm')+" - "+event.end.format('h:mma')+"</div>";
           // $(element).children(":first").replaceWith(html);
           $(element).children(":first").append(new_html);

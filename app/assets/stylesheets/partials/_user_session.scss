@@ -203,13 +203,15 @@
 
 ///// INTRO SESSION MODAL POP UP /////
 
-#sessionIntroModal .modal-dialog {
+// full page modal
+#sessionIntroModal .modal-dialog, #familyModal .modal-dialog{
   width: 98%;
   height: 92%;
   padding: 0;
 }
 
-#sessionIntroModal .modal-content {
+// full page modal
+#sessionIntroModal .modal-content, #familyModal .modal-content{
   height: 99%;
 }
 

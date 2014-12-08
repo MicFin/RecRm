@@ -38,7 +38,13 @@ Rails.application.routes.draw do
       delete 'families/:id/remove_member/:member_id', to: "families#remove_member", as: 'remove_family_member'
       resources :families
       get 'appointments/:id/select_time', to: 'appointments#select_time', as: 'select_time'
-      resources :appointments
+      resources :appointments do 
+        resources :surveys do 
+          resources :questions 
+        end
+      end
+      get 'users/:user_id/surveys/new', to: 'surveys#new', as: 'new_user_survey'
+      put 'users/:user_id/surveys/:id', to: 'surveys#update', as: 'user_survey'
       resources :rooms, only: [:index, :create]
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_room, :via => :get
       # resources :charges
@@ -84,7 +90,10 @@ Rails.application.routes.draw do
       resources :content_quotas
       resources :characteristics
       get 'time_slots/:id/create_from_existing', to: 'time_slots#create_from_existing', as: "create_from_existing_time_slot"
+      get 'time_slots/create_from_availability', to: 'time_slots#create_from_availability', as: "create_time_slots_from_availability"
       resources :time_slots
+      post 'availabilities/set_schedule', to: 'availabilities#set_schedule', as: "set_schedule"
+      resources :availabilities
       resources :ingredients_recipes do 
         collection { post :sort }
         get :autocomplete_ingredient_name, :on => :collection

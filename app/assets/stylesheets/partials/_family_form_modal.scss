@@ -1,0 +1,31 @@
+#familyModal {
+	.modal-content{
+		margin-top: 0;
+		overflow: scroll;
+	}
+	.modal-header {
+		border-bottom: none;
+	}
+	#new-user-family-form {
+		margin-top: 0px;
+	}
+	.modal-footer {
+		border-top: none;
+	}
+	#family-member-pages-tabs {
+		div{
+			padding: 2%;
+			font-size: 20px;
+		}
+		div.active-tab{
+			border-bottom: thick solid green;
+		}
+	}
+	.question-container {
+		padding-left: 5%;
+		padding-right: 5%;
+		p {
+			font-size: 20px;
+		}
+	}
+}

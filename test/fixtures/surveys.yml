@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  user_id: 
+  surveyable_id: 1
+  surveyable_type: MyString
+  completed: false
+
+two:
+  type: 
+  user_id: 
+  surveyable_id: 1
+  surveyable_type: MyString
+  completed: false

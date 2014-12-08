@@ -6,6 +6,7 @@
 		<p>Your upcoming appointment is</p>
 		<h4><%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></h4>
 	</div>
+
 	<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center">
 		<p><%= link_to image_tag("computer.png", class: "tilt"), "http://www.kindrdcare.com/sign_in" %></p>
 		<% if @appointment.room_id %>
@@ -17,9 +18,53 @@
 	</div>
 	<div class="col-xs-5">
 	<%=link_to "Upgrade to Premium", new_subscription_path, remote: true%>
+	<button class="btn btn-lg btn-success" id="edit-family-button">Family</button>
 	</div>
 
 </div>
+<% if @survey %>
+	<%= render "/surveys/form" %>
+<% end %>
+	<%= render "/families/edit_modal" %>
+
+
+
+<script type="text/javascript">
+	$("#edit-family-button").on("click", function(e){
+		e.preventDefault();
+		$("#familyModal").modal({
+            backdrop: 'static',
+            keyboard: false
+    });
+    var active_id = $(".selected-family-member").data("id");
+  	$("#family-member-food-button").on("click", function(e){
+  		e.preventDefault();
+			$.ajax({
+         type: "GET",
+         datatype: "script",
+         data: {survey_type: "User-Food", id: active_id},
+         url: "/users/"+active_id+"/surveys/new",
+         success: function(response){
+         	$(".active-tab").removeClass("active-tab");
+         	$("#family-member-food-button").parent().addClass("active-tab");
+         } 
+     	})
+  	});
+  	$("#family-member-life-button").on("click", function(e){
+  		e.preventDefault();
+			$.ajax({
+         type: "GET",
+         datatype: "script",
+         data: {survey_type: "User-Life", id: active_id},
+         url: "/users/"+active_id+"/surveys/new",
+         success: function(response){
+         	$(".active-tab").removeClass("active-tab");
+         	$("#family-member-life-button").parent().addClass("active-tab");
+         } 
+     	})
+  	})
+	})
+</script>
 
 
 

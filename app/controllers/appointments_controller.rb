@@ -36,7 +36,8 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
-    ## for first sign up from select time
+    ## for first edit use case it is selecting a time
+    @time_slot = TimeSlot.find(params[:time_slot_id])
     respond_to do |format|
       format.js
     end

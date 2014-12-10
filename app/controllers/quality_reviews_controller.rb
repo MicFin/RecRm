@@ -2,6 +2,7 @@ class QualityReviewsController < ApplicationController
   include CharacteristicsHelper
   include IngredientsRecipesHelper
   include PatientGroupsHelper
+
   before_filter :load_quality_reviewable
   before_filter :set_quality_review, only: [:start_review, :complete_review, :update, :edit]
 

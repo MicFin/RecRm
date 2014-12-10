@@ -6,6 +6,9 @@
 	  <%= devise_error_messages! %>
 
 	  <div><%= f.input :email %></div>
+	  <div><%= f.input :first_name %></div>
+	  <div><%= f.input :last_name %></div>
+	  <div><%= f.input :signature %></div>
 
 	  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
 	    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

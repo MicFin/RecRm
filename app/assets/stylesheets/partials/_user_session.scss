@@ -1,11 +1,4 @@
-#kindrd-navbar{
-	background-color: $carrotorange;
-}
 
-#kindrd-navbar li a {
-	padding-left: 50px;
-	padding-right: 50px;
-}
 
 ///////
 #navbar-logo {
@@ -30,10 +23,6 @@
 	position:relative;
 }
 
-
-#navbar-help{
-	float: right;
-}
 
 .large-image{
 	-webkit-transform: scale(1.6);
@@ -204,14 +193,14 @@
 ///// INTRO SESSION MODAL POP UP /////
 
 // full page modal
-#sessionIntroModal .modal-dialog, #familyModal .modal-dialog{
+#sessionIntroModal .modal-dialog, #familyModal .modal-dialog, #appointmentPrepModal .modal-dialog{
   width: 98%;
   height: 92%;
   padding: 0;
 }
 
 // full page modal
-#sessionIntroModal .modal-content, #familyModal .modal-content{
+#sessionIntroModal .modal-content, #familyModal .modal-content, #appointmentPrepModal .modal-dialog{
   height: 99%;
 }
 

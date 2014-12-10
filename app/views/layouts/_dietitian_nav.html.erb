@@ -4,25 +4,41 @@
   </div>
   <div id="kindrd-navbar" class="row">
     <div class="container">
-      <div class="navbar-header">
+      <div class="navbar-header col-xs-12 col-sm-3 col-md-3 col-lg-2">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/recipes/dietitian_recipes_index/3">Your profile</a>
+        <a class="navbar-brand" href="/welcome/index"><span class="glyphicon glyphicon-home"></span> Dashboard</a>
       </div>
       <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li id="navbar-dashboard" class="active"><%#= link_to "Dashboard", welcome_path %></li>
-          <li id="navbar-appointments" ><a  href="#about">Appointments</a></li>
-          <li id="navbar-recipes"><%= link_to "Recipes", dietitian_recipes_path(current_dietitian)%></li>
-          <li><%= link_to 'SIGN OUT', destroy_dietitian_session_path, :method => :delete %></li>
-        </ul>
-        <ul class="nav navbar-nav" id="navbar-help">
-          <li ><a class="always-hover" href="#support" data-toggle="tooltip" data-placement="top" title="Support"><span class="large-image glyphicon glyphicon-question-sign"></span></a></li>
-          <li id="feedback-button"><a class="always-hover" href="https://docs.google.com/a/kindrdfood.com/forms/d/1EeH4aQCn75tumHEfU8zSJ4Fudp7fJW-4Q45NbxRE_yA/viewform" data-toggle="tooltip" data-placement="top" title="Feedback"><span class="large-image glyphicon glyphicon-envelope"></span></a></li>
+        <ul class="nav navbar-nav col-xs-12 col-sm-9 col-md-9 col-lg-10">
+          <li class="nav-list-item col-xs-12 col-sm-2 col-md-2 col-lg-2" id="navbar-profile" class="active">
+            <%=link_to edit_dietitian_registration_path do %>
+              <span class="glyphicon glyphicon-user"></span> Profile
+            <% end %>
+          </li>
+          <li class="nav-list-item col-xs-12 col-sm-3 col-md-3 col-lg-2" id="navbar-appointments" >
+            <a href="#about"><span class="glyphicon glyphicon-calendar"></span> Appointments</a>
+          </li>
+          <li class="nav-list-item col-xs-12 col-sm-2 col-md-2 col-lg-2" id="navbar-recipes">
+            <%= link_to dietitian_recipes_path(current_dietitian) do %> 
+              <span class="glyphicon glyphicon-cutlery"></span> Recipes
+            <% end %>
+          </li>
+          <li class="nav-list-item col-xs-12 col-sm-2 col-md-2 col-lg-2" id="navbar-log-out">
+            <%= link_to destroy_dietitian_session_path, :method => :delete do %>
+              <span class="glyphicon glyphicon-log-out"></span> Log Out
+            <% end %>
+          </li>
+          <li class="nav-list-item col-xs-12 col-sm-1 col-md-1 col-lg-2" id="navbar-help">
+           <a class="always-hover" href="#support" data-toggle="tooltip" data-placement="top" title="Support"><span class="large-image glyphicon glyphicon-question-sign"></span></a>
+          </li>
+          <li class="nav-list-item col-xs-12 col-sm-2 col-md-2 col-lg-2" id="feedback-button">
+            <a class="always-hover" href="https://docs.google.com/a/kindrdfood.com/forms/d/1EeH4aQCn75tumHEfU8zSJ4Fudp7fJW-4Q45NbxRE_yA/viewform" data-toggle="tooltip" data-placement="top" title="Feedback"><span class="large-image glyphicon glyphicon-envelope"></span></a>
+          </li>
         </ul>
       </div>
     </div>

@@ -1,5 +1,7 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:show, :edit, :update, :select_time, :destroy]
+  include AppointmentsHelper
+  include PatientGroupsHelper
+  before_action :set_appointment, only: [:show, :edit, :update, :select_time, :appointment_prep, :destroy]
   before_filter :config_opentok,:except => [:index, :show, :new, :edit, :create, :destroy, :select_time]
 
   # GET /appointments
@@ -15,6 +17,29 @@ class AppointmentsController < ApplicationController
   def select_time
     @time_slots = TimeSlot.all
     @sign_up_stage = @appointment.stage 
+  end
+
+  # GET /appointments/1/appointment_prep
+  def appointment_prep
+   # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
+    if @appointment.dietitian = current_dietitian 
+      @client = @appointment.appointment_host
+      # set @family before get_family_info
+      @family = @client.head_of_families.first
+      get_family_info!
+      @family_members
+      
+      @user = @family_members[0]
+      get_patient_groups!
+      @diseases = @diseases 
+      @intolerances = @intolerances 
+      @allergies = @allergies
+      @diets =  @diets 
+      @unverified_health_groups = @family_members[0].unverified_health_groups
+    end
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /appointments/1

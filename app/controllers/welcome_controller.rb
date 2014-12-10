@@ -1,12 +1,19 @@
 class WelcomeController < ApplicationController
+    include AppointmentsHelper
+    include QualityReviewsHelper
 		before_filter :check_user_logged_in!
 
+
     def index
-      date = Date.today 
+      @date = Date.today 
       if @user == current_dietitian
-        @appointments = current_dietitian.appointments.where(start_time: date..10.days.from_now)
+        get_upcoming_appointments!
+        @upcoming_appointments
+        @next_appointment
+        
+        get_incomplete_quality_reviews!
+        @incomplete_quality_reviews
       end
-      
     end
 
   private

@@ -1,10 +1,26 @@
-#dashboard-container div:first-child {
-	margin-top: 20px;
+// #dashboard-container div:first-child {
+// 	margin-top: 20px;
+// }
+
+#appointment-update-container, #appointment-health-groups-container{
+  padding-left: 5%;
+  overflow: scroll;
+  max-height: 350px;
+  overflow-x: hidden;
+  border-top: 5px solid $lightorange;
+  border-bottom: 5px solid $lightorange;
 }
 
 #appointment-update-container{
-	margin-top: 50px;
+  .dashbord-list-top{
+    margin-top: 10px;
+  }
+  .dashboard-list-bottom{
+    padding-bottom: 10px;
+    border-bottom: 2px solid $lightorange;
+  }
 }
+
 
 .tilt {
   display: inline-block;
@@ -61,4 +77,18 @@
 #currently-in-review-container .dashboard-heading, #all-dieitians-dashboard-container .dashboard-heading{
   color: $lightorange;
   margin-left: 2%;
+}
+
+#dash-main{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+//// APPOINTMENT PREP /////
+
+#appointmentPrepModal{
+  width: 100%%;
+  .modal-title img {
+    height: 50px;
+  }
 }

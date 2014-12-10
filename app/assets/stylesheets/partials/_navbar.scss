@@ -1,11 +1,18 @@
 #kindrd-navbar{
 	background-color: $carrotorange;
 	margin-bottom: -1px;
+	.navbar-collapse.collapse.in{
+		float:left;
+		width:100%;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
 }
 
 #kindrd-navbar li a {
-	padding-left: 50px;
-	padding-right: 50px;
+	padding-left: 0px;
+	padding-right: 0px;
+	text-align: center;
 }
 
 #sign_in_nav{
@@ -22,10 +29,6 @@
 	padding-left: 20px;
 }
 
-
-#navbar-help{
-	float: right;
-}
 
 .large-image{
 	-webkit-transform: scale(1.6);
@@ -48,7 +51,7 @@
 }
 
 .below_signed_in_nav {
-	margin-top: 50px;
+	margin-top: 150px;
 }
 
 ///////////////////////////

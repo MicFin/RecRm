@@ -23,21 +23,40 @@
 	color: $white;
 }
 
-.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-	color: $carrotorange;
+
+
+// .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+
+
+.navbar-inverse .navbar-nav > li:hover, .navbar-inverse .navbar-nav > li:hover {
 	background-color: $white;
+	a {
+		color: $carrotorange;
+		background-color: $white;
+	}
 }
 
 .navbar-inverse .navbar-brand {
 	color: $white;
+	-webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-	color: $carrotorange;
+.navbar-inverse .navbar-brand:hover {
+	color: $lightgreen;
+}
+
+.navbar-inverse .navbar-nav > li.active, .navbar-inverse .navbar-nav > li.active:hover, .navbar-inverse .navbar-nav > li.active:focus {
 	background-color: $white;
+	a {
+		color: $carrotorange;
+		background-color: $white;
+	}
 }
 
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+.navbar-default .navbar-nav > .active > li, .navbar-default .navbar-nav > li.active:hover, .navbar-default .navbar-nav > li.active:focus {
 	text-decoration: underline;
 	background-color: transparent;
 }
@@ -54,4 +73,19 @@
 
 .form-inline .form-group{
 	margin-bottom: 15px;
+}
+
+.navbar-inverse .navbar-toggle {
+border-color: $white;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+	background-color: $white;
+	.icon-bar {
+		background-color: $carrotorange;
+	}
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+	border-color: $white;
 }

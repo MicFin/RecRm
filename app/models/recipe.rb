@@ -1,12 +1,10 @@
 class Recipe < ActiveRecord::Base
   attr_accessor :ingredient_list
+  attr_accessor :ingredient_count
   attr_accessor :step_list
-  attr_accessor :characteristic_list
+  attr_accessor :health_groups
   attr_accessor :courses
-  attr_accessor :age_groups
-  attr_accessor :scenarios
-  attr_accessor :holidays
-  attr_accessor :cultures
+
 
   # for roles
   resourcify

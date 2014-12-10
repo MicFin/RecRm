@@ -123,8 +123,27 @@ class User < ActiveRecord::Base
   end
 
   def age
-    age = DateTime.now.year - self.birth_date.year
-    return age
+    dob = self.date_of_birth
+    if dob != nil 
+      now = Time.now.utc.to_date
+      age = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+      if age < 1
+        age = now.month - dob.month
+        if age > 1
+          final_age = age.to_s + " months old"
+        else 
+          final_age = age.to_s + " month old"
+        end
+      elsif age == 1
+        months = now.month - dob.month
+        final_age = (24 + months).to_s + " months old"
+      else
+        final_age = age.to_s + " years old"
+      end
+      return final_age
+    else
+      return nil
+    end
   end
   
   def height

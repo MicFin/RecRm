@@ -66,8 +66,8 @@ $(document).ready(function() {
 		BasicForm.setReviewSliders();
 	} else {
 		// other elsif
-		// BasicForm.validate();
-		// BasicForm.setSliders();
+		BasicForm.validate();
+		BasicForm.setSliders();
 	};
 
 

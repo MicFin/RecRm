@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   devise_scope :dietitian do
     authenticated :dietitian do
       resources :member_plans
+      get 'appointments/:id/appointment_prep', to: 'appointments#appointment_prep', as: 'appointment_prep'
       resources :appointments
       get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
       get 'dashboard/recipe_status', to: 'dashboard#recipe_status', as: 'dashboard_recipe_status'

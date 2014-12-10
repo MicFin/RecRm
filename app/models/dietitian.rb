@@ -20,6 +20,9 @@ class Dietitian < ActiveRecord::Base
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "third_reviewer_id"
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "fourth_reviewer_id"
 
+# has_attached_file :photo
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => ""
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def online?
     updated_at > 10.minutes.ago

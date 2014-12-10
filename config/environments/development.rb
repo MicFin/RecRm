@@ -4,7 +4,7 @@ Rails.application.configure do
 
 
 Paperclip.options[:command_path] = "/usr/local/bin/convert"
-
+# Paperclip.options[:command_path] = "/usr/local/bin/identify"
   # config.stripe.publishable_key = ENV['STRIPE_PUBLIC_KEY']
   
   # config.stripe.eager_load = ['user']

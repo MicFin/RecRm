@@ -21,6 +21,16 @@ GIT
       ransack (~> 1.0)
       sass-rails
 
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: 0f7380b3825fdc5ca310ae6bbde7e299a73733cd
+  specs:
+    paperclip (4.2.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.5)
+      mime-types
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -77,7 +87,7 @@ GEM
     builder (3.2.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.4)
+    cocaine (0.5.5)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -158,11 +168,6 @@ GEM
       addressable (~> 2.3)
       httparty (~> 0.8)
     orm_adapter (0.5.0)
-    paperclip (4.1.1)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.5.3)
-      mime-types
     parslet (1.6.1)
       blankslate (~> 2.0)
     pg (0.17.1)
@@ -291,7 +296,7 @@ DEPENDENCIES
   jquery-ui-rails
   momentjs-rails (~> 2.8.3)
   opentok
-  paperclip (~> 4.1)
+  paperclip!
   pg
   phony_rails
   pry

@@ -51,7 +51,7 @@ gem 'jquery-ui-rails'
 
 # allows image uploads
 # gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-gem "paperclip", "~> 4.1"
+gem "paperclip", github: 'thoughtbot/paperclip'
 ## storing images in aws s3 bucket
 gem 'aws-sdk'
 ## for datepickers

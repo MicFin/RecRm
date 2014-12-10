@@ -38,11 +38,9 @@ var AvailabilityCalendar = {
               // So it will be unselectable
           } else {
             // after today then set availablility
-            var title = prompt('Event Title:');
             var eventData;
             if (title) {
               eventData = {
-                title: title,
                 start: start,
                 end: end,
                 status: "New",
@@ -122,7 +120,7 @@ var AvailabilityCalendar = {
             data: {availabilities: clean_availabilities},
             url: "/availabilities/set_schedule",
             success: function(response){
-               $("#availability-cal").replaceWith("<div class='col-xs-6 col-xs-offset-3' id='availability-cal'></div>");
+               $("#availability-cal").replaceWith("<div class='col-xs-8 col-xs-offset-2' id='availability-cal'></div>");
                AvailabilityCalendar.set();
              } 
           });

@@ -154,7 +154,7 @@ var BasicForm = {
       // makes select box change the slider
       $( "#recipe_difficulty" ).change(function() {
         difficultyslider.slider( "value", this.selectedIndex + 1 );
-      });
+      })
     };
     if ($( "#recipe_serving_size" ).length > 0) {
       var serves = $( "#recipe_serving_size" );
@@ -170,7 +170,7 @@ var BasicForm = {
       // makes select box change the slider
       $( "#recipe_serving_size" ).change(function() {
         servesslider.slider( "value", this.selectedIndex + 1 );
-      });
+      })
     }    
   },
   validateReview: function(){
@@ -190,7 +190,7 @@ var BasicForm = {
           required: "Enter recipe name",
           minlength: "Must be at least 2 letters"
         }
-      },
-    });
+      }
+    })
   }
 }

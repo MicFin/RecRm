@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
@@ -51,10 +51,17 @@ gem 'jquery-ui-rails'
 
 # allows image uploads
 # gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-gem "paperclip", github: 'thoughtbot/paperclip'
+
+# gem "paperclip", github: 'thoughtbot/paperclip'
 ## storing images in aws s3 bucket
-gem 'aws-sdk'
+# gem 'aws-sdk'
 ## for datepickers
+
+# http://railscasts.com/episodes/253-carrierwave-file-uploads?view=asciicast
+gem 'carrierwave'
+gem "rmagick"
+
+
 gem 'momentjs-rails', '~> 2.8.3'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 

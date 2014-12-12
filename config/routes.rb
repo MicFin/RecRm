@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
 
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -53,11 +54,18 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :dietitians
+  devise_for :dietitians, :controllers => { :registrations => "dietitians/registrations" }
 
   devise_scope :dietitian do
     authenticated :dietitian do
+
       resources :member_plans
+
+      get 'dietitans/:id/images/new', to: 'images#new', as: 'new_dietitian_image'
+      get 'dietitans/:id/images/index', to: 'images#index', as: 'dietitian_images'
+      post 'dietitans/:id/images/create', to: 'images#index', as: 'create_dietitian_image'
+
+
       get 'appointments/:id/appointment_prep', to: 'appointments#appointment_prep', as: 'appointment_prep'
       resources :appointments
       get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'

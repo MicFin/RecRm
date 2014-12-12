@@ -1,4 +1,18 @@
 class Dietitian < ActiveRecord::Base
+    # has_attached_file :avatar, 
+    #   :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  #     :storage => :s3,
+  #     :s3_credentials => Proc.new{|a| a.instance.s3_credentials }
+
+  # def s3_credentials
+  #   {:bucket => ENV['S3_BUCKET_NAME'], :access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']}
+  # end
+
+  # validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+  # has_attached_file :avatar
+  # do_not_validate_attachment_file_type :avatar
+
   rolify :role_cname => 'Role'
   scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
   # Include default devise modules. Others available are:
@@ -20,9 +34,8 @@ class Dietitian < ActiveRecord::Base
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "third_reviewer_id"
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "fourth_reviewer_id"
 
-# has_attached_file :photo
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => ""
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  has_many :images, :as => :imageable
+  accepts_nested_attributes_for :images, allow_destroy: true
 
   def online?
     updated_at > 10.minutes.ago
@@ -76,6 +89,12 @@ class Dietitian < ActiveRecord::Base
   #     end
   #   end
   #   return complete_review_conflicts
+  # end
+
+  # override devise without_password model to remove current_password 
+  # def update_without_password(params={})
+  #   params.delete(:current_password)
+  #   super(params)
   # end
 
 end

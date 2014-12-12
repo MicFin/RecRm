@@ -1,16 +1,24 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+# config.stripe.publishable_key = ENV['STRIPE_PUBLIC_KEY']
 
-
-Paperclip.options[:command_path] = "/usr/local/bin/convert"
+# Paperclip.options[:command_path] = "/usr/local/bin/"
 # Paperclip.options[:command_path] = "/usr/local/bin/identify"
-  # config.stripe.publishable_key = ENV['STRIPE_PUBLIC_KEY']
-  
-  # config.stripe.eager_load = ['user']
 
-  # stops ajax from being cached and caling itself twice
-  config.serve_static_assets = false
+  # config.paperclip_defaults = {
+  #   :storage => :s3,
+  #   :s3_credentials => {
+  #     :bucket => 'kindrd_pics'
+  #   }
+  # }  
+  # # config.stripe.eager_load = ['user']
+  # # turned serve static assets to false for 
+  # # stoping ajax from being cached and caling itself twice
+  # config.serve_static_assets = false
+  # turned serve static assets to true for 
+  # carrierview images not loading from pbulic folder
+  config.serve_static_assets = true
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

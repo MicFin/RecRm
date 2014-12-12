@@ -35,7 +35,6 @@
 //= require dietitian_nav
 //= require articles_form
 //= require recipe_step_list
-//= require basic_form_validate
 //= require override_bootstrap
 //= require user_sign_up
 //= require form_validations
@@ -46,7 +45,7 @@
 //= require appointment
 //= require appointments_index
 //= require tok_box_main.js
-
+//= require basic_form_validate
 
 
 

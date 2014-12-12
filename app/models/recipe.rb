@@ -17,8 +17,8 @@ class Recipe < ActiveRecord::Base
   belongs_to :dietitian
   validates :name, :presence => {:message => 'cannot be blank, Recipe not saved'}
   # paperclip loaded image
-    has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  #   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  # validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   # do_not_validate_attachment_file_type :avatar
   # validate :has_mandatory_characteristics
   # removed until can utlilize AJAX to render nested forms for recipe form or to submit for ingredients_recipes forms

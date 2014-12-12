@@ -2,14 +2,36 @@
 	<div class="col-xs-12">
 	<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-	<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal', method: :put }) do |f| %>
+	<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal', method: :put }, multipart: true) do |f| %>
 	  <%= devise_error_messages! %>
 
 	  <div><%= f.input :email %></div>
 	  <div><%= f.input :first_name %></div>
 	  <div><%= f.input :last_name %></div>
 	  <div><%= f.input :signature %></div>
- 		<div><%= f.file_field :avatar %></div>
+	  <% if resource.images.count >= 1 %>
+	   		<%= image_tag resource.images.first.image.url %>
+	   		<%= image_tag resource.images.first.image.thumb.url %>
+	   		<%= image_tag resource.images.first.image.icon.url %>
+	   		<%= image_tag resource.images.first.image.small_icon.url %>
+	  <% end %>
+		  <%= f.fields_for :images, resource.images.build do |builder| %>
+			  <fieldset>
+	 				<div><%= builder.file_field :image %></div>
+					<p>
+			    	<label>
+			      	<%= builder.check_box :remove_image %>
+			      	Remove Photo
+			    	</label>
+				  </p>
+	 				<%= builder.hidden_field :image_cache %>
+	 				<%= builder.hidden_field :imageable_type, value: resource.class %>
+	 				<%= builder.hidden_field :imageable_id, value: resource.id %>
+	 				<%= builder.hidden_field :image_type, value: "Avatar" %>
+			  </fieldset>
+			<% end %>
+
+
 
 	  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
 	    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

@@ -65,9 +65,11 @@ $(document).ready(function() {
 		BasicForm.validateReview();
 		BasicForm.setReviewSliders();
 	} else {
-		// other elsif
-		BasicForm.validate();
-		BasicForm.setSliders();
+		if ($(".recipe-name-autofill ").length >= 1) {
+					// other elsif
+			BasicForm.validate();
+			BasicForm.setSliders();
+		}
 	};
 
 

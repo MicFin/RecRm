@@ -1,5 +1,5 @@
-require 'unitwise'
-require 'unitwise/ext'
+# require 'unitwise'
+# require 'unitwise/ext'
 
 class IngredientsRecipe < ActiveRecord::Base
 	belongs_to :ingredient

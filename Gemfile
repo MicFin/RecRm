@@ -4,7 +4,7 @@ ruby '2.1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '0.17.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 3.1.2'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', "2.2.2"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'bootstrap-sass', '~> 3.1.1.1'
 
-gem 'devise'
+gem 'devise', "3.2.4"
 
 gem 'jquery-turbolinks'
 
@@ -34,12 +34,12 @@ gem 'jquery-turbolinks'
 # https://github.com/joshwlewis/unitwise
 # I found this tutorial useful for adding units to the ingredients_recipes model 
 # http://joshwlewis.com/essays/rails-unit-measurement-persistence/
-gem 'unitwise'
+# gem 'unitwise'
 
 # simple form makes forms easier and prettier to write and plays nice with bootstrap
 # https://github.com/plataformatec/simple_form
 #   Inside your views, use the 'simple_form_for' with one of the Bootstrap form classes, '.form-horizontal', '.form-inline', '.form-search' or '.form-vertical', as the following: simple_form_for(@user, html: {class: 'form-horizontal' }) do |form|
-gem 'simple_form'
+gem 'simple_form', "3.0.2"
 
 # # For autofilling fields form database. It is rails 4 compatible, don't be fooled by the name.
 # # https://github.com/crowdint/rails3-jquery-autocomplete
@@ -47,7 +47,7 @@ gem 'simple_form'
 
 # Required to use with gem 'rails3-jquery-autocomplete' 
 # only requiring widget //= require jquery.ui.autocomplete
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', "4.2.1"
 
 # allows image uploads
 # gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
@@ -58,47 +58,47 @@ gem 'jquery-ui-rails'
 ## for datepickers
 
 # http://railscasts.com/episodes/253-carrierwave-file-uploads?view=asciicast
-gem 'carrierwave'
-gem "rmagick"
+gem 'carrierwave', "0.10.0"
+gem "rmagick", "2.13.4"
 # http://railscasts.com/episodes/383-uploading-to-amazon-s3?view=asciicast
 # gem 'fog', "~> 1.3.1"
-gem 'carrierwave-aws'
+gem 'carrierwave-aws', "0.4.1"
 
 gem 'momentjs-rails', '~> 2.8.3'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 # manages phone number validation
-gem 'phony_rails'
+gem 'phony_rails', "0.6.1"
 
 # video conferencing 
-gem "opentok"
+gem "opentok", "2.2.1"
 
 #allows you to set variables within controller and access them in javascript 
 #http://railscasts.com/episodes/324-passing-data-to-javascript?view=asciicast
-gem 'gon'
+gem 'gon', "5.1.0"
 
-gem 'rabl'
+gem 'rabl', "0.10.1"
 
 # creates AdminUser model, migrations, controllers, routing, views, etc for an administrative user with dashboard.  Very Ruby friendly and customizable.  Will use AdminUser as our tech admin but can register other User models with ActiveAdmin and give certain permissions
 # http://activeadmin.info/
 gem 'activeadmin', github: 'gregbell/active_admin'
 
 # This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list. The class that has this specified needs to have a position column defined as an integer on the mapped database table. https://github.com/swanandp/acts_as_list
-gem 'acts_as_list'
+gem 'acts_as_list', "0.3.0"
 
 # Minimal authorization through OO design and pure Ruby classes
 # https://github.com/elabs/pundit
-gem "pundit"
+gem "pundit", "0.2.2"
  
 # https://github.com/RolifyCommunity/rolify
-gem 'rolify', github: 'EppO/rolify'
+gem 'rolify', "3.4.1"
 
 gem 'fullcalendar-rails', '~> 2.2.0.0'
 
-gem 'stripe'
+gem 'stripe', "1.16.0"
 # rails stripe payment integration
 # https://github.com/thefrontside/stripe-rails
-gem 'stripe-rails'
+gem 'stripe-rails', "0.3.1"
 # automatic cron jobs
 # user for payments and emails?
 # https://github.com/javan/whenever
@@ -107,18 +107,18 @@ gem 'stripe-rails'
 group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors
-  gem "better_errors"
+  gem "better_errors", "1.1.0"
 # binding of caller allows you to do variable inspection with better errors  
-  gem "binding_of_caller"
+  gem "binding_of_caller", "0.7.2"
 # Pry allows you to debug, place a binding.pry in ruby code and you can debug from that place in the console
-  gem 'pry'
+  gem 'pry', "0.10.0"
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', "1.1.3"
 
 # find your route on a long journey over Rails with Sextant
 # go to http://localhost:3000/rails/routes to view routes, faster than rails routes
 #https://github.com/schneems/sextant
-  gem 'sextant'
+  gem 'sextant', "0.2.4"
 
 end
 

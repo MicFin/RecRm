@@ -81,8 +81,8 @@ gem 'rabl', "0.10.1"
 
 # creates AdminUser model, migrations, controllers, routing, views, etc for an administrative user with dashboard.  Very Ruby friendly and customizable.  Will use AdminUser as our tech admin but can register other User models with ActiveAdmin and give certain permissions
 # http://activeadmin.info/
-# gem 'activeadmin', github: 'gregbell/active_admin'
-gem 'activeadmin', '1.0.0.pre'
+gem 'activeadmin', github: 'gregbell/active_admin'
+# gem 'activeadmin', '1.0.0.pre'
 # This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list. The class that has this specified needs to have a position column defined as an integer on the mapped database table. https://github.com/swanandp/acts_as_list
 gem 'acts_as_list', "0.3.0"
 

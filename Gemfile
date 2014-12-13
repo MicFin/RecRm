@@ -60,7 +60,9 @@ gem 'jquery-ui-rails'
 # http://railscasts.com/episodes/253-carrierwave-file-uploads?view=asciicast
 gem 'carrierwave'
 gem "rmagick"
-
+# http://railscasts.com/episodes/383-uploading-to-amazon-s3?view=asciicast
+# gem 'fog', "~> 1.3.1"
+gem 'carrierwave-aws'
 
 gem 'momentjs-rails', '~> 2.8.3'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'

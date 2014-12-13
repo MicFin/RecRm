@@ -9,28 +9,29 @@
 	  <div><%= f.input :first_name %></div>
 	  <div><%= f.input :last_name %></div>
 	  <div><%= f.input :signature %></div>
-	  <% if resource.images.count >= 1 %>
-	   		<%= image_tag resource.images.first.image.url %>
-	   		<%= image_tag resource.images.first.image.thumb.url %>
-	   		<%= image_tag resource.images.first.image.icon.url %>
-	   		<%= image_tag resource.images.first.image.small_icon.url %>
-	  <% end %>
+	  <% if @main_avatar %>
+   		<%= image_tag @main_avatar.url %>
+   		<%= image_tag @main_avatar.thumb.url %>
+   		<%= image_tag @main_avatar.icon.url %>
+   		<%= image_tag @main_avatar.small_icon.url %>
+   		<%= f.fields_for :images, resource.images.build do |builder| %>
+<!-- 			<label class="checkbox">
+    		<input class="optional" id="remove-image" name="dietitian[images_attributes][0][remove_image]" type="checkbox" value="1">Remove Photo
+  		</label> -->
+  			  <div><%= builder.input :remove_image, as: :boolean %></div>
+  		<% end %>
+	  <% else %>
 		  <%= f.fields_for :images, resource.images.build do |builder| %>
 			  <fieldset>
 	 				<div><%= builder.file_field :image %></div>
-					<p>
-			    	<label>
-			      	<%= builder.check_box :remove_image %>
-			      	Remove Photo
-			    	</label>
-				  </p>
 	 				<%= builder.hidden_field :image_cache %>
+	 				<%= builder.hidden_field :position, value: 1  %>
 	 				<%= builder.hidden_field :imageable_type, value: resource.class %>
 	 				<%= builder.hidden_field :imageable_id, value: resource.id %>
 	 				<%= builder.hidden_field :image_type, value: "Avatar" %>
 			  </fieldset>
 			<% end %>
-
+		<% end %>
 
 
 	  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

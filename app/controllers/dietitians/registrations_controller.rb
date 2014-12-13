@@ -46,7 +46,14 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     # build images
-    current_dietitian.images.build
+    
+    if current_dietitian.main_avatar != false
+      
+      @main_avatar = current_dietitian.main_avatar
+    else
+      current_dietitian.images.build
+    end
+    
     render :edit
   end
 
@@ -54,6 +61,7 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
   # We need to use a copy of the resource because we don't want to change
   # the current user in place.
   def update
+    
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
@@ -103,7 +111,11 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
   # By default we want to require a password checks on update.
   # You can overwrite this method in your own RegistrationsController.
   def update_resource(resource, params)
-    binding.pry
+
+    if params[:images_attributes]
+      params[:images_attributes]["0"].delete(:image_cache)
+    end
+
     resource.update_with_password(params)
   end
 
@@ -137,8 +149,14 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
   # The default url to be used after updating a resource. You need to overwrite
   # this method in your own RegistrationsController.
   def after_update_path_for(resource)
-    binding.pry
-    signed_in_root_path(resource)
+    
+    if  params[:dietitian][:images_attributes].present?
+      
+        image = current_dietitian.images.last
+        crop_dietitian_image_path(resource, image)
+    else
+      signed_in_root_path(resource)
+    end
   end
 
   # Authenticates the current scope and gets the current resource from the session.
@@ -152,15 +170,24 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
+    
     if params 
       if ( (params[:dietitian][:images_attributes]) && (params[:dietitian][:images_attributes]['0'][:remove_image] == "1") )
-        binding.pry
+        
         params[:dietitian].delete(:images_attributes)
-        current_dietitian.images.first.destroy
+        image = current_dietitian.images.last 
+        image.remove_image!
+        # image.update_attribute(:image, nil)
+        image.remove_image = true
+        image.save
+        image.reload
+        image.destroy
+        
       end
     end
+    
     # configure_permitted_parameters
-    devise_parameter_sanitizer.sanitize(:account_update)
+    return devise_parameter_sanitizer.sanitize(:account_update)
   end
 
 
@@ -169,12 +196,15 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
 
   #
   def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) do |u| 
-        u.permit(:first_name, :last_name, :email, :signature, :password, :password_confirmation, :current_password)
-       end
-      devise_parameter_sanitizer.for(:account_update) do |u|  
-        u.permit(:first_name, :last_name, :email, :signature, :password, :password_confirmation, :current_password, :images_attributes => [:image_type, :title, :imageable_id, :imageable_type, :image])
-       end
+    
+    devise_parameter_sanitizer.for(:sign_up) do |u| 
+      u.permit(:first_name, :last_name, :email, :signature, :password, :password_confirmation, :current_password)
+     end
+    devise_parameter_sanitizer.for(:account_update) do |u|  
+
+      u.permit(:first_name, :last_name, :email, :signature, :password, :password_confirmation, :current_password, :remove_image, :images_attributes => [:image_type, :imageable_id, :imageable_type, :position, :image_cache, :crop_x, :crop_y, :crop_w, :crop_h, :crop_image, :remove_image, :image])
+     end
+     
   end
 
 

@@ -1,0 +1,16 @@
+<h1>Crop Avatar</h1>
+<%= image_tag @image.image.url(:large), id: "cropbox" %>
+
+<h4>Preview</h4>
+<div style="width:100px; height:100px; overflow:hidden;">
+  <%= image_tag @image.image.url(:large), :id => "preview" %>
+</div>
+
+<%= simple_form_for([current_dietitian, @image]) do |f| %>
+  <div class="actions">
+    <% %w[x y w h].each do |attribute| %>
+      <%= f.input "crop_#{attribute}", :as => :hidden%>
+    <% end %>
+    <%= f.button :submit, "Crop" %>
+  </div>
+<% end %>

@@ -1,7 +1,13 @@
 <div id="dashboard-container" class="">
  	<div class="form-group col-xs-12 form-group text-center">
  		<h2>Welcome back to the kitchen, <%=current_dietitian.email %>!</h2>
- 		<%= image_tag current_dietitian.images.last.image.url %>
+ 		<% if current_dietitian.main_avatar != false %>
+ 			<%= image_tag current_dietitian.main_avatar.thumb.url%>
+		<% else %>
+			<%=link_to edit_dietitian_registration_path do %>
+        <span class="glyphicon glyphicon-user"></span> Add Your Profile Picture!
+      <% end %>
+		<% end %>
  	</div>
  	<div id="dash-main" class="row">
 		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">

@@ -60,6 +60,8 @@ $(document).ready(function() {
 	// actual tokbox script is at view rooms in_session 
 	// TokBoxMain.responsive_screens();
 
+	// set cropping of images 
+	Images.set_crop();
 
 	if ($("#quality-review-main-container").length >= 1){
 		BasicForm.validateReview();

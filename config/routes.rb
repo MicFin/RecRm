@@ -63,8 +63,9 @@ Rails.application.routes.draw do
 
       get 'dietitans/:id/images/new', to: 'images#new', as: 'new_dietitian_image'
       get 'dietitans/:id/images/index', to: 'images#index', as: 'dietitian_images'
-      post 'dietitans/:id/images/create', to: 'images#index', as: 'create_dietitian_image'
-
+      post 'dietitans/:id/images/create', to: 'images#create', as: 'create_dietitian_image'
+      patch 'dietitans/:dietitian_id/images/:id/update', to: 'images#update', as: 'dietitian_image'
+      get 'dietitans/:dietitian_id/images/:id/crop', to: 'images#crop', as: 'crop_dietitian_image'
 
       get 'appointments/:id/appointment_prep', to: 'appointments#appointment_prep', as: 'appointment_prep'
       resources :appointments
@@ -87,7 +88,7 @@ Rails.application.routes.draw do
       patch 'recipes/:recipe_id/review_conflicts/:id/edit_review_conflict', to: 'review_conflicts#edit_review_conflict', as: "edit_review_conflict"
 
       # root :to => 'recipes#dietitian_recipes_index', :constraints => lambda { |request| request.env['warden'].user.class.name == 'Dietitian' }, :as => "dietitian_authenticated_root"
-      root :to => 'recipes#dietitian_recipes_index', as: :dietitian_authenticated_root
+      root :to => 'welcome#index', as: :dietitian_authenticated_root
       # role assignments index
       get 'roles/assignments', to: 'roles#assignments', as: 'roles_assignments'
       # role assignments

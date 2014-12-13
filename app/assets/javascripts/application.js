@@ -22,6 +22,7 @@
 //= require jquery.ui.sortable
 //= require jquery.ui.draggable
 //= require jquery.ui.resizable
+//= require jquery.Jcrop
 
 //= require moment
 //= require bootstrap
@@ -45,6 +46,9 @@
 //= require appointment
 //= require appointments_index
 //= require tok_box_main.js
+//= require images
+
+
 //= require basic_form_validate
 
 

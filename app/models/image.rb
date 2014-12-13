@@ -1,14 +1,36 @@
 class Image < ActiveRecord::Base
+  # require 'file_size_validator'
   attr_accessor :image_cache
   attr_accessor :remove_image
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
   belongs_to :imageable, polymorphic: true
   mount_uploader :image, ImageUploader
-  validates_presence_of :image
-  validate :image_size_validation
+  # validates :image,
+  #   :presence => true, 
+  #   :file_size => { 
+  #     :maximum => 0.5.megabytes.to_i 
+  #   } 
+  # validates_presence_of :image
+  # validate :image_size_validation
+  after_update :crop_image
+
 
   private
   
-  def image_size_validation
-    errors[:image] << "should be less than 5MB" if image.size > 5.megabytes
+  # def image_size_validation
+  #   binding.pry
+  #   errors[:image] << "should be less than 5MB" if image.size > 5.megabytes
+  # end
+
+
+ def crop_image
+  
+    image.recreate_versions! if crop_x.present?
+    self.crop_x = ""
+    self.crop_y = ""
+    self.crop_w = ""
+    self.crop_h = ""
   end
+
 end

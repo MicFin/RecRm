@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
 
 
     def index
+      
       @date = Date.today 
       if @user == current_dietitian
         get_upcoming_appointments!

@@ -1,4 +1,5 @@
 class Dietitian < ActiveRecord::Base
+  attr_accessor :current_password, :image_cache, :remove_image
     # has_attached_file :avatar, 
     #   :styles => { :medium => "300x300>", :thumb => "100x100>" }
   #     :storage => :s3,
@@ -34,8 +35,22 @@ class Dietitian < ActiveRecord::Base
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "third_reviewer_id"
   has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "fourth_reviewer_id"
 
-  has_many :images, :as => :imageable
+  has_many :images, :as => :imageable, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
+
+
+  def main_avatar
+    if self.images.count >= 1
+      avatar = self.images.where(image_type: "Avatar").where(position: 1)
+      if avatar.count >= 1
+        return avatar.first.image
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
 
   def online?
     updated_at > 10.minutes.ago

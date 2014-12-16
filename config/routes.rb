@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     authenticated :dietitian do
 
       resources :member_plans
+      get 'users/:user_id/surveys/show', to: 'surveys#show', as: 'show_user_survey'
 
       get 'dietitans/:id/images/new', to: 'images#new', as: 'new_dietitian_image'
       get 'dietitans/:id/images/index', to: 'images#index', as: 'dietitian_images'

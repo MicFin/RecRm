@@ -1,51 +1,68 @@
 <div id="dashboard-container" class="">
  	<div class="form-group col-xs-12 form-group text-center">
- 		<h2>Welcome back to the kitchen, <%=current_dietitian.email %>!</h2>
+ 		<h2>Welcome back to the kitchen, 
+ 		<% if current_dietitian.first_name == nil %>
+			<%=link_to edit_dietitian_registration_path do %>
+	      <span class="glyphicon glyphicon-user"></span> Add Your Name!
+	    <% end %>
+	  <% else %>
+	  	<%= current_dietitian.first_name %>
+	  <% end %>
  		<% if current_dietitian.main_avatar != false %>
  			<%= image_tag current_dietitian.main_avatar.thumb.url%>
 		<% else %>
+		<div id="home-screen-alert" class="col-xs-4 col-xs-offset-4 alert alert-danger">
 			<%=link_to edit_dietitian_registration_path do %>
+			 	<%= image_tag "placeholders/face.jpg"%>
         <span class="glyphicon glyphicon-user"></span> Add Your Profile Picture!
       <% end %>
+     </div>
 		<% end %>
  	</div>
  	<div id="dash-main" class="row">
 		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-			<h3>Upcoming Sessions</h3>
+			<h2>Upcoming Sessions</h2>
 			<div class="col-xs-6">
 				<%=link_to "Set your availability", availabilities_path %>
 			</div>
-			<div class="col-xs-6">
-				<p>Full Schedule</p>
+			<div class="col-xs-6">  
+			&nbsp;
+<!-- 				<p>View full schedule</p> -->
 			</div>
 			<div id="appointment-update-container">
-				<% @upcoming_appointments.each do |date_time_array, appointment| %>
-					<div class="row dashbord-list-top">
-						<div class="col-xs-12 text-left">
-								<p><%=date_time_array[0].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y")%></p>
+				<% if @upcoming_appointments.count >= 1%>
+					<% @upcoming_appointments.each do |date_time_array, appointment| %>
+						<div class="row dashbord-list-top">
+							<div class="col-xs-12 text-left">
+									<p><%=date_time_array[0].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y")%></p>
+							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-3">
-							<p><%=date_time_array[1]%></p>
+						<div class="row">
+							<div class="col-xs-3">
+								<p><%=date_time_array[1]%></p>
+							</div>
+							<div class="col-xs-6">
+								<p><%=appointment.first.family_info.family_names%></p>
+							</div>
+							<div class="col-xs-3">
+								<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
+							</div>
 						</div>
-						<div class="col-xs-6">
-							<p><%=appointment.first.family_info.family_names%></p>
+						<div class="row hidden-xs dashboard-list-bottom">
+							<div class="col-xs-3">
+							</div>
+							<div class="col-xs-9">
+								<% appointment.first.family_info.health_groups_names.each do |health_group|%>
+						 			<div class="btn btn-white-orange btn-sm">
+						 				<%=	health_group %>
+						 			</div>
+								<% end %>
+							</div>
 						</div>
-						<div class="col-xs-3">
-							<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
-						</div>
-					</div>
-					<div class="row hidden-xs dashboard-list-bottom">
-						<div class="col-xs-3">
-						</div>
-						<div class="col-xs-9">
-							<% appointment.first.family_info.health_groups_names.each do |health_group|%>
-					 			<div class="btn btn-white-orange btn-sm">
-					 				<%=	health_group %>
-					 			</div>
-							<% end %>
-						</div>
+					<% end %>
+				<% else %>
+					<div class="empty-list-container col-xs-12">
+						<h3>No upcoming appointments.</h3>
 					</div>
 				<% end %>
 			</div>
@@ -57,7 +74,7 @@
 					<p><%=@next_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></p>
 					<p><%=@next_appointment.family_info.family_names%></p>
 					<button data-appt-id="<%=@next_appointment.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
-					<%= link_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @next_appointment.room_id, appointment: @next_appointment.id }, class: "text-center action kindrd-button btn-block tilt"%>
+					<%= link_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @next_appointment.room_id, appointment: @next_appointment.id }%>
 				</div>
 			<% else %>
 				<div class="col-xs-12">
@@ -67,14 +84,15 @@
 			<% end %>
 		</div>
 		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-			<h3>Review Recipes</h3>
+			<h2>Review Recipes</h2>
 			<div class="col-xs-6 text-left">
-				<p>Goal: 10</p>
+				<p>Goal: <%=@user.quality_review_quota_count%></p>
 			</div>
 			<div class="col-xs-6 text-right">
-				<p>Completed: 5/10</p>
+				<p>Completed: <%=@user.quality_review_quota_completed_count%>/<%=@user.quality_review_quota_count%></p>
 			</div>
 			<div id="appointment-update-container">
+			<% if @incomplete_quality_reviews.count > 100 %>
 				<% @incomplete_quality_reviews.each do |quality_review| %>
 					<div class="row dashbord-list-top">
 						<div class="col-xs-9 text-left">
@@ -99,6 +117,11 @@
 						</div>
 					</div>
 				<% end %>
+			<% else %>
+				<div class="empty-list-container col-xs-12">
+					<h3>No recipes to review.</h3>
+				</div>
+			<% end %>
 			</div>
 		</div>
 	</div>
@@ -121,43 +144,80 @@
 				data: {},
 				url: "/appointments/"+appointment_id+"/appointment_prep/",
 				success: function(response){
-         	var active_id = $(".selected-family-member").data("id");
-         	debugger;
+					$(".family-member-health-container").css("min-height", function(){ 
+    				return $(window).height()-100;
+					});
+
+         	// on family member view button click
          	$(".family-member-health-preview").on("click", function(e){
          		e.preventDefault();
          		var family_member_id = $(this).data("family-member-id");
-         		debugger;
+         		$(".family-member-health-preview").removeClass("hidden");
          		$(".family-member-health-container").addClass("hidden");
          		$(".family-member").removeClass("selected-family-member");
-         		$("#family-member-"+family_member_id).addClass("selected-family-member");         		
+         		$("#family-member-"+family_member_id).addClass("selected-family-member");		
          		$("#family-member-health-"+family_member_id).removeClass("hidden");
-
+         		$(".selected-family-member .family-member-health-preview").addClass("hidden");
          	});
+
+         	// on family member food button click
 			  	$("#family-member-food-button").on("click", function(e){
 			  		e.preventDefault();
-						$.ajax({
-			         type: "GET",
-			         datatype: "script",
-			         data: {survey_type: "User-Food", id: active_id},
-			         url: "/users/"+active_id+"/surveys/new",
-			         success: function(response){
-			         	$(".active-tab").removeClass("active-tab");
-			         	$("#family-member-food-button").parent().addClass("active-tab");
-			         } 
-			     	})
+			  		var active_id = $(".selected-family-member").data("id");
+			  		if ($("#family-member-food-"+active_id).length >= 1){
+			  			$(".family-member-health-container").addClass("hidden");
+			  			$("#family-member-food-"+active_id).removeClass("hidden");
+		         	 $(".active-tab").removeClass("active-tab");
+		         	 $("#family-member-food-button").parent().addClass("active-tab");		
+			  		} else {
+							$.ajax({
+				         type: "GET",
+				         datatype: "script",
+				         data: {survey_type: "User-Food", id: active_id},
+				         url: "/users/"+active_id+"/surveys/show",
+				         success: function(response){
+				 					 $(".family-member-health-container").css("min-height", function(){ 
+    								 return $(window).height()-100;
+									 });
+				         	 $(".active-tab").removeClass("active-tab");
+				         	 $("#family-member-food-button").parent().addClass("active-tab");
+				         } 
+				     	})
+						}
 			  	});
+			  	/// on family member health click
+					$("#family-member-health-button").on("click", function(e){
+			  		e.preventDefault();
+			  		var active_id = $(".selected-family-member").data("id");
+			  		$(".family-member-health-container").addClass("hidden");
+			  		$("#family-member-health-"+active_id).removeClass("hidden");
+			  		$(".active-tab").removeClass("active-tab");
+				    $("#family-member-health-button").parent().addClass("active-tab");
+				  });
+			  	/// on family member life click
 			  	$("#family-member-life-button").on("click", function(e){
 			  		e.preventDefault();
-						$.ajax({
-			         type: "GET",
-			         datatype: "script",
-			         data: {survey_type: "User-Life", id: active_id},
-			         url: "/users/"+active_id+"/surveys/new",
-			         success: function(response){
-			         	$(".active-tab").removeClass("active-tab");
-			         	$("#family-member-life-button").parent().addClass("active-tab");
-			         } 
-			     	})
+			  		var active_id = $(".selected-family-member").data("id");
+			  		if ($("#family-member-life-"+active_id).length >= 1){
+			  			$(".family-member-health-container").addClass("hidden");
+			  			$("#family-member-life-"+active_id).removeClass("hidden");
+			  			$(".active-tab").removeClass("active-tab");
+				    	 $("#family-member-life-button").parent().addClass("active-tab");
+			  		} else {
+							$.ajax({
+				         type: "GET",
+				         datatype: "script",
+				         data: {survey_type: "User-Life", id: active_id},
+				         url: "/users/"+active_id+"/surveys/show",
+				         success: function(response){
+				         	 $(".family-member-health-container").css("min-height", function(){ 
+    							   return $(window).height()-100;
+									});
+				         	$(".active-tab").removeClass("active-tab");
+				         	$("#family-member-life-button").parent().addClass("active-tab");
+				         } 
+				     	})
+				    }
 			  	})
          } 
      	})

@@ -6,12 +6,14 @@ class WelcomeController < ApplicationController
 
     def index
       
-      @date = Date.today 
+      @today = Date.today
+      @beginning_of_week = @today.at_beginning_of_week(:thursday)
       if @user == current_dietitian
         get_upcoming_appointments!
         @upcoming_appointments
         @next_appointment
-        
+        @user.quality_review_quota_count = @user.content_quotas.first.quality_reviews
+        @user.quality_review_quota_completed_count = @user.quality_reviews.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count
         get_incomplete_quality_reviews!
         @incomplete_quality_reviews
       end

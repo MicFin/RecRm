@@ -39,7 +39,6 @@ var AvailabilityCalendar = {
           } else {
             // after today then set availablility
             var eventData;
-            if (title) {
               eventData = {
                 start: start,
                 end: end,
@@ -50,7 +49,6 @@ var AvailabilityCalendar = {
               };
               $('#availability-cal').fullCalendar('renderEvent', eventData, true); // stick = true keeps the event even when the user changes calendar pages without saving the schedule
               // ajax call to save availablity
-            }
             $('#availability-cal').fullCalendar('unselect');
           }
         },
@@ -120,7 +118,7 @@ var AvailabilityCalendar = {
             data: {availabilities: clean_availabilities},
             url: "/availabilities/set_schedule",
             success: function(response){
-               $("#availability-cal").replaceWith("<div class='col-xs-8 col-xs-offset-2' id='availability-cal'></div>");
+               $("#availability-cal").replaceWith("<div class='col-xs-8' id='availability-cal'></div>");
                AvailabilityCalendar.set();
              } 
           });

@@ -1,0 +1,62 @@
+
+#edit-profile-container {
+	input[type="text"], input[type="email"], input[type="password"]    {
+		font-size: 20px;
+		height: 40px;
+		padding-left: 2%;
+	}
+}
+
+#edit-profile-fields{
+	margin-top: 50px;
+}
+
+#save-profile-container{
+}
+
+#edit-profile-container input[type="submit"] {
+	margin-top: 20px;
+}
+
+#dashboard-container > :first-child a {
+	color: $red;
+	font-size: 20px;	
+}
+
+#dash-main h2{
+	color: $carrotgreen;
+}
+
+
+#edit-profile-container .fileUpload {
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+}
+
+#edit-profile-container .fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+#change-password-container{
+	-moz-transition: all 2s ease-in-out;
+  -ms-transition: all 2s ease-in-out;
+  -o-transition: all 2s ease-in-out;
+  -webkit-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
+}
+
+///// CROP IMAGE ///////
+#crop-image-preview-container {
+	form {
+		margin-top: 25px;
+	}
+}

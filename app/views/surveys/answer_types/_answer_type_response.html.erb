@@ -1,0 +1,9 @@
+
+<% if question.tier == 1 %>
+<div class="question-container question-container-response">
+<% else %>
+<div class="question-container question-container-response tier-2">
+<% end %>
+	<p><%=question.content%></p>
+	<p><%=question.answer%></p>
+</div>

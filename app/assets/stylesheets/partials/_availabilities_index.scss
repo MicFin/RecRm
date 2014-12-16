@@ -1,0 +1,28 @@
+.calendar-key-example{
+	height: 40px;
+	width: 40px;
+	margin: 20px;
+}
+
+#live-event-example{
+	background-color: $gray;
+	border-color: $gray;
+}
+
+#saved-event-example{
+	background-color: $lightgreen;
+	border-color: $carrotgreen;
+}
+
+#new-event-example{
+	background-color: $lightorange;
+	border-color: $carrotorange;
+}
+
+#calendar-key-container{
+	margin-top: 25px;
+}
+
+.key-description{
+	padding-top: 5%;
+}

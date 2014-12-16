@@ -1,43 +1,39 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-10 col-xs-offset-1">
     <h1>Your Availability</h1>
-
-<!--     <table>
-      <thead>
-        <tr>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @availabilities.each do |availability| %>
-          <tr>
-            <td><%= link_to 'Show', availability %></td>
-            <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
-            <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <br> -->
-
-    <%#= link_to 'New Availability', new_availability_path %>
   </div>
-  <div class="col-xs-8 col-xs-offset-2" id="availability-cal">
-  </div>
-  <div class="col-xs-3">
-    <button id="save-schedule-button" class="btn btn-success btn-lg">Save Schedule</button>
-  </div>
-  <div class="row">
-    <div class="col-xs-6" id="half-hour-time-slots-cal">
+  <div id="calendar-key-container" class="col-xs-3">
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-2">
+        <div id="new-event-example" class="calendar-key-example"> 
+        </div>
+      </div>
+      <div class="col-xs-6 key-description">
+        <p><b>New</b> available time slot, not saved</p>
+      </div>
     </div>
-    <div class="col-xs-3">
-    <%= link_to "Create Time Slots", create_time_slots_from_availability_path, class: "btn btn-success btn-lg", :remote => true %>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-2">
+        <div id="saved-event-example" class="calendar-key-example">
+        </div>
+      </div>
+      <div class="col-xs-6 key-description">
+        <p><b>Saved</b> availability but not live</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-2">
+        <div id="live-event-example" class="calendar-key-example">
+        </div>
+      </div>
+      <div class="col-xs-6 key-description">
+        <p><b>Live</b> availability for clients</p>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <button id="save-schedule-button" class="btn btn-success btn-block">Save Schedule</button>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-6 col-xs-offset-1" id="one-hour-time-slots-cal">
-    </div>
+  <div class="col-xs-8" id="availability-cal">
   </div>
 </div>

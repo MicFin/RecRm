@@ -1,18 +1,5 @@
 class Dietitian < ActiveRecord::Base
-  attr_accessor :current_password, :image_cache, :remove_image
-    # has_attached_file :avatar, 
-    #   :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  #     :storage => :s3,
-  #     :s3_credentials => Proc.new{|a| a.instance.s3_credentials }
-
-  # def s3_credentials
-  #   {:bucket => ENV['S3_BUCKET_NAME'], :access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']}
-  # end
-
-  # validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
-  # has_attached_file :avatar
-  # do_not_validate_attachment_file_type :avatar
+  attr_accessor :current_password, :image_cache, :remove_image, :quality_review_quota_count, :quality_review_quota_completed_count
 
   rolify :role_cname => 'Role'
   scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }

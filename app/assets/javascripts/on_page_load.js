@@ -60,6 +60,8 @@ $(document).ready(function() {
 	// actual tokbox script is at view rooms in_session 
 	// TokBoxMain.responsive_screens();
 
+	DietitianEditProfile.set_button();
+	DietitianEditProfile.set_image_preview();
 	// set cropping of images 
 	Images.set_crop();
 

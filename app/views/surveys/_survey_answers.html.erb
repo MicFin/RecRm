@@ -1,0 +1,32 @@
+
+<% if (@survey_type == "User-Food") %>
+  <div id="family-member-food-<%=@surveyable_id%>" class="col-xs-12 col-sm-12 col-md-offset-5 col-lg-offset-5 col-md-7 col-lg-7 family-member-health-container alert alert-success">
+<% else %>
+  <div id="family-member-life-<%=@surveyable_id%>" class="col-xs-12 col-sm-12 col-md-offset-5 col-lg-offset-5 col-md-7 col-lg-7 family-member-health-container alert alert-success">
+<% end %>
+
+<% if @survey != nil %>
+    <div id="survey-questions-container" class="row">
+      <%@survey.questions.order("position").each do |question| %>
+        <div id="survey-question-container-<%=question.id%>"class="col-xs-12">
+          <% if question.question_type == "Response" %>
+            <%= render "/surveys/question_types/question_type_response", question: question %>
+          <% elsif question.question_type == "Short Response"%>
+            <%= render "/surveys/question_types/question_type_short_response", question: question %>
+          <% elsif question.question_type == "Check Box" %>
+            <%= render "/surveys/question_types/question_type_check_box", question: question %>
+          <% elsif question.question_type == "Drop Down"%>
+            <%= render "/surveys/question_types/question_type_drop_down", question: question  %>
+          <% elsif question.question_type == "Radio"%>
+            <%= render "/surveys/question_types/question_type_radio", question: question %>
+          <% else %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+<% else %>
+  <div id="survey-questions-container" class="row">
+    <h2> Not completed</h2>
+  </div>
+<% end %>
+</div>

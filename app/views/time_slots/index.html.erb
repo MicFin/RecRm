@@ -25,5 +25,18 @@
       </tbody>
     </table>
   </div>
+
+<!--   REVIEW AND EDIT THIS PROCESS -->
   <div class="col-xs-6" id="calendar"></div>
+    <div class="row">
+    <div class="col-xs-6" id="half-hour-time-slots-cal">
+    </div>
+    <div class="col-xs-3">
+    <%= link_to "Create Time Slots", create_time_slots_from_availability_path, class: "btn btn-success btn-lg", :remote => true %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-1" id="one-hour-time-slots-cal">
+    </div>
+  </div>
 </div>

@@ -67,7 +67,7 @@
 		padding-right: 0px;
 		border-left: 1px solid $white;
 	}
-	h2{
+	h2, h4{
 		color: $white;
 	}
 }
@@ -86,14 +86,19 @@
 	text-align: center;
 }
 
-.dietitian-first-name {
+.dietitian-first-name, .user-first-name {
 	color: #f68d3c;
 	font-size: 50px;
 }
 
 #left-user-tabs{
 	padding: 30px;
+	div:nth-child(2){
+		max-height: 300px;
+		overflow: scroll;
+	}
 }
+
 #right-user-tabs{
 	text-align: center;
 	span.glyphicon {

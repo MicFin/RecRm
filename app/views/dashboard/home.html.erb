@@ -1,30 +1,45 @@
 <div id="user-home-page" class="container">
 	<div class="form-group col-xs-12 form-group text-center">
- 		<h2>Welcome Kindrdfood, <%=current_user.first_name %>!</h2>
+ 		<h2>Welcome to Kindrdfood, <%=current_user.first_name %>!</h2>
  	</div>
-	<div id="appointment-update-container" class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center alert alert-success">
-		<p>Your upcoming appointment is</p>
-		<h4><%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></h4>
+	<div id="appointment-update-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left alert alert-success">
+		<h3>Upcoming Appoinment: <span><%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></span></h3>
 	</div>
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="col-xs-3">
+  		<p><%= image_tag("computer.png") %></p>
+    </div>
+    <div class="col-xs-9">
+      <% if @survey %>
+        <%= render "/surveys/form" %>
+      <% else %>
+        <div id="upcoming-appointment-container" data-appointment-id="<%=@appointment.id%>">
+          <p>Please complete these steps prior to your appointment:</p>
+          <ol>
+            <li class="completed-list-item">Complete appointment questionnaire basics</li>
+            <% if @appointment.status != "Appt-Prep-Survey-Complete" %>
+              <li id="complete-list-questionnaire">Complete <button class="btn btn-lg btn-success" id="edit-family-button">Health & Food</button> questionnaire</li>
+            <% else %>
+              <li id="complete-list-questionnaire" class="completed-list-item">Complete <button class="btn btn-lg btn-success" id="edit-family-button">Health & Food</button> questionnaire</li>
+            <% end %>
+            <li>Start your appointment</li>
+          </ol>
 
-	<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center">
-		<p><%= link_to image_tag("computer.png", class: "tilt"), "http://www.kindrdcare.com/sign_in" %></p>
-		<% if @appointment.room_id %>
-		<%# if (((DateTime.now.in_time_zone("Eastern Time (US & Canada)") - @appointment.start_time) / 60 / 60) > -5)%>
-			<%= link_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @appointment.room_id, appointment: @appointment.id }, class: "text-center action kindrd-button btn-block tilt"%>
-		<% else %>
-			<h5>Return 2 hours before appointment to sign in</h5>
-		<% end %>
+          <% if @appointment.room_id %>
+          <%# if (((DateTime.now.in_time_zone("Eastern Time (US & Canada)") - @appointment.start_time) / 60 / 60) > -5)%>
+            <%= link_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @appointment.room_id, appointment: @appointment.id }, class: "text-center action kindrd-button btn-block tilt"%>
+          <% else %>
+            <h5>Return 15 minutes before appointment to sign in</h5>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 	</div>
 	<div class="col-xs-5">
-	<%=link_to "Upgrade to Premium", new_subscription_path, remote: true%>
-	<button class="btn btn-lg btn-success" id="edit-family-button">Family</button>
+	<%#=link_to "Upgrade to Premium", new_subscription_path, remote: true%>
 	</div>
 
 </div>
-<% if @survey %>
-	<%= render "/surveys/form" %>
-<% end %>
 	<%= render "/families/edit_modal" %>
 
 
@@ -36,30 +51,61 @@
             backdrop: 'static',
             keyboard: false
     });
-    var active_id = $(".selected-family-member").data("family-member-id");
+    $("#complete-pre-appt-survey-button").on("click", function(e){
+      e.preventDefault();  
+      var appointment_id = $("#upcoming-appointment-container").data("appointment-id");
+      var url = "/appointments/"+appointment_id+"/complete_appt_prep_survey"
+      debugger;
+      $.ajax({
+         type: "GET",
+         datatype: "script",
+         data: {id: appointment_id},
+         url: url,
+         success: function(response){  
+           $(".active-tab").removeClass("active-tab");
+           $("#family-member-health-button").parent().addClass("active-tab");
+         } 
+      })    
+    })
+    $("#family-member-health-button").on("click", function(e){
+      e.preventDefault();
+      var active_id = $(".selected-family-member").data("family-member-id");
+      $.ajax({
+         type: "GET",
+         datatype: "script",
+         data: {id: active_id},
+         url: "/registrations/edit_user_health_groups/"+active_id,
+         success: function(response){  
+           $(".active-tab").removeClass("active-tab");
+           $("#family-member-health-button").parent().addClass("active-tab");
+         } 
+      })
+    });
   	$("#family-member-food-button").on("click", function(e){
   		e.preventDefault();
+      var active_id = $(".selected-family-member").data("family-member-id");
 			$.ajax({
          type: "GET",
          datatype: "script",
          data: {survey_type: "User-Food", id: active_id},
          url: "/users/"+active_id+"/surveys/new",
-         success: function(response){
-         	$(".active-tab").removeClass("active-tab");
-         	$("#family-member-food-button").parent().addClass("active-tab");
+         success: function(response){  
+         	 $(".active-tab").removeClass("active-tab");
+         	 $("#family-member-food-button").parent().addClass("active-tab");
          } 
      	})
   	});
   	$("#family-member-life-button").on("click", function(e){
   		e.preventDefault();
+      var active_id = $(".selected-family-member").data("family-member-id");
 			$.ajax({
          type: "GET",
          datatype: "script",
          data: {survey_type: "User-Life", id: active_id},
          url: "/users/"+active_id+"/surveys/new",
          success: function(response){
-         	$(".active-tab").removeClass("active-tab");
-         	$("#family-member-life-button").parent().addClass("active-tab");
+         	 $(".active-tab").removeClass("active-tab");
+         	 $("#family-member-life-button").parent().addClass("active-tab");
          } 
      	})
   	})

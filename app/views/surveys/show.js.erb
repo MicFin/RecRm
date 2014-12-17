@@ -1,2 +1,6 @@
 $(".family-member-health-container").addClass("hidden");
-$("#new-user-family-form").append("<%= j render(:partial => 'survey_answers') %>");
+<% if @modal != false %>
+	$("#new-user-family-form").append("<%= j render(:partial => 'survey_answers') %>");
+<% else %>
+	$("#appt-prep-info-container").append("<%= j render(:partial => 'survey_answers') %>");
+<% end %>

@@ -4,6 +4,12 @@
 <% else %>
 <div class="question-container question-container-response tier-2">
 <% end %>
-	<p><%=question.content%></p>
-	<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=question.id%>]" rows="4"></textarea>
+	<h4><%=question.content%></h4>
+	<% if question.answer != nil && question.answer != ""%>
+		<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=question.id%>]" rows="4"><%= question.answer %>
+		</textarea>
+	<% else %>
+		<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=question.id%>]" rows="4"></textarea>
+	<% end %>
 </div>
+	

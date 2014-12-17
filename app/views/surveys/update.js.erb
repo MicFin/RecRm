@@ -1,0 +1,25 @@
+$("#new-user-options form").remove();
+
+<% if @survey_type == "User-Food" %>
+	$.ajax({
+     type: "GET",
+     datatype: "script",
+     data: {survey_type: "User-Life", id: <%=@user_id%>},
+     url: "/users/<%=@user_id%>/surveys/new",
+     success: function(response){
+     	 $(".active-tab").removeClass("active-tab");
+     	 $("#family-member-life-button").parent().addClass("active-tab");
+     } 
+ 	})
+<% else #User-Life %>
+  $.ajax({
+     type: "GET",
+     datatype: "script",
+     data: {id: <%=@user_id%>},
+     url: "/registrations/edit_user_health_groups/<%=@user_id%>",
+     success: function(response){  
+       $(".active-tab").removeClass("active-tab");
+       $("#family-member-health-button").parent().addClass("active-tab");
+     } 
+  })
+<% end %>

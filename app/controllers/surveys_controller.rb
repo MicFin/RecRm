@@ -7,7 +7,11 @@ class SurveysController < ApplicationController
   end
 
   def show
-    
+    if params[:modal] == "false"
+      @modal = false 
+    else
+      @modal = true
+    end
     if params[:survey_type] == "User-Food"
       @survey_type="User-Food"
       @surveyable_id = @surveyable.id
@@ -81,9 +85,11 @@ class SurveysController < ApplicationController
     update_questions_with_answers(params[:questions])
     respond_to do |format|
       if @survey.update(survey_params)
-        
+        @survey_type = @survey.survey_type
+        @user_id = params[:user_id]
         format.html { redirect_to user_dashboard_path, notice: 'survey was successfully updated.' }
         format.json { render :show, status: :ok, location: @survey }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @survey.errors, status: :unprocessable_entity }

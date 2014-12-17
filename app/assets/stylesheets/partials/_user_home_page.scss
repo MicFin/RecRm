@@ -1,3 +1,27 @@
-#user-home-page{
-	padding-top: 100px;
+
+#appointment-update-container{
+	span {
+		color: white;
+		font-size: 2em;
+    text-shadow:
+    -1px -1px 0 $carrotgreen,
+    1px -1px 0 $carrotgreen,
+    -1px 1px 0 $carrotgreen,
+    1px 1px 0 $carrotgreen; 
+	}
+}
+
+#upcoming-appointment-container{
+	p{
+		font-size:30px;
+	}
+	.completed-list-item{
+		text-decoration: line-through;
+		color: $carrotgreen;
+	}
+	li {
+		font-size: 20px;
+		line-height: 50px;
+		color: $lightorange;
+	}
 }

@@ -1,8 +1,8 @@
 class AppointmentsController < ApplicationController
   include AppointmentsHelper
   include PatientGroupsHelper
-  before_action :set_appointment, only: [:show, :edit, :update, :select_time, :appointment_prep, :destroy]
-  before_filter :config_opentok,:except => [:index, :show, :new, :edit, :create, :destroy, :select_time]
+  before_action :set_appointment, only: [:show, :edit, :update, :complete_appt_prep_survey, :select_time, :appointment_prep, :destroy]
+  before_filter :config_opentok, :only => [:update]
 
   # GET /appointments
   # GET /appointments.json
@@ -19,9 +19,16 @@ class AppointmentsController < ApplicationController
     @sign_up_stage = @appointment.stage 
   end
 
+  def complete_appt_prep_survey
+    
+    @appointment.status = "Appt-Prep-Survey-Complete"
+    @appointment.save
+  end
+
   # GET /appointments/1/appointment_prep
   def appointment_prep
    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
+   
     if @appointment.dietitian = current_dietitian 
       @client = @appointment.appointment_host
       # set @family before get_family_info
@@ -36,6 +43,11 @@ class AppointmentsController < ApplicationController
       @allergies = @allergies
       @diets =  @diets 
       @unverified_health_groups = @family_members[0].unverified_health_groups
+      if params[:modal] == "false" 
+        @modal = false 
+      else
+        @modal = true 
+      end
     end
     respond_to do |format|
       format.js
@@ -88,7 +100,7 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-    
+      
     # if update saves
     if @appointment.update(appointment_params)
       # if stripe card payment update incnluded in update then user is paying 
@@ -110,6 +122,10 @@ class AppointmentsController < ApplicationController
         @pre_appt_survey = Survey.generate_for_appointment(@appointment, current_user)
         
       # or has recently been updated with dietitian thhen admin assigned dietitian
+
+      elsif params[:appointment][:note]
+
+
       elsif @appointment.dietitian_id != nil
         
         @new_session = @opentok.create_session 
@@ -129,6 +145,8 @@ class AppointmentsController < ApplicationController
         end
       # other updates that could happen
       else
+
+        
       end
     end
     respond_to do |format|

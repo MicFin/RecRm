@@ -408,12 +408,12 @@ padding-right: 5%;
 	border: none;
 }
 
-#family-member-list .btn.btn-white{ 
+.btn.btn-white{ 
 	color: $white;
 	background-color: $carrotgreen;
 	border-color: $carrotgreen;
 }
-#family-member-list .btn.btn-white:hover{ 
+.btn.btn-white:hover{ 
 	color: $white;
 	background-color: $lightorange;
 	border-color: $lightorange;
@@ -428,12 +428,12 @@ padding-right: 5%;
 	cursor: default;
 }
 
-#family-member-list .selected-family-member .btn.btn-white{ 
+.selected-family-member .btn.btn-white{ 
 	color: $carrotgreen;
 	background-color: $white;
 	border-color: $white;
 }
-#family-member-list .selected-family-member .btn.btn-white:hover{ 
+.selected-family-member .btn.btn-white:hover{ 
 	color: $white;
 	background-color: $lightgreen;
 	border-color: $lightgreen;

@@ -1,0 +1,24 @@
+<%= simple_form_for @appointment, remote: true do |f| %>
+
+  <div class="row">
+    <div class="form-group col-xs-10 col-xs-offst-1">
+    <label>Health Focused Notes</label>
+      <%= f.input :note, label: false, :input_html => { class: 'form-control', :cols => 5, :rows => 5 } %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-10 col-xs-offst-1">
+    <label>Food Focused Notes</label>
+      <%= f.input :client_note, label: false, :input_html => { class: 'form-control', :cols => 5, :rows => 5 } %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-xs-10 col-xs-offst-1">
+    <label>Life Focused Notes</label>
+      <%= f.input :other_note, label: false, :input_html => { class: 'form-control', :cols => 5, :rows => 5 } %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.button :submit, "Save", class: "btn btn-success btn-lg" %>
+  </div>
+<% end %>

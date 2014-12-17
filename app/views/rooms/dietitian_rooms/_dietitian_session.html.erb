@@ -1,16 +1,45 @@
 
 
-    <div id="recipe-background">
-      <div class="row">
+    <div id="wrapper">
+      <ul class="navigation">
+        <li class="nav-item"><a id="tool-client-info" href="#" data-appt-id="<%=@appointment.id%>">Client Info</a></li>
+        <li class="nav-item"><a id="tool-notes" href="#" data-appt-id="<%=@appointment.id%>">Notes</a></li>
+        <li class="nav-item"><a id="tool-products" href="#">Products</a></li>
+        <li class="nav-item"><a href="#">Recipes (soon)</a></li>
+        <li class="nav-item"><a id="tool-shopping" href="#">Shopping (soon)</a></li>
+<!--         <li class="nav-item"><a href="#">Education (soon)</a></li> -->
+        <li class="nav-item">
+                    <button id="end-session-button" type="button" class="btn btn-danger btn-lg">End Session</button>
+        </li>
+      </ul>
+
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger"></label>
+
+
+      <div id="site-wrap" class="row">
+        <div id="tool-box-container" class="col-xs-8">
+            <div id="tool-client-info-container" class="tool-box-item">
+              <h3>Select a tool from the left</h3>
+            </div>
+            <div id="tool-notes-container" class="tool-box-item hidden">
+              <%= render "/appointments/notes_form" %>
+            </div>
+            <div id="tool-recipes-container" class="tool-box-item hidden">
+            </div>
+            <div id="tool-products-container" class="tool-box-item hidden">
+              <%= render "/appointments/amazon_product_widget" %>
+            </div>
+            <div id="tool-shopping-container" class="tool-box-item hidden">
+              <%= render "/appointments/google_maps_widget" %>
+            </div>
+        </div>
         <div id="left-user-tabs" class="col-xs-3">
           <div class="col-xs-6">
             <h1 class="font-light-green ">Goals</h1>
           </div>
           <div class="col-xs-12">
-            <ul>
-              <li><h4><%=@appointment.client_note%></h4></li>
-              <li><button id="end-session-button" class="btn btn-danger btn-lg">End Session</button></li>
-            </ul>
+            <%= render "/surveys/survey_answers" %>
           </div>
         </div>
         <div id="layoutContainer" class="col-xs-6">
@@ -19,7 +48,7 @@
             </div>
           </div>
           <div id="dietitian-name" class="col-xs-12">
-            <h1><span class="dietitian-first-name">Tara</span> McCarthy R.D.N. L.S.N.</h1>
+            <h1><span class="user-first-name"><%=@client.first_name%></span> <%=@client.last_name%></h1>
           </div>
         </div>
         <div class="col-xs-3">
@@ -40,7 +69,7 @@
             </form>
           </div>
         </div>
-        <div id="right-user-tabs" class=" col-xs-3">
+        <div id="right-user-tabs" class=" col-xs-2">
           <div id="message-button-container" class="col-xs-12"><a id="show-chat-button" href="">
             <span class="glyphicon glyphicon-comment">
             </span></a>
@@ -58,41 +87,122 @@
         </div>
       </div>
     </div> <!-- recipe background -->
-    <nav id="nav-bottom" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-      <ul id="main-footer-list" class="row footer-buttons">
-        <li class="col-xs-4"><a class="family-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your Family</h2></div></a></li>
-        <li id="notes-button" class="col-xs-4"><a class="notes-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Take Notes</h2></div></a></li>
-        <li class="col-xs-4"><a class="krdn-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your KRDN</h2></div></a></li>
-      </ul>
-      <div id="family-container" class="hidden row" >
-        <ul class="row footer-buttons">
-          <li class="col-xs-3"><a class="family-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your Family</h2></div></a><%= render "/users/registrations/new_user_family_list" %></li>
-          <li class="col-xs-9"><%= render "/users/registrations/edit_user_health_groups_small" %></li>
-        </ul>
-      </div>
-      <div id="notes-container" class="hidden row" style="height:500px">
-        <ul class="row footer-buttons">
-          <li class="col-xs-4 col-xs-offset-4"><a class="family-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Take Notes</h2></div></a></li>
-          <li class="col-xs-10 col-xs-offset-1">
-          <textarea class="form-control form-group" rows="4" id="comment">You can look back at your notes and add to them after the consultation.  Don't worry about being neat, this is for your eyes only!</textarea>
-            <button class="btn btn-success">Save</button>
-        </li>
-        </ul>
-      </div>
-      <div id="krdn-container" class="hidden row" style="height:500px">
-        <ul class="row footer-buttons">
-          <li class="col-xs-4 col-xs-offset-8"><a class="krdn-button" href="dsfasdfd" ><div class="col-xs-12"><h2>Your KRDN</h2></div></a></li>
-        </ul>
-        <div class="col-xs-3">
-        </div>
-        <div class="col-xs-4">
-        </div>
-        <div class="col-xs-5">
-        </div>
-      </div>
-    </nav>
+
 <script type="text/javascript">
 $(document).ready(function() {
   TokBox.initialize();
+  $("#tool-notes").on("click", function(e){
+    e.preventDefault();
+    $(".tool-box-item").addClass("hidden");
+    $("#tool-notes-container").removeClass("hidden");
+  });
+  $("#tool-products").on("click", function(e){
+    e.preventDefault();
+    $(".tool-box-item").addClass("hidden");
+    $("#tool-products-container").removeClass("hidden");
+  });
+  $("#tool-shopping").on("click", function(e){
+    e.preventDefault();
+    $(".tool-box-item").addClass("hidden");
+    $("#tool-shopping-container").removeClass("hidden");
+  });
+
+  $("#tool-client-info").on("click", function(e){
+    e.preventDefault();
+    $(".tool-box-item").addClass("hidden");
+    $("#tool-client-info-container").removeClass("hidden");
+    if ( !$("#new-user-family-form").length >= 1 ){
+      var appointment_id = $(this).data("appt-id");
+      $.ajax({
+        type: "GET",
+        datatype: "script",
+        data: {modal: false},
+        url: "/appointments/"+appointment_id+"/appointment_prep/",
+        success: function(response){
+          $(".family-member-health-container").css("min-height", function(){ 
+            return $(window).height()-100;
+          });
+
+          // on family member view button click
+          $(".family-member-health-preview").on("click", function(e){
+            e.preventDefault();
+            var family_member_id = $(this).data("family-member-id");
+            // hide all info containers //
+            $(".family-member-health-container").addClass("hidden");
+            // remove selected-family-member class from all
+            $(".family-member-health-preview").removeClass("selected-family-member");
+            // add to selected
+            $("#family-member-"+family_member_id).addClass("selected-family-member"); 
+            // show new family members info  
+            $("#family-member-health-"+family_member_id).removeClass("hidden");
+            // remove active tab
+            $(".active-tab").removeClass("active-tab");
+            // add it to health button
+            $("#family-member-health-button").parent().addClass("active-tab");
+          });
+
+          // on family member food button click
+          $("#family-member-food-button").on("click", function(e){
+            e.preventDefault();
+            var active_id = $(".selected-family-member").data("family-member-id");
+            if ($("#family-member-food-"+active_id).length >= 1){
+              $(".family-member-health-container").addClass("hidden");
+              $("#family-member-food-"+active_id).removeClass("hidden");
+               $(".active-tab").removeClass("active-tab");
+               $("#family-member-food-button").parent().addClass("active-tab");   
+            } else {
+              $.ajax({
+                 type: "GET",
+                 datatype: "script",
+                 data: {survey_type: "User-Food", id: active_id, modal: false },
+                 url: "/users/"+active_id+"/surveys/show",
+                 success: function(response){
+                   $(".family-member-health-container").css("min-height", function(){ 
+                     return $(window).height()-100;
+                   });
+                   $(".active-tab").removeClass("active-tab");
+                   $("#family-member-food-button").parent().addClass("active-tab");
+                 } 
+              })
+            }
+          });
+          /// on family member health click
+          $("#family-member-health-button").on("click", function(e){
+            e.preventDefault();
+            var active_id = $(".selected-family-member").data("family-member-id");
+            $(".family-member-health-container").addClass("hidden");
+            $("#family-member-health-"+active_id).removeClass("hidden");
+            $(".active-tab").removeClass("active-tab");
+            $("#family-member-health-button").parent().addClass("active-tab");
+          });
+          /// on family member life click
+          $("#family-member-life-button").on("click", function(e){
+            e.preventDefault();
+            var active_id = $(".selected-family-member").data("family-member-id");
+            if ($("#family-member-life-"+active_id).length >= 1){
+              $(".family-member-health-container").addClass("hidden");
+              $("#family-member-life-"+active_id).removeClass("hidden");
+              $(".active-tab").removeClass("active-tab");
+               $("#family-member-life-button").parent().addClass("active-tab");
+            } else {
+              $.ajax({
+                 type: "GET",
+                 datatype: "script",
+                 data: {survey_type: "User-Life", id: active_id, modal: false},
+                 url: "/users/"+active_id+"/surveys/show",
+                 success: function(response){
+                   $(".family-member-health-container").css("min-height", function(){ 
+                     return $(window).height()-100;
+                  });
+                  $(".active-tab").removeClass("active-tab");
+                  $("#family-member-life-button").parent().addClass("active-tab");
+                 } 
+              })
+            }
+          })
+        } 
+      })
+    }
+  })
 });
 </script>

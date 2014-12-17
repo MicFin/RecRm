@@ -158,6 +158,8 @@
          		$("#family-member-"+family_member_id).addClass("selected-family-member");		
          		$("#family-member-health-"+family_member_id).removeClass("hidden");
          		$(".selected-family-member .family-member-health-preview").addClass("hidden");
+	         	$(".active-tab").removeClass("active-tab");
+	         	$("#family-member-health-button").parent().addClass("active-tab");
          	});
 
          	// on family member food button click

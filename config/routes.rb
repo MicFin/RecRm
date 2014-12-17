@@ -39,13 +39,14 @@ Rails.application.routes.draw do
       delete 'families/:id/remove_member/:member_id', to: "families#remove_member", as: 'remove_family_member'
       resources :families
       get 'appointments/:id/select_time', to: 'appointments#select_time', as: 'select_time'
+      get 'appointments/:id/complete_appt_prep_survey', to: 'appointments#complete_appt_prep_survey', as: 'user_complete_appt_prep_survey'
       resources :appointments do 
         resources :surveys do 
           resources :questions 
         end
       end
       get 'users/:user_id/surveys/new', to: 'surveys#new', as: 'new_user_survey'
-      put 'users/:user_id/surveys/:id', to: 'surveys#update', as: 'user_survey'
+      patch 'users/:user_id/surveys/:id', to: 'surveys#update', as: 'user_survey'
       resources :rooms, only: [:index, :create]
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_room, :via => :get
       # resources :charges

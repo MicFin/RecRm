@@ -25,10 +25,16 @@
 			<div class="col-xs-6">
 				<%=link_to "Set your availability", availabilities_path %>
 			</div>
+			<% if current_dietitian.has_role? "Admin Dietitian" %>
+				<div class="col-xs-6">
+    			<%= link_to "Admin Dash", dashboard_path, class: "btn btn-warning"%>
+    		</div>
+			<% else %>
 			<div class="col-xs-6">  
 			&nbsp;
 <!-- 				<p>View full schedule</p> -->
 			</div>
+			<% end %>
 			<div id="appointment-update-container">
 				<% if @upcoming_appointments.count >= 1%>
 					<% @upcoming_appointments.each do |date_time_array, appointment| %>

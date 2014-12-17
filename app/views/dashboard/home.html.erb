@@ -26,7 +26,6 @@
           </ol>
 
           <% if @appointment.room_id %>
-          <%# if (((DateTime.now.in_time_zone("Eastern Time (US & Canada)") - @appointment.start_time) / 60 / 60) > -5)%>
             <%= link_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @appointment.room_id, appointment: @appointment.id }, class: "text-center action kindrd-button btn-block tilt"%>
           <% else %>
             <h5>Return 15 minutes before appointment to sign in</h5>
@@ -55,7 +54,6 @@
       e.preventDefault();  
       var appointment_id = $("#upcoming-appointment-container").data("appointment-id");
       var url = "/appointments/"+appointment_id+"/complete_appt_prep_survey"
-      debugger;
       $.ajax({
          type: "GET",
          datatype: "script",

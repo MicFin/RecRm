@@ -1,33 +1,24 @@
 <%= link_to 'New Appointment', new_appointment_path %>  
-  <div class="row form-group">
-    <h3>Appointments To Be Assigned</h3>
+  <div class="col-xs-12 form-group">
+    <h1>Appointments To Be Assigned</h1>
   </div>
 <% if @appointments_no_dietitian.count > 0 %>
   <div class="col-xs-10 col-xs-offset-1">
-    <table>
+    <table class="table">
       <thead>
         <tr>
           <th>Date/Time</th>
           <th>Client</th>
-          <th>Family</th>
-          <th>Survey</th>
-          <th colspan="3"></th>
+          <th>Dietitian</th>
         </tr>
       </thead>
 
       <tbody>
-        <% @appointments_no_dietitian.each do |appointment| %>
+        <% @appointments_no_dietitian.each do |appointment, dietititans| %>
           <tr class="appt-id" data-appt-id="<%=appointment.id%>">
             <td><%= appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
             <td><%= appointment.appointment_host.first_name%> <%= appointment.appointment_host.last_name%></td>
-            <td><a class="show-family-button" href="#">Fam Icon</a></td>
-            <td></td>
-            <td colspan="3">
-              <%= simple_form_for(appointment, html: {class: 'form-horizontal' }) do |f| %>
-                <%=f.input :dietitian_id, collection: @dietitians, :label_method => :email  %>
-                <%= f.button :submit %>
-              <% end %>
-            </td>
+            <td><a class="show-family-button" href="#">Review & Assign</a></td>
           </tr>
         <% end %>
       </tbody>
@@ -46,16 +37,14 @@
 
 <h1>Upcoming appointments</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Patient focus</th>
-      <th>Appointment host</th>
-      <th>Dietitian</th>
       <th>Date</th>
-      <th>Room</th>
-      <th>Note</th>
-      <th>Client note</th>
+      <th>Dietitian</th>
+      <th>Patient Name</th>
+      <th>Patient Age</th>
+      <th>Appointment host</th>
       <th>Created at</th>
       <th>Updated at</th>
       <th colspan="3"></th>
@@ -65,13 +54,16 @@
   <tbody>
     <% @upcoming_appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.patient_focus%></td>
-        <td><%= appointment.appointment_host.email%></td>
-        <td><%= appointment.dietitian_id %></td>
         <td><%= appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-        <td><%= appointment.room_id %></td>
-        <td><%= appointment.note %></td>
-        <td><%= appointment.client_note %></td>
+        <% if appointment.dietitian %>
+          <td><%= appointment.dietitian.email %></td>
+        <% else %>
+          <td> </td>
+        <% end %>
+        <td><%= appointment.patient_focus.first_name%></td>
+        <td><%= appointment.patient_focus.age%></td>
+        <td><%= appointment.appointment_host.first_name%></td>
+
         <td><%= appointment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
         <td><%= appointment.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
         <td><%= link_to 'Change Dietitian', edit_appointment_path(appointment) %></td>
@@ -86,7 +78,7 @@
 
 <h1>Previous appointments</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Patient focus</th>

@@ -81,8 +81,9 @@ class SurveysController < ApplicationController
   end
 
   def update
-    
+    binding.pry
     update_questions_with_answers(params[:questions])
+
     respond_to do |format|
       if @survey.update(survey_params)
         @survey_type = @survey.survey_type

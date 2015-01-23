@@ -120,6 +120,34 @@ class TimeSlot < ActiveRecord::Base
     return new_time_slots_hash
   end
 
+  def related_time_slots
+    self_start_time = self.start_time
+    self_end_time = self.end_time
+    time_slots_array = []
+    self.availability.time_slots.where(vacancy: true).each do | time_slot|
+       ## if it is a 30 minute slot
+      if ((time_slot.minutes == 30) && (time_slot != self) )
+        ## if it starts between 30mins before taken slots start
+        if ( ( (time_slot.start_time >= (self_start_time - 30.minutes) ) ) && ( (time_slot.start_time < (self_end_time + 30.minutes) ) ) )
+          time_slots_array << time_slot
+        end
+      # one hour time slots
+      elsif ((time_slot.minutes == 60) && (time_slot != self) )
+        ## if it starts between 30mins before taken slots start
+        if ( ( (time_slot.start_time >= (self_start_time - 1.hours) ) ) && ( (time_slot.start_time < (self_end_time + 30.minutes) ) ) )
+          time_slots_array << time_slot
+        end
+      else
+        # nothing
+      end
+    end
+    return time_slots_array
+  end
+
+  def related_time_slots_count
+    return self.related_time_slots.count
+  end
+
   def self.cancel_related_time_slots(time_slot) 
     taken_slot_start_time = time_slot.start_time
     taken_slot_end_time = time_slot.end_time
@@ -136,7 +164,7 @@ class TimeSlot < ActiveRecord::Base
       # one hour time slots
       else
         ## if it starts between 30mins before taken slots start
-        if ( ( (time_slot.start_time >= (taken_slot_start_time - 1.hours) ) ) && ( (time_slot.start_time < (taken_slot_end_time + 30.minutes) ) ) )
+        if ( ( (time_slot.start_time >= (taken_slot_start_time - 1.hours) ) ) && ( (time_slot.start_time < (taken_slot_end_time + 30.minutes) ) )) 
           time_slot.status = "Cancelled"
           time_slot.vacancy = false
           time_slot.save
@@ -144,6 +172,14 @@ class TimeSlot < ActiveRecord::Base
       end
     end
     
+  end
+
+  def is_last_vacant_time_slot?
+    if (TimeSlot.where(start_time: self.start_time, end_time: self.end_time, vacancy: true).count > 1)
+      return false 
+    else
+      return true
+    end
   end
 
 

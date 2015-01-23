@@ -11,7 +11,7 @@ $("#new-user-options form").remove();
      	 $("#family-member-life-button").parent().addClass("active-tab");
      } 
  	})
-<% else #User-Life %>
+<% elsif @survey_type == "User-Life" %>
   $.ajax({
      type: "GET",
      datatype: "script",
@@ -22,4 +22,6 @@ $("#new-user-options form").remove();
        $("#family-member-health-button").parent().addClass("active-tab");
      } 
   })
+<% else %> // Prep-Appointment
+  window.location.href = "/dashboard/home";
 <% end %>

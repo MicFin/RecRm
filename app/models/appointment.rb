@@ -7,6 +7,21 @@ class Appointment < ActiveRecord::Base
   belongs_to :time_slot
   has_many :surveys, :as => :surveyable
   
+  def available_time_slots
+    return TimeSlot.where(start_time: self.start_time, end_time: self.end_time, vacancy: true)
+  end
+
+  def available_dietitians
+    dietitians = []
+    if TimeSlot.where(start_time: self.start_time, end_time: self.end_time, vacancy: true).count > 0
+      TimeSlot.where(start_time: self.start_time, end_time: self.end_time, vacancy: true).each do |time_slot|
+        dietitians << time_slot.dietitian
+      end
+    end
+    return dietitians
+  end
+
+
   def stage
     if self.start_time != nil 
       return 4

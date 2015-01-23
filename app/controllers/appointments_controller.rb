@@ -14,10 +14,15 @@ class AppointmentsController < ApplicationController
       dietitian = Dietitian.find(params[:dietitian_id])
       @appointments = dietitian.appointments.order('start_time ASC, created_at ASC')
     else
-      @appointments_no_dietitian = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC').where(dietitian_id: nil)
+      @appointments_no_dietitian = {}
+      Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
+        dietitians = appointment.available_dietitians
+        @appointments_no_dietitian[appointment] = dietitians
+      end
+      binding.pry
       @upcoming_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+
       @previous_appointments = Appointment.where("start_time < ?", DateTime.now).order('start_time ASC, created_at ASC')
-      @dietitians = Dietitian.all
     end
 
   end
@@ -36,14 +41,14 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/appointment_prep
   def appointment_prep
    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
-   
-    if @appointment.dietitian = current_dietitian 
+    binding.pry
+    if @appointment.dietitian == current_dietitian 
       @client = @appointment.appointment_host
       # set @family before get_family_info
       @family = @client.head_of_families.first
       get_family_info!
       @family_members
-      
+      @family
       @user = @family_members[0]
       get_patient_groups!
       @diseases = @diseases 
@@ -56,6 +61,7 @@ class AppointmentsController < ApplicationController
       else
         @modal = true 
       end
+      binding.pry
     end
     respond_to do |format|
       format.js
@@ -64,11 +70,19 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1
   # GET /appointments/1.json
+
+  # this is where the index modal is coming from to view the prep information before the admin assigns a dietitian
   def show
-    @dietitians = Dietitian.all
-    # @surveyable = @appointment
-    # @surveys = @surveyable.surveys
-    # @survey = Survey.new
+    ### this is being used to prep assign the dietitian 
+    @dietitians = @appointment.available_dietitians
+    @dietitians_data = {}
+    @dietitians.each do |dietitian|
+      @dietitians_data[dietitian] = {}
+      @dietitians_data[dietitian]["half_hour_time_slots_available"] = dietitian.half_hour_time_slots_available
+      @dietitians_data[dietitian]["loss_time_slots"] = dietitian.loss_time_slots(@appointment) 
+      @dietitians_data[dietitian]["loss_cal_slots"] = dietitian.loss_calendar_slots(@appointment)      
+    end
+    @survey = @appointment.surveys.where(survey_type: "Pre-Appointment").last
     respond_to do |format|
       format.js
     end
@@ -81,10 +95,15 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
-    ## for first edit use case it is selecting a time
-    @time_slot = TimeSlot.find(params[:time_slot_id])
+    ## for first edit use case it is when the user/client is selecting a time for their appointment, that is why it asks for time_slot chosen.  should be different method than edit method
+    if params[:time_slot_id]
+      @time_slot = TimeSlot.find(params[:time_slot_id])
+    else
+      @dietitians = Dietitian.all 
+    end
     respond_to do |format|
       format.js
+      format.html
     end
   end
 
@@ -108,7 +127,6 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-      binding.pry
     # if update saves
     if @appointment.update(appointment_params)
       # if stripe card payment update incnluded in update then user is paying 

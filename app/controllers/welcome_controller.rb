@@ -9,9 +9,11 @@ class WelcomeController < ApplicationController
       @today = Date.today
       @beginning_of_week = @today.at_beginning_of_week(:thursday)
       if @user == current_dietitian
+        binding.pry
         get_upcoming_appointments!
         @upcoming_appointments
         @next_appointment
+        binding.pry
         if @user.content_quotas.first != nil 
           @user.quality_review_quota_count = @user.content_quotas.first.quality_reviews
         else

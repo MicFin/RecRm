@@ -6,17 +6,19 @@ class TimeSlotsController < ApplicationController
   # need to change it to show all for dietitian calendar nad not user...right now uses same
   # GET /time_slots.json
   def index
-    
-    if params[:minutes] == "30"
+    if params[:minutes] == "30" && params[:type] == "Review"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 30)
     elsif params[:minutes] == "60" && params[:type] == "vacant-appts"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now + 2.days])
-    elsif params[:minutes] == "60"
+    elsif params[:minutes] == "60" && params[:type] == "Review"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60)
     else
       @time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60).where(vacancy: true)
       @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
+      
     end
+    
+    @dietitians = Dietitian.all
   end
 
   # GET /time_slots/1

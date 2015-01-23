@@ -26,3 +26,31 @@
 .key-description{
 	padding-top: 5%;
 }
+
+.fc-content span {
+	position: relative;
+	left: 70%;
+	margin-top: 4%;
+	display: none;
+}
+
+.hover-availability {
+	background-color: $lightorange;
+	border-color: $carrotorange;
+	span {
+		display: inline-block;
+		color: $white;
+		font-size: 20px;
+		left: 63%;
+	}
+}
+
+// a.fc-content.hover-availability:hover {
+// 	background-color: $lightorange;
+// 	border-color: $carrotorange;
+// 	span {
+// 		color: $carrotorange;
+// 		font-size: 20px;
+// 		left: 63%;
+// 	}
+// }

@@ -6,11 +6,13 @@ class AvailabilitiesController < ApplicationController
   def index
     ### call with JS to create calendars
     #### admin_dietitian view all availabilities by
-    # if current_dietitian.has_role? "Admin Dietitian"
-    #   @availabilities = Availability.all
-    # else
+    if ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id]) ) 
+      dietitian = Dietitian.find(params[:dietitian_id])
+      @availabilities = dietitian.availabilities
+    else
       @availabilities = current_dietitian.availabilities
-    # end
+    end
+
     ### regular dietitian view only their availabilities
     ### current_dietitian.availabilities
   end
@@ -48,10 +50,19 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities/set_schedule
   # POST /availabilities/set_schedule.json
   def set_schedule
+    
     params[:availabilities].each do |availability_hash|
       new_avail = Availability.new(availability_hash[1])
       new_avail.dietitian = current_dietitian
-      new_avail.status = "Set"
+      new_avail.save
+      # if the availability is within 1 week from today then create time slots for it which will mark it live
+      if Date.parse(availability_hash[1]["start_time"]) < Date.today + 7
+        # new_avail.status = "Live" 
+        # create time slots  
+        TimeSlot.create_from_availability(new_avail)
+      else
+        new_avail.status = "Set"
+      end
       new_avail.save
     end
     
@@ -64,6 +75,7 @@ class AvailabilitiesController < ApplicationController
   # PATCH/PUT /availabilities/1
   # PATCH/PUT /availabilities/1.json
   def update
+    
     respond_to do |format|
       if @availability.update(availability_params)
         format.html { redirect_to @availability, notice: 'Availability was successfully updated.' }
@@ -75,11 +87,29 @@ class AvailabilitiesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /availabilities/update_schedule
+  # PATCH/PUT /availabilities/update_schedule.json
+  def update_schedule
+    
+    params[:availabilities].each do |availability_hash|
+      updated_avail = Availability.find(availability_hash[1]["id"])
+      availability_hash[1].delete "id"
+      updated_avail.update(availability_hash[1])
+    end
+    respond_to do |format|
+        format.js
+        format.html { redirect_to availabilities_path, notice: 'Schedule was successfully updated.' }
+    end
+  end
+
   # DELETE /availabilities/1
   # DELETE /availabilities/1.json
   def destroy
+    
     @availability.destroy
+    
     respond_to do |format|
+      format.js
       format.html { redirect_to availabilities_url, notice: 'Availability was successfully destroyed.' }
       format.json { head :no_content }
     end

@@ -30,7 +30,49 @@ class TimeSlot < ActiveRecord::Base
       :color => "green"
     }
   end
+  
+  def self.create_from_availability(availability_object)
+    one_hour_time_slots = []
+    half_hour_time_slots = []
+    new_time_slots_hash = {}
+    
+    ### create 1 hour time slots
+    object_start_time = availability_object.buffered_start_time
+    if (object_start_time.strftime("%M") == "15") || (object_start_time.strftime("%M") == "45")
+      object_start_time = object_start_time + 15.minutes
+    end
+    temp_start_time = object_start_time
+    temp_end_time = temp_start_time + 1.hours
+    
+    until temp_end_time > availability_object.buffered_end_time do 
+      
+      new_time = TimeSlot.new(start_time: temp_start_time, end_time: temp_end_time, status: "Current", minutes: 60, vacancy: true, availability_id: availability_object.id)
+      new_time.save
+      one_hour_time_slots << new_time
+      temp_start_time = temp_start_time + 30.minutes
+      temp_end_time = temp_start_time + 1.hours
+    end
+    ### create half hour time slots
+    # set start and end time for looping
+    temp_half_hour_start_time = object_start_time
+    temp_half_hour_end_time = temp_half_hour_start_time + 30.minutes
+    # until end time is beyond limit then keep making more time slots
+    until temp_half_hour_end_time > availability_object.buffered_end_time do 
+      new_time = TimeSlot.new(start_time: temp_half_hour_start_time, end_time: temp_half_hour_end_time, status: "Current", minutes: 30, vacancy: true, availability_id: availability_object.id)
+      new_time.save
+      half_hour_time_slots << new_time
+      temp_half_hour_start_time = temp_half_hour_start_time + 30.minutes
+      temp_half_hour_end_time = temp_half_hour_start_time + 30.minutes
+    end
+    # mark availability as Live since time slots have been made
+    availability_object.status = "Live"
+    availability_object.save
 
+    new_time_slots_hash["half_hour_time_slots"] = half_hour_time_slots
+    new_time_slots_hash["one_hour_time_slots"] = one_hour_time_slots
+    
+    return new_time_slots_hash
+  end
   # returns a hash of the new time slots created based on the availabilities that were sent to it
   # returns {"half_hour_time_slots"=>[TimeSlotObject, TimeSlotObject], "one_hour_time_slots"=>[TimeSlotObject, TimeSlotObject] }
   def self.create_from_availabilities(array_of_availability_objects)
@@ -38,7 +80,7 @@ class TimeSlot < ActiveRecord::Base
     one_hour_time_slots = []
     half_hour_time_slots = []
     array_of_availability_objects.each do |availability_object|
-       
+  
       ### create 1 hour time slots
       object_start_time = availability_object.buffered_start_time
       if (object_start_time.strftime("%M") == "15") || (object_start_time.strftime("%M") == "45")
@@ -74,6 +116,7 @@ class TimeSlot < ActiveRecord::Base
     new_time_slots_hash = {}
     new_time_slots_hash["half_hour_time_slots"] = half_hour_time_slots
     new_time_slots_hash["one_hour_time_slots"] = one_hour_time_slots
+
     return new_time_slots_hash
   end
 

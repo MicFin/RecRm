@@ -46,6 +46,10 @@ $(document).ready(function() {
 	// Time slot calendar
 	// TimeSlotCalendar.set();
 	// TimeSlotCalendar.initiate_date_time_picker();
+
+	// Set half and one hour calendars
+	TimeSlotsDetailedCalenders.set_half_and_one_hour_calendars();
+	// Select Appointmet Calendar
 	SelectApptCalendar.set();
 
 	// Availability Calendar

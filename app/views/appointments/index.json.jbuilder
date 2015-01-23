@@ -1,4 +1,6 @@
 json.array!(@appointments) do |appointment|
-  json.extract! appointment, :id, :patient_focus_id, :appointment_host_id, :dietitian_id, :date, :room_id, :note, :client_note, :created_at, :updated_at
-  json.url appointment_url(appointment, format: :json)
+  json.extract! appointment, :id
+  json.start appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
+  json.end appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
+  json.description appointment.dietitian.email
 end

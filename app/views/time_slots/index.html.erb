@@ -1,42 +1,76 @@
 <div class="container" id="time-slots-page-container">
-  <div class="row">
-  <h1>Current Available Time Slots</h1>
-  <div class="col-xs-6">
-      <%= link_to 'New Time slot', new_time_slot_path, remote: true %>
-    <table id="time-slots-table">
-      <thead>
-        <tr>
-          <th>Start time</th>
-          <th>End time</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @time_slots.each do |time_slot| %>
-          <tr id="time-slot-<%=time_slot.id%>">
-            <td><%= time_slot.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-            <td><%= time_slot.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-            <td><%= link_to 'Edit', edit_time_slot_path(time_slot), remote: true %></td>
-            <td><%= link_to 'Copy', create_from_existing_time_slot_path(time_slot), remote: true %></td>
-            <td><%= link_to 'Destroy', time_slot, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
 <!--   REVIEW AND EDIT THIS PROCESS -->
-  <div class="col-xs-6" id="calendar"></div>
-    <div class="row">
-    <div class="col-xs-6" id="half-hour-time-slots-cal">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="col-xs-4">
+        <h3>Appointments</h3>
+        <button id="appointments-time-slot-button" class="btn btn-success btn-lg">View All</button>
+      </div>
+      <div class="col-xs-4">
+        <h3>Available Sessions</h3>
+        <button id="half-hour-time-slot-button" class="btn btn-success btn-lg">30 mins</button>
+        <button id="one-hour-time-slot-button" class="btn btn-success btn-lg">1 hour</button>
+      </div>
+      <div class="col-xs-4">
+      <h3>Dietitian Schedules</h3>
+        <select id="select-dietitian" class="form-control-6">
+          <option value="" disabled selected>Select Dietitian</option>
+        <% @dietitians.each do |dietitian| %>
+          <option value="<%=dietitian.id%>"><%=dietitian.email%></option>
+        <% end %>
+        </select>
+        <button id="dietitian-availability-button" class="btn btn-success btn-lg">View</button>
+      </div>
     </div>
-    <div class="col-xs-3">
-    <%= link_to "Create Time Slots", create_time_slots_from_availability_path, class: "btn btn-success btn-lg", :remote => true %>
+    <div id="half-hour-time-slot-cal-container" class="col-xs-12 time-slot-cal-container ">
+      <h1>All 30min Time Slots</h1>
+      <div class="col-xs-12" id="half-hour-time-slots-cal">
+      </div>
+    </div>
+    <div id="one-hour-time-slot-cal-container" class="col-xs-12 time-slot-cal-container">
+      <h1>All 1 hour Time Slots</h1>
+      <div class="col-xs-12" id="one-hour-time-slots-cal">
+      </div>
+    </div>
+    <div id="availability-cal-container" class="col-xs-12 time-slot-cal-container">
+      <h1>Availability</h1>
+      <div class="col-xs-12" id="availability-cal">
+      </div>
+    </div>
+    <div id="appointments-cal-container" class="col-xs-12 time-slot-cal-container">
+      <h1>Appointments</h1>
+      <div class="col-xs-12" id="appointments-cal">
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-6 col-xs-offset-1" id="one-hour-time-slots-cal">
+    <div class="col-xs-3">
+      <%= link_to "Create Time Slots", create_time_slots_from_availability_path, class: "btn btn-success btn-lg", :remote => true %>
+    </div>
+    <h1>Current Available Time Slots</h1>
+    <div class="col-xs-6">
+        <%= link_to 'New Time slot', new_time_slot_path, remote: true %>
+      <table id="time-slots-table">
+        <thead>
+          <tr>
+            <th>Start time</th>
+            <th>End time</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @time_slots.each do |time_slot| %>
+            <tr id="time-slot-<%=time_slot.id%>">
+              <td><%= time_slot.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+              <td><%= time_slot.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+              <td><%= link_to 'Edit', edit_time_slot_path(time_slot), remote: true %></td>
+              <td><%= link_to 'Copy', create_from_existing_time_slot_path(time_slot), remote: true %></td>
+              <td><%= link_to 'Destroy', time_slot, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

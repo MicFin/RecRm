@@ -7,11 +7,19 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.all
-    @appointments_no_dietitian = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC').where(dietitian_id: nil)
-    @upcoming_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
-    @previous_appointments = Appointment.where("start_time < ?", DateTime.now).order('start_time ASC, created_at ASC')
-    @dietitians = Dietitian.all
+    
+    if ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id] == "All") ) 
+      @appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+    elsif ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id]) ) 
+      dietitian = Dietitian.find(params[:dietitian_id])
+      @appointments = dietitian.appointments.order('start_time ASC, created_at ASC')
+    else
+      @appointments_no_dietitian = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC').where(dietitian_id: nil)
+      @upcoming_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+      @previous_appointments = Appointment.where("start_time < ?", DateTime.now).order('start_time ASC, created_at ASC')
+      @dietitians = Dietitian.all
+    end
+
   end
 
   def select_time
@@ -100,7 +108,7 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-      
+      binding.pry
     # if update saves
     if @appointment.update(appointment_params)
       # if stripe card payment update incnluded in update then user is paying 
@@ -112,20 +120,15 @@ class AppointmentsController < ApplicationController
         credit_card_usage = params[:credit_card_usage]
     
         @appointment.update_with_payment(credit_card_usage)
-        time_slot = TimeSlot.find(params[:time_slot_id])
-        time_slot.vacancy = false
-        time_slot.status = "Appointment"
-        time_slot.appointment = @appointment
-        time_slot.save
-        
-        TimeSlot.cancel_related_time_slots(time_slot) 
+
+
         @pre_appt_survey = Survey.generate_for_appointment(@appointment, current_user)
         
-      # or has recently been updated with dietitian thhen admin assigned dietitian
+    
 
       elsif params[:appointment][:note]
 
-
+  # or has recently been updated with dietitian thhen admin assigned dietitian
       elsif @appointment.dietitian_id != nil
         
         @new_session = @opentok.create_session 
@@ -143,6 +146,20 @@ class AppointmentsController < ApplicationController
         if @appointment.room_id == nil
           @appointment.room_id = @new_room.id
         end
+        # mark time slot as having an appointment and cancel related time slots
+        binding.pry
+        TimeSlot.where(start_time: @appointment.start_time).where(end_time: @appointment.end_time).each do |ts|
+          if ts.dietitian == @appointment.dietitian
+            time_slot = ts 
+            time_slot.vacancy = false
+            time_slot.status = "Appointment"
+            time_slot.appointment = @appointment
+            time_slot.save
+            TimeSlot.cancel_related_time_slots(time_slot)
+          end
+        end
+ 
+
       # other updates that could happen
       else
 

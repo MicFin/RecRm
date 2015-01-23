@@ -29,7 +29,7 @@ font-weight: normal;
 	line-height: 2;
 }
 
-#availability-cal .fc-toolbar, #select-appt-cal .fc-toolbar {
+#availability-cal .fc-toolbar, #select-appt-cal .fc-toolbar, #half-hour-time-slots-cal .fc-toolbar, #one-hour-time-slots-cal .fc-toolbar, #appointments-cal .fc-toolbar {
 	background: url(chrome-extension://mfidmkgnfgnkihnjeklbekckimkipmoe/graph/icon16.png) 50% 50% no-repeat transparent;
 	cursor: pointer;
 	min-height: 16px;

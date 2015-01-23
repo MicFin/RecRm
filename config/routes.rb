@@ -105,6 +105,7 @@ Rails.application.routes.draw do
       get 'time_slots/create_from_availability', to: 'time_slots#create_from_availability', as: "create_time_slots_from_availability"
       resources :time_slots
       post 'availabilities/set_schedule', to: 'availabilities#set_schedule', as: "set_schedule"
+      patch 'availabilities/update_schedule', to: 'availabilities#update_schedule', as: "update_schedule"
       resources :availabilities
       resources :ingredients_recipes do 
         collection { post :sort }

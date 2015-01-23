@@ -19,7 +19,7 @@ class AppointmentsController < ApplicationController
         dietitians = appointment.available_dietitians
         @appointments_no_dietitian[appointment] = dietitians
       end
-      binding.pry
+      
       @upcoming_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
 
       @previous_appointments = Appointment.where("start_time < ?", DateTime.now).order('start_time ASC, created_at ASC')
@@ -41,7 +41,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/appointment_prep
   def appointment_prep
    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
-    binding.pry
+    
     if @appointment.dietitian == current_dietitian 
       @client = @appointment.appointment_host
       # set @family before get_family_info
@@ -61,7 +61,7 @@ class AppointmentsController < ApplicationController
       else
         @modal = true 
       end
-      binding.pry
+      
     end
     respond_to do |format|
       format.js
@@ -165,7 +165,7 @@ class AppointmentsController < ApplicationController
           @appointment.room_id = @new_room.id
         end
         # mark time slot as having an appointment and cancel related time slots
-        binding.pry
+        
         TimeSlot.where(start_time: @appointment.start_time).where(end_time: @appointment.end_time).each do |ts|
           if ts.dietitian == @appointment.dietitian
             time_slot = ts 

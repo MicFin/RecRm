@@ -13,7 +13,7 @@ module AppointmentsHelper
     end
     @upcoming_appointments = @upcoming_appointments.group_by{|appointment|  [appointment.start_time.to_date, appointment.start_time.strftime("%I:%M%p")] }
     # @next_appointment = current_dietitian.appointments.where(start_time: @date..1.hours.from_now).last
-    binding.pry
+    
     @next_appointment = current_dietitian.appointments.last
     if @next_appointment != nil  
       family = @next_appointment.appointment_host.head_of_families.last 
@@ -46,7 +46,7 @@ module AppointmentsHelper
     @family.family_names = @family.all_first_names
     get_family_member_info!
     @family.family_member_info = @family_members
-    binding.pry
+    
   end
 
 

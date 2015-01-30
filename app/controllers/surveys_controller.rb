@@ -88,7 +88,13 @@ class SurveysController < ApplicationController
       if @survey.update(survey_params)
         @survey_type = @survey.survey_type
         @user_id = params[:user_id]
-        format.html { redirect_to user_dashboard_path, notice: 'survey was successfully updated.' }
+        @user = current_dietitian || current_user
+
+        if current_user 
+          format.html { redirect_to user_dashboard_path, notice: 'survey was successfully updated.' }
+        else
+          format.html { redirect_to dietitian_authenticated_root_path, notice: 'survey was successfully updated.' }
+        end
         format.json { render :show, status: :ok, location: @survey }
         format.js
       else

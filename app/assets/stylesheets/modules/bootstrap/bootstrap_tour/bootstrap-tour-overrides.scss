@@ -1,0 +1,91 @@
+
+.popover[class*=tour-] {
+	z-index: 1100;
+	max-height: 500px;
+	max-width: 800px;
+	border: 5px solid $lightorange;
+	padding: 0;
+	.arrow {
+		border-width: 40px;
+	}
+	.popover-navigation {
+		padding: 9px 14px;
+		text-align: center;
+	}
+	.popover-title {
+		margin: 0;
+		padding: 20px 20px;
+		color: $white;
+		font-size: 30px;
+		font-weight: normal;
+		line-height: 18px;
+		background-color: $lightorange;
+		border-bottom: 1px solid #ebebeb;
+		border-radius: 0;
+		text-align: center;
+	}
+	.popover-content {
+		font-size: 20px;
+		padding: 40px;
+	}
+	.btn-lg{
+		margin: 15px;
+	}
+}
+.popover[class*=tour-].right {
+	margin-left: 60px;
+}
+.popover[class*=tour-].right > .arrow {
+	top: 50%;
+	left: -40px;
+	margin-top: -50px;
+	border-left-width: 0;
+	border-right-color: #999999;
+	border-right-color: $lightorange;
+}
+.popover[class*=tour-].left > .arrow {
+	top: 50%;
+	right: -40px;
+	margin-top: -11px;
+	border-right-width: 0;
+	border-left-color: #999999;
+	border-left-color: $lightorange;
+}
+.popover[class*=tour-].top > .arrow {
+	left: 50%;
+	margin-left: -40px;
+	border-bottom-width: 0;
+	border-top-color: #999999;
+	border-top-color: green;
+	bottom: -80px;
+}
+.popover[class*=tour-].right > .arrow:after {
+	content: " ";
+	left: 1px;
+	bottom: -10px;
+	border-left-width: 0;
+	border-right-color: $lightorange;
+}
+.popover[class*=tour-].left > .arrow:after {
+	content: " ";
+	right: 1px;
+	border-right-width: 0;
+	border-left-color: $lightorange;
+	bottom: -10px;
+}
+.popover[class*=tour-].top > .arrow:after {
+	content: " ";
+	bottom: 1px;
+	margin-left: -10px;
+	border-bottom-width: 0;
+	border-top-color: $lightorange;
+}
+
+.tour-step-background {
+	background: transparent;
+	border: 5px solid $lightorange;
+}
+.tour-backdrop {
+	opacity:0;
+}
+

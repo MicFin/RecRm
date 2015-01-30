@@ -1,7 +1,6 @@
 
 
 $(document).ready(function() {
-
 	// override bootstrap accordion
 	OverrideBootstrap.setAccordion();
 

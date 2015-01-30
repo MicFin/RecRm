@@ -22,6 +22,10 @@ $("#new-user-options form").remove();
        $("#family-member-health-button").parent().addClass("active-tab");
      } 
   })
-<% else %> // Prep-Appointment
-  window.location.href = "/dashboard/home";
+<% else %> // Prep or post Appointment
+  <% if @user.class == Dietitian %>
+      window.location.href = "/welcome/index";
+  <% else %>
+    window.location.href = "/dashboard/home";
+  <% end %>
 <% end %>

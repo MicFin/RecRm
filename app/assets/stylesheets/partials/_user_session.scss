@@ -132,31 +132,6 @@
 	display: none;
 }
 
-////// 
-#second-version{
-	ul {
-		padding:0px;
-	}
-  #right-user-tabs{
-		text-align: center;
-		span.glyphicon {
-			font-size: 40px;
-			margin-bottom: 0px;
-			color: $carrotgreen;
-		}
-		padding: 30px;
-	div {
-		height:auto;
-		margin-top: 20px;
-	}
-	}
-}
-
-#recipe-background.second-version{
-	padding-top: 5%;
-	background-color: honeydew;
-	padding-bottom: 2%;
-}
 
 
 
@@ -170,15 +145,6 @@
 	overflow: scroll;
 }
 
-#second-version #user-message{
-	width: 482px;
-}
-#second-version #send-message-button{
-	margin-left: 20px;
-	width: 16%;
-	background-color: $carrotorange;
-	color: white;
-}
 
 
 .height-weight-input{

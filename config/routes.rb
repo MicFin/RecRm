@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resources :families
       get 'appointments/:id/select_time', to: 'appointments#select_time', as: 'select_time'
       get 'appointments/:id/complete_appt_prep_survey', to: 'appointments#complete_appt_prep_survey', as: 'user_complete_appt_prep_survey'
+      get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_user_appointment'
       resources :appointments do 
         resources :surveys do 
           resources :questions 
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
       end
       get 'users/:user_id/surveys/new', to: 'surveys#new', as: 'new_user_survey'
       patch 'users/:user_id/surveys/:id', to: 'surveys#update', as: 'user_survey'
+      patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_user_survey_update'
       resources :rooms, only: [:index, :create]
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_room, :via => :get
       # resources :charges
@@ -62,7 +64,7 @@ Rails.application.routes.draw do
 
       resources :member_plans
       get 'users/:user_id/surveys/show', to: 'surveys#show', as: 'show_user_survey'
-
+      patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_dietitian_survey_update'
       get 'dietitans/:id/images/new', to: 'images#new', as: 'new_dietitian_image'
       get 'dietitans/:id/images/index', to: 'images#index', as: 'dietitian_images'
       post 'dietitans/:id/images/create', to: 'images#create', as: 'create_dietitian_image'
@@ -70,6 +72,7 @@ Rails.application.routes.draw do
       get 'dietitans/:dietitian_id/images/:id/crop', to: 'images#crop', as: 'crop_dietitian_image'
 
       get 'appointments/:id/appointment_prep', to: 'appointments#appointment_prep', as: 'appointment_prep'
+      get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_dietitian_appointment'
       resources :appointments
       get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
       get 'dashboard/recipe_status', to: 'dashboard#recipe_status', as: 'dashboard_recipe_status'

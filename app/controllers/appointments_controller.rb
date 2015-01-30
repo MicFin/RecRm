@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   include AppointmentsHelper
   include PatientGroupsHelper
-  before_action :set_appointment, only: [:show, :edit, :update, :complete_appt_prep_survey, :select_time, :appointment_prep, :destroy]
+  before_action :set_appointment, only: [:show, :edit, :update, :complete_appt_prep_survey, :select_time, :appointment_prep, :end_appointment, :destroy]
   before_filter :config_opentok, :only => [:update]
 
   # GET /appointments
@@ -45,17 +45,41 @@ class AppointmentsController < ApplicationController
     if @appointment.dietitian == current_dietitian 
       @client = @appointment.appointment_host
       # set @family before get_family_info
+  
       @family = @client.head_of_families.first
-      get_family_info!
-      @family_members
-      @family
-      @user = @family_members[0]
+      # get_family_info!
+      # @family_members
+      # @family
+        # create family should be a helper method on the family model
+        @family_members = []
+        if @appointment.patient_focus 
+          appointment_focus = @appointment.patient_focus
+          @family_members << appointment_focus
+        end
+        family_count = @family.users.count
+        
+        if family_count > 0
+          if @client != appointment_focus
+            @family_members << @client
+            @family.users.each do |family_member| 
+              if family_member != appointment_focus
+                @family_members << family_member 
+              end
+            end
+          else
+            @family.users.each do |family_member|
+                @family_members << family_member
+            end
+          end
+        else
+          @family_members << @client
+        end
       get_patient_groups!
       @diseases = @diseases 
       @intolerances = @intolerances 
       @allergies = @allergies
       @diets =  @diets 
-      @unverified_health_groups = @family_members[0].unverified_health_groups
+      # @unverified_health_groups = @family_members[0].unverified_health_groups
       if params[:modal] == "false" 
         @modal = false 
       else
@@ -141,12 +165,9 @@ class AppointmentsController < ApplicationController
 
 
         @pre_appt_survey = Survey.generate_for_appointment(@appointment, current_user)
-        
-    
-
       elsif params[:appointment][:note]
 
-  # or has recently been updated with dietitian thhen admin assigned dietitian
+        # or has recently been updated with dietitian thhen admin assigned dietitian
       elsif @appointment.dietitian_id != nil
         
         @new_session = @opentok.create_session 
@@ -202,6 +223,22 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  # GET /appointments/1/end_appointment
+  def end_appointment
+
+   if current_user 
+
+    # if a user
+    @survey = Survey.generate_for_post_appointment(@appointment, current_user)
+    # return user end of apt survey
+   else
+
+    @survey = Survey.generate_for_post_appointment(@appointment, current_dietitian)
+    # else a dietitian
+    # mark appointment as complete, timestamp ending time, save length
+    # return dietitian end of appointment survey
+   end
+  end
 
   # DELETE /appointments/1
   # DELETE /appointments/1.json

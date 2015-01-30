@@ -7,7 +7,7 @@ class Survey < ActiveRecord::Base
   def self.generate_for_user(client, survey_user, survey_type)
     
     if survey_type == "User-Food"
-      new_survey = Survey.new(survey_type: "User-Food")
+      new_suervey = Survey.new(survey_type: "User-Food")
       new_survey.surveyable_id = survey_user.id
       new_survey.surveyable_type = "User"
       new_survey.user = client
@@ -51,9 +51,39 @@ class Survey < ActiveRecord::Base
       Question.new(position: 2, tier: 2, content: "Please explain your experience so far.", question_type: "Response", survey_group: "Pre-Appointment", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
       Question.new(position: 3, tier: 1, content: "What are your Top 3 nutritional challenges as an entire family?", question_type: "Response", survey_group: "Pre-Appointment", survey_group_question_id: 3, choices: "", survey_id: new_survey.id).save
       Question.new(position: 4, tier: 1, content: "What is the 1 thing you would really like to accomplish during this session?", question_type: "Response", survey_group: "Pre-Appointment", survey_group_question_id: 4, choices: "", survey_id: new_survey.id).save
+      new_survey.save
     end
-    new_survey.save
     
+    return new_survey
+  end
+
+  def self.generate_for_post_appointment(appointment, client_or_dietitian)
+    
+    if client_or_dietitian.class ==  User
+      client = client_or_dietitian
+      new_survey = Survey.new(survey_type: "Post-Appointment-Client")
+      new_survey.surveyable_id = appointment.id
+      new_survey.surveyable_type = "Appointment"
+      new_survey.user = client
+      new_survey.save
+      Question.new(position: 1, tier: 1, content: "Did you enjoy this survey?", question_type: "Radio", survey_group: "Post-Appointment", survey_group_question_id: 1, choices: "Yes, No", survey_id: new_survey.id).save
+      Question.new(position: 2, tier: 2, content: "Please explain what you enjoyed about this experience.", question_type: "Response", survey_group: "Post-Appointment", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
+      Question.new(position: 3, tier: 1, content: "Did you accomplish your #1 goal?", question_type: "Response", survey_group: "Post-Appointment", survey_group_question_id: 3, choices: "", survey_id: new_survey.id).save
+      Question.new(position: 4, tier: 1, content: "Did you address your 3 biggest challenges?", question_type: "Response", survey_group: "Post-Appointment", survey_group_question_id: 4, choices: "", survey_id: new_survey.id).save
+      new_survey.save
+    else
+      dietitian = client_or_dietitian
+      new_survey = Survey.new(survey_type: "Post-Appointment-Dietitian")
+      new_survey.surveyable_id = appointment.id
+      new_survey.surveyable_type = "Appointment"
+      # new_survey.user = dietitian
+      new_survey.save
+      Question.new(position: 1, tier: 1, content: "Did you complete the appointment?", question_type: "Radio", survey_group: "Post-Appointment", survey_group_question_id: 1, choices: "Yes, No", survey_id: new_survey.id).save
+      Question.new(position: 2, tier: 2, content: "Explain how you think the appointment went.", question_type: "Response", survey_group: "Post-Appointment", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
+      Question.new(position: 3, tier: 1, content: "Did you accomplish the client's #1 goal?", question_type: "Response", survey_group: "Post-Appointment", survey_group_question_id: 3, choices: "", survey_id: new_survey.id).save
+      Question.new(position: 4, tier: 1, content: "Did you address the client's 3 biggest challenges?", question_type: "Response", survey_group: "Post-Appointment", survey_group_question_id: 4, choices: "", survey_id: new_survey.id).save
+      new_survey.save
+    end
     return new_survey
   end
 

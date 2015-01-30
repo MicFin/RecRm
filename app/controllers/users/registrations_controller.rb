@@ -236,6 +236,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       @family_members << @user
     end
+    # for in-session update JS response
+    get_patient_groups!
+    @diseases = @diseases 
+    @intolerances = @intolerances 
+    @allergies = @allergies
+    @diets =  @diets  
   end
 
   def update

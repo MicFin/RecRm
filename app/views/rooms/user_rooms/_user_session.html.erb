@@ -2,7 +2,7 @@
 
     <div id="wrapper">
       <ul class="navigation">
-        <li class="nav-item"><a id="tool-client-info" href="#" data-appt-id="<%=@appointment.id%>">Family Info</a></li>
+        <li class="nav-item"><a id="edit-family-button" href="#" data-appt-id="<%=@appointment.id%>">Family Info</a></li>
         <li class="nav-item"><a id="tool-notes" href="#" data-appt-id="<%=@appointment.id%>">Notes</a></li>
       </ul>
       <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -64,17 +64,53 @@
             </span>
             </a>
           </div>
-                    <div id="phone-container" class="col-xs-12">
+          <div id="phone-container" class="col-xs-12">
             <h1>Call</h1>
             <h1>(781)749-9172</h1>
           </div>
         </div>
       </div>
     </div><!-- recipe background -->
+
 <script type="text/javascript">
 $(document).ready(function() {
+    $("#edit-family-button").on("click", function(e){
+      e.preventDefault();
+      $("#tool-box-container #tool-client-info-container").empty().append("<%= j render(:partial => '/rooms/user_rooms/family_form') %>");
+      // on family member view button click
+      
+      $(".family-member-health-preview").on("click", function(e){
+        
+        e.preventDefault();
+        var family_member_id = $(this).data("family-member-id");
+        // hide all info containers //
+        $(".family-member-health-container").addClass("hidden");
+        // remove selected-family-member class from all
+        $(".family-member-health-preview").removeClass("selected-family-member");
+        // add to selected
+        $("#family-member-"+family_member_id).addClass("selected-family-member"); 
+        // show new family members info  
+        $("#family-member-health-"+family_member_id).removeClass("hidden");
+        // remove active tab
+        $(".active-tab").removeClass("active-tab");
+        // add it to health button
+        $("#family-member-health-button").parent().addClass("active-tab");
+      });
+    });
   var tour = new Tour({
     storage: false,
+    template: "<div class='popover tour'>" +
+    "<div class='arrow'></div>" +
+    "<h3 class='popover-title'></h3>" +
+    "<div class='popover-content'></div>" +
+    "<div class='popover-navigation'>" +
+        "<button class='btn btn-lg btn-default' data-role='prev'>« Prev</button>" +
+        "<span data-role='separator'></span>" +
+        "<button class='btn btn-lg btn-success' data-role='next'>Next »</button>" +
+        "<a class='col-xs-12' data-role='end'>End tour</button>" +
+    "</div>" +
+    "</nav>" +
+  "</div>",
     steps: [
       {
         element: "#left-user-tabs",
@@ -86,27 +122,32 @@ $(document).ready(function() {
         element: "#nav-label",
         title: "Your Family",
         content: "Use this menu tab to access your health information and to take notes during your appointment.",
-        placement: "right"
+        placement: "right",
+        backdropPadding: {left: 10, top: 10},
+
       },
       {
         element: "#phone-button-container",
         title: "Having Trouble Connecting?",
         content: "Sometimes things go wrong so we like to be prepared.  If we lose video connection, use this number to call us.",
-        placement: "left"
+        placement: "left",
+        backdropPadding: {left: -50, top: 20, right: -50, bottom: -75},
       },
       {
         element: "#message-button-container",
         title: "We Text Too",
         content: "Need to share a link or clarify something?  We can send messages but we prefer to talk 1 on 1.",
-        placement: "left"
+        placement: "left",
+        backdropPadding: {left: -50, top: 20, right: -50, bottom: -75},
       },
       {
-        element: "#dietitian-name",
         title: "Ready To Start?",
         content: "We are excited to speak with you.  Just click End Tour to connect your video and begin your session!",
-        placement: "top"
+        orphan: true
       }
     ],
+    backdrop: true,
+    // backdropPadding: 10,
     onEnd: function(tour){
       TokBox.initialize();
     }

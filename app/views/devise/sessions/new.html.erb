@@ -34,7 +34,11 @@
 				  <%= f.button :submit, "Sign In", class: "btn btn-success", type: "submit" %>
 				</div>
 				<div class="col-xs-12 text-left">
-					<%= render "devise/shared/links" %>
+<!-- 				snippet from shared/links, should be made into a partial -->
+				<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'  %>
+				  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+				<% end -%>
+<!-- 				snippet from shared/links, should be made into a partial -->
 				</div>
 			<% end %>
 			<!-- </form> -->

@@ -33,7 +33,7 @@ var AvailabilityCalendar = {
       eventBorderColor: "#11753B",
       editable: true,
       eventOverlap: false,
-      selectable: true,
+      selectable: false,
       selectHelper: true,
       selectOverlap: false,
       select: function(start, end) {
@@ -48,7 +48,9 @@ var AvailabilityCalendar = {
           var eventData;
             eventData = {
               start: start,
-              end: end,
+          // override default end time since on dayClick I couldn't pass the 1 hour end time
+              // end: end,
+              end: check.add(15, "minutes"),
               status: "New",
               editable: true,
               backgroundColor: "#F68D3C",
@@ -94,6 +96,19 @@ var AvailabilityCalendar = {
 
         } else { // "Live"
 
+        }
+      },
+      dayClick: function(date, jsEvent, view) {
+        var today = moment();
+        if (date > today.add(1, "days") ) {
+          $('#availability-cal').fullCalendar('select', date);
+          // alert('Clicked on: ' + date.format());
+
+          // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+          // alert('Current view: ' + view.name);
+        } else {
+          alert("All new available time slots must be at least 24 hours from now.");
         }
       },
       eventClick: function(calEvent, jsEvent, view) {

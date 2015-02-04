@@ -39,6 +39,8 @@ class AppointmentsController < ApplicationController
   end
 
   # GET /appointments/1/appointment_prep
+  # currently called from dietitian prep (with modal) 
+  # dietitian insession 
   def appointment_prep
    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
     
@@ -80,6 +82,9 @@ class AppointmentsController < ApplicationController
       @allergies = @allergies
       @diets =  @diets 
       # @unverified_health_groups = @family_members[0].unverified_health_groups
+      @dietitian_survey = Survey.generate_for_appointment(@appointment, current_dietitian)
+      @survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
+      @surveyable = @appointment
       if params[:modal] == "false" 
         @modal = false 
       else
@@ -165,6 +170,7 @@ class AppointmentsController < ApplicationController
 
 
         @pre_appt_survey = Survey.generate_for_appointment(@appointment, current_user)
+        
       elsif params[:appointment][:note]
 
         # or has recently been updated with dietitian thhen admin assigned dietitian

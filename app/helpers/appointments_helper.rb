@@ -9,6 +9,7 @@ module AppointmentsHelper
       family.number_of_members = family.family_member_count
       family.family_names = family.all_first_names
       appointment.family_info = family
+      appointment.prepped = appointment.prep_complete?
       @upcoming_appointments << appointment
     end
     @upcoming_appointments = @upcoming_appointments.group_by{|appointment|  [appointment.start_time.to_date, appointment.start_time.strftime("%I:%M%p")] }
@@ -22,6 +23,7 @@ module AppointmentsHelper
       family.number_of_members = family.family_member_count
       family.family_names = family.all_first_names
       @next_appointment.family_info = family
+      @next_appointment.prepped = @next_appointment.prep_complete?
     end
   end
 

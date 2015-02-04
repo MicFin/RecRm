@@ -1,5 +1,6 @@
 class Appointment < ActiveRecord::Base
   attr_accessor :family_info
+  attr_accessor :prepped 
   belongs_to :appointment_host, :class_name => "User", :foreign_key => "appointment_host_id"
   belongs_to :patient_focus, :class_name => "User", :foreign_key => "patient_focus_id"
   belongs_to :dietitian
@@ -7,6 +8,15 @@ class Appointment < ActiveRecord::Base
   belongs_to :time_slot
   has_many :surveys, :as => :surveyable
   
+
+  def prep_complete?
+    if self.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).count > 0
+      return true
+    else
+      return false
+    end
+  end
+
   def available_time_slots
     return TimeSlot.where(start_time: self.start_time, end_time: self.end_time, vacancy: true)
   end

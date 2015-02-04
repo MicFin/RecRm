@@ -58,6 +58,8 @@ class SurveysController < ApplicationController
       else
         @survey = Survey.generate_for_user(current_user, @surveyable, "User-Life")
       end
+    elsif params[:survey_type] == "Pre-Appointment-Dietitian"
+      @survey = Survey.generate_for_appointment(@surveyable, current_dietitian)
     else
     end
     
@@ -81,9 +83,7 @@ class SurveysController < ApplicationController
   end
 
   def update
-    
     update_questions_with_answers(params[:questions])
-
     respond_to do |format|
       if @survey.update(survey_params)
         @survey_type = @survey.survey_type

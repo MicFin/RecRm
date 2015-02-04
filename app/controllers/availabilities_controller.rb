@@ -94,8 +94,11 @@ class AvailabilitiesController < ApplicationController
     params[:availabilities].each do |availability_hash|
       updated_avail = Availability.find(availability_hash[1]["id"])
       availability_hash[1].delete "id"
+      
       updated_avail.update(availability_hash[1])
+      
     end
+    
     respond_to do |format|
         format.js
         format.html { redirect_to availabilities_path, notice: 'Schedule was successfully updated.' }

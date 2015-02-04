@@ -1,6 +1,14 @@
 var AvailabilityCalendar = {
 
   set: function(){
+            // var new_events_array =[],
+            // set_events_array=[], 
+            // live_events_array=[], 
+            // appointment_events_array=[],
+    var new_events_hours_total=0,
+        set_events_hours_total=0,
+        live_events_hours_total=0,
+        appointment_events_hours_total=0;
     $('#availability-cal').fullCalendar({
       header: {
           left: '',
@@ -33,24 +41,24 @@ var AvailabilityCalendar = {
       eventBorderColor: "#11753B",
       editable: true,
       eventOverlap: false,
-      selectable: false,
+      selectable: true,
       selectHelper: true,
       selectOverlap: false,
       select: function(start, end) {
+
         // check if selection is within time frame (for now, after today)
         var check = moment(start);
         var today = moment();
         if(check < today) {
-            // Previous Day. show message if you want otherwise do nothing.
+          alert("Oops, add your availability with at least 24 hours notice!");
+          $('#availability-cal').fullCalendar( 'unselect' );
             // So it will be unselectable
         } else {
           // after today then set availablility
           var eventData;
             eventData = {
               start: start,
-          // override default end time since on dayClick I couldn't pass the 1 hour end time
-              // end: end,
-              end: check.add(15, "minutes"),
+              end: end,
               status: "New",
               editable: true,
               backgroundColor: "#F68D3C",
@@ -61,13 +69,6 @@ var AvailabilityCalendar = {
           $('#availability-cal').fullCalendar('unselect');
         }
       },
-      // eventResize: function(event, delta, revertFunc) {
-      //   
-      //   if (event.status != "New") {
-      //       revertFunc();
-      //   }
-
-      // },
       eventMouseover: function( event, jsEvent, view ) { 
         jsEvent.preventDefault();
         if ( event.status === "Set"){
@@ -98,25 +99,13 @@ var AvailabilityCalendar = {
 
         }
       },
-      dayClick: function(date, jsEvent, view) {
-        var today = moment();
-        if (date > today.add(1, "days") ) {
-          $('#availability-cal').fullCalendar('select', date);
-          // alert('Clicked on: ' + date.format());
-
-          // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-          // alert('Current view: ' + view.name);
-        } else {
-          alert("All new available time slots must be at least 24 hours from now.");
-        }
-      },
       eventClick: function(calEvent, jsEvent, view) {
         // on event click set up availability by making AJAX call 
         jsEvent.preventDefault();
         
         if ( calEvent.status === "New"){
           $('#availability-cal').fullCalendar('removeEvents', calEvent._id);
+          new_events_hours_total -= 1;
         } else if ( calEvent.status === "Set") {  
                 
           var availability_id = calEvent._id;
@@ -142,24 +131,71 @@ var AvailabilityCalendar = {
            
       },
       eventResize: function (event, delta, revertFunc, jsEvent, ui, view){
-
         if (event.status === "Set"){
-          // light orange
-          event.backgroundColor = "#F68D3C";
-          event.borderColor = "#F16521";
-          event.status = "Updated";
-          // element.css("background-color", "gray").css("border-color", "gray");
+          var updated_event_array = [];
+          var start_time = event.start.format();
+          var end_time = event.end.format();
+          var buffered_end_time = event.end.subtract(15, "minutes").format();
+          var buffered_start_time = event.start.add(15, "minutes").format();
+          var updatedEventObject = {
+              id: event.id, 
+              start_time: start_time, 
+              end_time: end_time, 
+              buffered_start_time: buffered_start_time,
+              buffered_end_time: buffered_end_time
+          };
+          updated_event_array.push(updatedEventObject);
+          $.ajax({
+            type: "PATCH",
+            datatype: "script",
+            data: {availabilities: updated_event_array},
+            url: "/availabilities/update_schedule",
+            success: function(response){
+              $("#availability-cal").replaceWith("<div class='col-xs-8' id='availability-cal'></div>");
+              AvailabilityCalendar.set();
+            } 
+          });
         }
       },
       eventDrop: function (event, delta, revertFunc, jsEvent, ui, view){
 
         if (event.status === "Set"){
-          // light orange
-          event.backgroundColor = "#F68D3C";
-          event.borderColor = "#F16521";
-          event.status = "Updated";
-          // element.css("background-color", "gray").css("border-color", "gray");
+          var updated_event_array = [];
+          var start_time = event.start.format();
+          var end_time = event.end.format();
+          var buffered_end_time = event.end.subtract(15, "minutes").format();
+          var buffered_start_time = event.start.add(15, "minutes").format();
+          var updatedEventObject = {
+              id: event.id, 
+              start_time: start_time, 
+              end_time: end_time, 
+              buffered_start_time: buffered_start_time,
+              buffered_end_time: buffered_end_time
+          };
+          updated_event_array.push(updatedEventObject);
+          $.ajax({
+            type: "PATCH",
+            datatype: "script",
+            data: {availabilities: updated_event_array},
+            url: "/availabilities/update_schedule",
+            success: function(response){
+              $("#availability-cal").replaceWith("<div class='col-xs-8' id='availability-cal'></div>");
+              AvailabilityCalendar.set();
+            } 
+          });
         }
+      },
+      eventAfterRender: function(event, element, view){
+        // if (event.status === "Live"){ 
+        //   live_events_hours_total += moment.duration(event.end - event.start);
+        // } else if (event.status === "Set"){
+        //   debugger;
+        //   set_events_hours_total += moment.duration(event.end - event.start);
+        // } else if (event.status === "Appointment"){
+        //   appointment_events_total+= moment.duration(event.end - event.start);
+        // } else {
+        //   new_events_hours_total += moment.duration(event.end - event.start);
+        // }
       },
       eventRender: function(event, element) {
         // remove fullcalendars default elements for events and add our own
@@ -171,11 +207,25 @@ var AvailabilityCalendar = {
         }
         // $(element).children(":first").replaceWith(html);
         $(element).children(":first").append(new_html);
+      },
+      viewRender: function(view, element){
+        // new_events_hours_total=0;
+        // set_events_hours_total=0;
+        // live_events_hours_total=0;
+        // appointment_events_hours_total=0;
+      },
+      eventAfterAllRender: function(view){
+
+        // $("#set-event-hours span").replaceWith("<span>"+(set_events_hours_total / 1000 / 60 / 60)+"</span>");
+        // $("#new-event-hours span").replaceWith("<span>"+new_events_hours_total+"</span>");
+        // $("#live-event-hours span").replaceWith("<span>"+(live_events_hours_total / 1000 / 60 / 60)+"</span>");
+        // $("#appointment-event-hours span").replaceWith("<span>"+(appointment_events_hours_total / 1000 / 60 / 60)+"</span>");
       }
     });
     AvailabilityCalendar.set_save_button();
   },
   set_save_button: function(){
+    $("#save-schedule-button").unbind("click");
     $("#save-schedule-button").on("click", function(e){
       e.preventDefault();
       var clean_new_availabilities = [];
@@ -205,8 +255,6 @@ var AvailabilityCalendar = {
             data: {availabilities: clean_updated_availabilities},
             url: "/availabilities/update_schedule",
             success: function(response){
-               $("#availability-cal").replaceWith("<div class='col-xs-8' id='availability-cal'></div>");
-               AvailabilityCalendar.set();
              } 
           });
         }
@@ -222,10 +270,10 @@ var AvailabilityCalendar = {
           data: {availabilities: clean_updated_availabilities},
           url: "/availabilities/update_schedule",
           success: function(response){
-             $("#availability-cal").replaceWith("<div class='col-xs-8' id='availability-cal'></div>");
-             AvailabilityCalendar.set();
            } 
         });
+        $("#availability-cal").replaceWith("<div class='col-xs-8' id='availability-cal'></div>");
+             AvailabilityCalendar.set();
       } else {
         alert("Please add to or update your schedule then save again");
       };

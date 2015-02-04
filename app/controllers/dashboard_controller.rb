@@ -42,7 +42,8 @@ class DashboardController < ApplicationController
         end
         # get survey if not filled out
         
-        @survey = @appointment.surveys.where(survey_type: "Pre-Appointment").where(completed: false).last
+        @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: false).last
+        
         if @survey
           @surveyable = @appointment
         end

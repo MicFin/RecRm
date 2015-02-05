@@ -125,9 +125,16 @@ class User < ActiveRecord::Base
   def age
     ### months up to 2 years + months
     dob = self.date_of_birth
+    # if a date of birth is on file
     if dob != nil 
       now = Time.now.utc.to_date
+      # age is (today's year - birthday year) 
+      # if today's month is greater than dob month or same month but day is greater or equal to then subract
+      # if born on Jan 5 2000 and it is Jan 5 2015 then age = 15 
+      # if born on Jan 5 2000 and it is Jan 6 2015 then age = 14
+      # if born on Jan 6 2000 and it is Jan 5 2015 then age = 15
       age = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+      # for under 1 year old
       if age < 1
         age = now.month - dob.month
         if age > 1
@@ -135,11 +142,20 @@ class User < ActiveRecord::Base
         else 
           final_age = age.to_s + " month old"
         end
-      elsif age == 1
+      # for between 1 and 2 year olds
+      elsif (age >= 1 ) && (age <= 2)
         months = now.month - dob.month
         final_age = (24 + months).to_s + " months old"
+      # for 2 and older
       else
-        final_age = age.to_s + " years old"
+        months = now.month - dob.month
+        if months == 1
+          final_age = age.to_s + " years and 1 month old"
+        elsif months > 1
+          final_age = age.to_s + " years and "+months+" months old"
+        else
+          final_age = age.to_s + " years old"
+        end
       end
       return final_age
     else

@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
       elsif (age >= 1 ) && (age <= 2)
         months = now.month - dob.month
         final_age = (24 + months).to_s + " months old"
-      # for 2 and older
+      # for 3 and older
       else
         months = now.month - dob.month
         if months == 1
@@ -168,11 +168,14 @@ class User < ActiveRecord::Base
       feet = self.height_inches / 12
       inches = self.height_inches % 12
       if feet <= 0
-        return "#{inches} inches"
+        centimeters = inches * 2.54
+        return "#{inches} inches (#{centimeters}cm)"
       elsif inches > 0
-        return "#{feet}ft #{inches}in"
+        centimeters = ((feet * 12) + inches) * 2.54
+        return "#{feet}feet #{inches}inches (#{centimeters}cm)"
       else
-        return "#{feet}ft"
+        centimeters = (feet * 12) * 2.54
+        return "#{feet}feet (#{centimeters}cm)"
       end
     else
       return "Not entered"
@@ -186,9 +189,9 @@ class User < ActiveRecord::Base
       if pounds <= 0
         return "#{ounces} ounces"
       elsif ounces > 0
-        return "#{pounds} pounds #{ounces} ounces"
+        return "#{pounds} pounds #{ounces} ounces (#{weight_ounces}oz)"
       else
-        return "#{pounds} pounds"
+        return "#{pounds} pounds (#{weight_ounces}oz)"
       end
     else
       return "Not entered"

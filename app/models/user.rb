@@ -168,14 +168,14 @@ class User < ActiveRecord::Base
       feet = self.height_inches / 12
       inches = self.height_inches % 12
       if feet <= 0
-        centimeters = inches * 2.54
+        centimeters = (inches * 2.54).round(2)
         return "#{inches} inches (#{centimeters}cm)"
       elsif inches > 0
-        centimeters = ((feet * 12) + inches) * 2.54
-        return "#{feet}feet #{inches}inches (#{centimeters}cm)"
+        centimeters = (((feet * 12) + inches) * 2.54).round(2)
+        return "#{feet} feet #{inches} inches (#{centimeters}cm)"
       else
-        centimeters = (feet * 12) * 2.54
-        return "#{feet}feet (#{centimeters}cm)"
+        centimeters = ((feet * 12) * 2.54).round(2)
+        return "#{feet} feet (#{centimeters}cm)"
       end
     else
       return "Not entered"

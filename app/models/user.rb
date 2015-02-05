@@ -123,6 +123,7 @@ class User < ActiveRecord::Base
   end
 
   def age
+    ### months up to 2 years + months
     dob = self.date_of_birth
     if dob != nil 
       now = Time.now.utc.to_date
@@ -147,26 +148,34 @@ class User < ActiveRecord::Base
   end
   
   def height
-    feet = self.height_inches / 12
-    inches = self.height_inches % 12
-    if feet <= 0
-      return "#{inches} inches"
-    elsif inches > 0
-      return "#{feet}ft #{inches}in"
+    if (height_inches != nil )
+      feet = self.height_inches / 12
+      inches = self.height_inches % 12
+      if feet <= 0
+        return "#{inches} inches"
+      elsif inches > 0
+        return "#{feet}ft #{inches}in"
+      else
+        return "#{feet}ft"
+      end
     else
-      return "#{feet}ft"
+      return "Not entered"
     end
   end
 
   def weight
-    pounds = self.weight_ounces / 16
-    ounces = self.weight_ounces % 16
-    if pounds <= 0
-      return "#{ounces} ounces"
-    elsif ounces > 0
-      return "#{pounds} pounds #{ounces} ounces"
+    if (weight_ounces != nil )
+      pounds = self.weight_ounces / 16
+      ounces = self.weight_ounces % 16
+      if pounds <= 0
+        return "#{ounces} ounces"
+      elsif ounces > 0
+        return "#{pounds} pounds #{ounces} ounces"
+      else
+        return "#{pounds} pounds"
+      end
     else
-      return "#{pounds} pounds"
+      return "Not entered"
     end
   end
 

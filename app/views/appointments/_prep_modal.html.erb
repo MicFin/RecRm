@@ -10,25 +10,26 @@
           <div class="col-xs-6 form-group">
             <div class="col-xs-12">
               <h3>Client Information</h3>
-
                 <div id="prep-appointment-family-list">
-                  <div id="family-member-prep-survey" data-id="prep-survey" class="col-xs-4 family-member selected-family-member">
-                    <button data-family-member-id="prep-survey" type="button" class="btn btn-white btn-sm family-member-health-preview"><h4>Appt Prep</h4></button>
+                  <div id="family-member-prep-survey" data-id="prep-survey" class="family-member">
+                    <button data-family-member-id="prep-survey" type="button" class="btn btn-white btn-sm family-member-health-preview"><h4>Client Questions</h4></button>
                   </div>
                   <%@family_members.each do |family_member|%>
     
-                    <div id="family-member-<%=family_member.id%>" data-id="<%=family_member.id%>" class="col-xs-4 family-member">
-                      <button data-family-member-id="<%=family_member.id%>" type="button" class="btn btn-white btn-sm family-member-health-preview"><h4><%=family_member.first_name%> <%=family_member.last_name%></h4></button>
-                      <% if family_member.patient_groups.count >= 1 %>
-                        <%family_member.patient_groups.each do |patient_group| %>
-                          <div class="hidden-xs btn btn-white-orange btn-sm">
-                            <%= patient_group.name%>
-                          </div>
-                        <% end %>
-                      <% end %>
+                    <div id="family-member-<%=family_member.id%>" data-id="<%=family_member.id%>" class=" family-member">
+                      <button data-family-member-id="<%=family_member.id%>" type="button" class="btn btn-white btn-sm family-member-health-preview"><h4><%=family_member.first_name%></h4></button>
                     </div>
                   <% end %>
                 </div>
+            </div>
+            <div id="family-member-health-intro" class="col-xs-12 family-member-health-container">
+              <ul>
+                
+                  <h1><li>Read about your client's family and goals by clicking above.
+                  </li></h1>
+                  <h1><li>Takes notes by filling out the fields to the right.
+                  </li></h1>
+                  <h1><li>Save when you are done preparing for the appointment.</li></h1>
             </div>
             <%= render "/surveys/survey_answers" %>
   <% @family_members.each do |family_member| %>
@@ -42,72 +43,63 @@
                   <div class="col-xs-12 text-left">
                     <% if ( @appointment.appointment_host != family_member)%>
                       <div class="row form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                          <label>Relation to Host</label>
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                          <label>Relation to Client</label>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
                           <p><%=family_member.family_role%></p>
                         </div>
                       </div>
                     <% else %>
                       <div class="row form-group">
-                        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                           <label>This is the appointment host</label>
                         </div>
                       </div>
                     <% end %>
-                    <div class="row form-group">
-                      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                        <%= label_tag :birth_date, "Birth Date:" %>
-                      </div>
-                      <div class="col-xs-10">
-                        <%= family_member.date_of_birth %> <%=family_member.age%>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                        <%= label_tag :height_inches, "Height:" %>
-                      </div>
-                      <div id="height-attributes" class="col-xs-10">
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
-                          <%=family_member.height_hash["feet"]%> 
-                        </div>
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
-                          <%= label_tag :feet, "feet"%>
-                        </div>
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
-                          <%=family_member.height_hash["inches"]%> 
-                        </div>
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
-                          <%= label_tag :inches, "inches"%>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
-                        <%= label_tag :weight_ounces, "Weight:" %>
-                      </div>
-                      <div id="weight-attributes" class="col-xs-10">
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
-                          <%=family_member.weight_hash["pounds"]%> 
-                        </div>
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
-                          <%= label_tag :pounds, "pounds"%>
-                        </div>
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
-                          <%=family_member.weight_hash["ounces"]%> 
-                        </div>
-                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
-                          <%= label_tag :ounces, "ounces"%>
-                        </div>
-                      </div>
-                    </div>
                     <div class="row">
-                      <div class="col-xs-2">
-                        <%= label_tag :sex, "Sex:" %>
+                      <div class="col-xs-3">
+                        <%= label_tag :sex, "Gender:" %>
                       </div>
-                      <div class="col-xs-10">
-                        <%= family_member.sex %>
+                      <div class="col-xs-9">
+                        <p><%= family_member.sex %></p>
+                      </div>
+                    </div>
+                    <div class="row form-group">
+                  
+                      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <%= label_tag :birth_date, "Age:" %>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                        <p><%=family_member.age %></p>
+                      </div>
+                    </div>
+                    <div class="row form-group">
+                      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <%= label_tag :birth_date, "Birth Date: " %>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                        <p><%= family_member.date_of_birth %></p>
+                      </div>
+                    </div>
+                    <div class="row form-group">
+                      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <%= label_tag :height_inches, "Height: " %>
+                      </div>
+                      <div id="height-attributes" class="col-xs-9">
+             
+                         <p> <%=family_member.height%> </p>
+              
+                      </div>
+                    </div>
+                    <div class="row form-group">
+                      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <%= label_tag :weight_ounces, "Weight: " %>
+                      </div>
+                      <div id="weight-attributes" class="col-xs-9">
+
+                         <p> <%=family_member.weight%></p>
+           
                       </div>
                     </div>
                   </div>
@@ -118,7 +110,7 @@
                     <label>Health Groups</label>
                     <% if family_member.patient_groups.count >= 1 %>
                       <% family_member.patient_groups.each do |health_group| %>
-                        <div class="btn btn-white-orange btn-sm">
+                        <div class="btn btn-white-orange btn-lg">
                           <%= health_group.name %>
                         </div>
                       <% end%>
@@ -128,7 +120,7 @@
                     <% if family_member.unverified_health_groups.count >= 1%>
                       <label>Unverified Health Groups</label>
                       <% family_member.unverified_health_groups.each do |health_group| %>
-                        <div class="btn btn-white-orange btn-sm">
+                        <div class="btn btn-white-orange btn-lg">
                           <%= health_group.name %>
                         </div>
                       <% end%>
@@ -144,8 +136,8 @@
   <% end %>
           </div>
           <div class="col-xs-6">
-          <h3>Your Preperation Notes</h3>
-            <%= render "/surveys/form", survey: @dietitian_survey %>
+          <h3>Your Notes</h3>
+            <%= render "/surveys/survey_templates/dietitian_pre_appt_survey", survey: @dietitian_survey %>
           </div>
         </div> <!-- user form -->
 

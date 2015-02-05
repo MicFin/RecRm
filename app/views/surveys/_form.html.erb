@@ -28,7 +28,8 @@
           <%= render "/surveys/question_types/question_type_drop_down", question: question  %>
         <% elsif question.question_type == "Radio"%>
           <%= render "/surveys/question_types/question_type_radio", question: question %>
-        <% else %>
+        <% else #number %>
+          <%= render "/surveys/question_types/question_type_number", question: question %>
         <% end %>
         <%=f.hidden_field :completed, value: true %>
       </div>

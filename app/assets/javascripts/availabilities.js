@@ -11,9 +11,9 @@ var AvailabilityCalendar = {
         appointment_events_hours_total=0;
     $('#availability-cal').fullCalendar({
       header: {
-          left: '',
-          center: '',
-          right: 'today prev,next'
+          left: 'prev',
+          center: 'today',
+          right: 'next'
       },
       timezone: "local",
       events: '/availabilities.json',
@@ -36,7 +36,7 @@ var AvailabilityCalendar = {
       slotDuration: '00:15:00',
       minTime: "08:00:00",
       maxTime: "21:00:00",
-      height: 500,
+      height: 450,
       eventBackgroundColor: "#399E48",
       eventBorderColor: "#11753B",
       editable: true,
@@ -53,7 +53,14 @@ var AvailabilityCalendar = {
           alert("Oops, add your availability with at least 24 hours notice!");
           $('#availability-cal').fullCalendar( 'unselect' );
             // So it will be unselectable
+        // } else if (moment(end) <= moment(start).add(1, "hours").add(30, "minutes")) {
+
         } else {
+          // if (moment(end) < moment(start).add(1, "hours").add(30, "minutes")){
+          //   end = moment(start).add(1, "hours").add(30, "minutes");
+          // }
+          // debugger;
+
           // after today then set availablility
           var eventData;
             eventData = {
@@ -62,11 +69,12 @@ var AvailabilityCalendar = {
               status: "New",
               editable: true,
               backgroundColor: "#F68D3C",
-              borderColor: "#F16521"
+              borderColor: "#F16521",
             };
             $('#availability-cal').fullCalendar('renderEvent', eventData, true); // stick = true keeps the event even when the user changes calendar pages without saving the schedule
             // ajax call to save availablity
           $('#availability-cal').fullCalendar('unselect');
+
         }
       },
       eventMouseover: function( event, jsEvent, view ) { 
@@ -199,6 +207,7 @@ var AvailabilityCalendar = {
       },
       eventRender: function(event, element) {
         // remove fullcalendars default elements for events and add our own
+        event.overlap = false;
         element.find(".fc-time span").remove();
         element.attr('id', event.id);
         var new_html = "<div class='col-xs-12'><span class='glyphicon glyphicon-trash'></span></div><div class='event-time'>​"+event.start.format('h:mm')+" - "+event.end.format('h:mma')+"</div>";
@@ -228,6 +237,7 @@ var AvailabilityCalendar = {
     $("#save-schedule-button").unbind("click");
     $("#save-schedule-button").on("click", function(e){
       e.preventDefault();
+
       var clean_new_availabilities = [];
       var clean_updated_availabilities = [];
       var raw_availabilities = $('#availability-cal').fullCalendar( 'clientEvents');
@@ -262,6 +272,10 @@ var AvailabilityCalendar = {
         AvailabilityCalendar.set();
       } else if (updated_availabilities.length >= 1){
         $.each(updated_availabilities, function(key, availability){
+          if (availability.end.diff(availability.start, 'minutes') < 90) {
+            alert("Please save at least 1 1/2 hours in a row.");
+            return;
+          };
           clean_updated_availabilities.push({id: availability.id, start_time: availability.start.format(), end_time: availability.end.format(), buffered_start_time: availability.start.add(15, "minutes").format(), buffered_end_time: availability.end.subtract(15, "minutes").format()});
         });
         $.ajax({

@@ -1,0 +1,14 @@
+
+<% if question.tier == 1 %>
+<div class="question-container question-container-number">
+<% else %>
+<div class="question-container question-container-number tier-2">
+<% end %>
+	<h4><%=question.content%></h4>
+	<% if question.answer != nil && question.answer != ""%>
+	<input type="number" name="questions[<%=question.id%>]" value="<%=question.answer%>">
+	<% else %>
+	<input type="number" name="questions[<%=question.id%>]">
+	<% end %>
+</div>
+	

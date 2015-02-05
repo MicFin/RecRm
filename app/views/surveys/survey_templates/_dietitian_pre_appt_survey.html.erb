@@ -35,21 +35,21 @@
               </thead>
               <tr>
                 <td>Length/Height (cm)</td>
-                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[1].id%>]" value="<%=@survey.questions.order("position")[1].answer%>" required/></td>
+                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[1].id%>]" value="<%=@survey.questions.order("position")[1].answer%>" required step="0.01"/></td>
                 <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[2].id%>]" value="<%=@survey.questions.order("position")[2].answer%>" required/></td>
-                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[3].id%>]" value="<%=@survey.questions.order("position")[3].answer%>" required/></td>
+                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[3].id%>]" value="<%=@survey.questions.order("position")[3].answer%>" required step="0.01"/></td>
               </tr>
               <tr>
-                <td>Weight (oz)</td>
-                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[4].id%>]" value="<%=@survey.questions.order("position")[4].answer%>" required/></td>
+                <td>Weight (kg)</td>
+                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[4].id%>]" value="<%=@survey.questions.order("position")[4].answer%>" required step="0.01"/></td>
                 <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[5].id%>]" value="<%=@survey.questions.order("position")[5].answer%>" required/></td>
-                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[6].id%>]" value="<%=@survey.questions.order("position")[6].answer%>" required/></td>
+                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[6].id%>]" value="<%=@survey.questions.order("position")[6].answer%>" required step="0.01"/></td>
               </tr>
               <tr>
                 <td>BMI</td>
                 <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[7].id%>]" value="<%=@survey.questions.order("position")[7].answer%>" required/></td>
                 <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[8].id%>]" value="<%=@survey.questions.order("position")[8].answer%>" required/></td>
-                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[9].id%>]" value="<%=@survey.questions.order("position")[9].answer%>" required/></td>
+                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[9].id%>]" value="<%=@survey.questions.order("position")[9].answer%>" required step="0.01"/></td>
               </tr>
             </tbody>
           </table>
@@ -61,24 +61,19 @@
                 <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[10].id%>]" value="<%=@survey.questions.order("position")[10].answer%>" required/></td>
               </tr>
               <tr>
-                <td>Fluid (oz/day)</td>
+                <td>Protein RDA (g/day)</td>
                 <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[11].id%>]" value="<%=@survey.questions.order("position")[11].answer%>" required/></td>
               </tr>
               <tr>
-                <td>Protein RDA (oz/day)</td>
+                <td>Fluid (mL/day)</td>
                 <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[12].id%>]" value="<%=@survey.questions.order("position")[12].answer%>" required/></td>
               </tr>
-              <tr>
-                <td>Protein EAR (oz/day)</td>
-                <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[13].id%>]" value="<%=@survey.questions.order("position")[13].answer%>" required/></td>
-              </tr>
-
             </tbody>
           </table>
           <div class="col-xs-12">
             <h3>Assessment and Plan</h3>
-            <textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=@survey.questions.order("position")[14].id%>]" rows="4" required>
-              <%= @survey.questions.order("position")[14].answer %>
+            <textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=@survey.questions.order("position")[13].id%>]" rows="4" required>
+              <%= @survey.questions.order("position")[13].answer %>
             </textarea>
           </div>
         </div>

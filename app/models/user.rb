@@ -169,13 +169,13 @@ class User < ActiveRecord::Base
       inches = self.height_inches % 12
       if feet <= 0
         centimeters = (inches * 2.54).round(2)
-        return "#{inches} inches (#{centimeters}cm)"
+        return "#{inches} inches (#{centimeters} cm)"
       elsif inches > 0
         centimeters = (((feet * 12) + inches) * 2.54).round(2)
-        return "#{feet} feet #{inches} inches (#{centimeters}cm)"
+        return "#{feet} feet #{inches} inches (#{centimeters} cm)"
       else
         centimeters = ((feet * 12) * 2.54).round(2)
-        return "#{feet} feet (#{centimeters}cm)"
+        return "#{feet} feet (#{centimeters} cm)"
       end
     else
       return "Not entered"
@@ -184,14 +184,15 @@ class User < ActiveRecord::Base
 
   def weight
     if (weight_ounces != nil )
+      kilograms = (weight_ounces * 0.0283495).round(2)
       pounds = self.weight_ounces / 16
       ounces = self.weight_ounces % 16
       if pounds <= 0
         return "#{ounces} ounces"
       elsif ounces > 0
-        return "#{pounds} pounds #{ounces} ounces (#{weight_ounces}oz)"
+        return "#{pounds} pounds #{ounces} ounces (#{kilograms} kg)"
       else
-        return "#{pounds} pounds (#{weight_ounces}oz)"
+        return "#{pounds} pounds (#{kilograms} kg)"
       end
     else
       return "Not entered"

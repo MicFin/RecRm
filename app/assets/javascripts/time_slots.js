@@ -30,6 +30,7 @@ var SelectApptCalendar = {
       start_date.setDate( start_date.getDate() + 2 );
       var start_day = start_date.getDay();
       // full calendar settings
+      var event_start_times_rendered = [];
       $('#select-appt-cal').fullCalendar({
         header: {
               left:   '',
@@ -51,9 +52,9 @@ var SelectApptCalendar = {
           },
         },
         displayEventEnd: {
-          month: true,
-          agendaWeek: true,
-          'default': true
+          month: false,
+          agendaWeek: false,
+          'default': false
         },
         defaultView: 'basicWeek',
         allDaySlot: false,
@@ -61,10 +62,12 @@ var SelectApptCalendar = {
         slotDuration: '00:30:00',
         minTime: "08:00:00",
         maxTime: "21:00:00",
+        columnFormat: 'ddd M/DD/YY',
         height: 500,
         eventBackgroundColor: "#399E48",
         eventBorderColor: "#11753B",
         viewRender: function (view) {
+          var event_start_times_rendered = [];
           // only enable next/prev button to go forward 1 week and return back to original week
           var start_moment = moment(start_date);
           var today_moment = moment(new Date());
@@ -76,6 +79,13 @@ var SelectApptCalendar = {
               $(".fc-prev-button").removeClass('fc-state-disabled');
               $(".fc-next-button").addClass('fc-state-disabled');
           }  
+          $(".fc-widget-header.fc-day-header").each(function(index){
+            var split_date = $(this).text().split(" ");
+            var day = split_date[0];
+            var date = split_date[1];
+            $(this).html("<p>"+day+"</p><p>"+date+"</p>");
+          });
+
         },
         eventMouseover: function( event, jsEvent, view ) { 
           jsEvent.preventDefault();
@@ -110,10 +120,17 @@ var SelectApptCalendar = {
           // remove fullcalendars default elements for events and add our own
           element.find(".fc-title").remove();
           element.find(".fc-time").remove();
-          var new_html = "<div class='event-time'>​"+event.start.format('h:mm')+" - "+event.end.format('h:mma')+"</div>";
+          var new_html = "<div class='event-time'>​"+event.start.format('h:mm')+"</div>";
           // $(element).children(":first").replaceWith(html);
           $(element).children(":first").append(new_html);
-
+          $(element).parent().hide();
+          event_start_times_rendered.push(event.start)
+        },
+        eventAfterRender: function(event, element, view){
+          $(element).parent().hide();
+        },
+        eventAfterAllRender: function( view, element){
+          $(".fc-event-container").fadeIn();
         }
       })
     }

@@ -22,7 +22,6 @@
           <% end %>
           <div class="row form-group">
             <div class="col-xs-12 text-center">
-              <h2>Your 1-hour session with a KindRDNutritionist will be on </h2>
               <h2><%=@time_slot.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y") %>
               </h2>
               <h2>from <%=@time_slot.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%l:%M") %> - <%=@time_slot.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%l:%M %p") %>
@@ -32,11 +31,8 @@
               <button type="button" class="btn btn-default" data-dismiss="modal">Select a different time and date</button>
               <input type="hidden" name="time_slot_id" id: "time-slot-id" value="<%=@time_slot.id%>">
             </div>
-            <div class="col-xs-10 col-xs-offset-1 alert alert-warning">
-              <p>We've learned that the more we listen, the better we are able to help.  To enable your KindRDNutritionist to better prepare for your session, we have created an optional Pre-Appointment questionnaire.  It takes under 5 minutes to complete and is highly recommended.  After you finalize your appointment, you will have the option to take the questionnaire.</p>
-            </div>
             <div class="col-xs-8 col-xs-offset-2 text-center">
-            <h1>1-hour: $79.99</h1>
+            <h1>1-hour: $89.99</h1>
             </div>
           </div>
           <% if @appointment.stripe_card_token %>

@@ -21,15 +21,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def sign_up_params
     devise_parameter_sanitizer.sanitize(:sign_up)
   end
-
+#new user intro to the form then
+#update to new_user_family
   def new_user_intro
-    
     @user = current_user || User.find(params[:id])
     @sign_up_stage = @user.sign_up_stage 
-
+    if @sign_up_stage == 2
+      redirect_to new_user_family_path(@user)
+    elsif @sign_up_stage == 3
+      redirect_to select_time_path(@user.appointment_hosts.last)
+    else
+    end
   end
 
   def new_user_family
+    
     @user = User.find(params[:id])
     @sign_up_stage = @user.sign_up_stage 
     @family = @user.head_of_families.last
@@ -70,14 +76,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @diseases = @diseases 
     @intolerances = @intolerances 
     @allergies = @allergies
-    @diets =  @diets 
+    @diets =  @diets
+    @patient_groups 
+
     # respond_to do |format|
     #   format.js
     #   format.html
     # end
+    
   end
 
   def new_family_member
+    
       @user = current_user
       @family = @user.head_of_families.last
       @family.users.build
@@ -95,6 +105,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create_family_member
+    
     @user = current_user
     if params["new_health_groups"]
       params["new_health_groups"].each do |health_group|
@@ -175,6 +186,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def edit_user_health_groups
+    
     @user = current_user
     @family = @user.head_of_families.last
     @updated_user_id = params[:id]
@@ -242,9 +254,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @intolerances = @intolerances 
     @allergies = @allergies
     @diets =  @diets  
+    redirect_to select_time_path(@appointment)
   end
 
   def update
+    
     @user = current_user
 
     successfully_updated = if needs_password?(@user, params)
@@ -334,9 +348,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     ## should not be in regular flow of update, only for initial sign up
     
     if resource.class == User 
+      ## if they have already created an appointment
       if resource.appointment_hosts.count >= 1
+        ## if they already created the appointment time
         if resource.appointment_hosts.last.start_time 
-          ## if they already created the appointment time
+          
         # respond_to do |format|
         #   format.js { render "/users/registrations/update.js.erb" and return }
         #   # format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
@@ -347,6 +363,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           return new_user_family_path(resource)
         end
       else
+        
         @user = resource
         @family = Family.new(name: "Main Family", head_of_family_id: @user.id)
         @family.save

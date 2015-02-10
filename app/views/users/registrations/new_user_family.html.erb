@@ -4,14 +4,14 @@
 
   			
 <div id="new-user-family-form" class="col-xs-10 col-xs-offset-1">
-	<div class="hidden-xs hidden-sm col-md-4 col-lg-4 form-group">
+<!-- 	<div class="hidden-xs hidden-sm col-md-4 col-lg-4 form-group">
 		<div class="col-xs-12">
 			<h3>Start with</h3>
-			<%= render "new_user_family_list" %>
+			<%#= render "new_user_family_list" %>
 		</div>
-	</div>
-	<div id="new-user-options" class="appt-focus col-xs-12 col-sm-12 col-md-offset-5 col-lg-offset-5 col-md-7 col-lg-7 alert alert-success">
-		<%= simple_form_for @family_members[0], :url => {:controller => 'users/registrations', :action => 'update_user_health_groups'}, remote: true do |f| %>
+	</div> -->
+	<div id="new-user-options" class="appt-focus col-xs-12 col-sm-12 col-md-offset-2 col-lg-offset-2 col-md-8 col-lg-8 alert alert-success">
+		<%= simple_form_for @family_members[0], :url => {:controller => 'users/registrations', :action => 'update_user_health_groups'} do |f| %>
 			<input type="hidden" name="updated_user_id" value="<%=@family_members[0].id%>"/>
 		<div id="top-container" class="col-xs-12 text-center">
 			<%= render "users/registrations/forms/name_form", f: f %>
@@ -89,11 +89,6 @@
           <hr class="health-group-break-point">
         </div>
 				<%= render "users/registrations/forms/allergies", f: f %>
-		  	<div class="col-xs-12 form-group">
-			  	<label>Add More About <span class="dynamic-user-name"><%=@family_members[0].first_name%></span></label>
-			  	<p>(we will go over more together so don't feel like you have to fit it all in)</p>
-			  	<textarea class="form-control form-group" placeholder="Nutrition can be complicated and we know that first hand.  Use this space for including more health information not mentioned above" name="user[family_note]" rows="4"></textarea>
-			  </div>
 			</div>
 		</div>
 		<div id="bottom-button-container" class="col-xs-12 text-center">

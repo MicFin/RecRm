@@ -17,7 +17,7 @@ var UserSignUp = {
     $("#new-health-group-button").on("click", function(e){
       e.preventDefault();
       var group_name = $("#new-health-group-field").val();
-      $(".select-allergen-box").last().after(
+      $("#nutrition-checkboxes").append(
       "<label class='checkbox col-xs-4 select-allergen-box'><input class='check_boxes optional' name='new_health_groups[]' type='checkbox' value='"+group_name+"' checked>"+group_name+"</label>");
       $("#new-health-group-field").val("");
     })
@@ -26,6 +26,9 @@ var UserSignUp = {
     $("#introModal").modal("toggle");
   },
   family_buttons: function(){
+    $(".select-allergen-box").on("click", function(){
+      $(".additional-checkboxes").removeClass("hidden");
+    });
     $("#family-member-list").children().first().addClass("selected-family-member");
     $("#family-member-list .family-member:not(:first-child)").addClass("unselected-family-member");
     $(".selected-family-member a").hide();
@@ -35,15 +38,15 @@ var UserSignUp = {
   },
   set_breadcrumbs: function(){
     // change nav highlight based on url key word
+    var pathname = window.location.pathname;
     var sign_up_stage = $(".bs-wizard").filter(":first").data("stage");
-    if (sign_up_stage === 4) {
+    if (sign_up_stage === 1) {
       $(".sign-up-step-1").removeClass("active").addClass("complete");
       $(".sign-up-step-2").removeClass("disabled").addClass("complete");
       $(".sign-up-step-3").removeClass("disabled").addClass("complete");
-      $(".sign-up-step-4").removeClass("disabled").addClass("active");
-    } else if (sign_up_stage === 2){
+    } else if (pathname.search("/select_time") >= 0 || sign_up_stage === 2){
       $(".sign-up-step-1").removeClass("active").addClass("complete");
-      $(".sign-up-step-2").removeClass("disabled").addClass("active");
+      $(".sign-up-step-2").removeClass("disabled").addClass("active");  
     } else if (sign_up_stage === 3){
       $(".sign-up-step-1").removeClass("active").addClass("complete");
       $(".sign-up-step-2").removeClass("disabled").addClass("complete");

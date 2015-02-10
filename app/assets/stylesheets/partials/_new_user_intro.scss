@@ -14,9 +14,13 @@
 // .bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 0;}
 .bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
 .bs-wizard > .bs-wizard-step + .bs-wizard-step {}
-.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
-.bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
-.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: $lightgreen; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: $lightgray; font-size: 25px; margin-bottom: 5px;}
+.bs-wizard > .bs-wizard-step.active .bs-wizard-stepnum {color: $carrotgreen}
+.bs-wizard > .bs-wizard-step.complete .bs-wizard-stepnum {color: $carrotgreen}
+.bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 20px;}
+.bs-wizard > .bs-wizard-step.active .bs-wizard-info {color: $lightorange;}
+.bs-wizard > .bs-wizard-step.complete .bs-wizard-info {color: #999;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: $lightgreen; top: 45px; left: 50%; margin-top: 0px; margin-left: -15px; border-radius: 50%;} 
 .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
 .bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
 .bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: $lightgreen;}
@@ -40,7 +44,8 @@
 
 #new-user-name-form{
 	text-align:left;
-	margin-top: 200px;
+	margin-top: 150px;
+
 	//  media query to make not fixed on ssmaller screens and fixed on large
 }
 	// make media query to make not fixed on ssmaller screens and fixed on large
@@ -52,6 +57,7 @@
 	.bs-wizard {
 		position: relative;
 		margin-bottom: -400px;
+		margin-top: -25px;
 	}
 	.modal-body .bs-wizard{
 		position: relative;
@@ -67,6 +73,7 @@
 	.bs-wizard {
 		position: relative;
 		margin-bottom: -400px;
+		margin-top: -25px;
 	}
 	.modal-body .bs-wizard{
 		position: relative;
@@ -82,6 +89,7 @@
 	.bs-wizard {
 		position: fixed;
 		border-bottom: 0;
+		margin-top: -25px;
 	}
 	.modal-body .bs-wizard{
 		position: relative;
@@ -98,6 +106,7 @@
 	.bs-wizard {
 		position: fixed;
 		border-bottom: 0;
+		margin-top: -25px;
 	}
 	.modal-body .bs-wizard{
 		position: relative;
@@ -113,6 +122,7 @@
 	.bs-wizard {
 		position: fixed;
 		border-bottom: 0;
+		margin-top: -25px;
 	}
 	.modal-body .bs-wizard{
 		position: relative;
@@ -134,6 +144,7 @@
 	font-size: 20px;
 	height: 40px;
 	padding-left: 2%;
+	width: 100%;
 }
 
 #new-user-name-form input[type="submit"].btn-block, #new-user-name-form input[type="reset"].btn-block, #new-user-name-form input[type="button"].btn-block {
@@ -170,8 +181,9 @@
 	margin-top: 150px;
 }
 
-#new-user-family-form > :first-child, #select-time-container > :first-child,{
+#select-time-container > :first-child,{
 	position: fixed;
+	margin-top: 25px;
 }
 
 #new-user-family-form .glyphicon-floppy-save{
@@ -286,7 +298,7 @@
 	padding-right: 0px;
 	padding-bottom: 0px;
 	padding-top: 0px;
-	margin-top: 50px;
+	// margin-top: 50px;
 }
 
 #new-user-family-form .tab-pane > div{
@@ -448,7 +460,7 @@ padding-right: 5%;
 ////// SELECT APPONTMENT TIME AN CREDIT CARD //////
 
 #select-time-container{
-	margin-top: 150px;
+	margin-top: 100px;
 }
 
 #select-time-message-container {

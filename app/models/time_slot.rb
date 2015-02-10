@@ -12,6 +12,11 @@ class TimeSlot < ActiveRecord::Base
     )
   end
 
+  def self.select_appointment_time_slots
+    self.where(vacancy: true).where(status: "Current").where(minutes: 60)
+
+  end
+
   ## format date for database
   def self.format_date(date_time)
    Time.at(date_time.to_i).to_formatted_s(:db)

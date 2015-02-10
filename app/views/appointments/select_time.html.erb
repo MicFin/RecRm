@@ -2,13 +2,13 @@
 <%= render "/users/registrations/sign_up_breadcrumbs/sign_up_breadcrumb" %>
 
 <div id="select-time-container" class="row">
-  <div id="select-time-message-container" class="col-xs-11 col-xs-offset-0 col-sm-10 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 alert">
-    <h2>Please select a time for your 1-hour session.</h2>
-    <p>During our Early Access program, we have limited our availability to ensure each client is connected with the perfect KindRDNutritionist.  If the available times do not match your schedule, please email us here!</p>
-    <button class="btn btn-sm btn-warning">Request Time</button>
-  </div>
-  <div id="new-appt-form" class="container col-xs-12 col-sm-12 col-md-7 col-md-offset-4 col-lg-7 col-lg-offset-4">
-    <div class="row">
+  <div id="new-appt-form" class="col-xs-10 col-xs-offset-1">
+
+      <h2>Select a time for your 1-hour session.</h2>
+      <div class="col-xs-12">
+        <p>If the available times do not match your schedule, please <button class="btn btn-sm btn-warning">email us here</button>
+      </p>
+      </div>
       <div id="set-appt-time" data-appt-id="<%=@appointment.id%>" class="col-xs-12">
         <% if @appointment.stripe_card_token %>
           <h2>This appointment is already set for <%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M")%> - <%=@appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p")%></h2>
@@ -16,6 +16,5 @@
           <div id="select-appt-cal"></div>
         <% end %>
       </div>
-    </div>
   </div>
 </div>

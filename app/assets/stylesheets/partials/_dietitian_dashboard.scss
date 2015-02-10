@@ -4,11 +4,7 @@
 
 #appointment-update-container, #appointment-health-groups-container{
   padding-left: 5%;
-  overflow: scroll;
   max-height: 350px;
-  overflow-x: hidden;
-  border-top: 1px solid $lightorange;
-  border-bottom: 1px solid $lightorange;
 }
 
 #appointment-update-container{

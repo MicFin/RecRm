@@ -34,13 +34,9 @@ class Appointment < ActiveRecord::Base
 
   def stage
     if self.start_time != nil 
-      return 4
+      return 3
     elsif self.patient_focus != nil
-      if self.patient_focus.family_role != nil
-        return 3
-      else
-        return 2
-      end
+      return 2
     else
       return 1
     end
@@ -53,6 +49,7 @@ class Appointment < ActiveRecord::Base
       if appointment_host.stripe_id
         customer = Stripe::Customer.retrieve(appointment_host.stripe_id)
       else
+        
         # if creating a new customer and wants to save CC
         if credit_card_usage == "remember_me"
           customer = Stripe::Customer.create(:card => stripe_card_token, :description => appointment_host.email, :email => appointment_host.email)
@@ -73,8 +70,8 @@ class Appointment < ActiveRecord::Base
         begin
           charge = Stripe::Charge.create(
           :customer    => stripe_id,
-          :amount      => 10000,
-          :description => 'Kindrdfood Member',
+          :amount      => 8999,
+          :description => 'Kindrdfood 1 Hour',
           :currency    => 'usd'
         )
         rescue Stripe::CardError => e
@@ -86,11 +83,11 @@ class Appointment < ActiveRecord::Base
       # charge custoemr
       # if custeomr did not want to remember card need to change to not create stripe customer
       else 
+        
         begin
           charge = Stripe::Charge.create(
-          :customer    => stripe_id,
           :card        => stripe_card_token,
-          :amount      => 7999,
+          :amount      => 8999,
           :description => 'Kindrdfood 1 Hour',
           :currency    => 'usd'
         )
@@ -102,7 +99,7 @@ class Appointment < ActiveRecord::Base
         end
       end
       # save invoice price to appointment
-      self.invoice_price = 10000
+      self.invoice_price = 8999
       self.duration = 60
       save!
     end

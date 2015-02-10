@@ -15,7 +15,7 @@ background-color: $lightgreen;
 font-weight: normal;
 }
 
-#select-time-container .fc-event:hover {
+#select-time-container .fc-event:not(.time-slot-taken):hover {
 	border: $carrotorange !important;
 	background-color: $lightorange !important;
 	text-decoration: none !important;
@@ -24,7 +24,7 @@ font-weight: normal;
 
 .appt-hover-text {
 	color: $white;
-	font-size: 20px;
+	font-size: 15px;
 	text-align: center;
 	line-height: 2;
 }
@@ -47,4 +47,14 @@ font-weight: normal;
 	clear: none;
 	display: inline-block;
 	float:right;
+}
+
+.fc-toolbar .fc-left {
+	float: left;
+		margin-left: 50px;
+}
+
+.fc-toolbar .fc-right {
+	float: right;
+		margin-left: 20px;
 }

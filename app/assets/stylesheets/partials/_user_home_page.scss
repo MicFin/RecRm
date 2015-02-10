@@ -1,13 +1,8 @@
 
 #appointment-update-container{
 	span {
-		color: white;
+		color: $carrotgreen;
 		font-size: 2em;
-    text-shadow:
-    -1px -1px 0 $carrotgreen,
-    1px -1px 0 $carrotgreen,
-    -1px 1px 0 $carrotgreen,
-    1px 1px 0 $carrotgreen; 
 	}
 }
 
@@ -24,4 +19,8 @@
 		line-height: 50px;
 		color: $lightorange;
 	}
+}
+
+#appointment-goals-header{
+	color: $carrotgreen;
 }

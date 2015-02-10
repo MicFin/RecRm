@@ -28,7 +28,7 @@ class AppointmentsController < ApplicationController
   end
 
   def select_time
-    @time_slots = TimeSlot.all
+    @time_slots = TimeSlot.select_appointment_time_slots 
     @sign_up_stage = @appointment.stage 
   end
 

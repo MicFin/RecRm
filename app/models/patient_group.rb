@@ -27,7 +27,7 @@ class PatientGroup < ActiveRecord::Base
         end
       end
     end
-    return allergies
+    return allergies.sort_by{|word| word.order}
   end
 
   # returns all Patient Groups with the category intolerance and a Patient Group named "Other Intolerance" with an input field true boolean
@@ -51,7 +51,7 @@ class PatientGroup < ActiveRecord::Base
         end
       end
     end
-    return intolerances
+    return intolerances.sort_by{|word| word.order}
   end
 
   # returns array of all Patient Groups with the category disease and an Patient Group named "Other Disease" with an input field true boolean

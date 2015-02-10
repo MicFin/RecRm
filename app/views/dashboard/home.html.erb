@@ -1,38 +1,34 @@
 <div id="user-home-page" class="container">
-	<div class="form-group col-xs-12 form-group text-center">
- 		<h2>Welcome to Kindrdfood, <%=current_user.first_name %>!</h2>
- 	</div>
-	<div id="appointment-update-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left alert alert-success">
-		<h3>Upcoming Appoinment: <span><%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></span></h3>
-	</div>
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="col-xs-3">
-  		<p><%= image_tag("computer.png") %></p>
+  <% if @survey %>
+    <div class="form-group col-xs-12 form-group text-center">
+      <h1 id="appointment-goals-header">Appointment Goals and Details</h1>
     </div>
-    <div class="col-xs-9">
-      <% if @survey %>
+  <% else %>
+  	<div class="form-group col-xs-12 form-group text-center">
+   		<h2>Welcome to Kindrdfood, <%=current_user.first_name %>!</h2>
+   	</div>
+  	<div id="appointment-update-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"> 
+  		<h3><span><%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></span></h3>
+  	</div>
+  <% end %>
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <% if @survey %>
+      <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+        <p><%= image_tag("computer.png") %></p>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
         <%= render "/surveys/form" %>
-      <% else %>
-        <div id="upcoming-appointment-container" data-appointment-id="<%=@appointment.id%>">
-          <p>Please complete these steps prior to your appointment:</p>
-          <ol>
-            <li class="completed-list-item">Complete appointment questionnaire basics</li>
-            <% if @appointment.status != "Appt-Prep-Survey-Complete" %>
-              <li id="complete-list-questionnaire">Complete <button class="btn btn-lg btn-success" id="edit-family-button">Health & Food</button> questionnaire</li>
-            <% else %>
-              <li id="complete-list-questionnaire" class="completed-list-item">Complete <button class="btn btn-lg btn-success" id="edit-family-button">Health & Food</button> questionnaire</li>
-            <% end %>
-            <li>Start your appointment</li>
-          </ol>
-
+    <% else %>
+      <div class="col-xs-12">
+        <div id="upcoming-appointment-container" class="text-center" data-appointment-id="<%=@appointment.id%>">
           <% if @appointment.room_id %>
             <%= link_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @appointment.room_id, appointment: @appointment.id }, class: "text-center action kindrd-button btn-block tilt"%>
           <% else %>
-            <h5>Return 15 minutes before appointment to sign in</h5>
+            <h5>Return 10 minutes before your appointment to sign in</h5>
           <% end %>
         </div>
-      <% end %>
-    </div>
+    <% end %>
+      </div>
 	</div>
 	<div class="col-xs-5">
 	<%#=link_to "Upgrade to Premium", new_subscription_path, remote: true%>

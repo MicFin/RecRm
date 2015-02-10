@@ -145,7 +145,7 @@ var SelectApptCalendar = {
         $(".fc-event-container").fadeIn();
         if (dates_taken.length < 1) {
           for (var k = 0; k <= 21; k++){
-            for(var i = 8; i<=20; i++){
+            for(var i = 8; i<=24; i++){
               date = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
               if (event_start_times_rendered.indexOf(date.format()) < 0 ){
                 date_object = {

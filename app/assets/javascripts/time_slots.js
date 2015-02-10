@@ -24,7 +24,7 @@ var TimeSlotCalendar = {
 var SelectApptCalendar = {
   set: function(){
     var start_date = new Date(); 
-    start_date.setDate( start_date.getDate() + 2 );
+    start_date.setDate( start_date.getDate() + 0 );
     var start_day = start_date.getDay();
     // full calendar settings
     var event_start_times_rendered = [];

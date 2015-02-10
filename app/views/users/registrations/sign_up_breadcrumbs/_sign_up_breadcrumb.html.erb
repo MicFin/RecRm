@@ -10,7 +10,11 @@
 		<div class="sign-up-step-2 col-xs-3 col-sm-4 col-md-4 col-lg-4 bs-wizard-step disabled">
 			<div class="text-center bs-wizard-stepnum">2</div>
 			<div class="progress"><div class="progress-bar"></div></div>
-			<a href="/appointments/<%=@appointment.id%>/select_time" class="bs-wizard-dot"></a>
+			<% if @appointment %>
+				<a href="/appointments/<%=@appointment.id%>/select_time" class="bs-wizard-dot"></a>
+			<% else %>
+				<a href="#" class="bs-wizard-dot"></a>	
+			<% end %>
 			<div class="bs-wizard-info text-center">Schedule an appointment </div>
 		</div>
 

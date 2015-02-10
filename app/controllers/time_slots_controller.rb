@@ -9,7 +9,7 @@ class TimeSlotsController < ApplicationController
     if params[:minutes] == "30" && params[:type] == "Review"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 30)
     elsif params[:minutes] == "60" && params[:type] == "vacant-appts"
-      @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now + 2.days])
+      @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now - 1.days]).uniq {|p| p.start_time}
     elsif params[:minutes] == "60" && params[:type] == "Review"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60)
     else

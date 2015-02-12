@@ -3,9 +3,8 @@
     <div id="wrapper">
       <ul class="navigation">
         <li class="nav-item"><a id="tool-client-info" href="#" data-appt-id="<%=@appointment.id%>">Client Family</a></li>
-        <li class="nav-item"><a id="tool-survey" href="#" data-appt-id="<%=@appointment.id%>">Questionnaire</a></li>
-        <li class="nav-item"><a id="tool-dietitian-survey" href="#" data-appt-id="<%=@appointment.id%>">Prep Notes</a></li>
-        <li class="nav-item"><a id="tool-notes" href="#" data-appt-id="<%=@appointment.id%>">Notes</a></li>
+        <li class="nav-item"><a id="tool-survey" href="#" data-appt-id="<%=@appointment.id%>">Prep Work</a></li>
+        <li class="nav-item"><a id="tool-notes" href="#" data-appt-id="<%=@appointment.id%>">Your Notes</a></li>
         <li class="nav-item"><a id="tool-products" href="#">Products</a></li>
         <li class="nav-item"><a href="#">Recipes (soon)</a></li>
         <li class="nav-item"><a id="tool-shopping" href="#">Shopping (soon)</a></li>
@@ -26,11 +25,12 @@
             </div>
            
             <div id="tool-survey-container" class="tool-box-item hidden">
-              <%= render "/surveys/survey_answers" %>
-            </div>
-           
-            <div id="tool-dietitian-survey-container" class="tool-box-item hidden">
-              <%= render "/surveys/survey_templates/dietitian_pre_appt_survey_view"%>
+              <div class="col-xs-6">
+                <%= render "/surveys/survey_templates/dietitian_pre_appt_survey_view"%>
+              </div>
+              <div class="col-xs-6">
+                <%= render "/surveys/survey_answers" %>
+              </div>
             </div>
             <div id="tool-notes-container" class="tool-box-item hidden">
               <%= render "/appointments/notes_form" %>
@@ -49,7 +49,7 @@
             <h1 class="font-light-green ">#1 Goal</h1>
           </div>
           <div class="col-xs-12">
-            
+            <p><%=@survey.questions.order("position")[1].answer%></p>
           </div>
         </div>
         <div id="layoutContainer" class="col-xs-6">
@@ -89,7 +89,7 @@
           </div>
           <div id="phone-container" class="col-xs-12">
             <h1>Call</h1>
-            <h1>(781)749-9172</h1>
+            <h1>(617)877-4731</h1>
           </div>
         </div>
       </div>
@@ -98,6 +98,12 @@
 <script type="text/javascript">
 $(document).ready(function() {
   TokBox.initialize();
+  $("#nav-trigger").on("click", function(e){
+          $("#chat-container").hide();
+          $("#phone-container").hide();
+          $("#phone-button-container").show();
+          $("#message-button-container").show();
+  });
   $("#tool-notes").on("click", function(e){
     e.preventDefault();
     $(".tool-box-item").addClass("hidden");
@@ -115,7 +121,6 @@ $(document).ready(function() {
   });
   $("#tool-survey").on("click", function(e){
     e.preventDefault();
-    debugger;
     $(".tool-box-item").addClass("hidden");
     $("#tool-survey-container").removeClass("hidden");
     $("#family-member-health-prep-survey").removeClass("hidden");

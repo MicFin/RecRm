@@ -15,11 +15,14 @@ class AppointmentsController < ApplicationController
       @appointments = dietitian.appointments.order('start_time ASC, created_at ASC')
     else
       @appointments_no_dietitian = {}
-      Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
+      # Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
+      #   dietitians = appointment.available_dietitians
+      #   @appointments_no_dietitian[appointment] = dietitians
+      # end
+      Appointment.order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
         dietitians = appointment.available_dietitians
         @appointments_no_dietitian[appointment] = dietitians
       end
-      
       @upcoming_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
 
       @previous_appointments = Appointment.where("start_time < ?", DateTime.now).order('start_time ASC, created_at ASC')

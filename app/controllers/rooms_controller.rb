@@ -29,7 +29,8 @@ before_filter :authenticate_admin_user!, only: [:index]
   def in_session
     @room = Room.find(params[:id]) 
     @appointment = Appointment.find(params[:appointment])
-    @survey = @appointment.surveys.where(survey_type: "Pre-Appointment").where(completed: true).last
+    binding.pry
+    @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: true).last
     @surveyable = @appointment
     if current_admin_user
       @user = current_admin_user
@@ -38,7 +39,8 @@ before_filter :authenticate_admin_user!, only: [:index]
       @client = @appointment.appointment_host
       appointment_host = @appointment.appointment_host
       @tok_token =  @opentok.generate_token(@room.sessionId, {role: :moderator, data: "Moderator"}) 
-      
+      @dietitian_pre_appt_survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).last.questions.order("position")
+      binding.pry
       # @tok_token =  @opentok.generate_token @room.sessionId({
       #   :role        => :moderator
       #   :expire_time => Time.now.to_i+(7 * 24 * 60 * 60) # in one week

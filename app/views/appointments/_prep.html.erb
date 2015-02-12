@@ -14,17 +14,6 @@
             </div>
           </div>
           <div id="appt-prep-info-container" class="col-xs-10">
-            <div id="family-member-pages-tabs" class="col-xs-12 text-center">
-              <div class="col-xs-4 active-tab">
-                <a id="family-member-health-button" href="#">Health</a>
-              </div>
-              <div class="col-xs-4">
-                <a id="family-member-food-button" href="#">Food</a>
-              </div>
-              <div class="col-xs-4">
-                <a id="family-member-life-button" href="#">Life</a>
-              </div>
-            </div>
             <% @family_members.each do |family_member| %>
               <% if family_member == @appointment.patient_focus %>
                 <div id="family-member-health-<%=family_member.id%>" class="appt-focus col-xs-12 family-member-health-container alert alert-success">

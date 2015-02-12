@@ -16,7 +16,7 @@
   <div id="survey-questions-container" class="row">
       <div id="survey-question-container-<%=@survey.questions.order("position")[0].id%>"class="col-xs-12">
         <div class="col-xs-12">
-        <h3>Client History and Concerns</h3>
+          <h3>Client History and Concerns</h3>
           <textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=@survey.questions.order("position")[0].id%>]" rows="4" required>
             <%= @survey.questions.order("position")[0].answer %>
           </textarea>

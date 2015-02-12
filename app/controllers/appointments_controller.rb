@@ -19,7 +19,7 @@ class AppointmentsController < ApplicationController
       #   dietitians = appointment.available_dietitians
       #   @appointments_no_dietitian[appointment] = dietitians
       # end
-      Appointment.order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
+      Appointment.where("start_time > ?", DateTime.now - 1.days).order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
         dietitians = appointment.available_dietitians
         @appointments_no_dietitian[appointment] = dietitians
       end

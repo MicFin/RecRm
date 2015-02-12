@@ -3,7 +3,7 @@
     <div id="wrapper">
       <ul class="navigation">
         <li class="nav-item"><a id="edit-family-button" href="#" data-appt-id="<%=@appointment.id%>">Family Info</a></li>
-        <li class="nav-item"><a id="tool-notes" href="#" data-appt-id="<%=@appointment.id%>">Notes</a></li>
+<!--         <li class="nav-item"><a id="tool-notes" href="#" data-appt-id="<%#=@appointment.id%>">Notes</a></li> -->
       </ul>
       <input type="checkbox" id="nav-trigger" class="nav-trigger" />
       <label id="nav-label" for="nav-trigger"></label>
@@ -15,7 +15,7 @@
               <h3>Select a tool from the left</h3>
             </div>
             <div id="tool-notes-container" class="tool-box-item hidden">
-              <%= render "/appointments/notes_form" %>
+              <%#= render "/appointments/notes_form" %>
             </div>
         </div>
         <div id="left-user-tabs" class="col-xs-3">

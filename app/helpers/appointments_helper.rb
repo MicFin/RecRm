@@ -13,9 +13,9 @@ module AppointmentsHelper
       @upcoming_appointments << appointment
     end
     @upcoming_appointments = @upcoming_appointments.group_by{|appointment|  [appointment.start_time.to_date, appointment.start_time.strftime("%I:%M%p")] }
-    @next_appointment = current_dietitian.appointments.where(start_time: 30.minutes.ago..1.hours.from_now).last
+    # @next_appointment = current_dietitian.appointments.where(start_time: 30.minutes.ago..1.hours.from_now).last
     
-    # @next_appointment = current_dietitian.appointments.last
+    @next_appointment = current_dietitian.appointments.last
     if @next_appointment != nil  
       family = @next_appointment.appointment_host.head_of_families.last 
       family.health_groups_names = family.health_groups.map(&:name)

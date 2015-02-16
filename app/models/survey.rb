@@ -98,8 +98,8 @@ class Survey < ActiveRecord::Base
       new_survey.surveyable_type = "Appointment"
       new_survey.user = client
       new_survey.save
-      Question.new(position: 1, tier: 1, content: "Did you enjoy this survey?", question_type: "Radio", survey_group: "Post-Appointment-Client", survey_group_question_id: 1, choices: "Yes, No", survey_id: new_survey.id).save
-      Question.new(position: 2, tier: 2, content: "Please explain what you enjoyed about this experience.", question_type: "Response", survey_group: "Post-Appointment-Client", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
+      Question.new(position: 1, tier: 1, content: "Did you enjoy this appointment?", question_type: "Radio", survey_group: "Post-Appointment-Client", survey_group_question_id: 1, choices: "Yes, No", survey_id: new_survey.id).save
+      Question.new(position: 2, tier: 2, content: "Please explain what you liked or disliked about this experience.", question_type: "Response", survey_group: "Post-Appointment-Client", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
       Question.new(position: 3, tier: 1, content: "Did you accomplish your #1 goal?", question_type: "Response", survey_group: "Post-Appointment-Client", survey_group_question_id: 3, choices: "", survey_id: new_survey.id).save
       Question.new(position: 4, tier: 1, content: "Did you address your 3 biggest challenges?", question_type: "Response", survey_group: "Post-Appointment-Client", survey_group_question_id: 4, choices: "", survey_id: new_survey.id).save
       new_survey.save

@@ -235,18 +235,61 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/end_appointment
   def end_appointment
 
-   if current_user 
+    if current_user 
 
-    # if a user
-    @survey = Survey.generate_for_post_appointment(@appointment, current_user)
-    # return user end of apt survey
-   else
+      # if a user
+      @survey = Survey.generate_for_post_appointment(@appointment, current_user)
+      # return user end of apt survey
+    else
+      # else a dietitian
+      #  dietitian end of appointment survey
+      @survey = Survey.generate_for_post_appointment(@appointment, current_dietitian)
+      @appointment.status = "Complete"
+      @appointment.save
+      # @user_pre_appt_survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
+      # # @follow_up = Survey.generate_for_follow_up(@appointment)
+      # # mark appointment as complete, timestamp ending time, save length
+      # @appointment.status = "Complete"
+      # @appointment.save
 
-    @survey = Survey.generate_for_post_appointment(@appointment, current_dietitian)
-    # else a dietitian
-    # mark appointment as complete, timestamp ending time, save length
-    # return dietitian end of appointment survey
-   end
+      # @client = @appointment.appointment_host
+      # # set @family before get_family_info
+
+      # @family = @client.head_of_families.first
+      # # get_family_info!
+      # # @family_members
+      # # @family
+      # # create family should be a helper method on the family model
+      # @family_members = []
+      # if @appointment.patient_focus 
+      #   appointment_focus = @appointment.patient_focus
+      #   @family_members << appointment_focus
+      # end
+      # family_count = @family.users.count
+      
+      # if family_count > 0
+      #   if @client != appointment_focus
+      #     @family_members << @client
+      #     @family.users.each do |family_member| 
+      #       if family_member != appointment_focus
+      #         @family_members << family_member 
+      #       end
+      #     end
+      #   else
+      #     @family.users.each do |family_member|
+      #         @family_members << family_member
+      #     end
+      #   end
+      # else
+      #   @family_members << @client
+      # end
+      # get_patient_groups!
+      # @diseases = @diseases 
+      # @intolerances = @intolerances 
+      # @allergies = @allergies
+      # @diets =  @diets 
+      # @unverified_health_groups = @family_members[0].unverified_health_groups
+    end
   end
 
   # DELETE /appointments/1

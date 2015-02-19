@@ -1,6 +1,7 @@
 class SurveysController < ApplicationController
   before_filter :load_surveyable, only: [:index, :new, :create, :show]
   before_action :set_survey, only: [:edit, :update]
+  include PatientGroupsHelper
 
   def index
     @surveys = @surveyable.surveys
@@ -86,10 +87,53 @@ class SurveysController < ApplicationController
     update_questions_with_answers(params[:questions])
     respond_to do |format|
       if @survey.update(survey_params)
+        @surveyable = @survey.surveyable
         @survey_type = @survey.survey_type
         @user_id = params[:user_id]
         @user = current_dietitian || current_user
+        
+        if @survey.survey_type == "Post-Appointment-Dietitian"
+          @follow_up = Survey.generate_for_follow_up(@surveyable)
+          @appointment= @surveyable
+          @user_pre_appt_survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
+          @dietitian_pre_appt_survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).last.questions.order("position")
+          @client = @appointment.appointment_host
+          # set @family before get_family_info
 
+          @family = @client.head_of_families.first
+          # get_family_info!
+          # @family_members
+          # @family
+          # create family should be a helper method on the family model
+          @family_members = []
+          if @appointment.patient_focus 
+            appointment_focus = @appointment.patient_focus
+            @family_members << appointment_focus
+          end
+          family_count = @family.users.count
+          
+          if family_count > 0
+            if @client != appointment_focus
+              @family_members << @client
+              @family.users.each do |family_member| 
+                if family_member != appointment_focus
+                  @family_members << family_member 
+                end
+              end
+            else
+              @family.users.each do |family_member|
+                  @family_members << family_member
+              end
+            end
+          else
+            @family_members << @client
+          end
+          get_patient_groups!
+          @diseases = @diseases 
+          @intolerances = @intolerances 
+          @allergies = @allergies
+          @diets =  @diets 
+        end
         if current_user 
           format.html { redirect_to user_dashboard_path, notice: 'survey was successfully updated.' }
         else

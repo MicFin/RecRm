@@ -1,16 +1,81 @@
 $("#new-user-options form").remove();
 
-<% if @survey_type == "User-Food" %>
-	$.ajax({
-     type: "GET",
-     datatype: "script",
-     data: {survey_type: "User-Life", id: <%=@user_id%>},
-     url: "/users/<%=@user_id%>/surveys/new",
-     success: function(response){
-     	 $(".active-tab").removeClass("active-tab");
-     	 $("#family-member-life-button").parent().addClass("active-tab");
-     } 
- 	})
+<% if @survey_type == "Post-Appointment-Dietitian" %>
+
+  $('#userSessionSurveyModal').modal("hide");
+
+  $('#userSessionSurveyModal').remove();
+
+  $("body").append("<%= j render(:partial => '/rooms/session_surveys/follow_up_survey') %>");
+  var collapse = 
+    '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">' +
+      '<div class="panel panel-default">' +
+        '<div class="panel-heading" role="tab" id="headingOne">' +
+          '<h4 class="panel-title">' +
+            '<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">' +
+              "Client Family" +
+            '</a>' +
+          '</h4>' +
+        '</div>' +
+        '<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">' +
+          '<div class="panel-body">' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="panel panel-default">' +
+        '<div class="panel-heading" role="tab" id="headingTwo">' +
+          '<h4 class="panel-title">' +
+            '<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">' +
+              "Prep Work" +
+            '</a>' +
+          '</h4>' +
+        '</div>' +
+        '<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">' +
+          '<div class="panel-body">' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="panel panel-default">' +
+        '<div class="panel-heading" role="tab" id="headingThree">' +
+          '<h4 class="panel-title">' +
+            '<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">' +
+              'Your Notes' +
+            '</a>' +
+          '</h4>' +
+        '</div>' +
+        '<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">' +
+          '<div class="panel-body">' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  $(".modal-body").append("<div id='follow-up-information-container' class='col-xs-6'>"+collapse+"</div><div id='follow-up-survey-container' class='col-xs-6'></div>");
+  $("#follow-up-survey-container").append("<%= j render(:partial => '/surveys/survey_templates/dietitian_follow_up', :locals => { :surveyable=> @surveyable, :survey=> @follow_up}) %>");
+
+  $('#userSessionSurveyModal').modal();
+  $("#collapseOne .panel-body").append("<%= j render(:partial => '/appointments/prep') %>");
+  $("#collapseTwo .panel-body").append("<%= j render(:partial => '/surveys/survey_templates/dietitian_pre_appt_survey_view') %>");
+  $("#collapseThree .panel-body").append("<%= j render(:partial => '/surveys/survey_templates/dietitian_appt_notes_view') %>");
+
+    $(".modal-content, .modal-dialog").css("height","1100px");
+    $(".modal-dialog").css("width","95%");
+  $(".modal-backdrop").first().remove();
+
+
+$(".family-member-health-preview").on("click", function(e){
+            e.preventDefault();
+            var family_member_id = $(this).data("family-member-id");
+            // hide all info containers //
+            $(".family-member-health-container").addClass("hidden");
+            // remove selected-family-member class from all
+            $(".family-member-health-preview").removeClass("selected-family-member");
+            // add to selected
+            $("#family-member-"+family_member_id).addClass("selected-family-member"); 
+            // show new family members info  
+            $("#family-member-health-"+family_member_id).removeClass("hidden");
+            // remove active tab
+            $(".active-tab").removeClass("active-tab");
+          });
 <% elsif @survey_type == "User-Life" %>
   $.ajax({
      type: "GET",

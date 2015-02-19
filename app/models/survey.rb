@@ -121,4 +121,16 @@ class Survey < ActiveRecord::Base
     return new_survey
   end
 
+  def self.generate_for_follow_up(appointment)
+    new_survey = Survey.new(survey_type: "Follow-Up")
+    new_survey.surveyable_id = appointment.id
+    new_survey.surveyable_type = "Appointment"
+    client = appointment.appointment_host
+    new_survey.user = client
+    new_survey.save
+    Question.new(position: 1, tier: 1, content: "Write the assessment that will be sent to #{client.first_name} #{client.last_name}:", question_type: "Response", survey_group: "Follow-Up", survey_group_question_id: 1, choices: "", survey_id: new_survey.id).save
+    Question.new(position: 2, tier: 1, content: "Prepare an assessment to send to your client's physician:", question_type: "Response", survey_group: "Follow-Up", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
+    new_survey.save 
+    return new_survey
+  end
 end

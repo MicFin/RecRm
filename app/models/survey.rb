@@ -50,8 +50,8 @@ class Survey < ActiveRecord::Base
         new_survey.surveyable_type = "Appointment"
         new_survey.user = client_or_dietitian
         new_survey.save
-        Question.new(position: 1, tier: 1, content: "What are your top THREE nutritional challenges for your child or family?", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 1, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 2, tier: 2, content: "What is the ONE thing that you would really like to accomplish during this session?", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
+        Question.new(position: 1, tier: 1, content: "What are the top 3 nutritional challenges for your child or family?", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 1, choices: "", survey_id: new_survey.id).save
+        Question.new(position: 2, tier: 2, content: "What is the 1 thing that you would really like to accomplish during this session?", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
         Question.new(position: 3, tier: 1, content: "What did #{appointment.patient_focus.first_name} eat and drink yesterday? (this snapshot, even if not a typical day, is important)", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 3, choices: "", survey_id: new_survey.id).save
         Question.new(position: 4, tier: 1, content: "Please share any other information that is important for understanding #{appointment.patient_focus.first_name}'s nutrition.", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 4, choices: "", survey_id: new_survey.id).save
         Question.new(position: 5, tier: 1, content: "It is important for our team to stay connected with your doctors to keep your care coordinated.  Please provide the name, practice or hospital and phone number of #{appointment.patient_focus.first_name}'s doctor.", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 5, choices: "", survey_id: new_survey.id).save
@@ -100,8 +100,9 @@ class Survey < ActiveRecord::Base
       new_survey.save
       Question.new(position: 1, tier: 1, content: "Did you enjoy this appointment?", question_type: "Radio", survey_group: "Post-Appointment-Client", survey_group_question_id: 1, choices: "Yes, No", survey_id: new_survey.id).save
       Question.new(position: 2, tier: 2, content: "Please explain what you liked or disliked about this experience.", question_type: "Response", survey_group: "Post-Appointment-Client", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
-      Question.new(position: 3, tier: 1, content: "Did you accomplish your #1 goal?", question_type: "Response", survey_group: "Post-Appointment-Client", survey_group_question_id: 3, choices: "", survey_id: new_survey.id).save
-      Question.new(position: 4, tier: 1, content: "Did you address your 3 biggest challenges?", question_type: "Response", survey_group: "Post-Appointment-Client", survey_group_question_id: 4, choices: "", survey_id: new_survey.id).save
+      Question.new(position: 3, tier: 1, content: "Did we address your 3 biggest challenges?", question_type: "Response", survey_group: "Post-Appointment-Client", survey_group_question_id: 3, choices: "", survey_id: new_survey.id).save
+      Question.new(position: 4, tier: 1, content: "Are there any other resources that you would like us to share or research for you?", question_type: "Response", survey_group: "Post-Appointment-Client", survey_group_question_id: 4, choices: "", survey_id: new_survey.id).save
+      Question.new(position: 5, tier: 1, content: "Is there anything that we did not cover that you would like more guidance with?", question_type: "Response", survey_group: "Post-Appointment-Client", survey_group_question_id: 4, choices: "", survey_id: new_survey.id).save      
       new_survey.save
     else
       dietitian = client_or_dietitian

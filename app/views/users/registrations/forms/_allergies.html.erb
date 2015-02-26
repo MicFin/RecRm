@@ -1,5 +1,5 @@
       	<div class="col-xs-12 form-group text-left">
-       		<label>Nutrition Needs:</label>
+       		<label class="form-group">Nutrition Needs:</label>
 	        <div id="nutrition-checkboxes" class="col-xs-12">
             <label class="checkbox col-xs-4 select-allergen-box">
               <input class="check_boxes optional display-more-checkbox" type="checkbox">Food Allergies or Intolerances
@@ -54,7 +54,7 @@
             <hr class="health-group-break-point">
           </div>
 	       	<div class="col-xs-12">
-          
+            <label class="form-group">Dietary Preferences:</label>
 	       		<%= f.association :patient_groups, as: :check_boxes, collection: @diets, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
             
     				<% if (@unverified_health_groups && (@unverified_health_groups.count >= 1)) %>

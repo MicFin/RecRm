@@ -14,7 +14,7 @@ class PatientGroup < ActiveRecord::Base
         allergies << allergy
       end
     end
-    return allergies
+    return allergies.sort_by{|word| word.order}
   end
 
   # returns all Patient Groups with the category allergy 

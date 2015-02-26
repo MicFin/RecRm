@@ -1,6 +1,7 @@
 <!-- Set variables for end_appointment.js.erb call -->
 
-<% if surveyable %>
+<% if (defined?(surveyable)).nil? %>
+<% else %>
   <% @surveyable = surveyable %>
 <% end %>
 
@@ -8,7 +9,8 @@
   <% @survey = @dietitian_survey %>
 <% end %>
 
-<% if survey %>
+<% if (defined?(survey)).nil? %>
+<% else %>
   <% @survey = survey %>
 <% end %>
 

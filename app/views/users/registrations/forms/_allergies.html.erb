@@ -20,19 +20,32 @@
               <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["Diabetes"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["Diabetes"].id%>"><%=@patient_groups["Diabetes"].name%>
             </label>
 	        </div>
+          <div id="add-group-to-list-container" class="col-xs-12">
+            <div class="col-xs-4">
+              <label>Add Another</label>
+            </div>
+            <input id="new-health-group-field" type="text" placeholder="Autism" class="form-control-4"/><button id="new-health-group-button" class="btn btn-sm btn-warning">Add</button>
+          </div>
           <div class="additional-checkboxes hidden">
             <div class="col-xs-12">
               <hr class="health-group-break-point">
             </div>
   	        <div class="col-xs-12 form-group">
-              <%= f.association :patient_groups, as: :check_boxes, collection: @allergies, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
-  	          <%= f.association :patient_groups, as: :check_boxes, collection: @intolerances, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+              <div id="allergies-list-container" class="col-xs-12 form-group">
+                <%= f.association :patient_groups, as: :check_boxes, collection: @allergies, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+              </div>
+              <div id="more-allergens-field-container" class="col-xs-12 form-group hidden">
+                <input id="new-allergy-group-field" type="text" placeholder="Blueberries" class="form-control-4 col-xs-offset-4"/><button id="new-allergy-group-button" class="btn btn-sm btn-warning">Add</button>
+              </div>
+              <div class="col-xs-12 form-group">
+  	            <%= f.association :patient_groups, as: :check_boxes, collection: @intolerances, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+              </div>
             </div>
             <div class="col-xs-12">
               <hr class="health-group-break-point">
             </div>
             <div class="col-xs-12 form-group">
-              <label>Easier to say what <%=@family_members[0].first_name %> <u>can</u> eat?</label>
+              <label>Is it easier to say what <%=@family_members[0].first_name %> <u>can</u> eat?</label>
               <textarea class="form-control form-group" placeholder="Nutrition can be complicated and we know that first hand.  Use this space if it's simpler to say what foods are safe than what foods are not safe." name="user[family_note]" rows="4"></textarea>
   	       	</div>
           </div>
@@ -49,12 +62,5 @@
     						<label class='checkbox col-xs-4 select-allergen-box'><input class='check_boxes optional' name='user[patient_group_ids][]' type='checkbox' value='<%=health_group.id%>' checked><%=health_group.name%></label>
     					<% end %>
     				<% end %>
-    			</div>
-    			<div id="add-group-to-list-container" class="col-xs-12">
-            <div class="col-xs-4">
-    				  <label>Add Another</label>
-              <p>(one at a time please)</p>
-            </div>
-    				<input id="new-health-group-field" type="text" placeholder="Autism" class="form-control-4"/><button id="new-health-group-button" class="btn btn-sm btn-warning">Add</button>
     			</div>
       	</div>

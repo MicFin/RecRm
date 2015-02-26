@@ -35,7 +35,7 @@
 			     		<%= label_tag :birth_date, "Birth Date:" %>
 			     	</div>
 			     	<div class="col-xs-10">
-			      	<%= f.date_select :date_of_birth, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: 1910}, {:class => "form-control-3"} %>
+			      	<%= f.date_select :date_of_birth, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: 1910, order: [:month, :day, :year]}, {:class => "form-control-3"} %>
 			    	</div>
 			    </div>
 			    <div class="row form-group">
@@ -78,7 +78,7 @@
 		      </div>
 		      <div class="row">
 				  	<div class="col-xs-2">
-			     		<%= label_tag :sex, "Sex:" %>
+			     		<%= label_tag :sex, "Gender:" %>
 			     	</div>
 			     	<div class="col-xs-10">
 		        	<%= f.input :sex, :collection => [["Female", "Female"], ["Male", 'Male']], :label_method => :last, :value_method => :first ,as: :radio_buttons, :item_wrapper_class => 'radio-inline', label: false %>

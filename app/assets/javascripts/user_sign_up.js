@@ -26,12 +26,34 @@ var UserSignUp = {
     $("#introModal").modal("toggle");
   },
   family_buttons: function(){
-    $(".select-allergen-box").on("click", function(){
-      $(".additional-checkboxes").removeClass("hidden");
+    $(".display-more-checkbox").on("click", function(){
+      if (  ( $(this).is(":checked") ) ||  ( $(".display-more-checkbox").is(":checked") ) ) { 
+        if ($(".additional-checkboxes").hasClass("hidden")) {
+          $(".additional-checkboxes").hide();
+          $(".additional-checkboxes").removeClass("hidden");
+          $(".additional-checkboxes").slideDown("slow");
+        }      
+      } else {
+        $(".additional-checkboxes").fadeOut("slow");
+        $(".additional-checkboxes").slideUp("slow");
+        $(".additional-checkboxes").hide("slow");
+        $(".additional-checkboxes").addClass("hidden");
+      }
     });
     $("#family-member-list").children().first().addClass("selected-family-member");
     $("#family-member-list .family-member:not(:first-child)").addClass("unselected-family-member");
     $(".selected-family-member a").hide();
+    $("#user_patient_group_ids_15").on("click", function(e){
+      e.preventDefault();
+      $("#more-allergens-field-container").removeClass("hidden");
+      $("#new-allergy-group-button").on("click", function(e){
+        e.preventDefault();
+        var group_name = $("#new-allergy-group-field").val();
+        $("#allergies-list-container").children().children().append(
+          "<label class='checkbox col-xs-4 select-allergen-box'><input class='check_boxes optional' name='new_health_groups[]' type='checkbox' value='"+group_name+"' checked>"+group_name+"</label>");
+        $("#new-allergy-group-field").val("");
+      });
+    })
   },
   set_nutrition_intro_modal: function(){
     $("#nutritionIntroModal").modal("toggle");

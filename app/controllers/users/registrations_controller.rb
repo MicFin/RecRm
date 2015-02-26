@@ -75,7 +75,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     get_patient_groups!
     @diseases = @diseases 
     @intolerances = @intolerances 
-    @allergies = @allergies
+    @allergies = @allergies_with_other
     @diets =  @diets
     @patient_groups 
 

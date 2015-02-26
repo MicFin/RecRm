@@ -536,7 +536,7 @@
             number: "Number between 1 and 16"
           },
           "user[sex]":{
-            required: "Select sex"
+            required: "Select gender"
           },
           "user[family_role]":{
             required: "How are you related?",

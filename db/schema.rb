@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141212232218) do
+ActiveRecord::Schema.define(version: 20150305225137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,7 +89,6 @@ ActiveRecord::Schema.define(version: 20141212232218) do
     t.string   "stripe_card_token"
     t.integer  "regular_price"
     t.integer  "invoice_price"
-    t.string   "type"
     t.integer  "duration"
     t.text     "other_note"
     t.integer  "time_slot_id"

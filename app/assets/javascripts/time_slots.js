@@ -30,8 +30,10 @@ var SelectApptCalendar = {
             datatype: "script",
             url: "/appointments/new_appointment_request_times",
             success: function(response){
-              $('#datetimepicker-appt-request-1, #datetimepicker-appt-request-2, #datetimepicker-appt-request-3').datetimepicker({ dateFormat: 'D, dd M yy' });
-            } 
+              $('.datetimepicker-appt-request').datetimepicker({ 
+                  format: "MM/DD/YY h:mm a",
+                  sideBySide: true });
+            }
           });
     });
     var start_date = new Date(); 

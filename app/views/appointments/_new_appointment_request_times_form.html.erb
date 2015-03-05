@@ -19,7 +19,7 @@
           <div class="col-xs-6">
             <div class="form-group">
               <h5>Start Time</h5>
-                <div class='input-group date' id='datetimepicker-appt-request-1'>
+                <div class='input-group date datetimepicker-appt-request'>
                     <input type="datetime" name="appointment[1][start_time]" class="form-control" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -29,7 +29,7 @@
           <div class="col-xs-6">
             <div class="form-group">
               <h5>End Time</h5>
-                <div class='input-group date' id='datetimepicker-appt-request-2'>
+                <div class='input-group date datetimepicker-appt-request'>
                     <input type="datetime" name="appointment[1][end_time]" class="form-control" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -42,7 +42,7 @@
           <div class="col-xs-6">
             <div class="form-group">
               <h5>Start Time</h5>
-                <div class='input-group date' id='datetimepicker-appt-request-1'>
+                <div class='input-group date datetimepicker-appt-request'>
                     <input type="datetime" name="appointment[2][start_time]" class="form-control" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -52,7 +52,7 @@
           <div class="col-xs-6">
             <div class="form-group">
               <h5>End Time</h5>
-                <div class='input-group date' id='datetimepicker-appt-request-2'>
+                <div class='input-group date datetimepicker-appt-request'>
                     <input type="datetime" name="appointment[2][end_time]" class="form-control" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -65,7 +65,7 @@
           <div class="col-xs-6">
             <div class="form-group">
               <h5>Start Time</h5>
-                <div class='input-group date' id='datetimepicker-appt-request-1'>
+                <div class='input-group date datetimepicker-appt-request'>
                     <input type="datetime" name="appointment[3][start_time]" class="form-control" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -75,7 +75,7 @@
           <div class="col-xs-6">
             <div class="form-group">
               <h5>End Time</h5>
-                <div class='input-group date' id='datetimepicker-appt-request-2'>
+                <div class='input-group date datetimepicker-appt-request'>
                     <input type="datetime" name="appointment[3][end_time]" class="form-control" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -86,7 +86,7 @@
       </div>
       <div class="modal-footer">
         <div class="actions">
-          <%= f.button :submit, "Assign KRDN", class: "btn btn-success btn-block" %>
+          <%= f.button :submit, "Submit Appointment Request", class: "btn btn-success btn-lg" %>
         </div>
       </div>
       <% end %>

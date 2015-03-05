@@ -52,16 +52,20 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments/new_appointment_request_times
   def create_appointment_request_times
+    binding.pry
     @appointment_requests =[]
+    patient_focus = current_user.appointment_hosts.last.patient_focus
+    current_user.appointment_hosts.last.destroy
     params[:appointment].each do |key, value_hash|
       value_hash["start_time"] = value_hash["start_time"].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
       value_hash["end_time"] = value_hash["end_time"].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
       appointment = Appointment.new(value_hash)
       appointment.appointment_host = current_user
-      appointment.patient_focus = current_user.appointment_hosts.last.patient_focus
+      appointment.patient_focus = patient_focus
       appointment.status = "Requested"
       appointment.duration = 60
       appointment.save
+      binding.pry
       @appointment_requests << appointment
     end
     respond_to do |format|

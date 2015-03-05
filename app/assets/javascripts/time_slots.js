@@ -23,6 +23,17 @@ var TimeSlotCalendar = {
 
 var SelectApptCalendar = {
   set: function(){
+    $("#request-appt-times").on("click", function(e){
+      e.preventDefault();
+          $.ajax({
+            type: "GET",
+            datatype: "script",
+            url: "/appointments/new_appointment_request_times",
+            success: function(response){
+              $('#datetimepicker-appt-request-1, #datetimepicker-appt-request-2, #datetimepicker-appt-request-3').datetimepicker({ dateFormat: 'D, dd M yy' });
+            } 
+          });
+    });
     var start_date = new Date(); 
     start_date.setDate( start_date.getDate() + 0 );
     var start_day = start_date.getDay();

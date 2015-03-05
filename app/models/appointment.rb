@@ -1,3 +1,23 @@
+# APPOINTMENT SCHEMA     
+    # t.integer  "patient_focus_id"
+    # t.integer  "appointment_host_id"
+    # t.integer  "dietitian_id"
+    # t.integer  "room_id"
+    # t.text     "note"
+    # t.text     "client_note"
+    # t.datetime "created_at"
+    # t.datetime "updated_at"
+    # t.datetime "start_time"
+    # t.datetime "end_time"
+    # t.string   "stripe_card_token"
+    # t.integer  "regular_price"
+    # t.integer  "invoice_price"
+    # t.string   "type"
+    # t.integer  "duration"
+    # t.text     "other_note"
+    # t.integer  "time_slot_id"
+    # t.string   "status"
+    
 class Appointment < ActiveRecord::Base
   attr_accessor :family_info
   attr_accessor :prepped 
@@ -8,7 +28,6 @@ class Appointment < ActiveRecord::Base
   belongs_to :time_slot
   has_many :surveys, :as => :surveyable
   
-
   def prep_complete?
     if self.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).count > 0
       return true

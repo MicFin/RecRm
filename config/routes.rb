@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       get 'appointments/:id/select_time', to: 'appointments#select_time', as: 'select_time'
       get 'appointments/:id/complete_appt_prep_survey', to: 'appointments#complete_appt_prep_survey', as: 'user_complete_appt_prep_survey'
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_user_appointment'
+      get 'appointments/new_appointment_request_times', to: 'appointments#new_appointment_request_times', as: 'new_appointment_request_times'
+      post 'appointments/create_appointment_request_times', to: 'appointments#create_appointment_request_times', as: 'create_appointment_request_times'
       resources :appointments do 
         resources :surveys do 
           resources :questions 

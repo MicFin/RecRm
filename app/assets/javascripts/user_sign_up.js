@@ -66,7 +66,7 @@ var UserSignUp = {
       $(".sign-up-step-1").removeClass("active").addClass("complete");
       $(".sign-up-step-2").removeClass("disabled").addClass("complete");
       $(".sign-up-step-3").removeClass("disabled").addClass("complete");
-    } else if (pathname.search("/select_time") >= 0 || sign_up_stage === 2){
+    } else if (pathname.search("/select_time") >= 0 || sign_up_stage === 3){
       $(".sign-up-step-1").removeClass("active").addClass("complete");
       $(".sign-up-step-2").removeClass("disabled").addClass("active");  
     } else if (sign_up_stage === 3){

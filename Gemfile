@@ -55,7 +55,6 @@ gem 'jquery-ui-rails', "4.2.1"
 # gem "paperclip", github: 'thoughtbot/paperclip'
 ## storing images in aws s3 bucket
 # gem 'aws-sdk'
-## for datepickers
 
 # http://railscasts.com/episodes/253-carrierwave-file-uploads?view=asciicast
 gem 'carrierwave', "0.10.0"

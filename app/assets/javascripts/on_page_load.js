@@ -80,10 +80,10 @@ $(document).ready(function() {
 	};
 
 	var pathname = window.location.pathname;
-  if (pathname.search("/home") >= 0) {
+  // if (pathname.search("/home") >= 0) {
 		// landing page one page slide
 		JqueryFullpage.adjustBody();
 		JqueryFullpage.run();
-	}
+	// }
 
 });

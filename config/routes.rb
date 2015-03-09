@@ -157,7 +157,7 @@ Rails.application.routes.draw do
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_dietitian_room, :via => :get
     end
     unauthenticated :dietitian do
-      root :to => "devise/sessions#new", as: :dietitian_unauthenticated_root
+      root :to => "home#index", as: :dietitian_unauthenticated_root
     end   
   end
   

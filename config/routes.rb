@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   
   get 'welcome/index', to: "welcome#index", as: "welcome"
-  get 'home', to: 'home#index', as: 'home'
+  get '#Ta10lI8839dA&mi', to: 'home#index', as: 'landing_page'
 
 
   devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions' }
@@ -157,7 +157,7 @@ Rails.application.routes.draw do
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_dietitian_room, :via => :get
     end
     unauthenticated :dietitian do
-      root :to => "home#index", as: :dietitian_unauthenticated_root
+      root :to => "devise/sessions#new", as: :dietitian_unauthenticated_root
     end   
   end
   

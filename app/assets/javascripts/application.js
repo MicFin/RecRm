@@ -23,7 +23,7 @@
 //= require jquery.ui.draggable
 //= require jquery.ui.resizable
 //= require jquery.Jcrop
-
+//= require jquery-fullpage-min
 //= require moment
 //= require bootstrap
 //= require bootstrap-datetimepicker

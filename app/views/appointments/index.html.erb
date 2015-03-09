@@ -34,6 +34,42 @@
 <% end %>
   </div>
 
+<div class="col-xs-12 form-group">
+    <h1>Appointment Requests</h1>
+  </div>
+<% if @appointment_requests.count > 0 %>
+  <div class="col-xs-10 col-xs-offset-1">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Request Made</th>
+          <th>Client</th>
+          <th>Dietitian</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @appointment_requests.each do |client, appointments_array| %>
+
+          <tr class="appt-id" data-appt-id="<%=appointments_array[0].id%>">
+            <td><%= appointments_array[0].created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+            <td><%= appointments_array[0].appointment_host.first_name%> <%= appointments_array[0].appointment_host.last_name%></td>
+            <td><a class="assign-appointment-request" href="#">Review & Assign</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <div class="form-group">
+      <ul >
+        <li>
+          <p>No appointment requests</p>
+        </li>
+      </ul>
+    </div>
+<% end %>
+  </div>
+
 
 <h1>Upcoming appointments</h1>
 

@@ -4,7 +4,6 @@ class CreateRooms < ActiveRecord::Migration
       t.string :name
       t.string :sessionId
       t.boolean :public
-
       t.timestamps
     end
   end

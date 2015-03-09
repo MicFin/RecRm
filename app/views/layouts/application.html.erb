@@ -32,7 +32,8 @@
 		<% elsif current_dietitian %>
 			<%= render "/layouts/current_dietitian_layout" %>
 		<% else %>
-			<%= render "/layouts/not_signed_in_layout" %>
+			<%#= render "/layouts/not_signed_in_layout" %>
+      <%= yield %>
 		<% end %>
 
 <!-- FOOTER -->

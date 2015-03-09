@@ -11,7 +11,21 @@ var AppointmentsIndex = {
 				success: function(response){
 				} 
 			})
-		})
+		});
+    $(".assign-appointment-request").on("click", function(e){
+      e.preventDefault();
+      var appt_id = $(this).closest(".appt-id").data("appt-id");
+      var data = {data: "Request"};
+      $.ajax({
+        type: "GET",
+        datatype: "script",
+        data: data,
+        url: "/appointments/"+appt_id,
+        success: function(response){
+        } 
+      })
+    });
+
 	}
 }
 

@@ -15,13 +15,21 @@ class AppointmentsController < ApplicationController
       @appointments = dietitian.appointments.order('start_time ASC, created_at ASC')
     else
       @appointments_no_dietitian = {}
+      @appointment_requests = {}
       # Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
       #   dietitians = appointment.available_dietitians
       #   @appointments_no_dietitian[appointment] = dietitians
       # end
       Appointment.where("start_time > ?", DateTime.now - 1.days).order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
-        dietitians = appointment.available_dietitians
-        @appointments_no_dietitian[appointment] = dietitians
+        if appointment.status == "Requested"
+          if !@appointment_requests.has_key?(appointment.appointment_host)
+            @appointment_requests[appointment.appointment_host] = []
+          end
+          @appointment_requests[appointment.appointment_host] << appointment
+        else
+          dietitians = appointment.available_dietitians
+          @appointments_no_dietitian[appointment] = dietitians
+        end
       end
       @upcoming_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
 
@@ -43,7 +51,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new_appointment_request_times
   def new_appointment_request_times
-    binding.pry
+
     @new_appointment = Appointment.new
     respond_to do |format|
       format.js 
@@ -52,7 +60,7 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments/new_appointment_request_times
   def create_appointment_request_times
-    binding.pry
+
     @appointment_requests =[]
     patient_focus = current_user.appointment_hosts.last.patient_focus
     current_user.appointment_hosts.last.destroy
@@ -65,7 +73,7 @@ class AppointmentsController < ApplicationController
       appointment.status = "Requested"
       appointment.duration = 60
       appointment.save
-      binding.pry
+  
       @appointment_requests << appointment
     end
     respond_to do |format|
@@ -137,16 +145,21 @@ class AppointmentsController < ApplicationController
 
   # this is where the index modal is coming from to view the prep information before the admin assigns a dietitian
   def show
-    ### this is being used to prep assign the dietitian 
-    @dietitians = @appointment.available_dietitians
-    @dietitians_data = {}
-    @dietitians.each do |dietitian|
-      @dietitians_data[dietitian] = {}
-      @dietitians_data[dietitian]["half_hour_time_slots_available"] = dietitian.half_hour_time_slots_available
-      @dietitians_data[dietitian]["loss_time_slots"] = dietitian.loss_time_slots(@appointment) 
-      @dietitians_data[dietitian]["loss_cal_slots"] = dietitian.loss_calendar_slots(@appointment)      
+
+    if params[:data] == "Request"
+      
+    else 
+      ### this is being used to prep assign the dietitian 
+      @dietitians = @appointment.available_dietitians
+      @dietitians_data = {}
+      @dietitians.each do |dietitian|
+        @dietitians_data[dietitian] = {}
+        @dietitians_data[dietitian]["half_hour_time_slots_available"] = dietitian.half_hour_time_slots_available
+        @dietitians_data[dietitian]["loss_time_slots"] = dietitian.loss_time_slots(@appointment) 
+        @dietitians_data[dietitian]["loss_cal_slots"] = dietitian.loss_calendar_slots(@appointment)      
+      end
+      @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
     end
-    @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
     respond_to do |format|
       format.js
     end

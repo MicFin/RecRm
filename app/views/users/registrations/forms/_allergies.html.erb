@@ -1,39 +1,46 @@
       	<div class="col-xs-12 form-group text-left">
        		<label class="form-group">Nutrition Needs:</label>
 	        <div id="nutrition-checkboxes" class="col-xs-12">
-            <label class="checkbox col-xs-4 select-allergen-box">
+            <label class="checkbox col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box">
               <input class="check_boxes optional display-more-checkbox" type="checkbox">Food Allergies or Intolerances
             </label>
-            <label class="checkbox col-xs-4 select-allergen-box">
+            <label class="checkbox col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box">
               <input class="check_boxes optional display-more-checkbox" id="user_patient_group_ids_<%=@patient_groups["EoE"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["EoE"].id%>"><%=@patient_groups["EoE"].name%>
             </label>
-             <label class="checkbox col-xs-4 select-allergen-box">
-              <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["IBS"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["IBS"].id%>"><%=@patient_groups["IBS"].name%>
+            <label class="checkbox col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box">
+              <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["Colitis"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["Colitis"].id%>"><%=@patient_groups["Colitis"].name%>
             </label>
-
-            <label class="checkbox col-xs-4 select-allergen-box">
+            <label class="checkbox col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box">
+              <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["Celiac"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["Celiac"].id%>"><%=@patient_groups["Celiac"].name%>
+            </label>
+           <label class="checkbox col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box">
+              <input class="check_boxes optional display-more-checkbox" id="user_patient_group_ids_<%=@patient_groups["FPIES"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["FPIES"].id%>"><%=@patient_groups["FPIES"].name%>
+            </label>
+           <label class="checkbox col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box">
+              <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["Crohns"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["Crohns"].id%>"><%=@patient_groups["Crohns"].name%>
+            </label>
+            <label class="checkbox col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box">
+              <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["Diabetes"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["Diabetes"].id%>"><%=@patient_groups["Diabetes"].name%>
+            </label>
+            <label class="checkbox col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box">
               <input class="check_boxes optional display-more-checkbox" id="user_patient_group_ids_<%=@patient_groups["CSID"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["CSID"].id%>"><%=@patient_groups["CSID"].name%>
             </label>
 
-            <label class="checkbox col-xs-4 select-allergen-box">
-              <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["Crohns"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["Crohns"].id%>"><%=@patient_groups["Crohns"].name%>
+             <label class="checkbox col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box">
+              <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["IBS"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["IBS"].id%>"><%=@patient_groups["IBS"].name%>
             </label>
 
-            <label class="checkbox col-xs-4 select-allergen-box">
-              <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["Celiac"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["Celiac"].id%>"><%=@patient_groups["Celiac"].name%>
-            </label>
-           <label class="checkbox col-xs-4 select-allergen-box">
-              <input class="check_boxes optional display-more-checkbox" id="user_patient_group_ids_<%=@patient_groups["FPIES"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["FPIES"].id%>"><%=@patient_groups["FPIES"].name%>
-            </label>
-            <label class="checkbox col-xs-4 select-allergen-box">
-              <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["Colitis"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["Colitis"].id%>"><%=@patient_groups["Colitis"].name%>
-            </label>
-            <label class="checkbox col-xs-4 select-allergen-box">
-              <input class="check_boxes optional" id="user_patient_group_ids_<%=@patient_groups["Diabetes"].id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=@patient_groups["Diabetes"].id%>"><%=@patient_groups["Diabetes"].name%>
-            </label>
+
+ 
+
+
+
+
+
+
 	        </div>
           <div id="add-group-to-list-container" class="col-xs-12">
-            <div class="col-xs-4">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
               <label>Add Another</label>
             </div>
             <input id="new-health-group-field" type="text" placeholder="Autism" class="form-control-4"/><button id="new-health-group-button" class="btn btn-sm btn-warning">Add</button>
@@ -44,13 +51,13 @@
             </div>
   	        <div class="col-xs-12 form-group">
               <div id="allergies-list-container" class="col-xs-12 form-group">
-                <%= f.association :patient_groups, as: :check_boxes, collection: @allergies, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+                <%= f.association :patient_groups, as: :check_boxes, collection: @allergies, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box" %>
               </div>
               <div id="more-allergens-field-container" class="col-xs-12 form-group hidden">
                 <input id="new-allergy-group-field" type="text" placeholder="Blueberries" class="form-control-4 col-xs-offset-4"/><button id="new-allergy-group-button" class="btn btn-sm btn-warning">Add</button>
               </div>
               <div class="col-xs-12 form-group">
-  	            <%= f.association :patient_groups, as: :check_boxes, collection: @intolerances, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+  	            <%= f.association :patient_groups, as: :check_boxes, collection: @intolerances, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box" %>
               </div>
             </div>
             <div class="col-xs-12">
@@ -68,11 +75,11 @@
         </div>
         <div class="col-xs-12 form-group text-left">
           <label class="form-group">Dietary Preferences:</label>
-          <%= f.association :patient_groups, as: :check_boxes, collection: @diets, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
+          <%= f.association :patient_groups, as: :check_boxes, collection: @diets, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box" %>
           
           <% if (@unverified_health_groups && (@unverified_health_groups.count >= 1)) %>
             <% @unverified_health_groups.each do |health_group| %>
-              <label class='checkbox col-xs-4 select-allergen-box'><input class='check_boxes optional' name='user[patient_group_ids][]' type='checkbox' value='<%=health_group.id%>' checked><%=health_group.name%></label>
+              <label class='checkbox col-xs-6 col-sm-4 col-md-4 col-lg-4 select-allergen-box'><input class='check_boxes optional' name='user[patient_group_ids][]' type='checkbox' value='<%=health_group.id%>' checked><%=health_group.name%></label>
             <% end %>
           <% end %>
         </div>

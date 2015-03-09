@@ -93,7 +93,11 @@ var SelectApptCalendar = {
           var split_date = $(this).text().split(" ");
           var day = split_date[0];
           var date = split_date[1];
-          $(this).html("<p>"+day+"</p><p>"+date+"</p>");
+          if (moment(date).date() === moment(new Date()).date()){
+            $(this).html("<p class='today-title'>TODAY</p><p>"+date+"</p>");
+          }else { 
+            $(this).html("<p>"+day+"</p><p>"+date+"</p>");
+          }
         });
 
       },

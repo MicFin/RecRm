@@ -80,7 +80,7 @@ $(document).ready(function() {
 	};
 
 	var pathname = window.location.pathname;
-  if (pathname.search("/#Ta10lI8839dA&mi") >= 0) {
+  if (pathname.search("/Ta10lI8839dAmi") >= 0) {
 		// landing page one page slide
 		JqueryFullpage.adjustBody();
 		JqueryFullpage.run();

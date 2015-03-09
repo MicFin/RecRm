@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   
   get 'welcome/index', to: "welcome#index", as: "welcome"
-  get '#Ta10lI8839dA&mi', to: 'home#index', as: 'landing_page'
+  get 'Ta10lI8839dAmi', to: 'home#index', as: 'landing_page'
 
 
   devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions' }

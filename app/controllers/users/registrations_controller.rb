@@ -50,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @family_members << appointment_focus
     end
     family_count = @family.users.count
-    
+    binding.pry
     if family_count > 0
 
       if @user != appointment_focus
@@ -363,12 +363,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
           return new_user_family_path(resource)
         end
       else
-        
+        ##### registrations/new_user_intro/# assigns appointment here
         @user = resource
         @family = Family.new(name: "Main Family", head_of_family_id: @user.id)
         @family.save
         @user.add_role "Head of Family", @family
-        
         if params["appoint_self"] == "true"
           @appointment = Appointment.new(appointment_host_id: @user.id, patient_focus_id: @user.id)
         else

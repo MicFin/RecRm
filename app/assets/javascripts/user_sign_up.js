@@ -63,9 +63,11 @@ var UserSignUp = {
     var pathname = window.location.pathname;
     var sign_up_stage = $(".bs-wizard").filter(":first").data("stage");
     if (sign_up_stage === 1) {
+      $(".sign-up-step-1");
+      // $(".sign-up-step-2").removeClass("disabled").addClass("complete");
+      // $(".sign-up-step-3").removeClass("disabled").addClass("complete");
+    } else if (sign_up_stage === 2) {
       $(".sign-up-step-1").removeClass("active").addClass("complete");
-      $(".sign-up-step-2").removeClass("disabled").addClass("complete");
-      $(".sign-up-step-3").removeClass("disabled").addClass("complete");
     } else if (pathname.search("/select_time") >= 0 || sign_up_stage === 3){
       $(".sign-up-step-1").removeClass("active").addClass("complete");
       $(".sign-up-step-2").removeClass("disabled").addClass("active");  

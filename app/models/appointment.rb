@@ -52,9 +52,12 @@ class Appointment < ActiveRecord::Base
 
 
   def stage
+    
     if self.start_time != nil 
+      return 4
+    elsif self.patient_focus.sex != nil && self.start_time == nil
       return 3
-    elsif self.patient_focus != nil
+    elsif self.patient_focus != nil && self.patient_focus.sex ==nil
       return 2
     else
       return 1

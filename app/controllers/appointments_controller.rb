@@ -41,6 +41,8 @@ class AppointmentsController < ApplicationController
   def select_time
     @time_slots = TimeSlot.select_appointment_time_slots 
     @sign_up_stage = @appointment.stage 
+
+    
   end
 
   def complete_appt_prep_survey

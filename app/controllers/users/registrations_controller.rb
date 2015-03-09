@@ -50,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @family_members << appointment_focus
     end
     family_count = @family.users.count
-    binding.pry
+    
     if family_count > 0
 
       if @user != appointment_focus
@@ -79,7 +79,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @allergies = @allergies_with_other
     @diets =  @diets
     @patient_groups 
-    binding.pry
+    
 
     # respond_to do |format|
     #   format.js
@@ -198,7 +198,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @intolerances = @intolerances 
     @allergies = @allergies
     @diets =  @diets  
-    binding.pry
+    
     @unverified_health_groups = @updated_user.unverified_health_groups
     respond_to do |format|
         # # need to redirect somwhere........

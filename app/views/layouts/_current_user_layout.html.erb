@@ -1,8 +1,13 @@
 <div id="user-nav-layout" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="row">
-    <%= image_tag("nav_images/logo.png", id:"navbar-logo") %>
+  	<div class="col-xs-9">
+    	<%= image_tag("nav_images/logo.png", id:"navbar-logo") %>
+    </div>
+    <div class="col-xs-3">
+  		<%= link_to 'SIGN OUT', destroy_user_session_path, :method => :delete, style: "float: right" %>
+  	</div>
   </div>
-  <li><%= link_to 'SIGN OUT', destroy_user_session_path, :method => :delete %></li>
+
   <div id="kindrd-navbar" class="row">
   </div>
 </div>

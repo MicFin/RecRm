@@ -75,9 +75,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     get_patient_groups!
     @diseases = @diseases 
     @intolerances = @intolerances 
+    @patient_groups = @patient_groups
     @allergies = @allergies_with_other
     @diets =  @diets
     @patient_groups 
+    binding.pry
 
     # respond_to do |format|
     #   format.js
@@ -196,6 +198,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @intolerances = @intolerances 
     @allergies = @allergies
     @diets =  @diets  
+    binding.pry
     @unverified_health_groups = @updated_user.unverified_health_groups
     respond_to do |format|
         # # need to redirect somwhere........

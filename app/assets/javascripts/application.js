@@ -30,7 +30,6 @@
 //= require bootstrap-tour-min
 //= require fullcalendar
 
-
 //= require new_recipe_bread_crumb
 //= require health_groups_and_categories_preview
 //= require dietitian_nav
@@ -48,7 +47,7 @@
 //= require appointments_index
 //= require tok_box_main.js
 //= require images
-
+//= require google_analytics
 
 //= require basic_form_validate
 

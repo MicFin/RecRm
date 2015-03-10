@@ -33,6 +33,19 @@ var SelectApptCalendar = {
               $('.datetimepicker-appt-request').datetimepicker({ 
                   format: "MM/DD/YY h:mm a",
                   sideBySide: true });
+              for (var count=1; count <= 3; count++){ 
+                $('input[name="appointment['+count+'][start_time]"]').parent().on("dp.change",function (e) {
+                  debugger;
+                  var requestNum = $(this).children("input").data("request-num");
+                  $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setMinDate(e.date.add(1, "hours"));
+                  $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setDate(e.date.add(1, "hours"));
+                });
+                // $('input[name="appointment['+count+'][end_time]"]').parent().on("dp.change",function (e) {
+                //   var requestNum = $(this).children("input").data("request-num")
+                //   $('input[name="appointment['+requestNum+'][start_time]"]').parent().data("DateTimePicker").setMaxDate(e.date.subtract(1, "hours"));
+                //   $('input[name="appointment['+requestNum+'][start_time]"]').parent().data("DateTimePicker").setDate(e.date.subtract(1, "hours"));
+                // });
+              };
             }
           });
     });

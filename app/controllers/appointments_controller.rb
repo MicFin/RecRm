@@ -65,18 +65,19 @@ class AppointmentsController < ApplicationController
 
     @appointment_requests =[]
     patient_focus = current_user.appointment_hosts.last.patient_focus
-    current_user.appointment_hosts.last.destroy
+    current_user.appointment_hosts.last.status = "In Registration"
     params[:appointment].each do |key, value_hash|
-      value_hash["start_time"] = value_hash["start_time"].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
-      value_hash["end_time"] = value_hash["end_time"].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
-      appointment = Appointment.new(value_hash)
-      appointment.appointment_host = current_user
-      appointment.patient_focus = patient_focus
-      appointment.status = "Requested"
-      appointment.duration = 60
-      appointment.save
-  
-      @appointment_requests << appointment
+      if value_hash["start_time"] != "" 
+        value_hash["start_time"] = value_hash["start_time"].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
+        value_hash["end_time"] = value_hash["end_time"].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
+        appointment = Appointment.new(value_hash)
+        appointment.appointment_host = current_user
+        appointment.patient_focus = patient_focus
+        appointment.status = "Requested"
+        appointment.duration = 60
+        appointment.save
+        @appointment_requests << appointment
+      end
     end
     respond_to do |format|
         format.html { redirect_to user_dashboard_path, notice: 'Appointment requests were successfully sent.' }

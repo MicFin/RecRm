@@ -31,8 +31,10 @@ class User < ActiveRecord::Base
   validates :phone_number, :phony_plausible => true
 
   def sign_up_stage
-    if self.appointment_hosts.count >= 1
-      return self.appointment_hosts.last.stage 
+    
+    if self.appointment_hosts.where(status: "In Registration").count >= 1
+      
+      return self.appointment_hosts.where(status: "In Registration").last.stage 
     else
       return 1
     end

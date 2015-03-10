@@ -26,6 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new_user_intro
     @user = current_user || User.find(params[:id])
     @sign_up_stage = @user.sign_up_stage 
+    
     if @sign_up_stage == 2
       redirect_to new_user_family_path(@user)
     elsif @sign_up_stage == 3
@@ -39,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.find(params[:id])
     @sign_up_stage = @user.sign_up_stage 
     @family = @user.head_of_families.last
-    @appointment = @user.appointment_hosts.last
+    @appointment = Appointment.where(appointment_host_id: @user.id).where(status: "In Registration").last
     # if params[:client_first_name]
     # should create method on family model
     # this gets family members with patient focus first
@@ -352,9 +353,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     
     if resource.class == User 
       ## if they have already created an appointment
-      if resource.appointment_hosts.count >= 1
+      if resource.appointment_hosts.where(status: "In Registration").count >= 1
         ## if they already created the appointment time
-        if resource.appointment_hosts.last.start_time 
+        if resource.appointment_hosts.where(status: "In Registration").last.start_time 
           
         # respond_to do |format|
         #   format.js { render "/users/registrations/update.js.erb" and return }
@@ -372,7 +373,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         @family.save
         @user.add_role "Head of Family", @family
         if params["appoint_self"] == "true"
-          @appointment = Appointment.new(appointment_host_id: @user.id, patient_focus_id: @user.id)
+          @appointment = Appointment.new(appointment_host_id: @user.id, patient_focus_id: @user.id, status: "In Registration")
         else
           @new_user = User.new(first_name: params[:client_first_name], last_name: params[:client_last_name])
           @new_user.add_role "Family Member Account"
@@ -380,7 +381,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           @new_user.save
           @family.users << @new_user
           @family.save
-          @appointment = Appointment.new(appointment_host_id: @user.id, patient_focus_id: @new_user.id)
+          @appointment = Appointment.new(appointment_host_id: @user.id, patient_focus_id: @new_user.id, status: "In Registration")
         end
         @appointment.save
         # if non main user

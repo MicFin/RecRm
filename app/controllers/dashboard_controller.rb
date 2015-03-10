@@ -11,8 +11,8 @@ class DashboardController < ApplicationController
   def home
   # if appointment has been made and scheduled go to dashboard home
     @user = current_user
-    if @user.appointment_hosts.last
-      if @user.appointment_hosts.last.start_time
+    if @user.appointment_hosts.where.not(status: "Requested").last
+      if @user.appointment_hosts.where.not(status: "Requested").last.start_time
 # set variables for dashboard
         @family = @user.head_of_families.last
         @appointment = @user.appointment_hosts.last
@@ -47,11 +47,11 @@ class DashboardController < ApplicationController
         if @survey
           @surveyable = @appointment
         end
-    get_patient_groups!
-    @diseases = @diseases 
-    @intolerances = @intolerances 
-    @allergies = @allergies
-    @diets =  @diets 
+        get_patient_groups!
+        @diseases = @diseases 
+        @intolerances = @intolerances 
+        @allergies = @allergies
+        @diets =  @diets 
         @unverified_health_groups = @family_members[0].unverified_health_groups
         
 # if no appointment has been made goto introduction

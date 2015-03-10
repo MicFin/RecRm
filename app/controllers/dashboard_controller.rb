@@ -11,11 +11,10 @@ class DashboardController < ApplicationController
   def home
   # if appointment has been made and scheduled go to dashboard home
     @user = current_user
-    if @user.appointment_hosts.where.not(status: "Requested").last
-      if @user.appointment_hosts.where.not(status: "Requested").last.start_time
+      if @user.appointment_hosts.where(status: "Paid").last
 # set variables for dashboard
         @family = @user.head_of_families.last
-        @appointment = @user.appointment_hosts.last
+        @appointment = @user.appointment_hosts.where(status: "Paid").last
 # create family should be a helper method on the family model
         @family_members = []
         if @appointment.patient_focus 
@@ -55,9 +54,6 @@ class DashboardController < ApplicationController
         @unverified_health_groups = @family_members[0].unverified_health_groups
         
 # if no appointment has been made goto introduction
-      else 
-        redirect_to new_user_intro_path(@user.id) 
-      end
     else 
       redirect_to new_user_intro_path(@user.id) 
     end

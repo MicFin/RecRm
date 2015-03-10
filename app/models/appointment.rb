@@ -52,7 +52,7 @@ class Appointment < ActiveRecord::Base
 
 
   def stage
-    
+
     if self.start_time != nil 
       return 4
     elsif self.patient_focus.sex != nil && self.start_time == nil
@@ -124,6 +124,7 @@ class Appointment < ActiveRecord::Base
       end
       # save invoice price to appointment
       # self.invoice_price = 8999
+      self.status = "Paid"
       self.invoice_price = 0151
       self.duration = 60
       save!

@@ -92,8 +92,8 @@ class Appointment < ActiveRecord::Base
         begin
           charge = Stripe::Charge.create(
           :customer    => stripe_id,
-          # :amount      => 8999,
-          :amount      => 0151,
+          :amount      => 8999,
+          # :amount      => 0151,
           :description => 'Kindrdfood 1 Hour',
           :currency    => 'usd'
         )
@@ -110,8 +110,8 @@ class Appointment < ActiveRecord::Base
         begin
           charge = Stripe::Charge.create(
           :card        => stripe_card_token,
-          # :amount      => 8999,
-          :amount      => 0151,
+          :amount      => 8999,
+          # :amount      => 0151,
           :description => 'Kindrdfood 1 Hour',
           :currency    => 'usd'
         )
@@ -125,7 +125,7 @@ class Appointment < ActiveRecord::Base
       # save invoice price to appointment
       # self.invoice_price = 8999
       self.status = "Paid"
-      self.invoice_price = 0151
+      self.invoice_price = 8999
       self.duration = 60
       save!
     end

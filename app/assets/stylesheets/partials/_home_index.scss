@@ -152,7 +152,7 @@
 }
 
 .section-3{
-	button{
+	button.sign-up-button{
   	padding: 10px 25px;
   	font-size: 30px;
   	border-radius: 15px;
@@ -198,4 +198,10 @@
     padding-left: 0;
     padding-right: 0;
  }
+}
+
+
+
+#signUpModal .modal-footer {
+	border-top: none;
 }

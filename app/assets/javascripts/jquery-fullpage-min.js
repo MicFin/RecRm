@@ -59,15 +59,23 @@ var JqueryFullpage = {
 		var b=a.find(".fp-slide").eq(c(this).closest("li").index());C(a,b)});d.normalScrollElements&&(c(g).on("mouseenter",d.normalScrollElements,function(){e.setMouseWheelScrolling(!1)}),c(g).on("mouseleave",d.normalScrollElements,function(){e.setMouseWheelScrolling(!0)}));c(".fp-section").on("click touchstart",".fp-controlArrow",function(){c(this).hasClass("fp-prev")?e.moveSlideLeft():e.moveSlideRight()});c(k).resize(qa);var W=n,sa;e.destroy=function(a){e.setAutoScrolling(!1,"internal");e.setAllowScrolling(!1);
 		e.setKeyboardScrolling(!1);f.addClass("fp-destroyed");c(k).off("scroll",aa).off("hashchange",na).off("resize",qa);c(g).off("click","#fp-nav a").off("mouseenter","#fp-nav li").off("mouseleave","#fp-nav li").off("click",".fp-slidesNav a").off("mouseover",d.normalScrollElements).off("mouseout",d.normalScrollElements);c(".fp-section").off("click",".fp-controlArrow");a&&Na()}}})(jQuery,window,document,Math);
 			// inititate
+			
 		$('#fullpage').fullpage({navigation: true});
+		// set links individual sections
 		$(".section-link").on("click", function(e){
 			e.preventDefault();
 			var section = $(this).data("section");
 			$.fn.fullpage.moveTo(section);
-		})
+		});
+		// set sign up buttons to scroll to slide 1 form
 		$(".sign-up-button").on("click", function(e){
 			e.preventDefault();
 			$.fn.fullpage.moveTo(1);
-		})
+		});
+		// set sign up modal buttons to open modal
+		$(".sign-up-modal-button").on("click", function(e){
+			e.preventDefault();
+			$("#signUpModal").modal();
+		});
  	}
 }

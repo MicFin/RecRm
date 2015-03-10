@@ -11,48 +11,48 @@ class DashboardController < ApplicationController
   def home
   # if appointment has been made and scheduled go to dashboard home
     @user = current_user
-      if @user.appointment_hosts.where(status: "Paid").last
+    if @user.appointment_hosts.where(status: "Paid").last
 # set variables for dashboard
-        @family = @user.head_of_families.last
-        @appointment = @user.appointment_hosts.where(status: "Paid").last
+      @family = @user.head_of_families.last
+      @appointment = @user.appointment_hosts.where(status: "Paid").last
 # create family should be a helper method on the family model
-        @family_members = []
-        if @appointment.patient_focus 
-          appointment_focus = @appointment.patient_focus
-          @family_members << appointment_focus
-        end
-        family_count = @family.users.count
-        
-        if family_count > 0
-          if @user != appointment_focus
-            @family_members << @user
-            @family.users.each do |family_member| 
-              if family_member != appointment_focus
-                @family_members << family_member 
-              end
-            end
-          else
-            @family.users.each do |family_member|
-                @family_members << family_member
+      @family_members = []
+      if @appointment.patient_focus 
+        appointment_focus = @appointment.patient_focus
+        @family_members << appointment_focus
+      end
+      family_count = @family.users.count
+      
+      if family_count > 0
+        if @user != appointment_focus
+          @family_members << @user
+          @family.users.each do |family_member| 
+            if family_member != appointment_focus
+              @family_members << family_member 
             end
           end
         else
-          @family_members << @user
+          @family.users.each do |family_member|
+              @family_members << family_member
+          end
         end
-        # get survey if not filled out
-        
-        @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: false).last
-        
-        if @survey
-          @surveyable = @appointment
-        end
-        get_patient_groups!
-        @diseases = @diseases 
-        @intolerances = @intolerances 
-        @allergies = @allergies
-        @diets =  @diets 
-        @unverified_health_groups = @family_members[0].unverified_health_groups
-        
+      else
+        @family_members << @user
+      end
+      # get survey if not filled out
+      
+      @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: false).last
+      
+      if @survey
+        @surveyable = @appointment
+      end
+      get_patient_groups!
+      @diseases = @diseases 
+      @intolerances = @intolerances 
+      @allergies = @allergies
+      @diets =  @diets 
+      @unverified_health_groups = @family_members[0].unverified_health_groups
+      
 # if no appointment has been made goto introduction
     else 
       redirect_to new_user_intro_path(@user.id) 

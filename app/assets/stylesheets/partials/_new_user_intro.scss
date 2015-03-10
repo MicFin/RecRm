@@ -48,16 +48,25 @@
 
 	//  media query to make not fixed on ssmaller screens and fixed on large
 }
+
+#select-time-container > :first-child,{
+	margin-top: 25px;
+}
+
 	// make media query to make not fixed on ssmaller screens and fixed on large
 /* Custom, iPhone Retina */ 
 @media only screen and (min-width : 320px) {
 	#new-user-name-form{
 		position: relative;
 	}
+	// #new-appt-form{
+	#select-time-container > :first-child{
+		margin-top: 60px;
+	}
 	.bs-wizard {
-		position: relative;
+		position: fixed;
 		margin-bottom: -400px;
-		margin-top: -25px;
+		margin-top: -40px;
 	}
 	.modal-body .bs-wizard{
 		position: relative;
@@ -71,9 +80,9 @@
 		position: relative;
 	}
 	.bs-wizard {
-		position: relative;
+		position: fixed;
 		margin-bottom: -400px;
-		margin-top: -25px;
+		margin-top: -40px;
 	}
 	.modal-body .bs-wizard{
 		position: relative;
@@ -89,7 +98,7 @@
 	.bs-wizard {
 		position: fixed;
 		border-bottom: 0;
-		margin-top: -25px;
+		margin-top: -40px;
 	}
 	.modal-body .bs-wizard{
 		position: relative;
@@ -106,7 +115,7 @@
 	.bs-wizard {
 		position: fixed;
 		border-bottom: 0;
-		margin-top: -25px;
+		margin-top: -40px;
 	}
 	.modal-body .bs-wizard{
 		position: relative;
@@ -122,7 +131,7 @@
 	.bs-wizard {
 		position: fixed;
 		border-bottom: 0;
-		margin-top: -25px;
+		margin-top: -40px;
 	}
 	.modal-body .bs-wizard{
 		position: relative;
@@ -181,10 +190,6 @@
 	margin-top: 150px;
 }
 
-#select-time-container > :first-child,{
-	position: fixed;
-	margin-top: 25px;
-}
 
 #apptRequestModalLabel img {
 	height: 50px;
@@ -465,6 +470,10 @@ padding-right: 5%;
 
 #select-time-container{
 	margin-top: 100px;
+}
+
+#appointment-request-list{
+	margin-top: 1%;
 }
 
 #select-time-message-container {

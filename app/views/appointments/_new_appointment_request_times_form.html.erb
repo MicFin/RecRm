@@ -8,7 +8,7 @@
       </div>
       <%= simple_form_for new_appointment, 
         :url => url_for(:action => 'create_appointment_request_times', :controller => 'appointments'),
-        :method => 'post' do |f| %>     
+        :method => 'post', remote: true do |f| %>     
       <div class="modal-body col-xs-12">
         <div class="col-x-12">
         <h4>There may not have been time slots available, but we'd like to try our best to work around your busy schedule.</h4>

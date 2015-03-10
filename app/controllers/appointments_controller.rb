@@ -41,8 +41,8 @@ class AppointmentsController < ApplicationController
   def select_time
     @time_slots = TimeSlot.select_appointment_time_slots 
     @sign_up_stage = @appointment.stage 
-
-    
+    @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
+    binding.pry
   end
 
   def complete_appt_prep_survey
@@ -62,14 +62,30 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments/new_appointment_request_times
   def create_appointment_request_times
-
     @appointment_requests =[]
     patient_focus = current_user.appointment_hosts.last.patient_focus
     current_user.appointment_hosts.last.status = "In Registration"
     params[:appointment].each do |key, value_hash|
       if value_hash["start_time"] != "" 
-        value_hash["start_time"] = value_hash["start_time"].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
-        value_hash["end_time"] = value_hash["end_time"].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
+        binding.pry
+
+        ## clean start date for saving
+        temp_start_date = value_hash["start_time"].split("/")
+        temp_start_month = temp_start_date[0]
+        temp_start_day = temp_start_date[1]
+        temp_start_year = temp_start_date[2].split(" ")[0]
+        value_hash["start_time"] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
+        value_hash["start_time"] = value_hash["start_time"].in_time_zone("Eastern Time (US & Canada)")
+
+        ## clean end date for saving
+        temp_end_date = value_hash["end_time"].split("/")
+        temp_end_month = temp_end_date[0]
+        temp_end_day = temp_end_date[1]
+        temp_end_year = temp_end_date[2].split(" ")[0]
+        value_hash["end_time"] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
+        value_hash["end_time"] = value_hash["end_time"].in_time_zone("Eastern Time (US & Canada)")
+
+        # save appointment 
         appointment = Appointment.new(value_hash)
         appointment.appointment_host = current_user
         appointment.patient_focus = patient_focus
@@ -81,6 +97,7 @@ class AppointmentsController < ApplicationController
     end
     respond_to do |format|
         format.html { redirect_to user_dashboard_path, notice: 'Appointment requests were successfully sent.' }
+        format.js
     end
   end
 

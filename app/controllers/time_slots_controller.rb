@@ -103,7 +103,7 @@ class TimeSlotsController < ApplicationController
 
   # get /time_slots/create_from_availability
   def create_from_availability
-    binding.pry
+
     open_availabilities = Availability.where(status: "Set")
     
     @new_time_slots = TimeSlot.create_from_availabilities(open_availabilities)

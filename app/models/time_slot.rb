@@ -89,7 +89,7 @@ class TimeSlot < ActiveRecord::Base
   # returns a hash of the new time slots created based on the availabilities that were sent to it
   # returns {"half_hour_time_slots"=>[TimeSlotObject, TimeSlotObject], "one_hour_time_slots"=>[TimeSlotObject, TimeSlotObject] }
   def self.create_from_availabilities(array_of_availability_objects)
-    binding.pry
+    
     one_hour_time_slots = []
     half_hour_time_slots = []
     array_of_availability_objects.each do |availability_object|
@@ -105,7 +105,7 @@ class TimeSlot < ActiveRecord::Base
         
         until temp_end_time > availability_object.buffered_end_time do 
           ## only create time slots as current if availabliity is for tier 2 dietitian or admin dietitian...all else training
-          binding.pry
+          
           if ( (availability_object.dietitian.has_role? "Tier 2 Dietitian") || (availability_object.dietitian.has_role? "Admin Dietitian") ) 
             new_time = TimeSlot.new(start_time: temp_start_time, end_time: temp_end_time, status: "Current", minutes: 60, vacancy: true, availability_id: availability_object.id)
           else

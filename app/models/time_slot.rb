@@ -50,8 +50,11 @@ class TimeSlot < ActiveRecord::Base
     temp_end_time = temp_start_time + 1.hours
     
     until temp_end_time > availability_object.buffered_end_time do 
-      
-      new_time = TimeSlot.new(start_time: temp_start_time, end_time: temp_end_time, status: "Current", minutes: 60, vacancy: true, availability_id: availability_object.id)
+      if ( (availability_object.dietitian.has_role? "Tier 2 Dietitian") || (availability_object.dietitian.has_role? "Admin Dietitian") ) 
+          new_time = TimeSlot.new(start_time: temp_start_time, end_time: temp_end_time, status: "Current", minutes: 60, vacancy: true, availability_id: availability_object.id)
+      else
+        new_time = TimeSlot.new(start_time: temp_start_time, end_time: temp_end_time, status: "Training", minutes: 60, vacancy: true, availability_id: availability_object.id)
+      end
       new_time.save
       one_hour_time_slots << new_time
       temp_start_time = temp_start_time + 30.minutes
@@ -63,7 +66,12 @@ class TimeSlot < ActiveRecord::Base
     temp_half_hour_end_time = temp_half_hour_start_time + 30.minutes
     # until end time is beyond limit then keep making more time slots
     until temp_half_hour_end_time > availability_object.buffered_end_time do 
-      new_time = TimeSlot.new(start_time: temp_half_hour_start_time, end_time: temp_half_hour_end_time, status: "Current", minutes: 30, vacancy: true, availability_id: availability_object.id)
+      ## only create time slots as current if availabliity is for tier 2 dietitian or admin dietitian...all else training
+      if ( (availability_object.dietitian.has_role? "Tier 2 Dietitian") || (availabiliity_object.dietitian.has_role? "Admin Dietitian") )
+        new_time = TimeSlot.new(start_time: temp_half_hour_start_time, end_time: temp_half_hour_end_time, status: "Current", minutes: 30, vacancy: true, availability_id: availability_object.id)
+      else
+        new_time = TimeSlot.new(start_time: temp_half_hour_start_time, end_time: temp_half_hour_end_time, status: "Training", minutes: 30, vacancy: true, availability_id: availability_object.id)
+      end
       new_time.save
       half_hour_time_slots << new_time
       temp_half_hour_start_time = temp_half_hour_start_time + 30.minutes
@@ -81,13 +89,12 @@ class TimeSlot < ActiveRecord::Base
   # returns a hash of the new time slots created based on the availabilities that were sent to it
   # returns {"half_hour_time_slots"=>[TimeSlotObject, TimeSlotObject], "one_hour_time_slots"=>[TimeSlotObject, TimeSlotObject] }
   def self.create_from_availabilities(array_of_availability_objects)
-    
+    binding.pry
     one_hour_time_slots = []
     half_hour_time_slots = []
     array_of_availability_objects.each do |availability_object|
   
-      ## only create time slots if availabliity is for tier 2 dietitian or admin dietitian...this excludes dietitian in training
-      if ( (availabiliity_object.dietitian.has_role? "Tier 2 Dietitian") || (availabiliity_object.dietitian.has_role? "Admin Dietitian") ) 
+
         ### create 1 hour time slots
         object_start_time = availability_object.buffered_start_time
         if (object_start_time.strftime("%M") == "15") || (object_start_time.strftime("%M") == "45")
@@ -97,8 +104,13 @@ class TimeSlot < ActiveRecord::Base
         temp_end_time = temp_start_time + 1.hours
         
         until temp_end_time > availability_object.buffered_end_time do 
-          
-          new_time = TimeSlot.new(start_time: temp_start_time, end_time: temp_end_time, status: "Current", minutes: 60, vacancy: true, availability_id: availability_object.id)
+          ## only create time slots as current if availabliity is for tier 2 dietitian or admin dietitian...all else training
+          binding.pry
+          if ( (availability_object.dietitian.has_role? "Tier 2 Dietitian") || (availability_object.dietitian.has_role? "Admin Dietitian") ) 
+            new_time = TimeSlot.new(start_time: temp_start_time, end_time: temp_end_time, status: "Current", minutes: 60, vacancy: true, availability_id: availability_object.id)
+          else
+            new_time = TimeSlot.new(start_time: temp_start_time, end_time: temp_end_time, status: "Training", minutes: 60, vacancy: true, availability_id: availability_object.id)
+          end
           new_time.save
           one_hour_time_slots << new_time
           temp_start_time = temp_start_time + 30.minutes
@@ -119,7 +131,6 @@ class TimeSlot < ActiveRecord::Base
         # mark availability as Live since time slots have been made
         availability_object.status = "Live"
         availability_object.save
-      end
     end
     new_time_slots_hash = {}
     new_time_slots_hash["half_hour_time_slots"] = half_hour_time_slots

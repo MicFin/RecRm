@@ -42,7 +42,7 @@ class AppointmentsController < ApplicationController
     @time_slots = TimeSlot.select_appointment_time_slots 
     @sign_up_stage = @appointment.stage 
     @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
-    binding.pry
+    
   end
 
   def complete_appt_prep_survey
@@ -67,7 +67,7 @@ class AppointmentsController < ApplicationController
     current_user.appointment_hosts.last.status = "In Registration"
     params[:appointment].each do |key, value_hash|
       if value_hash["start_time"] != "" 
-        binding.pry
+        
 
         ## clean start date for saving
         temp_start_date = value_hash["start_time"].split("/")

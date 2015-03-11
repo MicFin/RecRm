@@ -13,7 +13,7 @@ class TimeSlot < ActiveRecord::Base
   end
 
   def self.select_appointment_time_slots
-    self.where(vacancy: true).where(status: "Current").where(minutes: 60)
+    self.where(vacancy: true).where(status: "Current").where(minutes: 60).where("start_time > ?", DateTime.now + 2.days )
 
   end
 

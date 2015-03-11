@@ -87,7 +87,7 @@ class TimeSlot < ActiveRecord::Base
     array_of_availability_objects.each do |availability_object|
   
       ## only create time slots if availabliity is for tier 2 dietitian or admin dietitian...this excludes dietitian in training
-      if ( availabiliity_object.dietitian.has_role? "Tier 2 Dietitian" || availabiliity_object.dietitian.has_role? "Admin Dietitian") 
+      if ( (availabiliity_object.dietitian.has_role? "Tier 2 Dietitian") || (availabiliity_object.dietitian.has_role? "Admin Dietitian") ) 
         ### create 1 hour time slots
         object_start_time = availability_object.buffered_start_time
         if (object_start_time.strftime("%M") == "15") || (object_start_time.strftime("%M") == "45")

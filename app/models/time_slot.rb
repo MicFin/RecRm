@@ -24,7 +24,7 @@ class TimeSlot < ActiveRecord::Base
 
   ## json response
   def as_json(options = {})
-    {
+    { 
       :id => self.id,
       :title => self.title,
       :start => start_at.rfc822,
@@ -86,37 +86,40 @@ class TimeSlot < ActiveRecord::Base
     half_hour_time_slots = []
     array_of_availability_objects.each do |availability_object|
   
-      ### create 1 hour time slots
-      object_start_time = availability_object.buffered_start_time
-      if (object_start_time.strftime("%M") == "15") || (object_start_time.strftime("%M") == "45")
-        object_start_time = object_start_time + 15.minutes
-      end
-      temp_start_time = object_start_time
-      temp_end_time = temp_start_time + 1.hours
-      
-      until temp_end_time > availability_object.buffered_end_time do 
-        
-        new_time = TimeSlot.new(start_time: temp_start_time, end_time: temp_end_time, status: "Current", minutes: 60, vacancy: true, availability_id: availability_object.id)
-        new_time.save
-        one_hour_time_slots << new_time
-        temp_start_time = temp_start_time + 30.minutes
+      ## only create time slots if availabliity is for tier 2 dietitian or admin dietitian...this excludes dietitian in training
+      if ( availabiliity_object.dietitian.has_role? "Tier 2 Dietitian" || availabiliity_object.dietitian.has_role? "Admin Dietitian") 
+        ### create 1 hour time slots
+        object_start_time = availability_object.buffered_start_time
+        if (object_start_time.strftime("%M") == "15") || (object_start_time.strftime("%M") == "45")
+          object_start_time = object_start_time + 15.minutes
+        end
+        temp_start_time = object_start_time
         temp_end_time = temp_start_time + 1.hours
-      end
-      ### create half hour time slots
-      # set start and end time for looping
-      temp_half_hour_start_time = object_start_time
-      temp_half_hour_end_time = temp_half_hour_start_time + 30.minutes
-      # until end time is beyond limit then keep making more time slots
-      until temp_half_hour_end_time > availability_object.buffered_end_time do 
-        new_time = TimeSlot.new(start_time: temp_half_hour_start_time, end_time: temp_half_hour_end_time, status: "Current", minutes: 30, vacancy: true, availability_id: availability_object.id)
-        new_time.save
-        half_hour_time_slots << new_time
-        temp_half_hour_start_time = temp_half_hour_start_time + 30.minutes
+        
+        until temp_end_time > availability_object.buffered_end_time do 
+          
+          new_time = TimeSlot.new(start_time: temp_start_time, end_time: temp_end_time, status: "Current", minutes: 60, vacancy: true, availability_id: availability_object.id)
+          new_time.save
+          one_hour_time_slots << new_time
+          temp_start_time = temp_start_time + 30.minutes
+          temp_end_time = temp_start_time + 1.hours
+        end
+        ### create half hour time slots
+        # set start and end time for looping
+        temp_half_hour_start_time = object_start_time
         temp_half_hour_end_time = temp_half_hour_start_time + 30.minutes
+        # until end time is beyond limit then keep making more time slots
+        until temp_half_hour_end_time > availability_object.buffered_end_time do 
+          new_time = TimeSlot.new(start_time: temp_half_hour_start_time, end_time: temp_half_hour_end_time, status: "Current", minutes: 30, vacancy: true, availability_id: availability_object.id)
+          new_time.save
+          half_hour_time_slots << new_time
+          temp_half_hour_start_time = temp_half_hour_start_time + 30.minutes
+          temp_half_hour_end_time = temp_half_hour_start_time + 30.minutes
+        end
+        # mark availability as Live since time slots have been made
+        availability_object.status = "Live"
+        availability_object.save
       end
-      # mark availability as Live since time slots have been made
-      availability_object.status = "Live"
-      availability_object.save
     end
     new_time_slots_hash = {}
     new_time_slots_hash["half_hour_time_slots"] = half_hour_time_slots

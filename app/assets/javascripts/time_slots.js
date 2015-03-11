@@ -33,9 +33,9 @@ var SelectApptCalendar = {
               $('.datetimepicker-appt-request').datetimepicker({ 
                   format: "MM/DD/YY h:mm a",
                   sideBySide: true });
+              // make start and end calendars dependent upon eachother
               for (var count=1; count <= 3; count++){ 
                 $('input[name="appointment['+count+'][start_time]"]').parent().on("dp.change",function (e) {
-                  debugger;
                   var requestNum = $(this).children("input").data("request-num");
                   $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setMinDate(e.date.add(1, "hours"));
                   $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setDate(e.date.add(1, "hours"));
@@ -91,7 +91,14 @@ var SelectApptCalendar = {
       eventBackgroundColor: "#399E48",
       eventBorderColor: "#11753B",
       viewRender: function (view) {
+        // reset dates taken when rendering a new calendar range
+        if (dates_taken.length > 0) {
+          $('#select-appt-cal').fullCalendar( 'removeEventSource', dates_taken );
+          dates_taken = [];
+        }
+        // $('#select-appt-cal').fullCalendar( 'removeEventSource', dates_taken );
         // only enable next/prev button to go forward 1 week and return back to original week
+
         var start_moment = moment(start_date);
         var today_moment = moment(new Date());
         if (view.start.dayOfYear() === start_moment.dayOfYear() ) {
@@ -106,9 +113,11 @@ var SelectApptCalendar = {
           var split_date = $(this).text().split(" ");
           var day = split_date[0];
           var date = split_date[1];
+          // if todays date then change title to say TODAY
           if (moment(date).date() === moment(new Date()).date()){
             $(this).html("<p class='today-title'>TODAY</p><p>"+date+"</p>");
           }else { 
+          // if not today's date then show date
             $(this).html("<p>"+day+"</p><p>"+date+"</p>");
           }
         });
@@ -163,7 +172,9 @@ var SelectApptCalendar = {
           // $(element).children(":first").replaceWith(html);
           $(element).children(":first").append(new_html);
           $(element).parent().hide();
-          event_start_times_rendered.push(event.start.format());
+          if (event.title != "time-slot-taken"){
+            event_start_times_rendered.push(event.start.format());
+          }
       },
       eventAfterRender: function(event, element, view){
         $(element).parent().hide();
@@ -172,13 +183,15 @@ var SelectApptCalendar = {
         
       },
       eventAfterAllRender: function( view, element){
+        // reset dates taken when rendering a new calendar range
         $(".fc-event-container").fadeIn();
         if (dates_taken.length < 1) {
+          // reset dates taken when rendering a new calendar range
           for (var k = 0; k <= 21; k++){
-            for(var i = 8; i<=24; i++){
-              date = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
+            for(var i = 7; i<=24; i++){
+              var date = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
               if (event_start_times_rendered.indexOf(date.format()) < 0 ){
-                date_object = {
+                var date_object_1 = {
                   title: 'time-slot-taken',
                   start: date,
                   editable: false,
@@ -186,24 +199,24 @@ var SelectApptCalendar = {
                   className: "time-slot-taken",
                   allDay: false // will make the time show
                 };
-                dates_taken.push(date_object);
+                dates_taken.push(date_object_1);
               };
-              date = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":30:00");
-              if (event_start_times_rendered.indexOf(date.format()) < 0 ){
-                date_object = {
+              var date_2 = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":30:00");
+              if (event_start_times_rendered.indexOf(date_2.format()) < 0 ){
+                var date_object_2 = {
                   title  : 'time-slot-taken',
-                  start  : date,
+                  start  : date_2,
                   editable: false,
                   color: "lightgrey",
                   className: "time-slot-taken",
                   allDay : false // will make the time show
                 };
-                dates_taken.push(date_object);
+                dates_taken.push(date_object_2);
               };
             };
           };
           $('#select-appt-cal').fullCalendar( 'addEventSource', dates_taken );
-        };
+        }
         $(".time-slot-taken .event-time").text("Booked");
       }
     });

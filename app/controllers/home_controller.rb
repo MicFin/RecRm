@@ -7,9 +7,9 @@ class HomeController < ApplicationController
 	#home page loads list of recipes that are safe for families.  Will combine user and family helper in the future
 	def index
 		if current_user
-			redirect_to user_authenticated_root
+			redirect_to user_authenticated_root_path
 		elsif current_dietitian
-			redirect_to dietitian_authenticated_root
+			redirect_to dietitian_authenticated_root_path
 		else
 		@new_user  = User.new
 		# binding.pry
@@ -26,7 +26,7 @@ class HomeController < ApplicationController
 
 		# #RecipeHelper
 		# get_recipe_list!("family")
-	end
+		end
 	end
 
 

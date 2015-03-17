@@ -1,6 +1,7 @@
 
+
 <% @surveyable ||= surveyable %>
-<% @survey = @dietitian_survey %>
+<% @survey = survey %>
 
 <%= form_for [@surveyable, @survey], remote: true do |f| %>
   <% if @survey.errors.any? %>
@@ -42,6 +43,7 @@
               <tr>
                 <td>Weight (kg)</td>
                 <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[4].id%>]" value="<%=@survey.questions.order("position")[4].answer%>" required step="0.01"/></td>
+                
                 <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[5].id%>]" value="<%=@survey.questions.order("position")[5].answer%>" required/></td>
                 <td><input type="number" class="form-control" name="questions[<%=@survey.questions.order("position")[6].id%>]" value="<%=@survey.questions.order("position")[6].answer%>" required step="0.01"/></td>
               </tr>

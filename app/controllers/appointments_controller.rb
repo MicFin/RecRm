@@ -35,7 +35,6 @@ class AppointmentsController < ApplicationController
 
       @previous_appointments = Appointment.where("start_time < ?", DateTime.now).order('start_time ASC, created_at ASC')
     end
-
   end
 
   def select_time
@@ -163,7 +162,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/appointment_review
   def appointment_review
-# should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
+    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
     
     if @appointment.dietitian == current_dietitian 
       @client = @appointment.appointment_host

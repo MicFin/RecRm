@@ -133,6 +133,7 @@ var AvailabilityCalendar = {
           var body_message = "Need to request a change to your schedule?  Explain the change here and we will contact you shortly!";
           var email = 'admin@kindrdfood.com';
           var subject = 'Update Schedule ' + calEvent.start._i;
+          // Tara @kindrdfood.com
           var mailto_link = 'mailto:' + email + '?subject=' + subject + '&body=' + body_message;
           window.location.href = mailto_link;
         }

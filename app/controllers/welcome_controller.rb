@@ -16,7 +16,7 @@ class WelcomeController < ApplicationController
         # from include AppointmentsHelper
         get_previous_appointments!
         @previous_appointments
-        binding.pry
+        
 
         if @user.content_quotas.first != nil 
           @user.quality_review_quota_count = @user.content_quotas.first.quality_reviews

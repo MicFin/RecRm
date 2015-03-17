@@ -1,6 +1,8 @@
+
 <% if @modal == false %>
 	$("#tool-box-container #tool-client-info-container").empty().append("<%= j render(:partial => '/appointments/prep') %>");
 <% else %>
+
 	$("#appointmentPrepModal").remove();
 	$("body").append("<%= j render(:partial => '/appointments/prep_modal', :locals => { family_members: @family_members, appointment: @appointment, survey: @survey}) %>");
 	$("#appointmentPrepModal").modal({

@@ -1,0 +1,5 @@
+
+// appointments/create.js.erb is called from the appointments#create method with a remote true or JS request that comes from next_session_form.html.erb
+$("#next-session-container form").replaceWith("<%= j render(:partial => '/appointments/show_partial', :locals => {:appointment => @appointment}) %>");
+var dietitian_id = $("#dietitian-session-nav").data("dietitian-id");
+AvailabilityCalendar.review(dietitian_id);

@@ -10,11 +10,10 @@ class AvailabilitiesController < ApplicationController
       dietitian = Dietitian.find(params[:dietitian_id])
       @availabilities = dietitian.availabilities
     else
+    ### regular dietitian view only their availabilities
       @availabilities = current_dietitian.availabilities
     end
 
-    ### regular dietitian view only their availabilities
-    ### current_dietitian.availabilities
   end
 
   # GET /availabilities/1

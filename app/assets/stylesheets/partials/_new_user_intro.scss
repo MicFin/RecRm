@@ -49,9 +49,9 @@
 	//  media query to make not fixed on ssmaller screens and fixed on large
 }
 
-#select-time-container > :first-child,{
-	margin-top: 25px;
-}
+// #select-time-container > :first-child,{
+// 	margin-top: 25px;
+// }
 
 	// make media query to make not fixed on ssmaller screens and fixed on large
 /* Custom, iPhone Retina */ 
@@ -94,6 +94,9 @@
 @media only screen and (min-width : 768px) {
 	#new-user-name-form{
 		position: relative;
+	}
+	#select-time-container > :first-child{
+		margin-top: 10px;
 	}
 	.bs-wizard {
 		position: fixed;
@@ -470,6 +473,9 @@ padding-right: 5%;
 
 #select-time-container{
 	margin-top: 100px;
+	> div{
+
+	}
 }
 
 #appointment-request-list{

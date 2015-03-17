@@ -14,8 +14,8 @@ module AppointmentsHelper
     end
     @upcoming_appointments = @upcoming_appointments.group_by{|appointment|  [appointment.start_time.to_date, appointment.start_time.strftime("%I:%M%p")] }
     # @next_appointment = current_dietitian.appointments.where(start_time: 30.minutes.ago..1.hours.from_now).last
-    
-    @next_appointment = current_dietitian.appointments.last
+    @next_appointment = current_dietitian.appointments.where.not(status: "Follow Up Unpaid").last
+
     if @next_appointment != nil  
       family = @next_appointment.appointment_host.head_of_families.last 
       family.health_groups_names = family.health_groups.map(&:name)
@@ -26,6 +26,24 @@ module AppointmentsHelper
       @next_appointment.prepped = @next_appointment.prep_complete?
     end
   end
+
+  def get_previous_appointments!
+    @previous_appointments = []
+    current_dietitian.appointments.map do |appointment| 
+      if appointment.status == "Complete"
+        family = appointment.appointment_host.head_of_families.last 
+        family.health_groups_names = family.health_groups.map(&:name)
+        family.age_groups = family.ages
+        family.number_of_members = family.family_member_count
+        family.family_names = family.all_first_names
+        appointment.family_info = family
+        appointment.follow_up = appointment.surveys.where(survey_type: "Follow-Up").last
+        @previous_appointments << appointment
+      end
+    end
+    @previous_appointments = @previous_appointments.group_by{|appointment|  [appointment.start_time.to_date, appointment.start_time.strftime("%I:%M%p")] }
+  end
+
 
   def get_family_member_info!
 # if params[:client_first_name]

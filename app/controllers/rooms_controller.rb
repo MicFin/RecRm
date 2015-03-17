@@ -40,7 +40,9 @@ before_filter :authenticate_admin_user!, only: [:index]
       appointment_host = @appointment.appointment_host
       @tok_token =  @opentok.generate_token(@room.sessionId, {role: :moderator, data: "Moderator"}) 
       @dietitian_pre_appt_survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).last.questions.order("position")
-      
+      ## add to new appointment type, duration, status
+      ## should probably use AJAX to call appointment controller for this info
+      @new_appointment = Appointment.new(dietitian_id: current_dietitian.id, appointment_host_id: @client.id, patient_focus_id: @appointment.patient_focus_id, status: "Follow Up Unpaid")
       # @tok_token =  @opentok.generate_token @room.sessionId({
       #   :role        => :moderator
       #   :expire_time => Time.now.to_i+(7 * 24 * 60 * 60) # in one week

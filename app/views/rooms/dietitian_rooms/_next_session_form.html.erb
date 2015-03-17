@@ -1,0 +1,59 @@
+<%= simple_form_for(@new_appointment, html: {class: 'form-horizontal' }, :remote => true) do |f| %>
+  <% if @new_appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@new_appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% @new_appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :patient_focus_id, value: @new_appointment.patient_focus_id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :appointment_host_id, value: @new_appointment.appointment_host_id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :dietitian_id, value: @new_appointment.dietitian_id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :status, value: @new_appointment.status %>
+  </div>
+
+
+  <div class="col-xs-4 col-xs-offset-1">
+    <div class="form-group">
+      <h5>Start Time</h5>
+        <div class='input-group date' id='datetimepicker-appt-start'>
+            <input type="datetime" data-request-num="1" name="appointment[start_time]" class="form-control" placeholder="Select" />
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+  </div>
+  <div class="col-xs-4 col-xs-offset-2">
+    <div class="form-group">
+      <h5>End Time</h5>
+        <div class='input-group date' id='datetimepicker-appt-end'>
+            <input type="datetime" data-request-num="1" placeholder="Select" name="appointment[end_time]" class="form-control" />
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <%#= f.input :start_time %>
+  </div>
+  <div class="field">
+    <%#= f.input :end_time %>
+  </div>
+  <div class="actions text-center">
+    <%= f.button :submit %>
+  </div>
+<% end %>

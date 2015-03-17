@@ -3,17 +3,21 @@ class WelcomeController < ApplicationController
     include QualityReviewsHelper
 		before_filter :check_user_logged_in!
 
-
+    ### this is currently the dietitian's dashboard
     def index
-      
       @today = Date.today
       @beginning_of_week = @today.at_beginning_of_week(:thursday)
       if @user == current_dietitian
         
+        # from include AppointmentsHelper
         get_upcoming_appointments!
         @upcoming_appointments
         @next_appointment
-        
+        # from include AppointmentsHelper
+        get_previous_appointments!
+        @previous_appointments
+        binding.pry
+
         if @user.content_quotas.first != nil 
           @user.quality_review_quota_count = @user.content_quotas.first.quality_reviews
         else

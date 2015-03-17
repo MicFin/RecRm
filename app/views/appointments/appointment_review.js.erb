@@ -1,0 +1,7 @@
+	$("#appointmentReviewModal").remove();
+	$("body").append("<%= j render(:partial => '/appointments/review_modal', :locals => { family_members: @family_members, appointment: @appointment, survey: @survey}) %>");
+	$("#appointmentReviewModal").modal({
+							backdrop: 'static',
+	            keyboard: false
+	});
+	$("#family-member-health-prep-survey").addClass("hidden");

@@ -72,7 +72,7 @@ Rails.application.routes.draw do
       post 'dietitans/:id/images/create', to: 'images#create', as: 'create_dietitian_image'
       patch 'dietitans/:dietitian_id/images/:id/update', to: 'images#update', as: 'dietitian_image'
       get 'dietitans/:dietitian_id/images/:id/crop', to: 'images#crop', as: 'crop_dietitian_image'
-
+      get 'appointments/:id/appointment_review', to: 'appointments#appointment_review', as: 'appointment_review'
       get 'appointments/:id/appointment_prep', to: 'appointments#appointment_prep', as: 'appointment_prep'
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_dietitian_appointment'
       resources :appointments

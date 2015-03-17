@@ -25,6 +25,7 @@ var SelectApptCalendar = {
   set: function(){
     $("#request-appt-times").on("click", function(e){
       e.preventDefault();
+      if ($("#apptRequestModal").length < 1){
           $.ajax({
             type: "GET",
             datatype: "script",
@@ -40,17 +41,17 @@ var SelectApptCalendar = {
                   $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setMinDate(e.date.add(1, "hours"));
                   $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setDate(e.date.add(1, "hours"));
                 });
-                // $('input[name="appointment['+count+'][end_time]"]').parent().on("dp.change",function (e) {
-                //   var requestNum = $(this).children("input").data("request-num")
-                //   $('input[name="appointment['+requestNum+'][start_time]"]').parent().data("DateTimePicker").setMaxDate(e.date.subtract(1, "hours"));
-                //   $('input[name="appointment['+requestNum+'][start_time]"]').parent().data("DateTimePicker").setDate(e.date.subtract(1, "hours"));
-                // });
               };
             }
           });
+      }else{
+        $("#apptRequestModal").modal();
+      }
     });
+    // start date is set to today
     var start_date = new Date(); 
     start_date.setDate( start_date.getDate() + 0 );
+    // get number of day, 1-7
     var start_day = start_date.getDay();
     // full calendar settings
     var event_start_times_rendered = [];
@@ -99,16 +100,54 @@ var SelectApptCalendar = {
         // $('#select-appt-cal').fullCalendar( 'removeEventSource', dates_taken );
         // only enable next/prev button to go forward 1 week and return back to original week
 
+        // moment of start date which is today
         var start_moment = moment(start_date);
         var today_moment = moment(new Date());
+
+        // $(".fc-next-button.fc-state-disabled, .fc-prev-button.fc-state-disabled").unbind("click");
+
+
         if (view.start.dayOfYear() === start_moment.dayOfYear() ) {
             $(".fc-prev-button").addClass('fc-state-disabled');
             $(".fc-next-button").removeClass('fc-state-disabled');
-        }
-        else {
+        } else if (view.start.dayOfYear() === start_moment.dayOfYear()+14 ){
             $(".fc-prev-button").removeClass('fc-state-disabled');
             $(".fc-next-button").addClass('fc-state-disabled');
-        }  
+        }  else{
+            $(".fc-prev-button").removeClass('fc-state-disabled');
+            $(".fc-next-button").removeClass('fc-state-disabled');
+        }
+        
+        // unbind next and prev disbaled button click event to shoew appt request modal
+        $(".fc-next-button, .fc-prev-button").unbind('click.requestTimeHandler');
+  // set click event for disabled next or previous button to show appt request form
+        $(".fc-next-button.fc-state-disabled,  .fc-prev-button.fc-state-disabled").on("click.requestTimeHandler", function(e){
+          e.preventDefault();
+          if ($("#apptRequestModal").length < 1){
+              $.ajax({
+                type: "GET",
+                datatype: "script",
+                url: "/appointments/new_appointment_request_times",
+                success: function(response){
+                  $('.datetimepicker-appt-request').datetimepicker({ 
+                      format: "MM/DD/YY h:mm a",
+                      sideBySide: true });
+                  // make start and end calendars dependent upon eachother
+                  for (var count=1; count <= 3; count++){ 
+                    $('input[name="appointment['+count+'][start_time]"]').parent().on("dp.change",function (e) {
+                      var requestNum = $(this).children("input").data("request-num");
+                      $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setMinDate(e.date.add(1, "hours"));
+                      $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setDate(e.date.add(1, "hours"));
+                    });
+                  };
+                }
+              });
+          }else{
+            $("#apptRequestModal").modal();
+          }
+        });
+
+        /// override head of calendar with TODAY or the date
         $(".fc-widget-header.fc-day-header").each(function(index){
           var split_date = $(this).text().split(" ");
           var day = split_date[0];
@@ -183,7 +222,8 @@ var SelectApptCalendar = {
         
       },
       eventAfterAllRender: function( view, element){
-        // reset dates taken when rendering a new calendar range
+      
+
         $(".fc-event-container").fadeIn();
         if (dates_taken.length < 1) {
           // reset dates taken when rendering a new calendar range

@@ -1,7 +1,7 @@
 
 
     <div id="wrapper">
-      <ul class="navigation">
+      <ul class="navigation" id="dietitian-session-nav" data-dietitian-id="<%=current_dietitian.id%>">
         <li class="nav-item"><a id="tool-client-info" href="#" data-appt-id="<%=@appointment.id%>">Client Family</a></li>
         <li class="nav-item"><a id="tool-survey" href="#" data-appt-id="<%=@appointment.id%>">Prep Work</a></li>
         <li class="nav-item"><a id="tool-notes" href="#" data-appt-id="<%=@appointment.id%>">Your Notes</a></li>
@@ -9,6 +9,7 @@
         <li class="nav-item"><a href="#">Recipes (soon)</a></li>
         <li class="nav-item"><a id="tool-shopping" href="#">Shopping (soon)</a></li>
 <!--         <li class="nav-item"><a href="#">Education (soon)</a></li> -->
+        <li class="nav-item"><a id="tool-next-session" href="#">Add Next Session</a></li>
         <li class="nav-item">
           <button id="end-session-button" type="button" class="btn btn-danger btn-lg">End Session</button>
         </li>
@@ -42,6 +43,12 @@
             </div>
             <div id="tool-shopping-container" class="tool-box-item hidden">
               <%= render "/appointments/google_maps_widget" %>
+            </div>
+            <div id="tool-next-session-container" class="tool-box-item hidden">
+              <div id="next-session-container">
+                <%= render "/rooms/dietitian_rooms/next_session_form" %>
+              </div>
+              <div id="availability-cal"></div>
             </div>
         </div>
         <div id="left-user-tabs" class="col-xs-3">
@@ -130,6 +137,21 @@ $(document).ready(function() {
     $(".tool-box-item").addClass("hidden");
     $("#tool-dietitian-survey-container").removeClass("hidden");
   });
+
+  $("#tool-next-session").on("click", function(e){
+    e.preventDefault();
+    $(".tool-box-item").addClass("hidden");
+    $("#tool-next-session-container").removeClass("hidden");
+    var dietitian_id = $("#dietitian-session-nav").data("dietitian-id");
+    AvailabilityCalendar.review(dietitian_id);
+    $('#datetimepicker-appt-start').datetimepicker({ dateFormat: 'D, dd M yy', sideBySide: true });
+    $('#datetimepicker-appt-end').datetimepicker({ dateFormat: 'D, dd M yy', sideBySide: true });
+    $("#datetimepicker-appt-start").on("dp.change",function (e) {
+      $('#datetimepicker-appt-end').data("DateTimePicker").setMinDate(e.date);
+      $('#datetimepicker-appt-end').data("DateTimePicker").setDate(e.date);
+    });
+  });
+  
   
   $("#tool-client-info").on("click", function(e){
     e.preventDefault();

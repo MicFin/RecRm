@@ -3,7 +3,7 @@
 .navigation {
   /* critical sizing and position styles */
   width: 100%;
-  height: 300px;
+  height: 410px;
   position: fixed;
   top: 150px;
   right: 0;
@@ -177,5 +177,12 @@ label[for="nav-trigger"] {
 // follow up 
 .panel-body #new-user-family-form {
   margin-top: 0px;
+}
+
+
+/////// NExt Appointment
+
+#next-session-container {
+    margin-bottom: 50px;
 }
 

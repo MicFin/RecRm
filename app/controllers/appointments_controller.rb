@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   include AppointmentsHelper
   include PatientGroupsHelper
-  before_action :set_appointment, only: [:show, :edit, :update, :complete_appt_prep_survey, :select_time, :appointment_prep, :end_appointment, :destroy]
+  before_action :set_appointment, only: [:show, :edit, :update, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :end_appointment, :destroy]
   before_filter :config_opentok, :only => [:update]
 
   # GET /appointments
@@ -68,7 +68,8 @@ class AppointmentsController < ApplicationController
     params[:appointment].each do |key, value_hash|
       if value_hash["start_time"] != "" 
         
-
+        # clean_dates_for_database method should be used instead
+        # need to test request actions before replacing
         ## clean start date for saving
         temp_start_date = value_hash["start_time"].split("/")
         temp_start_month = temp_start_date[0]
@@ -160,6 +161,56 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  # GET /appointments/1/appointment_review
+  def appointment_review
+# should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
+    
+    if @appointment.dietitian == current_dietitian 
+      @client = @appointment.appointment_host
+      # set @family before get_family_info
+      @family = @client.head_of_families.first
+      # get_family_info!
+      # @family_members
+      # @family
+      # create family should be a helper method on the family model
+      @family_members = []
+      if @appointment.patient_focus 
+        appointment_focus = @appointment.patient_focus
+        @family_members << appointment_focus
+      end
+      family_count = @family.users.count
+      
+      if family_count > 0
+        if @client != appointment_focus
+          @family_members << @client
+          @family.users.each do |family_member| 
+            if family_member != appointment_focus
+              @family_members << family_member 
+            end
+          end
+        else
+          @family.users.each do |family_member|
+              @family_members << family_member
+          end
+        end
+      else
+        @family_members << @client
+      end
+      get_patient_groups!
+      @diseases = @diseases 
+      @intolerances = @intolerances 
+      @allergies = @allergies
+      @diets =  @diets 
+      # @unverified_health_groups = @family_members[0].unverified_health_groups
+      @dietitian_survey = Survey.generate_for_appointment(@appointment, current_dietitian)
+      @survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
+      @surveyable = @appointment
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /appointments/1
   # GET /appointments/1.json
 
@@ -193,11 +244,18 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/edit
   def edit
     ## for first edit use case it is when the user/client is selecting a time for their appointment, that is why it asks for time_slot chosen.  should be different method than edit method
+    
     if params[:time_slot_id]
       @time_slot = TimeSlot.find(params[:time_slot_id])
+    elsif @appointment.status == "Follow Up Unpaid"
+      # unpaid appointment that is edited after a dietitian creates the follow up unpaid appointment
+      # set new_appointment variable for next_session_form.html.erb
+      @new_appointment = @appointment
+
     else
       @dietitians = Dietitian.all 
     end
+    
     respond_to do |format|
       format.js
       format.html
@@ -207,13 +265,16 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   # POST /appointments.json
   def create
-
+    
+    clean_dates_for_database
+    
     @appointment = Appointment.new(appointment_params)
-
+    
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
@@ -224,6 +285,9 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
+    if @appointment.status = "Follow Up Unpaid" 
+      clean_dates_for_database
+    end
     # if update saves
     if @appointment.update(appointment_params)
       # if stripe card payment update incnluded in update then user is paying 
@@ -238,12 +302,14 @@ class AppointmentsController < ApplicationController
 
 
         @pre_appt_survey = Survey.generate_for_appointment(@appointment, current_user)
-        
+      elsif @appointment.status = "Follow Up Unpaid" 
+        ## for when unpaid follow up visits are updated by the dietitian
+
       elsif params[:appointment][:note]
 
         # or has recently been updated with dietitian thhen admin assigned dietitian
       elsif @appointment.dietitian_id != nil
-        
+        ## assumes that appointment has been paid for and assigned a dietitian by admin dietitian
         @new_session = @opentok.create_session 
         @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
         ## creating a new room each time, should either purge old rooms or assign rooms to dietitians 
@@ -360,10 +426,13 @@ class AppointmentsController < ApplicationController
   # DELETE /appointments/1
   # DELETE /appointments/1.json
   def destroy
+    @new_appointment = Appointment.new(dietitian_id: current_dietitian.id, appointment_host_id: @appointment.appointment_host_id, patient_focus_id: @appointment.patient_focus_id, status: "Follow Up Unpaid")
     @appointment.destroy
     respond_to do |format|
       format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
       format.json { head :no_content }
+
+      format.js
     end
   end
 
@@ -378,6 +447,44 @@ class AppointmentsController < ApplicationController
       params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :start_time, :end_time, :room_id, :note, :client_note, :other_note, :created_at, :updated_at, :status, :time_slot_id, :stripe_card_token)
     end
   
+    def clean_dates_for_database
+      
+      ## clean start date for saving
+      if params[:appointment][:start_time]
+        temp_start_date = params[:appointment][:start_time].split("/")
+        temp_start_month = temp_start_date[0]
+        temp_start_day = temp_start_date[1]
+        temp_start_year = temp_start_date[2].split(" ")[0]
+        params[:appointment][:start_time] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
+        params[:appointment][:start_time] = params[:appointment][:start_time].in_time_zone("Eastern Time (US & Canada)")
+        ## clean end date for saving
+        temp_end_date = params[:appointment][:end_time].split("/")
+        temp_end_month = temp_end_date[0]
+        temp_end_day = temp_end_date[1]
+        temp_end_year = temp_end_date[2].split(" ")[0]
+        params[:appointment][:end_time] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
+        params[:appointment][:end_time] = params[:appointment][:end_time].in_time_zone("Eastern Time (US & Canada)")
+        
+      else
+        
+      ## clean start date for saving
+        temp_start_date = value_hash["start_time"].split("/")
+        temp_start_month = temp_start_date[0]
+        temp_start_day = temp_start_date[1]
+        temp_start_year = temp_start_date[2].split(" ")[0]
+        value_hash["start_time"] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
+        value_hash["start_time"] = value_hash["start_time"].in_time_zone("Eastern Time (US & Canada)")
+
+        ## clean end date for saving
+        temp_end_date = value_hash["end_time"].split("/")
+        temp_end_month = temp_end_date[0]
+        temp_end_day = temp_end_date[1]
+        temp_end_year = temp_end_date[2].split(" ")[0]
+        value_hash["end_time"] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
+        value_hash["end_time"] = value_hash["end_time"].in_time_zone("Eastern Time (US & Canada)")
+      end
+    end
+
     def config_opentok
       
       if @opentok.nil?

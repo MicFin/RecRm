@@ -35,6 +35,13 @@
 				</div>
 				Sessions
 			</h2>
+
+			<% if current_dietitian.has_role? "Admin Dietitian" %>
+				<div class="col-xs-6 col-xs-offset-6">
+    			<%= link_to "Admin Dash", dashboard_path, class: "btn btn-warning"%>
+    		</div>
+			<% end %>
+
 			<div id="appointment-update-container">
 				<% if @upcoming_appointments.count >= 1%>
 					<% @upcoming_appointments.each do |date_time_array, appointment| %>
@@ -56,7 +63,9 @@
 								<% else %>
 									<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-danger prep-appointment-button">Prep</button>
 								<% end %>
-
+								<% if current_dietitian.has_role? "Admin Dietitian" %>
+									<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => @next_appointment.room_id, appointment: @next_appointment.id }%>
+								<% end %>
 							</div>
 						</div>
 						<div class="row hidden-xs dashboard-list-bottom">
@@ -94,7 +103,9 @@
 							</div>
 							<div class="col-xs-3">
 									<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success appointment-review-button">View</button>
-
+								<% if current_dietitian.has_role? "Admin Dietitian" %>
+									<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => @next_appointment.room_id, appointment: @next_appointment.id }%>
+								<% end %>
 							</div>
 						</div>
 						<div class="row hidden-xs dashboard-list-bottom">

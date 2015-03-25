@@ -48,6 +48,7 @@
 //= require tok_box_main.js
 //= require images
 //= require google_analytics
+//= require home_page
 
 //= require basic_form_validate
 

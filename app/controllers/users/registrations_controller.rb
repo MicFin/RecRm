@@ -26,7 +26,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new_user_intro
     @user = current_user || User.find(params[:id])
     @sign_up_stage = @user.sign_up_stage 
-    
     if @sign_up_stage == 2
       redirect_to new_user_family_path(@user)
     elsif @sign_up_stage == 3

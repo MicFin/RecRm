@@ -16,8 +16,9 @@ Rails.application.routes.draw do
 
   
   get 'welcome/index', to: "welcome#index", as: "welcome"
-  get 'Ta10lI8839dAmi', to: 'home#index', as: 'landing_page'
-
+  get 'Ta10lI8839dAmi', to: 'home#index', as: 'main_landing_page'
+  get 'lI45StA00OdAMi', to: 'home#discount_landing_page', as: 'discount_landing_page'
+  get 'home', to: 'home#home_page', as: 'home_page'
 
   devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions' }
   
@@ -55,8 +56,8 @@ Rails.application.routes.draw do
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_room, :via => :get
       # resources :charges
       resources :subscriptions
-
     end
+
   end
 
   devise_for :dietitians, :controllers => { :registrations => "dietitians/registrations" }
@@ -156,8 +157,11 @@ Rails.application.routes.draw do
       resources :rooms, only: [:index, :create]
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_dietitian_room, :via => :get
     end
+    # unauthenticated :dietitian do
+    #   root :to => "devise/sessions#new", as: :dietitian_unauthenticated_root
+    # end   
     unauthenticated :dietitian do
-      root :to => "devise/sessions#new", as: :dietitian_unauthenticated_root
+      root :to => "home#home_page", as: :dietitian_unauthenticated_root
     end   
   end
   

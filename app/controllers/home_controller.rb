@@ -29,6 +29,13 @@ class HomeController < ApplicationController
 		end
 	end
 
+	def discount_landing_page
+		@new_user  = User.new
+	end
+
+	def home_page
+		@new_user  = User.new
+	end
 
 	private
 

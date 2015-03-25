@@ -1,0 +1,329 @@
+
+.home-page {
+	.section-link{
+		color: black;
+	}
+	.section-link:visited{
+		color: black;
+	}
+
+	.section-link:active, .select-link:focus, .section-link:hover{
+		color: $carrotgreen;
+	}
+
+	.arrow-down.page-arrow {
+	  position: absolute;
+	  right: 45%;
+	  bottom: 20px;
+	  width: 0;
+	  height: 0;
+	  border-left: 30px solid transparent;
+	  border-right: 30px solid transparent;
+	  border-top: 30px solid black;
+	}
+	#offer-font{
+		color: white;
+	  line-height: 1.6;
+	  span {
+	  	color: $carrotgreen;
+	  }
+	}
+	.section-1{
+		.arrow-down.page-arrow {
+	  	bottom: 80px;
+
+		}
+	}
+	.section-1-top {
+		height: 30%;
+		position: relative;
+		.img-mom-and-child{
+			display: block;
+	  	max-width: 100%;
+	  	max-height: 100%;
+	  	// padding-top: 60px;
+		}
+		#logo-container{
+			margin-left: -5%;
+			z-index: -10000;
+		}
+		.img-kindrdfood-logo{
+	  	max-width: 100%;
+	  	max-height: 100%;
+		}
+		#member-sign-in-button{
+			position: absolute;
+		  right: 2%;
+		  top: 8%;
+		}
+		#about-kindrdfood-link{
+			position: absolute;
+		  right: 10%;
+		  bottom: 2%;	
+		  color: $black;
+		}
+		.arrow-left {
+			position: absolute;
+		  right: 120%;
+		  bottom: 10%;	
+			width: 0; 
+			height: 0; 
+			border-top: 10px solid transparent;
+			border-bottom: 10px solid transparent; 
+			border-right:10px solid $black; 
+		}
+		.arrow-down {
+			position: absolute;
+		  right: 120%;
+		  bottom: 10%;		
+			width: 0; 
+			height: 0; 
+			border-left: 10px solid transparent;
+			border-right: 10px solid transparent;
+			border-top: 10px solid $black;
+		}
+		div {
+			height: 100%;
+			padding: 0px;
+		}
+		#menu-bar{
+		  position: absolute;
+		  right: 20%;
+		  bottom: 0;
+		  list-style-type: none;
+		  width: 50%;
+	  	li {
+    		display: inline;
+    		a {
+			    float: left;
+			    color: $black;
+				}
+			}
+		}
+	}
+
+	.section-1-bottom{
+		height: 70%;
+		.intro-container{
+		  border-radius: 50px;
+		  border: 1px solid green;
+		  padding: 5%;
+		  margin: 5%;
+		  background-color: rgba(255,255,255,0.5);
+		  text-align: center;
+		  h4{
+		  	line-height: 1.4;
+		  }
+		}
+		form{
+			margin-top: 3%;
+		  background-color: $lightorange;
+		  padding-top: 3%;
+		  border-radius: 15px;
+		  text-align: center;
+		  .form-control {
+		  	width: 100%;
+		  }
+		}
+		.btn-sign-up {
+
+		  padding: 5px 0px;
+		  font-size: 30px;
+		  line-height: 1.33;
+		  border-radius: 6px;
+		  width: 100%;
+		}
+	}
+
+	.section-1-bottom-background{
+		height: 90%;
+		background-image: url("landing_page/basil.png");
+	  background-size: cover;
+	  // border-top: 4px solid $lightgreen;
+	  // border-bottom: 4px solid $lightgreen;
+	  h3 {
+	  	padding: 10%;
+	  	text-align: center;
+	  }
+	  ul {
+		  list-style: none;
+		  text-align: center;
+		  position: absolute;
+		  width: 100%;
+		  bottom: 0;
+		  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+		    position: absolute;
+	  		top: 655px;
+			}
+	  }
+	}
+
+	.section-2-top{
+		// height:20%;
+		h2 {
+			line-height: 1.7;
+		}
+	}
+	.section-2-bottom {
+		height: 80%;
+		padding: 0;
+		@media (max-width: $screen-xs-max) {
+			height: 100%;
+		}
+	}
+
+	.section-2-bottom-background{
+	  height: 100%;
+	  ul {
+	  	padding-top: 1%;
+	  	padding-left: 10%;
+	  }
+	  #container1{
+	  	margin-left: 65%;
+	  	position:absolute;
+	  	bottom: 5%;
+			@media (max-width: $screen-xs-max) {
+		  	margin-left: 30%;
+				position: absolute;
+				bottom: 5%;
+	  	}
+	  	img {
+	  		max-width: 100%;
+	  	}
+	  	button {
+				margin-bottom: 60px;
+			  margin-left: 5%;
+			  padding: 10px 20px;
+			  font-size: 40px;
+			  border-radius: 15px;
+
+				@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+			    margin-bottom: 0;
+				  margin-left: 5%;
+				  padding: 0px 10px;
+				  font-size: 50px;
+				  border-radius: 15px;
+				}
+
+				@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
+				  margin-bottom: 0;
+				  margin-left: 0;
+				  padding: 15px 20px;
+				  font-size: 25px;
+				  border-radius: 15px;
+	  		}
+	  	}
+	  }
+	}
+
+	.section-2-bottom-background::after {
+	  content: "";
+	  background: url("landing_page/clouds.jpg");
+	  opacity: 0.5;
+	  top: 0;
+	  left: 0;
+	  bottom: 0;
+	  right: 0;
+	  position: absolute;
+	  z-index: -1;   
+	}
+	.section-3{
+		button.sign-up-button{
+	  	padding: 10px 25px;
+	  	font-size: 30px;
+	  	border-radius: 15px;
+	 		background-color: $lightorange;
+	 		color: $white;
+		}
+		// h1{
+		// 	  margin: 0px;
+		// }
+		#section-3-top{
+			height: 15%;
+			h1 {
+				line-height: 1.5;
+			}
+		}
+	}
+	#section-3-background{
+		background-image: url("landing_page/meal_prep.png");
+	  background-size: cover;
+	  height: 85%;
+	  padding-top: 2%;
+	  padding-left: 5%;
+  	padding-right: 5%;
+
+	}
+
+	.section-4{
+		a.btn-big{
+		  margin-top: 60px;
+		  margin-left: 5%;
+		  padding: 10px 20px;
+		  font-size: 40px;
+		  border-radius: 15px;
+		}
+		.section-4-middle{
+		  margin-top: -5%;
+		  h3{
+		  	margin-top: 0;
+
+		  }
+		}
+	}
+	.section-4-top {
+		margin-bottom: 5%;
+	}
+	#section-4-background{
+		background-image: url("landing_page/chilis.png");
+	  background-size: cover;
+	  height: 100%;
+	  padding-left: 10%;
+	  padding-right: 10%;
+		@media (max-width: $screen-xs-max) {
+	    padding-left: 0;
+	    padding-right: 0;
+	 }
+	}
+	#section-5{
+		img {
+			max-height: 500px;
+  		border-radius: 15px;
+		}
+		form{
+			margin-top: 3%;
+		  background-color: $lightorange;
+		  padding-top: 0;
+		  border-radius: 15px;
+		  text-align: center;
+		  .form-control {
+		  	width: 100%;
+		  }
+		}
+		.btn-sign-up {
+
+		  padding: 5px 0px;
+		  font-size: 30px;
+		  line-height: 1.33;
+		  border-radius: 6px;
+		  width: 100%;
+		}
+		.beta-message{
+			  border-radius: 15px;
+			  border: 1px solid $lightorange;
+			  margin-top: 2%;
+			  h1{
+			  	color: $lightorange;
+			  }
+			  h4{
+			  	line-height: 1.5;
+			  }
+		}
+		.section-5-bottom{
+			margin-top: 4%;
+			ul{
+				  margin-top: 20px;
+			}
+		}
+	}
+}

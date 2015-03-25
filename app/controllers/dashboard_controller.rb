@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
 
   
   def home
-    binding.pry
+
   # if appointment has been made and scheduled go to dashboard home
     @user = current_user
     if @user.appointment_hosts.where(status: "Paid").last

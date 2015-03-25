@@ -33,7 +33,7 @@
     					</div>
     				</div>
     				<div class="hidden-xs col-sm-6 col-md-6 col-lg-6">
-								<%= simple_form_for(@new_user, as: "user", url: user_registration_path, html: {class: 'form-inline col-xs-10 col-xs-offset-1', role:"form" }, remote: true) do |f| %>
+								<%= simple_form_for(@new_user, as: "user", url: user_registration_path, html: {class: 'form-inline col-xs-10 col-xs-offset-1', role:"form" }) do |f| %>
 									<%#= render "/layouts/alerts" %>
 										<h1 class="form-group">Join the community!</h1>
     								<h4 class="form-group">To receive updates on our public launch or to request early access to our solution, let us know who you are and how to reach you:</h4>
@@ -46,6 +46,7 @@
 										<div class="col-xs-12 form-group form-fields">
 							      	<%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "Email Address" %>
 							      </div>
+							      <input name="user[home_page]" value="true" type="hidden">
 										<div class="col-xs-12 checkbox form-group">
 											<h4>
 											    <label>
@@ -254,5 +255,12 @@
 			</div>
     </div>
 </div>
+
+<% if @thanks == "Thanks1" %>
+	<%= render "thanks_1_modal" %>
+<% end %>
+<% if @thanks == "Thanks2" %>
+	<%= render "thanks_2_modal" %>
+<% end %>
 
 <%= render "sign_up_modal" %>

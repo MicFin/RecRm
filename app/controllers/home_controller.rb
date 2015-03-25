@@ -34,7 +34,10 @@ class HomeController < ApplicationController
 	end
 
 	def home_page
+
+		@thanks = params[:thanks]
 		@new_user  = User.new
+
 	end
 
 	private

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
 
 		if resource.class == User
-		
+			
 		    if resource.appointment_hosts.last
 		    	if resource.appointment_hosts.last.start_time
 		    	
@@ -18,6 +18,14 @@ class ApplicationController < ActionController::Base
 		     	else 
 		     		new_user_intro_path(resource.id) 
 		     	end
+		    elsif params[:user][:home_page]
+		    	if resource.early_access == true 
+		    		thanks = "Thanks1"
+		    	else
+		    		thanks = "Thanks2"
+		    	end
+		    	sign_out resource
+		    	home_page_path(thanks: thanks)
 		    else
 		      # if first time give first time user experience
 		      new_user_intro_path(resource.id) 

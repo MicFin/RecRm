@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
 	# For APIs, you may want to use :null_session instead.
 	protect_from_forgery with: :exception
 	after_filter :dietitian_activity
-  # ## lazy way, should make dietitian registraiton controller just as i did user
 
+  # ## lazy way, should make dietitian registraiton controller with this method just as i did user
 	def after_sign_in_path_for(resource)
 
 		if resource.class == User

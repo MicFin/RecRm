@@ -11,10 +11,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Signs in a user on sign up. You can overwrite this method in your own
   # RegistrationsController.
   def sign_up(resource_name, resource)
+    binding.pry
+    if params[:user][:early_access]
+      respond_to do |format|
+        format.js { render :action => "early_access" }
+      end
+    end
     sign_in(resource_name, resource)
   end
 
   def after_sign_up_path_for(resource)
+    binding.pry
     after_sign_in_path_for(resource)
   end
 
@@ -349,7 +356,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     ### should be in after create??
     ## should not be in regular flow of update, only for initial sign up
-    
+    binding.pry
     if resource.class == User 
       ## if they have already created an appointment
       if resource.appointment_hosts.where(status: "In Registration").count >= 1
@@ -366,6 +373,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           return new_user_family_path(resource)
         end
       else
+        binding.pry
         ##### registrations/new_user_intro/# assigns appointment here
         @user = resource
         @family = Family.new(name: "Main Family", head_of_family_id: @user.id)

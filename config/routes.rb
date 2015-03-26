@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get 'Ta10lI8839dAmi', to: 'home#index', as: 'main_landing_page'
   get 'lI45StA00OdAMi', to: 'home#discount_landing_page', as: 'discount_landing_page'
   get 'home', to: 'home#home_page', as: 'home_page'
+  get "/kindrdnutritionist" => redirect("http://kindrdfood.com/dietitians/sign_in")
+
 
   devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions' }
   

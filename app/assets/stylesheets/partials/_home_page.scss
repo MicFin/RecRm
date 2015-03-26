@@ -19,7 +19,7 @@
 	.arrow-down.page-arrow {
 	  position: absolute;
 	  right: 45%;
-	  bottom: 20px;
+	  top: 660px;
 	  width: 0;
 	  height: 0;
 	  border-left: 30px solid transparent;
@@ -35,7 +35,7 @@
 	}
 	.section-1{
 		.arrow-down.page-arrow {
-	  	bottom: 80px;
+	  	top: 660px;
 
 		}
 	}
@@ -141,7 +141,7 @@
 	}
 
 	.section-1-bottom-background{
-		height: 90%;
+		height: 100%;
 		background-image: url("landing_page/basil.png");
 	  background-size: cover;
 	  // border-top: 4px solid $lightgreen;

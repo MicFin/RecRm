@@ -5,7 +5,7 @@ var HomePage = {
 		$("#about-kindrdfood-link").on("click", function(e){
 			e.preventDefault();
 			$("#menu-bar").toggleClass("hidden");
-			$(".arrow-down, .arrow-left").toggleClass("arrow-down arrow-left")
+			$(".section-1-top .arrow-down, .section-1-top .arrow-left").toggleClass("arrow-down arrow-left")
 		})
 		$("#thanksModal").modal();
 		$("#member-sign-in-button").on("click", function(e){
@@ -13,7 +13,9 @@ var HomePage = {
 			$(".home-page-form").toggleClass("hidden");
 			$(this).toggleClass("btn-success btn-active")
 			$(this).toggleText("Members Sign In", "Sign Up Here");
-		})
+		});
+		var arrow_height = $(window).height() - ($(window).height() * 0.057)
+		$(".section-1 .arrow-down.page-arrow").css("top", arrow_height +"px");
 	}
 
 }

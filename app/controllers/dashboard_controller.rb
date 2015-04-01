@@ -10,9 +10,20 @@ class DashboardController < ApplicationController
   
   def home
 
-  # if appointment has been made and scheduled go to dashboard home
     @user = current_user
-    if @user.appointment_hosts.where(status: "Paid").last
+
+      # if an appointment has not been made goto introduction
+    # if (@user.appointment_hosts.where(status: "Paid").length < 1) && (@user.appointment_hosts.where(status: "Requested").length < 1) 
+    if (@user.appointment_hosts.where(status: "Paid").length < 1) 
+
+        redirect_to new_user_intro_path(@user.id) 
+
+    # elsif (@user.appointment_hosts.where(status: "Paid").length < 1) && (@user.appointment_hosts.where(status: "Requested").length > 0) 
+
+
+  # if appointment has been made and scheduled go to dashboard home
+    else 
+
 # set variables for dashboard
       @family = @user.head_of_families.last
       @appointment = @user.appointment_hosts.where(status: "Paid").last
@@ -53,10 +64,7 @@ class DashboardController < ApplicationController
       @allergies = @allergies
       @diets =  @diets 
       @unverified_health_groups = @family_members[0].unverified_health_groups
-      
-# if no appointment has been made goto introduction
-    else 
-      redirect_to new_user_intro_path(@user.id) 
+    
     end
     
   end

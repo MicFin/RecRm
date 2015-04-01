@@ -154,7 +154,7 @@ class User < ActiveRecord::Base
         if months == 1
           final_age = age.to_s + " years and 1 month old"
         elsif months > 1
-          final_age = age.to_s + " years and "+ months.to_s +" months old"
+          final_age = age.to_s + " years and " + months.to_s + " months old"
         else
           final_age = age.to_s + " years old"
         end

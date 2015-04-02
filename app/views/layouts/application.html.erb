@@ -16,7 +16,7 @@
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %> 
     <% if Rails.env.development? %>
-      <%= tag :meta, :name => "stripe-key", :content => "pk_test_ZhUy6XVDQjBUGspdTdbxeyy3" %>
+      <%= tag :meta, :name => "stripe-key", :content => "pk_test_cZieXcu5WhjQKKDCmOY0PtoA" %>
     <% else %>
 <!--       This is required to process a stripe payment.  It is called in Appointment.rb update_with_payment -->
       <%= tag :meta, :name => "stripe-key", :content => "pk_live_eKJSALzXBAibHjg97Osuzfdm" %>

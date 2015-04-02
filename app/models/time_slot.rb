@@ -37,7 +37,7 @@ class TimeSlot < ActiveRecord::Base
   end
   
   def self.create_from_availability(availability_object)
-    binding.pry
+    
     one_hour_time_slots = []
     half_hour_time_slots = []
     new_time_slots_hash = {}

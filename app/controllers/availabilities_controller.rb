@@ -49,12 +49,12 @@ class AvailabilitiesController < ApplicationController
   # POST /availabilities/set_schedule
   # POST /availabilities/set_schedule.json
   def set_schedule
-   binding.pry
+   
     params[:availabilities].each do |availability_hash|
       new_avail = Availability.new(availability_hash[1])
       new_avail.dietitian = current_dietitian
       new_avail.save
-      binding.pry
+      
       # if the availability is within 1 week from today then create time slots for it which will mark it live
       if Date.parse(availability_hash[1]["start_time"]) < Date.today + 7
         # new_avail.status = "Live" 

@@ -141,13 +141,15 @@
 					<p>Create a Recipe</p>
 				</div>
 			<% end %>
-						<% if current_dietitian.has_role? "Admin Dietitian" %>
+			<% if current_dietitian.has_role? "Admin Dietitian" %>
 				<div class="col-xs-6 ">
     			<%= link_to "Admin Dash", dashboard_path, class: "btn btn-warning"%>
     		</div>
 				<div class="col-xs-6 ">
 				  <%= link_to "Demo Appt", {:controller => "rooms", :action => "in_session", :id => "17", appointment: "53" }, class: "btn btn-warning" %>
+				  <div class="col-xs-12">
 				  <button data-appt-id="53" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
+				  </div>
 				</div>
 			<% end %>
 		</div>

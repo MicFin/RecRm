@@ -284,6 +284,7 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
+    binding.pry
     if @appointment.status = "Follow Up Unpaid" 
       clean_dates_for_database
     end

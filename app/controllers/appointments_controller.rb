@@ -285,7 +285,7 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1.json
   def update
     binding.pry
-    if @appointment.status = "Follow Up Unpaid" 
+    if @appointment.status == "Follow Up Unpaid" 
       clean_dates_for_database
     end
     # if update saves
@@ -297,7 +297,7 @@ class AppointmentsController < ApplicationController
     
         # check if credit card should be saved to stripe account
         credit_card_usage = params[:credit_card_usage]
-    
+        binding.pry
         @appointment.update_with_payment(credit_card_usage)
 
 

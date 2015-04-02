@@ -15,11 +15,12 @@
 
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %> 
-    <%# if Rails.env.development? %>
+    <% if Rails.env.development? %>
       <%= tag :meta, :name => "stripe-key", :content => "pk_test_ZhUy6XVDQjBUGspdTdbxeyy3" %>
-    <%# else %>
-      <%#= tag :meta, :name => "stripe-key", :content => "pk_live_1IV8NGkvFKgQj83tWn64GQlE" %>
-    <%# end %>
+    <% else %>
+<!--       This is required to process a stripe payment.  It is called in Appointment.rb update_with_payment -->
+      <%= tag :meta, :name => "stripe-key", :content => "pk_live_eKJSALzXBAibHjg97Osuzfdm" %>
+    <% end %>
     <link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
   </head>
 

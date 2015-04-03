@@ -302,7 +302,7 @@ class AppointmentsController < ApplicationController
 
 
         @pre_appt_survey = Survey.generate_for_appointment(@appointment, current_user)
-      elsif @appointment.status = "Follow Up Unpaid" 
+      elsif @appointment.status == "Follow Up Unpaid" 
         ## for when unpaid follow up visits are updated by the dietitian
 
       elsif params[:appointment][:note]

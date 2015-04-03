@@ -43,7 +43,7 @@ class HomeController < ApplicationController
 	private
 
 		def check_user_logged_in! 
-				# binding.pry
+
 		  if current_user 
 
 		    true

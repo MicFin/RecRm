@@ -19,7 +19,6 @@ class Image < ActiveRecord::Base
   private
   
   # def image_size_validation
-  #   binding.pry
   #   errors[:image] << "should be less than 5MB" if image.size > 5.megabytes
   # end
 

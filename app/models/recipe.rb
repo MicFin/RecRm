@@ -509,7 +509,6 @@ class Recipe < ActiveRecord::Base
     return made_for_array
   end
   # def has_mandatory_characteristics
-  #   binding.pry
   # end
 
 end

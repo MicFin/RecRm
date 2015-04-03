@@ -59,7 +59,7 @@ var AvailabilityCalendar = {
           // if (moment(end) < moment(start).add(1, "hours").add(30, "minutes")){
           //   end = moment(start).add(1, "hours").add(30, "minutes");
           // }
-          // debugger;
+
 
           // after today then set availablility
           var eventData;
@@ -198,7 +198,6 @@ var AvailabilityCalendar = {
         // if (event.status === "Live"){ 
         //   live_events_hours_total += moment.duration(event.end - event.start);
         // } else if (event.status === "Set"){
-        //   debugger;
         //   set_events_hours_total += moment.duration(event.end - event.start);
         // } else if (event.status === "Appointment"){
         //   appointment_events_total+= moment.duration(event.end - event.start);

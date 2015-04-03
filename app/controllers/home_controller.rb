@@ -12,7 +12,6 @@ class HomeController < ApplicationController
 			redirect_to dietitian_authenticated_root_path
 		else
 		@new_user  = User.new
-		# binding.pry
 		# #UserHelper
 		# get_user_patient_groups!
 		# get_user_allergens!

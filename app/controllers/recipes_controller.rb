@@ -252,7 +252,6 @@ class RecipesController < ApplicationController
   # end
 
   # def add_health_groups
-  #   binding.pry
   #   respond_to do |format|
   #     if @recipe.update(recipe_params)
   #       format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }

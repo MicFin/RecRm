@@ -307,7 +307,7 @@ class AppointmentsController < ApplicationController
 
       elsif params[:appointment][:note]
 
-        # or has recently been updated with dietitian thhen admin assigned dietitian
+      # or when admin dietitian assigns dietitian
       elsif @appointment.dietitian_id != nil
         ## assumes that appointment has been paid for and assigned a dietitian by admin dietitian
         @new_session = @opentok.create_session 

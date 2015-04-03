@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
 
       # if an appointment has not been made goto introduction
     # if (@user.appointment_hosts.where(status: "Paid").length < 1) && (@user.appointment_hosts.where(status: "Requested").length < 1) 
-    binding.pry
+
     if (@user.appointment_hosts.where(status: "Paid").length < 1) 
 
         redirect_to new_user_intro_path(@user.id) 

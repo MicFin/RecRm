@@ -62,8 +62,8 @@
 								<% else %>
 									<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-danger prep-appointment-button">Prep</button>
 								<% end %>
-								<% if current_dietitian.has_role? "Admin Dietitian" %>
-									<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => @next_appointment.room_id, appointment: @next_appointment.id }%>
+								<% if (current_dietitian.has_role? "Admin Dietitian") && (appointment.first.room_id) %>
+									<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => appointment.first.room_id, appointment: appointment.first.id }%>
 								<% end %>
 							</div>
 						</div>
@@ -102,9 +102,6 @@
 							</div>
 							<div class="col-xs-3">
 									<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success appointment-review-button">View</button>
-								<% if current_dietitian.has_role? "Admin Dietitian" %>
-									<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => @next_appointment.room_id, appointment: @next_appointment.id }%>
-								<% end %>
 							</div>
 						</div>
 						<div class="row hidden-xs dashboard-list-bottom">

@@ -1,3 +1,13 @@
+<%= simple_form_for(Appointment.find(140), html: {class: 'form-horizontal' }) do |f| %>
+  <input name='new_room_needed' type='hidden' value='true'>
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+
+
+
 <%= link_to 'New Appointment', new_appointment_path %>  
   <div class="col-xs-12 form-group">
     <h1>Appointments To Be Assigned</h1>
@@ -104,7 +114,9 @@
         <td><%= appointment.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
         <td><%= link_to 'Change Dietitian', edit_appointment_path(appointment) %></td>
         <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%#= link_to 'Start Appointment', {:controller => "rooms", :action => "in_session", :id => appointment.room_id, appointment: appointment.id }, class: "text-center action kindrd-button btn-block tilt"%></td>
+        <td><%#= link_to 'Add Emergency Room', update_appointment_path(appointment, new_room_needed: "true") %>
+
+        </td>
       </tr>
     <% end %>
   </tbody>

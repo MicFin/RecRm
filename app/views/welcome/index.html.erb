@@ -125,7 +125,7 @@
 		</div>
 		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
 	
-			<% if @next_appointment != nil %>
+			<% if @next_appointment.room_id != nil %>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
 					<%= link_to image_tag("computer.png", class: "tilt"), {:controller => "rooms", :action => "in_session", :id => @next_appointment.room_id, appointment: @next_appointment.id }%>
 					<p><%=@next_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></p>

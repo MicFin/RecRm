@@ -9,11 +9,10 @@ class WelcomeController < ApplicationController
       @beginning_of_week = @today.at_beginning_of_week(:thursday)
       if @user == current_dietitian
         
-        # from include AppointmentsHelper
+        # AppointmentsHelper
         get_upcoming_appointments!
         @upcoming_appointments
         @next_appointment
-        # from include AppointmentsHelper
         get_previous_appointments!
         @previous_appointments
         

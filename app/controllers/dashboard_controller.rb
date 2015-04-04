@@ -22,13 +22,13 @@ class DashboardController < ApplicationController
     # elsif (@user.appointment_hosts.where(status: "Paid").length < 1) && (@user.appointment_hosts.where(status: "Requested").length > 0) 
 
 
-  # if appointment has been made and scheduled go to dashboard home
+      # if appointment has been made and scheduled go to dashboard home
     else 
 
-# set variables for dashboard
+      # set variables for dashboard
       @family = @user.head_of_families.last
       @appointment = @user.appointment_hosts.where(status: "Paid").last
-# create family should be a helper method on the family model
+        # create family should be a helper method on the family model
       @family_members = []
       if @appointment.patient_focus 
         appointment_focus = @appointment.patient_focus

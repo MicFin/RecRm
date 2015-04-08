@@ -24,6 +24,29 @@ var UserSignUp = {
   },
   set_intro_modal: function(){
     $("#introModal").modal("toggle");
+    // when all disclaimer boxes are checked, unhide exit disclaimer button
+    $(".disclaimer-checkbox").change(function(){
+      if ($('.disclaimer-checkbox:checked').length === $('.disclaimer-checkbox').length) {
+        $("#exit-disclaimer-button").removeClass("hidden");
+      }else{
+        $("#exit-disclaimer-button").addClass("hidden");
+      }
+    });
+    // when exit disclaimer button is clicked, check again to make sure that all disclaimers are checked or else prompt user to complete them
+    $("#exit-disclaimer-button").on("click", function(e){
+      if ( $('.disclaimer-checkbox:checked').length === $('.disclaimer-checkbox').length){
+        return true;
+      }else {
+        e.preventDefault();
+        alert("Please read terms of service and verify age to continue");
+        return false;
+      }
+    });
+    $("#next-disclaimer-button").on("click", function(e){
+      e.preventDefault();
+      $("#intro-modal-main").addClass("hidden");
+      $("#intro-modal-disclaimer").removeClass("hidden");
+    });
   },
   family_buttons: function(){
     $(".display-more-checkbox").on("click", function(){

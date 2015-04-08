@@ -80,7 +80,7 @@ b.bind("mouseup.slimscroll",function(a){y=!1;p();b.unbind(".slimscroll")});retur
 		e.setKeyboardScrolling(!1);f.addClass("fp-destroyed");c(k).off("scroll",aa).off("hashchange",na).off("resize",qa);c(g).off("click","#fp-nav a").off("mouseenter","#fp-nav li").off("mouseleave","#fp-nav li").off("click",".fp-slidesNav a").off("mouseover",d.normalScrollElements).off("mouseout",d.normalScrollElements);c(".fp-section").off("click",".fp-controlArrow");a&&Na()}}})(jQuery,window,document,Math);
 			// inititate
 			
-		$('#fullpage').fullpage({navigation: true, scrollOverflow: true, responsive: 768});
+		$('#fullpage').fullpage({navigation: true, responsive: 768});
 		// set links individual sections
 		$(".section-link").on("click", function(e){
 			e.preventDefault();

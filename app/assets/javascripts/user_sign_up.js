@@ -42,6 +42,7 @@ var UserSignUp = {
         return false;
       }
     });
+    // when user clicks on the next disclaimer button, hide the main content and show the disclaimers content
     $("#next-disclaimer-button").on("click", function(e){
       e.preventDefault();
       $("#intro-modal-main").addClass("hidden");

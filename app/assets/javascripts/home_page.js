@@ -4,11 +4,11 @@ var HomePage = {
 	setLinks: function(){
 		$("#about-kindrdfood-link").on("click", function(e){
 			e.preventDefault();
-			$("#menu-bar").toggleClass("hidden");
+			$("#menu-bar").toggleClass("hidden-sm");
 			$(".section-1-top .arrow-down, .section-1-top .arrow-left").toggleClass("arrow-down arrow-left")
 		})
 		$("#thanksModal").modal();
-		$("#member-sign-in-button").on("click", function(e){
+		$("#member-sign-in-button, #member-sign-in-link").on("click", function(e){
 			e.preventDefault();
 			$(".home-page-form").toggleClass("hidden");
 			$(this).toggleClass("btn-success btn-active")

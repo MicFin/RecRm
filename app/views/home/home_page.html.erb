@@ -1,21 +1,22 @@
 <div id="fullpage" class="home-page">
     <div class="section section-1">
     	<div class="section-1-top">	
-    		<button id="member-sign-in-button" class="btn btn-success btn-lg">Members Sign In</button>
+    		<button id="member-sign-in-button" class="btn btn-success btn-lg hidden-xs">Members Sign In</button>
+    		<a id="member-sign-in-link" href="#" class="hidden-sm hidden-md hidden-lg">Members Sign In</a>
     		<div class="hidden-xs col-sm-3 col-md-3 col-lg-3">
     			<%= image_tag("landing_page/momandchild.png", class: "img-mom-and-child", alt: "Kindrdfood-mom")	%>
     		</div>
     		<div id="logo-container" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
     			<%= image_tag("landing_page/kindrdfood-logo.jpg", class: "img-kindrdfood-logo") %>
     		</div>
-    		<h3>
+    		<h3 class="hidden-xs">
     			<a id="about-kindrdfood-link" href="#">
     				<div class="arrow-down">
     				</div>
     				About
     			</a>
     		</h3>
-    		<ul id="menu-bar" class="hidden">
+    		<ul id="menu-bar" class="hidden-sm">
     			<li class="col-xs-3"><a class="section-link" data-section="2" href="#">The Problem</a></li>
     			<li class="col-xs-3"><a class="section-link" data-section="4" href="#">Our Team</a></li>
     			<li class="col-xs-3"><a class="section-link" data-section="3" href="#">Who We Help</a></li>
@@ -29,7 +30,8 @@
     					<div class="intro-container">
 	    					<h4>We believe that everyone should be able to enjoy a variety of great tasting food regardless of dietary restrictions, medical conditions or healthy motives.</h4>
 	    					<h4>Feeding a family can be hard though, especially if you want or need to eat with intention. There is a lot to navigate and it’s time you had some trustworthy support.
-	    					<h4>Kindrdfood is a guide and partner to families who have to change the way that they eat, buy and prepare food. We help by empowering them to navigate change and master their everyday challenges.<button class="btn btn-success btn-md hidden-sm hidden-md hidden-lg sign-up-modal-button">Sign Up</button></h4>
+	    					<h4>Kindrdfood is a guide and partner to families who have to change the way that they eat, buy and prepare food. We help by empowering them to navigate change and master their everyday challenges.</h4>
+	    					<button class="btn btn-success btn-lg hidden-sm hidden-md hidden-lg sign-up-modal-button">Sign Up</button>
     					</div>
     				</div>
     				<div class="home-page-form hidden-xs col-sm-6 col-md-6 col-lg-6">
@@ -126,7 +128,7 @@
 							<h4>Most guidance has no support to implement change</h4>
 							<h4>Challenges change over time & advice gets old fast</h4>
 							<h4>Most changes require planning ahead which is hard</h4>
-	    				    <button class="btn btn-success btn-md hidden-md hidden-lg sign-up-modal-button">Get help now! </button></h2>
+	    				<button class="btn btn-success btn-lg col-xs-offset-3 hidden-md hidden-lg sign-up-modal-button">Get help now! </button>	    			
 	    			</li>
     			</ul>	
     			<div id="container1" class="hidden-xs hidden-sm col-md-3 col-lg-3">
@@ -227,7 +229,7 @@
     	</div>
     	<div id="section-3-background" class="col-xs-12">
 	    	<div class="col-xs-12">
-	    		<div class="hidden-xs hidden-sm col-md-5 col-lg-5">
+	    		<div class="col-xs-12 hidden-sm col-md-5 col-lg-5">
 	    			<h2 class="text-center">Families dealing with health limitations</h2>
 	    			<ul>
 	    				<h4><li>Dietary restrictions like food allergies & intolerances</li></h4>
@@ -270,19 +272,19 @@
 	    			<%= image_tag("landing_page/child_eating_watermelon.jpg", alt: "Kindrdfood-child")	%>
 	    		</div>
 	    		<div class="col-xs-8 ">
-	    			<h2 class="text-center">Kindrdfood offers a means for a new & better approach to food</h2>
+	    			<h2 class="hidden-xs text-center">Kindrdfood offers a means for a new & better approach to food</h2>
 	    			<ul>
 	    				<h4><li>Learn from trusted, convenient sources</li></h4>
 							<h4><li>Gain confidence to make everyday tasks easier</li></h4>
 							<h4><li>Enjoy amazing food with the whole family</li></h4>
 	    			</ul>
-	    			<a class="section-link" data-section="1" href="#">
-			    	<div class="col-xs-6 col-xs-offset-3 text-center beta-message">
+	    		</div>
+	    		<a id="join-beta-button" href="#">
+			    	<div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center beta-message">
 			    		<h1>Private Beta</h1>
 			    		<h4>Currently, Kindrdfood is in a private beta phase in which only selected families are offered early access. We would be delighted to hear from you if you would like to request access or simply receive notifications of our public launch!</h4>
 			    	</div>
-			    	</a>
-	    		</div>
+			    </a>
 	    	</div>
 			</div>
     </div>
@@ -295,4 +297,4 @@
 	<%= render "thanks_2_modal" %>
 <% end %>
 
-<%= render "sign_up_modal" %>
+<%= render "sign_up_modal_2" %>

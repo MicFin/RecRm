@@ -83,10 +83,24 @@ $(document).ready(function() {
 	// if url is landing page url or is home page with the full page ID 
 	// can probably just change to if #fullpage for both use cases
   if ( (pathname.search("/Ta10lI8839dAmi") >= 0) || ( (pathname.search("/") >= 0) && ($("#fullpage").length > 0) ) ) {
-		// landing page one page slide
-		JqueryFullpage.adjustBody();
-		JqueryFullpage.run();
-		HomePage.setLinks();
+  	// 	if ($(window).width() < 960) {
+   // 			alert('Less than 960');
+			// } else {
+				// landing page one page slide
+				JqueryFullpage.adjustBody();
+				JqueryFullpage.run();
+				HomePage.setLinks();
+			// };
+			// $(window).resize(function() {
+			// 	if ($(window).width() < 960) {
+   // 				alert('Less than 960');
+			// 	} else {
+			// 		// landing page one page slide
+			// 		JqueryFullpage.adjustBody();
+			// 		JqueryFullpage.run();
+			// 		HomePage.setLinks();
+			// 	}
+			// });
 	}
 
 });

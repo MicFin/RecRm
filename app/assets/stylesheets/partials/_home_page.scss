@@ -279,12 +279,12 @@
 	  padding-left: 5%;
   	padding-right: 5%;
   	h2 {
-  		@media (max-width: $screen-xs-max) {
+  		@media (max-width: $screen-sm-max) {
   			font-size: 20px;
   		}
   	}
   	h4 {
-  		@media (max-width: $screen-xs-max) {
+  		@media (max-width: $screen-sm-max) {
 	  		font-size: 15px;
   		}
   	}

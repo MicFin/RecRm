@@ -4,7 +4,7 @@ var HomePage = {
 	setLinks: function(){
 		$("#about-kindrdfood-link").on("click", function(e){
 			e.preventDefault();
-			$("#menu-bar").toggleClass("hidden-sm");
+			$("#menu-bar").toggleClass("hidden-sm hidden-md hidden-lg");
 			$(".section-1-top .arrow-down, .section-1-top .arrow-left").toggleClass("arrow-down arrow-left")
 		})
 		$("#thanksModal").modal();

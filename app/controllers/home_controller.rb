@@ -33,10 +33,12 @@ class HomeController < ApplicationController
 	end
 
 	def home_page
-
 		@thanks = params[:thanks]
 		@new_user  = User.new
 
+	end
+
+	def provider3126
 	end
 
 	private

@@ -1,12 +1,17 @@
 
 
 $(document).ready(function() {
+	var pathname = window.location.pathname;
 	// override bootstrap accordion
 	OverrideBootstrap.setAccordion();
 
 
 	// dirty form catcher 
-	FormValidation.dirty_form_catcher();
+	if (pathname.search("/provider3126") >= 0)){
+
+	} else {
+		FormValidation.dirty_form_catcher();
+	}
 	// sign in form on pageload
 	FormValidation.signInValidations();
 
@@ -79,7 +84,7 @@ $(document).ready(function() {
 		}
 	};
 
-	var pathname = window.location.pathname;
+
 	// if url is landing page url or is home page with the full page ID 
 	// can probably just change to if #fullpage for both use cases
   if ( (pathname.search("/Ta10lI8839dAmi") >= 0) || ( (pathname.search("/") >= 0) && ($("#fullpage").length > 0) ) ) {

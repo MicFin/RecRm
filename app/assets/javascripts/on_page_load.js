@@ -7,11 +7,11 @@ $(document).ready(function() {
 
 
 	// dirty form catcher 
-	if (pathname.search("/provider3126") >= 0)){
+	if (pathname.search("/provider3126") >= 0){
 
 	} else {
 		FormValidation.dirty_form_catcher();
-	}
+	};
 	// sign in form on pageload
 	FormValidation.signInValidations();
 

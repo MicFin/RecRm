@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
   ## this method and view is being used as the dietitian dashboard right now, it should be moved to a home controller or another controller
   def dietitian_recipes_index
     if current_dietitian.has_role? "Marketing Reviewer"
-      @all_completed_recipes = Recipe.where(completed: true).order("created_at").reverse
+      @all_completed_recipes = Recipe.where(completed: true).limit(250).order("created_at").reverse
     else
       @all_completed_recipes = Recipe.where(completed: true).limit(20).order("created_at").reverse
     end

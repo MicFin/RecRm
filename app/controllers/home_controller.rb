@@ -41,6 +41,9 @@ class HomeController < ApplicationController
 	def provider3126
 	end
 
+	def provider9172
+	end
+
 	private
 
 		def check_user_logged_in! 

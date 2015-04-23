@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 
 	// dirty form catcher 
-	if (pathname.search("/provider3126") >= 0){
+	if ((pathname.search("/provider3126") >= 0) || (pathname.search("/provider9172") >= 0) ){
 
 	} else {
 		FormValidation.dirty_form_catcher();

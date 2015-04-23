@@ -1,24 +1,220 @@
-<div class="provider-landing-page">
-	<div class="col-xs-12 col-sm-6 col-md-6 col-sm-offset-3 col-lg-6">	
-		<div id="logo-container" >
-			<%= image_tag("landing_page/kindrdfood-logo.jpg", class: "img-responsive") %>
+<div id="fullpage" class="provider-landing-page">
+	<div class="section">
+		<%= render "/home/provider_landing_pages/logo_header" %>
+
+		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-lg-6 text-center" >
+			<h1 class>Welcome! </h1>
+			<h4>We believe that everyone should be able to enjoy a variety of great tasting food regardless of medical conditions, dietary restrictions or a desire to eat healthier. Kindrdfood will help you and your family eat, buy and prepare great food with confidence and ease.</h4>
 		</div>
-	</div> 
-	<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-lg-6 text-center" >
-		<h1 class>Welcome! </h1>
-		<h4>We believe that everyone should be able to enjoy a variety of great tasting food regardless of medical conditions, dietary restrictions or a desire to eat healthier. Kindrdfood will help you and your family eat, buy and prepare great food with confidence and ease.</h4>
+		<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+			<form>
+				<div class="form-group">
+					<h3 for="">Referring Physician:</h3>
+					<input type="text" class="form-control" id="text" placeholder="Enter your physician's name">
+				</div>
+				<div class="form-group col-xs-12 text-right">
+					<%= button_tag "Enter", :type => 'button', :class => "btn btn-success btn-lg" %>
+				</div>
+			</form>
+		</div>
+		<p class="arrow-nav-down hidden-xs hidden">
+			<span class="glyphicon glyphicon-chevron-down "></span>
+				more info
+			<span class="glyphicon glyphicon-chevron-down "></span>
+		</p>
 	</div>
-	<div class="col-xs-12 col-sm-6 col-sm-offset-3">
-		<form>
-			<div class="form-group">
-				<h3 for="">Referring Physician:</h3>
-				<input type="text" class="form-control" id="text" placeholder="Enter your physician's name">
+	<div class="section hidden">
+		<%= render "/home/provider_landing_pages/logo_header_left" %>
+		<div class="basil-background">
+			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center white-faded form-group">
+				<h2>Create an account today to connect to your personally matched expert in nutrition, cooking & families!</h2>
 			</div>
-			<div class="form-group col-xs-12 text-center">
-				<%= button_tag "Submit", :type => 'button', :class => "btn btn-success btn-lg", :onclick => "location.href = '/Ta10lI8839dAmi'" %>
-			</div>
-		</form>
+			<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'col-xs-10 col-xs-offset-1', role:"form" }) do |f| %> 
+					<%= render "/layouts/alerts" %>
+				  <div class="col-xs-12 col-sm-10 col-md-6 col-md-offset-3 form-group">
+			
+			    	<h4 for="exampleInputPassword2">Email</h4>
+			      <%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
+
+				  </div>
+				  <div class="col-xs-12 col-sm-10 col-md-6 col-md-offset-3 form-group">
+				    <h4 for="exampleInputPassword2">Password</h4>
+				    <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "secret sauce", type: "password" %>
+				  </div>
+					<div class="col-xs-12 col-sm-10 col-md-6 col-md-offset-3 form-group">
+				    <h4 for="exampleInputPassword2">Confirm Password</h4>
+				    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control",  placeholder: "secret sauce", type: "password"%>
+				   </div>
+					<div class="col-xs-6 col-xs-offset-3 form-group text-right">
+					  <%= f.button :submit, "Submit", class: "btn btn-success btn-lg", type: "submit" %>
+					</div>
+			<% end %>
+			<p class="arrow-nav-down hidden-xs">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+					more info
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</p>
+		</div>
 	</div>
+	<div class="section hidden">
+		<%= render "/home/provider_landing_pages/logo_header_left" %>
+		<div class="meal-background">
+			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center white-faded">
+				<h2>Discover a better way to eat, buy and prepare food regardless of any medical condition or dietary restriction.</h2>
+				<h2>Learn to cook, shop smart, save money & enjoy the best food!</h2>
+				<h2>With your KindRDNutritionist, you’ll be in the best hands</h2>
+			</div>
+	
+			<p class="arrow-nav-down hidden-xs">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+					more info
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</p>
+		</div>
+	</div>
+	<div class="section hidden">
+		<div class="">
+			<h2 class="section-header-title">1-on-1 guidance whenever & wherever you need.</h2>
+			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
+				<div class="col-xs-12 col-sm-6">
+					<%=image_tag "/assets/landing_page/tara_headshot.png", class: "img-responsive tara-headshot" %>
+					<h4>Tara McCarthy R.D.</h4>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<ul class="text-left section-list">
+						<h3><li>Live video or phone connection</li></h3>
+						<h3><li>Specially matched to your family</li></h3>
+						<h3><li>Experts in nutrition & cooking</li></h3>
+					</ul>
+				</div>
+			</div>
+	
+			<p class="arrow-nav-down hidden-xs">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+					more info
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</p>
+		</div>
+	</div>
+	<div class="section hidden">
+		<div class="">
+			<h2 class="section-header-title orange">High quality recipes, information & training at your fingertips.</h2>
+			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
+				<%=image_tag "/assets/landing_page/recipe_preview.png", class: "img-responsive tara-headshot" %>
+				<ul class="text-left">
+					<h3><li>Personalized recipes, tips & training</li></h3>
+					<h3><li>Verified safe & healthy for your profile</li></h3>
+					<h3><li>Delivered by email</li></h3>
+				</ul>
+			</div>
+	
+			<p class="arrow-nav-down hidden-xs">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+					more info
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</p>
+		</div>
+	</div>
+	<div class="section hidden">
+		<%= render "/home/provider_landing_pages/logo_header" %>
+		<div class="">
+			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+				<div class="col-xs-6">
+					<%=image_tag "/assets/landing_page/momandchild.png", class: "img-responsive tara-headshot" %>
+				</div>
+				<div class="col-xs-6">
+
+					<h2 class="help-tagline">We help families</h2>
+				</div>
+				<div class="col-xs-12">
+					<h2>Healthy intentions & health limitations </h2>
+
+					<ul class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<h4><li>Prenatal & newborns <span class="glyphicon glyphicon-question-sign"></span></li></h4>
+						<h4><li>Developing children</li></h4>
+						<h4><li>Dietary restrictions <span class="glyphicon glyphicon-question-sign"></span></li></h4>
+											</ul>
+					<ul class="col-xs-12 col-sm-6 col-md-6 col-lg-6">		
+						<h4><li>Medical conditions <span class="glyphicon glyphicon-question-sign"></span></li></h4>
+						<h4><li>New or existing conditions</li></h4>
+					</ul>
+				</div>
+			</div>
+			<p class="arrow-nav-down hidden-xs">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+					more info
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</p>
+		</div>
+	</div>
+
+	<div class="section hidden">
+		<div class="">
+			<h2 class="section-header-title">Our Special Partnership with you.</h2>
+			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+				<div class="col-xs-12 col-sm-6">
+					<h3>You were referred by one of our approved physicians, so we are offering you discounted early access to Kindrdfood. </h3>
+					<h3>Begin with a 1 hour session with your specially matched KindRDNutritionist.</h3>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<ul>
+						<h4><li>1 hour when you choose</li></h4>
+						<h4><li>Connect remotely</li></h4>
+						<h4><li>Including personalized follow up content (recipes, articles, videos)</li></h4>
+						<h4><li>Continued email access for questions and concerns for 30 days</li></h4>
+					</ul>
+					<h2>Only $89</h2>
+				</div>
+			</div>
+			<p class="arrow-nav-down hidden-xs">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+					more info
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</p>
+		</div>
+	</div>
+	<div class="section hidden">
+		<%= render "/home/provider_landing_pages/logo_header" %>
+		<div class="">
+			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+				<div class="col-xs-12">
+					<h2>The Kindrdfood team is the best group to support you and your family.</h2>
+					<ul>
+						<h4><li>Expert nutrition team of all Registered Dietitians</li></h4>
+						<h4><li>Amazing professional chefs</li></h4>
+						<h4><li>Medical advisory board of renowned physicians</li></h4>
+						<h4><li>Technology & digital content specialists </li></h4>
+					</ul>
+				</div>
+			</div>
+			<p class="arrow-nav-down hidden-xs">
+				<span class="glyphicon glyphicon-chevron-down"></span>
+					more info
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			</p>
+		</div>
+	</div>
+
+	<div class="section hidden">
+		<div class="">
+			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+				<div class="col-xs-12">
+					<p>Kindrdfood does not provide medical advice, diagnosis or treatment.</p>
+					<p>For emergencies, please dial 911 on your telephone</p>
+					<p>The information contained on this website and any links associated with it are not medical advice and should be viewed and utilized strictly as information only. Always consult with your healthcare provider before starting any new life style related program and stay in regular contact with your healthcare provider.</p>
+					<p>Copyright © 2015 Kindrdfood Inc. </p>
+					<p>All rights reserved.</p>
+					<p>All materials on this site may not be reproduced, transmitted, cached or otherwise used, except with the prior written permission of Kindrdfood Inc.</p>
+				</div>
+			</div>
+			<%= render "/home/provider_landing_pages/logo_header" %>
+		</div>
+	</div>
+
+
 </div>
+
+
+
 
 

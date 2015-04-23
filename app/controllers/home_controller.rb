@@ -39,9 +39,11 @@ class HomeController < ApplicationController
 	end
 
 	def provider3126
+		@user  = User.new
 	end
 
 	def provider9172
+		@user  = User.new
 	end
 
 	private

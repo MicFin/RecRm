@@ -94,6 +94,23 @@ $(document).ready(function() {
 				// landing page one page slide
 				JqueryFullpage.adjustBody();
 				JqueryFullpage.run();
+
+				if ( $("#fullpage.provider-landing-page").length > 0) {
+					$("#fullpage.provider-landing-page button").on("click", function(e){
+						e.preventDefault();
+						$(".hidden").removeClass("hidden");
+						setTimeout(function(){
+							$('#fullpage').fullpage({navigation: true, responsive: 768});
+							setTimeout(function(){
+								$("#fullpage").fullpage.moveTo(2);
+							}, 1000);
+						}, 1000);
+					});
+						
+				} else {
+					JqueryFullpage.prepareMainPage();
+				}
+
 				HomePage.setLinks();
 			// };
 			// $(window).resize(function() {

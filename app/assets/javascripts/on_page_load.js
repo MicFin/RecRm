@@ -96,15 +96,46 @@ $(document).ready(function() {
 				JqueryFullpage.run();
 
 				if ( $("#fullpage.provider-landing-page").length > 0) {
+					var add_physician = false;
+					$('#fullpage.provider-landing-page').fullpage({
+							navigation: true, 
+							// responsive: 768, 
+							autoScrolling: true,
+							verticalCentered: false,
+							afterLoad: function(index, nextIndex, direction){
+								$(".hidden").removeClass("hidden");
+        			},
+        // 			onLeave: function(anchorLink, index){
+        // 			},
+        			afterResize: function(){
+            		if ( add_physician === true ) {
+            			if ($(window).width() > 768)  {
+										$("#fullpage.provider-landing-page").fullpage.setAutoScrolling(true);
+									} else {
+
+										$("#fullpage.provider-landing-page").fullpage.setAutoScrolling(false);
+									}
+								}
+        			}
+					});
+					$("#fp-nav").addClass("hidden");
+					$('#fullpage.provider-landing-page').fullpage.setAllowScrolling(false);
+					$("#fullpage.provider-landing-page").fullpage.setKeyboardScrolling(false);
+
 					$("#fullpage.provider-landing-page button").on("click", function(e){
 						e.preventDefault();
-						$(".hidden").removeClass("hidden");
-						setTimeout(function(){
-							$('#fullpage').fullpage({navigation: true, responsive: 768});
-							setTimeout(function(){
-								$("#fullpage").fullpage.moveTo(2);
-							}, 1000);
-						}, 1000);
+						add_physician = true;
+
+						$('#fullpage.provider-landing-page').fullpage.setAllowScrolling(true);
+						$("#fullpage.provider-landing-page").fullpage.setKeyboardScrolling(true);
+
+
+						$("#fullpage").fullpage.moveTo(2);
+						$("#fp-nav").removeClass("hidden");
+						if ($(window).width() < 768) {
+							$("#fullpage.provider-landing-page").fullpage.setAutoScrolling(false);
+						}
+					
 					});
 						
 				} else {
@@ -112,17 +143,7 @@ $(document).ready(function() {
 				}
 
 				HomePage.setLinks();
-			// };
-			// $(window).resize(function() {
-			// 	if ($(window).width() < 960) {
-   // 				alert('Less than 960');
-			// 	} else {
-			// 		// landing page one page slide
-			// 		JqueryFullpage.adjustBody();
-			// 		JqueryFullpage.run();
-			// 		HomePage.setLinks();
-			// 	}
-			// });
+
 	}
 
 });

@@ -16,7 +16,7 @@
   		background-repeat: no-repeat;
   		height: 100%;
  	}
- 	p {
+ 	p.arrow-nav-down {
  		font-size: 20px;
   	margin-top: -1%;
 	}
@@ -47,7 +47,6 @@
 		margin-top: 50%;
 	}
 	.white-faded {
-		  padding: 20px;
 		  border-radius: 15px;
 		  background-color: rgba(255,255,255,0.5);
 	}
@@ -65,5 +64,8 @@
 	}
 	.section-list{
 		margin-top: 15%;
+	}
+	.transparent {
+		// display: none;
 	}
 }

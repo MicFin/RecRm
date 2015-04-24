@@ -23,26 +23,26 @@
 			<span class="glyphicon glyphicon-chevron-down "></span>
 		</p>
 	</div>
-	<div class="section hidden">
+	<div class="section transparent">
 		<%= render "/home/provider_landing_pages/logo_header_left" %>
 		<div class="basil-background">
 			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center white-faded form-group">
 				<h2>Create an account today to connect to your personally matched expert in nutrition, cooking & families!</h2>
 			</div>
-			<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'col-xs-10 col-xs-offset-1', role:"form" }) do |f| %> 
+			<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'col-xs-10 col-xs-offset-1 hidden', role:"form" }) do |f| %> 
 					<%= render "/layouts/alerts" %>
 				  <div class="col-xs-12 col-sm-10 col-md-6 col-md-offset-3 form-group">
 			
-			    	<h4 for="exampleInputPassword2">Email</h4>
+			    	<h3 for="exampleInputPassword2">Email</h3>
 			      <%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
 
 				  </div>
 				  <div class="col-xs-12 col-sm-10 col-md-6 col-md-offset-3 form-group">
-				    <h4 for="exampleInputPassword2">Password</h4>
+				    <h3 for="exampleInputPassword2">Password</h3>
 				    <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "secret sauce", type: "password" %>
 				  </div>
 					<div class="col-xs-12 col-sm-10 col-md-6 col-md-offset-3 form-group">
-				    <h4 for="exampleInputPassword2">Confirm Password</h4>
+				    <h3 for="exampleInputPassword2">Confirm Password</h3>
 				    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control",  placeholder: "secret sauce", type: "password"%>
 				   </div>
 					<div class="col-xs-6 col-xs-offset-3 form-group text-right">
@@ -56,7 +56,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="section hidden">
+	<div class="section transparent">
 		<%= render "/home/provider_landing_pages/logo_header_left" %>
 		<div class="meal-background">
 			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center white-faded">
@@ -72,7 +72,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="section hidden">
+	<div class="section transparent">
 		<div class="">
 			<h2 class="section-header-title">1-on-1 guidance whenever & wherever you need.</h2>
 			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
@@ -96,7 +96,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="section hidden">
+	<div class="section transparent">
 		<div class="">
 			<h2 class="section-header-title orange">High quality recipes, information & training at your fingertips.</h2>
 			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
@@ -115,7 +115,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="section hidden">
+	<div class="section transparent">
 		<%= render "/home/provider_landing_pages/logo_header" %>
 		<div class="">
 			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
@@ -148,7 +148,7 @@
 		</div>
 	</div>
 
-	<div class="section hidden">
+	<div class="section transparent">
 		<div class="">
 			<h2 class="section-header-title">Our Special Partnership with you.</h2>
 			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
@@ -173,7 +173,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="section hidden">
+	<div class="section transparent">
 		<%= render "/home/provider_landing_pages/logo_header" %>
 		<div class="">
 			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
@@ -195,7 +195,7 @@
 		</div>
 	</div>
 
-	<div class="section hidden">
+	<div class="section transparent">
 		<div class="">
 			<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
 				<div class="col-xs-12">

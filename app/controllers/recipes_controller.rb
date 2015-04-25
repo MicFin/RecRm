@@ -13,6 +13,10 @@ class RecipesController < ApplicationController
   # GET /recipes.json
   def index
     @recipes = Recipe.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @recipes.to_csv }
+    end
     # respond_to do | format |  
     #   format.html # index.html.erb
     #   format.json { render :json => @recipes }

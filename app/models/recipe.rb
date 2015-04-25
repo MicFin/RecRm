@@ -30,6 +30,15 @@ class Recipe < ActiveRecord::Base
   has_many :marketing_items, as: :marketing_itemable
   has_many :review_conflicts, through: :quality_reviews
 
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |recipe|
+        csv << recipe.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   def number_of_reviewers_hash
     reviewers_hash = {}
     total_count = 0

@@ -13,7 +13,38 @@ class RecipesController < ApplicationController
   # GET /recipes.json
   def index
     @recipes = Recipe.all
+    # respond_to do | format |  
+    #   format.html # index.html.erb
+    #   format.json { render :json => @recipes }
+    #   format.xlsx {
+    #     # xlsx_package = Recipe.to_xlsx
+    #     xlsx_package = Recipe.to_xlsx :header_style => {
+    #         :bg_color => "00", 
+    #         :fg_color => "FF", 
+    #         :sz => 16, 
+    #         :alignment => { :horizontal => :center }
+    #       }
+    #       # :style => {:border => Axlsx::STYLE_THIN_BORDER}
+
+    #       sheet = xlsx_package.workbook.worksheets.first  
+
+    #       timestamp = xlsx_package.workbook.styles.add_style :format_code => "MM-DD-YYYY", :border => Axlsx::STYLE_THIN_BORDER
+        
+    #       sheet.col_style 1, timestamp, :row_offset => 1
+    
+    #     begin 
+    #       temp = Tempfile.new("recipes.xlsx") 
+    #       xlsx_package.serialize temp.path
+    #       # send_file temp.path, :filename => "recipes.xlsx", :type => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    #       send_data xlsx_package.to_stream.read, :filename => 'recipes.xlsx', :type=> "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    #     ensure
+    #       temp.close 
+    #       temp.unlink
+    #     end
+    #   }  
+    # end
   end
+
   ###notes
   ## this method and view is being used as the dietitian dashboard right now, it should be moved to a home controller or another controller
   def dietitian_recipes_index

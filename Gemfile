@@ -103,6 +103,16 @@ gem 'stripe-rails', "0.3.1"
 # https://github.com/javan/whenever
 # gem 'whenever', require: false
 
+# # http://axlsx.blog.randym.net/2011/12/using-actsasxlsx-to-generate-excel-data.html
+# # https://github.com/straydogstudio/acts_as_xlsx
+# # xlsx generation with charts, images, automated column width, customizable styles and full schema validation. 
+# gem 'acts_as_xlsx', "1.0.6", :github => "straydogstudio/acts_as_xlsx"
+
+# # https://github.com/straydogstudio/axlsx_rails
+# # A Rails plugin to provide templates for the axlsx gem
+# gem 'axlsx_rails', "0.3.0"
+
+
 group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors

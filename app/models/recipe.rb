@@ -5,6 +5,8 @@ class Recipe < ActiveRecord::Base
   attr_accessor :health_groups
   attr_accessor :courses
 
+  # exporting to excel
+  # acts_as_xlsx :columns => [:id, :created_at, :name, :description, :serving_size, :prep_time, :cook_time, :difficulty, :'ingredients.size']
 
   # for roles
   resourcify

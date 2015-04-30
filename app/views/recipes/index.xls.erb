@@ -164,8 +164,8 @@
           <Cell ss:StyleID="columnheaders"><Data ss:Type="String">Allergens</Data></Cell>
           <Cell ss:StyleID="columnheaders"><Data ss:Type="String">Allergen IDs/Ingredient</Data></Cell>
         </Row>
-        <Row>
         <% recipe.ingredients_recipes.each do |ingredient| %>
+        <Row>
           <Cell ss:StyleID="celldata"><Data ss:Type="String"></Data></Cell>
           <Cell ss:StyleID="celldata"><Data ss:Type="String"><%= ingredient.display_name%></Data></Cell>
           <Cell ss:StyleID="celldata"><Data ss:Type="String"><%= ingredient.amount%></Data></Cell>
@@ -173,8 +173,8 @@
           <Cell ss:StyleID="celldata"><Data ss:Type="String"><%= ingredient.id%></Data></Cell>
           <Cell ss:StyleID="celldata"><Data ss:Type="String"></Data></Cell>
           <Cell ss:StyleID="celldata"><Data ss:Type="String"></Data></Cell>
-        <% end %>
         </Row>
+        <% end %>
         <Row>
         </Row>
         <Row>

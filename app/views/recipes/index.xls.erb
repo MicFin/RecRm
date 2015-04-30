@@ -181,12 +181,12 @@
           <Cell ss:StyleID="columnheaders" ss:MergeAcross="4"><Data ss:Type="String">Recipe Steps</Data></Cell>
           <Cell ss:StyleID="columnheaders"><Data ss:Type="String">Ingredient IDs/Step</Data></Cell>
         </Row>
-        <Row>
         <% recipe.steps.each do |step| %>
+        <Row ss:AutoFitHeight="1">
           <Cell ss:StyleID="celldata" ss:MergeAcross="4"><Data ss:Type="String"><%= step.directions%></Data></Cell>
           <Cell ss:StyleID="celldata"><Data ss:Type="String"><%= step.ingredients_recipes.map {|i| i.id}.join(",")%></Data></Cell>
-        <% end %>
         </Row>
+        <% end %>
       </Table>
     </Worksheet>
   <% end %>

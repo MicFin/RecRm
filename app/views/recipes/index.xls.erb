@@ -16,7 +16,6 @@
             <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
             <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
           </Borders>
-          <Alignment ss:WrapText="1"/>
         </Style>
       </Styles>
   <% @recipes.each_with_index do |recipe, index| %>
@@ -178,13 +177,13 @@
         <Row>
         </Row>
         <Row>
-          <Cell ss:StyleID="columnheaders" ss:MergeAcross="4"><Data ss:Type="String">Recipe Steps</Data></Cell>
           <Cell ss:StyleID="columnheaders"><Data ss:Type="String">Ingredient IDs/Step</Data></Cell>
+          <Cell ss:StyleID="columnheaders" ss:MergeAcross="4"><Data ss:Type="String">Recipe Steps</Data></Cell>
         </Row>
         <% recipe.steps.each do |step| %>
         <Row ss:AutoFitHeight="1">
-          <Cell ss:StyleID="celldata" ss:MergeAcross="4"><Data ss:Type="String"><%= step.directions%></Data></Cell>
           <Cell ss:StyleID="celldata"><Data ss:Type="String"><%= step.ingredients_recipes.map {|i| i.id}.join(",")%></Data></Cell>
+          <Cell ss:StyleID="celldata" ss:MergeAcross="8"><Data ss:Type="String"><%= step.directions%></Data></Cell>
         </Row>
         <% end %>
       </Table>

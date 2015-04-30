@@ -12,10 +12,12 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.last(2)
     respond_to do |format|
       format.html
       format.csv { send_data @recipes.to_csv }
+      # format.xls { send_data @recipes.to_csv(col_sep: "\t") }
+      format.xls
     end
     # respond_to do | format |  
     #   format.html # index.html.erb

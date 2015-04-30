@@ -30,12 +30,19 @@ class Recipe < ActiveRecord::Base
   has_many :marketing_items, as: :marketing_itemable
   has_many :review_conflicts, through: :quality_reviews
 
-  def self.to_csv
-    CSV.generate do |csv|
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
       csv << column_names
       all.each do |recipe|
         csv << recipe.attributes.values_at(*column_names)
       end
+    end
+  end
+
+  def to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+        csv << recipe.attributes.values_at(*column_names)
     end
   end
 

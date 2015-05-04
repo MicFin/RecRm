@@ -6,12 +6,15 @@ class TimeSlotsController < ApplicationController
   # need to change it to show all for dietitian calendar nad not user...right now uses same
   # GET /time_slots.json
   def index
+  
     #  review all current 30 minute time slots
     if params[:minutes] == "30" && params[:type] == "Review"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 30)
     #  review all current 60 minute, current time slots
+    # incorrectly being called for user select appt list
     elsif params[:minutes] == "60" && params[:type] == "vacant-appts"
-      @time_slots = TimeSlot.where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now - 1.days]) 
+    
+      @time_slots = TimeSlot.where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now + 1.days]) 
       @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
     #  review all current 60 minute, current time slots
     elsif params[:minutes] == "60" && params[:type] == "Review"
@@ -19,6 +22,7 @@ class TimeSlotsController < ApplicationController
     else
       ## show all 60 minute, current, vacant time slots (user select appt list)
       @time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60).where(vacancy: true)
+    
       @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
       
     end

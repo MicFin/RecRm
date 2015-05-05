@@ -13,7 +13,7 @@ class TimeSlotsController < ApplicationController
     #  review all current 60 minute, current time slots
     # incorrectly being called for user select appt list
     elsif params[:minutes] == "60" && params[:type] == "vacant-appts"
-      binding.pry
+      
       @time_slots = TimeSlot.where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now + 1.days]) 
 
       # temporary fix for only sending back Tara's schedule to clients she gives a link to and are marked as having tara_rerral as true
@@ -25,8 +25,6 @@ class TimeSlotsController < ApplicationController
         end
 
       end
-
-      binding.pry
 
       @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
     #  review all current 60 minute, current time slots

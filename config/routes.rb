@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   
   get 'welcome/index', to: "welcome#index", as: "welcome"
   get 'Ta10lI8839dAmi', to: 'home#index', as: 'main_landing_page'
-  get 'lI45StA00OdAMi', to: 'home#discount_landing_page', as: 'discount_landing_page'
+  get 'join', to: 'home#join', as: 'tara_landing_page'
+  # get 'lI45StA00OdAMi', to: 'home#discount_landing_page', as: 'discount_landing_page'
   get 'home', to: 'home#home_page', as: 'home_page'
   get 'provider3126', to: "home#provider3126", as: "provider3126"
   get 'provider9172', to: "home#provider9172", as: "provider9172"

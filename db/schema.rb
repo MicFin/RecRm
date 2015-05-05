@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325162950) do
+ActiveRecord::Schema.define(version: 20150505031032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -518,6 +518,7 @@ ActiveRecord::Schema.define(version: 20150325162950) do
     t.text     "family_note"
     t.string   "family_role"
     t.boolean  "early_access",           default: false
+    t.boolean  "tara_referral",          default: false, null: false
   end
 
   add_index "users", ["date_of_birth"], name: "index_users_on_date_of_birth", using: :btree

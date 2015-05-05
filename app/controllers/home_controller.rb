@@ -38,6 +38,10 @@ class HomeController < ApplicationController
 
 	end
 
+	def join
+		@new_user  = User.new
+	end
+
 	def provider3126
 		@user  = User.new
 	end

@@ -34,7 +34,12 @@
 	<div class="col-xs-5">
 	<%#=link_to "Upgrade to Premium", new_subscription_path, remote: true%>
 	</div>
-
+  <% if @unpaid_appointment %>
+    <div class="col-xs-12">
+      <h3><span><%=@unpaid_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></span></h3>
+      <%=link_to "Confirm Appointment", purchase_appointment_path(@unpaid_appointment.id), {class: "btn btn-mini-fam btn-sm", :remote => true} %>
+    </div>
+  <% end %>
 </div>
 	<%= render "/families/edit_modal" %>
 

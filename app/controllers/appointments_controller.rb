@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   include AppointmentsHelper
   include PatientGroupsHelper
-  before_action :set_appointment, only: [:show, :edit, :update, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :end_appointment, :destroy]
+  before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :end_appointment, :destroy]
   before_filter :config_opentok, :only => [:update]
 
   # GET /appointments
@@ -244,7 +244,6 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/edit
   def edit
     ## for first edit use case it is when the user/client is selecting a time for their appointment, that is why it asks for time_slot chosen.  should be different method than edit method
-    
     if params[:time_slot_id]
       @time_slot = TimeSlot.find(params[:time_slot_id])
     elsif @appointment.status == "Follow Up Unpaid"
@@ -256,6 +255,15 @@ class AppointmentsController < ApplicationController
       @dietitians = Dietitian.all 
     end
     
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+
+  def purchase
+    # payment_modal template requires a time_slot for start and end time
+    @time_slot = @appointment 
     respond_to do |format|
       format.js
       format.html
@@ -285,7 +293,8 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-    if @appointment.status == "Follow Up Unpaid" 
+    ## if the appointment status is follow up unpaid and does not have a stripe card token then the appointment is being created without payment and the dates need to be cleaned
+    if @appointment.status == "Follow Up Unpaid" && params[:appointment][:stripe_card_token] == nil
       clean_dates_for_database
     end
     # if update saves
@@ -309,7 +318,7 @@ class AppointmentsController < ApplicationController
         #   @appointment.room_id = @new_room.id
         # end
     ##### should remove above
-    
+
     elsif @appointment.update(appointment_params)
       # if stripe card payment update incnluded in update then user is paying 
 

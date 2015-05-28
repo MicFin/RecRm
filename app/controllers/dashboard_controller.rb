@@ -27,7 +27,11 @@ class DashboardController < ApplicationController
 
       # set variables for dashboard
       @family = @user.head_of_families.last
+      
       @appointment = @user.appointment_hosts.where(status: "Paid").last
+      # Set unpaid appointment if there is one
+      @unpaid_appointment = @user.appointment_hosts.where(status: "Follow Up Unpaid").last
+
         # create family should be a helper method on the family model
       @family_members = []
       if @appointment.patient_focus 

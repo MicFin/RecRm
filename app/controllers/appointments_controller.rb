@@ -294,21 +294,22 @@ class AppointmentsController < ApplicationController
     ##### added for manually assigning a room
     if params[:new_room_needed] == "true"
         
-        @new_session = @opentok.create_session 
-        @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
-        ## creating a new room each time, should either purge old rooms or assign rooms to dietitians 
-        @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Early Access Session")
-        @new_room.save
-        dietitian = @appointment.dietitian
-        dietitian.add_role "Session Host", @new_room
-        user = @appointment.appointment_host
-        user.add_role "Session Guest", @new_room
-        user.save
-        # set appointment to room (1st and only for now)
-        if @appointment.room_id == nil
-          @appointment.room_id = @new_room.id
-        end
+        # @new_session = @opentok.create_session 
+        # @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
+        # ## creating a new room each time, should either purge old rooms or assign rooms to dietitians 
+        # @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Early Access Session")
+        # @new_room.save
+        # dietitian = @appointment.dietitian
+        # dietitian.add_role "Session Host", @new_room
+        # user = @appointment.appointment_host
+        # user.add_role "Session Guest", @new_room
+        # user.save
+        # # set appointment to room (1st and only for now)
+        # if @appointment.room_id == nil
+        #   @appointment.room_id = @new_room.id
+        # end
     ##### should remove above
+    
     elsif @appointment.update(appointment_params)
       # if stripe card payment update incnluded in update then user is paying 
 

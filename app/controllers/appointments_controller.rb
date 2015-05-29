@@ -300,7 +300,7 @@ class AppointmentsController < ApplicationController
     # if update saves
 
 
-    ##### added for manually assigning a room
+    ##### added for manually assigning a room, should be removed from logic
     if params[:new_room_needed] == "true"
         
         # @new_session = @opentok.create_session 

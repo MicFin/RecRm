@@ -16,12 +16,15 @@ Rails.application.routes.draw do
 
   
   get 'welcome/index', to: "welcome#index", as: "welcome"
-  get 'Ta10lI8839dAmi', to: 'home#index', as: 'main_landing_page'
+  # get 'Ta10lI8839dAmi', to: 'home#index', as: 'main_landing_page'
+  get 'Ta10lI8839dAmi', to: 'home#join', as: 'main_landing_page'
   get 'join', to: 'home#join', as: 'tara_landing_page'
   # get 'lI45StA00OdAMi', to: 'home#discount_landing_page', as: 'discount_landing_page'
   get 'home', to: 'home#home_page', as: 'home_page'
-  get 'provider3126', to: "home#provider3126", as: "provider3126"
-  get 'provider9172', to: "home#provider9172", as: "provider9172"
+  # get 'provider3126', to: "home#provider3126", as: "provider3126"
+  # get 'provider9172', to: "home#provider9172", as: "provider9172"
+  get 'provider3126', to: "home#join", as: "provider3126"
+  get 'provider9172', to: "home#join", as: "provider9172"
   get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
 
 
@@ -31,7 +34,8 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root :to => 'dashboard#home', as: :user_authenticated_root
+      # root :to => 'dashboard#home', as: :user_authenticated_root
+      root :to => 'home#join', as: :user_authenticated_root
       get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
       get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
       get 'registrations/new_user_family/:id', to: 'users/registrations#new_user_family', as: 'new_user_family'
@@ -167,7 +171,8 @@ Rails.application.routes.draw do
     #   root :to => "devise/sessions#new", as: :dietitian_unauthenticated_root
     # end   
     unauthenticated :dietitian do
-      root :to => "home#home_page", as: :dietitian_unauthenticated_root
+      # root :to => "home#home_page", as: :dietitian_unauthenticated_root
+      root :to => "home#join", as: :dietitian_unauthenticated_root
     end   
   end
   

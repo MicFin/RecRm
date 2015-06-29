@@ -33,6 +33,7 @@ gem 'jquery-turbolinks'
 # unitwise is a cross platform list of units and their conversions
 # https://github.com/joshwlewis/unitwise
 # I found this tutorial useful for adding units to the ingredients_recipes model 
+
 # http://joshwlewis.com/essays/rails-unit-measurement-persistence/
 # gem 'unitwise'
 

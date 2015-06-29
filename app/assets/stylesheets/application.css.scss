@@ -13,17 +13,21 @@
  *= require jquery.ui.autocomplete
  *= require jquery.Jcrop
  *= require_self
- *= require bootstrap_and_overrides
  *= require fullcalendar
  */
 
 
 // @import "bootstrap-sprockets";
 @import "bootstrap";
+
 // import bootstrap-sprockets before bootstrap if using bootstrap >= 3.2
 @import 'bootstrap-datetimepicker';
 // vendor
+
+@import "bootstrap_customizer_theme";
+
 @import "vendor/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+
 
 // partials
 @import "partials/base";
@@ -63,6 +67,8 @@
 @import "partials/home_index";
 @import "partials/home_page";
 @import "partials/home/provider_landing_pages/main";
+
+
 // GLOBAL COLORS
 // $greentextlight: #399E48;
 // $orangetext: #F68D3C;

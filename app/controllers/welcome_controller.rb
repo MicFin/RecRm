@@ -18,7 +18,6 @@ class WelcomeController < ApplicationController
       # all clients articles
       @articles 
       # FamiliessHelper
-      # requires @user variable to be declared before calling
       get_family!
       @family
       @family_members

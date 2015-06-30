@@ -20,7 +20,7 @@
 							<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
 							<div class="row">
 								<div class="col-xs-12 session-action">
-									<% if @upcoming_appointment.start_time > Time.now + 10.minutes %>
+									<% if @upcoming_appointment.start_time < Time.now + 10.minutes %>
 										<%= button_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id, class: "btn btn-primary"} do %>
 											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 												<span class="glyphicon glyphicon-heart"></span>

@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
       # root :to => 'dashboard#home', as: :user_authenticated_root
-      root :to => 'home#join', as: :user_authenticated_root
+      root :to => 'welcome#home', as: :user_authenticated_root
       get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
       get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
       get 'registrations/new_user_family/:id', to: 'users/registrations#new_user_family', as: 'new_user_family'

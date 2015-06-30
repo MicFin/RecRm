@@ -1,14 +1,28 @@
 class AppointmentsController < ApplicationController
   include AppointmentsHelper
   include PatientGroupsHelper
+  include FamiliesHelper
+ # before_filter :check_user_logged_in!, :only
   before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :end_appointment, :destroy]
   before_filter :config_opentok, :only => [:update]
 
   # GET /appointments
   # GET /appointments.json
   def index
-    
-    if ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id] == "All") ) 
+
+    #### user for user appointment nav tab
+    if current_user 
+      # AppointmentsHelper
+      get_previous_appointments!
+      @previous_appointments
+      get_upcoming_appointment!
+      @upcoming_appointment
+      # FamiliessHelper
+      get_family!
+      @family
+      @family_members
+
+    elsif ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id] == "All") ) 
       @appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
     elsif ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id]) ) 
       dietitian = Dietitian.find(params[:dietitian_id])

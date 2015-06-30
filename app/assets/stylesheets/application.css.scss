@@ -24,7 +24,7 @@
 @import 'bootstrap-datetimepicker';
 // vendor
 
-@import "bootstrap_customizer_theme";
+@import "themes/bootstrap_customizer_theme";
 
 @import "vendor/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
 
@@ -66,7 +66,6 @@
 @import "partials/availabilities_index";
 @import "partials/home_index";
 @import "partials/home_page";
-@import "partials/home/provider_landing_pages/main";
 
 
 // GLOBAL COLORS

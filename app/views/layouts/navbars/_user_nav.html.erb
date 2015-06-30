@@ -1,0 +1,26 @@
+			<header class="col-xs-2">
+				<div class="row">
+					<div class="col-xs-12">
+					
+						<%=image_tag "/assets/logos/logo-vertical.jpg", class: "img-responsive img-logo" %>
+
+					</div>
+					<div class="col-md-6">
+						<img class="img-responsive" src="images/face.jpg"> 	
+					</div>
+					<div class="col-xs-12 col-md-6">
+						<p>Welcome back, Mike!</p>
+						<p><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
+					</div>
+				</div>
+				<nav>	
+					<ul>
+						<li class="active"><a href=""><span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span></a></li>
+						<li><a href=""><span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Family</span></a></li>
+						<li><a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Appointments</span></a></li>
+						<li><a href=""><span class="glyphicon glyphicon-comment"></span><span class="hidden-xs hidden-sm nav-item">Messages</span><span class="badge">4</span></a></li>
+						<li><a href=""><span class="glyphicon glyphicon-cog"></span><span class="hidden-xs hidden-sm nav-item">Settings</span></a></li>
+						<li><a href=""><span class="glyphicon glyphicon-envelope"></span><span class="hidden-xs hidden-sm nav-item">Contact Us</span></a></li>	
+					</ul>
+				</nav>
+			</header>

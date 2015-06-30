@@ -1,0 +1,148 @@
+#welcome-page {
+	header.col-xs-2{
+		position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 1000000;
+	}
+
+	header img.img-logo {
+		 min-height: 50px;
+	  min-width: 60px;
+	}
+
+	main {
+		-webkit-box-shadow: 0px 0px 8px 2px #999999;
+		-moz-box-shadow: 0px 0px 8px 2px #999999;
+		box-shadow: 0px 0px 8px 2px #999999;
+		background-color: white;
+		min-height: 100%;
+	}
+
+	main.col-xs-10 {
+		padding: 40px;
+	}
+
+	main .jumbotron {
+		background-image: url("food/cherrytomato.jpg");
+	  background-size: cover;
+	  background-repeat: no-repeat;
+	  position: relative;
+	  min-height: 450px;
+	  text-align: center;
+	  background-color: white;
+	  padding-top: 0px;
+	}
+
+	main .jumbotron button, .sessions button {
+		max-width: 200px;
+		padding: 12px;
+	}
+
+	main .jumbotron button .glyphicon, .sessions button .glyphicon {
+		font-size: 40px;
+		float: left;
+	}
+
+	main .jumbotron button p, .sessions button p {
+	  margin-bottom: 0;
+	  font-size: 15px;
+	  text-align: left;
+	}
+
+	main .jumbotron .session-action{
+	  padding: 20px;
+	  border: 5px solid white;
+	  background-color: rgba(255,255,255,0.6);
+	}
+
+
+	.opp h2 {
+	  background: rgba(255, 255, 255, 0.75);
+	  color: black;
+	}
+
+	.content-container{
+		width: 100%;
+		margin-top: 40px;
+
+	}
+	.content-container:after{
+	  clear: both;
+	  display: table;
+	  content: " ";
+	}
+
+	.content-container h3 {
+		color: green;
+	}
+
+	.content-container h3 .glyphicon{
+		margin-right: 10px;
+
+	}
+
+	.content-item{
+		height: 150px;
+		border: 1px solid black;
+		margin: 20px;
+		padding: 0px;
+		background-image: url("../images/dinner.jpeg");
+	  background-size: cover;
+	  background-repeat: no-repeat;
+	  position: relative;
+	}
+
+	.content-item:after{
+	  content: "Shrimp Scampi Soup";
+	  position: absolute;
+	  bottom: -30px;
+	  left: 25%;
+	}
+
+	.popover-title{
+		color: green;
+		font-size: 20px;
+	}
+
+	.popover span{
+		color: orange;
+	}
+	.content-item p.new {
+		background-color: green;
+		padding: 5px;
+		font-size: 15px;
+		color: white;
+		text-align: center;
+		width: 100%;
+		margin: 0;
+	}
+
+	.session {
+		margin:20px;
+		padding:5px;
+		border-top: 2px solid rgba(240, 240, 240, 1);
+		border-bottom: 2px solid rgba(240, 240, 240, 1);
+		text-align: center;
+	}
+
+	footer {
+		background-color: rgba(16, 40, 26, 1);
+		padding: 20px;
+	}
+
+	footer h3 {
+		color: rgba(84, 126, 83, 1);
+	}
+	footer ul {
+		padding: 0px;
+		list-style: none;
+	}
+	footer ul li, footer p {
+		color: white;
+	}
+
+	footer p {
+		text-align:center;
+	}
+}

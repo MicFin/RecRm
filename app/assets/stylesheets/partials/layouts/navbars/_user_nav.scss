@@ -1,0 +1,48 @@
+#welcome-page {	
+	nav{
+		margin-top: 10px;
+	}
+
+	nav ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	nav ul li {
+		padding:10px;
+		border-top: 1px solid grey;
+		position: relative;
+
+	}
+
+	nav ul li.active{
+		background-color: green;
+		border-color: green;
+	}
+
+	nav ul li a {
+		color: grey;
+	}
+
+	nav ul li.active a{
+		color: white;
+	}
+	nav ul li.active a:after {
+		border-bottom: 20px solid rgba(0, 0, 0, 0);
+	  border-left: 20px solid green;
+	  border-top: 20px solid rgba(0, 0, 0, 0);
+	  content: "";
+	  right: -20px;
+	  position: absolute;
+	  top: 0px;
+	  z-index: 100;
+	}
+
+	nav ul li a span.glyphicon{
+		margin-right: 20px;
+	}
+
+	nav ul li a span.badge{
+		margin-left: 20px;
+	}
+}

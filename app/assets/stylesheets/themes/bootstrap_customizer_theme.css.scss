@@ -7,7 +7,7 @@ $gray: lighten($gray-base, 33.5%);
 $gray-light: lighten($gray-base, 46.7%);
 $gray-lighter: lighten($gray-base, 93.5%);
 $brand-primary: darken(#F9A653, 10%);
-
+$brand-bg: rgb(244, 245, 245);
 // added by mike
 $brand-carrot-green: #009344;
 $brand-carrot-orange: #F16521;
@@ -35,7 +35,7 @@ $lightgray: rgb(211,211,211);
 //== Scaffolding
 
 //** Background color for `<body>`.
-$body-bg: rgb(244, 245, 245);
+$body-bg: $brand-bg;
 
 //** Global text color on `<body>`.
 $text-color: $gray-dark;

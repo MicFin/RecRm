@@ -1,7 +1,11 @@
 class LandingPagesController < ApplicationController
+
+  # home page
   def index
   end
 
-  def show
+  #
+  def qol
+    @user = User.new 
   end
 end

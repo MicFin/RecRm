@@ -3,10 +3,6 @@ Rails.application.routes.draw do
 
 
 
-  get 'landing_pages/index'
-
-  get 'landing_pages/show'
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -17,9 +13,14 @@ Rails.application.routes.draw do
   end
 
 
+
+
   get 'welcome/index', to: "welcome#index", as: "welcome"
   get 'welcome/home', to: "welcome#home", as: "welcome_home"
+  get 'welcome/get_started', to: "welcome#get_started", as: "welcome_get_started"
 
+  get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
+  get 'landing_pages/qol', to: "landing_pages#qol", as: "landing_pages_qol"
 
 
   resources :plans

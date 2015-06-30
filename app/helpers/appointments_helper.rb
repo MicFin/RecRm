@@ -31,8 +31,8 @@ module AppointmentsHelper
       # client upcoming appointment or clirent unpaid
       @upcoming_appointment = current_user.appointment_hosts.where(status: "Paid").last || current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
       # start date and time 
-      @upcoming_appointment.date = @upcoming_appointment.start_time.strftime("%A, %b %d")
-      @upcoming_appointment.time = @upcoming_appointment.start_time.strftime("%I:%M%p")
+      @upcoming_appointment.date = @upcoming_appointment.start_time.strftime("%A, %b %d") unless @upcoming_appointment.nil?
+      @upcoming_appointment.time = @upcoming_appointment.start_time.strftime("%I:%M%p") unless @upcoming_appointment.nil?
   end
 
   def get_previous_appointments!

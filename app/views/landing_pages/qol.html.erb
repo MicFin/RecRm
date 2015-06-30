@@ -1,0 +1,130 @@
+
+<div id="qol-page" class="container-fluid">
+  <nav class="row navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+      <%= image_tag "/assets/landing_page/kindrdfood-logo.jpg", class: "img-responsive" %>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="#">OUR APPROACH <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">OUR TEAM</a></li>
+        <li><a href="#">FOR PROVIDERS</a></li>
+        <li><a href="#">CONTACT US</a></li>
+        <li><a href="#">LOGIN</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+	</nav>
+
+						<%= render "/layouts/alerts" %>
+	<section>
+		<div class="row qol-background-image">
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-1 col-md-5 text-left col-lg-5 left-column">
+				<h1>Eat Easier.</h1>
+				<h1>Eat Happier.</h1>
+				<h3>Great food and good nutrition start with the best guidance.</h3>
+				<button class="btn btn-lg btn-success hidden-xs">Learn More</button>
+			</div>
+			<div class="col-xs-12 col-sm-6 outside-form-container">
+				<div class="text-center">
+					<h3>Welcome!</h3>
+					<p>To schedule your complimentary one-hour session and 30-minute follow up with one of our Registered Dietitian Nutritionists, please enter your first name, last name and email.</p>
+
+					<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
+
+						<div class="form-group col-xs-8 col-xs-offset-2">
+							<label for="first-name">First Name</label>
+							<%= f.input_field :first_name, autofocus: true, class: "form-control", type: "text", placeholder: "First" %>
+						</div>
+						<div class="form-group col-xs-8 col-xs-offset-2">
+							<label for="last-name">Last Name</label>
+							<%= f.input_field :last_name, autofocus: true, class: "form-control", type: "text", placeholder: "Last" %>
+						</div>
+
+						<div class="form-group col-xs-8 col-xs-offset-2">
+							<label for="email">Email Address</label>
+							<%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
+						</div>
+
+						<div class="col-xs-8 col-xs-offset-2 text-right">
+							<%= f.button :submit, "Join Us!", class: "btn btn-primary btn-lg", type: "submit" %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8 col-xs-offset-2 text-center testimonial">
+				<h3>It was such a relief to get answers that I could trust.</h3>
+				<h3>My day got much easier</h3>
+				<p>A.M. Member</p>
+			</div>
+		</div>
+	</section>
+	<section class="approach row">
+		<div class="col-xs-12 text-center">
+			<h2>We understand your challenges</h2>
+			<p>Finding trustworthy and qualified sources of information for nutrition is incomplete and unreliable</p>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 text-center problem-examples">
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+				<p><span class="glyphicon glyphicon-fullscreen"></span></p>
+				<p>Conflicting information</p>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+				<p><span class="glyphicon glyphicon-thumbs-down"></span></p>
+				<p>Unqualified service</p>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+				<p><span class="glyphicon glyphicon-cutlery"></span></p>
+				<p>Not so tasty recipes</p>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+				<p><span class="glyphicon glyphicon-refresh"></span></p>
+				<p>Only after partial solution</p>
+			</div>
+		</div>
+	</section>
+	<section class="row goal">
+		<div class="col-xs-12 text-center">
+			<h2>Our Goal</h2>
+			<p>Ease your everyday life in the kitchen, at the store, and at the table.</p>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 text-center">
+			<div class="goal-item col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				<p><span class="glyphicon glyphicon-fullscreen"></span></p>
+				<h3>1 on 1 Nutritional Guidance</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+			</div>
+			<div class="goal-item col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				<p><span class="glyphicon glyphicon-thumbs-down"></span></p>
+				<h3>Chef Made Custom Recipes</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+			</div>
+			<div class="goal-item col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				<p><span class="glyphicon glyphicon-cutlery"></span></p>
+				<h3>On Going Education</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+			</div>
+		</div>
+		<div class="team col-xs-12 text-center">
+			<a href="">Learn more about the Kindrdfood team</a>
+		</div>
+	</section>
+
+	<%= render "/layouts/footers/main_footer" %>
+
+</div>

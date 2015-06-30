@@ -1,0 +1,64 @@
+<div id="get-started-page" >
+
+
+
+<div id="myModal" class="modal fade in" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <%= image_tag("/assets/landing_page/kindrdfood-logo.jpg", class: "img-responsive") %>
+      </div>
+      <div class="modal-body">
+        <h1>Hi!  Ready to eat healthier?</h1>
+        <h4>First, let's create your account.</h4>
+					<%= form_for(@user), html: { method: :put, class: 'col-xs-10 col-xs-offset-1 hidden', role:"form" }}) do |f| %>
+					  <%= devise_error_messages! %>
+
+					  <div class="field">
+					    <%= f.label :first_name %><br />
+					    <%= f.input_field :first_name, autofocus: true %>
+					  </div>
+					  <div class="field">
+					    <%= f.label :last_name %><br />
+					    <%= f.input_field :last_name, autofocus: true %>
+					  </div>
+					  <div class="field">
+					    <%= f.label :phone_number %><br />
+					    <%= f.input_field :phone_number, autofocus: true %>
+					  </div>
+					  <div class="field">
+					    <%= f.label :phone_number %><br />
+					    <%= f.input_field :phone_number, autofocus: true %>
+					  </div>
+					  <div class="field">
+					    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+					    <%= f.password_field :password, autocomplete: "off" %>
+					  </div>
+
+					  <div class="field">
+					    <%= f.label :password_confirmation %><br />
+					    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+					  </div>
+
+					  <div class="field">
+					    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+					    <%= f.password_field :current_password, autocomplete: "off" %>
+					  </div>
+
+					  <div class="actions">
+					    <%= f.submit "Update" %>
+					  </div>
+					<% end %>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->	
+
+</div>
+

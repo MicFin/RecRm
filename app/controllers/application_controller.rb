@@ -7,24 +7,36 @@ class ApplicationController < ActionController::Base
 
   # shared by the user and dietitian registrations controllers
 	def after_sign_in_path_for(resource)
-		# if class is User
-		if resource.class == User
+		# if a user signs in and has created a family
+		if resource.class == User && resource.head_of_families.length >= 1
 
-		  # take them to the welcome home
-		  welcome_home_path(resource.id)
+		  # DO STUFF
 
+    # if a user signs in but did not create a family
+    elsif resource.class == User
+    # user has not entered phone number or first form
+      if resource.phone_number.nil?
+        welcome_get_started_path(resource)
+      # user has entered phone number but not family member
+      elsif resource.head_of_families.length < 1
+
+        # user has entered phone number and family member
+      else
+        # take them to the welcome home
+        welcome_home_path(resource)
+      end
 		elsif resource.class == Dietitian
-				if resource.sign_in_count <= 1
-		      # if first time give first time user experience
-		      # would rather it direct to dietitian_authenticated_root_path but failing
-		      ### dietitian_authenticated_root_path(current_dietitian)
-		      dietitian_authenticated_root_path(resource)
-					# dietitian_recipes_path(resource)
-		    else
-		      # if not take them to their home page
-					# dietitian_recipes_path(resource)
-					dietitian_authenticated_root_path(resource)
-		    end
+			if resource.sign_in_count <= 1
+	      # if first time give first time user experience
+	      # would rather it direct to dietitian_authenticated_root_path but failing
+	      ### dietitian_authenticated_root_path(current_dietitian)
+	      dietitian_authenticated_root_path(resource)
+				# dietitian_recipes_path(resource)
+	    else
+	      # if not take them to their home page
+				# dietitian_recipes_path(resource)
+				dietitian_authenticated_root_path(resource)
+	    end
 		elsif resource.class == AdminUser
 				if resource.sign_in_count <= 1
 		      # if first time give first time admin experience

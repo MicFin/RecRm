@@ -1,0 +1,129 @@
+#qol-page {
+	.navbar {
+		margin-bottom: 0px;
+	}
+	.navbar-brand{
+		padding: 0px;
+		img.img-responsive {
+			max-height: 100%;
+		}
+	}
+	.left-column {
+		margin-top: 50px;
+		h1 {
+			font-size: 60px;
+		}
+		button{
+		  margin-top: 25px;
+		}
+	}
+	.outside-form-container{
+	  background-color: transparentize($gray-darker, .8);
+  	border-radius: 15px;
+  	padding: 20px;
+  	> div {
+		  background-color: transparentize($gray-darker, .5);
+		  border-radius: 15px;
+		  padding: 10px;
+		}  		
+	}
+	.qol-background-image{
+			background-image: url("food/mixed_fruits.jpg");
+		  background-size: cover;
+		  background-repeat: no-repeat;
+		  position: relative;
+		  min-height: 450px;
+		  text-align: center;
+		  background-color: $brand-white;
+		  color: $brand-white;
+		  padding: 20px;
+	}
+	.qol-background-image + div.row {
+		border-bottom: 4px solid $gray-dark;
+	}
+	.testimonial{
+		position: relative;
+		padding: 50px;
+	}
+	.testimonial:after, .testimonial:before {
+  	z-index: 100;
+		top: 100%;
+		left: 50%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+
+	.testimonial:after {
+		border-color: rgba(136, 183, 213, 0);
+		border-top-color: $brand-bg;
+		border-width: 30px;
+		margin-left: -30px;
+	}
+	.testimonial:before {
+		border-color: rgba(194, 225, 245, 0);
+		border-top-color: $gray-dark;
+		border-width: 36px;
+		margin-left: -36px;
+	}
+	.approach{
+		border-bottom: 4px solid $gray-dark;
+		position: relative;
+		// min-height: 100%;
+		background: $gray-lighter;
+		h2 {
+			color: $brand-carrot-green;
+			margin-top: 100px;
+		}
+		div.problem-examples{
+			padding: 100px;
+		}
+		div.problem-examples:after, div.problem-examples:before {
+			top: 100%;
+			left: 50%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+
+		div.problem-examples:after {
+			border-color: rgba(136, 183, 213, 0);
+			border-top-color: $gray-lighter;
+			border-width: 30px;
+			margin-left: -30px;
+		}
+		div.problem-examples:before {
+			border-color: rgba(194, 225, 245, 0);
+			border-top-color: $gray-dark;
+			border-width: 36px;
+			margin-left: -36px;
+		}
+		span.glyphicon{
+			font-size: 75px;
+		}
+	}
+ 
+	.goal {
+		h2 {
+			color: $brand-carrot-green;
+			margin-top: 100px;
+		}
+		span.glyphicon{
+			font-size: 75px;
+		}
+		.goal-item{
+			padding: 100px;
+		}
+		.team{
+			margin-bottom: 50px;
+		}
+	}
+	
+}
+

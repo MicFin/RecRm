@@ -31,8 +31,14 @@
 
 // partials
 @import "partials/welcome/home";
+@import "partials/welcome/get_started";
 @import "partials/layouts/navbars/user_nav";
+@import "partials/layouts/footers/main_footer";
 @import "partials/families/show";
+@import "partials/landing_pages/qol";
+
+
+
 
 @import "partials/recipe_breadcrumb";
 @import "partials/add_recipe_main";

@@ -57,6 +57,11 @@ class WelcomeController < ApplicationController
       end
     end
 
+    def get_started
+      binding.pry
+      
+    end
+
   private
 
     def check_user_logged_in! 

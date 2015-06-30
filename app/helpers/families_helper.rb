@@ -6,7 +6,7 @@ module FamiliesHelper
 	    @family = current_user.head_of_families.last
       @family_members = []
       @family_members << current_user 
-      @family.users.each { |user| @family_members << user }
+      @family.users.each { |user| @family_members << user } unless @family.nil?
 	end
 
 	# def get_family_patient_groups!

@@ -17,6 +17,7 @@ class FamiliesController < ApplicationController
 
   # GET /families/new
   def new
+    binding.pry
     @user = current_user
     @family = Family.new
     @family.users.build

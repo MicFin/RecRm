@@ -11,10 +11,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Signs in a user on sign up. You can overwrite this method in your own
   # RegistrationsController.
   def sign_up(resource_name, resource)
+
     sign_in(resource_name, resource)
   end
 
   def after_sign_up_path_for(resource)
+
     after_sign_in_path_for(resource)
   end
 
@@ -34,6 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+# hopefully dont need any of this
   def new_user_family
     
     @user = User.find(params[:id])
@@ -287,6 +290,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+
+
   private
 
   # check if we need password to update user data
@@ -349,7 +354,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     ### should be in after create??
     ## should not be in regular flow of update, only for initial sign up
-
+    binding.pry
     if resource.class == User 
       ## if they have already created an appointment
       if resource.appointment_hosts.where(status: "In Registration").count >= 1

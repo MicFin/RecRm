@@ -20,6 +20,7 @@ class WelcomeController < ApplicationController
       # FamiliessHelper
       # requires @user variable to be declared before calling
       get_family!
+      @family
       @family_members
       # for survey
       # @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: false).last

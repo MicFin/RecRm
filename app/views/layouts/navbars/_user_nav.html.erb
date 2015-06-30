@@ -15,8 +15,16 @@
 				</div>
 				<nav>	
 					<ul>
-						<li class="active"><a href=""><span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span></a></li>
-						<li><a href=""><span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Family</span></a></li>
+						<li class="active"><a href="">
+							<%= link_to welcome_home_path do %>
+							  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
+							<% end %>
+						</li>
+						<li>
+							<%= link_to(@family) do %>
+							  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Family</span>
+							<% end %>
+						</li>
 						<li><a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Appointments</span></a></li>
 						<li><a href=""><span class="glyphicon glyphicon-comment"></span><span class="hidden-xs hidden-sm nav-item">Messages</span><span class="badge">4</span></a></li>
 						<li><a href=""><span class="glyphicon glyphicon-cog"></span><span class="hidden-xs hidden-sm nav-item">Settings</span></a></li>

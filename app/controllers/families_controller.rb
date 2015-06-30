@@ -11,8 +11,8 @@ class FamiliesController < ApplicationController
   # GET /families/1.json
   def show
     @user = current_user
-    @family_dietary_restrictions = @family.dietary_restrictions
     @family_members = @family.users 
+    @family_members << @family.head_of_family
   end
 
   # GET /families/new

@@ -1,4 +1,4 @@
-#welcome-page {
+#welcome-page, #family-page {
 	header.col-xs-2{
 		position: fixed;
 	  top: 0;
@@ -17,6 +17,10 @@
 		box-shadow: 0px 0px 8px 2px #999999;
 		background-color: white;
 		min-height: 100%;
+	}
+
+	main h1{
+		color: $brand-carrot-green;
 	}
 
 	main.col-xs-10 {
@@ -78,7 +82,7 @@
 	}
 
 	.content-container h3 {
-		color: green;
+		color: $brand-carrot-green;
 	}
 
 	.content-container h3 .glyphicon{
@@ -105,7 +109,7 @@
 	}
 
 	.popover-title{
-		color: green;
+		color: $brand-carrot-green;
 		font-size: 20px;
 	}
 
@@ -113,7 +117,7 @@
 		color: orange;
 	}
 	.content-item p.new {
-		background-color: green;
+		background-color: $brand-carrot-green;
 		padding: 5px;
 		font-size: 15px;
 		color: white;

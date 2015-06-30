@@ -1,0 +1,58 @@
+.profile-progress{
+	background: $gray-lighter;
+  padding: 5px;
+  margin-top: 10px;
+  border: 1px solid $gray-light;
+}
+
+.profile-progress ul li {
+		list-style: none;
+}
+
+.profile-progress .glyphicon {
+	 margin-right: 5px;
+}
+.profile-progress .glyphicon-check{
+	color: $brand-light-green;
+}
+
+.profile-progress .glyphicon-remove-circle{
+	color: $brand-red;
+}
+
+img.add-family-member{
+	fill: black;
+}
+
+
+#family-members-container > div {
+  > div:first-of-type {
+  	position: relative;
+  }
+  > div:first-of-type:before {
+  	content : "";
+  	position: absolute;
+  	right    : -10px;
+  	top  : 30%;
+  	height  : 50%;
+  	width   : 1px;  /* or 100px */
+  	border-right: 1px solid $gray-lighter;
+	}
+	> div img {
+		margin: 30px;
+	}
+}
+
+#physician-container .glyphicon {
+	font-size: 40px;
+}
+
+#physician-container{
+	margin-top: 20px;
+	h3 {
+		color: $brand-carrot-green;
+		.glyphicon{
+			margin-right: 10px;
+		}
+	}
+}

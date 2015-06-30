@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
 
 
+  get 'landing_pages/index'
+
+  get 'landing_pages/show'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 

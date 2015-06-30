@@ -2,29 +2,112 @@
 		<div class="row">
 
 			<%= render "/layouts/navbars/user_nav" %>
-			
+
 			<main class="col-xs-10 col-xs-offset-2">
 				<section class="jumbotron">
-					<div class="row">
+					<div id="jumbotron-inner" class="row">
+						<% if @upcoming_appointment.status == "Paid"  %>
 						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 							<div class="row">
-								<p>May 28, 2015</p>
 								<h2>YOUR NEXT SESSION IS:</h2>
 							</div>
+							<hr>
 							<div class="row">
-								<h1>TODAY @ 4:30PM EST</h1>
+								<h1><%= @upcoming_appointment.date%> </h1>
+								<h1><%= @upcoming_appointment.time%> EST</h1>
 							</div>
+							<hr>
+							<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
 							<div class="row">
 								<div class="col-xs-12 session-action">
-									<p>Your last session was 45 days ago</p>
+									<% if @upcoming_appointment.start_time > Time.now + 10.minutes %>
+										<%= button_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id, class: "btn btn-primary"} do %>
+											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+												<span class="glyphicon glyphicon-heart"></span>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+												<p>START</p>
+												<p>APPOINTMENT</p>
+											</div>
+											<% end %>
+									<% else %>
+										<p>Take a moment to prepare for your session</p>
+										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+										<button class="btn btn-primary">
+											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+												<span class="glyphicon glyphicon-edit"></span>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+												<p>SESSION</p>
+												<p>PREP</p>
+											</div>
+										</button>
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+										<button class="btn btn-default">
+											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+												<span class="glyphicon glyphicon-comment"></span>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+												<p>CONTACT</p>
+												<p>YOUR KRDN</p>
+											</div>
+										</button>
+									</div>
+									<% end %>
+
+								</div>
+							</div>
+						</div>
+						<% elsif @upcoming_appointment.status ==  "Follow Up Unpaid"%>
+						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+							<div class="row">
+								<h2>YOUR NEXT SESSION IS:</h2>
+							</div>
+							<hr>
+							<div class="row">
+								<h1><%= @upcoming_appointment.date%> </h1>
+								<h1><%= @upcoming_appointment.time%> EST</h1>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-xs-12 session-action">
+									<p>This appointment has not been confirmed.  Please confirm the appointment below.</p>
+									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-3 col-lg-6">
+										<button class="btn btn-primary">
+											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+												<span class="glyphicon glyphicon-edit"></span>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+												<p>CONFIRM</p>
+												<p>APPOINTMENT</p>
+											</div>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<% else %>
+						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+							<div class="row">
+								<h2> </h2>
+							</div>
+							<hr>
+							<div class="row">
+								<h1>SCHEDULE YOUR NEXT APPOINTMENT</h1>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-xs-12 session-action">
+									<p>Need help?</p>
 									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
 										<button class="btn btn-primary">
 											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 												<span class="glyphicon glyphicon-calendar"></span>
 											</div>
 											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-												<p>SCHEDULE A </p>
-												<p>NEW SESSION</p>
+												<p>MAKE</p>
+												<p>APPOINTMENT</p>
 											</div>
 										</button>
 									</div>
@@ -42,6 +125,12 @@
 								</div>
 							</div>
 						</div>
+
+
+
+
+						<% end %>
+
 					</div>
 				</section>
 				<section class="content-container recipes">

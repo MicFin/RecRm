@@ -27,6 +27,14 @@ module AppointmentsHelper
     end
   end
 
+  def get_upcoming_appointment!
+      # client upcoming appointment or clirent unpaid
+      @upcoming_appointment = current_user.appointment_hosts.where(status: "Paid").last || current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
+      # start date and time 
+      @upcoming_appointment.date = @upcoming_appointment.start_time.strftime("%A, %b %d")
+      @upcoming_appointment.time = @upcoming_appointment.start_time.strftime("%I:%M%p")
+  end
+
   def get_previous_appointments!
     @previous_appointments = []
     # if dietitian then get all previous appointments

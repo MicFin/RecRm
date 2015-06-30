@@ -7,26 +7,23 @@ class WelcomeController < ApplicationController
 
     # user home page / main dashboard
     def home
-      binding.pry
 
-      # client upcoming appointment
-      @upcoming_appointment = @user.appointment_hosts.where(status: "Paid").last
-      # Set unpaid appointment if there is one
-      @unpaid_appointment = @user.appointment_hosts.where(status: "Follow Up Unpaid").last
       # AppointmentsHelper
       get_previous_appointments!
       @previous_appointments
+      get_upcoming_appointment!
+      @upcoming_appointment
       # all clients recipes 
       @recipes 
       # all clients articles
       @articles 
       # FamiliessHelper
+      # requires @user variable to be declared before calling
       get_family!
       @family_members
-      binding.pry
       # for survey
       # @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: false).last
-      
+
       # for survey
       # if @survey
       #   @surveyable = @appointment

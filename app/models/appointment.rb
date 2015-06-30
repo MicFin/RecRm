@@ -22,7 +22,9 @@ class Appointment < ActiveRecord::Base
   attr_accessor :family_info
   attr_accessor :prepped 
   attr_accessor :follow_up 
-   
+  attr_accessor :time 
+  attr_accessor :date 
+
   belongs_to :appointment_host, :class_name => "User", :foreign_key => "appointment_host_id"
   belongs_to :patient_focus, :class_name => "User", :foreign_key => "patient_focus_id"
   belongs_to :dietitian

@@ -58,8 +58,8 @@ class WelcomeController < ApplicationController
     end
 
     def get_started
-      binding.pry
-      
+
+      @user = current_user
     end
 
   private

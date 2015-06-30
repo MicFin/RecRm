@@ -5,6 +5,7 @@ $(document).ready(function() {
 	// override bootstrap accordion
 	OverrideBootstrap.setAccordion();
 
+	Families.new();
 
 	// dirty form catcher 
 	if ((pathname.search("/provider3126") >= 0) || (pathname.search("/provider9172") >= 0) ){

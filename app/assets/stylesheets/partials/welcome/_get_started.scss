@@ -3,10 +3,12 @@
 	  background-size: cover;
 	  background-repeat: no-repeat;
 	  position: relative;
-	  height: 100%;
+	  height: 102%;
 	  min-width: 100%;
 	  text-align: center;
 	  background-color: $brand-white;
-	  color: $brand-white;
 	  margin: -10px;
+	  .modal-footer{
+	  	border-top: none;
+	  }
 }

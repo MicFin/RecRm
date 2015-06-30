@@ -1,7 +1,86 @@
 
+<div id="get-started-page" class="new-family-page">
 
 
 
-<%= render 'form' %>
+	<div id="myModal" class="modal fade in" style="display: block;">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+
+	      <div class="modal-body">
+	        <div class="container-fluid">
+	        	<div class="row">
+	        		<div class="col-xs-8 col-xs-offset-2">
+			        	<%= image_tag("/assets/landing_page/kindrdfood-logo.jpg", class: "img-responsive") %>
+			        	<h1>Let's add some seats to your table!</h1>
+			        	<h4>For your first appointment, who's nutritional needs will be we focusing on?</h4>
+		        	</div>
+		        </div>
+		        <div class="row">
+			        <div class="form-group">
+								<label class="radio-inline">
+								  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="user-form">Me (<%=@user.first_name%>)
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="new-user-form"> Family member
+								</label>
+							</div>
+						</div>
+						<%= simple_form_for(@user, :url => {:controller => 'users/registrations', :action => 'update'}, html: { method: :put, class: 'col-xs-10 col-xs-offset-1 text-left hidden user-form', role:"form" }) do |f| %>
+
+						  <div class="form-group row">
+						  	<div class="col-xs-6">
+						    	<%= f.input :first_name, autofocus: true, input_html: { class: "form-control"} %>
+						    </div>
+								<div class="col-xs-6">
+						    	<%= f.input :last_name, autofocus: true, input_html: { class: "form-control"} %>
+						    </div>
+						  </div>
+						  <div class="form-group row">
+						  	<div class="col-xs-6">
+						    	<%= f.input :phone_number, autofocus: true, input_html: { class: "form-control"} %>
+						   	</div>
+		  					<div class="col-xs-6">
+						    	<%= f.input :zip_code, autofocus: true, input_html: { class: "form-control"} %>
+						    </div>
+						  </div>
+
+						  <div class="actions text-right">
+						    <%= f.button :submit, "Update", class: "btn btn-primary btn-lg" %>
+						  </div>
+						<% end %>
+						<%= simple_form_for(@new_user, :url => {:controller => 'users/registrations', :action => 'update'}, html: { method: :put, class: 'col-xs-10 col-xs-offset-1 text-left hidden new-user-form', role:"form" }) do |f| %>
+
+						  <div class="form-group row">
+						  	<div class="col-xs-6">
+						    	<%= f.input :first_name, autofocus: true, input_html: { class: "form-control"} %>
+						    </div>
+								<div class="col-xs-6">
+						    	<%= f.input :last_name, autofocus: true, input_html: { class: "form-control"} %>
+						    </div>
+						  </div>
+						  <div class="form-group row">
+						  	<div class="col-xs-6">
+						    	<%= f.input :phone_number, autofocus: true, input_html: { class: "form-control"} %>
+						   	</div>
+		  					<div class="col-xs-6">
+						    	<%= f.input :zip_code, autofocus: true, input_html: { class: "form-control"} %>
+						    </div>
+						  </div>
+
+						  <div class="actions text-right">
+						    <%= f.button :submit, "Update", class: "btn btn-primary btn-lg" %>
+						  </div>
+						<% end %>
+		      </div>
+		    </div>
+	      <div class="modal-footer">
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->	
+
+</div>
+
 
 

@@ -31,6 +31,19 @@
 //= require bootstrap-tour-min
 //= require fullcalendar
 
+
+// NEW NEW NEW
+
+
+//= require families/new
+
+
+
+
+
+
+// NEW ABOVE NEW ABOVE
+
 //= require new_recipe_bread_crumb
 //= require health_groups_and_categories_preview
 //= require dietitian_nav

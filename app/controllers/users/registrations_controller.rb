@@ -264,7 +264,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    
+
     @user = current_user
 
     successfully_updated = if needs_password?(@user, params)
@@ -298,9 +298,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-      params[:user][:email].present? ||
-      params[:user][:password].present? ||
-      params[:user][:password_confirmation].present?
+
+      # params[:user][:email].present? ||
+      # params[:user][:password].present? ||
+      # params[:user][:password_confirmation].present?
   end
 
   protected
@@ -327,9 +328,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         params["user"].delete "weight"
       end
     end
-    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :patient_group_ids => [])
     end
-    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :patient_group_ids => [])
     end
   end
 
@@ -354,7 +355,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     ### should be in after create??
     ## should not be in regular flow of update, only for initial sign up
-    binding.pry
+
     if resource.class == User 
       ## if they have already created an appointment
       if resource.appointment_hosts.where(status: "In Registration").count >= 1
@@ -367,8 +368,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         #   # format.json { render :show, status: :created, location: @appointment }
         # end 
         else
-          ### what to do if they go back and create another user or remove the user that was the focus
-          return new_user_family_path(resource)
+          ### OLD: what to do if they go back and create another user or remove the user that was the focus
+          return new_family_path
         end
       else
     

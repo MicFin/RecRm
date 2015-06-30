@@ -1,4 +1,5 @@
 class FamiliesController < ApplicationController
+  include PatientGroupsHelper
   before_action :set_family, only: [:show, :edit, :update, :destroy]
 
   # GET /families
@@ -17,11 +18,22 @@ class FamiliesController < ApplicationController
 
   # GET /families/new
   def new
-    binding.pry
+
     @user = current_user
-    @family = Family.new
-    @family.users.build
-    @new_user = User.new(last_name: @user.last_name)
+    @family = current_user.head_of_families.create
+    # @family = Family.new
+    @new_user = @family.users.build(last_name: @user.last_name)
+   
+    get_patient_groups!
+    @diseases = @diseases 
+    @intolerances = @intolerances 
+    @allergies = @allergies
+    @diets =  @diets 
+
+
+
+
+
     respond_to do |format|
       format.js
       format.html

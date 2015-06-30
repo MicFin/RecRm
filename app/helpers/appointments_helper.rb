@@ -29,46 +29,63 @@ module AppointmentsHelper
 
   def get_previous_appointments!
     @previous_appointments = []
-    current_dietitian.appointments.map do |appointment| 
-      if appointment.status == "Complete"
-        family = appointment.appointment_host.head_of_families.last 
-        family.health_groups_names = family.health_groups.map(&:name)
-        family.age_groups = family.ages
-        family.number_of_members = family.family_member_count
-        family.family_names = family.all_first_names
-        appointment.family_info = family
-        appointment.follow_up = appointment.surveys.where(survey_type: "Follow-Up").last
-        @previous_appointments << appointment
+    # if dietitian then get all previous appointments
+    if current_dietitian
+      current_dietitian.appointments.map do |appointment| 
+        if appointment.status == "Complete"
+          family = appointment.appointment_host.head_of_families.last 
+          family.health_groups_names = family.health_groups.map(&:name)
+          family.age_groups = family.ages
+          family.number_of_members = family.family_member_count
+          family.family_names = family.all_first_names
+          appointment.family_info = family
+          appointment.follow_up = appointment.surveys.where(survey_type: "Follow-Up").last
+          @previous_appointments << appointment
+        end
+      end
+    # if not dietitian then user so get all previous appointment hosts
+    else
+      current_user.appointment_hosts.map do |appointment| 
+        if appointment.status == "Complete"
+          family = appointment.appointment_host.head_of_families.last 
+          family.health_groups_names = family.health_groups.map(&:name)
+          family.age_groups = family.ages
+          family.number_of_members = family.family_member_count
+          family.family_names = family.all_first_names
+          appointment.family_info = family
+          appointment.follow_up = appointment.surveys.where(survey_type: "Follow-Up").last
+          @previous_appointments << appointment
+        end
       end
     end
+
+    # group previous appointmetns by time
     @previous_appointments = @previous_appointments.group_by{|appointment|  [appointment.start_time.to_date, appointment.start_time.strftime("%I:%M%p")] }
   end
 
 
-  def get_family_member_info!
-# if params[:client_first_name]
-    # should create method on family model
-    # this gets family members with patient focus first
-    @family_members = []
+#   def get_family_member_info!
+# # if params[:client_first_name]
+#     # should create method on family model
+#     # this gets family members with patient focus first
+#     @family_members = []
   
-    @family_members << @family.head_of_family
-    if @family.number_of_members.to_i > 0
-      @family.users.each do |family_member| 
-          @family_members << family_member 
-      end
-    end
-  end
+#     @family_members << @family.head_of_family
+#     if @family.number_of_members.to_i > 0
+#       @family.users.each do |family_member| 
+#           @family_members << family_member 
+#       end
+#     end
+#   end
 
-  def get_family_info!
-    @family.health_groups_names = @family.health_groups
-    @family.age_groups = @family.ages
-    @family.number_of_members = @family.family_member_count
-    @family.family_names = @family.all_first_names
-    get_family_member_info!
-    @family.family_member_info = @family_members
+  # def get_family_info!
+  #   @family.health_groups_names = @family.health_groups
+  #   @family.age_groups = @family.ages
+  #   @family.number_of_members = @family.family_member_count
+  #   @family.family_names = @family.all_first_names
+  #   get_family_member_info!
+  #   @family.family_member_info = @family_members
     
-  end
-
-
+  # end
 
 end

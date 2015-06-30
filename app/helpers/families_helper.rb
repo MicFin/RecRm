@@ -2,9 +2,12 @@ module FamiliesHelper
 
 	
 	def get_family!
-		@families = current_user.families
-		@family_members = @families[0].users
-		#Rails.logger.debug("MY FAMILY: #{@family[0].email }")
+			# requires @user variable to be declared before calling
+			# returns family members array
+	    @family = @user.head_of_families.last
+      @family_members = []
+      @family_members << @user 
+      @family.users.each { |user| @family_members << user }
 	end
 
 	def get_family_patient_groups!

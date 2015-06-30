@@ -15,12 +15,13 @@
 
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %> 
+<!--       This is required to process a stripe payment.  It is called in Appointment.rb update_with_payment -->
     <% if Rails.env.development? %>
       <%= tag :meta, :name => "stripe-key", :content => "pk_test_cZieXcu5WhjQKKDCmOY0PtoA" %>
     <% else %>
-<!--       This is required to process a stripe payment.  It is called in Appointment.rb update_with_payment -->
       <%= tag :meta, :name => "stripe-key", :content => "pk_live_eKJSALzXBAibHjg97Osuzfdm" %>
     <% end %>
+<!--     Font Sheet -->
     <link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
   </head>
 
@@ -28,30 +29,22 @@
 
 <body>
 <!-- LAYOUTS -->
-		<% if current_user %>
-			<%= render "/layouts/current_user_layout" %>
-		<% elsif current_dietitian %>
-			<%= render "/layouts/current_dietitian_layout" %>
-		<% else %>
+		<%# if current_user %>
+			<%#= yield %>
+		<%# elsif current_dietitian %>
+			<%#= render "/layouts/current_dietitian_layout" %>
+		<%# else %>
 			<%#= render "/layouts/not_signed_in_layout" %>
-      <%= yield %>
-		<% end %>
+      <%#= yield %>
+		<%# end %>
+    <%= yield %>
 
-<!-- FOOTER -->
-<!--   <footer id="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 text-center">
-
-          <p>Copyright &copy; Kindrdfood 2014</p>
-        </div>
-      </div>
-    </div>
-  </footer> -->
+<!--   Google Analytics -->
 <% if Rails.env == "production"  %>
   <%= render '/layouts/google_analytics' %>
 <% end %>
-<!-- 	SCRIPTS -->
+
+<!-- 	JQUERY VALIDATES SCRIPT -->
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.js" type="text/javascript"></script>
 
 </body>

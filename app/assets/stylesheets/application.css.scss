@@ -30,7 +30,6 @@
 
 
 // partials
-@import "partials/base";
 @import "partials/navbar";
 @import "partials/footer";
 @import "partials/recipe_breadcrumb";
@@ -66,6 +65,8 @@
 @import "partials/availabilities_index";
 @import "partials/home_index";
 @import "partials/home_page";
+
+@import "modules/all";
 
 
 // GLOBAL COLORS

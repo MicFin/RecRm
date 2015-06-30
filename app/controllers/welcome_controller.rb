@@ -3,6 +3,10 @@ class WelcomeController < ApplicationController
     include QualityReviewsHelper
 		before_filter :check_user_logged_in!
 
+
+    def home
+      
+    end
     ### this is currently the dietitian's dashboard
     def index
       @today = Date.today

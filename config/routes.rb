@@ -12,10 +12,15 @@ Rails.application.routes.draw do
     end
   end
 
+
+  get 'welcome/index', to: "welcome#index", as: "welcome"
+  get 'welcome/home', to: "welcome#home", as: "welcome_home"
+
+
+
   resources :plans
 
   
-  get 'welcome/index', to: "welcome#index", as: "welcome"
   # get 'Ta10lI8839dAmi', to: 'home#index', as: 'main_landing_page'
   get 'Ta10lI8839dAmi', to: 'home#join', as: 'main_landing_page'
   get 'join', to: 'home#join', as: 'tara_landing_page'
@@ -74,7 +79,7 @@ Rails.application.routes.draw do
 
   devise_scope :dietitian do
     authenticated :dietitian do
-
+      root :to => 'welcome#index', as: :dietitian_authenticated_root
       resources :member_plans
       get 'users/:user_id/surveys/show', to: 'surveys#show', as: 'show_user_survey'
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_dietitian_survey_update'
@@ -106,7 +111,7 @@ Rails.application.routes.draw do
       patch 'recipes/:recipe_id/review_conflicts/:id/edit_review_conflict', to: 'review_conflicts#edit_review_conflict', as: "edit_review_conflict"
 
       # root :to => 'recipes#dietitian_recipes_index', :constraints => lambda { |request| request.env['warden'].user.class.name == 'Dietitian' }, :as => "dietitian_authenticated_root"
-      root :to => 'welcome#index', as: :dietitian_authenticated_root
+
       # role assignments index
       get 'roles/assignments', to: 'roles#assignments', as: 'roles_assignments'
       # role assignments

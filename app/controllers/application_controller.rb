@@ -5,31 +5,14 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 	after_filter :dietitian_activity
 
-  # ## lazy way, should make dietitian registraiton controller with this method just as i did user
+  # shared by the user and dietitian registrations controllers
 	def after_sign_in_path_for(resource)
-
+		# if class is User
 		if resource.class == User
-					
-		    if resource.appointment_hosts.last
-		    	if resource.appointment_hosts.last.start_time
-		    	
-		    		# if not take them to their home page
-		      	user_dashboard_path(resource.id)
-		     	else 
-		     		new_user_intro_path(resource.id) 
-		     	end
-		    elsif params[:user][:home_page]
-		    	if resource.early_access == true 
-		    		thanks = "Thanks1"
-		    	else
-		    		thanks = "Thanks2"
-		    	end
-		    	sign_out resource
-		    	home_page_path(thanks: thanks)
-		    else
-		      # if first time give first time user experience
-		      new_user_intro_path(resource.id) 
-		    end
+
+		  # take them to the welcome home
+		  welcome_home_path(resource.id)
+
 		elsif resource.class == Dietitian
 				if resource.sign_in_count <= 1
 		      # if first time give first time user experience

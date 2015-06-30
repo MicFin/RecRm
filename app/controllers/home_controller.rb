@@ -4,7 +4,6 @@ class HomeController < ApplicationController
 	# include FamiliesHelper
 	# include RecipesHelper
 
-	#home page loads list of recipes that are safe for families.  Will combine user and family helper in the future
 	def index
 		if current_user
 			redirect_to user_authenticated_root_path

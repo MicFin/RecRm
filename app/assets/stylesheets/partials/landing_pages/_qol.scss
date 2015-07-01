@@ -18,23 +18,23 @@
 		}
 	}
 	.outside-form-container{
-	  background-color: transparentize($gray-darker, .8);
+	  // background-color: transparentize($gray-darker, .8);
   	border-radius: 15px;
   	padding: 20px;
   	> div {
-		  background-color: transparentize($gray-darker, .5);
+		  // background-color: transparentize($gray-darker, .5);
 		  border-radius: 15px;
 		  padding: 10px;
 		}  		
 	}
 	.qol-background-image{
-			background-image: url("food/mixed_fruits.jpg");
-		  background-size: cover;
-		  background-repeat: no-repeat;
+			// background-image: url("food/mixed_fruits.jpg");
+		 //  background-size: cover;
+		 //  background-repeat: no-repeat;
 		  position: relative;
 		  min-height: 450px;
 		  text-align: center;
-		  background-color: $brand-white;
+		  background-color: $gray-dark;
 		  color: $brand-white;
 		  padding: 20px;
 	}
@@ -44,6 +44,15 @@
 	.testimonial{
 		position: relative;
 		padding: 50px;
+		h3{
+			line-height: 2;
+		}
+	}
+	.testimonial span {
+		color: $brand-light-orange;
+	}
+	.testimonial span:last-child {
+		color: $brand-light-green;
 	}
 	.testimonial:after, .testimonial:before {
   	z-index: 100;
@@ -116,9 +125,15 @@
 		}
 		span.glyphicon{
 			font-size: 75px;
+						color: $brand-carrot-green;
+		}
+		span.glyphicon.glyphicon-cutlery{
+
+			color: $brand-carrot-orange;
 		}
 		.goal-item{
-			padding: 100px;
+		  padding: 50px;
+		  margin-top: 50px;
 		}
 		.team{
 			margin-bottom: 50px;

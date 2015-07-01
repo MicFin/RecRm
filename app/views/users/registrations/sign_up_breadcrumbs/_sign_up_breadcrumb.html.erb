@@ -1,9 +1,11 @@
+<% @user ||= current_user %>
+
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bs-wizard" data-stage="<%=@sign_up_stage%>">
 		<div class="sign-up-step-1 col-xs-4 col-sm-4 col-md-4 col-lg-4 bs-wizard-step active">
 			<div class="text-center bs-wizard-stepnum">1</div>
 			<div class="progress"><div class="progress-bar"></div></div>
-			<a href="/registrations/new_user_family/<%=current_user.id%>" class="bs-wizard-dot"></a>
+			<a href="/registrations/new_user_family/<%=@user.id%>" class="bs-wizard-dot"></a>
 			<div class="bs-wizard-info text-center">Create your profile</div>
 		</div>
 

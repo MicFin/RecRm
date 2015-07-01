@@ -11,28 +11,39 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Signs in a user on sign up. You can overwrite this method in your own
   # RegistrationsController.
   def sign_up(resource_name, resource)
-
+    
     sign_in(resource_name, resource)
   end
 
   def after_sign_up_path_for(resource)
-
+    
     after_sign_in_path_for(resource)
   end
 
   def sign_up_params
     devise_parameter_sanitizer.sanitize(:sign_up)
   end
-#new user intro to the form then
-#update to new_user_family
+
+#new user intro to the form where they update their name and select self or other user for appointment then
+# update to new_user_family
   def new_user_intro
+    
     @user = current_user || User.find(params[:id])
-    @sign_up_stage = @user.sign_up_stage 
+    @sign_up_stage = @user.sign_up_stage
+     
     if @sign_up_stage == 2
       redirect_to new_user_family_path(@user)
     elsif @sign_up_stage == 3
       redirect_to select_time_path(@user.appointment_hosts.last)
     else
+      
+      # render :new_user_intro and return
+    end
+    respond_to do |format|
+
+        # # need to redirect somwhere........
+        # format.js 
+        format.html
     end
   end
 
@@ -165,30 +176,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end     
   end
-  # # PUT /resource
-  # # We need to use a copy of the resource because we don't want to change
-  # # the current user in place.
-  # def update
-  #   
-  #   self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-  #   prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-  #   resource_updated = update_resource(resource, account_update_params)
-  #   yield resource if block_given?
-  #   if resource_updated
-  #     if is_flashing_format?
-  #       flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-  #         :update_needs_confirmation : :updated
-  #       set_flash_message :notice, flash_key
-  #     end
-  #     sign_in resource_name, resource, bypass: true
-  #     respond_with resource, location: after_update_path_for(resource)
-  #   else
-  #     clean_up_passwords resource
-  #     respond_with resource
-  #   end
-  #   
-  # end
 
   def edit_user_health_groups
     
@@ -264,7 +252,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-
+    
     @user = current_user
 
     successfully_updated = if needs_password?(@user, params)
@@ -298,10 +286,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-
-      # params[:user][:email].present? ||
-      # params[:user][:password].present? ||
-      # params[:user][:password_confirmation].present?
+      params[:user][:email].present? ||
+      params[:user][:password].present? ||
+      params[:user][:password_confirmation].present?
   end
 
   protected
@@ -355,7 +342,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     ### should be in after create??
     ## should not be in regular flow of update, only for initial sign up
-
+    
     if resource.class == User 
       ## if they have already created an appointment
       if resource.appointment_hosts.where(status: "In Registration").count >= 1
@@ -372,7 +359,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
           return new_family_path
         end
       else
-    
+        
+        ##### this is where the orginal family is made
         ##### registrations/new_user_intro/# assigns appointment here
         @user = resource
         @family = Family.new(name: "Main Family", head_of_family_id: @user.id)

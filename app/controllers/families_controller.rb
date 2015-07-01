@@ -30,10 +30,6 @@ class FamiliesController < ApplicationController
     @allergies = @allergies
     @diets =  @diets 
 
-
-
-
-
     respond_to do |format|
       format.js
       format.html

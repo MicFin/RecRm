@@ -8,23 +8,29 @@ class ApplicationController < ActionController::Base
   # shared by the user and dietitian registrations controllers
 	def after_sign_in_path_for(resource)
 		# if a user signs in and has created a family
+    
 		if resource.class == User && resource.head_of_families.length >= 1
 
 		  # DO STUFF
 
     # if a user signs in but did not create a family
     elsif resource.class == User
-    # user has not entered phone number or first form
-      if resource.phone_number.nil?
-        welcome_get_started_path(resource)
-      # user has entered phone number but not family member
-      elsif resource.head_of_families.length < 1
+      # TEMPORARILY HOOKING OLD CODE BACK IN
+      new_user_intro_path(resource)
+      # UNCOMMENT BELOW
 
-        # user has entered phone number and family member
-      else
-        # take them to the welcome home
-        welcome_home_path(resource)
-      end
+
+    # # user has not entered phone number or first form
+    #   if resource.phone_number.nil?
+    #     welcome_get_started_path(resource)
+    #   # user has entered phone number but not family member
+    #   elsif resource.head_of_families.length < 1
+
+    #     # user has entered phone number and family member
+    #   else
+    #     # take them to the welcome home
+    #     welcome_home_path(resource)
+    #   end
 		elsif resource.class == Dietitian
 			if resource.sign_in_count <= 1
 	      # if first time give first time user experience

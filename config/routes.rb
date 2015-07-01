@@ -47,7 +47,9 @@ Rails.application.routes.draw do
       # root :to => 'dashboard#home', as: :user_authenticated_root
       root :to => 'welcome#home', as: :user_authenticated_root
       get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
+
       get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
+      
       get 'registrations/new_user_family/:id', to: 'users/registrations#new_user_family', as: 'new_user_family'
       get 'registrations/edit_user_health_groups/:id', to: 'users/registrations#edit_user_health_groups', as: 'edit_user_health_groups'
       # update health gorups

@@ -132,7 +132,7 @@ class Appointment < ActiveRecord::Base
       # end
       # save invoice price to appointment
       # self.invoice_price = 8999
-      self.status = "Paid QOL"
+      self.status = "Paid"
       # self.invoice_price = 8999
       self.invoice_price = 0
       self.duration = 60

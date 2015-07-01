@@ -14,7 +14,7 @@ class DashboardController < ApplicationController
 # if an appointment has not been made goto introduction
     # if (@user.appointment_hosts.where(status: "Paid").length < 1) && (@user.appointment_hosts.where(status: "Requested").length < 1) 
 
-    if (@user.appointment_hosts.where(status: "Paid").length < 1 && @user.appointment_hosts.where(status: "Paid QOL").length < 1) 
+    if (@user.appointment_hosts.where(status: "Paid").length < 1)
         redirect_to new_user_intro_path(@user.id) 
 
     # elsif (@user.appointment_hosts.where(status: "Paid").length < 1) && (@user.appointment_hosts.where(status: "Requested").length > 0) 
@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
       # set variables for dashboard
       @family = @user.head_of_families.last
       
-      @appointment = @user.appointment_hosts.where(status: "Paid").last || @user.appointment_hosts.where(status: "Paid QOL").last
+      @appointment = @user.appointment_hosts.where(status: "Paid").last
       # Set unpaid appointment if there is one
       @unpaid_appointment = @user.appointment_hosts.where(status: "Follow Up Unpaid").last
 

@@ -9,14 +9,12 @@ class DashboardController < ApplicationController
 
   
   def home
-
     @user = current_user
 
 # if an appointment has not been made goto introduction
     # if (@user.appointment_hosts.where(status: "Paid").length < 1) && (@user.appointment_hosts.where(status: "Requested").length < 1) 
 
-    if (@user.appointment_hosts.where(status: "Paid").length < 1) 
-
+    if (@user.appointment_hosts.where(status: "Paid").length < 1 && @user.appointment_hosts.where(status: "Paid QOL").length < 1) 
         redirect_to new_user_intro_path(@user.id) 
 
     # elsif (@user.appointment_hosts.where(status: "Paid").length < 1) && (@user.appointment_hosts.where(status: "Requested").length > 0) 

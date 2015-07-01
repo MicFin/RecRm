@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'welcome/get_started', to: "welcome#get_started", as: "welcome_get_started"
 
   get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
-  get 'landing_pages/qol', to: "landing_pages#qol", as: "landing_pages_qol"
+  get 'qol', to: "landing_pages#qol", as: "landing_pages_qol"
 
 
   resources :plans
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
 
       get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
-      
+
       get 'registrations/new_user_family/:id', to: 'users/registrations#new_user_family', as: 'new_user_family'
       get 'registrations/edit_user_health_groups/:id', to: 'users/registrations#edit_user_health_groups', as: 'edit_user_health_groups'
       # update health gorups

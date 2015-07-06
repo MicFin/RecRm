@@ -13,8 +13,8 @@ class TimeSlotsController < ApplicationController
     #  review all current 60 minute, current time slots
     # incorrectly being called for user select appt list
     elsif params[:minutes] == "60" && params[:type] == "vacant-appts"
-      @time_slots = TimeSlot.where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now + 1.days]) 
-
+      # @time_slots = TimeSlot.where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now + 1.days]) 
+      @time_slots = TimeSlot.where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now]) 
       # temporary fix for only sending back Tara's schedule to clients she gives a link to and are marked as having tara_rerral as true
       # if current_user.tara_referral == true
       #   @time_slots.to_a.delete_if do |time_slot|

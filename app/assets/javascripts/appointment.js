@@ -9,13 +9,13 @@ $(document).ready(function() {
 payment = {
   setupForm: function() {
     $('body #btn-purchase-appt').on("click", function(e) {
-      // if ($('#card_number').length){ 
-      //   e.preventDefault();
-      //   $('input[type=submit]').attr('disabled', true);
-      //   return payment.processCard();
-      // } else {
+      if ($('#card_number').length){ 
+        e.preventDefault();
+        $('input[type=submit]').attr('disabled', true);
+        return payment.processCard();
+      } else {
         $('form').submit();
-      // };
+      };
     });
   },
 // # The processCard function creates an object representing the credit card’s values in the format that Stripe expects and reads the appropriate values for each field from the form’s fields using val(). The next line is the important one. We call Stripe.createToken with two arguments. The first is the card object that we’ve just created (we can also pass in an optional amount here). The second is a function that will handle the response from Stripe, which happens asynchronously. We’ll pass in payment.handleStripeResponse here.

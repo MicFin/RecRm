@@ -214,8 +214,10 @@ var SelectApptCalendar = {
           if (event.title != "time-slot-taken"){
             event_start_times_rendered.push(event.start.format());
           }
+          debugger;
       },
       eventAfterRender: function(event, element, view){
+        debugger;
         $(element).parent().hide();
       },
       dayRender: function( date, cell ) { 

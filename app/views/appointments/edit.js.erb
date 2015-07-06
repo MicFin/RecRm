@@ -8,10 +8,17 @@
 	  $('#datetimepicker-appt-end').data("DateTimePicker").setDate(e.date);
 	});
 
-<% else %>
+<% elsif @user.qol_referral === true %>
 
 	$("#new-appt-form").after("<%= j render(:partial => 'payment_modal') %>");
 	$('#paymentModal').modal();
 	// payment.setupForm();
+
+
+<% else %>
+
+	$("#new-appt-form").after("<%= j render(:partial => 'payment_modal') %>");
+	$('#paymentModal').modal();
+	payment.setupForm();
 
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630181140) do
+ActiveRecord::Schema.define(version: 20150706152709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -520,6 +520,7 @@ ActiveRecord::Schema.define(version: 20150630181140) do
     t.boolean  "early_access",           default: false
     t.boolean  "tara_referral",          default: false, null: false
     t.string   "zip_code"
+    t.boolean  "qol_referral",           default: false, null: false
   end
 
   add_index "users", ["date_of_birth"], name: "index_users_on_date_of_birth", using: :btree

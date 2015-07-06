@@ -268,6 +268,7 @@ class AppointmentsController < ApplicationController
     else
       @dietitians = Dietitian.all 
     end
+    @user = current_user
     
     respond_to do |format|
       format.js
@@ -334,6 +335,7 @@ class AppointmentsController < ApplicationController
     ##### should remove above
 
     elsif @appointment.update(appointment_params)
+      
       # if stripe card payment update incnluded in update then user is paying 
 
       if appointment_params[:stripe_card_token]

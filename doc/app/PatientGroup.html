@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class PatientGroup - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-allergies">::allergies</a>
+    
+    <li ><a href="#method-c-allergies_with_other">::allergies_with_other</a>
+    
+    <li ><a href="#method-c-diseases">::diseases</a>
+    
+    <li ><a href="#method-c-diseases_with_other">::diseases_with_other</a>
+    
+    <li ><a href="#method-c-intolerances">::intolerances</a>
+    
+    <li ><a href="#method-c-intolerances_with_other">::intolerances_with_other</a>
+    
+    <li ><a href="#method-c-safe_allergy_groups">::safe_allergy_groups</a>
+    
+    <li ><a href="#method-c-safe_disease_groups">::safe_disease_groups</a>
+    
+    <li ><a href="#method-c-safe_intolerance_groups">::safe_intolerance_groups</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-PatientGroup">
+  <h1 id="class-PatientGroup" class="class">
+    class PatientGroup
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-allergies" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">allergies</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns all Patient Groups with the category allergy</p>
+          
+          
+
+          
+          <div class="method-source-code" id="allergies-source">
+            <pre><span class="ruby-comment"># File app/models/patient_group.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">allergies</span>
+  <span class="ruby-identifier">allergies</span>=[]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">unverified</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergy</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">allergy</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;allergy&quot;</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">allergy</span>.<span class="ruby-identifier">input_option</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-identifier">allergies</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">allergy</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">allergies</span>.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">order</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-allergies_with_other" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">allergies_with_other</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns all Patient Groups with the category allergy and a Patient Group
+named “Other Allergy” with an input field true boolean</p>
+          
+          
+
+          
+          <div class="method-source-code" id="allergies_with_other-source">
+            <pre><span class="ruby-comment"># File app/models/patient_group.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">allergies_with_other</span>
+  <span class="ruby-identifier">allergies</span>=[]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">unverified</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergy</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">allergy</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;allergy&quot;</span>
+      <span class="ruby-identifier">allergies</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">allergy</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">allergies</span>.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">order</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-diseases" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">diseases</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns all Patient Groups with the category intolerance except other field</p>
+          
+          
+
+          
+          <div class="method-source-code" id="diseases-source">
+            <pre><span class="ruby-comment"># File app/models/patient_group.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">diseases</span>
+  <span class="ruby-identifier">diseases</span>=[]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">unverified</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergy</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">allergy</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;disease&quot;</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">allergy</span>.<span class="ruby-identifier">input_option</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-identifier">diseases</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">allergy</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">diseases</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-diseases_with_other" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">diseases_with_other</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns array of all Patient Groups with the category disease and an
+Patient Group named “Other Disease” with an input field true boolean</p>
+          
+          
+
+          
+          <div class="method-source-code" id="diseases_with_other-source">
+            <pre><span class="ruby-comment"># File app/models/patient_group.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">diseases_with_other</span>
+  <span class="ruby-identifier">diseases</span>=[]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">unverified</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergy</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">allergy</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;disease&quot;</span>
+      <span class="ruby-identifier">diseases</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">allergy</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">diseases</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-intolerances" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">intolerances</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns all Patient Groups with the category intolerance</p>
+          
+          
+
+          
+          <div class="method-source-code" id="intolerances-source">
+            <pre><span class="ruby-comment"># File app/models/patient_group.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">intolerances</span>
+  <span class="ruby-identifier">intolerances</span>=[]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">unverified</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergy</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">allergy</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;intolerance&quot;</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">allergy</span>.<span class="ruby-identifier">input_option</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-identifier">intolerances</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">allergy</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">intolerances</span>.<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">order</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-intolerances_with_other" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">intolerances_with_other</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns all Patient Groups with the category intolerance and a Patient
+Group named “Other Intolerance” with an input field true boolean</p>
+          
+          
+
+          
+          <div class="method-source-code" id="intolerances_with_other-source">
+            <pre><span class="ruby-comment"># File app/models/patient_group.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">intolerances_with_other</span>
+  <span class="ruby-identifier">intolerances</span>=[]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">unverified</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergy</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">allergy</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;intolerance&quot;</span>
+      <span class="ruby-identifier">intolerances</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">allergy</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">intolerances</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-safe_allergy_groups" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">safe_allergy_groups</span><span
+            class="method-args">(array_of_recipes_allergens)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of Patient Groups with the category “allergy” that are
+safe for the input array of allergens</p>
+          
+          
+
+          
+          <div class="method-source-code" id="safe_allergy_groups-source">
+            <pre><span class="ruby-comment"># File app/models/patient_group.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">safe_allergy_groups</span>(<span class="ruby-identifier">array_of_recipes_allergens</span>)
+  <span class="ruby-identifier">safe_patient_groups</span> = []
+  <span class="ruby-identifier">safe_allergy_groups</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">unverified</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient_group</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">safe_patient_groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span>  
+    <span class="ruby-keyword">end</span> 
+    <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">array_of_recipes_allergens</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">allergen</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">safe_patient_groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span> 
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>    
+  <span class="ruby-keyword">end</span>  
+  <span class="ruby-identifier">safe_patient_groups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient_group</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;allergy&quot;</span>
+        <span class="ruby-identifier">safe_allergy_groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">safe_allergy_groups</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-constant">PatientGroup</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Other Allergy&quot;</span>).<span class="ruby-identifier">first</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">safe_allergy_groups</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-safe_disease_groups" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">safe_disease_groups</span><span
+            class="method-args">(array_of_recipes_allergens)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of Patient Groups with the category “disease” that are
+safe for the input array of allergens</p>
+          
+          
+
+          
+          <div class="method-source-code" id="safe_disease_groups-source">
+            <pre><span class="ruby-comment"># File app/models/patient_group.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">safe_disease_groups</span>(<span class="ruby-identifier">array_of_recipes_allergens</span>)
+  <span class="ruby-identifier">safe_patient_groups</span> = []
+  <span class="ruby-identifier">safe_disease_groups</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">unverified</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient_group</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">safe_patient_groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span>  
+    <span class="ruby-keyword">end</span> 
+    <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">array_of_recipes_allergens</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">allergen</span>)
+        <span class="ruby-identifier">safe_patient_groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span> 
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>  
+  <span class="ruby-identifier">safe_patient_groups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient_group</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;disease&quot;</span>
+        <span class="ruby-identifier">safe_disease_groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span>
+     <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">safe_disease_groups</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-constant">PatientGroup</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Other Disease&quot;</span>).<span class="ruby-identifier">first</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">safe_disease_groups</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-safe_intolerance_groups" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">safe_intolerance_groups</span><span
+            class="method-args">(array_of_recipes_allergens)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of Patient Groups with the category “intolerances” that
+are safe for the input array of allergens</p>
+          
+          
+
+          
+          <div class="method-source-code" id="safe_intolerance_groups-source">
+            <pre><span class="ruby-comment"># File app/models/patient_group.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">safe_intolerance_groups</span>(<span class="ruby-identifier">array_of_recipes_allergens</span>)
+  <span class="ruby-identifier">safe_patient_groups</span> = []
+  <span class="ruby-identifier">safe_intolerance_groups</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">unverified</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient_group</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">safe_patient_groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span>  
+    <span class="ruby-keyword">end</span> 
+    <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">array_of_recipes_allergens</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">allergen</span>)
+        <span class="ruby-identifier">safe_patient_groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span> 
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span> 
+  <span class="ruby-identifier">safe_patient_groups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient_group</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;intolerance&quot;</span>
+        <span class="ruby-identifier">safe_intolerance_groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span>
+     <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">safe_intolerance_groups</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-constant">PatientGroup</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Other Intolerance&quot;</span>).<span class="ruby-identifier">first</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">safe_intolerance_groups</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Survey
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!Survey.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">Survey</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Survey
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Survey</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/survey.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_for_appointment-class_method" title="generate_for_appointment (class method)">+ (Object) <strong>generate_for_appointment</strong>(appointment, client_or_dietitian) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_for_follow_up-class_method" title="generate_for_follow_up (class method)">+ (Object) <strong>generate_for_follow_up</strong>(appointment) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_for_post_appointment-class_method" title="generate_for_post_appointment (class method)">+ (Object) <strong>generate_for_post_appointment</strong>(appointment, client_or_dietitian) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_for_user-class_method" title="generate_for_user (class method)">+ (Object) <strong>generate_for_user</strong>(client, survey_user, survey_type) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="generate_for_appointment-class_method">
+  
+    + (<tt>Object</tt>) <strong>generate_for_appointment</strong>(appointment, client_or_dietitian) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/survey.rb', line 42</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_generate_for_appointment'>generate_for_appointment</span><span class='lparen'>(</span><span class='id identifier rubyid_appointment'>appointment</span><span class='comma'>,</span> <span class='id identifier rubyid_client_or_dietitian'>client_or_dietitian</span><span class='rparen'>)</span>
+  <span class='comment'># for client
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_client_or_dietitian'>client_or_dietitian</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>User</span>
+    <span class='id identifier rubyid_appointment_survey'>appointment_survey</span> <span class='op'>=</span> <span class='const'>Survey</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>user_id:</span> <span class='id identifier rubyid_client_or_dietitian'>client_or_dietitian</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>surveyable_id:</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>surveyable_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Appointment</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_appointment_survey'>appointment_survey</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&lt;</span> <span class='int'>1</span>
+      
+      <span class='id identifier rubyid_new_survey'>new_survey</span> <span class='op'>=</span> <span class='const'>Survey</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_id'>surveyable_id</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_type'>surveyable_type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Appointment</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='id identifier rubyid_client_or_dietitian'>client_or_dietitian</span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What are the top 3 nutritional challenges for your child or family?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What is the 1 thing that you would really like to accomplish during this session?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What did </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> eat and drink yesterday? (this snapshot, even if not a typical day, is important)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please share any other information that is important for understanding </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s nutrition.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>It is important for our team to stay connected with your doctors to keep your care coordinated.  Please provide the name, practice or hospital and phone number of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s doctor.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment_survey'>appointment_survey</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+    <span class='kw'>end</span>
+    <span class='comment'># for dietitian
+</span>  <span class='kw'>else</span> 
+    <span class='id identifier rubyid_appointment_survey'>appointment_survey</span> <span class='op'>=</span> <span class='const'>Survey</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>surveyable_id:</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>surveyable_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Appointment</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_appointment_survey'>appointment_survey</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&lt;</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span> <span class='op'>=</span> <span class='const'>Survey</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_id'>surveyable_id</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_type'>surveyable_type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Appointment</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Client history and referring concern</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s height in centimeters</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s height % for age</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s height z-score</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s weight in kg</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>6</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s weight % for age</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>6</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>7</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s weight z-score</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>7</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>8</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s BMI</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>8</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>9</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s BMI % for age</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>9</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>10</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s BMI z-score</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>10</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>11</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s estimated energy requirement (calories)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>11</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>12</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s protein RDA (g/day)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>12</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>13</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s fluid (mL/day)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>13</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>14</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Assessment / Plan for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>14</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_new_survey'>new_survey</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment_survey'>appointment_survey</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_new_survey'>new_survey</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate_for_follow_up-class_method">
+  
+    + (<tt>Object</tt>) <strong>generate_for_follow_up</strong>(appointment) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/survey.rb', line 125</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_generate_for_follow_up'>generate_for_follow_up</span><span class='lparen'>(</span><span class='id identifier rubyid_appointment'>appointment</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new_survey'>new_survey</span> <span class='op'>=</span> <span class='const'>Survey</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Follow-Up</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_id'>surveyable_id</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+  <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_type'>surveyable_type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Appointment</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_appointment_host'>appointment_host</span>
+  <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>
+  <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Write the assessment that will be sent to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_last_name'>last_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Follow-Up</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Prepare an assessment to send to your client&#39;s physician:</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Follow-Up</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span> 
+  <span class='kw'>return</span> <span class='id identifier rubyid_new_survey'>new_survey</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate_for_post_appointment-class_method">
+  
+    + (<tt>Object</tt>) <strong>generate_for_post_appointment</strong>(appointment, client_or_dietitian) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/survey.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_generate_for_post_appointment'>generate_for_post_appointment</span><span class='lparen'>(</span><span class='id identifier rubyid_appointment'>appointment</span><span class='comma'>,</span> <span class='id identifier rubyid_client_or_dietitian'>client_or_dietitian</span><span class='rparen'>)</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_client_or_dietitian'>client_or_dietitian</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span>  <span class='const'>User</span>
+    <span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='id identifier rubyid_client_or_dietitian'>client_or_dietitian</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span> <span class='op'>=</span> <span class='const'>Survey</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_id'>surveyable_id</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_type'>surveyable_type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Appointment</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Did you enjoy this appointment?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Radio</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Yes, No</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please explain what you liked or disliked about this experience.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Did we address your 3 biggest challenges?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Are there any other resources that you would like us to share or research for you?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Is there anything that we did not cover that you would like more guidance with?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Client</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>      
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_dietitian'>dietitian</span> <span class='op'>=</span> <span class='id identifier rubyid_client_or_dietitian'>client_or_dietitian</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span> <span class='op'>=</span> <span class='const'>Survey</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_id'>surveyable_id</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_type'>surveyable_type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Appointment</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># new_survey.user = dietitian
+</span>    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Was the client&#39;s child present during the appointment?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Radio</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Yes, No</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Did you schedule a follow up? (please give date and time or timing, EX 2 weeks)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What was the most difficult thing about this session? (think about what you would share with the group)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What do you think went well during this session? (think about what you would share with the group)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Was there anything that you had to look up, reference, or use outside of the system?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>6</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please let us know how the system worked.  Was it smooth? Lacking? A nuisance?  Don&#39;t hold back, this is being made for YOU!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Post-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>6</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_new_survey'>new_survey</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate_for_user-class_method">
+  
+    + (<tt>Object</tt>) <strong>generate_for_user</strong>(client, survey_user, survey_type) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/survey.rb', line 7</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_generate_for_user'>generate_for_user</span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_survey_user'>survey_user</span><span class='comma'>,</span> <span class='id identifier rubyid_survey_type'>survey_type</span><span class='rparen'>)</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_survey_type'>survey_type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Food</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_new_suervey'>new_suervey</span> <span class='op'>=</span> <span class='const'>Survey</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Food</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_id'>surveyable_id</span> <span class='op'>=</span> <span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_type'>surveyable_type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>When did you first become aware of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s nutritional needs?  What was that experience like? </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Food</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What foods does </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> regularly need to avoid?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Food</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What foods does </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> enjoy eating?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Food</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Describe what </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> eats on an average day (include breakfast, lunch, dinner, desserts, snacks, etc):</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Food</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What are some of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s favorite food brands?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Food</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>6</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What meals are the most challenging for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> to eat properly?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Food</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>6</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>7</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What is </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> favorite homemade meal?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Food</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>7</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>8</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Does </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> see a physician?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Radio</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Food</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>8</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Yes, No</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_survey_type'>survey_type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Life</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span> <span class='op'>=</span> <span class='const'>Survey</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Life</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_id'>surveyable_id</span> <span class='op'>=</span> <span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_surveyable_type'>surveyable_type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>
+    <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Does </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s nutritional needs affect </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_singular_possessive'>singular_possessive</span><span class='embexpr_end'>}</span><span class='tstring_content'> performance in school? Please Explain.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Life</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Has </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> been bullied or teased due to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_singular_possessive'>singular_possessive</span><span class='embexpr_end'>}</span><span class='tstring_content'> nutritional needs?  Please explain.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Life</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nutrition can be overwhelming, how would you describe </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s outlook on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_singular_possessive'>singular_possessive</span><span class='embexpr_end'>}</span><span class='tstring_content'> own nutrition?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Life</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>3</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>What are some of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s hobbies? Please share.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Life</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>4</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+    <span class='const'>Question</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>position:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>tier:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Does </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_survey_user'>survey_user</span><span class='period'>.</span><span class='id identifier rubyid_first_name'>first_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> have an favorites sports teams, musicians, or other favorites we should know about? Please share.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>question_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Response</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-Life</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_group_question_id:</span> <span class='int'>5</span><span class='comma'>,</span> <span class='label'>choices:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>survey_id:</span> <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_new_survey'>new_survey</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_new_survey'>new_survey</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Jul  7 11:48:42 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

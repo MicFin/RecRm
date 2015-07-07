@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class Recipe - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-all_in_first_tier_review">::all_in_first_tier_review</a>
+    
+    <li ><a href="#method-c-all_in_second_tier_review">::all_in_second_tier_review</a>
+    
+    <li ><a href="#method-c-all_live_recipes">::all_live_recipes</a>
+    
+    <li ><a href="#method-c-all_need_first_tier_review">::all_need_first_tier_review</a>
+    
+    <li ><a href="#method-c-all_need_original_review">::all_need_original_review</a>
+    
+    <li ><a href="#method-c-all_need_second_tier_review">::all_need_second_tier_review</a>
+    
+    <li ><a href="#method-c-all_recipe_names">::all_recipe_names</a>
+    
+    <li ><a href="#method-c-data_by_dietitian">::data_by_dietitian</a>
+    
+    <li ><a href="#method-c-data_by_health_group">::data_by_health_group</a>
+    
+    <li ><a href="#method-c-data_by_total">::data_by_total</a>
+    
+    <li ><a href="#method-c-first_tier_not_resolved">::first_tier_not_resolved</a>
+    
+    <li ><a href="#method-c-made_for">::made_for</a>
+    
+    <li ><a href="#method-c-second_tier_not_resolved">::second_tier_not_resolved</a>
+    
+    <li ><a href="#method-c-to_csv">::to_csv</a>
+    
+    <li ><a href="#method-i-allergens">#allergens</a>
+    
+    <li ><a href="#method-i-allergies">#allergies</a>
+    
+    <li ><a href="#method-i-diseases">#diseases</a>
+    
+    <li ><a href="#method-i-fetch_categories_array">#fetch_categories_array</a>
+    
+    <li ><a href="#method-i-fetch_health_groups_array">#fetch_health_groups_array</a>
+    
+    <li ><a href="#method-i-fetch_ingredients_allergens_hash">#fetch_ingredients_allergens_hash</a>
+    
+    <li ><a href="#method-i-fetch_possible_review_conflicts">#fetch_possible_review_conflicts</a>
+    
+    <li ><a href="#method-i-ingredient_with_full_name">#ingredient_with_full_name</a>
+    
+    <li ><a href="#method-i-ingredients_not_tagged">#ingredients_not_tagged</a>
+    
+    <li ><a href="#method-i-ingredients_tagged">#ingredients_tagged</a>
+    
+    <li ><a href="#method-i-intolerances">#intolerances</a>
+    
+    <li ><a href="#method-i-marketing_items_by_group">#marketing_items_by_group</a>
+    
+    <li ><a href="#method-i-number_of_reviewers_hash">#number_of_reviewers_hash</a>
+    
+    <li ><a href="#method-i-ordered_ingredients">#ordered_ingredients</a>
+    
+    <li ><a href="#method-i-recipe_ingredients_full_names">#recipe_ingredients_full_names</a>
+    
+    <li ><a href="#method-i-review_tier">#review_tier</a>
+    
+    <li ><a href="#method-i-steps">#steps</a>
+    
+    <li ><a href="#method-i-steps_by_group">#steps_by_group</a>
+    
+    <li ><a href="#method-i-to_csv">#to_csv</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Recipe">
+  <h1 id="class-Recipe" class="class">
+    class Recipe
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-courses" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">courses</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-health_groups" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">health_groups</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ingredient_count" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ingredient_count</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-ingredient_list" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ingredient_list</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-step_list" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">step_list</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-all_in_first_tier_review" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_in_first_tier_review</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_in_first_tier_review-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 304</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_in_first_tier_review</span>
+  <span class="ruby-identifier">recipes_in_review</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">completed</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">live_recipe</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span><span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">last_review</span> = <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;created_at&quot;</span>).<span class="ruby-identifier">last</span>
+      <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">tier</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">completed</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>) )
+        <span class="ruby-identifier">recipes_in_review</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">recipe</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">recipes_in_review</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-all_in_second_tier_review" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_in_second_tier_review</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_in_second_tier_review-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 330</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_in_second_tier_review</span>
+  <span class="ruby-identifier">recipes_in_review</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">completed</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">live_recipe</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span><span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">last_review</span> = <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;created_at&quot;</span>).<span class="ruby-identifier">last</span>
+      <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">tier</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">completed</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>) )
+        <span class="ruby-identifier">recipes_in_review</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">recipe</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">recipes_in_review</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-all_live_recipes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_live_recipes</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_live_recipes-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 286</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_live_recipes</span>
+  <span class="ruby-identifier">live_recipes</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">completed</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">live_recipe</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">live_recipes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">recipe</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">live_recipes</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-all_need_first_tier_review" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_need_first_tier_review</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_need_first_tier_review-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 358</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_need_first_tier_review</span>
+  <span class="ruby-identifier">recipes_not_reviewed</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">completed</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">live_recipe</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span><span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">last_review</span> = <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;created_at&quot;</span>).<span class="ruby-identifier">last</span>
+      <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">resolved</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">passed</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">true</span>) )
+        <span class="ruby-identifier">recipes_not_reviewed</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">recipe</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">recipes_not_reviewed</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-all_need_original_review" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_need_original_review</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_need_original_review-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 294</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_need_original_review</span>
+  <span class="ruby-identifier">recipes_not_reviewed</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">completed</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">live_recipe</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">recipes_not_reviewed</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">recipe</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">recipes_not_reviewed</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-all_need_second_tier_review" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_need_second_tier_review</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_need_second_tier_review-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 371</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_need_second_tier_review</span>
+  <span class="ruby-identifier">recipes_not_reviewed</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">completed</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">live_recipe</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span><span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">last_review</span> = <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;created_at&quot;</span>).<span class="ruby-identifier">last</span>
+      <span class="ruby-identifier">last_review_passed</span> = <span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">passed</span>
+      <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">last_review_passed</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">resolved</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>))
+        <span class="ruby-identifier">recipes_not_reviewed</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">recipe</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">recipes_not_reviewed</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-all_recipe_names" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_recipe_names</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return an array of all unique recipe titles</p>
+          
+          
+
+          
+          <div class="method-source-code" id="all_recipe_names-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 441</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_recipe_names</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:name</span>).<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-data_by_dietitian" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">data_by_dietitian</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="data_by_dietitian-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 158</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">data_by_dietitian</span>
+  <span class="ruby-identifier">today</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>
+  <span class="ruby-identifier">beginning_of_week</span> = <span class="ruby-identifier">today</span>.<span class="ruby-identifier">at_beginning_of_week</span>(<span class="ruby-value">:thursday</span>)
+  <span class="ruby-identifier">data_by_dietitian_hash</span> = {}
+  <span class="ruby-constant">Dietitian</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span><span class="ruby-operator">|</span><span class="ruby-identifier">dietitian</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>] = {}
+    <span class="ruby-identifier">all_time_array</span> = <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">recipes</span>
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;total_all_time&quot;</span>] = <span class="ruby-identifier">all_time_array</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_all_time&quot;</span>] = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">all_time_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_all_time&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">this_weeks_array</span> = <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">recipes</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:created_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">beginning_of_week</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-identifier">today</span>.<span class="ruby-identifier">end_of_day</span>)
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;total_this_week&quot;</span>] = <span class="ruby-identifier">this_weeks_array</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_this_week&quot;</span>] = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">this_weeks_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_this_week&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">last_weeks_array</span> = <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">recipes</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:created_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">beginning_of_week</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-value">1</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">end_of_week</span>.<span class="ruby-identifier">end_of_day</span>)
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;total_last_week&quot;</span>] = <span class="ruby-identifier">last_weeks_array</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_last_week&quot;</span>] = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">last_weeks_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_last_week&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">total_2_weeks_ago_array</span> = <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">recipes</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:created_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">beginning_of_week</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">end_of_week</span>.<span class="ruby-identifier">end_of_day</span>)
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;total_2_weeks_ago&quot;</span>] = <span class="ruby-identifier">total_2_weeks_ago_array</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_2_weeks_ago&quot;</span>] = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">total_2_weeks_ago_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_2_weeks_ago&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">total_3_weeks_ago_array</span> = <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">recipes</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:created_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">beginning_of_week</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">end_of_week</span>.<span class="ruby-identifier">end_of_day</span>)
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;total_3_weeks_ago&quot;</span>] = <span class="ruby-identifier">total_3_weeks_ago_array</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_3_weeks_ago&quot;</span>] = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">total_3_weeks_ago_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_3_weeks_ago&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">total_4_weeks_ago_array</span> = <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">recipes</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:created_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">4</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">beginning_of_week</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">end_of_week</span>.<span class="ruby-identifier">end_of_day</span>)
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;total_4_weeks_ago&quot;</span>] = <span class="ruby-identifier">total_4_weeks_ago_array</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_4_weeks_ago&quot;</span>] = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">total_4_weeks_ago_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">data_by_dietitian_hash</span>[<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">email</span>][<span class="ruby-string">&quot;made_for_4_weeks_ago&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">data_by_dietitian_hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-data_by_health_group" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">data_by_health_group</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>recipe counts byt health group</p>
+          
+          
+
+          
+          <div class="method-source-code" id="data_by_health_group-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">data_by_health_group</span>
+  <span class="ruby-identifier">data_by_health_group_hash</span> = {}
+  <span class="ruby-constant">PatientGroup</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">health_group</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data_by_health_group_hash</span>[<span class="ruby-identifier">health_group</span>.<span class="ruby-identifier">name</span>] = {}
+    <span class="ruby-identifier">health_group_recipes</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:patient_groups</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;patient_groups.name = ?&#39;</span>, <span class="ruby-identifier">health_group</span>.<span class="ruby-identifier">name</span>).<span class="ruby-identifier">references</span>(<span class="ruby-value">:patient_group</span>)
+    <span class="ruby-identifier">data_by_health_group_hash</span>[<span class="ruby-identifier">health_group</span>.<span class="ruby-identifier">name</span>][<span class="ruby-string">&quot;Total&quot;</span>] = <span class="ruby-identifier">health_group_recipes</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_health_group_hash</span>[<span class="ruby-identifier">health_group</span>.<span class="ruby-identifier">name</span>][<span class="ruby-string">&quot;Breakfast&quot;</span>] = <span class="ruby-identifier">health_group_recipes</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:characteristics</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;characteristics.name = ?&#39;</span>, <span class="ruby-string">&#39;Breakfast&#39;</span>).<span class="ruby-identifier">references</span>(<span class="ruby-value">:characteristic</span>).<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_health_group_hash</span>[<span class="ruby-identifier">health_group</span>.<span class="ruby-identifier">name</span>][<span class="ruby-string">&quot;Lunch&quot;</span>] = <span class="ruby-identifier">health_group_recipes</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:characteristics</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;characteristics.name = ?&#39;</span>, <span class="ruby-string">&#39;Lunch&#39;</span>).<span class="ruby-identifier">references</span>(<span class="ruby-value">:characteristic</span>).<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_health_group_hash</span>[<span class="ruby-identifier">health_group</span>.<span class="ruby-identifier">name</span>][<span class="ruby-string">&quot;Dinner&quot;</span>] = <span class="ruby-identifier">health_group_recipes</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:characteristics</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;characteristics.name = ?&#39;</span>, <span class="ruby-string">&#39;Dinner&#39;</span>).<span class="ruby-identifier">references</span>(<span class="ruby-value">:characteristic</span>).<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_health_group_hash</span>[<span class="ruby-identifier">health_group</span>.<span class="ruby-identifier">name</span>][<span class="ruby-string">&quot;Snack&quot;</span>] = <span class="ruby-identifier">health_group_recipes</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:characteristics</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;characteristics.name = ?&#39;</span>, <span class="ruby-string">&#39;Snack&#39;</span>).<span class="ruby-identifier">references</span>(<span class="ruby-value">:characteristic</span>).<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">data_by_health_group_hash</span>[<span class="ruby-identifier">health_group</span>.<span class="ruby-identifier">name</span>][<span class="ruby-string">&quot;Dessert&quot;</span>] = <span class="ruby-identifier">health_group_recipes</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:characteristics</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;characteristics.name = ?&#39;</span>, <span class="ruby-string">&#39;Dessert&#39;</span>).<span class="ruby-identifier">references</span>(<span class="ruby-value">:characteristic</span>).<span class="ruby-identifier">count</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">data_by_health_group_hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-data_by_total" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">data_by_total</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="data_by_total-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 115</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">data_by_total</span>
+  <span class="ruby-identifier">today</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>
+  <span class="ruby-identifier">beginning_of_week</span> = <span class="ruby-identifier">today</span>.<span class="ruby-identifier">at_beginning_of_week</span>(<span class="ruby-value">:thursday</span>)
+  <span class="ruby-identifier">data_by_total_hash</span> = {}
+  <span class="ruby-identifier">all_time_array</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;total_all_time&quot;</span>] = <span class="ruby-identifier">all_time_array</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_all_time&quot;</span>] = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">all_time_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_all_time&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">this_weeks_array</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:created_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">beginning_of_week</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-identifier">today</span>.<span class="ruby-identifier">end_of_day</span>)
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;total_this_week&quot;</span>] = <span class="ruby-identifier">this_weeks_array</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_this_week&quot;</span>] = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">this_weeks_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_this_week&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">last_weeks_array</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:created_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">beginning_of_week</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-value">1</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">end_of_week</span>.<span class="ruby-identifier">end_of_day</span>)
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;total_last_week&quot;</span>] = <span class="ruby-identifier">last_weeks_array</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_last_week&quot;</span>] = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">last_weeks_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_last_week&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">total_2_weeks_ago_array</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:created_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">beginning_of_week</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">end_of_week</span>.<span class="ruby-identifier">end_of_day</span>)
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;total_2_weeks_ago&quot;</span>] = <span class="ruby-identifier">total_2_weeks_ago_array</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_2_weeks_ago&quot;</span>] = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">total_2_weeks_ago_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_2_weeks_ago&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">total_3_weeks_ago_array</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:created_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">beginning_of_week</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">end_of_week</span>.<span class="ruby-identifier">end_of_day</span>)
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;total_3_weeks_ago&quot;</span>] = <span class="ruby-identifier">total_3_weeks_ago_array</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_3_weeks_ago&quot;</span>] = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">total_3_weeks_ago_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_3_weeks_ago&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">total_4_weeks_ago_array</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:created_at</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">4</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">beginning_of_week</span>.<span class="ruby-identifier">beginning_of_day</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>.<span class="ruby-identifier">week</span>.<span class="ruby-identifier">ago</span>.<span class="ruby-identifier">end_of_week</span>.<span class="ruby-identifier">end_of_day</span>)
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;total_4_weeks_ago&quot;</span>] = <span class="ruby-identifier">total_4_weeks_ago_array</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_4_weeks_ago&quot;</span>] = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">total_4_weeks_ago_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data_by_total_hash</span>[<span class="ruby-string">&quot;made_for_4_weeks_ago&quot;</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">data_by_total_hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-first_tier_not_resolved" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">first_tier_not_resolved</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="first_tier_not_resolved-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 317</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">first_tier_not_resolved</span>
+  <span class="ruby-identifier">recipes_in_review</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">completed</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">live_recipe</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span><span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">last_review</span> = <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;created_at&quot;</span>).<span class="ruby-identifier">last</span>
+      <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">tier</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">completed</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">resolved</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> ) )
+        <span class="ruby-identifier">recipes_in_review</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">recipe</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">recipes_in_review</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-made_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">made_for</span><span
+            class="method-args">(*patient_groups)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return recipes that are made for patient groups entered as an array of
+strings</p>
+          
+          
+
+          
+          <div class="method-source-code" id="made_for-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 511</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">made_for</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">patient_groups</span>)
+  <span class="ruby-identifier">num_groups</span> = <span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-identifier">arrays</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">num_groups</span>) { [] }
+
+  <span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient_group</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">arrays</span>[<span class="ruby-identifier">index</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-value">:patient_groups</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;patient_groups.name = ?&#39;</span>, <span class="ruby-identifier">patient_group</span>).<span class="ruby-identifier">references</span>(<span class="ruby-value">:patient_group</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">made_for_array</span> = []
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">num_groups</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">made_for_array</span> <span class="ruby-operator">!=</span> []
+      <span class="ruby-identifier">made_for_array</span>.<span class="ruby-identifier">flatten!</span>
+      <span class="ruby-identifier">made_for_array</span> = <span class="ruby-identifier">arrays</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">flatten</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">made_for_array</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">made_for_array</span> = <span class="ruby-identifier">arrays</span>[<span class="ruby-identifier">i</span>].<span class="ruby-identifier">flatten</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">made_for_array</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-second_tier_not_resolved" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">second_tier_not_resolved</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="second_tier_not_resolved-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 343</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">second_tier_not_resolved</span>
+  <span class="ruby-identifier">recipes_in_review</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">completed</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">live_recipe</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span><span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">last_review</span> = <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;created_at&quot;</span>).<span class="ruby-identifier">last</span>
+      <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">tier</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">completed</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">last_review</span>.<span class="ruby-identifier">resolved</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>) )
+        <span class="ruby-identifier">recipes_in_review</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">recipe</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">recipes_in_review</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-to_csv" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_csv</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_csv-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_csv</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">options</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">column_names</span>
+    <span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">recipe</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">column_names</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-allergens" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">allergens</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return a recipe&#39;s allergens, used in recipes controller
+edit_recipe_group method to only show patient groups that are safe based on
+ingredient list when selecting recipe&#39;s patient groups</p>
+          
+          
+
+          
+          <div class="method-source-code" id="allergens-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 500</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">allergens</span>
+  <span class="ruby-identifier">allergens</span>=[]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ingredients</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ingredient</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">ingredient</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">allergens</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">allergen</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-allergies" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">allergies</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return a recipe&#39;s PAtient Groups with the category allergy</p>
+          
+          
+
+          
+          <div class="method-source-code" id="allergies-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 478</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">allergies</span>
+  <span class="ruby-identifier">allergies</span>=[]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient_group</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;allergy&quot;</span>
+      <span class="ruby-identifier">allergies</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">allergies</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-diseases" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">diseases</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return a recipe&#39;s Patient Groups with the category disease</p>
+          
+          
+
+          
+          <div class="method-source-code" id="diseases-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 489</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">diseases</span>
+  <span class="ruby-identifier">diseases</span>=[]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient_group</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;disease&quot;</span>
+      <span class="ruby-identifier">diseases</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">diseases</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch_categories_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_categories_array</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_categories_array-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 204</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fetch_categories_array</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">characteristics</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:name</span>).<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch_health_groups_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_health_groups_array</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns recipe&#39;s health groups as an array of strings</p>
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_health_groups_array-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 208</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fetch_health_groups_array</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:name</span>).<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch_ingredients_allergens_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_ingredients_allergens_hash</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_ingredients_allergens_hash-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 212</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fetch_ingredients_allergens_hash</span>
+  <span class="ruby-identifier">ingredients_allergens_hash</span> = {}
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ingredients</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ingredient</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">ingredients_allergens_hash</span>[<span class="ruby-identifier">ingredient</span>] = []
+    <span class="ruby-identifier">ingredient</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">ingredients_allergens_hash</span>[<span class="ruby-identifier">ingredient</span>].<span class="ruby-identifier">push</span>(<span class="ruby-identifier">allergen</span>.<span class="ruby-identifier">name</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">ingredients_allergens_hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fetch_possible_review_conflicts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_possible_review_conflicts</span><span
+            class="method-args">(quality_review)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="fetch_possible_review_conflicts-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 232</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fetch_possible_review_conflicts</span>(<span class="ruby-identifier">quality_review</span>)
+  <span class="ruby-identifier">possible_review_conflicts</span> = {}
+  <span class="ruby-identifier">review_items_array</span> = []
+  <span class="ruby-identifier">review_conflicts</span> = <span class="ruby-identifier">quality_review</span>.<span class="ruby-identifier">review_conflicts</span>
+  <span class="ruby-identifier">review_conflicts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">review_conflict</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-identifier">review_conflict</span>.<span class="ruby-identifier">item</span>] = <span class="ruby-identifier">review_conflict</span>
+    <span class="ruby-identifier">review_items_array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">review_conflict</span>.<span class="ruby-identifier">item</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">new_conflict</span> = <span class="ruby-constant">ReviewConflict</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;recipe-name&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-string">&quot;recipe-name&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;prep-time&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-string">&quot;prep-time&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;cook-time&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-string">&quot;cook-time&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;difficulty&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-string">&quot;difficulty&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;serving-size&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-string">&quot;serving-size&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ordered_ingredients</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ingredient</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-node">&quot;ingredient-#{ingredient.id}&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+      <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-node">&quot;ingredient-#{ingredient.id}&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">steps</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">step</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-node">&quot;step-#{step.id}&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+      <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-node">&quot;step-#{step.id}&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ingredients</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ingredient</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-node">&quot;allergen-#{ingredient.id}&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+      <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-node">&quot;allergen-#{ingredient.id}&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;health-groups&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-string">&quot;health-groups&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;recipe-categories&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-string">&quot;recipe-categories&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">marketing_items</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">marketing_item</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">review_items_array</span>.<span class="ruby-identifier">include?</span> <span class="ruby-node">&quot;marketing-item-#{marketing_item.id}&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+      <span class="ruby-identifier">possible_review_conflicts</span>[<span class="ruby-node">&quot;marketing-item-#{marketing_item.id}&quot;</span>] = <span class="ruby-identifier">new_conflict</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">possible_review_conflicts</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ingredient_with_full_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ingredient_with_full_name</span><span
+            class="method-args">(full_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ingredient_with_full_name-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ingredient_with_full_name</span>(<span class="ruby-identifier">full_name</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ingredients_recipes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ingredient</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">ingredient</span>.<span class="ruby-identifier">full_name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">full_name</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">ingredient</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ingredients_not_tagged" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ingredients_not_tagged</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return a recipe&#39;s ingredients that have not yet been tagged with
+allergens</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ingredients_not_tagged-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 456</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ingredients_not_tagged</span>
+  <span class="ruby-identifier">not_tagged_ingredients</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ingredients</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ingredient</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">ingredient</span>.<span class="ruby-identifier">need_allergens?</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">not_tagged_ingredients</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ingredient</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">not_tagged_ingredients</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ingredients_tagged" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ingredients_tagged</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return a recipe&#39;s ingredients that have already been tagged with
+allergens</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ingredients_tagged-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 445</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ingredients_tagged</span>
+  <span class="ruby-identifier">tagged_ingredients</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ingredients</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ingredient</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">ingredient</span>.<span class="ruby-identifier">need_allergens?</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-identifier">tagged_ingredients</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ingredient</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">tagged_ingredients</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-intolerances" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">intolerances</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return a recipe&#39;s Patient Groups with the category intolerance</p>
+          
+          
+
+          
+          <div class="method-source-code" id="intolerances-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 467</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">intolerances</span>
+  <span class="ruby-identifier">intolerances</span>=[]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">patient_groups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">patient_group</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">patient_group</span>.<span class="ruby-identifier">category</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;intolerance&quot;</span>
+      <span class="ruby-identifier">intolerances</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">patient_group</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">intolerances</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-marketing_items_by_group" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">marketing_items_by_group</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return hash of recipe marketing items by patient group and by title ad
+description</p>
+          
+          
+
+          
+          <div class="method-source-code" id="marketing_items_by_group-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 418</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">marketing_items_by_group</span>
+  <span class="ruby-identifier">items_by_group</span> = {}
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">marketing_items</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">marketing_item</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">marketing_item</span>.<span class="ruby-identifier">patient_group_id</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">group</span> = <span class="ruby-string">&quot;General&quot;</span>
+      <span class="ruby-identifier">group_id</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">group_id</span> = <span class="ruby-identifier">marketing_item</span>.<span class="ruby-identifier">patient_group_id</span>
+      <span class="ruby-identifier">group</span> = <span class="ruby-constant">PatientGroup</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">group_id</span>).<span class="ruby-identifier">name</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">items_by_group</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">group</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>)
+      <span class="ruby-identifier">items_by_group</span>[<span class="ruby-identifier">group</span>] = {<span class="ruby-string">&quot;group_id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">group_id</span>}
+      <span class="ruby-identifier">items_by_group</span>[<span class="ruby-identifier">group</span>][<span class="ruby-string">&quot;items&quot;</span>] = {}
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">marketing_item</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;title&quot;</span>
+      <span class="ruby-identifier">items_by_group</span>[<span class="ruby-identifier">group</span>][<span class="ruby-string">&quot;items&quot;</span>][<span class="ruby-string">&quot;title&quot;</span>] = <span class="ruby-identifier">marketing_item</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">marketing_item</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;description&quot;</span>
+      <span class="ruby-identifier">items_by_group</span>[<span class="ruby-identifier">group</span>][<span class="ruby-string">&quot;items&quot;</span>][<span class="ruby-string">&quot;description&quot;</span>] = <span class="ruby-identifier">marketing_item</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">items_by_group</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-number_of_reviewers_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">number_of_reviewers_hash</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="number_of_reviewers_hash-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">number_of_reviewers_hash</span>
+  <span class="ruby-identifier">reviewers_hash</span> = {}
+  <span class="ruby-identifier">total_count</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">unique_array</span> = []
+  <span class="ruby-identifier">unique_count</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">quality_reviews</span> <span class="ruby-operator">!=</span> []
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">quality_review</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">total_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">unique_array</span>.<span class="ruby-identifier">exclude?</span> <span class="ruby-identifier">quality_review</span>.<span class="ruby-identifier">dietitian_id</span>
+        <span class="ruby-identifier">unique_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">unique_array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">quality_review</span>.<span class="ruby-identifier">dietitian_id</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">quality_review</span>.<span class="ruby-identifier">review_conflicts</span> <span class="ruby-operator">!=</span> []
+        <span class="ruby-identifier">quality_review</span>.<span class="ruby-identifier">review_conflicts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">review_conflict</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">total_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">unique_array</span>.<span class="ruby-identifier">exclude?</span> <span class="ruby-identifier">quality_review</span>.<span class="ruby-identifier">dietitian_id</span>
+            <span class="ruby-identifier">unique_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-identifier">unique_array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">quality_review</span>.<span class="ruby-identifier">dietitian_id</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">reviewers_hash</span> = {<span class="ruby-value">:total=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">total_count</span>, <span class="ruby-value">:unique=</span><span class="ruby-operator">&gt;</span> <span class="ruby-identifier">unique_count</span>}
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">reviewers_hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ordered_ingredients" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ordered_ingredients</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns recipe ingredients in order</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ordered_ingredients-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 407</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ordered_ingredients</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ingredients_recipes</span>.<span class="ruby-identifier">sort_by</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:position</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-recipe_ingredients_full_names" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">recipe_ingredients_full_names</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="recipe_ingredients_full_names-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 224</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">recipe_ingredients_full_names</span>
+  <span class="ruby-identifier">full_names</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ordered_ingredients</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ingredient</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">full_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ingredient</span>.<span class="ruby-identifier">full_name</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">full_names</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-review_tier" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">review_tier</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="review_tier-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">review_tier</span>
+  <span class="ruby-identifier">quality_reviews</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">quality_reviews</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;created_at&quot;</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">passed</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">true</span>)
+      <span class="ruby-identifier">review_tier</span> = <span class="ruby-value">1</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">review_tier</span> = <span class="ruby-value">2</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">review_tier</span> = <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">review_tier</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-steps" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">steps</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns recipe steps in order</p>
+          
+          
+
+          
+          <div class="method-source-code" id="steps-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 413</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">steps</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">recipe_steps</span>.<span class="ruby-identifier">sort_by</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:position</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-steps_by_group" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">steps_by_group</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns recipe steps by group</p>
+          
+          
+
+          
+          <div class="method-source-code" id="steps_by_group-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 386</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">steps_by_group</span>
+  <span class="ruby-identifier">steps_groups</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">recipe_steps</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">step</span><span class="ruby-operator">|</span> <span class="ruby-identifier">steps_groups</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">step</span>.<span class="ruby-identifier">group_name</span>}
+  <span class="ruby-identifier">steps_groups</span> = <span class="ruby-identifier">steps_groups</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">reject</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:empty?</span>).<span class="ruby-identifier">uniq</span>
+  <span class="ruby-identifier">steps_by_group</span> = {}
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">recipe_steps</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">step</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">steps_groups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">group</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">steps_by_group</span>[<span class="ruby-identifier">group</span>] = <span class="ruby-identifier">steps_by_group</span>[<span class="ruby-identifier">group</span>] <span class="ruby-operator">||</span> []
+      <span class="ruby-identifier">steps_by_group</span>[<span class="ruby-identifier">group</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">step</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">step</span>.<span class="ruby-identifier">group_name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">group</span>
+      <span class="ruby-identifier">steps_by_group</span>[<span class="ruby-identifier">group</span>] = <span class="ruby-identifier">steps_by_group</span>[<span class="ruby-identifier">group</span>].<span class="ruby-identifier">sort_by</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:position</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">step</span>.<span class="ruby-identifier">group_name</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">step</span>.<span class="ruby-identifier">group_name</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>) )
+      <span class="ruby-identifier">steps_by_group</span>[<span class="ruby-string">&quot;Main&quot;</span>] = <span class="ruby-identifier">steps_by_group</span>[<span class="ruby-string">&quot;Main&quot;</span>] <span class="ruby-operator">||</span> []
+      <span class="ruby-identifier">steps_by_group</span>[<span class="ruby-string">&quot;Main&quot;</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">step</span>
+      <span class="ruby-identifier">steps_by_group</span>[<span class="ruby-string">&quot;Main&quot;</span>] = <span class="ruby-identifier">steps_by_group</span>[<span class="ruby-string">&quot;Main&quot;</span>].<span class="ruby-identifier">sort_by</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:position</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">steps_by_group</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_csv" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_csv</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_csv-source">
+            <pre><span class="ruby-comment"># File app/models/recipe.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_csv</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-constant">CSV</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">options</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">csv</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">column_names</span>
+      <span class="ruby-identifier">csv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">column_names</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

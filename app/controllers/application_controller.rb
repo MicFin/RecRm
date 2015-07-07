@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   # shared by the user and dietitian registrations controllers
 	def after_sign_in_path_for(resource)
 		# if a user signs in and has created a family
-    
+    binding.pry
 		if resource.class == User && resource.head_of_families.length >= 1
 
 		  # DO STUFF

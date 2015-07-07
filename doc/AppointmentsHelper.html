@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: AppointmentsHelper
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!AppointmentsHelper.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo;
+    
+    
+    <span class="title">AppointmentsHelper</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: AppointmentsHelper
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="AppointmentsController.html" title="AppointmentsController (class)">AppointmentsController</a></span>, <span class='object_link'><a href="WelcomeController.html" title="WelcomeController (class)">WelcomeController</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/helpers/appointments_helper.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_previous_appointments%21-instance_method" title="#get_previous_appointments! (instance method)">- (Object) <strong>get_previous_appointments!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_upcoming_appointment%21-instance_method" title="#get_upcoming_appointment! (instance method)">- (Object) <strong>get_upcoming_appointment!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_upcoming_appointments%21-instance_method" title="#get_upcoming_appointments! (instance method)">- (Object) <strong>get_upcoming_appointments!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="get_previous_appointments!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_previous_appointments!</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/appointments_helper.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_previous_appointments!'>get_previous_appointments!</span>
+  <span class='ivar'>@previous_appointments</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='comment'># if dietitian then get all previous appointments
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_current_dietitian'>current_dietitian</span>
+    <span class='id identifier rubyid_current_dietitian'>current_dietitian</span><span class='period'>.</span><span class='id identifier rubyid_appointments'>appointments</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_appointment'>appointment</span><span class='op'>|</span> 
+      <span class='kw'>if</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Complete</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_family'>family</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_head_of_families'>head_of_families</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> 
+        <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_health_groups_names'>health_groups_names</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_health_groups'>health_groups</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_age_groups'>age_groups</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_ages'>ages</span>
+        <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_number_of_members'>number_of_members</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_family_member_count'>family_member_count</span>
+        <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_family_names'>family_names</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_all_first_names'>all_first_names</span>
+        <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_family_info'>family_info</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span>
+        <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_follow_up'>follow_up</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_surveys'>surveys</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Follow-Up</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+        <span class='ivar'>@previous_appointments</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_appointment'>appointment</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='comment'># if not dietitian then user so get all previous appointment hosts
+</span>  <span class='kw'>else</span>
+    <span class='id identifier rubyid_current_user'>current_user</span><span class='period'>.</span><span class='id identifier rubyid_appointment_hosts'>appointment_hosts</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_appointment'>appointment</span><span class='op'>|</span> 
+      <span class='kw'>if</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Complete</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_family'>family</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_head_of_families'>head_of_families</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> 
+        <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_health_groups_names'>health_groups_names</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_health_groups'>health_groups</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_age_groups'>age_groups</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_ages'>ages</span>
+        <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_number_of_members'>number_of_members</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_family_member_count'>family_member_count</span>
+        <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_family_names'>family_names</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_all_first_names'>all_first_names</span>
+        <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_family_info'>family_info</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span>
+        <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_follow_up'>follow_up</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_surveys'>surveys</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Follow-Up</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+        <span class='ivar'>@previous_appointments</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_appointment'>appointment</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># group previous appointmetns by time
+</span>  <span class='ivar'>@previous_appointments</span> <span class='op'>=</span> <span class='ivar'>@previous_appointments</span><span class='period'>.</span><span class='id identifier rubyid_group_by'>group_by</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_appointment'>appointment</span><span class='op'>|</span>  <span class='lbracket'>[</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span><span class='period'>.</span><span class='id identifier rubyid_to_date'>to_date</span><span class='comma'>,</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%I:%M%p</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_upcoming_appointment!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_upcoming_appointment!</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/appointments_helper.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_upcoming_appointment!'>get_upcoming_appointment!</span>
+    <span class='comment'># client upcoming appointment or clirent unpaid
+</span>    <span class='ivar'>@upcoming_appointment</span> <span class='op'>=</span> <span class='id identifier rubyid_current_user'>current_user</span><span class='period'>.</span><span class='id identifier rubyid_appointment_hosts'>appointment_hosts</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Paid</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> <span class='op'>||</span> <span class='id identifier rubyid_current_user'>current_user</span><span class='period'>.</span><span class='id identifier rubyid_appointment_hosts'>appointment_hosts</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Follow Up Unpaid</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+    <span class='comment'># start date and time 
+</span>    <span class='ivar'>@upcoming_appointment</span><span class='period'>.</span><span class='id identifier rubyid_date'>date</span> <span class='op'>=</span> <span class='ivar'>@upcoming_appointment</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%A, %b %d</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='ivar'>@upcoming_appointment</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='ivar'>@upcoming_appointment</span><span class='period'>.</span><span class='id identifier rubyid_time'>time</span> <span class='op'>=</span> <span class='ivar'>@upcoming_appointment</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%I:%M%p</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='ivar'>@upcoming_appointment</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_upcoming_appointments!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_upcoming_appointments!</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/helpers/appointments_helper.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_upcoming_appointments!'>get_upcoming_appointments!</span>
+  <span class='ivar'>@upcoming_appointments</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_current_dietitian'>current_dietitian</span><span class='period'>.</span><span class='id identifier rubyid_appointments'>appointments</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_appointment'>appointment</span><span class='op'>|</span> 
+    <span class='id identifier rubyid_family'>family</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_head_of_families'>head_of_families</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> 
+    <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_health_groups_names'>health_groups_names</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_health_groups'>health_groups</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_age_groups'>age_groups</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_ages'>ages</span>
+    <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_number_of_members'>number_of_members</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_family_member_count'>family_member_count</span>
+    <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_family_names'>family_names</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_all_first_names'>all_first_names</span>
+    <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_family_info'>family_info</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span>
+    <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_prepped'>prepped</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_prep_complete?'>prep_complete?</span>
+    <span class='ivar'>@upcoming_appointments</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_appointment'>appointment</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@upcoming_appointments</span> <span class='op'>=</span> <span class='ivar'>@upcoming_appointments</span><span class='period'>.</span><span class='id identifier rubyid_group_by'>group_by</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_appointment'>appointment</span><span class='op'>|</span>  <span class='lbracket'>[</span><span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span><span class='period'>.</span><span class='id identifier rubyid_to_date'>to_date</span><span class='comma'>,</span> <span class='id identifier rubyid_appointment'>appointment</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%I:%M%p</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+  <span class='ivar'>@next_appointment</span> <span class='op'>=</span> <span class='id identifier rubyid_current_dietitian'>current_dietitian</span><span class='period'>.</span><span class='id identifier rubyid_appointments'>appointments</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Paid</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>start_time:</span> <span class='int'>30</span><span class='period'>.</span><span class='id identifier rubyid_minutes'>minutes</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='op'>..</span><span class='int'>5</span><span class='period'>.</span><span class='id identifier rubyid_hours'>hours</span><span class='period'>.</span><span class='id identifier rubyid_from_now'>from_now</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+  <span class='comment'># @next_appointment = current_dietitian.appointments.where.not(status: &quot;Follow Up Unpaid&quot;).last
+</span>
+  <span class='kw'>if</span> <span class='ivar'>@next_appointment</span> <span class='op'>!=</span> <span class='kw'>nil</span>  
+    <span class='id identifier rubyid_family'>family</span> <span class='op'>=</span> <span class='ivar'>@next_appointment</span><span class='period'>.</span><span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_head_of_families'>head_of_families</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> 
+    <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_health_groups_names'>health_groups_names</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_health_groups'>health_groups</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_age_groups'>age_groups</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_ages'>ages</span>
+    <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_number_of_members'>number_of_members</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_family_member_count'>family_member_count</span>
+    <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_family_names'>family_names</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span><span class='period'>.</span><span class='id identifier rubyid_all_first_names'>all_first_names</span>
+    <span class='ivar'>@next_appointment</span><span class='period'>.</span><span class='id identifier rubyid_family_info'>family_info</span> <span class='op'>=</span> <span class='id identifier rubyid_family'>family</span>
+    <span class='ivar'>@next_appointment</span><span class='period'>.</span><span class='id identifier rubyid_prepped'>prepped</span> <span class='op'>=</span> <span class='ivar'>@next_appointment</span><span class='period'>.</span><span class='id identifier rubyid_prep_complete?'>prep_complete?</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Jul  7 11:48:42 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

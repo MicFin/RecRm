@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.README.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h2 id="label-Set+up+Rails+envirenment+on+AWS">Set up Rails envirenment on AWS</h2>
+
+<p>This README file explains how to set up the AWS EC2 instance with Ubuntu,
+Apache, postgreSQL and Ruby on Rails</p>
+
+<h3 id="label-GET+STARTED">GET STARTED</h3>
+<ol><li>
+<p><strong>Click the follwing link</strong>, will take you to the AWS
+marketplace to begin setting up your EC2 instance <a
+href="https://aws.amazon.com/marketplace/pp/B00JV8XNKQ/ref=gtw_msl_image?ie=UTF8&pf_rd_r=05ZA3J50A153TVH69TTW&pf_rd_m=A33KC2ESLMUT5Y&pf_rd_t=101&pf_rd_i=awsmp-gateway-1&pf_rd_p=1825567482&pf_rd_s=right-3">aws.amazon.com/marketplace/pp/B00JV8XNKQ/ref=gtw_msl_image?ie=UTF8&pf_rd_r=05ZA3J50A153TVH69TTW&pf_rd_m=A33KC2ESLMUT5Y&pf_rd_t=101&pf_rd_i=awsmp-gateway-1&pf_rd_p=1825567482&pf_rd_s=right-3</a></p>
+</li><li>
+<p>Assuming you have setup your aws account, <strong>select your
+region</strong> and <strong>click continue</strong></p>
+</li><li>
+<p>Choose your Instance type and following directions to set up your key pair.
+When creating a key pair, .pem file will be downloaded. Put this file in a
+safe place because you’ll need it to access SSH and FTP</p>
+</li><li>
+<p>Launch</p>
+</li></ol>
+
+<h3 id="label-SSH">SSH</h3>
+<ol><li>
+<p>SSH username is Ubuntu</p>
+</li><li>
+<p>Get the public DNS. In the AWS EC2 console click on the instance, see
+below. it looks like this:
+ec2-54-187-205-42.us-west-2.compute.amazonaws.com</p>
+</li><li>
+<p>Open Terminal and follow the steps below. You&#39;ll need your private key
+you downloaded early.</p>
+</li></ol>
+
+<pre class="code ruby"><code class="ruby">
+ </code></pre>
+
+<h2 id="label-INSTALL+Ruby">INSTALL Ruby</h2>
+
+<h3 id="label-STEP+1%3A+Get+some+dependencies">STEP 1: Get some dependencies</h3>
+
+<pre class="code ruby"><code class="ruby">
+</code></pre>
+
+<h3 id="label-STEP+2%3A+Install+Ruby+with+RVM">STEP 2: Install Ruby with RVM</h3>
+
+<pre class="code ruby"><code class="ruby">sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+curl -L https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+echo &quot;source ~/.rvm/scripts/rvm&quot; &gt;&gt; ~/.bashrc
+rvm install 2.1.2
+rvm use 2.1.2 --default
+ruby -v</code></pre>
+
+<h3 id="label-STEP+3%3A+Tell+Rubygems+not+to+install+the+documentation+for+each+package+locally">STEP 3: Tell Rubygems not to install the documentation for each package locally</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_echo'>echo</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gem: --no-ri --no-rdoc</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&gt;</span> <span class='op'>~</span><span class='tstring'><span class='regexp_beg'>/</span><span class='regexp_end'>.gemrc</span></span></code></pre>
+
+<h2 id="label-INSTALL+Rails">INSTALL Rails</h2>
+
+<h3 id="label-STEP+1%3A+Install+Node.js">STEP 1: Install Node.js</h3>
+
+<p>To install NodeJS, we&#39;re going to add it using a PPA repository:</p>
+
+<pre class="code ruby"><code class="ruby">sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs</code></pre>
+
+<h3 id="label-STEP+2%3A+Now+install+Rails">STEP 2: Now install Rails</h3>
+
+<p><code>gem install rails</code></p>
+
+<p>run raisl -v to check everything is installed correctly</p>
+
+<p><code>rails -v</code></p>
+
+<h2 id="label-INSTALL+PostgreSQL">INSTALL PostgreSQL</h2>
+
+<h3 id="label-STEP+1%3A+add+a+new+repository+and+easily+install">STEP 1: add a new repository and easily install</h3>
+
+<pre class="code ruby"><code class="ruby">sudo sh -c &quot;echo &#39;deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main&#39; &gt; /etc/apt/sources.list.d/pgdg.list&quot;
+wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install postgresql-common
+sudo apt-get install postgresql-9.3 libpq-dev</code></pre>
+
+<h3 id="label-STEP+2%3A+Set+up+Postgres+User">STEP 2: Set up Postgres User</h3>
+
+<pre class="code ruby"><code class="ruby">sudo -u postgres psql postgres
+
+# \password postgres
+
+Enter new password:</code></pre>
+
+<h2 id="label-Create+new+rails+app">Create new rails app</h2>
+
+<pre class="code ruby"><code class="ruby">
+rails new myapp -d postgresql
+cd myapp
+rake db:create
+rails server</code></pre>
+
+<p><strong>You&#39;ll probably get this error in terminal</strong></p>
+
+<p><code>FATAL: Peer authentication failed for user
+&quot;postgres&quot;</code></p>
+
+<p>ou need to make a small shange to your pg_hba.conf locate
+/etc/posgresql/9.3/main/</p>
+
+<pre class="code ruby"><code class="ruby">
+</code></pre>
+
+<p>Details of the edit are here: <a
+href="http://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge">stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge</a></p>
+
+<h2 id="label-INSTALL+APACHE">INSTALL APACHE</h2>
+
+<pre class="code ruby"><code class="ruby">
+sudo apt-get update
+sudo apt-get install apache2</code></pre>
+
+<p>More details: <a
+href="https://www.digitalocean.com/community/tutorials/how-to-configure-the-apache-web-server-on-an-ubuntu-or-debian-vps">www.digitalocean.com/community/tutorials/how-to-configure-the-apache-web-server-on-an-ubuntu-or-debian-vps</a></p>
+
+<h2 id="label-INSTALL+PASSENGER">INSTALL PASSENGER</h2>
+
+<p>Passenger is going to help you launch your ruby app</p>
+
+<pre class="code ruby"><code class="ruby">sudo gem install passenger
+sudo passenger-install-apache2-module</code></pre>
+
+<p>Following the instructions diring installing of passenger</p>
+
+<pre class="code ruby"><code class="ruby">- sudo pico apache2.conf
+- cd sites-available
+- sudo pico 000-default.conf
+- Must restart server when changes are made to yml files
+
+
+- add this line to apache conf
+   LoadModule passenger_module /home/ubuntu/.rvm/gems/ruby-2.1.2/gems/passenger-4.0.45/buildout/apache2/mod_passenger.so
+   &lt;IfModule mod_passenger.c&gt;
+     PassengerRoot /home/ubuntu/.rvm/gems/ruby-2.1.2/gems/passenger-4.0.45
+     PassengerDefaultRuby /home/ubuntu/.rvm/gems/ruby-2.1.2/wrappers/ruby
+   &lt;/IfModule&gt;
+
+
+      &lt;VirtualHost *:80&gt;
+      ServerName ec2-54-213-224-62.us-west-2.compute.amazonaws.com
+      # !!! Be sure to point DocumentRoot to &#39;public&#39;!
+      DocumentRoot /etc/projects/myapp/public
+
+        &lt;Directory /etc/projects/myapp/public&gt;
+                #Options FollowSymLinks
+                Options Indexes FollowSymLinks Includes ExecCGI
+                AllowOverride All
+                Order deny,allow
+                Allow from all
+        &lt;/Directory&gt;
+   &lt;/VirtualHost&gt;</code></pre>
+
+<h2 id="label-Resources">Resources</h2>
+<ul><li>
+<p><a
+href="https://gorails.com/setup/ubuntu/13.10">gorails.com/setup/ubuntu/13.10</a></p>
+</li><li>
+<p><a
+href="http://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge">stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge</a></p>
+</li><li>
+<p><a
+href="https://www.digitalocean.com/community/tutorials/how-to-configure-the-apache-web-server-on-an-ubuntu-or-debian-vps">www.digitalocean.com/community/tutorials/how-to-configure-the-apache-web-server-on-an-ubuntu-or-debian-vps</a></p>
+</li><li>
+<p><a
+href="http://nathanhoad.net/how-to-ruby-on-rails-ubuntu-apache-with-passenger">nathanhoad.net/how-to-ruby-on-rails-ubuntu-apache-with-passenger</a></p>
+</li><li>
+<p><a
+href="http://serverfault.com/questions/110154/whats-the-default-superuser-username-password-for-postgres-after-a-new-install">serverfault.com/questions/110154/whats-the-default-superuser-username-password-for-postgres-after-a-new-install</a></p>
+</li><li>
+<p><a
+href="http://stackoverflow.com/questions/2786344/server-unable-to-find-public-folder-in-rails-3-production-environment">stackoverflow.com/questions/2786344/server-unable-to-find-public-folder-in-rails-3-production-environment</a></p>
+</li></ul>
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Jul  7 11:48:42 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

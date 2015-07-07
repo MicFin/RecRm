@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class ReviewConflictsController - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="CharacteristicsHelper.html">CharacteristicsHelper</a>
+  
+  
+  
+    <li><a class="include" href="IngredientsRecipesHelper.html">IngredientsRecipesHelper</a>
+  
+  
+  
+    <li><a class="include" href="PatientGroupsHelper.html">PatientGroupsHelper</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-accept_review_conflict">#accept_review_conflict</a>
+    
+    <li ><a href="#method-i-assign_reviewer">#assign_reviewer</a>
+    
+    <li ><a href="#method-i-create">#create</a>
+    
+    <li ><a href="#method-i-decline_review_conflict">#decline_review_conflict</a>
+    
+    <li ><a href="#method-i-edit">#edit</a>
+    
+    <li ><a href="#method-i-edit_review_conflict">#edit_review_conflict</a>
+    
+    <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-new">#new</a>
+    
+    <li ><a href="#method-i-select_reviewer">#select_reviewer</a>
+    
+    <li ><a href="#method-i-start_review_conflict">#start_review_conflict</a>
+    
+    <li ><a href="#method-i-update">#update</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ReviewConflictsController">
+  <h1 id="class-ReviewConflictsController" class="class">
+    class ReviewConflictsController
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-accept_review_conflict" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">accept_review_conflict</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="accept_review_conflict-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 303</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">accept_review_conflict</span>
+  <span class="ruby-comment"># make changes and save</span>
+  <span class="ruby-identifier">review_stage</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> 
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_reviewer_notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_reviewer_notes</span>]
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>
+    <span class="ruby-identifier">suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>
+    <span class="ruby-comment"># first stage accept revie conlifct resolves so update item</span>
+    <span class="ruby-identifier">update_item</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_reviewer_notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_reviewer_notes</span>]
+    <span class="ruby-comment"># if choose first review suggestion</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:suggestion</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;first&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>
+      <span class="ruby-identifier">suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> = <span class="ruby-value">3</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:suggestion</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;second&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span>
+      <span class="ruby-identifier">suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span>
+      <span class="ruby-comment"># if 3 match then close</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">original_entry</span>
+        <span class="ruby-identifier">update_item</span> = <span class="ruby-keyword">true</span>
+      <span class="ruby-comment"># if not then increase review stage</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> = <span class="ruby-value">3</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">suggestion</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:third_suggestion</span>]
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-identifier">suggestion</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> = <span class="ruby-value">3</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">fourth_review_notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:fourth_reviewer_notes</span>]
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:suggestion</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;first&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">fourth_suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>
+      <span class="ruby-identifier">suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:suggestion</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;second&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">fourth_suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span>
+      <span class="ruby-identifier">suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span>
+      <span class="ruby-comment"># second stage accept review conlifct resolves so update item</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:suggestion</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;third&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">fourth_suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">fourth_suggestion</span> = <span class="ruby-identifier">suggestion</span>
+      <span class="ruby-comment"># second stage accept review conlifct resolves so update item</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">suggestion</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:fourth_suggestion</span>]
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">fourth_suggestion</span> = <span class="ruby-identifier">suggestion</span>
+    <span class="ruby-keyword">end</span> 
+    <span class="ruby-identifier">update_item</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-comment"># update item</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">update_item</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-identifier">update_item_with_suggestion</span>(<span class="ruby-identifier">suggestion</span>, <span class="ruby-ivar">@review_conflict</span>)
+        <span class="ruby-comment"># update quality review</span>
+        <span class="ruby-identifier">update_quality_review_status</span>(<span class="ruby-ivar">@review_conflict</span>)
+        <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">resolved</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">date_resolved_on</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>
+        <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-comment"># return format</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dietitian_recipes_path</span>(<span class="ruby-identifier">current_dietitian</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Review was successfully accepted.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@review_conflict</span>} 
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-assign_reviewer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">assign_reviewer</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="assign_reviewer-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 209</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">assign_reviewer</span>
+    <span class="ruby-comment">#assign high risk level conflicts first</span>
+  <span class="ruby-comment"># @recipes_need_original_review = Recipe.all_need_original_review</span>
+  <span class="ruby-comment"># @recipes_need_first_tier_review = Recipe.all_need_first_tier_review</span>
+  <span class="ruby-comment"># @recipes_need_second_tier_review = Recipe.all_need_second_tier_review</span>
+  <span class="ruby-comment"># @assign_review_conflicts_hash = ReviewConflict.assign_by_risk_level</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_reviewer_id</span>]
+    <span class="ruby-comment"># @review_conflict.second_reviewer_id = params[:review_conflict][:second_reviewer_id].to_i</span>
+    <span class="ruby-identifier">recipe</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+    <span class="ruby-identifier">current_review</span> = <span class="ruby-identifier">recipe</span>.<span class="ruby-identifier">quality_reviews</span>.<span class="ruby-identifier">last</span>
+    <span class="ruby-identifier">current_review</span>.<span class="ruby-identifier">dietitian</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">current_review</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">current_review</span>.<span class="ruby-identifier">dietitian</span> = <span class="ruby-constant">Dietitian</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_reviewer_id</span>].<span class="ruby-identifier">to_i</span>)
+    <span class="ruby-identifier">current_review</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">else</span>       
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_reviewer_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_reviewer</span>].<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-comment"># if @review_conflict.save</span>
+    
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> {<span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dashboard_recipe_status_path</span>}
+    <span class="ruby-comment"># else</span>
+    <span class="ruby-comment">#   format.html { render :select_reviewer }</span>
+    <span class="ruby-comment">#   format.json { render json: @review_conflict.errors, status: :unprocessable_entity }</span>
+    <span class="ruby-comment"># end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-identifier">clean_create_params</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-comment"># create new review conflict</span>
+  <span class="ruby-ivar">@review_conflict</span> = <span class="ruby-constant">ReviewConflict</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">review_conflict_params</span>)
+  <span class="ruby-comment"># add current dietitian as first reviewer</span>
+  <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_reviewer_id</span> = <span class="ruby-identifier">current_dietitian</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-comment"># find quality review</span>
+  <span class="ruby-ivar">@quality_review</span> = <span class="ruby-constant">QualityReview</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:quality_review_id</span>])
+  <span class="ruby-comment"># connect review conflict to its quality review</span>
+  <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">quality_review_id</span> = <span class="ruby-ivar">@quality_review</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-comment"># connect review conflict to its review stage</span>
+  <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> = <span class="ruby-value">1</span>
+  <span class="ruby-comment"># find qauality reviewable</span>
+  <span class="ruby-ivar">@quality_reviewable</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:recipe_id</span>])
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-keyword">if</span> ( <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:category</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Ingredient&quot;</span> )
+        <span class="ruby-ivar">@ingredient_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">ingredient_changes_hash</span>(<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>)
+        <span class="ruby-ivar">@item</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:item</span>]
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:category</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Step&quot;</span>)
+        <span class="ruby-ivar">@step_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">step_changes_hash</span>(<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>)
+        <span class="ruby-ivar">@item</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:item</span>]
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:category</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Allergens&quot;</span>)
+        <span class="ruby-ivar">@allergens_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">allergens_changes_hash</span>(<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>)
+        <span class="ruby-ivar">@item</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:item</span>]
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:category</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Health Groups&quot;</span>)
+        <span class="ruby-ivar">@health_groups_changes_array</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">health_groups_changes_array</span>(<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>)
+        <span class="ruby-ivar">@item</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:item</span>]
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:category</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Categories&quot;</span>)
+        <span class="ruby-ivar">@recipe_categories_changes_array</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">recipe_categories_changes_array</span>(<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_suggestion</span>)
+        <span class="ruby-ivar">@item</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:item</span>]
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@item</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@risk_level</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">risk_level</span>
+      <span class="ruby-comment"># add role of reviewer for this recipe and the dietitian assigned to do the review</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dietitian_recipes_path</span>(<span class="ruby-identifier">current_dietitian</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Quality Review assigned.&quot;</span>}
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@review_conflict</span>} 
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-decline_review_conflict" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">decline_review_conflict</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="decline_review_conflict-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 375</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">decline_review_conflict</span>
+  <span class="ruby-comment"># make changes and save</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_reviewer_notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_reviewer_notes</span>]
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">original_entry</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> = <span class="ruby-value">2</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_reviewer_notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_reviewer_notes</span>]
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">original_entry</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">@@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span>)
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">resolved</span> = <span class="ruby-keyword">true</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">date_resolved_on</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span>
+      <span class="ruby-identifier">update_item_with_suggestion</span>(<span class="ruby-identifier">suggestion</span>, <span class="ruby-ivar">@review_conflict</span>)
+      <span class="ruby-identifier">update_quality_review_status</span>(<span class="ruby-ivar">@review_conflict</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> = <span class="ruby-value">3</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">## make no changes to item since suggestions were declined and update quality review status</span>
+    <span class="ruby-comment"># update quality review</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">resolved</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">date_resolved_on</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">suggestion</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span>
+    <span class="ruby-identifier">update_item_with_suggestion</span>(<span class="ruby-identifier">suggestion</span>, <span class="ruby-ivar">@review_conflict</span>)
+    <span class="ruby-identifier">update_quality_review_status</span>(<span class="ruby-ivar">@review_conflict</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dietitian_recipes_path</span>(<span class="ruby-identifier">current_dietitian</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Review was successfully accepted.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@review_conflict</span>} 
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-ivar">@quality_reviewable</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:recipe_id</span>])
+  <span class="ruby-ivar">@quality_review</span> = <span class="ruby-constant">QualityReview</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:quality_review_id</span>])
+  <span class="ruby-ivar">@all_recipe_names</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">all_recipe_names</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Ingredient&quot;</span>
+    <span class="ruby-ivar">@ingredient_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">ingredient_changes_hash</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Step&quot;</span>
+    <span class="ruby-ivar">@step_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">step_changes_hash</span>
+    <span class="ruby-ivar">@ingredients</span> = <span class="ruby-ivar">@quality_reviewable</span>.<span class="ruby-identifier">ordered_ingredients</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Allergens&quot;</span>
+    <span class="ruby-ivar">@allergens_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">allergens_changes_hash</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Health Groups&quot;</span>
+    <span class="ruby-ivar">@health_groups_changes_array</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">health_groups_changes_array</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Categories&quot;</span>
+    <span class="ruby-ivar">@recipe_categories_changes_array</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">recipe_categories_changes_array</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-comment"># nothing</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@item</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>
+  <span class="ruby-identifier">get_recipe_characteristics!</span>
+  <span class="ruby-ivar">@cook_times</span> = <span class="ruby-ivar">@cook_times</span>
+  <span class="ruby-ivar">@prep_times</span> = <span class="ruby-ivar">@prep_times</span>
+  <span class="ruby-ivar">@difficulties</span> = <span class="ruby-ivar">@difficulties</span>
+  <span class="ruby-ivar">@serving_sizes</span> = <span class="ruby-ivar">@serving_sizes</span>
+  <span class="ruby-identifier">get_units!</span>
+  <span class="ruby-ivar">@units</span> = <span class="ruby-ivar">@units</span>
+  <span class="ruby-ivar">@all_ingredient_display_names</span> = <span class="ruby-constant">IngredientsRecipe</span>.<span class="ruby-identifier">all_ingredient_display_names</span>
+  <span class="ruby-ivar">@all_ingredients</span> = <span class="ruby-constant">Ingredient</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:name</span>)
+  <span class="ruby-comment"># For ingredient allergens review conflict</span>
+  <span class="ruby-ivar">@top_allergens</span> = <span class="ruby-constant">Allergen</span>.<span class="ruby-identifier">top_allergens</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)
+  <span class="ruby-ivar">@all_allergens</span> = <span class="ruby-constant">Allergen</span>.<span class="ruby-identifier">common_allergens</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:name</span>)
+  <span class="ruby-comment"># For health groups review conflict</span>
+  <span class="ruby-identifier">get_patient_groups!</span>
+  <span class="ruby-ivar">@diseases</span> = <span class="ruby-ivar">@diseases</span>
+  <span class="ruby-ivar">@intolerances</span> = <span class="ruby-ivar">@intolerances</span>
+  <span class="ruby-ivar">@allergies</span> = <span class="ruby-ivar">@allergies</span>
+  <span class="ruby-ivar">@diets</span> = <span class="ruby-ivar">@diets</span>
+   <span class="ruby-comment"># For recipe categories review conflict</span>
+  <span class="ruby-identifier">get_recipe_characteristics!</span>
+  <span class="ruby-ivar">@meals</span> = <span class="ruby-ivar">@meals</span>
+  <span class="ruby-ivar">@cultures</span> = <span class="ruby-ivar">@cultures</span>
+  <span class="ruby-ivar">@courses</span> = <span class="ruby-ivar">@courses</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-edit_review_conflict" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_review_conflict</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_review_conflict-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 416</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit_review_conflict</span>
+  <span class="ruby-comment">## update review stage and add second suggestion</span>
+  <span class="ruby-comment">## if stage 2 then save all info like accept review</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;health-groups&quot;</span>  
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">health_groups</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>][<span class="ruby-value">:health_groups</span>]
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-identifier">health_groups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">health_group</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>] <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{health_group} &lt;3&lt;* &quot;</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>]
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;recipe-categories&quot;</span> 
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">categories</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>][<span class="ruby-value">:categories</span>]
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-identifier">categories</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">category</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>] <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{category} &lt;3&lt;* &quot;</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>]
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;ingredient-&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span> = <span class="ruby-node">&quot;&#39;#{params[:review_conflict][:second_suggestion][:amount]}&#39; &#39;#{params[:review_conflict][:second_suggestion][:unit]}&#39; &#39;#{params[:review_conflict][:second_suggestion][:display_name]}&#39; &#39;#{params[:review_conflict][:second_suggestion][:shopping_list_item]}&#39; &#39;#{params[:review_conflict][:second_suggestion][:options]}&#39;&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;step-&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span> = <span class="ruby-node">&quot;#{params[:review_conflict][:second_suggestion][:step_group_name]} &lt;3&lt;* #{params[:review_conflict][:second_suggestion][:directions]} &lt;3&lt;* #{params[:review_conflict][:second_suggestion][:ingredients]}&quot;</span>     
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;allergen-&quot;</span>
+      <span class="ruby-identifier">ingredient</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>][<span class="ruby-value">:ingredient_name</span>] 
+      <span class="ruby-identifier">allergens</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>][<span class="ruby-value">:allergens</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>][<span class="ruby-value">:common</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;true&quot;</span>
+        <span class="ruby-identifier">common</span> = <span class="ruby-string">&quot;true&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">common</span> = <span class="ruby-string">&quot;false&quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>] = <span class="ruby-identifier">ingredient</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &lt;3&lt;* &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">common</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &lt;3&lt;* &quot;</span>
+      <span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>] <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{allergen} &lt;3&lt;* &quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>]
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;marketing-item-&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span> = <span class="ruby-node">&quot;&#39;#{params[:review_conflict][:second_suggestion][:amount]}&#39; &#39;#{params[:review_conflict][:second_suggestion][:unit]}&#39; &#39;#{params[:review_conflict][:second_suggestion][:display_name]}&#39; &#39;#{params[:review_conflict][:second_suggestion][:shopping_list_item]}&#39; &#39;#{params[:review_conflict][:second_suggestion][:options]}&#39;&quot;</span>  
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_suggestion</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_suggestion</span>]
+    <span class="ruby-keyword">end</span>  
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">second_reviewer_notes</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:second_reviewer_notes</span>]
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> = <span class="ruby-value">2</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> = <span class="ruby-value">2</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;health-groups&quot;</span>  
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">health_groups</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>][<span class="ruby-value">:health_groups</span>]
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-identifier">health_groups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">health_group</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>] <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{health_group} &lt;3&lt;* &quot;</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>]
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;recipe-categories&quot;</span> 
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">categories</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>][<span class="ruby-value">:categories</span>]
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-identifier">categories</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">category</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>] <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{category} &lt;3&lt;* &quot;</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>]
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;ingredient-&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-node">&quot;&#39;#{params[:review_conflict][:third_suggestion][:amount]}&#39; &#39;#{params[:review_conflict][:third_suggestion][:unit]}&#39; &#39;#{params[:review_conflict][:third_suggestion][:display_name]}&#39; &#39;#{params[:review_conflict][:third_suggestion][:shopping_list_item]}&#39; &#39;#{params[:review_conflict][:third_suggestion][:options]}&#39;&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;step-&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-node">&quot;#{params[:review_conflict][:third_suggestion][:step_group_name]} &lt;3&lt;* #{params[:review_conflict][:third_suggestion][:directions]} &lt;3&lt;* #{params[:review_conflict][:third_suggestion][:ingredients]}&quot;</span>     
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;allergen-&quot;</span>
+      <span class="ruby-identifier">ingredient</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>][<span class="ruby-value">:ingredient_name</span>] 
+      <span class="ruby-identifier">allergens</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>][<span class="ruby-value">:allergens</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>][<span class="ruby-value">:common</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;true&quot;</span>
+        <span class="ruby-identifier">common</span> = <span class="ruby-string">&quot;true&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">common</span> = <span class="ruby-string">&quot;false&quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>] = <span class="ruby-identifier">ingredient</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &lt;3&lt;* &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">common</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &lt;3&lt;* &quot;</span>
+      <span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>] <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{allergen} &lt;3&lt;* &quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>]
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;marketing-item-&quot;</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-node">&quot;&#39;#{params[:review_conflict][:third_suggestion][:amount]}&#39; &#39;#{params[:review_conflict][:third_suggestion][:unit]}&#39; &#39;#{params[:review_conflict][:third_suggestion][:display_name]}&#39; &#39;#{params[:review_conflict][:third_suggestion][:shopping_list_item]}&#39; &#39;#{params[:review_conflict][:third_suggestion][:options]}&#39;&quot;</span>  
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">third_suggestion</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:third_suggestion</span>]
+    <span class="ruby-keyword">end</span>  
+
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">resolved</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">date_resolved_on</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-comment"># update item</span>
+    <span class="ruby-identifier">update_item_with_suggestion</span>(<span class="ruby-string">&quot;third&quot;</span>, <span class="ruby-ivar">@review_conflict</span>)
+    <span class="ruby-comment"># update quality review</span>
+    <span class="ruby-identifier">update_quality_review_status</span>(<span class="ruby-ivar">@review_conflict</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">dietitian_recipes_path</span>(<span class="ruby-identifier">current_dietitian</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Review was successfully accepted.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@review_conflict</span>} 
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST articles/:id/review_conflicts</p>
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 179</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-select_reviewer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">select_reviewer</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="select_reviewer-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 184</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">select_reviewer</span>
+
+  <span class="ruby-comment"># @item = @review_conflict.item</span>
+  <span class="ruby-comment"># @quality_review = @review_conflict.quality_review</span>
+  <span class="ruby-comment"># @quality_reviewable = @quality_review.quality_reviewable</span>
+  <span class="ruby-ivar">@dietitians</span> = <span class="ruby-constant">Dietitian</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-comment"># @recipe_id = params[:recipe_id]</span>
+  <span class="ruby-ivar">@recipe_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
+  <span class="ruby-ivar">@recipe</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@recipe_id</span>)
+  <span class="ruby-ivar">@ingredients</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">ordered_ingredients</span>
+  <span class="ruby-ivar">@steps_by_group</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">steps_by_group</span>
+  <span class="ruby-ivar">@ingredients_tagged</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">ingredients_tagged</span>
+  <span class="ruby-ivar">@ingredients_not_tagged</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">ingredients_not_tagged</span>
+  <span class="ruby-ivar">@ingredients_allergens_hash</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">fetch_ingredients_allergens_hash</span>
+  <span class="ruby-ivar">@health_groups_array</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">fetch_health_groups_array</span>
+  <span class="ruby-ivar">@categories_array</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">fetch_categories_array</span>
+  <span class="ruby-ivar">@marketing_items_by_group</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">marketing_items_by_group</span>
+  <span class="ruby-ivar">@select_reviewer</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-ivar">@review_conflict</span> = <span class="ruby-constant">ReviewConflict</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@item</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">if</span> ((<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;ingredient-&quot;</span>))
+    <span class="ruby-ivar">@ingredient_changes_hash_two</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">ingredient_changes_hash</span>(<span class="ruby-string">&quot;second&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-start_review_conflict" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_review_conflict</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="start_review_conflict-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 240</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start_review_conflict</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-ivar">@suggestion</span> = <span class="ruby-string">&quot;review_conflict[second_suggestion]&quot;</span>
+    <span class="ruby-ivar">@reviewer_notes</span> = <span class="ruby-string">&quot;review_conflict[second_reviewer_notes]&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+    <span class="ruby-ivar">@suggestion</span> = <span class="ruby-string">&quot;review_conflict[third_suggestion]&quot;</span>
+    <span class="ruby-ivar">@reviewer_notes</span> = <span class="ruby-string">&quot;review_conflict[third_reviewer_notes]&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@suggestion</span> = <span class="ruby-string">&quot;review_conflict[fourth_suggestion]&quot;</span>
+    <span class="ruby-ivar">@reviewer_notes</span> = <span class="ruby-string">&quot;review_conflict[fourth_reviewer_notes]&quot;</span>  
+  <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">## for recipe preview</span>
+    <span class="ruby-ivar">@recipe</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:recipe_id</span>])
+    <span class="ruby-ivar">@ingredients</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">ordered_ingredients</span>
+    <span class="ruby-ivar">@steps_by_group</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">steps_by_group</span>
+    <span class="ruby-ivar">@ingredients_tagged</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">ingredients_tagged</span>
+    <span class="ruby-ivar">@categories_array</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">fetch_categories_array</span>
+    <span class="ruby-ivar">@health_groups_array</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">fetch_health_groups_array</span>
+    <span class="ruby-ivar">@marketing_items_by_group</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">marketing_items_by_group</span>
+    <span class="ruby-ivar">@item</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;ingredient-&quot;</span>
+      <span class="ruby-ivar">@ingredient_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">ingredient_changes_hash</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+        <span class="ruby-ivar">@ingredient_changes_hash_two</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">ingredient_changes_hash</span>(<span class="ruby-string">&quot;second&quot;</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;review_conflicts/review_conflict_individuals/review_conflict_ingredient&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;step-&quot;</span>    
+      <span class="ruby-ivar">@step_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">step_changes_hash</span>
+      <span class="ruby-ivar">@ingredients</span> = <span class="ruby-ivar">@recipe</span>.<span class="ruby-identifier">ordered_ingredients</span> 
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;review_conflicts/review_conflict_individuals/review_conflict_step&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;allergen-&quot;</span>
+      <span class="ruby-ivar">@allergens_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">allergens_changes_hash</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;review_conflicts/review_conflict_individuals/review_conflict_allergens&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;health-groups&quot;</span> 
+      <span class="ruby-ivar">@health_groups_changes_array</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">health_groups_changes_array</span> 
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;review_conflicts/review_conflict_individuals/review_conflict_health_group&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;recipe-categories&quot;</span>
+      <span class="ruby-ivar">@recipe_categories_changes_array</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">recipe_categories_changes_array</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;review_conflicts/review_conflict_individuals/review_conflict_recipe_categories&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@item</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&quot;marketing-item-&quot;</span> 
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+      <span class="ruby-keyword">end</span> 
+      <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;review_conflicts/review_conflict_individuals/review_conflict_marketing_items&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">get_recipe_characteristics!</span>
+      <span class="ruby-ivar">@cook_times</span> = <span class="ruby-ivar">@cook_times</span>
+      <span class="ruby-ivar">@prep_times</span> = <span class="ruby-ivar">@prep_times</span>
+      <span class="ruby-ivar">@difficulties</span> = <span class="ruby-ivar">@difficulties</span>
+      <span class="ruby-ivar">@serving_sizes</span> = <span class="ruby-ivar">@serving_sizes</span>
+      <span class="ruby-ivar">@all_recipe_names</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">all_recipe_names</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;review_conflicts/review_conflict_individuals/review_conflict_basic_info&quot;</span>
+    <span class="ruby-keyword">end</span>  
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>PATCH/PUT /review_conflicts/:id/review_conflict/:id PATCH/PUT
+/articles/:id/review_conflict/:id.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/review_conflicts_controller.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:category</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Ingredient&quot;</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] = <span class="ruby-node">&quot;&#39;#{params[:review_conflict][:first_suggestion][:amount]}&#39; &#39;#{params[:review_conflict][:first_suggestion][:unit]}&#39; &#39;#{params[:review_conflict][:first_suggestion][:display_name]}&#39; &#39;#{params[:review_conflict][:first_suggestion][:shopping_list_item]}&#39; &#39;#{params[:review_conflict][:first_suggestion][:options]}&#39;&quot;</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:original_entry</span>]  = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">original_entry</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:category</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Step&quot;</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] = <span class="ruby-node">&quot;#{params[:review_conflict][:first_suggestion][:step_group_name]} &lt;3&lt;* #{params[:review_conflict][:first_suggestion][:directions]} &lt;3&lt;* #{params[:review_conflict][:first_suggestion][:ingredients]}&quot;</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:original_entry</span>]  = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">original_entry</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:category</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Allergens&quot;</span>
+    <span class="ruby-identifier">ingredient</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>][<span class="ruby-value">:ingredient_name</span>] 
+    <span class="ruby-identifier">allergens</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>][<span class="ruby-value">:allergens</span>]
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>][<span class="ruby-value">:common</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;true&quot;</span>
+      <span class="ruby-identifier">common</span> = <span class="ruby-string">&quot;true&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">common</span> = <span class="ruby-string">&quot;false&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] = <span class="ruby-identifier">ingredient</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &lt;3&lt;* &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">common</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &lt;3&lt;* &quot;</span>
+    <span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{allergen} &lt;3&lt;* &quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:category</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Health Groups&quot;</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">health_groups</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>][<span class="ruby-value">:health_groups</span>]
+      <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-identifier">health_groups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">health_group</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{health_group} &lt;3&lt;* &quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:category</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Categories&quot;</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">categories</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>][<span class="ruby-value">:categories</span>]
+      <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-identifier">categories</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">category</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;#{category} &lt;3&lt;* &quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_suggestion</span>] = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># find qaulity reviewable</span>
+  <span class="ruby-ivar">@quality_reviewable</span> = <span class="ruby-constant">Recipe</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:recipe_id</span>])
+  <span class="ruby-comment"># find wuality review</span>
+  <span class="ruby-ivar">@quality_review</span> = <span class="ruby-constant">QualityReview</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:quality_review_id</span>])
+  <span class="ruby-comment"># set fields that could e hidden in form but are not changed by user</span>
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:first_reviewer_id</span>] = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">first_reviewer_id</span>
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:quality_review_id</span>] = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">quality_review_id</span>
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:review_conflict</span>][<span class="ruby-value">:review_stage</span>] = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">review_stage</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">review_conflict_params</span>)
+      <span class="ruby-comment"># add role of reviewer for this recipe and the dietitian assigned to do the review</span>
+      <span class="ruby-keyword">if</span> ( <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Ingredient&quot;</span> )
+        <span class="ruby-ivar">@ingredient_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">ingredient_changes_hash</span>
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Step&quot;</span>)
+        <span class="ruby-ivar">@step_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">step_changes_hash</span>
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Allergens&quot;</span>)
+        <span class="ruby-ivar">@allergens_changes_hash</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">allergens_changes_hash</span>
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Health Groups&quot;</span>)
+        <span class="ruby-ivar">@health_groups_changes_array</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">health_groups_changes_array</span>
+      <span class="ruby-keyword">elsif</span> (<span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">category</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Recipe Categories&quot;</span>)
+        <span class="ruby-ivar">@recipe_categories_changes_array</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">recipe_categories_changes_array</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@risk_level</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">risk_level</span>
+      <span class="ruby-ivar">@item</span> = <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">item</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@review_conflict</span>} 
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@review_conflict</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

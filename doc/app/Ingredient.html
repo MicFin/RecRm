@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class Ingredient - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-allergens_array">#allergens_array</a>
+    
+    <li ><a href="#method-i-need_allergens-3F">#need_allergens?</a>
+    
+    <li ><a href="#method-i-other_allergens">#other_allergens</a>
+    
+    <li ><a href="#method-i-split_ingredient_by_word">#split_ingredient_by_word</a>
+    
+    <li ><a href="#method-i-suggested_allergens">#suggested_allergens</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Ingredient">
+  <h1 id="class-Ingredient" class="class">
+    class Ingredient
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-ingredient_characteristics" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ingredient_characteristics</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-allergens_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">allergens_array</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="allergens_array-source">
+            <pre><span class="ruby-comment"># File app/models/ingredient.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">allergens_array</span>
+  <span class="ruby-identifier">allergens</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">allergens</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">allergen</span>.<span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">end</span> 
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-need_allergens-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">need_allergens?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>method to check if an ingredient has had allergens added</p>
+          
+          
+
+          
+          <div class="method-source-code" id="need_allergens-3F-source">
+            <pre><span class="ruby-comment"># File app/models/ingredient.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">need_allergens?</span>
+  <span class="ruby-comment"># if an ingredient has allergens already</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-comment"># if no allergens have been attached yet</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-other_allergens" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">other_allergens</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns ingredient allergens that are not in the top 10 or self</p>
+          
+          
+
+          
+          <div class="method-source-code" id="other_allergens-source">
+            <pre><span class="ruby-comment"># File app/models/ingredient.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">other_allergens</span>
+  <span class="ruby-identifier">other_allergens</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">allergens</span>
+  <span class="ruby-identifier">main_allergens</span> = <span class="ruby-constant">Allergen</span>.<span class="ruby-identifier">first</span>(<span class="ruby-value">10</span>)
+  <span class="ruby-identifier">other_allergens</span> = <span class="ruby-identifier">other_allergens</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">main_allergens</span>
+  <span class="ruby-identifier">other_allergens</span> = <span class="ruby-identifier">other_allergens</span> <span class="ruby-operator">-</span> <span class="ruby-constant">Allergen</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">other_allergens</span>.<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-split_ingredient_by_word" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">split_ingredient_by_word</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="split_ingredient_by_word-source">
+            <pre><span class="ruby-comment"># File app/models/ingredient.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">split_ingredient_by_word</span>
+  <span class="ruby-identifier">array_of_words</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s+/m</span>, <span class="ruby-string">&#39; &#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/^\s+|\s+$/m</span>, <span class="ruby-string">&#39;&#39;</span>).<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">array_of_words</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-suggested_allergens" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">suggested_allergens</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns suggested allergens for an ingredient based on if a word in the
+ingredient matches a word in an allergen or matches a word in another
+ingredient includes too many ingredients that are their own allergen, needs
+to filter out “soy sauce” as a suggested allergen without filtering out
+“egg” should maybe have a limit to how many display</p>
+          
+          
+
+          
+          <div class="method-source-code" id="suggested_allergens-source">
+            <pre><span class="ruby-comment"># File app/models/ingredient.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">suggested_allergens</span>
+  <span class="ruby-identifier">suggested_allergens</span> = []
+  <span class="ruby-comment"># splits ingredient by word </span>
+  <span class="ruby-comment"># example &quot;string bean&quot; to [&quot;string&quot;, &quot;bean&quot;]</span>
+  <span class="ruby-identifier">words_in_name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">split_ingredient_by_word</span>
+  <span class="ruby-comment"># iterate through each word in the ingredient</span>
+  <span class="ruby-identifier">words_in_name</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">word_in_name</span><span class="ruby-operator">|</span>
+    <span class="ruby-comment"># iterate trough each ingredient</span>
+    <span class="ruby-constant">Allergen</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">common_allergen</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span> 
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">allergen</span>.<span class="ruby-identifier">common_allergen</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>    
+        <span class="ruby-identifier">allergen</span>.<span class="ruby-identifier">split_allergen_by_word</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen_word</span><span class="ruby-operator">|</span>
+          <span class="ruby-comment"># if word in allergen matches word in ingredient then add to suggested</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">allergen_word</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">word_in_name</span>
+            <span class="ruby-identifier">suggested_allergens</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">allergen</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-constant">Ingredient</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ingredient</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">ingredient</span>.<span class="ruby-identifier">split_ingredient_by_word</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ingredient_word</span><span class="ruby-operator">|</span>
+        <span class="ruby-comment"># if word in other ingredient names match word in ingredient then add to suggested</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">ingredient_word</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">word_in_name</span>
+          <span class="ruby-identifier">ingredient</span>.<span class="ruby-identifier">allergens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">allergen</span><span class="ruby-operator">|</span>
+            <span class="ruby-comment"># if allergen is a common allergen</span>
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">allergen</span>.<span class="ruby-identifier">common_allergen</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+              <span class="ruby-identifier">suggested_allergens</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">allergen</span>
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">suggested_allergens</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">first</span>(<span class="ruby-value">9</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

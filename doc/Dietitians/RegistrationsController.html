@@ -1,0 +1,716 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Dietitians::RegistrationsController
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!Dietitians/RegistrationsController.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (R)</a> &raquo;
+    <span class='title'>Dietitians</span>
+     &raquo; 
+    <span class="title">RegistrationsController</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Dietitians::RegistrationsController
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Devise::RegistrationsController</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Devise::RegistrationsController</li>
+          
+            <li class="next">Dietitians::RegistrationsController</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/controllers/dietitians/registrations_controller.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p><a
+href="http://stackoverflow.com/questions/16379554/strong-parameters-with-rails-4-0-and-devise">stackoverflow.com/questions/16379554/strong-parameters-with-rails-4-0-and-devise</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cancel-instance_method" title="#cancel (instance method)">- (Object) <strong>cancel</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>GET /resource/cancel Forces the session data which is usually expired after
+sign in to be expired now.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-instance_method" title="#create (instance method)">- (Object) <strong>create</strong> {|resource| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>POST /resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#destroy-instance_method" title="#destroy (instance method)">- (Object) <strong>destroy</strong> {|resource| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>DELETE /resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#edit-instance_method" title="#edit (instance method)">- (Object) <strong>edit</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>GET /resource/edit.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new-instance_method" title="#new (instance method)">- (Object) <strong>new</strong> {|resource| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>GET /resource/sign_up.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong> {|resource| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>PUT /resource We need to use a copy of the resource because we don&#39;t
+want to change the current user in place.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="cancel-instance_method">
+  
+    - (<tt>Object</tt>) <strong>cancel</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>GET /resource/cancel Forces the session data which is usually expired after
+sign in to be expired now. This is useful if the user wants to cancel oauth
+signing in/up in the middle of the process, removing all OAuth session
+data.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100
+101</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/dietitians/registrations_controller.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cancel'>cancel</span>
+  <span class='id identifier rubyid_expire_data_after_sign_in!'>expire_data_after_sign_in!</span>
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_new_registration_path'>new_registration_path</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create</strong> {|resource| ... }
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>POST /resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>resource</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/dietitians/registrations_controller.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
+  <span class='id identifier rubyid_build_resource'>build_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_sign_up_params'>sign_up_params</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_resource_saved'>resource_saved</span> <span class='op'>=</span> <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>yield</span> <span class='id identifier rubyid_resource'>resource</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_resource_saved'>resource_saved</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_active_for_authentication?'>active_for_authentication?</span>
+      <span class='id identifier rubyid_set_flash_message'>set_flash_message</span> <span class='symbol'>:notice</span><span class='comma'>,</span> <span class='symbol'>:signed_up</span> <span class='kw'>if</span> <span class='id identifier rubyid_is_flashing_format?'>is_flashing_format?</span>
+      <span class='id identifier rubyid_sign_up'>sign_up</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='label'>location:</span> <span class='id identifier rubyid_after_sign_up_path_for'>after_sign_up_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_set_flash_message'>set_flash_message</span> <span class='symbol'>:notice</span><span class='comma'>,</span> <span class='symbol'>:signed_up_but_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_inactive_message'>inactive_message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_is_flashing_format?'>is_flashing_format?</span>
+      <span class='id identifier rubyid_expire_data_after_sign_in!'>expire_data_after_sign_in!</span>
+      <span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='label'>location:</span> <span class='id identifier rubyid_after_inactive_sign_up_path_for'>after_inactive_sign_up_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_clean_up_passwords'>clean_up_passwords</span> <span class='id identifier rubyid_resource'>resource</span>
+    <span class='ivar'>@validatable</span> <span class='op'>=</span> <span class='id identifier rubyid_devise_mapping'>devise_mapping</span><span class='period'>.</span><span class='id identifier rubyid_validatable?'>validatable?</span>
+    <span class='kw'>if</span> <span class='ivar'>@validatable</span>
+      <span class='ivar'>@minimum_password_length</span> <span class='op'>=</span> <span class='id identifier rubyid_resource_class'>resource_class</span><span class='period'>.</span><span class='id identifier rubyid_password_length'>password_length</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="destroy-instance_method">
+  
+    - (<tt>Object</tt>) <strong>destroy</strong> {|resource| ... }
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>DELETE /resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>resource</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87
+88
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/dietitians/registrations_controller.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='const'>Devise</span><span class='period'>.</span><span class='id identifier rubyid_sign_out_all_scopes'>sign_out_all_scopes</span> <span class='op'>?</span> <span class='id identifier rubyid_sign_out'>sign_out</span> <span class='op'>:</span> <span class='id identifier rubyid_sign_out'>sign_out</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_set_flash_message'>set_flash_message</span> <span class='symbol'>:notice</span><span class='comma'>,</span> <span class='symbol'>:destroyed</span> <span class='kw'>if</span> <span class='id identifier rubyid_is_flashing_format?'>is_flashing_format?</span>
+  <span class='kw'>yield</span> <span class='id identifier rubyid_resource'>resource</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+  <span class='id identifier rubyid_respond_with_navigational'>respond_with_navigational</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span><span class='lbrace'>{</span> <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_after_sign_out_path_for'>after_sign_out_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="edit-instance_method">
+  
+    - (<tt>Object</tt>) <strong>edit</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>GET /resource/edit</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/dietitians/registrations_controller.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_edit'>edit</span>
+  <span class='comment'># build images
+</span>  
+  <span class='kw'>if</span> <span class='id identifier rubyid_current_dietitian'>current_dietitian</span><span class='period'>.</span><span class='id identifier rubyid_main_avatar'>main_avatar</span> <span class='op'>!=</span> <span class='kw'>false</span>
+    
+    <span class='ivar'>@main_avatar</span> <span class='op'>=</span> <span class='id identifier rubyid_current_dietitian'>current_dietitian</span><span class='period'>.</span><span class='id identifier rubyid_main_avatar'>main_avatar</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_current_dietitian'>current_dietitian</span><span class='period'>.</span><span class='id identifier rubyid_images'>images</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:edit</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="new-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new</strong> {|resource| ... }
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>GET /resource/sign_up</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>resource</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/dietitians/registrations_controller.rb', line 10</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_build_resource'>build_resource</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='ivar'>@validatable</span> <span class='op'>=</span> <span class='id identifier rubyid_devise_mapping'>devise_mapping</span><span class='period'>.</span><span class='id identifier rubyid_validatable?'>validatable?</span>
+  <span class='kw'>if</span> <span class='ivar'>@validatable</span>
+    <span class='ivar'>@minimum_password_length</span> <span class='op'>=</span> <span class='id identifier rubyid_resource_class'>resource_class</span><span class='period'>.</span><span class='id identifier rubyid_password_length'>password_length</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span>
+  <span class='kw'>end</span>
+  <span class='kw'>yield</span> <span class='id identifier rubyid_resource'>resource</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+  <span class='id identifier rubyid_respond_with'>respond_with</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update</strong> {|resource| ... }
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>PUT /resource We need to use a copy of the resource because we don&#39;t
+want to change the current user in place.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>resource</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/dietitians/registrations_controller.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span> <span class='op'>=</span> <span class='id identifier rubyid_resource_class'>resource_class</span><span class='period'>.</span><span class='id identifier rubyid_to_adapter'>to_adapter</span><span class='period'>.</span><span class='id identifier rubyid_get!'>get!</span><span class='lparen'>(</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:current_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_key'>to_key</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_prev_unconfirmed_email'>prev_unconfirmed_email</span> <span class='op'>=</span> <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_unconfirmed_email'>unconfirmed_email</span> <span class='kw'>if</span> <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:unconfirmed_email</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_resource_updated'>resource_updated</span> <span class='op'>=</span> <span class='id identifier rubyid_update_resource'>update_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_account_update_params'>account_update_params</span><span class='rparen'>)</span>
+  <span class='kw'>yield</span> <span class='id identifier rubyid_resource'>resource</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_resource_updated'>resource_updated</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_is_flashing_format?'>is_flashing_format?</span>
+      <span class='id identifier rubyid_flash_key'>flash_key</span> <span class='op'>=</span> <span class='id identifier rubyid_update_needs_confirmation?'>update_needs_confirmation?</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_prev_unconfirmed_email'>prev_unconfirmed_email</span><span class='rparen'>)</span> <span class='op'>?</span>
+        <span class='symbol'>:update_needs_confirmation</span> <span class='op'>:</span> <span class='symbol'>:updated</span>
+      <span class='id identifier rubyid_set_flash_message'>set_flash_message</span> <span class='symbol'>:notice</span><span class='comma'>,</span> <span class='id identifier rubyid_flash_key'>flash_key</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_sign_in'>sign_in</span> <span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='label'>bypass:</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='label'>location:</span> <span class='id identifier rubyid_after_update_path_for'>after_update_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_clean_up_passwords'>clean_up_passwords</span> <span class='id identifier rubyid_resource'>resource</span>
+    <span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Jul  7 11:48:46 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

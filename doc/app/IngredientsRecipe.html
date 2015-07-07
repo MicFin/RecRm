@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class IngredientsRecipe - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-all_ingredient_display_names">::all_ingredient_display_names</a>
+    
+    <li ><a href="#method-i-autosave_associated_records_for_ingredient">#autosave_associated_records_for_ingredient</a>
+    
+    <li ><a href="#method-i-find_or_create_ingredient">#find_or_create_ingredient</a>
+    
+    <li ><a href="#method-i-full_name">#full_name</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-IngredientsRecipe">
+  <h1 id="class-IngredientsRecipe" class="class">
+    class IngredientsRecipe
+  </h1>
+
+  <section class="description">
+    
+<p>require &#39;unitwise&#39; require &#39;unitwise/ext&#39;</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-all_ingredient_display_names" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_ingredient_display_names</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>def amount=(value)</p>
+
+<pre>write_attribute :amount, value.to_tablespoon
+if value.respond_to?(:unit)
+  self.amount_unit = value.unit.to_s
+end</pre>
+
+<p>end</p>
+          
+          
+
+          
+          <div class="method-source-code" id="all_ingredient_display_names-source">
+            <pre><span class="ruby-comment"># File app/models/ingredients_recipe.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all_ingredient_display_names</span>
+  <span class="ruby-comment"># remove nil, or empty values and return unique display names</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:display_name</span>).<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">reject!</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:empty?</span>) <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:display_name</span>).<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">reject!</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:empty?</span>).<span class="ruby-identifier">uniq</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-autosave_associated_records_for_ingredient" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">autosave_associated_records_for_ingredient</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>over ride rails validate_associated_record_for_ingredient to blank since <a
+href="IngredientsRecipe.html#method-i-find_or_create_ingredient">#find_or_create_ingredient</a>(name)
+is similar</p>
+          
+          
+
+          
+          <div class="method-source-code" id="autosave_associated_records_for_ingredient-source">
+            <pre><span class="ruby-comment"># File app/models/ingredients_recipe.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">autosave_associated_records_for_ingredient</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-find_or_create_ingredient" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_or_create_ingredient</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>find or create ingredient by name</p>
+          
+          
+
+          
+          <div class="method-source-code" id="find_or_create_ingredient-source">
+            <pre><span class="ruby-comment"># File app/models/ingredients_recipe.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_or_create_ingredient</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">ingredient</span> = <span class="ruby-constant">Ingredient</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">ingredient</span>
+    <span class="ruby-comment"># if not create the ingredient</span>
+    <span class="ruby-identifier">ingredient</span> = <span class="ruby-constant">Ingredient</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>)
+    <span class="ruby-identifier">ingredient</span>.<span class="ruby-identifier">save!</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">ingredient_id</span> = <span class="ruby-identifier">ingredient</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save!</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-full_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">full_name</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return the full name of the ingredient including amount, unit and display
+name</p>
+          
+          
+
+          
+          <div class="method-source-code" id="full_name-source">
+            <pre><span class="ruby-comment"># File app/models/ingredients_recipe.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">full_name</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;#{self.amount} #{self.amount_unit} #{self.display_name}&quot;</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class Appointment - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-available_dietitians">#available_dietitians</a>
+    
+    <li ><a href="#method-i-available_time_slots">#available_time_slots</a>
+    
+    <li ><a href="#method-i-prep_complete-3F">#prep_complete?</a>
+    
+    <li ><a href="#method-i-stage">#stage</a>
+    
+    <li ><a href="#method-i-update_with_payment">#update_with_payment</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Appointment">
+  <h1 id="class-Appointment" class="class">
+    class Appointment
+  </h1>
+
+  <section class="description">
+    
+<p>APPOINTMENT SCHEMA</p>
+
+<p>t.integer  “patient_focus_id” t.integer  “appointment_host_id” t.integer 
+“dietitian_id” t.integer  “room_id” t.text     “note” t.text    
+“client_note” t.datetime “created_at” t.datetime “updated_at” t.datetime
+“start_time” t.datetime “end_time” t.string   “stripe_card_token” t.integer
+“regular_price” t.integer  “invoice_price” t.string   “type” t.integer 
+“duration” t.text     “other_note” t.integer  “time_slot_id” t.string  
+“status”</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-date" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">date</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-family_info" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">family_info</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-follow_up" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">follow_up</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-prepped" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">prepped</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-time" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">time</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-available_dietitians" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">available_dietitians</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="available_dietitians-source">
+            <pre><span class="ruby-comment"># File app/models/appointment.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">available_dietitians</span>
+  <span class="ruby-identifier">dietitians</span> = []
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">end_time</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">end_time</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">time_slot</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">dietitians</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">dietitian</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">dietitians</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-available_time_slots" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">available_time_slots</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="available_time_slots-source">
+            <pre><span class="ruby-comment"># File app/models/appointment.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">available_time_slots</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">end_time</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-prep_complete-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">prep_complete?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="prep_complete-3F-source">
+            <pre><span class="ruby-comment"># File app/models/appointment.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">prep_complete?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">surveys</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">survey_type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Pre-Appointment-Dietitian&quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">completed</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-stage" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stage</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="stage-source">
+            <pre><span class="ruby-comment"># File app/models/appointment.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stage</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_time</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> 
+    <span class="ruby-keyword">return</span> <span class="ruby-value">4</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">patient_focus</span>.<span class="ruby-identifier">sex</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_time</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-value">3</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">patient_focus</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">patient_focus</span>.<span class="ruby-identifier">sex</span> <span class="ruby-operator">==</span><span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-value">2</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_with_payment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_with_payment</span><span
+            class="method-args">(credit_card_usage)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update_with_payment-source">
+            <pre><span class="ruby-comment"># File app/models/appointment.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_with_payment</span>(<span class="ruby-identifier">credit_card_usage</span>)
+
+
+  <span class="ruby-comment"># if appointment is valid</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid?</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">appointment_host</span>.<span class="ruby-identifier">qol_referral</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> 
+      <span class="ruby-comment"># create new customer or find current customer</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">appointment_host</span>.<span class="ruby-identifier">stripe_id</span>
+        <span class="ruby-identifier">customer</span> = <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">Customer</span>.<span class="ruby-identifier">retrieve</span>(<span class="ruby-identifier">appointment_host</span>.<span class="ruby-identifier">stripe_id</span>)
+      <span class="ruby-keyword">else</span>
+        
+        <span class="ruby-comment"># if creating a new customer and wants to save CC</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">credit_card_usage</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;remember_me&quot;</span>
+          <span class="ruby-identifier">customer</span> = <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">Customer</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:card</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">stripe_card_token</span>, <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">appointment_host</span>.<span class="ruby-identifier">email</span>, <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">appointment_host</span>.<span class="ruby-identifier">email</span>)
+        <span class="ruby-comment"># if creating a new customer and does not want to save CC</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">customer</span> = <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">Customer</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">appointment_host</span>.<span class="ruby-identifier">email</span>, <span class="ruby-value">:email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">appointment_host</span>.<span class="ruby-identifier">email</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-comment"># add stripe customer id to user</span>
+        <span class="ruby-identifier">appointment_host</span>.<span class="ruby-identifier">stripe_id</span> = <span class="ruby-identifier">customer</span>.<span class="ruby-identifier">id</span>
+        <span class="ruby-identifier">appointment_host</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-identifier">save!</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-comment"># set stripe_id variable now that it is created</span>
+      <span class="ruby-identifier">stripe_id</span> = <span class="ruby-identifier">appointment_host</span>.<span class="ruby-identifier">stripe_id</span>
+      <span class="ruby-comment"># charge customer</span>
+      <span class="ruby-comment"># if customer wanted to remember card</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">credit_card_usage</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;remember_me&quot;</span>
+        <span class="ruby-keyword">begin</span>
+          <span class="ruby-identifier">charge</span> = <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">Charge</span>.<span class="ruby-identifier">create</span>(
+          <span class="ruby-value">:customer</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">stripe_id</span>,
+          <span class="ruby-value">:amount</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-value">8999</span>,
+          <span class="ruby-comment"># :amount      =&gt; 0000,</span>
+          <span class="ruby-comment"># :amount      =&gt; 0151,</span>
+          <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Kindrdfood 1 Hour&#39;</span>,
+          <span class="ruby-value">:currency</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;usd&#39;</span>
+        )
+        <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">CardError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+          <span class="ruby-comment"># The card has been declined</span>
+          <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+          <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Stripe error while creating customer: #{e.message}&quot;</span>
+          <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:base</span>, <span class="ruby-string">&quot;There was a problem with your credit card.&quot;</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-comment"># charge custoemr</span>
+      <span class="ruby-comment"># if custeomr did not want to remember card need to change to not create stripe customer</span>
+      <span class="ruby-keyword">else</span> 
+        
+        <span class="ruby-keyword">begin</span>
+          <span class="ruby-identifier">charge</span> = <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">Charge</span>.<span class="ruby-identifier">create</span>(
+          <span class="ruby-value">:card</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">stripe_card_token</span>,
+          <span class="ruby-value">:amount</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-value">8999</span>,
+          <span class="ruby-comment"># :amount      =&gt; 0000,</span>
+          <span class="ruby-comment"># :amount      =&gt; 0151,</span>
+          <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;Kindrdfood 1 Hour&#39;</span>,
+          <span class="ruby-value">:currency</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;usd&#39;</span>
+        )
+        <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">CardError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+          <span class="ruby-comment"># The card has been declined</span>
+          <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+          <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Stripe error while creating customer: #{e.message}&quot;</span>
+          <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:base</span>, <span class="ruby-string">&quot;There was a problem with your credit card.&quot;</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">invoice_price</span> = <span class="ruby-value">8999</span>
+    <span class="ruby-keyword">else</span> 
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">invoice_price</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;Paid&quot;</span>
+    <span class="ruby-comment"># self.invoice_price = 8999</span>
+    <span class="ruby-comment"># self.invoice_price = 0</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">duration</span> = <span class="ruby-value">60</span>
+    <span class="ruby-identifier">save!</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

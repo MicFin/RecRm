@@ -1,0 +1,3125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Recipe
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!Recipe.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (R)</a> &raquo;
+    
+    
+    <span class="title">Recipe</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Recipe
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Recipe</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/recipe.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#courses-instance_method" title="#courses (instance method)">- (Object) <strong>courses</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute courses.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#health_groups-instance_method" title="#health_groups (instance method)">- (Object) <strong>health_groups</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute health_groups.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ingredient_count-instance_method" title="#ingredient_count (instance method)">- (Object) <strong>ingredient_count</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute ingredient_count.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ingredient_list-instance_method" title="#ingredient_list (instance method)">- (Object) <strong>ingredient_list</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute ingredient_list.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#step_list-instance_method" title="#step_list (instance method)">- (Object) <strong>step_list</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute step_list.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#all_in_first_tier_review-class_method" title="all_in_first_tier_review (class method)">+ (Object) <strong>all_in_first_tier_review</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#all_in_second_tier_review-class_method" title="all_in_second_tier_review (class method)">+ (Object) <strong>all_in_second_tier_review</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#all_live_recipes-class_method" title="all_live_recipes (class method)">+ (Object) <strong>all_live_recipes</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#all_need_first_tier_review-class_method" title="all_need_first_tier_review (class method)">+ (Object) <strong>all_need_first_tier_review</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#all_need_original_review-class_method" title="all_need_original_review (class method)">+ (Object) <strong>all_need_original_review</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#all_need_second_tier_review-class_method" title="all_need_second_tier_review (class method)">+ (Object) <strong>all_need_second_tier_review</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#all_recipe_names-class_method" title="all_recipe_names (class method)">+ (Object) <strong>all_recipe_names</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>return an array of all unique recipe titles.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#data_by_dietitian-class_method" title="data_by_dietitian (class method)">+ (Object) <strong>data_by_dietitian</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#data_by_health_group-class_method" title="data_by_health_group (class method)">+ (Object) <strong>data_by_health_group</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>recipe counts byt health group.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#data_by_total-class_method" title="data_by_total (class method)">+ (Object) <strong>data_by_total</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#first_tier_not_resolved-class_method" title="first_tier_not_resolved (class method)">+ (Object) <strong>first_tier_not_resolved</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#made_for-class_method" title="made_for (class method)">+ (Object) <strong>made_for</strong>(*patient_groups) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>return recipes that are made for patient groups entered as an array of
+strings.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#second_tier_not_resolved-class_method" title="second_tier_not_resolved (class method)">+ (Object) <strong>second_tier_not_resolved</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_csv-class_method" title="to_csv (class method)">+ (Object) <strong>to_csv</strong>(options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#allergens-instance_method" title="#allergens (instance method)">- (Object) <strong>allergens</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>return a recipe&#39;s allergens, used in recipes controller
+edit_recipe_group method to only show patient groups that are safe based on
+ingredient list when selecting recipe&#39;s patient groups.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#allergies-instance_method" title="#allergies (instance method)">- (Object) <strong>allergies</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>return a recipe&#39;s PAtient Groups with the category allergy.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#diseases-instance_method" title="#diseases (instance method)">- (Object) <strong>diseases</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>return a recipe&#39;s Patient Groups with the category disease.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch_categories_array-instance_method" title="#fetch_categories_array (instance method)">- (Object) <strong>fetch_categories_array</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch_health_groups_array-instance_method" title="#fetch_health_groups_array (instance method)">- (Object) <strong>fetch_health_groups_array</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>returns recipe&#39;s health groups as an array of strings.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch_ingredients_allergens_hash-instance_method" title="#fetch_ingredients_allergens_hash (instance method)">- (Object) <strong>fetch_ingredients_allergens_hash</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch_possible_review_conflicts-instance_method" title="#fetch_possible_review_conflicts (instance method)">- (Object) <strong>fetch_possible_review_conflicts</strong>(quality_review) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ingredient_with_full_name-instance_method" title="#ingredient_with_full_name (instance method)">- (Object) <strong>ingredient_with_full_name</strong>(full_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ingredients_not_tagged-instance_method" title="#ingredients_not_tagged (instance method)">- (Object) <strong>ingredients_not_tagged</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>return a recipe&#39;s ingredients that have not yet been tagged with
+allergens.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ingredients_tagged-instance_method" title="#ingredients_tagged (instance method)">- (Object) <strong>ingredients_tagged</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>return a recipe&#39;s ingredients that have already been tagged with
+allergens.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#intolerances-instance_method" title="#intolerances (instance method)">- (Object) <strong>intolerances</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>return a recipe&#39;s Patient Groups with the category intolerance.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#marketing_items_by_group-instance_method" title="#marketing_items_by_group (instance method)">- (Object) <strong>marketing_items_by_group</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>return hash of recipe marketing items by patient group and by title ad
+description.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#number_of_reviewers_hash-instance_method" title="#number_of_reviewers_hash (instance method)">- (Object) <strong>number_of_reviewers_hash</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ordered_ingredients-instance_method" title="#ordered_ingredients (instance method)">- (Object) <strong>ordered_ingredients</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>returns recipe ingredients in order.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#recipe_ingredients_full_names-instance_method" title="#recipe_ingredients_full_names (instance method)">- (Object) <strong>recipe_ingredients_full_names</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#review_tier-instance_method" title="#review_tier (instance method)">- (Object) <strong>review_tier</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#steps-instance_method" title="#steps (instance method)">- (Object) <strong>steps</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>returns recipe steps in order.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#steps_by_group-instance_method" title="#steps_by_group (instance method)">- (Object) <strong>steps_by_group</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>returns recipe steps by group.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_csv-instance_method" title="#to_csv (instance method)">- (Object) <strong>to_csv</strong>(options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="courses=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="courses-instance_method">
+  
+    - (<tt>Object</tt>) <strong>courses</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute courses</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_courses'>courses</span>
+  <span class='ivar'>@courses</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="health_groups=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="health_groups-instance_method">
+  
+    - (<tt>Object</tt>) <strong>health_groups</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute health_groups</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+5
+6
+7</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 5</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_health_groups'>health_groups</span>
+  <span class='ivar'>@health_groups</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="ingredient_count=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="ingredient_count-instance_method">
+  
+    - (<tt>Object</tt>) <strong>ingredient_count</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute ingredient_count</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ingredient_count'>ingredient_count</span>
+  <span class='ivar'>@ingredient_count</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="ingredient_list=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="ingredient_list-instance_method">
+  
+    - (<tt>Object</tt>) <strong>ingredient_list</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute ingredient_list</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2
+3
+4</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 2</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ingredient_list'>ingredient_list</span>
+  <span class='ivar'>@ingredient_list</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="step_list=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="step_list-instance_method">
+  
+    - (<tt>Object</tt>) <strong>step_list</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute step_list</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+4
+5
+6</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 4</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_step_list'>step_list</span>
+  <span class='ivar'>@step_list</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="all_in_first_tier_review-class_method">
+  
+    + (<tt>Object</tt>) <strong>all_in_first_tier_review</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 304</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all_in_first_tier_review'>all_in_first_tier_review</span>
+  <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>completed:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>live_recipe:</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span><span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_last_review'>last_review</span> <span class='op'>=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+      <span class='kw'>if</span> <span class='lparen'>(</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_tier'>tier</span> <span class='op'>==</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_completed'>completed</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span> <span class='rparen'>)</span>
+        <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_recipe'>recipe</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="all_in_second_tier_review-class_method">
+  
+    + (<tt>Object</tt>) <strong>all_in_second_tier_review</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 330</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all_in_second_tier_review'>all_in_second_tier_review</span>
+  <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>completed:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>live_recipe:</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span><span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_last_review'>last_review</span> <span class='op'>=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+      <span class='kw'>if</span> <span class='lparen'>(</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_tier'>tier</span> <span class='op'>==</span> <span class='int'>2</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_completed'>completed</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span> <span class='rparen'>)</span>
+        <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_recipe'>recipe</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="all_live_recipes-class_method">
+  
+    + (<tt>Object</tt>) <strong>all_live_recipes</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+286
+287
+288
+289
+290
+291
+292</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 286</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all_live_recipes'>all_live_recipes</span>
+  <span class='id identifier rubyid_live_recipes'>live_recipes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>completed:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>live_recipe:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='id identifier rubyid_live_recipes'>live_recipes</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_recipe'>recipe</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_live_recipes'>live_recipes</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="all_need_first_tier_review-class_method">
+  
+    + (<tt>Object</tt>) <strong>all_need_first_tier_review</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 358</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all_need_first_tier_review'>all_need_first_tier_review</span>
+  <span class='id identifier rubyid_recipes_not_reviewed'>recipes_not_reviewed</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>completed:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>live_recipe:</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span><span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_last_review'>last_review</span> <span class='op'>=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+      <span class='kw'>if</span> <span class='lparen'>(</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_resolved'>resolved</span> <span class='op'>==</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_passed'>passed</span> <span class='op'>!=</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='rparen'>)</span>
+        <span class='id identifier rubyid_recipes_not_reviewed'>recipes_not_reviewed</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_recipe'>recipe</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_recipes_not_reviewed'>recipes_not_reviewed</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="all_need_original_review-class_method">
+  
+    + (<tt>Object</tt>) <strong>all_need_original_review</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+294
+295
+296
+297
+298
+299
+300
+301
+302</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 294</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all_need_original_review'>all_need_original_review</span>
+  <span class='id identifier rubyid_recipes_not_reviewed'>recipes_not_reviewed</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>completed:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>live_recipe:</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&lt;</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_recipes_not_reviewed'>recipes_not_reviewed</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_recipe'>recipe</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_recipes_not_reviewed'>recipes_not_reviewed</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="all_need_second_tier_review-class_method">
+  
+    + (<tt>Object</tt>) <strong>all_need_second_tier_review</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 371</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all_need_second_tier_review'>all_need_second_tier_review</span>
+  <span class='id identifier rubyid_recipes_not_reviewed'>recipes_not_reviewed</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>completed:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>live_recipe:</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span><span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_last_review'>last_review</span> <span class='op'>=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+      <span class='id identifier rubyid_last_review_passed'>last_review_passed</span> <span class='op'>=</span> <span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_passed'>passed</span>
+      <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_last_review_passed'>last_review_passed</span> <span class='op'>==</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_resolved'>resolved</span> <span class='op'>==</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_recipes_not_reviewed'>recipes_not_reviewed</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_recipe'>recipe</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_recipes_not_reviewed'>recipes_not_reviewed</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="all_recipe_names-class_method">
+  
+    + (<tt>Object</tt>) <strong>all_recipe_names</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>return an array of all unique recipe titles</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+441
+442
+443</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 441</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all_recipe_names'>all_recipe_names</span>
+  <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="data_by_dietitian-class_method">
+  
+    + (<tt>Object</tt>) <strong>data_by_dietitian</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 158</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_data_by_dietitian'>data_by_dietitian</span>
+  <span class='id identifier rubyid_today'>today</span> <span class='op'>=</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_today'>today</span>
+  <span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span> <span class='op'>=</span> <span class='id identifier rubyid_today'>today</span><span class='period'>.</span><span class='id identifier rubyid_at_beginning_of_week'>at_beginning_of_week</span><span class='lparen'>(</span><span class='symbol'>:thursday</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='const'>Dietitian</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span><span class='op'>|</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='op'>|</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_all_time_array'>all_time_array</span> <span class='op'>=</span> <span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_recipes'>recipes</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_all_time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_all_time_array'>all_time_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_all_time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_all_time_array'>all_time_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+      <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_all_time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_this_weeks_array'>this_weeks_array</span> <span class='op'>=</span> <span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_recipes'>recipes</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:created_at</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_day'>beginning_of_day</span><span class='op'>..</span><span class='id identifier rubyid_today'>today</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_this_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_this_weeks_array'>this_weeks_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_this_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_this_weeks_array'>this_weeks_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+      <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_this_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_last_weeks_array'>last_weeks_array</span> <span class='op'>=</span> <span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_recipes'>recipes</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:created_at</span> <span class='op'>=&gt;</span> <span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_day'>beginning_of_day</span><span class='op'>..</span><span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_end_of_week'>end_of_week</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_last_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_last_weeks_array'>last_weeks_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_last_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_last_weeks_array'>last_weeks_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+      <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_last_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_total_2_weeks_ago_array'>total_2_weeks_ago_array</span> <span class='op'>=</span> <span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_recipes'>recipes</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:created_at</span> <span class='op'>=&gt;</span> <span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_day'>beginning_of_day</span><span class='op'>..</span><span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_end_of_week'>end_of_week</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_2_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_total_2_weeks_ago_array'>total_2_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_2_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_total_2_weeks_ago_array'>total_2_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+      <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_2_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_total_3_weeks_ago_array'>total_3_weeks_ago_array</span> <span class='op'>=</span> <span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_recipes'>recipes</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:created_at</span> <span class='op'>=&gt;</span> <span class='int'>3</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_day'>beginning_of_day</span><span class='op'>..</span><span class='int'>3</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_end_of_week'>end_of_week</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_3_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_total_3_weeks_ago_array'>total_3_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_3_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_total_3_weeks_ago_array'>total_3_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+      <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_3_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_total_4_weeks_ago_array'>total_4_weeks_ago_array</span> <span class='op'>=</span> <span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_recipes'>recipes</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:created_at</span> <span class='op'>=&gt;</span> <span class='int'>4</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_day'>beginning_of_day</span><span class='op'>..</span><span class='int'>4</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_end_of_week'>end_of_week</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_4_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_total_4_weeks_ago_array'>total_4_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_4_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_total_4_weeks_ago_array'>total_4_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+      <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_dietitian'>dietitian</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_4_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_data_by_dietitian_hash'>data_by_dietitian_hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="data_by_health_group-class_method">
+  
+    + (<tt>Object</tt>) <strong>data_by_health_group</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>recipe counts byt health group</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_data_by_health_group'>data_by_health_group</span>
+  <span class='id identifier rubyid_data_by_health_group_hash'>data_by_health_group_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='const'>PatientGroup</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_health_group'>health_group</span><span class='op'>|</span>
+    <span class='id identifier rubyid_data_by_health_group_hash'>data_by_health_group_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_health_group'>health_group</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_health_group_recipes'>health_group_recipes</span> <span class='op'>=</span> <span class='const'>Recipe</span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:patient_groups</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patient_groups.name = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_health_group'>health_group</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_references'>references</span><span class='lparen'>(</span><span class='symbol'>:patient_group</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_data_by_health_group_hash'>data_by_health_group_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_health_group'>health_group</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Total</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_health_group_recipes'>health_group_recipes</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_health_group_hash'>data_by_health_group_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_health_group'>health_group</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Breakfast</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_health_group_recipes'>health_group_recipes</span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:characteristics</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>characteristics.name = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Breakfast</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_references'>references</span><span class='lparen'>(</span><span class='symbol'>:characteristic</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_health_group_hash'>data_by_health_group_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_health_group'>health_group</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lunch</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_health_group_recipes'>health_group_recipes</span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:characteristics</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>characteristics.name = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Lunch</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_references'>references</span><span class='lparen'>(</span><span class='symbol'>:characteristic</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_health_group_hash'>data_by_health_group_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_health_group'>health_group</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Dinner</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_health_group_recipes'>health_group_recipes</span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:characteristics</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>characteristics.name = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Dinner</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_references'>references</span><span class='lparen'>(</span><span class='symbol'>:characteristic</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_health_group_hash'>data_by_health_group_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_health_group'>health_group</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Snack</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_health_group_recipes'>health_group_recipes</span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:characteristics</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>characteristics.name = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Snack</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_references'>references</span><span class='lparen'>(</span><span class='symbol'>:characteristic</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+    <span class='id identifier rubyid_data_by_health_group_hash'>data_by_health_group_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_health_group'>health_group</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Dessert</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_health_group_recipes'>health_group_recipes</span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:characteristics</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>characteristics.name = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Dessert</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_references'>references</span><span class='lparen'>(</span><span class='symbol'>:characteristic</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_data_by_health_group_hash'>data_by_health_group_hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="data_by_total-class_method">
+  
+    + (<tt>Object</tt>) <strong>data_by_total</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 115</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_data_by_total'>data_by_total</span>
+  <span class='id identifier rubyid_today'>today</span> <span class='op'>=</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_today'>today</span>
+  <span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span> <span class='op'>=</span> <span class='id identifier rubyid_today'>today</span><span class='period'>.</span><span class='id identifier rubyid_at_beginning_of_week'>at_beginning_of_week</span><span class='lparen'>(</span><span class='symbol'>:thursday</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_all_time_array'>all_time_array</span> <span class='op'>=</span> <span class='const'>Recipe</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_all_time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_all_time_array'>all_time_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_all_time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_all_time_array'>all_time_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_all_time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_this_weeks_array'>this_weeks_array</span> <span class='op'>=</span> <span class='const'>Recipe</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:created_at</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_day'>beginning_of_day</span><span class='op'>..</span><span class='id identifier rubyid_today'>today</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_this_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_this_weeks_array'>this_weeks_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_this_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_this_weeks_array'>this_weeks_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_this_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_last_weeks_array'>last_weeks_array</span> <span class='op'>=</span> <span class='const'>Recipe</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:created_at</span> <span class='op'>=&gt;</span> <span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_day'>beginning_of_day</span><span class='op'>..</span><span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_end_of_week'>end_of_week</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_last_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_last_weeks_array'>last_weeks_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_last_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_last_weeks_array'>last_weeks_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_last_week</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_total_2_weeks_ago_array'>total_2_weeks_ago_array</span> <span class='op'>=</span> <span class='const'>Recipe</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:created_at</span> <span class='op'>=&gt;</span> <span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_day'>beginning_of_day</span><span class='op'>..</span><span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_end_of_week'>end_of_week</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_2_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_total_2_weeks_ago_array'>total_2_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_2_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_total_2_weeks_ago_array'>total_2_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_2_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_total_3_weeks_ago_array'>total_3_weeks_ago_array</span> <span class='op'>=</span> <span class='const'>Recipe</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:created_at</span> <span class='op'>=&gt;</span> <span class='int'>3</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_day'>beginning_of_day</span><span class='op'>..</span><span class='int'>3</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_end_of_week'>end_of_week</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_3_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_total_3_weeks_ago_array'>total_3_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_3_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_total_3_weeks_ago_array'>total_3_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_3_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_total_4_weeks_ago_array'>total_4_weeks_ago_array</span> <span class='op'>=</span> <span class='const'>Recipe</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:created_at</span> <span class='op'>=&gt;</span> <span class='int'>4</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_week'>beginning_of_week</span><span class='period'>.</span><span class='id identifier rubyid_beginning_of_day'>beginning_of_day</span><span class='op'>..</span><span class='int'>4</span><span class='period'>.</span><span class='id identifier rubyid_week'>week</span><span class='period'>.</span><span class='id identifier rubyid_ago'>ago</span><span class='period'>.</span><span class='id identifier rubyid_end_of_week'>end_of_week</span><span class='period'>.</span><span class='id identifier rubyid_end_of_day'>end_of_day</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total_4_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_total_4_weeks_ago_array'>total_4_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_4_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_total_4_weeks_ago_array'>total_4_weeks_ago_array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>made_for_4_weeks_ago</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_data_by_total_hash'>data_by_total_hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="first_tier_not_resolved-class_method">
+  
+    + (<tt>Object</tt>) <strong>first_tier_not_resolved</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 317</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_first_tier_not_resolved'>first_tier_not_resolved</span>
+  <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>completed:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>live_recipe:</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span><span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_last_review'>last_review</span> <span class='op'>=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+      <span class='kw'>if</span> <span class='lparen'>(</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_tier'>tier</span> <span class='op'>==</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_completed'>completed</span> <span class='op'>==</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_resolved'>resolved</span> <span class='op'>==</span> <span class='kw'>false</span> <span class='rparen'>)</span> <span class='rparen'>)</span>
+        <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_recipe'>recipe</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="made_for-class_method">
+  
+    + (<tt>Object</tt>) <strong>made_for</strong>(*patient_groups) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>return recipes that are made for patient groups entered as an array of
+strings</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 511</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_made_for'>made_for</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_num_groups'>num_groups</span> <span class='op'>=</span> <span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+  <span class='id identifier rubyid_arrays'>arrays</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_num_groups'>num_groups</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_patient_group'>patient_group</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
+    <span class='id identifier rubyid_arrays'>arrays</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='const'>Recipe</span><span class='period'>.</span><span class='id identifier rubyid_includes'>includes</span><span class='lparen'>(</span><span class='symbol'>:patient_groups</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patient_groups.name = ?</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_patient_group'>patient_group</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_references'>references</span><span class='lparen'>(</span><span class='symbol'>:patient_group</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_made_for_array'>made_for_array</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_num_groups'>num_groups</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_made_for_array'>made_for_array</span> <span class='op'>!=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_made_for_array'>made_for_array</span><span class='period'>.</span><span class='id identifier rubyid_flatten!'>flatten!</span>
+      <span class='id identifier rubyid_made_for_array'>made_for_array</span> <span class='op'>=</span> <span class='id identifier rubyid_arrays'>arrays</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span> <span class='op'>&amp;</span> <span class='id identifier rubyid_made_for_array'>made_for_array</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_made_for_array'>made_for_array</span> <span class='op'>=</span> <span class='id identifier rubyid_arrays'>arrays</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_made_for_array'>made_for_array</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="second_tier_not_resolved-class_method">
+  
+    + (<tt>Object</tt>) <strong>second_tier_not_resolved</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 343</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_second_tier_not_resolved'>second_tier_not_resolved</span>
+  <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>completed:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>live_recipe:</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span><span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_last_review'>last_review</span> <span class='op'>=</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+      <span class='kw'>if</span> <span class='lparen'>(</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_tier'>tier</span> <span class='op'>==</span> <span class='int'>2</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_completed'>completed</span> <span class='op'>==</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_last_review'>last_review</span><span class='period'>.</span><span class='id identifier rubyid_resolved'>resolved</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span> <span class='rparen'>)</span>
+        <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_recipe'>recipe</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_recipes_in_review'>recipes_in_review</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_csv-class_method">
+  
+    + (<tt>Object</tt>) <strong>to_csv</strong>(options = {}) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35
+36
+37
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_csv'>to_csv</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='const'>CSV</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_csv'>csv</span><span class='op'>|</span>
+    <span class='id identifier rubyid_csv'>csv</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_column_names'>column_names</span>
+    <span class='id identifier rubyid_all'>all</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_recipe'>recipe</span><span class='op'>|</span>
+      <span class='id identifier rubyid_csv'>csv</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_column_names'>column_names</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="allergens-instance_method">
+  
+    - (<tt>Object</tt>) <strong>allergens</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>return a recipe&#39;s allergens, used in recipes controller
+edit_recipe_group method to only show patient groups that are safe based on
+ingredient list when selecting recipe&#39;s patient groups</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+500
+501
+502
+503
+504
+505
+506
+507
+508</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 500</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_allergens'>allergens</span>
+  <span class='id identifier rubyid_allergens'>allergens</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ingredients'>ingredients</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='op'>|</span>
+    <span class='id identifier rubyid_ingredient'>ingredient</span><span class='period'>.</span><span class='id identifier rubyid_allergens'>allergens</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_allergen'>allergen</span><span class='op'>|</span>
+      <span class='id identifier rubyid_allergens'>allergens</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_allergen'>allergen</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_allergens'>allergens</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="allergies-instance_method">
+  
+    - (<tt>Object</tt>) <strong>allergies</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>return a recipe&#39;s PAtient Groups with the category allergy</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+478
+479
+480
+481
+482
+483
+484
+485
+486</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 478</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_allergies'>allergies</span>
+  <span class='id identifier rubyid_allergies'>allergies</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_patient_group'>patient_group</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_patient_group'>patient_group</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>allergy</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_allergies'>allergies</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_patient_group'>patient_group</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_allergies'>allergies</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="diseases-instance_method">
+  
+    - (<tt>Object</tt>) <strong>diseases</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>return a recipe&#39;s Patient Groups with the category disease</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+489
+490
+491
+492
+493
+494
+495
+496
+497</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 489</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_diseases'>diseases</span>
+  <span class='id identifier rubyid_diseases'>diseases</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_patient_group'>patient_group</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_patient_group'>patient_group</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>disease</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_diseases'>diseases</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_patient_group'>patient_group</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_diseases'>diseases</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fetch_categories_array-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fetch_categories_array</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+204
+205
+206</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 204</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fetch_categories_array'>fetch_categories_array</span>
+  <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_characteristics'>characteristics</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fetch_health_groups_array-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fetch_health_groups_array</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>returns recipe&#39;s health groups as an array of strings</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 208</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fetch_health_groups_array'>fetch_health_groups_array</span>
+  <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fetch_ingredients_allergens_hash-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fetch_ingredients_allergens_hash</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 212</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fetch_ingredients_allergens_hash'>fetch_ingredients_allergens_hash</span>
+  <span class='id identifier rubyid_ingredients_allergens_hash'>ingredients_allergens_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ingredients'>ingredients</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='op'>|</span>
+    <span class='id identifier rubyid_ingredients_allergens_hash'>ingredients_allergens_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_ingredient'>ingredient</span><span class='period'>.</span><span class='id identifier rubyid_allergens'>allergens</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_allergen'>allergen</span><span class='op'>|</span>
+      <span class='id identifier rubyid_ingredients_allergens_hash'>ingredients_allergens_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_allergen'>allergen</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_ingredients_allergens_hash'>ingredients_allergens_hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fetch_possible_review_conflicts-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fetch_possible_review_conflicts</strong>(quality_review) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 232</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fetch_possible_review_conflicts'>fetch_possible_review_conflicts</span><span class='lparen'>(</span><span class='id identifier rubyid_quality_review'>quality_review</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_review_items_array'>review_items_array</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_review_conflicts'>review_conflicts</span> <span class='op'>=</span> <span class='id identifier rubyid_quality_review'>quality_review</span><span class='period'>.</span><span class='id identifier rubyid_review_conflicts'>review_conflicts</span>
+  <span class='id identifier rubyid_review_conflicts'>review_conflicts</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_review_conflict'>review_conflict</span><span class='op'>|</span>
+    <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='id identifier rubyid_review_conflict'>review_conflict</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_review_conflict'>review_conflict</span>
+    <span class='id identifier rubyid_review_items_array'>review_items_array</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_review_conflict'>review_conflict</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_new_conflict'>new_conflict</span> <span class='op'>=</span> <span class='const'>ReviewConflict</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>recipe-name</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>recipe-name</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>prep-time</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>prep-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cook-time</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cook-time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>difficulty</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>difficulty</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>serving-size</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>serving-size</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ordered_ingredients'>ordered_ingredients</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ingredient-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ingredient-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_steps'>steps</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_step'>step</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>step-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_step'>step</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>step-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_step'>step</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ingredients'>ingredients</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>allergen-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>allergen-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>health-groups</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>health-groups</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>recipe-categories</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>recipe-categories</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+  <span class='kw'>end</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_marketing_items'>marketing_items</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_marketing_item'>marketing_item</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_review_items_array'>review_items_array</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>marketing-item-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_marketing_item'>marketing_item</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>marketing-item-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_marketing_item'>marketing_item</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_conflict'>new_conflict</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_possible_review_conflicts'>possible_review_conflicts</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ingredient_with_full_name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>ingredient_with_full_name</strong>(full_name) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ingredient_with_full_name'>ingredient_with_full_name</span><span class='lparen'>(</span><span class='id identifier rubyid_full_name'>full_name</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ingredients_recipes'>ingredients_recipes</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_ingredient'>ingredient</span><span class='period'>.</span><span class='id identifier rubyid_full_name'>full_name</span> <span class='op'>==</span> <span class='id identifier rubyid_full_name'>full_name</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_ingredient'>ingredient</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ingredients_not_tagged-instance_method">
+  
+    - (<tt>Object</tt>) <strong>ingredients_not_tagged</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>return a recipe&#39;s ingredients that have not yet been tagged with
+allergens</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+456
+457
+458
+459
+460
+461
+462
+463
+464</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 456</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ingredients_not_tagged'>ingredients_not_tagged</span>
+  <span class='id identifier rubyid_not_tagged_ingredients'>not_tagged_ingredients</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ingredients'>ingredients</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_ingredient'>ingredient</span><span class='period'>.</span><span class='id identifier rubyid_need_allergens?'>need_allergens?</span> <span class='op'>==</span> <span class='kw'>true</span>
+      <span class='id identifier rubyid_not_tagged_ingredients'>not_tagged_ingredients</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_ingredient'>ingredient</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_not_tagged_ingredients'>not_tagged_ingredients</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ingredients_tagged-instance_method">
+  
+    - (<tt>Object</tt>) <strong>ingredients_tagged</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>return a recipe&#39;s ingredients that have already been tagged with
+allergens</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+445
+446
+447
+448
+449
+450
+451
+452
+453</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 445</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ingredients_tagged'>ingredients_tagged</span>
+  <span class='id identifier rubyid_tagged_ingredients'>tagged_ingredients</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ingredients'>ingredients</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_ingredient'>ingredient</span><span class='period'>.</span><span class='id identifier rubyid_need_allergens?'>need_allergens?</span> <span class='op'>==</span> <span class='kw'>false</span>
+      <span class='id identifier rubyid_tagged_ingredients'>tagged_ingredients</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_ingredient'>ingredient</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_tagged_ingredients'>tagged_ingredients</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="intolerances-instance_method">
+  
+    - (<tt>Object</tt>) <strong>intolerances</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>return a recipe&#39;s Patient Groups with the category intolerance</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+467
+468
+469
+470
+471
+472
+473
+474
+475</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 467</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_intolerances'>intolerances</span>
+  <span class='id identifier rubyid_intolerances'>intolerances</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_patient_groups'>patient_groups</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_patient_group'>patient_group</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_patient_group'>patient_group</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>intolerance</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_intolerances'>intolerances</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_patient_group'>patient_group</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_intolerances'>intolerances</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="marketing_items_by_group-instance_method">
+  
+    - (<tt>Object</tt>) <strong>marketing_items_by_group</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>return hash of recipe marketing items by patient group and by title ad
+description</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 418</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_marketing_items_by_group'>marketing_items_by_group</span>
+  <span class='id identifier rubyid_items_by_group'>items_by_group</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_marketing_items'>marketing_items</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_marketing_item'>marketing_item</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_marketing_item'>marketing_item</span><span class='period'>.</span><span class='id identifier rubyid_patient_group_id'>patient_group_id</span> <span class='op'>==</span> <span class='kw'>nil</span>
+      <span class='id identifier rubyid_group'>group</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>General</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_group_id'>group_id</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_group_id'>group_id</span> <span class='op'>=</span> <span class='id identifier rubyid_marketing_item'>marketing_item</span><span class='period'>.</span><span class='id identifier rubyid_patient_group_id'>patient_group_id</span>
+      <span class='id identifier rubyid_group'>group</span> <span class='op'>=</span> <span class='const'>PatientGroup</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_group_id'>group_id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_items_by_group'>items_by_group</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_group'>group</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_items_by_group'>items_by_group</span><span class='lbracket'>[</span><span class='id identifier rubyid_group'>group</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>group_id</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_group_id'>group_id</span><span class='rbrace'>}</span>
+      <span class='id identifier rubyid_items_by_group'>items_by_group</span><span class='lbracket'>[</span><span class='id identifier rubyid_group'>group</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>items</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_marketing_item'>marketing_item</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>title</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_items_by_group'>items_by_group</span><span class='lbracket'>[</span><span class='id identifier rubyid_group'>group</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>items</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>title</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_marketing_item'>marketing_item</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_marketing_item'>marketing_item</span><span class='period'>.</span><span class='id identifier rubyid_category'>category</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>description</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_items_by_group'>items_by_group</span><span class='lbracket'>[</span><span class='id identifier rubyid_group'>group</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>items</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>description</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_marketing_item'>marketing_item</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_items_by_group'>items_by_group</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="number_of_reviewers_hash-instance_method">
+  
+    - (<tt>Object</tt>) <strong>number_of_reviewers_hash</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_number_of_reviewers_hash'>number_of_reviewers_hash</span>
+  <span class='id identifier rubyid_reviewers_hash'>reviewers_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_total_count'>total_count</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_unique_array'>unique_array</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_unique_count'>unique_count</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span> <span class='op'>!=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_quality_review'>quality_review</span><span class='op'>|</span>
+      <span class='id identifier rubyid_total_count'>total_count</span> <span class='op'>+=</span> <span class='int'>1</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_unique_array'>unique_array</span><span class='period'>.</span><span class='id identifier rubyid_exclude?'>exclude?</span> <span class='id identifier rubyid_quality_review'>quality_review</span><span class='period'>.</span><span class='id identifier rubyid_dietitian_id'>dietitian_id</span>
+        <span class='id identifier rubyid_unique_count'>unique_count</span> <span class='op'>+=</span> <span class='int'>1</span>
+        <span class='id identifier rubyid_unique_array'>unique_array</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_quality_review'>quality_review</span><span class='period'>.</span><span class='id identifier rubyid_dietitian_id'>dietitian_id</span>
+      <span class='kw'>end</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_quality_review'>quality_review</span><span class='period'>.</span><span class='id identifier rubyid_review_conflicts'>review_conflicts</span> <span class='op'>!=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_quality_review'>quality_review</span><span class='period'>.</span><span class='id identifier rubyid_review_conflicts'>review_conflicts</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_review_conflict'>review_conflict</span><span class='op'>|</span>
+          <span class='id identifier rubyid_total_count'>total_count</span> <span class='op'>+=</span> <span class='int'>1</span>
+          <span class='kw'>if</span> <span class='id identifier rubyid_unique_array'>unique_array</span><span class='period'>.</span><span class='id identifier rubyid_exclude?'>exclude?</span> <span class='id identifier rubyid_quality_review'>quality_review</span><span class='period'>.</span><span class='id identifier rubyid_dietitian_id'>dietitian_id</span>
+            <span class='id identifier rubyid_unique_count'>unique_count</span> <span class='op'>+=</span> <span class='int'>1</span>
+            <span class='id identifier rubyid_unique_array'>unique_array</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_quality_review'>quality_review</span><span class='period'>.</span><span class='id identifier rubyid_dietitian_id'>dietitian_id</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_reviewers_hash'>reviewers_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:total</span><span class='op'>=&gt;</span><span class='id identifier rubyid_total_count'>total_count</span><span class='comma'>,</span> <span class='symbol'>:unique</span><span class='op'>=&gt;</span> <span class='id identifier rubyid_unique_count'>unique_count</span><span class='rbrace'>}</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_reviewers_hash'>reviewers_hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ordered_ingredients-instance_method">
+  
+    - (<tt>Object</tt>) <strong>ordered_ingredients</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>returns recipe ingredients in order</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+407
+408
+409</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 407</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ordered_ingredients'>ordered_ingredients</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ingredients_recipes'>ingredients_recipes</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:position</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="recipe_ingredients_full_names-instance_method">
+  
+    - (<tt>Object</tt>) <strong>recipe_ingredients_full_names</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+224
+225
+226
+227
+228
+229
+230</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 224</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_recipe_ingredients_full_names'>recipe_ingredients_full_names</span>
+  <span class='id identifier rubyid_full_names'>full_names</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ordered_ingredients'>ordered_ingredients</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ingredient'>ingredient</span><span class='op'>|</span>
+    <span class='id identifier rubyid_full_names'>full_names</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_ingredient'>ingredient</span><span class='period'>.</span><span class='id identifier rubyid_full_name'>full_name</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_full_names'>full_names</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="review_tier-instance_method">
+  
+    - (<tt>Object</tt>) <strong>review_tier</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_review_tier'>review_tier</span>
+  <span class='id identifier rubyid_quality_reviews'>quality_reviews</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_quality_reviews'>quality_reviews</span><span class='period'>.</span><span class='id identifier rubyid_order'>order</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_passed'>passed</span> <span class='op'>!=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_review_tier'>review_tier</span> <span class='op'>=</span> <span class='int'>1</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_review_tier'>review_tier</span> <span class='op'>=</span> <span class='int'>2</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_review_tier'>review_tier</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_review_tier'>review_tier</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="steps-instance_method">
+  
+    - (<tt>Object</tt>) <strong>steps</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>returns recipe steps in order</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+413
+414
+415</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 413</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_steps'>steps</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_recipe_steps'>recipe_steps</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:position</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="steps_by_group-instance_method">
+  
+    - (<tt>Object</tt>) <strong>steps_by_group</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>returns recipe steps by group</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 386</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_steps_by_group'>steps_by_group</span>
+  <span class='id identifier rubyid_steps_groups'>steps_groups</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_recipe_steps'>recipe_steps</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_step'>step</span><span class='op'>|</span> <span class='id identifier rubyid_steps_groups'>steps_groups</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_step'>step</span><span class='period'>.</span><span class='id identifier rubyid_group_name'>group_name</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_steps_groups'>steps_groups</span> <span class='op'>=</span> <span class='id identifier rubyid_steps_groups'>steps_groups</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:empty?</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+  <span class='id identifier rubyid_steps_by_group'>steps_by_group</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_recipe_steps'>recipe_steps</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_step'>step</span><span class='op'>|</span>
+    <span class='id identifier rubyid_steps_groups'>steps_groups</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_group'>group</span><span class='op'>|</span>
+      <span class='id identifier rubyid_steps_by_group'>steps_by_group</span><span class='lbracket'>[</span><span class='id identifier rubyid_group'>group</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_steps_by_group'>steps_by_group</span><span class='lbracket'>[</span><span class='id identifier rubyid_group'>group</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_steps_by_group'>steps_by_group</span><span class='lbracket'>[</span><span class='id identifier rubyid_group'>group</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_step'>step</span> <span class='kw'>if</span> <span class='id identifier rubyid_step'>step</span><span class='period'>.</span><span class='id identifier rubyid_group_name'>group_name</span> <span class='op'>==</span> <span class='id identifier rubyid_group'>group</span>
+      <span class='id identifier rubyid_steps_by_group'>steps_by_group</span><span class='lbracket'>[</span><span class='id identifier rubyid_group'>group</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_steps_by_group'>steps_by_group</span><span class='lbracket'>[</span><span class='id identifier rubyid_group'>group</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:position</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='lparen'>(</span> <span class='lparen'>(</span><span class='id identifier rubyid_step'>step</span><span class='period'>.</span><span class='id identifier rubyid_group_name'>group_name</span> <span class='op'>==</span> <span class='kw'>nil</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id identifier rubyid_step'>step</span><span class='period'>.</span><span class='id identifier rubyid_group_name'>group_name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rparen'>)</span>
+      <span class='id identifier rubyid_steps_by_group'>steps_by_group</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Main</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_steps_by_group'>steps_by_group</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Main</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_steps_by_group'>steps_by_group</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Main</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_step'>step</span>
+      <span class='id identifier rubyid_steps_by_group'>steps_by_group</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Main</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_steps_by_group'>steps_by_group</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Main</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:position</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_steps_by_group'>steps_by_group</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_csv-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_csv</strong>(options = {}) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/recipe.rb', line 42</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_csv'>to_csv</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='const'>CSV</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_csv'>csv</span><span class='op'>|</span>
+    <span class='id identifier rubyid_csv'>csv</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_column_names'>column_names</span>
+      <span class='id identifier rubyid_csv'>csv</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_recipe'>recipe</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_column_names'>column_names</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Jul  7 11:48:42 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

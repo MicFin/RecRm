@@ -1,0 +1,472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Users::RegistrationsController
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!Users/RegistrationsController.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (R)</a> &raquo;
+    <span class='title'>Users</span>
+     &raquo; 
+    <span class="title">RegistrationsController</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Users::RegistrationsController
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Devise::RegistrationsController</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Devise::RegistrationsController</li>
+          
+            <li class="next">Users::RegistrationsController</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="../PatientGroupsHelper.html" title="PatientGroupsHelper (module)">PatientGroupsHelper</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">app/controllers/users/registrations_controller.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p><a
+href="http://stackoverflow.com/questions/16379554/strong-parameters-with-rails-4-0-and-devise">stackoverflow.com/questions/16379554/strong-parameters-with-rails-4-0-and-devise</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#after_sign_up_path_for-instance_method" title="#after_sign_up_path_for (instance method)">- (Object) <strong>after_sign_up_path_for</strong>(resource) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sign_up-instance_method" title="#sign_up (instance method)">- (Object) <strong>sign_up</strong>(resource_name, resource) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>def update      super end Signs in a user on sign up.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sign_up_params-instance_method" title="#sign_up_params (instance method)">- (Object) <strong>sign_up_params</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>@family_members &lt;&lt; @user   end   # for in-session update JS response 
+get_patient_groups!   @diseases = @diseases    @intolerances =
+@intolerances    @allergies = @allergies   @diets =  @diets     redirect_to
+select_time_path(@appointment) end.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../PatientGroupsHelper.html" title="PatientGroupsHelper (module)">PatientGroupsHelper</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../PatientGroupsHelper.html#get_patient_groups%21-instance_method" title="PatientGroupsHelper#get_patient_groups! (method)">#get_patient_groups!</a></span></p>
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="after_sign_up_path_for-instance_method">
+  
+    - (<tt>Object</tt>) <strong>after_sign_up_path_for</strong>(resource) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/users/registrations_controller.rb', line 18</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_after_sign_up_path_for'>after_sign_up_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_pry'>pry</span>
+  <span class='id identifier rubyid_after_sign_in_path_for'>after_sign_in_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="sign_up-instance_method">
+  
+    - (<tt>Object</tt>) <strong>sign_up</strong>(resource_name, resource) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>def update</p>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>super</span></code></pre>
+
+<p>end Signs in a user on sign up. You can overwrite this method in your own
+RegistrationsController.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/users/registrations_controller.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_sign_up'>sign_up</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_sign_in'>sign_in</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="sign_up_params-instance_method">
+  
+    - (<tt>Object</tt>) <strong>sign_up_params</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/users/registrations_controller.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_sign_up_params'>sign_up_params</span>
+  <span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_pry'>pry</span>
+  <span class='id identifier rubyid_devise_parameter_sanitizer'>devise_parameter_sanitizer</span><span class='period'>.</span><span class='id identifier rubyid_sanitize'>sanitize</span><span class='lparen'>(</span><span class='symbol'>:sign_up</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>@family_members &lt;&lt; @user</p>
+
+<pre class="code ruby"><code class="ruby">end
+# for in-session update JS response
+get_patient_groups!
+@diseases = @diseases 
+@intolerances = @intolerances 
+@allergies = @allergies
+@diets =  @diets  
+redirect_to select_time_path(@appointment)</code></pre>
+
+<p>end</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/users/registrations_controller.rb', line 255</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  
+  <span class='ivar'>@user</span> <span class='op'>=</span> <span class='id identifier rubyid_current_user'>current_user</span>
+
+  <span class='id identifier rubyid_successfully_updated'>successfully_updated</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_needs_password?'>needs_password?</span><span class='lparen'>(</span><span class='ivar'>@user</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='ivar'>@user</span><span class='period'>.</span><span class='id identifier rubyid_update_with_password'>update_with_password</span><span class='lparen'>(</span><span class='id identifier rubyid_devise_parameter_sanitizer'>devise_parameter_sanitizer</span><span class='period'>.</span><span class='id identifier rubyid_sanitize'>sanitize</span><span class='lparen'>(</span><span class='symbol'>:account_update</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    
+  <span class='kw'>else</span>
+    
+    <span class='comment'># remove the virtual current_password attribute
+</span>    <span class='comment'># update_without_password doesn&#39;t know how to ignore it
+</span>    <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:user</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:current_password</span><span class='rparen'>)</span>
+    <span class='ivar'>@user</span><span class='period'>.</span><span class='id identifier rubyid_update_without_password'>update_without_password</span><span class='lparen'>(</span><span class='id identifier rubyid_devise_parameter_sanitizer'>devise_parameter_sanitizer</span><span class='period'>.</span><span class='id identifier rubyid_sanitize'>sanitize</span><span class='lparen'>(</span><span class='symbol'>:account_update</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_successfully_updated'>successfully_updated</span>
+
+    <span class='id identifier rubyid_set_flash_message'>set_flash_message</span> <span class='symbol'>:notice</span><span class='comma'>,</span> <span class='symbol'>:updated</span>
+    <span class='comment'># Sign in the user bypassing validation in case their password changed
+</span>    <span class='id identifier rubyid_sign_in'>sign_in</span> <span class='ivar'>@user</span><span class='comma'>,</span> <span class='symbol'>:bypass</span> <span class='op'>=&gt;</span> <span class='kw'>true</span>
+
+    <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_after_update_path_for'>after_update_path_for</span><span class='lparen'>(</span><span class='ivar'>@user</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_render'>render</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>edit</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Jul  7 11:48:46 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

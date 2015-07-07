@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class AppointmentsController - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="AppointmentsHelper.html">AppointmentsHelper</a>
+  
+  
+  
+    <li><a class="include" href="PatientGroupsHelper.html">PatientGroupsHelper</a>
+  
+  
+  
+    <li><a class="include" href="FamiliesHelper.html">FamiliesHelper</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-appointment_prep">#appointment_prep</a>
+    
+    <li ><a href="#method-i-appointment_review">#appointment_review</a>
+    
+    <li ><a href="#method-i-complete_appt_prep_survey">#complete_appt_prep_survey</a>
+    
+    <li ><a href="#method-i-create">#create</a>
+    
+    <li ><a href="#method-i-create_appointment_request_times">#create_appointment_request_times</a>
+    
+    <li ><a href="#method-i-destroy">#destroy</a>
+    
+    <li ><a href="#method-i-edit">#edit</a>
+    
+    <li ><a href="#method-i-end_appointment">#end_appointment</a>
+    
+    <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-new">#new</a>
+    
+    <li ><a href="#method-i-new_appointment_request_times">#new_appointment_request_times</a>
+    
+    <li ><a href="#method-i-purchase">#purchase</a>
+    
+    <li ><a href="#method-i-select_time">#select_time</a>
+    
+    <li ><a href="#method-i-show">#show</a>
+    
+    <li ><a href="#method-i-update">#update</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-AppointmentsController">
+  <h1 id="class-AppointmentsController" class="class">
+    class AppointmentsController
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-appointment_prep" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">appointment_prep</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /appointments/1/appointment_prep currently called from dietitian prep
+(with modal)  dietitian insession</p>
+          
+          
+
+          
+          <div class="method-source-code" id="appointment_prep-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">appointment_prep</span>
+ <span class="ruby-comment"># should add the .has_role? to &quot;Current Dietitian&quot; in here so the dietitian doesnt haveunlimited access</span>
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">dietitian</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_dietitian</span> 
+    <span class="ruby-ivar">@client</span> = <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">appointment_host</span>
+    <span class="ruby-comment"># set @family before get_family_info</span>
+
+    <span class="ruby-ivar">@family</span> = <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">head_of_families</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-comment"># get_family_info!</span>
+    <span class="ruby-comment"># @family_members</span>
+    <span class="ruby-comment"># @family</span>
+      <span class="ruby-comment"># create family should be a helper method on the family model</span>
+      <span class="ruby-ivar">@family_members</span> = []
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">patient_focus</span> 
+        <span class="ruby-identifier">appointment_focus</span> = <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">patient_focus</span>
+        <span class="ruby-ivar">@family_members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">appointment_focus</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">family_count</span> = <span class="ruby-ivar">@family</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">count</span>
+      
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">family_count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@client</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">appointment_focus</span>
+          <span class="ruby-ivar">@family_members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@client</span>
+          <span class="ruby-ivar">@family</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">family_member</span><span class="ruby-operator">|</span> 
+            <span class="ruby-keyword">if</span> <span class="ruby-identifier">family_member</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">appointment_focus</span>
+              <span class="ruby-ivar">@family_members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">family_member</span> 
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-ivar">@family</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">family_member</span><span class="ruby-operator">|</span>
+              <span class="ruby-ivar">@family_members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">family_member</span>
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@family_members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@client</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">get_patient_groups!</span>
+    <span class="ruby-ivar">@diseases</span> = <span class="ruby-ivar">@diseases</span> 
+    <span class="ruby-ivar">@intolerances</span> = <span class="ruby-ivar">@intolerances</span> 
+    <span class="ruby-ivar">@allergies</span> = <span class="ruby-ivar">@allergies</span>
+    <span class="ruby-ivar">@diets</span> =  <span class="ruby-ivar">@diets</span> 
+    <span class="ruby-comment"># @unverified_health_groups = @family_members[0].unverified_health_groups</span>
+    <span class="ruby-ivar">@dietitian_survey</span> = <span class="ruby-constant">Survey</span>.<span class="ruby-identifier">generate_for_appointment</span>(<span class="ruby-ivar">@appointment</span>, <span class="ruby-identifier">current_dietitian</span>)
+    <span class="ruby-ivar">@survey</span> = <span class="ruby-constant">Survey</span>.<span class="ruby-identifier">generate_for_appointment</span>(<span class="ruby-ivar">@appointment</span>, <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">appointment_host</span>)
+    <span class="ruby-ivar">@surveyable</span> = <span class="ruby-ivar">@appointment</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:modal</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;false&quot;</span> 
+      <span class="ruby-ivar">@modal</span> = <span class="ruby-keyword">false</span> 
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@modal</span> = <span class="ruby-keyword">true</span> 
+    <span class="ruby-keyword">end</span>
+    
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-appointment_review" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">appointment_review</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /appointments/1/appointment_review</p>
+          
+          
+
+          
+          <div class="method-source-code" id="appointment_review-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 179</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">appointment_review</span>
+  <span class="ruby-comment"># should add the .has_role? to &quot;Current Dietitian&quot; in here so the dietitian doesnt haveunlimited access</span>
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">dietitian</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_dietitian</span> 
+    <span class="ruby-ivar">@client</span> = <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">appointment_host</span>
+    <span class="ruby-comment"># set @family before get_family_info</span>
+    <span class="ruby-ivar">@family</span> = <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">head_of_families</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-comment"># get_family_info!</span>
+    <span class="ruby-comment"># @family_members</span>
+    <span class="ruby-comment"># @family</span>
+    <span class="ruby-comment"># create family should be a helper method on the family model</span>
+    <span class="ruby-ivar">@family_members</span> = []
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">patient_focus</span> 
+      <span class="ruby-identifier">appointment_focus</span> = <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">patient_focus</span>
+      <span class="ruby-ivar">@family_members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">appointment_focus</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">family_count</span> = <span class="ruby-ivar">@family</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">count</span>
+    
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">family_count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@client</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">appointment_focus</span>
+        <span class="ruby-ivar">@family_members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@client</span>
+        <span class="ruby-ivar">@family</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">family_member</span><span class="ruby-operator">|</span> 
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">family_member</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">appointment_focus</span>
+            <span class="ruby-ivar">@family_members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">family_member</span> 
+          <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@family</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">family_member</span><span class="ruby-operator">|</span>
+            <span class="ruby-ivar">@family_members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">family_member</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@family_members</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@client</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">get_patient_groups!</span>
+    <span class="ruby-ivar">@diseases</span> = <span class="ruby-ivar">@diseases</span> 
+    <span class="ruby-ivar">@intolerances</span> = <span class="ruby-ivar">@intolerances</span> 
+    <span class="ruby-ivar">@allergies</span> = <span class="ruby-ivar">@allergies</span>
+    <span class="ruby-ivar">@diets</span> =  <span class="ruby-ivar">@diets</span> 
+    <span class="ruby-comment"># @unverified_health_groups = @family_members[0].unverified_health_groups</span>
+    <span class="ruby-ivar">@dietitian_survey</span> = <span class="ruby-constant">Survey</span>.<span class="ruby-identifier">generate_for_appointment</span>(<span class="ruby-ivar">@appointment</span>, <span class="ruby-identifier">current_dietitian</span>)
+    <span class="ruby-ivar">@survey</span> = <span class="ruby-constant">Survey</span>.<span class="ruby-identifier">generate_for_appointment</span>(<span class="ruby-ivar">@appointment</span>, <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">appointment_host</span>)
+    <span class="ruby-ivar">@surveyable</span> = <span class="ruby-ivar">@appointment</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-complete_appt_prep_survey" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">complete_appt_prep_survey</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="complete_appt_prep_survey-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">complete_appt_prep_survey</span>
+  
+  <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;Appt-Prep-Survey-Complete&quot;</span>
+  <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST /appointments POST /appointments.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 290</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  
+  <span class="ruby-identifier">clean_dates_for_database</span>
+  
+  <span class="ruby-ivar">@appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">appointment_params</span>)
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@appointment</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Appointment was successfully created.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@appointment</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_appointment_request_times" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_appointment_request_times</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST /appointments/new_appointment_request_times</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_appointment_request_times-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_appointment_request_times</span>
+  <span class="ruby-ivar">@appointment_requests</span> =[]
+  <span class="ruby-identifier">patient_focus</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">appointment_hosts</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">patient_focus</span>
+  <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">appointment_hosts</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;In Registration&quot;</span>
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:appointment</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value_hash</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">value_hash</span>[<span class="ruby-string">&quot;start_time&quot;</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;&quot;</span> 
+      
+      <span class="ruby-comment"># clean_dates_for_database method should be used instead</span>
+      <span class="ruby-comment"># need to test request actions before replacing</span>
+      <span class="ruby-comment">## clean start date for saving</span>
+      <span class="ruby-identifier">temp_start_date</span> = <span class="ruby-identifier">value_hash</span>[<span class="ruby-string">&quot;start_time&quot;</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;/&quot;</span>)
+      <span class="ruby-identifier">temp_start_month</span> = <span class="ruby-identifier">temp_start_date</span>[<span class="ruby-value">0</span>]
+      <span class="ruby-identifier">temp_start_day</span> = <span class="ruby-identifier">temp_start_date</span>[<span class="ruby-value">1</span>]
+      <span class="ruby-identifier">temp_start_year</span> = <span class="ruby-identifier">temp_start_date</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>)[<span class="ruby-value">0</span>]
+      <span class="ruby-identifier">value_hash</span>[<span class="ruby-string">&quot;start_time&quot;</span>] = <span class="ruby-identifier">temp_start_year</span> <span class="ruby-operator">+</span><span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">temp_start_month</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">temp_start_day</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">temp_start_date</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>, <span class="ruby-value">2</span>)[<span class="ruby-value">1</span>].<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39; &#39;</span>)
+      <span class="ruby-identifier">value_hash</span>[<span class="ruby-string">&quot;start_time&quot;</span>] = <span class="ruby-identifier">value_hash</span>[<span class="ruby-string">&quot;start_time&quot;</span>].<span class="ruby-identifier">in_time_zone</span>(<span class="ruby-string">&quot;Eastern Time (US &amp; Canada)&quot;</span>)
+
+      <span class="ruby-comment">## clean end date for saving</span>
+      <span class="ruby-identifier">temp_end_date</span> = <span class="ruby-identifier">value_hash</span>[<span class="ruby-string">&quot;end_time&quot;</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;/&quot;</span>)
+      <span class="ruby-identifier">temp_end_month</span> = <span class="ruby-identifier">temp_end_date</span>[<span class="ruby-value">0</span>]
+      <span class="ruby-identifier">temp_end_day</span> = <span class="ruby-identifier">temp_end_date</span>[<span class="ruby-value">1</span>]
+      <span class="ruby-identifier">temp_end_year</span> = <span class="ruby-identifier">temp_end_date</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>)[<span class="ruby-value">0</span>]
+      <span class="ruby-identifier">value_hash</span>[<span class="ruby-string">&quot;end_time&quot;</span>] = <span class="ruby-identifier">temp_end_year</span> <span class="ruby-operator">+</span><span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">temp_end_month</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">temp_end_day</span><span class="ruby-operator">+</span><span class="ruby-string">&quot; &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">temp_end_date</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot; &quot;</span>, <span class="ruby-value">2</span>)[<span class="ruby-value">1</span>].<span class="ruby-identifier">delete</span>(<span class="ruby-string">&#39; &#39;</span>)
+      <span class="ruby-identifier">value_hash</span>[<span class="ruby-string">&quot;end_time&quot;</span>] = <span class="ruby-identifier">value_hash</span>[<span class="ruby-string">&quot;end_time&quot;</span>].<span class="ruby-identifier">in_time_zone</span>(<span class="ruby-string">&quot;Eastern Time (US &amp; Canada)&quot;</span>)
+
+      <span class="ruby-comment"># save appointment </span>
+      <span class="ruby-identifier">appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value_hash</span>)
+      <span class="ruby-identifier">appointment</span>.<span class="ruby-identifier">appointment_host</span> = <span class="ruby-identifier">current_user</span>
+      <span class="ruby-identifier">appointment</span>.<span class="ruby-identifier">patient_focus</span> = <span class="ruby-identifier">patient_focus</span>
+      <span class="ruby-identifier">appointment</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;Requested&quot;</span>
+      <span class="ruby-identifier">appointment</span>.<span class="ruby-identifier">duration</span> = <span class="ruby-value">60</span>
+      <span class="ruby-identifier">appointment</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-ivar">@appointment_requests</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">appointment</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_dashboard_path</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Appointment requests were successfully sent.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>DELETE /appointments/1 DELETE /appointments/1.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 475</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  <span class="ruby-ivar">@new_appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">dietitian_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_dietitian</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">appointment_host_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">appointment_host_id</span>, <span class="ruby-identifier">patient_focus_id</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">patient_focus_id</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Follow Up Unpaid&quot;</span>)
+  <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">destroy</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">appointments_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Appointment was successfully destroyed.&#39;</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
+
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /appointments/1/edit</p>
+          
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 259</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-comment">## for first edit use case it is when the user/client is selecting a time for their appointment, that is why it asks for time_slot chosen.  should be different method than edit method</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:time_slot_id</span>]
+    <span class="ruby-ivar">@time_slot</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:time_slot_id</span>])
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Follow Up Unpaid&quot;</span>
+    <span class="ruby-comment"># unpaid appointment that is edited after a dietitian creates the follow up unpaid appointment</span>
+    <span class="ruby-comment"># set new_appointment variable for next_session_form.html.erb</span>
+    <span class="ruby-ivar">@new_appointment</span> = <span class="ruby-ivar">@appointment</span>
+
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@dietitians</span> = <span class="ruby-constant">Dietitian</span>.<span class="ruby-identifier">all</span> 
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
+  
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-end_appointment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">end_appointment</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /appointments/1/end_appointment</p>
+          
+          
+
+          
+          <div class="method-source-code" id="end_appointment-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 414</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">end_appointment</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span> 
+
+    <span class="ruby-comment"># if a user</span>
+    <span class="ruby-ivar">@survey</span> = <span class="ruby-constant">Survey</span>.<span class="ruby-identifier">generate_for_post_appointment</span>(<span class="ruby-ivar">@appointment</span>, <span class="ruby-identifier">current_user</span>)
+    <span class="ruby-comment"># return user end of apt survey</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-comment"># else a dietitian</span>
+    <span class="ruby-comment">#  dietitian end of appointment survey</span>
+    <span class="ruby-ivar">@survey</span> = <span class="ruby-constant">Survey</span>.<span class="ruby-identifier">generate_for_post_appointment</span>(<span class="ruby-ivar">@appointment</span>, <span class="ruby-identifier">current_dietitian</span>)
+    <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;Complete&quot;</span>
+    <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-comment"># @user_pre_appt_survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)</span>
+    <span class="ruby-comment"># # @follow_up = Survey.generate_for_follow_up(@appointment)</span>
+    <span class="ruby-comment"># # mark appointment as complete, timestamp ending time, save length</span>
+    <span class="ruby-comment"># @appointment.status = &quot;Complete&quot;</span>
+    <span class="ruby-comment"># @appointment.save</span>
+
+    <span class="ruby-comment"># @client = @appointment.appointment_host</span>
+    <span class="ruby-comment"># # set @family before get_family_info</span>
+
+    <span class="ruby-comment"># @family = @client.head_of_families.first</span>
+    <span class="ruby-comment"># # get_family_info!</span>
+    <span class="ruby-comment"># # @family_members</span>
+    <span class="ruby-comment"># # @family</span>
+    <span class="ruby-comment"># # create family should be a helper method on the family model</span>
+    <span class="ruby-comment"># @family_members = []</span>
+    <span class="ruby-comment"># if @appointment.patient_focus </span>
+    <span class="ruby-comment">#   appointment_focus = @appointment.patient_focus</span>
+    <span class="ruby-comment">#   @family_members &lt;&lt; appointment_focus</span>
+    <span class="ruby-comment"># end</span>
+    <span class="ruby-comment"># family_count = @family.users.count</span>
+    
+    <span class="ruby-comment"># if family_count &gt; 0</span>
+    <span class="ruby-comment">#   if @client != appointment_focus</span>
+    <span class="ruby-comment">#     @family_members &lt;&lt; @client</span>
+    <span class="ruby-comment">#     @family.users.each do |family_member| </span>
+    <span class="ruby-comment">#       if family_member != appointment_focus</span>
+    <span class="ruby-comment">#         @family_members &lt;&lt; family_member </span>
+    <span class="ruby-comment">#       end</span>
+    <span class="ruby-comment">#     end</span>
+    <span class="ruby-comment">#   else</span>
+    <span class="ruby-comment">#     @family.users.each do |family_member|</span>
+    <span class="ruby-comment">#         @family_members &lt;&lt; family_member</span>
+    <span class="ruby-comment">#     end</span>
+    <span class="ruby-comment">#   end</span>
+    <span class="ruby-comment"># else</span>
+    <span class="ruby-comment">#   @family_members &lt;&lt; @client</span>
+    <span class="ruby-comment"># end</span>
+    <span class="ruby-comment"># get_patient_groups!</span>
+    <span class="ruby-comment"># @diseases = @diseases </span>
+    <span class="ruby-comment"># @intolerances = @intolerances </span>
+    <span class="ruby-comment"># @allergies = @allergies</span>
+    <span class="ruby-comment"># @diets =  @diets </span>
+    <span class="ruby-comment"># @unverified_health_groups = @family_members[0].unverified_health_groups</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /appointments GET /appointments.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+
+  <span class="ruby-comment">#### user for user appointment nav tab</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span> 
+    <span class="ruby-comment"># AppointmentsHelper</span>
+    <span class="ruby-identifier">get_previous_appointments!</span>
+    <span class="ruby-ivar">@previous_appointments</span>
+    <span class="ruby-identifier">get_upcoming_appointment!</span>
+    <span class="ruby-ivar">@upcoming_appointment</span>
+    <span class="ruby-comment"># FamiliessHelper</span>
+    <span class="ruby-identifier">get_family!</span>
+    <span class="ruby-ivar">@family</span>
+    <span class="ruby-ivar">@family_members</span>
+
+  <span class="ruby-keyword">elsif</span> ( (<span class="ruby-identifier">current_dietitian</span>.<span class="ruby-identifier">has_role?</span> <span class="ruby-string">&quot;Admin Dietitian&quot;</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:dietitian_id</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;All&quot;</span>) ) 
+    <span class="ruby-ivar">@appointments</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;start_time &gt; ?&quot;</span>, <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time ASC, created_at ASC&#39;</span>)
+  <span class="ruby-keyword">elsif</span> ( (<span class="ruby-identifier">current_dietitian</span>.<span class="ruby-identifier">has_role?</span> <span class="ruby-string">&quot;Admin Dietitian&quot;</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:dietitian_id</span>]) ) 
+    <span class="ruby-identifier">dietitian</span> = <span class="ruby-constant">Dietitian</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:dietitian_id</span>])
+    <span class="ruby-ivar">@appointments</span> = <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">appointments</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time ASC, created_at ASC&#39;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@appointments_no_dietitian</span> = {}
+    <span class="ruby-ivar">@appointment_requests</span> = {}
+    <span class="ruby-comment"># Appointment.where(&quot;start_time &gt; ?&quot;, DateTime.now).order(&#39;start_time ASC, created_at ASC&#39;).where(dietitian_id: nil).each do |appointment|</span>
+    <span class="ruby-comment">#   dietitians = appointment.available_dietitians</span>
+    <span class="ruby-comment">#   @appointments_no_dietitian[appointment] = dietitians</span>
+    <span class="ruby-comment"># end</span>
+    <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;start_time &gt; ?&quot;</span>, <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">days</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time ASC, created_at ASC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">dietitian_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">appointment</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">appointment</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Requested&quot;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@appointment_requests</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">appointment</span>.<span class="ruby-identifier">appointment_host</span>)
+          <span class="ruby-ivar">@appointment_requests</span>[<span class="ruby-identifier">appointment</span>.<span class="ruby-identifier">appointment_host</span>] = []
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-ivar">@appointment_requests</span>[<span class="ruby-identifier">appointment</span>.<span class="ruby-identifier">appointment_host</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">appointment</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">dietitians</span> = <span class="ruby-identifier">appointment</span>.<span class="ruby-identifier">available_dietitians</span>
+        <span class="ruby-ivar">@appointments_no_dietitian</span>[<span class="ruby-identifier">appointment</span>] = <span class="ruby-identifier">dietitians</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@upcoming_appointments</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;start_time &gt; ?&quot;</span>, <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time ASC, created_at ASC&#39;</span>)
+
+    <span class="ruby-ivar">@previous_appointments</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;start_time &lt; ?&quot;</span>, <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time ASC, created_at ASC&#39;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /appointments/new</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 254</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-new_appointment_request_times" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_appointment_request_times</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /appointments/new_appointment_request_times</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new_appointment_request_times-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_appointment_request_times</span>
+
+  <span class="ruby-ivar">@new_appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-purchase" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">purchase</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="purchase-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 279</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">purchase</span>
+  <span class="ruby-comment"># payment_modal template requires a time_slot for start and end time</span>
+  <span class="ruby-ivar">@time_slot</span> = <span class="ruby-ivar">@appointment</span> 
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-select_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">select_time</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="select_time-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">select_time</span>
+  
+  <span class="ruby-ivar">@time_slots</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">select_appointment_time_slots</span> 
+  <span class="ruby-ivar">@sign_up_stage</span> = <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">stage</span> 
+  <span class="ruby-ivar">@appointment_requests</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">appointment_host_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Requested&quot;</span>).<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time ASC, created_at ASC&#39;</span>)
+  
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>this is where the index modal is coming from to view the prep information
+before the admin assigns a dietitian</p>
+          
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 232</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:data</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Request&quot;</span>
+    
+  <span class="ruby-keyword">else</span> 
+    <span class="ruby-comment">### this is being used to prep assign the dietitian </span>
+    <span class="ruby-ivar">@dietitians</span> = <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">available_dietitians</span>
+    <span class="ruby-ivar">@dietitians_data</span> = {}
+    <span class="ruby-ivar">@dietitians</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dietitian</span><span class="ruby-operator">|</span>
+      <span class="ruby-ivar">@dietitians_data</span>[<span class="ruby-identifier">dietitian</span>] = {}
+      <span class="ruby-ivar">@dietitians_data</span>[<span class="ruby-identifier">dietitian</span>][<span class="ruby-string">&quot;half_hour_time_slots_available&quot;</span>] = <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">half_hour_time_slots_available</span>
+      <span class="ruby-ivar">@dietitians_data</span>[<span class="ruby-identifier">dietitian</span>][<span class="ruby-string">&quot;loss_time_slots&quot;</span>] = <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">loss_time_slots</span>(<span class="ruby-ivar">@appointment</span>) 
+      <span class="ruby-ivar">@dietitians_data</span>[<span class="ruby-identifier">dietitian</span>][<span class="ruby-string">&quot;loss_cal_slots&quot;</span>] = <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">loss_calendar_slots</span>(<span class="ruby-ivar">@appointment</span>)      
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@survey</span> = <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">surveys</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">survey_type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Pre-Appointment-Client&quot;</span>).<span class="ruby-identifier">last</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>PATCH/PUT /appointments/1 PATCH/PUT /appointments/1.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 310</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-comment">## if the appointment status is follow up unpaid and does not have a stripe card token then the appointment is being created without payment and the dates need to be cleaned</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Follow Up Unpaid&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:appointment</span>][<span class="ruby-value">:stripe_card_token</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">clean_dates_for_database</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># if update saves</span>
+
+
+  <span class="ruby-comment">##### added for manually assigning a room, should be removed from logic</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:new_room_needed</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;true&quot;</span>
+      
+      <span class="ruby-comment"># @new_session = @opentok.create_session </span>
+      <span class="ruby-comment"># @tok_token = @new_session.generate_token :session_id =&gt;@new_session.session_id </span>
+      <span class="ruby-comment"># ## creating a new room each time, should either purge old rooms or assign rooms to dietitians </span>
+      <span class="ruby-comment"># @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: &quot;Early Access Session&quot;)</span>
+      <span class="ruby-comment"># @new_room.save</span>
+      <span class="ruby-comment"># dietitian = @appointment.dietitian</span>
+      <span class="ruby-comment"># dietitian.add_role &quot;Session Host&quot;, @new_room</span>
+      <span class="ruby-comment"># user = @appointment.appointment_host</span>
+      <span class="ruby-comment"># user.add_role &quot;Session Guest&quot;, @new_room</span>
+      <span class="ruby-comment"># user.save</span>
+      <span class="ruby-comment"># # set appointment to room (1st and only for now)</span>
+      <span class="ruby-comment"># if @appointment.room_id == nil</span>
+      <span class="ruby-comment">#   @appointment.room_id = @new_room.id</span>
+      <span class="ruby-comment"># end</span>
+  <span class="ruby-comment">##### should remove above</span>
+
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">appointment_params</span>)
+    
+    <span class="ruby-comment"># if stripe card payment update incnluded in update then user is paying </span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">appointment_params</span>[<span class="ruby-value">:stripe_card_token</span>]
+      <span class="ruby-comment"># pay for appointment</span>
+      <span class="ruby-identifier">token</span> = <span class="ruby-identifier">appointment_params</span>[<span class="ruby-value">:stripe_card_token</span>]
+  
+      <span class="ruby-comment"># check if credit card should be saved to stripe account</span>
+      <span class="ruby-identifier">credit_card_usage</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:credit_card_usage</span>]
+      
+      <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">update_with_payment</span>(<span class="ruby-identifier">credit_card_usage</span>)
+
+
+      <span class="ruby-ivar">@pre_appt_survey</span> = <span class="ruby-constant">Survey</span>.<span class="ruby-identifier">generate_for_appointment</span>(<span class="ruby-ivar">@appointment</span>, <span class="ruby-identifier">current_user</span>)
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Follow Up Unpaid&quot;</span> 
+      <span class="ruby-comment">## for when unpaid follow up visits are updated by the dietitian</span>
+
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:appointment</span>][<span class="ruby-value">:note</span>]
+
+    <span class="ruby-comment"># or when admin dietitian assigns dietitian</span>
+    <span class="ruby-keyword">elsif</span> (<span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">dietitian_id</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>)
+      <span class="ruby-comment">## assumes that appointment has been paid for and assigned a dietitian by admin dietitian</span>
+      <span class="ruby-ivar">@new_session</span> = <span class="ruby-ivar">@opentok</span>.<span class="ruby-identifier">create_session</span> 
+      <span class="ruby-ivar">@tok_token</span> = <span class="ruby-ivar">@new_session</span>.<span class="ruby-identifier">generate_token</span> <span class="ruby-value">:session_id</span> =<span class="ruby-operator">&gt;</span><span class="ruby-ivar">@new_session</span>.<span class="ruby-identifier">session_id</span> 
+      <span class="ruby-comment">## creating a new room each time, should either purge old rooms or assign rooms to dietitians </span>
+      <span class="ruby-ivar">@new_room</span> = <span class="ruby-constant">Room</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">dietitian_id</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">dietitian_id</span>, <span class="ruby-identifier">public</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">sessionId</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@new_session</span>.<span class="ruby-identifier">session_id</span>, <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Early Access Session&quot;</span>)
+      <span class="ruby-comment"># @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, name: &quot;Early Access Session&quot;)</span>
+      <span class="ruby-ivar">@new_room</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">dietitian</span> = <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">dietitian</span>
+      <span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">add_role</span> <span class="ruby-string">&quot;Session Host&quot;</span>, <span class="ruby-ivar">@new_room</span>
+      <span class="ruby-identifier">user</span> = <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">appointment_host</span>
+      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">add_role</span> <span class="ruby-string">&quot;Session Guest&quot;</span>, <span class="ruby-ivar">@new_room</span>
+      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-comment"># set appointment to room (1st and only for now)</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">room_id</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+        <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">room_id</span> = <span class="ruby-ivar">@new_room</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-comment"># mark time slot as having an appointment and cancel related time slots</span>
+      
+      <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">start_time</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">end_time</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ts</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">ts</span>.<span class="ruby-identifier">dietitian</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">dietitian</span>
+          <span class="ruby-identifier">time_slot</span> = <span class="ruby-identifier">ts</span> 
+          <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">vacancy</span> = <span class="ruby-keyword">false</span>
+          <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;Appointment&quot;</span>
+          <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">appointment</span> = <span class="ruby-ivar">@appointment</span>
+          <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">save</span>
+          <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">cancel_related_time_slots</span>(<span class="ruby-identifier">time_slot</span>)
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+ 
+
+    <span class="ruby-comment"># other updates that could happen</span>
+    <span class="ruby-keyword">else</span>
+
+      
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_dietitian</span> 
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">appointments_path</span>(<span class="ruby-identifier">current_dietitian</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Appointment was successfully created.&#39;</span> }
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@appointment</span> }
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_dashboard_path</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Appointment was successfully created.&#39;</span> }
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@appointment</span> }
+        <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

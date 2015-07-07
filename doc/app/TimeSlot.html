@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class TimeSlot - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-between">::between</a>
+    
+    <li ><a href="#method-c-cancel_related_time_slots">::cancel_related_time_slots</a>
+    
+    <li ><a href="#method-c-create_from_availabilities">::create_from_availabilities</a>
+    
+    <li ><a href="#method-c-create_from_availability">::create_from_availability</a>
+    
+    <li ><a href="#method-c-format_date">::format_date</a>
+    
+    <li ><a href="#method-c-select_appointment_time_slots">::select_appointment_time_slots</a>
+    
+    <li ><a href="#method-i-as_json">#as_json</a>
+    
+    <li ><a href="#method-i-is_last_vacant_time_slot-3F">#is_last_vacant_time_slot?</a>
+    
+    <li ><a href="#method-i-related_time_slots">#related_time_slots</a>
+    
+    <li ><a href="#method-i-related_time_slots_count">#related_time_slots_count</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-TimeSlot">
+  <h1 id="class-TimeSlot" class="class">
+    class TimeSlot
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-between" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">between</span><span
+            class="method-args">(start_time, end_time)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>check if time slot is between two times</p>
+          
+          
+
+          
+          <div class="method-source-code" id="between-source">
+            <pre><span class="ruby-comment"># File app/models/time_slot.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">between</span>(<span class="ruby-identifier">start_time</span>, <span class="ruby-identifier">end_time</span>)
+  <span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;start_at &gt; :lo and start_at &lt; :up&#39;</span>,
+    <span class="ruby-value">:lo</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">format_date</span>(<span class="ruby-identifier">start_time</span>),
+    <span class="ruby-value">:up</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">format_date</span>(<span class="ruby-identifier">end_time</span>)
+  )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-cancel_related_time_slots" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cancel_related_time_slots</span><span
+            class="method-args">(time_slot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cancel_related_time_slots-source">
+            <pre><span class="ruby-comment"># File app/models/time_slot.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cancel_related_time_slots</span>(<span class="ruby-identifier">time_slot</span>) 
+  <span class="ruby-identifier">taken_slot_start_time</span> = <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span>
+  <span class="ruby-identifier">taken_slot_end_time</span> = <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">end_time</span>
+  
+  <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">availability</span>.<span class="ruby-identifier">time_slots</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">time_slot</span><span class="ruby-operator">|</span>
+    <span class="ruby-comment">## if it is a 30 minute slot</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">minutes</span> <span class="ruby-operator">==</span> <span class="ruby-value">30</span>
+      <span class="ruby-comment">## if it starts between 30mins before taken slots start</span>
+      <span class="ruby-keyword">if</span> ( ( (<span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span> <span class="ruby-operator">&gt;=</span> (<span class="ruby-identifier">taken_slot_start_time</span> <span class="ruby-operator">-</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>) ) ) <span class="ruby-operator">&amp;&amp;</span> ( (<span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span> <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">taken_slot_end_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>) ) ) )
+        <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;Cancelled&quot;</span>
+        <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">vacancy</span> = <span class="ruby-keyword">false</span>
+        <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># one hour time slots</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-comment">## if it starts between 30mins before taken slots start</span>
+      <span class="ruby-keyword">if</span> ( ( (<span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span> <span class="ruby-operator">&gt;=</span> (<span class="ruby-identifier">taken_slot_start_time</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">hours</span>) ) ) <span class="ruby-operator">&amp;&amp;</span> ( (<span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span> <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">taken_slot_end_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>) ) )) 
+        <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;Cancelled&quot;</span>
+        <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">vacancy</span> = <span class="ruby-keyword">false</span>
+        <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-create_from_availabilities" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_from_availabilities</span><span
+            class="method-args">(array_of_availability_objects)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns a hash of the new time slots created based on the availabilities
+that were sent to it returns {“half_hour_time_slots”=&gt;[TimeSlotObject,
+TimeSlotObject], “one_hour_time_slots”=&gt;[TimeSlotObject, TimeSlotObject]
+}</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_from_availabilities-source">
+            <pre><span class="ruby-comment"># File app/models/time_slot.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create_from_availabilities</span>(<span class="ruby-identifier">array_of_availability_objects</span>)
+  
+  <span class="ruby-identifier">one_hour_time_slots</span> = []
+  <span class="ruby-identifier">half_hour_time_slots</span> = []
+  <span class="ruby-identifier">array_of_availability_objects</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">availability_object</span><span class="ruby-operator">|</span>
+
+
+      <span class="ruby-comment">### create 1 hour time slots</span>
+      <span class="ruby-identifier">object_start_time</span> = <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">buffered_start_time</span>
+      <span class="ruby-keyword">if</span> (<span class="ruby-identifier">object_start_time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%M&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-string">&quot;15&quot;</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">object_start_time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%M&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-string">&quot;45&quot;</span>)
+        <span class="ruby-identifier">object_start_time</span> = <span class="ruby-identifier">object_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">15</span>.<span class="ruby-identifier">minutes</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">temp_start_time</span> = <span class="ruby-identifier">object_start_time</span>
+      <span class="ruby-identifier">temp_end_time</span> = <span class="ruby-identifier">temp_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">hours</span>
+      
+      <span class="ruby-keyword">until</span> <span class="ruby-identifier">temp_end_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">buffered_end_time</span> <span class="ruby-keyword">do</span> 
+        <span class="ruby-comment">## only create time slots as current if availabliity is for tier 2 dietitian or admin dietitian...all else training</span>
+        
+        <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">has_role?</span> <span class="ruby-string">&quot;Tier 2 Dietitian&quot;</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">has_role?</span> <span class="ruby-string">&quot;Admin Dietitian&quot;</span>) ) 
+          <span class="ruby-identifier">new_time</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_end_time</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Current&quot;</span>, <span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">60</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">availability_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">new_time</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_end_time</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Training&quot;</span>, <span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">60</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">availability_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">new_time</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-identifier">one_hour_time_slots</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_time</span>
+        <span class="ruby-identifier">temp_start_time</span> = <span class="ruby-identifier">temp_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>
+        <span class="ruby-identifier">temp_end_time</span> = <span class="ruby-identifier">temp_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">hours</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-comment">### create half hour time slots</span>
+      <span class="ruby-comment"># set start and end time for looping</span>
+      <span class="ruby-identifier">temp_half_hour_start_time</span> = <span class="ruby-identifier">object_start_time</span>
+      <span class="ruby-identifier">temp_half_hour_end_time</span> = <span class="ruby-identifier">temp_half_hour_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>
+      <span class="ruby-comment"># until end time is beyond limit then keep making more time slots</span>
+      <span class="ruby-keyword">until</span> <span class="ruby-identifier">temp_half_hour_end_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">buffered_end_time</span> <span class="ruby-keyword">do</span> 
+        <span class="ruby-identifier">new_time</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_half_hour_start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_half_hour_end_time</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Current&quot;</span>, <span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">30</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">availability_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">id</span>)
+        <span class="ruby-identifier">new_time</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-identifier">half_hour_time_slots</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_time</span>
+        <span class="ruby-identifier">temp_half_hour_start_time</span> = <span class="ruby-identifier">temp_half_hour_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>
+        <span class="ruby-identifier">temp_half_hour_end_time</span> = <span class="ruby-identifier">temp_half_hour_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-comment"># mark availability as Live since time slots have been made</span>
+      <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;Live&quot;</span>
+      <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">new_time_slots_hash</span> = {}
+  <span class="ruby-identifier">new_time_slots_hash</span>[<span class="ruby-string">&quot;half_hour_time_slots&quot;</span>] = <span class="ruby-identifier">half_hour_time_slots</span>
+  <span class="ruby-identifier">new_time_slots_hash</span>[<span class="ruby-string">&quot;one_hour_time_slots&quot;</span>] = <span class="ruby-identifier">one_hour_time_slots</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">new_time_slots_hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-create_from_availability" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_from_availability</span><span
+            class="method-args">(availability_object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create_from_availability-source">
+            <pre><span class="ruby-comment"># File app/models/time_slot.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create_from_availability</span>(<span class="ruby-identifier">availability_object</span>)
+  
+  <span class="ruby-identifier">one_hour_time_slots</span> = []
+  <span class="ruby-identifier">half_hour_time_slots</span> = []
+  <span class="ruby-identifier">new_time_slots_hash</span> = {}
+  
+  <span class="ruby-comment">### create 1 hour time slots</span>
+  <span class="ruby-identifier">object_start_time</span> = <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">buffered_start_time</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">object_start_time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%M&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-string">&quot;15&quot;</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">object_start_time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%M&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-string">&quot;45&quot;</span>)
+    <span class="ruby-identifier">object_start_time</span> = <span class="ruby-identifier">object_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">15</span>.<span class="ruby-identifier">minutes</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">temp_start_time</span> = <span class="ruby-identifier">object_start_time</span>
+  <span class="ruby-identifier">temp_end_time</span> = <span class="ruby-identifier">temp_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">hours</span>
+  
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">temp_end_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">buffered_end_time</span> <span class="ruby-keyword">do</span> 
+    <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">has_role?</span> <span class="ruby-string">&quot;Tier 2 Dietitian&quot;</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">has_role?</span> <span class="ruby-string">&quot;Admin Dietitian&quot;</span>) ) 
+        <span class="ruby-identifier">new_time</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_end_time</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Current&quot;</span>, <span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">60</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">availability_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">new_time</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_end_time</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Training&quot;</span>, <span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">60</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">availability_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">new_time</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">one_hour_time_slots</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_time</span>
+    <span class="ruby-identifier">temp_start_time</span> = <span class="ruby-identifier">temp_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>
+    <span class="ruby-identifier">temp_end_time</span> = <span class="ruby-identifier">temp_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">hours</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment">### create half hour time slots</span>
+  <span class="ruby-comment"># set start and end time for looping</span>
+  <span class="ruby-identifier">temp_half_hour_start_time</span> = <span class="ruby-identifier">object_start_time</span>
+  <span class="ruby-identifier">temp_half_hour_end_time</span> = <span class="ruby-identifier">temp_half_hour_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>
+  <span class="ruby-comment"># until end time is beyond limit then keep making more time slots</span>
+  <span class="ruby-keyword">until</span> <span class="ruby-identifier">temp_half_hour_end_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">buffered_end_time</span> <span class="ruby-keyword">do</span> 
+    <span class="ruby-comment">## only create time slots as current if availabliity is for tier 2 dietitian or admin dietitian...all else training</span>
+    <span class="ruby-keyword">if</span> ( (<span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">has_role?</span> <span class="ruby-string">&quot;Tier 2 Dietitian&quot;</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">dietitian</span>.<span class="ruby-identifier">has_role?</span> <span class="ruby-string">&quot;Admin Dietitian&quot;</span>) )
+      <span class="ruby-identifier">new_time</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_half_hour_start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_half_hour_end_time</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Current&quot;</span>, <span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">30</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">availability_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">new_time</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_half_hour_start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-identifier">temp_half_hour_end_time</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Training&quot;</span>, <span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">30</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">availability_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">new_time</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">half_hour_time_slots</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_time</span>
+    <span class="ruby-identifier">temp_half_hour_start_time</span> = <span class="ruby-identifier">temp_half_hour_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>
+    <span class="ruby-identifier">temp_half_hour_end_time</span> = <span class="ruby-identifier">temp_half_hour_start_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># mark availability as Live since time slots have been made</span>
+  <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;Live&quot;</span>
+  <span class="ruby-identifier">availability_object</span>.<span class="ruby-identifier">save</span>
+
+  <span class="ruby-identifier">new_time_slots_hash</span>[<span class="ruby-string">&quot;half_hour_time_slots&quot;</span>] = <span class="ruby-identifier">half_hour_time_slots</span>
+  <span class="ruby-identifier">new_time_slots_hash</span>[<span class="ruby-string">&quot;one_hour_time_slots&quot;</span>] = <span class="ruby-identifier">one_hour_time_slots</span>
+  
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">new_time_slots_hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-format_date" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">format_date</span><span
+            class="method-args">(date_time)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>format date for database</p>
+          
+          
+
+          
+          <div class="method-source-code" id="format_date-source">
+            <pre><span class="ruby-comment"># File app/models/time_slot.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">format_date</span>(<span class="ruby-identifier">date_time</span>)
+ <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">date_time</span>.<span class="ruby-identifier">to_i</span>).<span class="ruby-identifier">to_formatted_s</span>(<span class="ruby-value">:db</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-select_appointment_time_slots" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">select_appointment_time_slots</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="select_appointment_time_slots-source">
+            <pre><span class="ruby-comment"># File app/models/time_slot.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">select_appointment_time_slots</span>
+  
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Current&quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">60</span>).<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;start_time &gt; ?&quot;</span>, <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>.<span class="ruby-identifier">days</span> )
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-as_json" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">as_json</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>json response</p>
+          
+          
+
+          
+          <div class="method-source-code" id="as_json-source">
+            <pre><span class="ruby-comment"># File app/models/time_slot.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">as_json</span>(<span class="ruby-identifier">options</span> = {})
+  { 
+    <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>,
+    <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">title</span>,
+    <span class="ruby-value">:start</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">start_at</span>.<span class="ruby-identifier">rfc822</span>,
+    <span class="ruby-value">:end</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">end_at</span>.<span class="ruby-identifier">rfc822</span>,
+    <span class="ruby-value">:allDay</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">allDay</span>,
+    <span class="ruby-value">:user_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_name</span>,
+    <span class="ruby-value">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>.<span class="ruby-identifier">routes</span>.<span class="ruby-identifier">url_helpers</span>.<span class="ruby-identifier">time_slots_path</span>(<span class="ruby-identifier">id</span>),
+    <span class="ruby-value">:color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;green&quot;</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-is_last_vacant_time_slot-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_last_vacant_time_slot?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_last_vacant_time_slot-3F-source">
+            <pre><span class="ruby-comment"># File app/models/time_slot.rb, line 198</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_last_vacant_time_slot?</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">start_time</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_time</span>, <span class="ruby-identifier">end_time</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">end_time</span>, <span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> 
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-related_time_slots" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">related_time_slots</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="related_time_slots-source">
+            <pre><span class="ruby-comment"># File app/models/time_slot.rb, line 144</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">related_time_slots</span>
+  <span class="ruby-identifier">self_start_time</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start_time</span>
+  <span class="ruby-identifier">self_end_time</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">end_time</span>
+  <span class="ruby-identifier">time_slots_array</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">availability</span>.<span class="ruby-identifier">time_slots</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">time_slot</span><span class="ruby-operator">|</span>
+     <span class="ruby-comment">## if it is a 30 minute slot</span>
+    <span class="ruby-keyword">if</span> ((<span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">minutes</span> <span class="ruby-operator">==</span> <span class="ruby-value">30</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">time_slot</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>) )
+      <span class="ruby-comment">## if it starts between 30mins before taken slots start</span>
+      <span class="ruby-keyword">if</span> ( ( (<span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span> <span class="ruby-operator">&gt;=</span> (<span class="ruby-identifier">self_start_time</span> <span class="ruby-operator">-</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>) ) ) <span class="ruby-operator">&amp;&amp;</span> ( (<span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span> <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">self_end_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>) ) ) )
+        <span class="ruby-identifier">time_slots_array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">time_slot</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-comment"># one hour time slots</span>
+    <span class="ruby-keyword">elsif</span> ((<span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">minutes</span> <span class="ruby-operator">==</span> <span class="ruby-value">60</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">time_slot</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">self</span>) )
+      <span class="ruby-comment">## if it starts between 30mins before taken slots start</span>
+      <span class="ruby-keyword">if</span> ( ( (<span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span> <span class="ruby-operator">&gt;=</span> (<span class="ruby-identifier">self_start_time</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">hours</span>) ) ) <span class="ruby-operator">&amp;&amp;</span> ( (<span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span> <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">self_end_time</span> <span class="ruby-operator">+</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>) ) ) )
+        <span class="ruby-identifier">time_slots_array</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">time_slot</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-comment"># nothing</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">time_slots_array</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-related_time_slots_count" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">related_time_slots_count</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="related_time_slots_count-source">
+            <pre><span class="ruby-comment"># File app/models/time_slot.rb, line 168</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">related_time_slots_count</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">related_time_slots</span>.<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -16,240 +16,241 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    
+    binding.pry
     after_sign_in_path_for(resource)
   end
 
   def sign_up_params
+    binding.pry
     devise_parameter_sanitizer.sanitize(:sign_up)
   end
 
 #new user intro to the form where they update their name and select self or other user for appointment then
 # update to new_user_family
-  def new_user_intro
+  # def new_user_intro
     
-    @user = current_user || User.find(params[:id])
-    @sign_up_stage = @user.sign_up_stage
+  #   @user = current_user || User.find(params[:id])
+  #   @sign_up_stage = @user.sign_up_stage
      
-    if @sign_up_stage == 2
-      redirect_to new_user_family_path(@user)
-    elsif @sign_up_stage == 3
-      redirect_to select_time_path(@user.appointment_hosts.last)
-    else
+  #   if @sign_up_stage == 2
+  #     redirect_to new_user_family_path(@user)
+  #   elsif @sign_up_stage == 3
+  #     redirect_to select_time_path(@user.appointment_hosts.last)
+  #   else
       
-      # render :new_user_intro and return
-    end
-    respond_to do |format|
+  #     # render :new_user_intro and return
+  #   end
+  #   respond_to do |format|
 
-        # # need to redirect somwhere........
-        # format.js 
-        format.html
-    end
-  end
+  #       # # need to redirect somwhere........
+  #       # format.js 
+  #       format.html
+  #   end
+  # end
 
 # hopefully dont need any of this
-  def new_user_family
+  # def new_user_family
     
-    @user = User.find(params[:id])
-    @sign_up_stage = @user.sign_up_stage 
-    @family = @user.head_of_families.last
-    @appointment = Appointment.where(appointment_host_id: @user.id).where(status: "In Registration").last
-    # if params[:client_first_name]
-    # should create method on family model
-    # this gets family members with patient focus first
-    @family_members = []
+  #   @user = User.find(params[:id])
+  #   @sign_up_stage = @user.sign_up_stage 
+  #   @family = @user.head_of_families.last
+  #   @appointment = Appointment.where(appointment_host_id: @user.id).where(status: "In Registration").last
+  #   # if params[:client_first_name]
+  #   # should create method on family model
+  #   # this gets family members with patient focus first
+  #   @family_members = []
     
-    if @appointment.patient_focus 
-      appointment_focus = @appointment.patient_focus
-      @family_members << appointment_focus
-    end
-    family_count = @family.users.count
+  #   if @appointment.patient_focus 
+  #     appointment_focus = @appointment.patient_focus
+  #     @family_members << appointment_focus
+  #   end
+  #   family_count = @family.users.count
     
-    if family_count > 0
+  #   if family_count > 0
 
-      if @user != appointment_focus
+  #     if @user != appointment_focus
   
-        @family_members << @user
-        @family.users.each do |family_member| 
-          if family_member != appointment_focus
+  #       @family_members << @user
+  #       @family.users.each do |family_member| 
+  #         if family_member != appointment_focus
       
-            @family_members << family_member 
-          end
-        end
-      else
+  #           @family_members << family_member 
+  #         end
+  #       end
+  #     else
   
-        @family.users.each do |family_member|
-            @family_members << family_member
-        end
-      end
-    else
+  #       @family.users.each do |family_member|
+  #           @family_members << family_member
+  #       end
+  #     end
+  #   else
 
-      @family_members << @user
-    end
-    get_patient_groups!
-    @diseases = @diseases 
-    @intolerances = @intolerances 
-    @patient_groups = @patient_groups
-    @allergies = @allergies_with_other
-    @diets =  @diets
-    @patient_groups 
+  #     @family_members << @user
+  #   end
+  #   get_patient_groups!
+  #   @diseases = @diseases 
+  #   @intolerances = @intolerances 
+  #   @patient_groups = @patient_groups
+  #   @allergies = @allergies_with_other
+  #   @diets =  @diets
+  #   @patient_groups 
     
 
-    # respond_to do |format|
-    #   format.js
-    #   format.html
-    # end
+  #   # respond_to do |format|
+  #   #   format.js
+  #   #   format.html
+  #   # end
     
-  end
+  # end
 
-  def new_family_member
+  # def new_family_member
     
-      @user = current_user
-      @family = @user.head_of_families.last
-      @family.users.build
-      @new_user = User.new(last_name: @user.last_name)
-      @appointment = @user.appointment_hosts.last
-      get_patient_groups!
-      @diseases = @diseases 
-      @intolerances = @intolerances 
-      @allergies = @allergies
-      @diets =  @diets 
-      respond_to do |format|
-        format.js
-        # format.html
-      end
-  end
+  #     @user = current_user
+  #     @family = @user.head_of_families.last
+  #     @family.users.build
+  #     @new_user = User.new(last_name: @user.last_name)
+  #     @appointment = @user.appointment_hosts.last
+  #     get_patient_groups!
+  #     @diseases = @diseases 
+  #     @intolerances = @intolerances 
+  #     @allergies = @allergies
+  #     @diets =  @diets 
+  #     respond_to do |format|
+  #       format.js
+  #       # format.html
+  #     end
+  # end
 
-  def create_family_member
+  # def create_family_member
     
-    @user = current_user
-    if params["new_health_groups"]
-      params["new_health_groups"].each do |health_group|
-         group = PatientGroup.new(name: health_group, unverified: true) 
-         group.save
-         params["user"]["patient_group_ids"].push(group.id)
-      end
-    end
-    @new_user = User.create(devise_parameter_sanitizer.sanitize(:sign_up))
-    respond_to do |format|
-      if @new_user.save
-        @family = @user.head_of_families.last
-        @family.users << @new_user
-        @family.save
-        @appointment = @user.appointment_hosts.last
-        # should create method on family model
-        # this gets family members with patient focus first
-        @family_members = []
+  #   @user = current_user
+  #   if params["new_health_groups"]
+  #     params["new_health_groups"].each do |health_group|
+  #        group = PatientGroup.new(name: health_group, unverified: true) 
+  #        group.save
+  #        params["user"]["patient_group_ids"].push(group.id)
+  #     end
+  #   end
+  #   @new_user = User.create(devise_parameter_sanitizer.sanitize(:sign_up))
+  #   respond_to do |format|
+  #     if @new_user.save
+  #       @family = @user.head_of_families.last
+  #       @family.users << @new_user
+  #       @family.save
+  #       @appointment = @user.appointment_hosts.last
+  #       # should create method on family model
+  #       # this gets family members with patient focus first
+  #       @family_members = []
     
-        if @appointment.patient_focus 
-          appointment_focus = @appointment.patient_focus
-          @family_members << appointment_focus
-        end
-        family_count = @family.users.count
-        if family_count > 0
+  #       if @appointment.patient_focus 
+  #         appointment_focus = @appointment.patient_focus
+  #         @family_members << appointment_focus
+  #       end
+  #       family_count = @family.users.count
+  #       if family_count > 0
     
-          if @user != appointment_focus
+  #         if @user != appointment_focus
       
-            @family_members << @user
-            @family.users.each do |family_member| 
-              if family_member != appointment_focus
+  #           @family_members << @user
+  #           @family.users.each do |family_member| 
+  #             if family_member != appointment_focus
           
-                @family_members << family_member 
-              end
-            end
-          else
-            @family.users.each do |family_member|
-                @family_members << family_member
-            end
-          end
-        else
-          @family_members << @user
-        end
-        # need to redirect somwhere........
-        format.html { redirect_to @allergens_ingredient, notice: 'allergens_ingredient was successfully created.' }
-        format.json { render :show, status: :created, location: @allergens_ingredient }
-        # we are responding to JS right now, create.js.erb
-        format.js { render "update_user_health_groups"}
-      else
-        format.html { render :new }
-        format.json { render json: @allergens_ingredient.errors, status: :unprocessable_entity }
-      end
-    end     
-  end
+  #               @family_members << family_member 
+  #             end
+  #           end
+  #         else
+  #           @family.users.each do |family_member|
+  #               @family_members << family_member
+  #           end
+  #         end
+  #       else
+  #         @family_members << @user
+  #       end
+  #       # need to redirect somwhere........
+  #       format.html { redirect_to @allergens_ingredient, notice: 'allergens_ingredient was successfully created.' }
+  #       format.json { render :show, status: :created, location: @allergens_ingredient }
+  #       # we are responding to JS right now, create.js.erb
+  #       format.js { render "update_user_health_groups"}
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @allergens_ingredient.errors, status: :unprocessable_entity }
+  #     end
+  #   end     
+  # end
 
 
-  def edit_user_health_groups
+  # def edit_user_health_groups
     
-    @user = current_user
-    @family = @user.head_of_families.last
-    @updated_user_id = params[:id]
-    @updated_user = User.find(@updated_user_id)
-    get_patient_groups!
-    @diseases = @diseases 
-    @intolerances = @intolerances 
-    @allergies = @allergies
-    @diets =  @diets  
+  #   @user = current_user
+  #   @family = @user.head_of_families.last
+  #   @updated_user_id = params[:id]
+  #   @updated_user = User.find(@updated_user_id)
+  #   get_patient_groups!
+  #   @diseases = @diseases 
+  #   @intolerances = @intolerances 
+  #   @allergies = @allergies
+  #   @diets =  @diets  
     
-    @unverified_health_groups = @updated_user.unverified_health_groups
-    respond_to do |format|
-        # # need to redirect somwhere........
-        # # we are responding to JS right now, create.js.erb
-        format.js 
-    end
-  end
+  #   @unverified_health_groups = @updated_user.unverified_health_groups
+  #   respond_to do |format|
+  #       # # need to redirect somwhere........
+  #       # # we are responding to JS right now, create.js.erb
+  #       format.js 
+  #   end
+  # end
 
 
-  def update_user_health_groups
-    if params["new_health_groups"]
-      params["new_health_groups"].each do |health_group|
-         group = PatientGroup.new(name: health_group, unverified: true) 
-         group.save
-         params["user"]["patient_group_ids"].push(group.id)
-      end
-    end    
-    @updated_user = User.find(params[:updated_user_id])
-    @updated_user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
-    @updated_user.save
+  # def update_user_health_groups
+  #   if params["new_health_groups"]
+  #     params["new_health_groups"].each do |health_group|
+  #        group = PatientGroup.new(name: health_group, unverified: true) 
+  #        group.save
+  #        params["user"]["patient_group_ids"].push(group.id)
+  #     end
+  #   end    
+  #   @updated_user = User.find(params[:updated_user_id])
+  #   @updated_user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
+  #   @updated_user.save
     
-    @user = current_user
-    @family = @user.head_of_families.last
-    @appointment = @user.appointment_hosts.last
-    @family_members = []
-    if @appointment.patient_focus 
-      appointment_focus = @appointment.patient_focus
-      @family_members << appointment_focus
-    end
-    family_count = @family.users.count
+  #   @user = current_user
+  #   @family = @user.head_of_families.last
+  #   @appointment = @user.appointment_hosts.last
+  #   @family_members = []
+  #   if @appointment.patient_focus 
+  #     appointment_focus = @appointment.patient_focus
+  #     @family_members << appointment_focus
+  #   end
+  #   family_count = @family.users.count
     
-    if family_count > 0
+  #   if family_count > 0
 
-      if @user != appointment_focus
+  #     if @user != appointment_focus
   
-        @family_members << @user
-        @family.users.each do |family_member| 
-          if family_member != appointment_focus
+  #       @family_members << @user
+  #       @family.users.each do |family_member| 
+  #         if family_member != appointment_focus
       
-            @family_members << family_member 
-          end
-        end
-      else
+  #           @family_members << family_member 
+  #         end
+  #       end
+  #     else
   
-        @family.users.each do |family_member|
-            @family_members << family_member
-        end
-      end
-    else
+  #       @family.users.each do |family_member|
+  #           @family_members << family_member
+  #       end
+  #     end
+  #   else
 
-      @family_members << @user
-    end
-    # for in-session update JS response
-    get_patient_groups!
-    @diseases = @diseases 
-    @intolerances = @intolerances 
-    @allergies = @allergies
-    @diets =  @diets  
-    redirect_to select_time_path(@appointment)
-  end
+  #     @family_members << @user
+  #   end
+  #   # for in-session update JS response
+  #   get_patient_groups!
+  #   @diseases = @diseases 
+  #   @intolerances = @intolerances 
+  #   @allergies = @allergies
+  #   @diets =  @diets  
+  #   redirect_to select_time_path(@appointment)
+  # end
 
   def update
     
@@ -295,26 +296,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # my custom fields are :name, :heard_how
   def configure_permitted_parameters
-    if params["user"]
-      if params["user"]["height"]
-        if (params["user"]["height"]["feet"].to_i >= 1)
-                params["user"]["height"]["feet"] = params["user"]["height"]["feet"].to_i * 12
-                params["user"]["height_inches"] = params["user"]["height"]["feet"].to_i + params["user"]["height"]["inches"].to_i
-        else 
-            params["user"]["height_inches"] = params["user"]["height"]["inches"].to_i
-        end
-        params["user"].delete "height"
-      end
-      if params["user"]["weight"]
-        if (params["user"]["weight"]["pounds"].to_i >= 1)
-          params["user"]["weight"]["pounds"] = params["user"]["weight"]["pounds"].to_i * 16
-          params["user"]["weight_ounces"] = params["user"]["weight"]["pounds"].to_i + params["user"]["weight"]["ounces"].to_i
-        else 
-            params["user"]["weight_ounces"] = params["user"]["weight"]["ounces"].to_i
-        end
-        params["user"].delete "weight"
-      end
-    end
+    # if params["user"]
+    #   if params["user"]["height"]
+    #     if (params["user"]["height"]["feet"].to_i >= 1)
+    #             params["user"]["height"]["feet"] = params["user"]["height"]["feet"].to_i * 12
+    #             params["user"]["height_inches"] = params["user"]["height"]["feet"].to_i + params["user"]["height"]["inches"].to_i
+    #     else 
+    #         params["user"]["height_inches"] = params["user"]["height"]["inches"].to_i
+    #     end
+    #     params["user"].delete "height"
+    #   end
+    #   if params["user"]["weight"]
+    #     if (params["user"]["weight"]["pounds"].to_i >= 1)
+    #       params["user"]["weight"]["pounds"] = params["user"]["weight"]["pounds"].to_i * 16
+    #       params["user"]["weight_ounces"] = params["user"]["weight"]["pounds"].to_i + params["user"]["weight"]["ounces"].to_i
+    #     else 
+    #         params["user"]["weight_ounces"] = params["user"]["weight"]["ounces"].to_i
+    #     end
+    #     params["user"].delete "weight"
+    #   end
+    # end
     devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :patient_group_ids => [])
     end
     devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :patient_group_ids => [])

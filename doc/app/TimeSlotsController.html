@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class TimeSlotsController - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-create">#create</a>
+    
+    <li ><a href="#method-i-create_from_availability">#create_from_availability</a>
+    
+    <li ><a href="#method-i-create_from_existing">#create_from_existing</a>
+    
+    <li ><a href="#method-i-destroy">#destroy</a>
+    
+    <li ><a href="#method-i-edit">#edit</a>
+    
+    <li ><a href="#method-i-index">#index</a>
+    
+    <li ><a href="#method-i-new">#new</a>
+    
+    <li ><a href="#method-i-show">#show</a>
+    
+    <li ><a href="#method-i-update">#update</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-TimeSlotsController">
+  <h1 id="class-TimeSlotsController" class="class">
+    class TimeSlotsController
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST /time_slots POST /time_slots.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/time_slots_controller.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+
+  <span class="ruby-identifier">num_create</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&quot;number&quot;</span>].<span class="ruby-identifier">to_i</span>
+  <span class="ruby-comment">## create multiple of the same time_slot</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">num_create</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">new_params</span> = <span class="ruby-identifier">time_slot_params</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> <span class="ruby-value">1</span><span class="ruby-operator">...</span><span class="ruby-identifier">num_create</span>
+    
+     <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">new_params</span>).<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@time_slot</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">new_params</span>)
+  <span class="ruby-comment">## create single time_slot</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@time_slot</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">time_slot_params</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@time_slot</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-comment"># prepare for updateding time_slots list for index in .js</span>
+      <span class="ruby-ivar">@time_slots</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time DESC&#39;</span>).<span class="ruby-identifier">all</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@time_slots</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Time slot was successfully created.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@time_slot</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@time_slot</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_from_availability" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_from_availability</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get /time_slots/create_from_availability</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_from_availability-source">
+            <pre><span class="ruby-comment"># File app/controllers/time_slots_controller.rb, line 119</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_from_availability</span>
+  <span class="ruby-identifier">open_availabilities</span> = <span class="ruby-constant">Availability</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Set&quot;</span>)
+  
+  <span class="ruby-ivar">@new_time_slots</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">create_from_availabilities</span>(<span class="ruby-identifier">open_availabilities</span>)
+  
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_from_existing" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_from_existing</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get /time_slots/:id/create_from_existing</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_from_existing-source">
+            <pre><span class="ruby-comment"># File app/controllers/time_slots_controller.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_from_existing</span>
+
+  <span class="ruby-comment">#create new object with attributes of existing record </span>
+  <span class="ruby-ivar">@time_slot</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@time_slot</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">except</span>(<span class="ruby-string">&quot;id&quot;</span>)) 
+  <span class="ruby-ivar">@time_slot</span>.<span class="ruby-identifier">save</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@time_slot</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-ivar">@time_slots</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time DESC&#39;</span>).<span class="ruby-identifier">all</span>
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>DELETE /time_slots/1 DELETE /time_slots/1.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/time_slots_controller.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  <span class="ruby-ivar">@time_slot_id</span> = <span class="ruby-ivar">@time_slot</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-ivar">@time_slot</span>.<span class="ruby-identifier">destroy</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">time_slots_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Time slot was successfully destroyed.&#39;</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /time_slots/1/edit</p>
+          
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/time_slots_controller.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /time_slots .json is created specifically for calendar usage right now
+need to change it to show all for dietitian calendar nad not user…right now
+uses same GET /time_slots.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/time_slots_controller.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  
+  <span class="ruby-comment">#  review all current 30 minute time slots</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:minutes</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;30&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Review&quot;</span>
+    <span class="ruby-ivar">@cal_time_slots</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Current&quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">30</span>)
+  <span class="ruby-comment">#  review all current 60 minute, current time slots</span>
+  <span class="ruby-comment"># incorrectly being called for user select appt list</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:minutes</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;60&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;vacant-appts&quot;</span>
+    <span class="ruby-comment"># @time_slots = TimeSlot.where(status: &quot;Current&quot;).where(minutes: 60).where([&#39;start_time &gt; ?&#39;, DateTime.now + 1.days]) </span>
+    <span class="ruby-ivar">@time_slots</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Current&quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">60</span>).<span class="ruby-identifier">where</span>([<span class="ruby-string">&#39;start_time &gt; ?&#39;</span>, <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>]) 
+    <span class="ruby-comment"># temporary fix for only sending back Tara&#39;s schedule to clients she gives a link to and are marked as having tara_rerral as true</span>
+    <span class="ruby-comment"># if current_user.tara_referral == true</span>
+    <span class="ruby-comment">#   @time_slots.to_a.delete_if do |time_slot|</span>
+    <span class="ruby-comment">#     if time_slot.dietitian.email != &quot;tara@kindrdfood.com&quot;</span>
+    <span class="ruby-comment">#       true # Make sure the if statement returns true, so it gets marked for deletion</span>
+    <span class="ruby-comment">#     end</span>
+    <span class="ruby-comment">#   end</span>
+
+    <span class="ruby-comment"># end</span>
+
+    <span class="ruby-ivar">@cal_time_slots</span> = <span class="ruby-ivar">@time_slots</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">uniq</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">time_slot</span><span class="ruby-operator">|</span> <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span>}
+  <span class="ruby-comment">#  review all current 60 minute, current time slots</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:minutes</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;60&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:type</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;Review&quot;</span>
+    <span class="ruby-ivar">@cal_time_slots</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Current&quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">60</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-comment">## show all 60 minute, current, vacant time slots (not being called for user select appt list)</span>
+    <span class="ruby-ivar">@time_slots</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&#39;start_time DESC&#39;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Current&quot;</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">minutes</span><span class="ruby-operator">:</span> <span class="ruby-value">60</span>).<span class="ruby-identifier">where</span>(<span class="ruby-identifier">vacancy</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>)
+  
+    <span class="ruby-ivar">@cal_time_slots</span> = <span class="ruby-ivar">@time_slots</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">uniq</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">time_slot</span><span class="ruby-operator">|</span> <span class="ruby-identifier">time_slot</span>.<span class="ruby-identifier">start_time</span>}
+    
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-ivar">@dietitians</span> = <span class="ruby-constant">Dietitian</span>.<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /time_slots/new</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/time_slots_controller.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@time_slot</span> = <span class="ruby-constant">TimeSlot</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /time_slots/1 GET /time_slots/1.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/time_slots_controller.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>PATCH/PUT /time_slots/1 PATCH/PUT /time_slots/1.json</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/time_slots_controller.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@time_slot</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">time_slot_params</span>)
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@time_slot</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Time slot was successfully updated.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@time_slot</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@time_slot</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

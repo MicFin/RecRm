@@ -1,0 +1,981 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Appointment
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!Appointment.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo;
+    
+    
+    <span class="title">Appointment</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Appointment
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">ActiveRecord::Base</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActiveRecord::Base</li>
+          
+            <li class="next">Appointment</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/models/appointment.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>t.integer  “patient_focus_id” t.integer  “appointment_host_id” t.integer 
+“dietitian_id” t.integer  “room_id” t.text     “note” t.text    
+“client_note” t.datetime “created_at” t.datetime “updated_at” t.datetime
+“start_time” t.datetime “end_time” t.string   “stripe_card_token” t.integer
+“regular_price” t.integer  “invoice_price” t.string   “type” t.integer 
+“duration” t.text     “other_note” t.integer  “time_slot_id” t.string  
+“status”</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#date-instance_method" title="#date (instance method)">- (Object) <strong>date</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute date.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#family_info-instance_method" title="#family_info (instance method)">- (Object) <strong>family_info</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute family_info.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#follow_up-instance_method" title="#follow_up (instance method)">- (Object) <strong>follow_up</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute follow_up.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prepped-instance_method" title="#prepped (instance method)">- (Object) <strong>prepped</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute prepped.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#time-instance_method" title="#time (instance method)">- (Object) <strong>time</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute time.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#available_dietitians-instance_method" title="#available_dietitians (instance method)">- (Object) <strong>available_dietitians</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#available_time_slots-instance_method" title="#available_time_slots (instance method)">- (Object) <strong>available_time_slots</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prep_complete%3F-instance_method" title="#prep_complete? (instance method)">- (Boolean) <strong>prep_complete?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#stage-instance_method" title="#stage (instance method)">- (Object) <strong>stage</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_with_payment-instance_method" title="#update_with_payment (instance method)">- (Object) <strong>update_with_payment</strong>(credit_card_usage) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="date=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="date-instance_method">
+  
+    - (<tt>Object</tt>) <strong>date</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute date</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/appointment.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_date'>date</span>
+  <span class='ivar'>@date</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="family_info=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="family_info-instance_method">
+  
+    - (<tt>Object</tt>) <strong>family_info</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute family_info</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/appointment.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_family_info'>family_info</span>
+  <span class='ivar'>@family_info</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="follow_up=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="follow_up-instance_method">
+  
+    - (<tt>Object</tt>) <strong>follow_up</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute follow_up</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/appointment.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_follow_up'>follow_up</span>
+  <span class='ivar'>@follow_up</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="prepped=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="prepped-instance_method">
+  
+    - (<tt>Object</tt>) <strong>prepped</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute prepped</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/appointment.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prepped'>prepped</span>
+  <span class='ivar'>@prepped</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="time=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="time-instance_method">
+  
+    - (<tt>Object</tt>) <strong>time</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute time</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/appointment.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_time'>time</span>
+  <span class='ivar'>@time</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="available_dietitians-instance_method">
+  
+    - (<tt>Object</tt>) <strong>available_dietitians</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/appointment.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_available_dietitians'>available_dietitians</span>
+  <span class='id identifier rubyid_dietitians'>dietitians</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='const'>TimeSlot</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>start_time:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span><span class='comma'>,</span> <span class='label'>end_time:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_end_time'>end_time</span><span class='comma'>,</span> <span class='label'>vacancy:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='const'>TimeSlot</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>start_time:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span><span class='comma'>,</span> <span class='label'>end_time:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_end_time'>end_time</span><span class='comma'>,</span> <span class='label'>vacancy:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_time_slot'>time_slot</span><span class='op'>|</span>
+      <span class='id identifier rubyid_dietitians'>dietitians</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_time_slot'>time_slot</span><span class='period'>.</span><span class='id identifier rubyid_dietitian'>dietitian</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_dietitians'>dietitians</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="available_time_slots-instance_method">
+  
+    - (<tt>Object</tt>) <strong>available_time_slots</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/appointment.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_available_time_slots'>available_time_slots</span>
+  <span class='kw'>return</span> <span class='const'>TimeSlot</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>start_time:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span><span class='comma'>,</span> <span class='label'>end_time:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_end_time'>end_time</span><span class='comma'>,</span> <span class='label'>vacancy:</span> <span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prep_complete?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>prep_complete?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/appointment.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prep_complete?'>prep_complete?</span>
+  <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_surveys'>surveys</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>survey_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pre-Appointment-Dietitian</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='label'>completed:</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='kw'>return</span> <span class='kw'>true</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="stage-instance_method">
+  
+    - (<tt>Object</tt>) <strong>stage</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/appointment.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stage'>stage</span>
+
+  <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span> <span class='op'>!=</span> <span class='kw'>nil</span> 
+    <span class='kw'>return</span> <span class='int'>4</span>
+  <span class='kw'>elsif</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_sex'>sex</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='op'>&amp;&amp;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_start_time'>start_time</span> <span class='op'>==</span> <span class='kw'>nil</span>
+    <span class='kw'>return</span> <span class='int'>3</span>
+  <span class='kw'>elsif</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='op'>&amp;&amp;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_patient_focus'>patient_focus</span><span class='period'>.</span><span class='id identifier rubyid_sex'>sex</span> <span class='op'>==</span><span class='kw'>nil</span>
+    <span class='kw'>return</span> <span class='int'>2</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_with_payment-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update_with_payment</strong>(credit_card_usage) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/appointment.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_with_payment'>update_with_payment</span><span class='lparen'>(</span><span class='id identifier rubyid_credit_card_usage'>credit_card_usage</span><span class='rparen'>)</span>
+
+
+  <span class='comment'># if appointment is valid
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_valid?'>valid?</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_qol_referral'>qol_referral</span> <span class='op'>==</span> <span class='kw'>false</span> 
+      <span class='comment'># create new customer or find current customer
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_stripe_id'>stripe_id</span>
+        <span class='id identifier rubyid_customer'>customer</span> <span class='op'>=</span> <span class='const'>Stripe</span><span class='op'>::</span><span class='const'>Customer</span><span class='period'>.</span><span class='id identifier rubyid_retrieve'>retrieve</span><span class='lparen'>(</span><span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_stripe_id'>stripe_id</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        
+        <span class='comment'># if creating a new customer and wants to save CC
+</span>        <span class='kw'>if</span> <span class='id identifier rubyid_credit_card_usage'>credit_card_usage</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>remember_me</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_customer'>customer</span> <span class='op'>=</span> <span class='const'>Stripe</span><span class='op'>::</span><span class='const'>Customer</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='symbol'>:card</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_stripe_card_token'>stripe_card_token</span><span class='comma'>,</span> <span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='symbol'>:email</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rparen'>)</span>
+        <span class='comment'># if creating a new customer and does not want to save CC
+</span>        <span class='kw'>else</span>
+          <span class='id identifier rubyid_customer'>customer</span> <span class='op'>=</span> <span class='const'>Stripe</span><span class='op'>::</span><span class='const'>Customer</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='comma'>,</span> <span class='symbol'>:email</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+        <span class='comment'># add stripe customer id to user
+</span>        <span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_stripe_id'>stripe_id</span> <span class='op'>=</span> <span class='id identifier rubyid_customer'>customer</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+        <span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+        <span class='id identifier rubyid_save!'>save!</span>
+      <span class='kw'>end</span>
+      <span class='comment'># set stripe_id variable now that it is created
+</span>      <span class='id identifier rubyid_stripe_id'>stripe_id</span> <span class='op'>=</span> <span class='id identifier rubyid_appointment_host'>appointment_host</span><span class='period'>.</span><span class='id identifier rubyid_stripe_id'>stripe_id</span>
+      <span class='comment'># charge customer
+</span>      <span class='comment'># if customer wanted to remember card
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_credit_card_usage'>credit_card_usage</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>remember_me</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>begin</span>
+          <span class='id identifier rubyid_charge'>charge</span> <span class='op'>=</span> <span class='const'>Stripe</span><span class='op'>::</span><span class='const'>Charge</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span>
+          <span class='symbol'>:customer</span>    <span class='op'>=&gt;</span> <span class='id identifier rubyid_stripe_id'>stripe_id</span><span class='comma'>,</span>
+          <span class='symbol'>:amount</span>      <span class='op'>=&gt;</span> <span class='int'>8999</span><span class='comma'>,</span>
+          <span class='comment'># :amount      =&gt; 0000,
+</span>          <span class='comment'># :amount      =&gt; 0151,
+</span>          <span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Kindrdfood 1 Hour</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+          <span class='symbol'>:currency</span>    <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>usd</span><span class='tstring_end'>&#39;</span></span>
+        <span class='rparen'>)</span>
+        <span class='kw'>rescue</span> <span class='const'>Stripe</span><span class='op'>::</span><span class='const'>CardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+          <span class='comment'># The card has been declined
+</span>          <span class='id identifier rubyid_flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:error</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span>
+          <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Stripe error while creating customer: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_errors'>errors</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span> <span class='symbol'>:base</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>There was a problem with your credit card.</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+      <span class='comment'># charge custoemr
+</span>      <span class='comment'># if custeomr did not want to remember card need to change to not create stripe customer
+</span>      <span class='kw'>else</span> 
+        
+        <span class='kw'>begin</span>
+          <span class='id identifier rubyid_charge'>charge</span> <span class='op'>=</span> <span class='const'>Stripe</span><span class='op'>::</span><span class='const'>Charge</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span>
+          <span class='symbol'>:card</span>        <span class='op'>=&gt;</span> <span class='id identifier rubyid_stripe_card_token'>stripe_card_token</span><span class='comma'>,</span>
+          <span class='symbol'>:amount</span>      <span class='op'>=&gt;</span> <span class='int'>8999</span><span class='comma'>,</span>
+          <span class='comment'># :amount      =&gt; 0000,
+</span>          <span class='comment'># :amount      =&gt; 0151,
+</span>          <span class='symbol'>:description</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Kindrdfood 1 Hour</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+          <span class='symbol'>:currency</span>    <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>usd</span><span class='tstring_end'>&#39;</span></span>
+        <span class='rparen'>)</span>
+        <span class='kw'>rescue</span> <span class='const'>Stripe</span><span class='op'>::</span><span class='const'>CardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+          <span class='comment'># The card has been declined
+</span>          <span class='id identifier rubyid_flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:error</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span>
+          <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Stripe error while creating customer: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_errors'>errors</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span> <span class='symbol'>:base</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>There was a problem with your credit card.</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_invoice_price'>invoice_price</span> <span class='op'>=</span> <span class='int'>8999</span>
+    <span class='kw'>else</span> 
+      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_invoice_price'>invoice_price</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='kw'>end</span>
+    
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Paid</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># self.invoice_price = 8999
+</span>    <span class='comment'># self.invoice_price = 0
+</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_duration'>duration</span> <span class='op'>=</span> <span class='int'>60</span>
+    <span class='id identifier rubyid_save!'>save!</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Jul  7 11:48:43 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.1.5).
+</div>
+
+  </body>
+</html>

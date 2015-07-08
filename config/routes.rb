@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
 
 
-  devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions' }
+  devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions', confirmations => "users/confirmations" }
   
   # # root to: "welcome#index"
 
@@ -47,6 +47,9 @@ Rails.application.routes.draw do
       # root :to => 'dashboard#home', as: :user_authenticated_root
       root :to => 'welcome#home', as: :user_authenticated_root
       get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
+
+
+      match '/user/confirmation' => 'confirmations#update', :via => :patch, :as => :update_user_confirmation
 
       get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
 

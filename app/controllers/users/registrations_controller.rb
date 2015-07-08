@@ -16,8 +16,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    binding.pry
+    
     after_sign_in_path_for(resource)
+  end
+
+  # Users that require confirmation, currently from QOL landing page
+  # only QOL admin should be creating these so can redirect to qol
+  def after_inactive_sign_up_path_for(resource)
+  
+    welcome_get_started_path
   end
 
   def sign_up_params
@@ -252,7 +259,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def update
-    binding.pry
+    
     @user = current_user
     # check if a password is needed for this update
     successfully_updated = if needs_password?(@user, params)
@@ -267,14 +274,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # update_without_password doesn't know how to ignore it
       @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
     end
-binding.pry
+
     if successfully_updated
 
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case their password changed
-      binding.pry
+      
       sign_in @user, :bypass => true
-      binding.pry
+      
       redirect_to after_update_path_for(@user)
     else
       render "edit"
@@ -316,12 +323,12 @@ binding.pry
   #   return params
   # end
   def after_update_path_for(resource)
-      binding.pry
+      
       # if they have finished on boarding
       if resource.finished_on_boarding? 
           
       else
-        binding.pry
+        
       end
         # respond_to do |format|
         #   format.js { render "/users/registrations/update.js.erb" and return }
@@ -361,6 +368,7 @@ binding.pry
   private
   # my custom fields are :name, :heard_how
   def configure_permitted_parameters
+    
     # if params["user"]
     #   if params["user"]["height"]
     #     if (params["user"]["height"]["feet"].to_i >= 1)

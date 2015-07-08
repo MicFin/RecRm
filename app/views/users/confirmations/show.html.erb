@@ -1,15 +1,157 @@
-<h2>Account Activation</h2>
 
-<%= form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'patch'}, :id => 'activation-form' do |f| %>
-  <%= devise_error_messages! %>
-  <fieldset>
-    <legend>Account Activation<% if resource.user_name %> for <%= resource.user_name %><% end %></legend>
+<div id="qol-page" class="container-fluid">
+  <nav class="row navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+      <%= image_tag "/assets/landing_page/kindrdfood-logo.jpg", class: "img-responsive" %>
+      </a>
+    </div>
 
-  <% if @requires_password %>
-      <p><%= f.label :password,'Choose a Password:' %> <%= f.password_field :password %></p>
-      <p><%= f.label :password_confirmation,'Password Confirmation:' %> <%= f.password_field :password_confirmation %></p>
-  <% end %>
-  <%= hidden_field_tag :confirmation_token,@confirmation_token %>
-  <p><%= f.submit "Activate" %></p>
-  </fieldset>
-<% end %>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+<!--         <li class="active"><a href="#">OUR APPROACH <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">OUR TEAM</a></li>
+        <li><a href="#">FOR PROVIDERS</a></li>
+        <li><a href="#">CONTACT US</a></li>
+        <li><a href="#">LOGIN</a></li> -->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+
+            <%= render "/layouts/alerts" %>
+  <section>
+    <div class="row qol-background-image">
+      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-1 col-md-5 text-left col-lg-5 left-column">
+        <h1>Eat Easy.</h1>
+        <h1>Be Happy.</h1>
+        <h3>Great food and good nutrition start with the right guidance.</h3>
+<!--        <button class="btn btn-lg btn-success hidden-xs">Learn More</button> -->
+      </div>
+      <div class="col-xs-12 col-sm-6 outside-form-container">
+        <div class="text-center">
+          <h3>FREE 1 hour and FREE 30 minute session!</h3>
+          <p>Schedule your complimentary one-hour session and a complimentary 30-minute follow up session with one of our Registered Dietitian Nutritionists.</p>
+
+          <%#= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
+          <%= simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'patch', class: 'row text-left', role:"form" }, :id => 'activation-form' do |f| %>
+
+              <h2 class="text-center"><%=resource.first_name %> <%=resource.last_name %></h2>
+              <h2 class="text-center"><%=resource.email %></h2>
+              <%= devise_error_messages! %>
+
+            <div class="form-group col-xs-8 col-xs-offset-2">
+              <label for="first-name">Password</label>
+              <%= f.password_field :password, autofocus: true, class: "form-control", type: "text", placeholder: "secret sauce" %>
+            </div>
+            <div class="form-group col-xs-8 col-xs-offset-2">
+              <label for="last-name">Confirm password</label>
+              <%= f.password_field :password_confirmation, autofocus: true, class: "form-control", type: "text", placeholder: "secret sauce" %>
+            </div>
+            <%= hidden_field_tag :confirmation_token,@confirmation_token %>
+
+            <div class="col-xs-8 col-xs-offset-2 text-right">
+              <%= f.button :submit, "Join Us!", class: "btn btn-primary btn-lg", type: "submit" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2 text-center testimonial">
+<!--        <h3>It was such a relief to get answers that I could trust.</h3>
+        <h3>My day got much easier</h3>
+        <p>A.M. Member</p> -->
+        <h3>At Kindrdfood our team of <span>Registered Dietitians</span> and <span>Professional Chefs</span> specialize in helping you and your family manage complex nutritional needs while still being able to enjoy great tasting food and quality time at the table.</h3>
+
+      </div>
+    </div>
+  </section>
+  <section class="approach row">
+    <div class="col-xs-12 text-center">
+      <h2>We understand your challenges</h2>
+      <p>Finding trustworthy and qualified sources of information for nutrition is incomplete and unreliable</p>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 text-center problem-examples">
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        <p><span class="glyphicon glyphicon-fullscreen"></span></p>
+        <p>Conflicting information that sends you in all different directions.</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        <p><span class="glyphicon glyphicon-volume-up"></span></p>
+        <p>Unqualified service and trendy advice</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        <p><span class="glyphicon glyphicon-remove"></span></p>
+        <p>Not so tasty meals with limited variety</p>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        <p><span class="glyphicon glyphicon-thumbs-down"></span></p>
+        <p>And repeat...</p>
+      </div>
+    </div>
+  </section>
+  <section class="row goal">
+    <div class="col-xs-12 text-center">
+      <h2>Our Goal</h2>
+      <p>Ease your everyday life in the kitchen, at the store, and at the table.</p>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 text-center">
+      <div class="goal-item col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <p><span class="glyphicon glyphicon-facetime-video"></span></p>
+        <h3>1 on 1 Nutritional Guidance</h3>
+        <p>Video and phone conferencing with a registered dietitian that specializes in your nutritional needs.</p>
+      </div>
+      <div class="goal-item col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <p><span class="glyphicon glyphicon-cutlery"></span></p>
+        <h3>Recipes, Articles, and More </h3>
+        <p>Our dietitians work with professional chefs to create recipes that are safe and delicious for the Kindrdfood community.  We also offer educational and practical videos and articles for further learning.</p>
+      </div>
+      <div class="goal-item col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <p><span class="glyphicon glyphicon-refresh"></span></p>
+        <h3>Full Circle Care</h3>
+        <p>We can work with your current physician team, lactation consultant, allergist and more!  Nutrition can be complicated and we feel that we work best when everyone is working together.</p>
+      </div>
+    </div>
+<!--    <div class="team col-xs-12 text-center">
+      <a href="">Learn more about the Kindrdfood team</a>
+    </div> -->
+  </section>
+    <div class="row qol-background-image">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3 outside-form-container">
+        <div class="text-center">
+          <h3>FREE 1 hour and FREE 30 minute session!</h3>
+          <p>Schedule your complimentary one-hour session and a complimentary 30-minute follow up session with one of our Registered Dietitian Nutritionists.</p>
+
+          <%= simple_form_for resource, :as => resource_name, :url => update_user_confirmation_path, :html => {:method => 'patch', class: 'row text-left', role:"form" }, :id => 'activation-form' do |f| %>
+              <%= devise_error_messages! %>
+
+              <h2 class="text-center"><%=resource.first_name %> <%=resource.last_name %></h2>
+              <h2 class="text-center"><%=resource.email %></h2>
+            <div class="form-group col-xs-8 col-xs-offset-2">
+              <label for="first-name">Password</label>
+              <%= f.password_field :password, autofocus: true, class: "form-control", type: "text", placeholder: "secret sauce" %>
+            </div>
+            <div class="form-group col-xs-8 col-xs-offset-2">
+              <label for="last-name">Confirm Password</label>
+              <%= f.password_field :password_confirmation, autofocus: true, class: "form-control", type: "text", placeholder: "secret sauce" %>
+            </div>
+            <%= hidden_field_tag :confirmation_token,@confirmation_token %>
+
+            <div class="col-xs-8 col-xs-offset-2 text-right">
+              <%= f.button :submit, "Join Us!", class: "btn btn-primary btn-lg", type: "submit" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <%#= render "/layouts/footers/main_footer" %>
+
+</div>

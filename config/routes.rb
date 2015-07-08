@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
 
 
-  devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions', confirmations => "users/confirmations" }
+  devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions', :confirmations => "users/confirmations" }
   
   # # root to: "welcome#index"
 
@@ -48,10 +48,7 @@ Rails.application.routes.draw do
       root :to => 'welcome#home', as: :user_authenticated_root
       get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
 
-
-      match '/user/confirmation' => 'confirmations#update', :via => :patch, :as => :update_user_confirmation
-
-      get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
+      # get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
 
       get 'registrations/new_user_family/:id', to: 'users/registrations#new_user_family', as: 'new_user_family'
       get 'registrations/edit_user_health_groups/:id', to: 'users/registrations#edit_user_health_groups', as: 'edit_user_health_groups'
@@ -82,6 +79,9 @@ Rails.application.routes.draw do
       # resources :charges
       resources :subscriptions
     end
+    unauthenticated :user do
+      match '/user/confirmation' => 'users/confirmations#update', :via => :patch, :as => :update_user_confirmation
+    end   
 
   end
 

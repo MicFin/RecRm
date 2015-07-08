@@ -10,22 +10,18 @@ class ApplicationController < ActionController::Base
 
     #note: request.referrer can be used to return user to the page they were on
 
-		# if a user signs in 
-    binding.pry
+		# when a user signs in 
+    
 		if resource.class == User
       
-		  # DO STUFF
-
-      # TEMPORARILY HOOKING OLD CODE BACK IN
-      # new_user_intro_path(resource)
-      # UNCOMMENT BELOW
-
-      binding.pry
-    # resource has completed on boarding 
+      
+      # check if user has completed on boarding 
       if resource.finished_on_boarding? 
 
+
+      # if user has not completed onboarding
       else
-        binding.pry
+        
         registration_stage = resource.registration_stage
         # 
         if registration_stage == 1
@@ -35,15 +31,7 @@ class ApplicationController < ActionController::Base
         else
         end
       end
-    #     welcome_get_started_path(resource)
-    #   # user has entered phone number but not family member
-    #   elsif resource.head_of_families.length < 1
-
-    #     # user has entered phone number and family member
-    #   else
-    #     # take them to the welcome home
-    #     welcome_home_path(resource)
-    #   end
+ 
 		elsif resource.class == Dietitian
 			if resource.sign_in_count <= 1
 	      # if first time give first time user experience

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   # shared by the user and dietitian registrations controllers
 	def after_sign_in_path_for(resource)
-
+    binding.pry
     #note: request.referrer can be used to return user to the page they were on
 
 		# when a user signs in 
@@ -21,15 +21,15 @@ class ApplicationController < ActionController::Base
 
       # if user has not completed onboarding
       else
-        
-        registration_stage = resource.registration_stage
-        # 
-        if registration_stage == 1
+        # binding.pry
+        # registration_stage = resource.registration_stage
+        # # user has only confirmed their account 
+        # if registration_stage == 1
 
           welcome_get_started_path
 
-        else
-        end
+        # else
+        # end
       end
  
 		elsif resource.class == Dietitian

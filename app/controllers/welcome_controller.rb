@@ -59,6 +59,13 @@ class WelcomeController < ApplicationController
 
     def get_started
       @user = current_user
+      if @user.registration_stage == 3
+
+      elsif @user.registration_stage == 2
+        redirect_to new_family_path(@user)
+      else
+        render :get_started
+      end
     end
 
   private

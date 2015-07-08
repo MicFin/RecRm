@@ -18,22 +18,22 @@ class FamiliesController < ApplicationController
 
   # GET /families/new
   def new
-
+    binding.pry
     @user = current_user
     @family = current_user.head_of_families.create
     # @family = Family.new
     @new_user = @family.users.build(last_name: @user.last_name)
    
-    get_patient_groups!
-    @diseases = @diseases 
-    @intolerances = @intolerances 
-    @allergies = @allergies
-    @diets =  @diets 
+    # get_patient_groups!
+    # @diseases = @diseases 
+    # @intolerances = @intolerances 
+    # @allergies = @allergies
+    # @diets =  @diets 
 
-    respond_to do |format|
-      format.js
-      format.html
-    end
+    # respond_to do |format|
+    #   format.js
+    #   format.html
+    # end
   end
 
   # GET /families/1/edit

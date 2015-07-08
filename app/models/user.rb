@@ -35,16 +35,26 @@ class User < ActiveRecord::Base
   # Parameter(s)
   # - none
   # Return Value(s)
+  # - "0"
   # - "1"
-  # - "2"
 
   def registration_stage
-    # Stage 1 - user has no phone number
-    if !self.phone_number 
+    # Stage 0 - user has not confirmed account
+    if !self.confirmed? 
+      return 0
+    # Stage 1 - user confirmed but did not complete account set up
+    elsif !self.phone_number
       return 1
-    else
+    # Stage 2 - user did not create family
+    elsif self.head_of_families.length < 1 
       return 2
+    # Stage 3 - user did not set up appointment
+    elsif self.appointment_hosts.length < 1
+      return 3
+    else 
+      return 4
     end
+    # done
   end
 
   # Called in
@@ -56,8 +66,8 @@ class User < ActiveRecord::Base
   # - false
 
   def finished_on_boarding?
-    # user is finished with on boarding when they are at a registration stage of 2
-    if self.registration_stage == 2
+    # user is finished with on boarding when they are at a registration stage of 3
+    if self.registration_stage == 4
       return true
     else
       return false 

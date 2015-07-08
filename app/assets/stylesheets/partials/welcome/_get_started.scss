@@ -1,5 +1,4 @@
 #get-started-page {
-		background-image: url("food/mixed_fruits.jpg");
 	  background-size: cover;
 	  background-repeat: no-repeat;
 	  position: relative;
@@ -8,7 +7,30 @@
 	  text-align: center;
 	  background-color: $brand-white;
 	  margin: -10px;
+	  overflow: auto;
 	  .modal-footer{
 	  	border-top: none;
 	  }
+	  .modal{
+	  	position: relative;
+	  }
+	  .modal-content{
+	  	  border-radius: 15px;
+	  }
+	  h1 {
+	  	color: $brand-carrot-green;
+	  }
+	  .modal-body{
+	  	img.logo{
+	  		margin: 0 auto;
+	  	}
+	  }
+}
+
+#get-started-page.veggies-background{
+	background-image: url("food/veggies-above.jpg");
+}
+
+#get-started-page.fork-background{
+	background-image: url("food/fork-knife.jpg");
 }

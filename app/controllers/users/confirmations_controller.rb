@@ -66,10 +66,11 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   end
 
   def do_confirm
-    
+    binding.pry
     @confirmable.confirm!
     set_flash_message :notice, :confirmed
     sign_in_and_redirect(resource_name, @confirmable)
+    binding.pry
     # after_confirmation_path_for(@confirmable.class, @confirmable)
   end
 

@@ -14,13 +14,13 @@ var UserSignUp = {
     })
   },
   nutrition_buttons: function(){
-    $("#new-health-group-button").on("click", function(e){
-      e.preventDefault();
-      var group_name = $("#new-health-group-field").val();
-      $("#nutrition-checkboxes").append(
-      "<label class='checkbox col-xs-4 select-allergen-box'><input class='check_boxes optional' name='new_health_groups[]' type='checkbox' value='"+group_name+"' checked>"+group_name+"</label>");
-      $("#new-health-group-field").val("");
-    })
+    // $("#new-health-group-button").on("click", function(e){
+    //   e.preventDefault();
+    //   var group_name = $("#new-health-group-field").val();
+    //   $("#nutrition-checkboxes").append(
+    //   "<label class='checkbox col-xs-4 select-allergen-box'><input class='check_boxes optional' name='new_health_groups[]' type='checkbox' value='"+group_name+"' checked>"+group_name+"</label>");
+    //   $("#new-health-group-field").val("");
+    // })
   },
   set_intro_modal: function(){
     $("#introModal").modal("toggle");

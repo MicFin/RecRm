@@ -15,9 +15,7 @@ Rails.application.routes.draw do
 
 
 
-  get 'welcome/index', to: "welcome#index", as: "welcome"
-  get 'welcome/home', to: "welcome#home", as: "welcome_home"
-  get 'welcome/get_started', to: "welcome#get_started", as: "welcome_get_started"
+
 
   get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
   get 'qol', to: "landing_pages#qol", as: "landing_pages_qol"
@@ -43,9 +41,17 @@ Rails.application.routes.draw do
   # # root to: "welcome#index"
 
   devise_scope :user do
+      get 'welcome/index', to: "welcome#index", as: "welcome"
+      get 'welcome/home', to: "welcome#home", as: "welcome_home"
+      get 'welcome/get_started', to: "welcome#get_started", as: "welcome_get_started"
     authenticated :user do
       # root :to => 'dashboard#home', as: :user_authenticated_root
       root :to => 'welcome#home', as: :user_authenticated_root
+      get 'welcome/add_family', to: "welcome#add_family", as: "welcome_add_family"
+      patch 'welcome/build_family', to: "welcome#build_family", as: "welcome_build_family"
+      get 'welcome/add_nutrition', to: "welcome#add_nutrition", as: "welcome_add_nutrition"
+      patch 'welcome/build_nutrition', to: "welcome#build_nutrition", as: "welcome_build_nutrition"
+
       get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
 
       # get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'

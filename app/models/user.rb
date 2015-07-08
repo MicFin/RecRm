@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  # used for form in families/new
+
   rolify :role_cname => 'UserRole'
 
   before_save :uppercase_name

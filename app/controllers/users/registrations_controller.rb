@@ -367,32 +367,16 @@ binding.pry
   end
 
   private
+
+
   # my custom fields are :name, :heard_how
   def configure_permitted_parameters
 
-    # if params["user"]
-    #   if params["user"]["height"]
-    #     if (params["user"]["height"]["feet"].to_i >= 1)
-    #             params["user"]["height"]["feet"] = params["user"]["height"]["feet"].to_i * 12
-    #             params["user"]["height_inches"] = params["user"]["height"]["feet"].to_i + params["user"]["height"]["inches"].to_i
-    #     else 
-    #         params["user"]["height_inches"] = params["user"]["height"]["inches"].to_i
-    #     end
-    #     params["user"].delete "height"
-    #   end
-    #   if params["user"]["weight"]
-    #     if (params["user"]["weight"]["pounds"].to_i >= 1)
-    #       params["user"]["weight"]["pounds"] = params["user"]["weight"]["pounds"].to_i * 16
-    #       params["user"]["weight_ounces"] = params["user"]["weight"]["pounds"].to_i + params["user"]["weight"]["ounces"].to_i
-    #     else 
-    #         params["user"]["weight_ounces"] = params["user"]["weight"]["ounces"].to_i
-    #     end
-    #     params["user"].delete "weight"
-    #   end
-    # end
-    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :patient_group_ids => [])
+    clean_height_and_weight_input
+    
+    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :due_date, :patient_group_ids => [])
     end
-    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :due_date, :patient_group_ids => [])
     end
   end
   

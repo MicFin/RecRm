@@ -1,7 +1,7 @@
 
 
-var Families = {
-	new: function(){
+var Welcome = {
+	addFamily: function(){
 		$('input:radio[name="appointment_focus"]').change(
 		    function(){
 		      if ( $(this).val() === "user-form" ) {
@@ -29,6 +29,13 @@ var Families = {
 				$(".new-user-form .pregnancy-container").addClass("hidden");
 		  }
 		});
+		$(".user-form select[name='user[date_of_birth(1i)]']").change(function() {
+		  if ( parseInt($(this).val()) < moment().subtract(18, "years").year()){
+		   	$(".user-form .pregnancy-container").removeClass("hidden");
+		  } else { 
+				$(".user-form .pregnancy-container").addClass("hidden");
+		  }
+		});
 
 		$('.new-user-form input:radio[name="pregnancy"]').change(
 		    function(){
@@ -39,6 +46,23 @@ var Families = {
 		      }
 		    }
 		);  
+	},
+	addNutrition: function(){
+		$("#add-disease-button").on("click", function(e){
+			e.preventDefault();
+			$("#add-disease-form").removeClass("hidden");
+			$(this).addClass("hidden");
+		});
+		$("#addNutritionModel").on("click", "#new-health-group-button", function(e){
+	      e.preventDefault();
+	      var group_name = $("#new-health-group-field").val();
+	      $("#add-disease-button").before(
+	      	'<span><input name="user[patient_group_ids][]" type="checkbox" value="' + group_name + '"><label class="collection_check_boxes" checked>'+ group_name+'</label></span>');
+	      $("#new-health-group-field").val("");
+	      $("#add-disease-form").addClass("hidden");
+	      $("#add-disease-button").removeClass("hidden");
+    	})
+
 	}
 }        
 // ")

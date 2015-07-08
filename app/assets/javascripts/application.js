@@ -32,11 +32,11 @@
 //= require fullcalendar
 
 
-// NEW NEW NEW
+// NEW BELOW NEW BELOW NEW BELOW
 
 
-//= require families/new
-
+//= require welcome/add_family
+//= require welcome/add_nutrition
 
 
 

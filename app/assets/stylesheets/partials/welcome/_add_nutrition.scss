@@ -1,0 +1,76 @@
+
+#addNutritionModel{
+	input[type="checkbox"] {
+	    display: none;
+	}
+
+	input[type="checkbox"]:checked + label {
+	    background: $brand-light-green;
+	    color: $brand-white;
+	    border: 2px solid $brand-light-green;
+	}
+
+	label {
+	  background: $gray-lighter;
+	  height: 100px;
+	  float: left;
+	  // @include make-xs-column( 6 );
+  	// @include make-sm-column( 3 );
+	  border: 2px solid $gray-light;
+	  @media (max-width: $screen-xs-max) {
+	  	width: 42%;
+	  	margin: 4%;
+	       /* rules for mobile horizontal (480 > 768)  */
+	   }
+	    @media (min-width: $screen-sm-min) {
+	    	width: 21%;
+	    	margin: 2%;
+	       /* rules for tablet (768 > 992) */
+	    }
+	}
+	label:hover {
+	  background: $gray-lighter;
+	  border: 2px solid $brand-light-green;
+	  color: $brand-light-green;
+	}
+	.add-another-disease{
+		background: $brand-light-orange;
+		color: $brand-white;
+	  height: 100px;
+	  float: left;
+	  // @include make-xs-column( 6 );
+  	// @include make-sm-column( 3 );
+	  @media (max-width: $screen-xs-max) {
+	  	width: 42%;
+	  	margin: 4%;
+	       /* rules for mobile horizontal (480 > 768)  */
+	   }
+	    @media (min-width: $screen-sm-min) {
+	    	width: 21%;
+	    	margin: 2%;
+	       /* rules for tablet (768 > 992) */
+	    }
+	}
+	.add-another-disease-form{
+		position: relative;
+		background: $brand-white;
+		color: $brand-white;
+	  height: 100px;
+	  float: left;
+	  border: 2px solid $brand-light-orange;
+	  @media (max-width: $screen-xs-max) {
+	  	width: 42%;
+	  	margin: 4%;
+	       /* rules for mobile horizontal (480 > 768)  */
+	   }
+	    @media (min-width: $screen-sm-min) {
+	    	width: 21%;
+	    	margin: 2%;
+	       /* rules for tablet (768 > 992) */
+	    }
+	}
+	#new-health-group-button{
+		  position: absolute;
+  bottom: 0;
+	}
+}

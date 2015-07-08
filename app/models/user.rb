@@ -30,13 +30,38 @@ class User < ActiveRecord::Base
   # validates phone number is in a correct format
   validates :phone_number, :phony_plausible => true
 
-  def sign_up_stage
-    
-    if self.appointment_hosts.where(status: "In Registration").count >= 1
-      
-      return self.appointment_hosts.where(status: "In Registration").last.stage 
-    else
+
+  # Called in
+  # - registrations#check_registration_stage
+  # Parameter(s)
+  # - none
+  # Return Value(s)
+  # - "1"
+  # - "2"
+
+  def registration_stage
+    # Stage 1 - user has no phone number
+    if !self.phone_number 
       return 1
+    else
+      return 2
+    end
+  end
+
+  # Called in
+  # - applications#after_sign_in_path_for
+  # Parameter(s)
+  # - none
+  # Return Value(s)
+  # - true
+  # - false
+
+  def finished_on_boarding?
+    # user is finished with on boarding when they are at a registration stage of 2
+    if self.registration_stage == 2
+      return true
+    else
+      return false 
     end
   end
 

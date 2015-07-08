@@ -21,7 +21,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def sign_up_params
-    binding.pry
     devise_parameter_sanitizer.sanitize(:sign_up)
   end
 
@@ -253,26 +252,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def update
-    
+    binding.pry
     @user = current_user
-
+    # check if a password is needed for this update
     successfully_updated = if needs_password?(@user, params)
+      # if password is needed
+      # then update with password
       @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
       
     else
-      
+      # if no password is needed 
       # remove the virtual current_password attribute
-      # update_without_password doesn't know how to ignore it
       params[:user].delete(:current_password)
+      # update_without_password doesn't know how to ignore it
       @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
     end
-
+binding.pry
     if successfully_updated
 
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case their password changed
+      binding.pry
       sign_in @user, :bypass => true
-
+      binding.pry
       redirect_to after_update_path_for(@user)
     else
       render "edit"
@@ -281,7 +283,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
 
-  private
+
+
+
+
+  protected
 
   # check if we need password to update user data
   # ie if password or email was changed
@@ -292,8 +298,67 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params[:user][:password_confirmation].present?
   end
 
-  protected
+  # def clean_params(params)
+  #   
+    # if params["user"]
+    #   if params["user"]["height"]
+    #     if (params["user"]["height"]["feet"].to_i >= 1)
+    #             params["user"]["height"]["feet"] = params["user"]["height"]["feet"].to_i * 12
+    #             params["user"]["height_inches"] = params["user"]["height"]["feet"].to_i + params["user"]["height"]["inches"].to_i
+    #     else 
+    #         params["user"]["height_inches"] = params["user"]["height"]["inches"].to_i
+    #     end
+    #     params["user"].delete "height"
+    #   end
+    #   if params["user"]["weight_ounces"]
+    #     params["user"]["weight_ounces"] = params["user"]["weight_ounces"].to_i * 16
+    #   end
+  #   return params
+  # end
+  def after_update_path_for(resource)
+      binding.pry
+      # if they have finished on boarding
+      if resource.finished_on_boarding? 
+          
+      else
+        binding.pry
+      end
+        # respond_to do |format|
+        #   format.js { render "/users/registrations/update.js.erb" and return }
+        #   # format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
+        #   # format.json { render :show, status: :created, location: @appointment }
+        # end 
+      #   else
+      #     ### OLD: what to do if they go back and create another user or remove the user that was the focus
+      #     return new_family_path
+      #   end
+      # else
+        
+        ##### this is where the orginal family is made
+        ##### registrations/new_user_intro/# assigns appointment here
+        # @user = resource
+        # @family = Family.new(name: "Main Family", head_of_family_id: @user.id)
+        # @family.save
+        # @user.add_role "Head of Family", @family
+        # if params["appoint_self"] == "true"
+        #   @appointment = Appointment.new(appointment_host_id: @user.id, patient_focus_id: @user.id, status: "In Registration")
+        # else
+        #   @new_user = User.new(first_name: params[:client_first_name], last_name: params[:client_last_name])
+        #   @new_user.add_role "Family Member Account"
+        #   @new_user.add_role "Family Member", @family
+        #   @new_user.save
+        #   @family.users << @new_user
+        #   @family.save
+        #   @appointment = Appointment.new(appointment_host_id: @user.id, patient_focus_id: @new_user.id, status: "In Registration")
+        # end
+        # @appointment.save
+        # # if non main user
+        # # else main users
+        # return new_user_family_path(@user)
+      # end
+  end
 
+  private
   # my custom fields are :name, :heard_how
   def configure_permitted_parameters
     # if params["user"]
@@ -321,70 +386,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :patient_group_ids => [])
     end
   end
-
-  # def clean_params(params)
-  #   
-    # if params["user"]
-    #   if params["user"]["height"]
-    #     if (params["user"]["height"]["feet"].to_i >= 1)
-    #             params["user"]["height"]["feet"] = params["user"]["height"]["feet"].to_i * 12
-    #             params["user"]["height_inches"] = params["user"]["height"]["feet"].to_i + params["user"]["height"]["inches"].to_i
-    #     else 
-    #         params["user"]["height_inches"] = params["user"]["height"]["inches"].to_i
-    #     end
-    #     params["user"].delete "height"
-    #   end
-    #   if params["user"]["weight_ounces"]
-    #     params["user"]["weight_ounces"] = params["user"]["weight_ounces"].to_i * 16
-    #   end
-  #   return params
-  # end
-
-  def after_update_path_for(resource)
-    ### should be in after create??
-    ## should not be in regular flow of update, only for initial sign up
-    
-    if resource.class == User 
-      ## if they have already created an appointment
-      if resource.appointment_hosts.where(status: "In Registration").count >= 1
-        ## if they already created the appointment time
-        if resource.appointment_hosts.where(status: "In Registration").last.start_time 
-          
-        # respond_to do |format|
-        #   format.js { render "/users/registrations/update.js.erb" and return }
-        #   # format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
-        #   # format.json { render :show, status: :created, location: @appointment }
-        # end 
-        else
-          ### OLD: what to do if they go back and create another user or remove the user that was the focus
-          return new_family_path
-        end
-      else
-        
-        ##### this is where the orginal family is made
-        ##### registrations/new_user_intro/# assigns appointment here
-        @user = resource
-        @family = Family.new(name: "Main Family", head_of_family_id: @user.id)
-        @family.save
-        @user.add_role "Head of Family", @family
-        if params["appoint_self"] == "true"
-          @appointment = Appointment.new(appointment_host_id: @user.id, patient_focus_id: @user.id, status: "In Registration")
-        else
-          @new_user = User.new(first_name: params[:client_first_name], last_name: params[:client_last_name])
-          @new_user.add_role "Family Member Account"
-          @new_user.add_role "Family Member", @family
-          @new_user.save
-          @family.users << @new_user
-          @family.save
-          @appointment = Appointment.new(appointment_host_id: @user.id, patient_focus_id: @new_user.id, status: "In Registration")
-        end
-        @appointment.save
-        # if non main user
-        # else main users
-        return new_user_family_path(@user)
-      end
-    else
-      signed_in_root_path(resource)
-    end
-  end
+  
 end

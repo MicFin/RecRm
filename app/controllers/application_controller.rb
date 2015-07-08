@@ -7,21 +7,34 @@ class ApplicationController < ActionController::Base
 
   # shared by the user and dietitian registrations controllers
 	def after_sign_in_path_for(resource)
-		# if a user signs in and has created a family
-    binding.pry
-		if resource.class == User && resource.head_of_families.length >= 1
 
+    #note: request.referrer can be used to return user to the page they were on
+
+		# if a user signs in 
+    binding.pry
+		if resource.class == User
+      
 		  # DO STUFF
 
-    # if a user signs in but did not create a family
-    elsif resource.class == User
       # TEMPORARILY HOOKING OLD CODE BACK IN
-      new_user_intro_path(resource)
+      # new_user_intro_path(resource)
       # UNCOMMENT BELOW
 
+      binding.pry
+    # resource has completed on boarding 
+      if resource.finished_on_boarding? 
 
-    # # user has not entered phone number or first form
-    #   if resource.phone_number.nil?
+      else
+        binding.pry
+        registration_stage = resource.registration_stage
+        # 
+        if registration_stage == 1
+
+          welcome_get_started_path
+
+        else
+        end
+      end
     #     welcome_get_started_path(resource)
     #   # user has entered phone number but not family member
     #   elsif resource.head_of_families.length < 1
@@ -64,7 +77,6 @@ private
 	  current_dietitian.try :touch
 	end
 
-  private
 
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)

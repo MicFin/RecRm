@@ -3,10 +3,9 @@ class User < ActiveRecord::Base
 
   before_save :uppercase_name
 	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable and :omniauthable
+	# :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
-	     :recoverable, :rememberable, :trackable, :validatable
-
+	     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
 
@@ -226,5 +225,11 @@ class User < ActiveRecord::Base
     end
   end
 
+protected
+  
+  # use to change if confirmation is required or not
+  def confirmation_required?
+    true
+  end
 
 end

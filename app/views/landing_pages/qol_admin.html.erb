@@ -30,15 +30,13 @@
 	<section>
 		<div class="row qol-background-image">
 			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-1 col-md-5 text-left col-lg-5 left-column">
-				<h1>Eat Easy.</h1>
-				<h1>Be Happy.</h1>
-				<h3>Great food and good nutrition start with the right guidance.</h3>
-<!-- 				<button class="btn btn-lg btn-success hidden-xs">Learn More</button> -->
+				<h1>Happy <%=Time.zone.now.wday%>.</h1>
+				<h3>Kindrdfood is ready to help!.</h3>
 			</div>
 			<div class="col-xs-12 col-sm-6 outside-form-container">
 				<div class="text-center">
-					<h3>FREE 1 hour and FREE 30 minute session!</h3>
-					<p>Schedule your complimentary one-hour session and a complimentary 30-minute follow up session with one of our Registered Dietitian Nutritionists.</p>
+					<h3>Sign Your Clients Up</h3>
+					<p>Enter their first and last name as well as an email address and we will email them a personal invitation for their complimentary 1 hour session and 30 minute follow up.</p>
 
 					<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
 
@@ -120,45 +118,9 @@
 				<p>We can work with your current physician team, lactation consultant, allergist and more!  Nutrition can be complicated and we feel that we work best when everyone is working together.</p>
 			</div>
 		</div>
-<!-- 		<div class="team col-xs-12 text-center">
-			<a href="">Learn more about the Kindrdfood team</a>
-		</div> -->
+
 	</section>
-		<div class="row qol-background-image">
-			<div class="col-xs-12 col-sm-6 col-sm-offset-3 outside-form-container">
-				<div class="text-center">
-					<h3>FREE 1 hour and FREE 30 minute session!</h3>
-					<p>Schedule your complimentary one-hour session and a complimentary 30-minute follow up session with one of our Registered Dietitian Nutritionists.</p>
-
-					<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
-
-						<div class="form-group col-xs-8 col-xs-offset-2">
-							<label for="first-name">First Name</label>
-							<%= f.input_field :first_name, autofocus: true, class: "form-control", type: "text", placeholder: "First" %>
-						</div>
-						<div class="form-group col-xs-8 col-xs-offset-2">
-							<label for="last-name">Last Name</label>
-							<%= f.input_field :last_name, autofocus: true, class: "form-control", type: "text", placeholder: "Last" %>
-						</div>
-						<div class="form-group col-xs-8 col-xs-offset-2">
-							<label for="email">Email Address</label>
-							<%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
-						</div>
-					  <div class="form-group col-xs-8 col-xs-offset-2">
-					    <%= f.input :password, placeholder: 'secret sauce', autocomplete: "off", input_html: { class: "form-control"} %>
-					  </div>
-					  <div class="form-group col-xs-8 col-xs-offset-2">
-					    <%= f.input :password_confirmation, placeholder: 'secret sauce', autocomplete: "off", input_html: { class: "form-control"} %>
-					  </div>
-
-
-						<div class="col-xs-8 col-xs-offset-2 text-right">
-							<%= f.button :submit, "Join Us!", class: "btn btn-primary btn-lg", type: "submit" %>
-						</div>
-					<% end %>
-				</div>
-			</div>
-		</div>
+		
 	<%#= render "/layouts/footers/main_footer" %>
 
 </div>

@@ -5,7 +5,7 @@ class LandingPagesController < ApplicationController
   end
 
   #
-  def qol
+  def qol_admin
     @user = User.new 
   end
 end

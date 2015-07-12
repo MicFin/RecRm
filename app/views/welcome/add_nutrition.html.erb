@@ -13,13 +13,44 @@
 					<%= simple_form_for(@user, :url => {:controller => 'welcome', :action => 'build_nutrition'}, html: { method: :patch, class: 'col-xs-12 text-center', role:"form" }) do |f| %>
 
 						<div id="health-group-container" class="row">
-						  <%=	f.collection_check_boxes :patient_group_ids, @diseases, :id, :name %>
+						
+						  <% @diseases.each do |disease| %>
+						  	<span>
+						  	<% if disease.has_triggers == true %>
+						  		<input id="user_patient_group_ids_<%=disease.id%>" name="user[patient_group_ids][]" data-triggers="true" type="checkbox" value="<%=disease.id%>">
+						  	<% else %>
+						  		<input id="user_patient_group_ids_<%=disease.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=disease.id%>">
+						  	<% end%>
+						  		<label class="collection_check_boxes" for="user_patient_group_ids_<%=disease.id%>"><%=disease.name%></label>
+						  	</span>
+						  <% end %>
 						 		<div id="add-disease-button" class="add-another-disease">Add Another</div>
 						 		<div id="add-disease-form" class="add-another-disease-form hidden">
 							 		<input id="new-health-group-field" type="text" placeholder="Autism" class="form-control-12"/>
-							 		<button id="new-health-group-button" class="btn btn-block btn-warning">Add</button>
+							 		<button id="new-health-group-button" type="button" class="btn btn-block btn-warning">Add</button>
 
 						 		</div>
+						</div>
+						<div class="row triggers-container form-group">
+							<h4>Select all that apply.</h4>
+							<% @allergies.each do |allergy| %>
+								<div class="col-xs-6 col-sm-4 form-group">
+						  		
+						  		
+						  			<input id="user_patient_group_ids_<%=allergy.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=allergy.id%>">
+
+						  			<label class="checkbox-inline" for="user_patient_group_ids_<%=allergy.id%>"><%=allergy.name%></label>
+						  		</div>
+						  <% end %>
+						  <div id="add-allergy-container" class="col-xs-12 form-group">
+							  <input id="add-allergy-field" name="user[patient_group_ids][]" type="text", placeholder="Blueberries">
+								<button id="new-allergy-group-button" class="btn btn-sm btn-warning">Add Another</button>
+						  </div>	
+							<div class="col-xs-12">
+								<h4>Easier to explain what <%=@user.first_name%> <span> can</span> eat?</h4>
+
+								<%= f.input :family_note, label: false, placeholder: "Share here", input_html: {class: "form-control", rows: 4} %> 
+							</div>
 						</div>
 
 					  <div class="actions text-right">

@@ -1,37 +1,39 @@
 
 #addNutritionModel{
-	input[type="checkbox"] {
-	    display: none;
-	}
+	#health-group-container{
+		input[type="checkbox"] {
+		    display: none;
+		}
 
-	input[type="checkbox"]:checked + label {
-	    background: $brand-light-green;
-	    color: $brand-white;
-	    border: 2px solid $brand-light-green;
-	}
+		input[type="checkbox"]:checked + label {
+		    background: $brand-light-green;
+		    color: $brand-white;
+		    border: 2px solid $brand-light-green;
+		}
 
-	label {
-	  background: $gray-lighter;
-	  height: 100px;
-	  float: left;
-	  // @include make-xs-column( 6 );
-  	// @include make-sm-column( 3 );
-	  border: 2px solid $gray-light;
-	  @media (max-width: $screen-xs-max) {
-	  	width: 42%;
-	  	margin: 4%;
-	       /* rules for mobile horizontal (480 > 768)  */
-	   }
+		label {
+		  background: $gray-lighter;
+		  height: 100px;
+		  float: left;
+		  // @include make-xs-column( 6 );
+	  	// @include make-sm-column( 3 );
+		  border: 2px solid $gray-light;
+		  @media (max-width: $screen-xs-max) {
+		  	width: 42%;
+		  	margin: 4%;
+		       /* rules for mobile horizontal (480 > 768)  */
+		  }
 	    @media (min-width: $screen-sm-min) {
 	    	width: 21%;
 	    	margin: 2%;
 	       /* rules for tablet (768 > 992) */
 	    }
-	}
-	label:hover {
-	  background: $gray-lighter;
-	  border: 2px solid $brand-light-green;
-	  color: $brand-light-green;
+		}
+		label:hover {
+		  background: $gray-lighter;
+		  border: 2px solid $brand-light-green;
+		  color: $brand-light-green;
+		}
 	}
 	.add-another-disease{
 		background: $brand-light-orange;
@@ -44,12 +46,12 @@
 	  	width: 42%;
 	  	margin: 4%;
 	       /* rules for mobile horizontal (480 > 768)  */
-	   }
-	    @media (min-width: $screen-sm-min) {
-	    	width: 21%;
-	    	margin: 2%;
-	       /* rules for tablet (768 > 992) */
-	    }
+	  }
+    @media (min-width: $screen-sm-min) {
+    	width: 21%;
+    	margin: 2%;
+       /* rules for tablet (768 > 992) */
+    }
 	}
 	.add-another-disease-form{
 		position: relative;
@@ -62,15 +64,40 @@
 	  	width: 42%;
 	  	margin: 4%;
 	       /* rules for mobile horizontal (480 > 768)  */
-	   }
-	    @media (min-width: $screen-sm-min) {
-	    	width: 21%;
-	    	margin: 2%;
-	       /* rules for tablet (768 > 992) */
-	    }
+   	}
+    @media (min-width: $screen-sm-min) {
+    	width: 21%;
+    	margin: 2%;
+       /* rules for tablet (768 > 992) */
+    }
 	}
 	#new-health-group-button{
-		  position: absolute;
-  bottom: 0;
+	  position: absolute;
+  	bottom: 0;
+	}
+	.triggers-container{
+		text-align: left;
+		background: green;
+	  padding: 1%;
+	  padding-bottom: 5%;
+	  border-radius: 15px;
+	  color: white;
+	  h4 {
+	  	padding-left: 2%;
+	  	span {
+	  		border-bottom: 2px solid $brand-white;
+	  	}
+	  }
+	  > div {
+	  	padding: 0;
+	  	padding-left: 5%;
+	  }
+	  textarea{
+	  	width: 95%;
+  		border-radius: 5px;
+	  }
+	}
+	#add-allergy-field{
+		color: $brand-black;
 	}
 }

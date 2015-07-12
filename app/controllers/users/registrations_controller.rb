@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # only QOL admin should be creating these so can redirect to qol
   def after_inactive_sign_up_path_for(resource)
   
-    welcome_get_started_path
+    redirect_to landing_pages_qol_admin_path
   end
 
   def sign_up_params
@@ -259,7 +259,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def update
-    binding.pry
+    
     @user = current_user
     # check if a password is needed for this update
     successfully_updated = if needs_password?(@user, params)
@@ -268,21 +268,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
       
     else
-      binding.pry
+      
       # if no password is needed 
       # remove the virtual current_password attribute
       params[:user].delete(:current_password)
       # update_without_password doesn't know how to ignore it
       @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
     end
-binding.pry
+
     if successfully_updated
 
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case their password changed
       
       sign_in @user, :bypass => true
-      binding.pry
+      
       after_update_path_for(@user)
     else
       render "edit"
@@ -324,7 +324,7 @@ binding.pry
   #   return params
   # end
   def after_update_path_for(resource)
-      binding.pry
+      
       # if they have finished on boarding
       if resource.finished_on_boarding? 
           
@@ -371,8 +371,6 @@ binding.pry
 
   # my custom fields are :name, :heard_how
   def configure_permitted_parameters
-
-    clean_height_and_weight_input
     
     devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :due_date, :patient_group_ids => [])
     end

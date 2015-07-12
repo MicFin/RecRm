@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
 
   get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
-  get 'qol', to: "landing_pages#qol", as: "landing_pages_qol"
+  get 'qoladmin', to: "landing_pages#qol_admin", as: "landing_pages_qol_admin"
 
 
   resources :plans

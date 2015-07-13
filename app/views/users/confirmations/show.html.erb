@@ -1,5 +1,5 @@
 
-<div id="qol-page" class="container-fluid">
+<div id="qol-sign-in-page" class="container-fluid">
   <nav class="row navbar navbar-default">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -49,11 +49,11 @@
 
             <div class="form-group col-xs-8 col-xs-offset-2">
               <label for="first-name">Password</label>
-              <%= f.password_field :password, autofocus: true, class: "form-control", type: "text", placeholder: "secret sauce" %>
+              <%= f.password_field :password, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
             </div>
             <div class="form-group col-xs-8 col-xs-offset-2">
               <label for="last-name">Confirm password</label>
-              <%= f.password_field :password_confirmation, autofocus: true, class: "form-control", type: "text", placeholder: "secret sauce" %>
+              <%= f.password_field :password_confirmation, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
             </div>
             <%= hidden_field_tag :confirmation_token,@confirmation_token %>
 

@@ -1,5 +1,5 @@
 
-<div id="get-started-page" class="fork-background" >
+<div id="welcome-add-family" class="fork-background" >
 
 	<div id="addFamilyModel" class="modal fade in" style="display: block;">
 	  <div class="modal-dialog">
@@ -103,7 +103,7 @@
 			     			<%= label_tag :due_date, "Due Date:" %>
 			     		</div>
 				     	<div class="col-xs-12">
-				      	<%= f.date_select :due_date, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year, max_years_allowed: 5, order: [:month, :day, :year]}, {:class => "form-control-4"} %>
+				      	<%= f.date_select :due_date, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year+1, max_years_allowed: 5, order: [:month, :day, :year]}, {:class => "form-control-4"} %>
 				    	</div>
 			    	</div>
 					  <div class="actions text-right">
@@ -204,7 +204,7 @@
 			     			<%= label_tag :due_date, "Due Date:" %>
 			     		</div>
 				     	<div class="col-xs-12">
-				      	<%= f.date_select :due_date, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year, max_years_allowed: 5, order: [:month, :day, :year]}, {:class => "form-control-4"} %>
+				      	<%= f.date_select :due_date, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year+1, max_years_allowed: 5, order: [:month, :day, :year]}, {:class => "form-control-4"} %>
 				    	</div>
 			    	</div>
 					 

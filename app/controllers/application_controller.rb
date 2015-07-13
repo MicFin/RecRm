@@ -68,6 +68,7 @@ private
 
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)
+    binding.pry
     if resource_or_scope == :user
       # new_user_session_path
       root_path
@@ -75,6 +76,13 @@ private
     	root_path
     end
   end
+
+  #   # Users that require confirmation, currently from QOL landing page
+  # # only QOL admin should be creating these so can redirect to qol
+  # def after_inactive_sign_up_path_for(resource)
+  #   binding.pry
+  #   redirect_to landing_pages_qol_admin_path
+  # end
   
 
 end

@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 	# include RecipesHelper
 
 	def index
+		binding.pry
 		if current_user
 			redirect_to user_authenticated_root_path
 		elsif current_dietitian
@@ -28,24 +29,29 @@ class HomeController < ApplicationController
 	end
 
 	def discount_landing_page
+		binding.pry
 		@new_user  = User.new
 	end
 
 	def home_page
+		binding.pry
 		@thanks = params[:thanks]
 		@new_user  = User.new
 
 	end
 
 	def join
+		binding.pry
 		@new_user  = User.new
 	end
 
 	def provider3126
+		binding.pry
 		@user  = User.new
 	end
 
 	def provider9172
+		binding.pry
 		@user  = User.new
 	end
 

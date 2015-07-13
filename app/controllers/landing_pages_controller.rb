@@ -6,6 +6,7 @@ class LandingPagesController < ApplicationController
 
   #
   def qol_admin
+    binding.pry
     @user = User.new 
   end
 end

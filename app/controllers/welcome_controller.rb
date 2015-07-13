@@ -1,5 +1,5 @@
 class WelcomeController < Users::RegistrationsController
-    # include AppointmentsHelper
+    include AppointmentsHelper
     # include QualityReviewsHelper
     include PatientGroupsHelper
     include FamiliesHelper
@@ -9,6 +9,7 @@ class WelcomeController < Users::RegistrationsController
     # user home page / main dashboard
     def home
 
+binding.pry
       # AppointmentsHelper
       get_previous_appointments!
       @previous_appointments
@@ -35,6 +36,7 @@ class WelcomeController < Users::RegistrationsController
 
     ### this is currently the dietitian's dashboard
     def index
+
       @today = Date.today
       @beginning_of_week = @today.at_beginning_of_week(:thursday)
       if @user == current_dietitian
@@ -106,6 +108,19 @@ class WelcomeController < Users::RegistrationsController
       @allergies = @allergies
         
     end
+
+    def build_nutrition
+      
+      @user = @user.head_of_families.last.users.last || @user
+
+      # PatientGroupsHelper
+      get_patient_groups!
+      @diseases = @diseases 
+      @intolerances = @intolerances 
+      @allergies = @allergies
+        
+    end
+
   end
 
   private

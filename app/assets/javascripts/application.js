@@ -25,6 +25,7 @@
 //= require jquery.Jcrop
 //= require jquery-fullpage-min
 //= require jquery-toggleText
+//= require jquery-masked-input.min
 //= require moment
 //= require bootstrap
 //= require bootstrap-datetimepicker
@@ -37,7 +38,9 @@
 
 //= require welcome/add_family
 //= require welcome/add_nutrition
+//= require welcome/get_started
 
+//= require landing_pages/qol_admin/form_validation
 
 
 

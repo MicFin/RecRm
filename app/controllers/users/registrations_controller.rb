@@ -3,11 +3,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include PatientGroupsHelper
   before_filter :configure_permitted_parameters, :except => [:new_user_intro, :new_user_family] 
 
+  # POST /resource
+  def create
+    build_resource(sign_up_params)
 
-  # def update
-  #   
-  #   super
-  # end
+    if resource.save
+      yield resource if block_given?
+      if resource.active_for_authentication?
+        set_flash_message :notice, :signed_up if is_flashing_format?
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+
+      # should check if QOL sign up or not then redirect or change flash alert
+      # set flash error messages
+      resource.errors.full_messages.each {|x| flash[:error] = x}
+      # override devise default to go to last location
+      redirect_to request.referrer
+    end
+  end
+
   # Signs in a user on sign up. You can overwrite this method in your own
   # RegistrationsController.
   def sign_up(resource_name, resource)
@@ -16,15 +37,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    
+      
     after_sign_in_path_for(resource)
   end
 
   # Users that require confirmation, currently from QOL landing page
   # only QOL admin should be creating these so can redirect to qol
   def after_inactive_sign_up_path_for(resource)
-  
-    redirect_to landing_pages_qol_admin_path
+    
+    # override confirmation sent flash notice for QOLadmin
+    flash[:notice] = 'Client was successfully added.'
+    landing_pages_qol_admin_path
   end
 
   def sign_up_params
@@ -324,7 +347,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   return params
   # end
   def after_update_path_for(resource)
-      
+        
       # if they have finished on boarding
       if resource.finished_on_boarding? 
           

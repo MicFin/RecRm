@@ -1,4 +1,4 @@
-#get-started-page {
+#get-started-page, #welcome-add-family {
 	  background-size: cover;
 	  background-repeat: no-repeat;
 	  position: relative;
@@ -27,10 +27,10 @@
 	  }
 }
 
-#get-started-page.veggies-background{
+#get-started-page {
 	background-image: url("food/veggies-above.jpg");
 }
 
-#get-started-page.fork-background{
+#welcome-add-family{
 	background-image: url("food/fork-knife.jpg");
 }

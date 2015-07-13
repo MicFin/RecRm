@@ -399,7 +399,7 @@ class AppointmentsController < ApplicationController
           format.json { render :show, status: :ok, location: @appointment }
           format.js
         else
-          format.html { redirect_to user_dashboard_path, notice: 'Appointment was successfully created.' }
+          format.html { redirect_to welcome_home_path, notice: 'Appointment was successfully created.' }
           format.json { render :show, status: :ok, location: @appointment }
           format.js
         end

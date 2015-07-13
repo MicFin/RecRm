@@ -5,16 +5,15 @@
 }
 
 #select-time-container .fc-event {
-position: relative;
-display: block;
-// left:0;
-font-size: .85em;
-line-height: 1.3;
-border-radius: 3px;
-border: 1px solid $carrotgreen;
-background-color: $lightgreen;
-font-weight: normal;
-
+	position: relative;
+	display: block;
+	// left:0;
+	font-size: .85em;
+	line-height: 1.3;
+	border-radius: 3px;
+	border: 1px solid $carrotgreen;
+	background-color: $lightgreen;
+	font-weight: normal;
 }
 
 #select-time-container .fc-event:not(.time-slot-taken):hover {
@@ -43,7 +42,6 @@ font-weight: normal;
 	// padding: 0px;
 	margin-left: 75%;
 	margin-top: -5%;
-	position: relative;
 	visibility: visible;
 	z-index: 2147483647;
 	clear: none;
@@ -52,11 +50,23 @@ font-weight: normal;
 }
 
 .fc-toolbar .fc-left {
-	float: left;
-		margin-left: 50px;
+  position: absolute;
+  left: -10%;
+  top: 50%;
 }
 
 .fc-toolbar .fc-right {
-	float: right;
-		margin-left: 20px;
+		position: absolute;
+  right: -10%;
+  top: 50%;
+}
+
+.today-title{
+	background-color: $brand-light-orange;
+	color: white;
+}
+
+#select-appt-cal {
+	  margin-top: 5%;
+	  position: relative;
 }

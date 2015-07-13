@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   # shared by the user and dietitian registrations controllers
 	def after_sign_in_path_for(resource)
-    binding.pry
+    
     #note: request.referrer can be used to return user to the page they were on
 
 		# when a user signs in 
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
       # if user has not completed onboarding
       else
-        # binding.pry
+        # 
         # registration_stage = resource.registration_stage
         # # user has only confirmed their account 
         # if registration_stage == 1
@@ -68,7 +68,7 @@ private
 
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)
-    binding.pry
+    
     if resource_or_scope == :user
       # new_user_session_path
       root_path
@@ -80,7 +80,7 @@ private
   #   # Users that require confirmation, currently from QOL landing page
   # # only QOL admin should be creating these so can redirect to qol
   # def after_inactive_sign_up_path_for(resource)
-  #   binding.pry
+  #   
   #   redirect_to landing_pages_qol_admin_path
   # end
   

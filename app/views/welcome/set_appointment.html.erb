@@ -1,27 +1,51 @@
-<div id="select-time-container" class="row">
-  <div id="new-appt-form" class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-        <h2>Select a time for your 1-hour session.</h2>
-        <div class="col-xs-12">
-          <p>If the available times do not match your schedule, please <button id="request-appt-times" class="btn btn-sm btn-warning">email us here</button></p>
+
+<div id="set-appointment-page" class="fork-background" >
+
+  <div id="addNutritionModel" class="modal fade in" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <%= image_tag("/assets/logos/kf-logo-registration.png", class: "img-responsive logo") %>
+          
+
+          <div id="set-appt-time" data-appt-id="<%=@appointment.id%>" class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <h1>Select Your Appointment</h1>
+            <h4>All first appointments are for 1 hour</h4>
+            <% if @appointment.stripe_card_token %>
+              <h2>This appointment is already set for <%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M")%> - <%=@appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p")%></h2>
+            <% else %>
+              <div id="select-appt-cal"></div>
+            <% end %>
+            <div class="col-xs-12">
+            <h3>Can't find a time that works for you?</h3>
+            <button class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span>Email Us</button>
+            </div>
+          </div>
+<!--           <div class="col-xs-5">
+            <div class="row">
+              <div class="col-xs-12">
+                <h3><span class="glyphicon glyphicon-calendar"></span>Sessions</h3>
+                <p>Date: </p>
+                <p>Time:</p>
+                <hr>
+              </div>
+            </div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+          </div> -->
+
+    
+      
         </div>
-      </div>
-      <% if @appointment_requests.count > 0 %>
-      <div id="appointment-request-list" class="col-xs-5">
-        <h4 class="light-green-font">Thank you for requesting:</h4>
-        <%@appointment_requests.each do |appointment|%>
-            <p>
-              <%=appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %I:%M")%> - <%=appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p") %>
-            </p>
-        <% end %>
-      </div>
-      <% end %>
-      <div id="set-appt-time" data-appt-id="<%=@appointment.id%>" class="col-xs-12">
-        <% if @appointment.stripe_card_token %>
-          <h2>This appointment is already set for <%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M")%> - <%=@appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p")%></h2>
-        <% else %>
-          <div id="select-appt-cal"></div>
-        <% end %>
-      </div>
-  </div>
+        <div class="modal-footer">
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->  
+
 </div>
+
+

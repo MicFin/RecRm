@@ -7,7 +7,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   # PUT /resource/confirmation
   def update
-    binding.pry
+    
     with_unconfirmed_confirmable do
       if @confirmable.has_no_password?
         @confirmable.attempt_set_password(params[:user])
@@ -32,7 +32,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
     
-    binding.pry
+    
     with_unconfirmed_confirmable do
       if @confirmable.has_no_password?
         do_show
@@ -51,7 +51,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   def with_unconfirmed_confirmable
     
-    binding.pry
+    
     original_token = params[:confirmation_token]
     confirmation_token = Devise.token_generator.digest(User, :confirmation_token, original_token)
     @confirmable = User.find_or_initialize_with_error_by(:confirmation_token, confirmation_token)
@@ -62,7 +62,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   def do_show
     
-    binding.pry
+    
     @confirmation_token = params[:confirmation_token]
     @requires_password = true
     self.resource = @confirmable

@@ -169,9 +169,8 @@ class WelcomeController < Users::RegistrationsController
   end
 
   def set_appointment
-    binding.pry
     patient_focus = current_user.head_of_families.last.users.last || @user
-    @appointment = Appointment.new(appointment_host_id: @user.id, patient_focus_id: patient_focus.id, status: "In Registration")
+    @appointment = Appointment.create(appointment_host_id: @user.id, patient_focus_id: patient_focus.id, status: "In Registration")
     @time_slots = TimeSlot.select_appointment_time_slots 
     @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
     # @user = current_user.head_of_families.last.users.last || @user

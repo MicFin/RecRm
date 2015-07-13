@@ -58,8 +58,8 @@ var SelectApptCalendar = {
     var dates_taken = [];
     $('#select-appt-cal').fullCalendar({
       header: {
-            left:   '',
-            center: 'prev',
+            left:   'prev',
+            center: '',
             right:  'next'
       },
       views: {
@@ -94,9 +94,9 @@ var SelectApptCalendar = {
       allDayText: false,
       slotDuration: '00:30:00',
       minTime: "08:00:00",
-      maxTime: "21:00:00",
+      maxTime: "24:00:00",
       columnFormat: 'ddd M/DD/YY',
-      height: "auto",
+      height: 500,
       eventBackgroundColor: "#399E48",
       eventBorderColor: "#11753B",
       slotEventOverlap: false,
@@ -177,7 +177,7 @@ var SelectApptCalendar = {
         if (event.title === "time-slot-taken"){
 
         } else {
-          $($(this).children(":first")).children(":first").text(event.start.format('h:mm')+" - "+event.end.format('h:mma'));
+          $($(this).children(":first")).children(":first").text(event.start.format('h:mm')+" - "+event.end.format('h:mm A'));
           // $($(this).children(":first")).children(":first").addClass("hidden");
           // $($(this).children(":first")).append("<div class='appt-hover-text'>" + event.start.format('h:mm')+" - "+event.end.format('h:mma')+"</div>");
           // $(this).tooltip({placement: 'bottom', title: '<p>'+event.start.format('h:mm')+" - "+event.end.format('h:mma')+'</p>', html: true});
@@ -190,7 +190,7 @@ var SelectApptCalendar = {
 
         } else {
           // $(".appt-hover-text").remove();
-          $($(this).children(":first")).children(":first").text(event.start.format('h:mma'));
+          $($(this).children(":first")).children(":first").text(event.start.format('h:mm A'));
           // $($(this).children(":first")).children(":first").removeClass("hidden");
           // $(this).tooltip("hide");
         }
@@ -216,13 +216,13 @@ var SelectApptCalendar = {
           element.find(".fc-title").remove();
           element.find(".fc-time").remove();
         
-          var new_html = "<div class='event-time'>​"+event.start.format('h:mm a')+"</div>";
+          var new_html = "<div class='event-time'>​"+event.start.format('h:mm A')+"</div>";
           // $(element).children(":first").replaceWith(html);
           $(element).children(":first").append(new_html);
           // $(element).parent().hide();
-          // if (event.title != "time-slot-taken"){
-          //   event_start_times_rendered.push(event.start.format());
-          // }
+          if (event.title != "time-slot-taken"){
+            event_start_times_rendered.push(event.start.format());
+          }
 
       },
       eventAfterRender: function(event, element, view){
@@ -238,7 +238,7 @@ var SelectApptCalendar = {
         if (dates_taken.length < 1) {
           // reset dates taken when rendering a new calendar range
           for (var k = 0; k <= 21; k++){
-            for(var i = 7; i<=24; i++){
+            for(var i = 7; i<=23; i++){
               var date = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
               if (event_start_times_rendered.indexOf(date.format()) < 0 ){
                 var date_object_1 = {
@@ -267,7 +267,7 @@ var SelectApptCalendar = {
           };
           $('#select-appt-cal').fullCalendar( 'addEventSource', dates_taken );
         }
-        $(".time-slot-taken .event-time").text("Booked");
+        // $(".time-slot-taken .event-time").text("Booked");
       }
     });
   

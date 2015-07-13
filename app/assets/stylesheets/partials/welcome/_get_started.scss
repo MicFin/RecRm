@@ -1,4 +1,4 @@
-#get-started-page, #welcome-add-family {
+#get-started-page, #welcome-add-family, #set-appointment-page {
 	  background-size: cover;
 	  background-repeat: no-repeat;
 	  position: relative;
@@ -27,7 +27,7 @@
 	  }
 }
 
-#get-started-page {
+#get-started-page, #set-appointment-page {
 	background-image: url("food/veggies-above.jpg");
 }
 

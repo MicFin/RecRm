@@ -10,7 +10,7 @@
 
 <% elsif @user.qol_referral === true %>
 
-	$("#new-appt-form").after("<%= j render(:partial => 'payment_modal') %>");
+	$("#set-appointment-page").after("<%= j render(:partial => 'payment_modal') %>");
 	$('#paymentModal').modal();
 	// payment.setupForm();
 

@@ -62,8 +62,16 @@ var SelectApptCalendar = {
             center: 'prev',
             right:  'next'
       },
-      defaultDate: start_date,
-      firstDay: start_day,
+      views: {
+        agendaThreeDay: {
+            type: 'basic',
+            duration: { days: 3 },
+            buttonText: '3 day'
+        }
+      },
+      defaultView: 'agendaThreeDay',
+      // defaultDate: start_date,
+      // firstDay: start_day,
       timezone: "local",
       events: {
         url: '/time_slots.json',
@@ -79,18 +87,19 @@ var SelectApptCalendar = {
       displayEventEnd: {
         month: false,
         agendaWeek: false,
-        'default': false
+        'default': false,
+        agendaThreeDay: false
       },
-      defaultView: 'basicWeek',
       allDaySlot: false,
       allDayText: false,
       slotDuration: '00:30:00',
       minTime: "08:00:00",
       maxTime: "21:00:00",
       columnFormat: 'ddd M/DD/YY',
-      height: 500,
+      height: "auto",
       eventBackgroundColor: "#399E48",
       eventBorderColor: "#11753B",
+      slotEventOverlap: false,
       viewRender: function (view) {
         // reset dates taken when rendering a new calendar range
         if (dates_taken.length > 0) {
@@ -210,14 +219,13 @@ var SelectApptCalendar = {
           var new_html = "<div class='event-time'>​"+event.start.format('h:mm a')+"</div>";
           // $(element).children(":first").replaceWith(html);
           $(element).children(":first").append(new_html);
-          $(element).parent().hide();
-          if (event.title != "time-slot-taken"){
-            event_start_times_rendered.push(event.start.format());
-          }
-          debugger;
+          // $(element).parent().hide();
+          // if (event.title != "time-slot-taken"){
+          //   event_start_times_rendered.push(event.start.format());
+          // }
+
       },
       eventAfterRender: function(event, element, view){
-        debugger;
         $(element).parent().hide();
       },
       dayRender: function( date, cell ) { 

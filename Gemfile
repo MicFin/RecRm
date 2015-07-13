@@ -64,7 +64,7 @@ gem "rmagick", "2.13.4"
 # gem 'fog', "~> 1.3.1"
 gem 'carrierwave-aws', "0.4.1"
 
-gem 'momentjs-rails', '~> 2.8.3'
+gem 'momentjs-rails', '~> 2.8.4'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 # manages phone number validation
@@ -93,7 +93,7 @@ gem "pundit", "0.2.2"
 # https://github.com/RolifyCommunity/rolify
 gem 'rolify', "3.4.1"
 
-gem 'fullcalendar-rails', '~> 2.2.0.0'
+gem 'fullcalendar-rails', '~> 2.3.1'
 
 gem 'stripe', "1.16.0"
 # rails stripe payment integration

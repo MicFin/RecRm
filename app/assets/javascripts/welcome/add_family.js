@@ -244,7 +244,7 @@ var Welcome = {
       e.preventDefault();
       var group_name = $("#new-health-group-field").val();
       $("#add-disease-button").before(
-      	'<span><input name="user[patient_group_ids][]" type="checkbox" value="' + group_name + '" checked><label class="collection_check_boxes">'+ group_name+'</label></span>');
+      	'<span><input name="new_health_groups[]" type="checkbox" value="' + group_name + '" checked><label class="collection_check_boxes">'+ group_name+'</label></span>');
       $("#new-health-group-field").val("");
       $("#add-disease-form").addClass("hidden");
       $("#add-disease-button").removeClass("hidden");
@@ -254,7 +254,7 @@ var Welcome = {
         var group_name = $("#add-allergy-field").val();
         $("#add-allergy-container").before(
           '<div class="col-xs-6 col-sm-4 form-group">' +
-						'<input id="user_patient_group_ids_' + group_name+'" name="user[patient_group_ids][]" type="checkbox" value="' + group_name+'" checked>' +
+						'<input id="user_patient_group_ids_' + group_name+'" name="new_health_groups[]" type="checkbox" value="' + group_name+'" checked>' +
 						'<label class="checkbox-inline" for="user_patient_group_ids_' + group_name+'">'+group_name +
 						'</label>' +
 					'</div>');

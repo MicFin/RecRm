@@ -51,6 +51,11 @@ Rails.application.routes.draw do
       patch 'welcome/build_family', to: "welcome#build_family", as: "welcome_build_family"
       get 'welcome/add_nutrition', to: "welcome#add_nutrition", as: "welcome_add_nutrition"
       patch 'welcome/build_nutrition', to: "welcome#build_nutrition", as: "welcome_build_nutrition"
+      get 'welcome/add_preferences', to: "welcome#add_preferences", as: "welcome_add_preferences"
+      patch 'welcome/build_preferences', to: "welcome#build_preferences", as: "welcome_build_preferences"
+      get 'welcome/set_appointment', to: "welcome#set_appointment", as: "welcome_set_appointment"
+      # patch 'welcome/build_preferences', to: "welcome#build_preferences", as: "welcome_build_preferences"
+
 
       get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
 

@@ -301,6 +301,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if successfully_updated
 
+      # update user registration stage
+      @user.update_registration_stage
+
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case their password changed
       
@@ -395,9 +398,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # my custom fields are :name, :heard_how
   def configure_permitted_parameters
     
-    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :due_date, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :registration_stage, :due_date, :patient_group_ids => [])
     end
-    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :due_date, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :registration_stage, :due_date, :patient_group_ids => [])
     end
   end
   

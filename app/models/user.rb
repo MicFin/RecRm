@@ -40,22 +40,29 @@ class User < ActiveRecord::Base
   # - "0"
   # - "1"
 
-  def registration_stage
+  def update_registration_stage
     # Stage 0 - user has not confirmed account
     if !self.confirmed? 
-      return 0
+      self.registration_stage = 0
     # Stage 1 - user confirmed but did not complete account set up
     elsif !self.phone_number
-      return 1
-    # Stage 2 - user did not create family
+      self.registration_stage = 1
+    # Stage 2 - user created account but did not create family
     elsif self.head_of_families.length < 1 
-      return 2
-    # Stage 3 - user did not set up appointment
-    elsif self.appointment_hosts.length < 1
-      return 3
+      self.registration_stage =  2
+
+
+    # Stage 3 - user created family but did not save health groups
+    
+    # Stage 4 - user saved health groups but did not save diet
+
+    # Stage 5 - user did not set up appointment
+    elsif self.appointment_hosts.length >= 1
+      
     else 
       return 4
     end
+    save
     # done
   end
 

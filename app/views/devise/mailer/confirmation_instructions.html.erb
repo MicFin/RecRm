@@ -1,5 +1,19 @@
-<p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Eat Easier. Eat happier.</p> 
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>Welcome <%=@resource.first_name%>!</p>
+
+<p>You’ve been referred to Kindrdfood by QOL Medical, as a Sucraid customer. With this referral, you are entitled to receive 2 free sessions* (one-hour 1st session and half-hour follow up) with a specially matched KindRD Nutritionist, with expertise in CSID, among other conditions like IBS. Kindrdfood accompanies this guidance with personalized recipes, meal plans and other supportive materials.</p>
+
+<p>To learn more or schedule your 1st appointment, please click on this link:</p>
+<p><%= link_to 'SCHEDULE MY 1st Session!', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+
+<p>Welcome to the Kindrdfood community! We’re looking forward to joining you at your table!</p>
+
+<p>See you soon, </p>
+<p>The Kindrdfood team</p>
+
+
+
+<p></p>

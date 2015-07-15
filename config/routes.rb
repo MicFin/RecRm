@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   get 'provider3126', to: "home#provider3126", as: "provider3126"
   get 'provider9172', to: "home#join", as: "provider9172"
   get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
-
+  get "/krdn" => redirect("/dietitians/sign_in")
 
   devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions', :confirmations => "users/confirmations" }
   

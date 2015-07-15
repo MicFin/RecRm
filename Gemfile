@@ -99,6 +99,13 @@ gem 'stripe', "1.16.0"
 # rails stripe payment integration
 # https://github.com/thefrontside/stripe-rails
 gem 'stripe-rails', "0.3.1"
+
+# rails URL downcaser uses Rack middleware to make URLs case insensitive.
+# all image file names and url's should be all lower case to work consistently
+# customization in config/initializers/route_downcaser.rb
+# https://github.com/carstengehling/route_downcaser 
+gem 'route_downcaser'
+
 # automatic cron jobs
 # user for payments and emails?
 # https://github.com/javan/whenever

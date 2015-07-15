@@ -33,7 +33,7 @@ gem 'devise', "3.2.4"
 
 # Adds support to devise for sending invitations by email (it requires to be authenticated) and accept the invitation setting the password.
 # https://github.com/scambra/devise_invitable
-gem 'devise_invitable', '~> 1.3.4'
+gem 'devise_invitable'
 
 gem 'jquery-turbolinks'
 

@@ -403,6 +403,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :registration_stage, :due_date, :patient_group_ids => [])
     end
+    # Only add some parameters
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:first_name, :last_name, :phone]
+    # Override accepted parameters
+    devise_parameter_sanitizer.for(:accept_invitation) do |u|
+      u.permit(:first_name, :last_name, :phone, :password, :password_confirmation,
+               :invitation_token)
+    end
   end
   
 end

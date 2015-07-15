@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   before_save :uppercase_name
 	# Include default devise modules. Others available are:
 	# :lockable, :timeoutable and :omniauthable, :invitable
-	devise :database_authenticatable, :registerable,
-	     :recoverable, :rememberable, :trackable, :validatable,:confirmable
+	devise :invitable, :database_authenticatable, :registerable,
+	     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
 
@@ -246,7 +246,6 @@ class User < ActiveRecord::Base
 
   # only require confirmation for qol referrals
   def confirmation_required?
-    binding.pry
     # if a QOL referral does not have a password then require confirmation email because the user was created by QOL admin
     if self.qol_referral && self.encrypted_password.blank?
       return true

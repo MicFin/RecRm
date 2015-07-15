@@ -28,6 +28,10 @@ gem 'bootstrap-sass', '~> 3.1.1.1'
 
 gem 'devise', "3.2.4"
 
+# Adds support to devise for sending invitations by email (it requires to be authenticated) and accept the invitation setting the password.
+# https://github.com/scambra/devise_invitable
+gem 'devise_invitable', '~> 1.3.4'
+
 gem 'jquery-turbolinks'
 
 # unitwise is a cross platform list of units and their conversions
@@ -104,7 +108,9 @@ gem 'stripe-rails', "0.3.1"
 # all image file names and url's should be all lower case to work consistently
 # customization in config/initializers/route_downcaser.rb
 # https://github.com/carstengehling/route_downcaser 
-gem 'route_downcaser'
+gem 'route_downcaser', "1.1.4"
+
+
 
 # automatic cron jobs
 # user for payments and emails?

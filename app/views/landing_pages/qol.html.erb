@@ -61,6 +61,7 @@
               <label for="last-name">Confirm password</label>
               <%= f.password_field :password_confirmation, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
             </div>
+            	<%= f.hidden_field :qol_referral, value: true %>
 						<div class="col-xs-8 col-xs-offset-2 text-right">
 							<%= f.button :submit, "Join Us!", class: "btn btn-primary btn-lg", type: "submit" %>
 						</div>

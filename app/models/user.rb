@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
 
   def finished_on_boarding?
     # user is finished with on boarding when they are at a registration stage of 3
-    if self.registration_stage == 4
+    if self.registration_stage == 6
       return true
     else
       return false 
@@ -246,8 +246,12 @@ class User < ActiveRecord::Base
 
   # only require confirmation for qol referrals
   def confirmation_required?
-    if self.qol_referral 
+    binding.pry
+    # if a QOL referral does not have a password then require confirmation email because the user was created by QOL admin
+    if self.qol_referral && self.encrypted_password.blank?
       return true
+
+    # else if not a QOL referral or QOL referral has a password 
     else
       return false
     end
@@ -261,6 +265,7 @@ class User < ActiveRecord::Base
     p[:password_confirmation] = params[:password_confirmation]
     update_attributes(p)
   end
+
   # new function to return whether a password has been set
   def has_no_password?
     

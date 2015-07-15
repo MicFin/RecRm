@@ -41,8 +41,9 @@ class User < ActiveRecord::Base
   # - "1"
 
   def update_registration_stage
+    
     # Stage 0 - user has not confirmed account
-    if !self.confirmed? 
+    if self.confirmation_required? && !self.confirmed?
       self.registration_stage = 0
     # Stage 1 - user confirmed but did not complete account set up
     elsif !self.phone_number
@@ -243,11 +244,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  # use to change if confirmation is required or not
-  # def confirmation_required?
-  #   
-  #   true
-  # end
+  # only require confirmation for qol referrals
+  def confirmation_required?
+    if self.qol_referral 
+      return true
+    else
+      return false
+    end
+  end
 
   # new function to set the password without knowing the current password used in our confirmation controller. 
   def attempt_set_password(params)

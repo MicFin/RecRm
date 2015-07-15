@@ -9,11 +9,13 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
     
     #note: request.referrer can be used to return user to the page they were on
-
+    
 		# when a user signs in 
     
 		if resource.class == User
       
+      # update user registration stage
+      resource.update_registration_stage
       
       # check if user has completed on boarding 
       if resource.finished_on_boarding? 

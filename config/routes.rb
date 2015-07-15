@@ -198,7 +198,7 @@ Rails.application.routes.draw do
     # end   
     unauthenticated :dietitian do
       # root :to => "home#home_page", as: :dietitian_unauthenticated_root
-      root :to => "home#join", as: :dietitian_unauthenticated_root
+      root :to => "landing_pages#index", as: :dietitian_unauthenticated_root
     end   
   end
   

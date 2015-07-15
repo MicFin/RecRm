@@ -1,2 +1,132 @@
-<h1>LandingPages#index</h1>
-<p>Find me in app/views/landing_pages/index.html.erb</p>
+
+<div id="qol-page" class="container-fluid">
+  <nav class="row navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+      <%= image_tag "/assets/landing_page/kindrdfood-logo.jpg", class: "img-responsive" %>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+<!--         <li class="active"><a href="#">OUR APPROACH <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">OUR TEAM</a></li>
+        <li><a href="#">FOR PROVIDERS</a></li>
+        <li><a href="#">CONTACT US</a></li>
+        <li><a href="#">LOGIN</a></li> -->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+	</nav>
+	<div class="row">
+		<%= render "/layouts/alerts" %>
+	</div>
+	<section>
+		<div class="row qol-background-image">
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-1 col-md-5 text-left col-lg-5 left-column">
+				<h1>Welcome,</h1>
+				<h3>Kindrdfood is ready to help!.</h3>
+			</div>
+			<div class="col-xs-12 col-sm-6 outside-form-container">
+				<div class="text-center">
+					<h3>Get Started Today</h3>
+
+
+					<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
+
+						<div class="form-group col-xs-8 col-xs-offset-2">
+							<label for="first-name">First Name</label>
+							<%= f.input_field :first_name, autofocus: true, class: "form-control", type: "text", placeholder: "First" %>
+						</div>
+						<div class="form-group col-xs-8 col-xs-offset-2">
+							<label for="last-name">Last Name</label>
+							<%= f.input_field :last_name, autofocus: true, class: "form-control", type: "text", placeholder: "Last" %>
+						</div>
+						<div class="form-group col-xs-8 col-xs-offset-2">
+							<label for="email">Email Address</label>
+							<%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
+						</div>
+            <div class="form-group col-xs-8 col-xs-offset-2">
+              <label for="first-name">Password</label>
+              <%= f.password_field :password, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
+            </div>
+            <div class="form-group col-xs-8 col-xs-offset-2">
+              <label for="last-name">Confirm password</label>
+              <%= f.password_field :password_confirmation, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
+            </div>
+						<div class="col-xs-8 col-xs-offset-2 text-right">
+							<%= f.button :submit, "Join Us!", class: "btn btn-primary btn-lg", type: "submit" %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8 col-xs-offset-2 text-center testimonial">
+<!-- 				<h3>It was such a relief to get answers that I could trust.</h3>
+				<h3>My day got much easier</h3>
+				<p>A.M. Member</p> -->
+				<h3>At Kindrdfood our team of <span>Registered Dietitians</span> and <span>Professional Chefs</span> specialize in helping you and your family manage complex nutritional needs while still being able to enjoy great tasting food and quality time at the table.</h3>
+
+			</div>
+		</div>
+	</section>
+	<section class="approach row">
+		<div class="col-xs-12 text-center">
+			<h2>We understand your challenges</h2>
+			<p>Finding trustworthy and qualified sources of information for nutrition is incomplete and unreliable</p>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 text-center problem-examples">
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+				<p><span class="glyphicon glyphicon-fullscreen"></span></p>
+				<p>Conflicting information that sends you in all different directions.</p>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+				<p><span class="glyphicon glyphicon-volume-up"></span></p>
+				<p>Unqualified service and trendy advice</p>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+				<p><span class="glyphicon glyphicon-remove"></span></p>
+				<p>Not so tasty meals with limited variety</p>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+				<p><span class="glyphicon glyphicon-thumbs-down"></span></p>
+				<p>And repeat...</p>
+			</div>
+		</div>
+	</section>
+	<section class="row goal">
+		<div class="col-xs-12 text-center">
+			<h2>Our Goal</h2>
+			<p>Ease your everyday life in the kitchen, at the store, and at the table.</p>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 text-center">
+			<div class="goal-item col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				<p><span class="glyphicon glyphicon-facetime-video"></span></p>
+				<h3>1 on 1 Nutritional Guidance</h3>
+				<p>Video and phone conferencing with a registered dietitian that specializes in your nutritional needs.</p>
+			</div>
+			<div class="goal-item col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				<p><span class="glyphicon glyphicon-cutlery"></span></p>
+				<h3>Recipes, Articles, and More </h3>
+				<p>Our dietitians work with professional chefs to create recipes that are safe and delicious for the Kindrdfood community.  We also offer educational and practical videos and articles for further learning.</p>
+			</div>
+			<div class="goal-item col-xs-12 col-sm-12 col-md-4 col-lg-4">
+				<p><span class="glyphicon glyphicon-refresh"></span></p>
+				<h3>Full Circle Care</h3>
+				<p>We can work with your current physician team, lactation consultant, allergist and more!  Nutrition can be complicated and we feel that we work best when everyone is working together.</p>
+			</div>
+		</div>
+
+	</section>
+		
+	<%#= render "/layouts/footers/main_footer" %>
+
+</div>

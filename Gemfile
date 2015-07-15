@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 ruby '2.1.5'
 
-gemspec
+# not sure whether to use gemspec so removed it
+# gemspec
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'

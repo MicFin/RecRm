@@ -259,5 +259,20 @@
 	// 	}
 	// }
 	
+
+
+	.qol-container{
+		background-color: $brand-white;
+		img{
+			max-height: 300px;
+		}
+		span{
+			font-size: 200px;
+  		color: $brand-light-orange;
+		}
+		.qol-update{
+			margin-top: 5%;
+		}
+	}
 }
 

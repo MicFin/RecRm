@@ -18,6 +18,10 @@ $(document).ready(function() {
 	// JS for welcome#get_started
 	GetStarted.formValidation();
 	
+
+	// JS for landing_pages#smooth_scroll
+	SmoothScroll.start();	
+	
 	// dirty form catcher 
 	if ((pathname.search("/provider3126") >= 0) || (pathname.search("/provider9172") >= 0) ){
 

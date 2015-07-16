@@ -42,6 +42,7 @@
 
 //= require landing_pages/qol_admin/form_validation
 
+//= require landing_pages/smooth_scroll
 
 
 

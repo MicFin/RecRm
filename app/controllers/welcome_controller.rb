@@ -84,7 +84,10 @@ class WelcomeController < Users::RegistrationsController
     # Stage 5 - user did not set up appointment
     elsif current_user.registration_stage == 5
       redirect_to welcome_set_appointment_path
+
+     # Done with registration, return to dashboard
     else
+      redirect_to welcome_home_path
     end
   end
 

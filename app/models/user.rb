@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   def update_registration_stage
     
     if self.appointment_hosts.count >= 1
-      return 6
+      self.registration_stage = 6
     else
       # Stage 0 - user has not confirmed account
       if self.confirmation_required? && !self.confirmed?

@@ -29,7 +29,6 @@ class WelcomeController < Users::RegistrationsController
     @family_members
 
     
-    
   end
 
 

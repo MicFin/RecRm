@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       # check if user has completed on boarding 
       if resource.finished_on_boarding? 
 
-
+        welcome_home_path
       # if user has not completed onboarding
       else
         # 

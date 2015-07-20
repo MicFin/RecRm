@@ -160,8 +160,10 @@ class WelcomeController < Users::RegistrationsController
     @user = current_user.head_of_families.last.users.last || @user
 
     find_or_create_new_health_groups
-    if @user.patient_groups 
-      @user.patient_groups.each {|patient_group| params[:user][:patient_group_ids] << patient_group.id}
+    if params[:user]
+      if @user.patient_groups 
+        @user.patient_groups.each {|patient_group| params[:user][:patient_group_ids] << patient_group.id}
+      end
     end
     
     @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
@@ -178,7 +180,6 @@ class WelcomeController < Users::RegistrationsController
     @time_slots = TimeSlot.select_appointment_time_slots 
     @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
     # @user = current_user.head_of_families.last.users.last || @user
-
     # find_or_create_new_health_groups
     # if @user.patient_groups 
     #   @user.patient_groups.each {|patient_group| params[:user][:patient_group_ids] << patient_group.id}
@@ -208,14 +209,16 @@ class WelcomeController < Users::RegistrationsController
     end
 
     def find_or_create_new_health_groups
-      if params["user"]["new_health_groups"]
-        params["user"]["new_health_groups"].each do |health_group|
-           group = PatientGroup.find_or_create_by(name: health_group, unverified: true) 
-           group.save
-           params["user"]["patient_group_ids"].push(group.id)
-        end
-        params["user"].delete "new_health_groups"
-      end 
+      if params["user"]
+        if params["user"]["new_health_groups"]
+          params["user"]["new_health_groups"].each do |health_group|
+             group = PatientGroup.find_or_create_by(name: health_group, unverified: true) 
+             group.save
+             params["user"]["patient_group_ids"].push(group.id)
+          end
+          params["user"].delete "new_health_groups"
+        end 
+      end
     end
 
     def clean_height_and_weight_input

@@ -25,9 +25,9 @@
 							<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
 							<div class="row">
 								<div class="col-xs-12 session-action">
-									<% if @upcoming_appointment.start_time  %>
+									<% if DateTime.now >= @upcoming_appointment.start_time - 10.minutes  %>
 										<%= link_to in_session_room_path(:id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id), class: "btn btn-primary" do %>
-										<%#= link_to(in_session_room_path(:id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id)) {:controller => "rooms", :action => "in_session", :id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id, class: "btn btn-primary"} do %>
+						
 											<div class="col-xs-3">
 												<p><span class="glyphicon glyphicon-heart"></span></p>
 											</div>
@@ -37,29 +37,30 @@
 											</div>
 											<% end %>
 									<% else %>
-										<p>Take a moment to prepare for your session</p>
+										<h2>We look forward to meeting with you!</h2>
+										<!-- <p>Take a moment to prepare for your session</p>
 										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-										<button class="btn btn-primary">
-											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-												<span class="glyphicon glyphicon-edit"></span>
-											</div>
-											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-												<p>SESSION</p>
-												<p>PREP</p>
-											</div>
-										</button>
-									</div>
-									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-										<button class="btn btn-default">
-											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-												<span class="glyphicon glyphicon-comment"></span>
-											</div>
-											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-												<p>CONTACT</p>
-												<p>YOUR KRDN</p>
-											</div>
-										</button>
-									</div>
+											<button class="btn btn-primary">
+												<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+													<span class="glyphicon glyphicon-edit"></span>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+													<p>SESSION</p>
+													<p>PREP</p>
+												</div>
+											</button>
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+											<button class="btn btn-default">
+												<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+													<span class="glyphicon glyphicon-comment"></span>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+													<p>CONTACT</p>
+													<p>YOUR KRDN</p>
+												</div>
+											</button>
+										</div> -->
 									<% end %>
 
 								</div>

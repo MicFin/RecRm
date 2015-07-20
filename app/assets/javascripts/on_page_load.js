@@ -101,64 +101,7 @@ $(document).ready(function() {
 	};
 
 
-	// if url is landing page url or is home page with the full page ID 
-	// can probably just change to if #fullpage for both use cases
-  if ( (pathname.search("/Ta10lI8839dAmi") >= 0) || ( (pathname.search("/") >= 0) && ($("#fullpage").length > 0) ) ) {
-  	// 	if ($(window).width() < 960) {
-   // 			alert('Less than 960');
-			// } else {
-				// landing page one page slide
-				JqueryFullpage.adjustBody();
-				JqueryFullpage.run();
-
-				if ( $("#fullpage.provider-landing-page").length > 0) {
-					var add_physician = false;
-					$('#fullpage.provider-landing-page').fullpage({
-							navigation: true, 
-							// responsive: 768, 
-							autoScrolling: true,
-							verticalCentered: false,
-							afterLoad: function(index, nextIndex, direction){
-								$(".hidden").removeClass("hidden");
-        			},
-        // 			onLeave: function(anchorLink, index){
-        // 			},
-        			afterResize: function(){
-            		if ( add_physician === true ) {
-            			if ($(window).width() > 768)  {
-										$("#fullpage.provider-landing-page").fullpage.setAutoScrolling(true);
-									} else {
-
-										$("#fullpage.provider-landing-page").fullpage.setAutoScrolling(false);
-									}
-								}
-        			}
-					});
-					$("#fp-nav").addClass("hidden");
-					$('#fullpage.provider-landing-page').fullpage.setAllowScrolling(false);
-					$("#fullpage.provider-landing-page").fullpage.setKeyboardScrolling(false);
-
-					$("#fullpage.provider-landing-page button").on("click", function(e){
-						e.preventDefault();
-						add_physician = true;
-
-						$('#fullpage.provider-landing-page').fullpage.setAllowScrolling(true);
-						$("#fullpage.provider-landing-page").fullpage.setKeyboardScrolling(true);
-
-
-						$("#fullpage").fullpage.moveTo(2);
-						$("#fp-nav").removeClass("hidden");
-						if ($(window).width() < 768) {
-							$("#fullpage.provider-landing-page").fullpage.setAutoScrolling(false);
-						}
-					
-					});
-						
-				} else {
-					JqueryFullpage.prepareMainPage();
-				}
-
-				HomePage.setLinks();
+	HomePage.setLinks();
 
 	}
 

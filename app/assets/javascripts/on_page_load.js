@@ -103,6 +103,5 @@ $(document).ready(function() {
 
 	HomePage.setLinks();
 
-	}
 
 });

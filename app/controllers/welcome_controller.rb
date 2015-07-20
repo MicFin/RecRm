@@ -8,6 +8,17 @@ class WelcomeController < Users::RegistrationsController
 
   # user home page / main dashboard
   def home
+
+    # update registration page for any users that sign in directly 
+    # can remove after older users registration status is updated.
+    current_user.update_registration_stage
+
+    # if user isnt finished onboarding then send them to get started
+    if !current_user.finished_on_boarding?
+      redirect_to welcome_get_started_path and return
+    end
+
+
     # AppointmentsHelper
     get_previous_appointments!
     @previous_appointments
@@ -27,7 +38,6 @@ class WelcomeController < Users::RegistrationsController
     get_family!
     @family
     @family_members
-
     
   end
 

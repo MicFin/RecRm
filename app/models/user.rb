@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
 
   def update_registration_stage
     
-    if self.appointment_hosts.count >= 1
+    if (self.appointment_hosts.where(status: "Paid").count >= 1 || self.appointment_hosts.where(status: "Follow Up Unpaid").count >= 1) 
       self.registration_stage = 6
     else
       # Stage 0 - user has not confirmed account

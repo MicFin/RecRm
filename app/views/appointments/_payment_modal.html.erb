@@ -33,7 +33,12 @@
             </div>
             <% if @user.qol_referral == false %>
               <div class="col-xs-8 col-xs-offset-2 text-center">
-                <h1>1-hour: $114.00</h1>
+              <% if @user.tara_referral == true %>
+                  <h1>1-hour: <del>$114.00</del> $89.99</h1>
+                  <h2>Early Access Discount</h2>
+              <% else %>
+                  <h1>1-hour: $114.00</h1>
+              <% end %>
               </div>
             <% end %>
           </div>

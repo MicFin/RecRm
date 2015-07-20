@@ -74,6 +74,13 @@ class Appointment < ActiveRecord::Base
     # if appointment is valid
     if valid?
       if appointment_host.qol_referral == false 
+
+        if appointment_host.tara_referral == true
+          session_cost = 8999
+        else
+          session_cost = 11400
+        end
+
         # create new customer or find current customer
         if appointment_host.stripe_id
           customer = Stripe::Customer.retrieve(appointment_host.stripe_id)
@@ -100,7 +107,7 @@ class Appointment < ActiveRecord::Base
             charge = Stripe::Charge.create(
             :customer    => stripe_id,
             # :amount      => 8999,
-            :amount      => 11400,
+            :amount      => session_cost,
             # :amount      => 0000,
             # :amount      => 0151,
             :description => 'Kindrdfood 1 Hour',
@@ -120,7 +127,7 @@ class Appointment < ActiveRecord::Base
             charge = Stripe::Charge.create(
             :card        => stripe_card_token,
             # :amount      => 8999,
-            :amount      => 11400,
+            :amount      => session_cost,
             # :amount      => 0000,
             # :amount      => 0151,
             :description => 'Kindrdfood 1 Hour',
@@ -134,7 +141,7 @@ class Appointment < ActiveRecord::Base
           end
         end
         # self.invoice_price = 8999
-        self.invoice_price = 11400
+        self.invoice_price = session_cost
       else 
         self.invoice_price = 0
       end

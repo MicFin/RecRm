@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
   # - false
 
   def finished_on_boarding?
-    # user is finished with on boarding when they are at a registration stage of 3
+    # user is finished with on boarding when they are at a registration stage of 6
     if self.registration_stage == 6
       return true
     else

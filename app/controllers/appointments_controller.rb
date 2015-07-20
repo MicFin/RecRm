@@ -312,6 +312,26 @@ class AppointmentsController < ApplicationController
     ## if the appointment status is follow up unpaid and does not have a stripe card token then the appointment is being created without payment and the dates need to be cleaned
     if @appointment.status == "Follow Up Unpaid" && params[:appointment][:stripe_card_token] == nil
       clean_dates_for_database
+
+      # create room shoudl remove
+      @new_session = @opentok.create_session 
+      @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
+      ## creating a new room each time, should either purge old rooms or assign rooms to dietitians 
+      @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Early Access Session")
+      @new_room.save
+      dietitian = @appointment.dietitian
+      dietitian.add_role "Session Host", @new_room
+      user = @appointment.appointment_host
+      user.add_role "Session Guest", @new_room
+      user.save
+      # set appointment to room (1st and only for now)
+      if @appointment.room_id == nil
+        @appointment.room_id = @new_room.id
+      end
+    #### should remove above
+
+
+
     end
     # if update saves
 

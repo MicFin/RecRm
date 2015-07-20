@@ -6,7 +6,7 @@ module PatientGroupsHelper
     @intolerances = PatientGroup.intolerances
     @allergies = PatientGroup.allergies
     @symptoms = PatientGroup.symptoms
-    @diets = PatientGroup.where(category: "Diet").order(:order)
+    @diets = PatientGroup.where(category: "Diet").order(:name)
     # @patient_groups = {}
     # @patient_groups["EoE"] = PatientGroup.where(name:"EoE").first
     # @patient_groups["FPIES"] = PatientGroup.where(name:"FPIES").first

@@ -357,6 +357,7 @@ class AppointmentsController < ApplicationController
       # or when admin dietitian assigns dietitian
       elsif (@appointment.dietitian_id != nil)
         ## assumes that appointment has been paid for and assigned a dietitian by admin dietitian
+        
         @new_session = @opentok.create_session 
         @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
         ## creating a new room each time, should either purge old rooms or assign rooms to dietitians 
@@ -371,6 +372,7 @@ class AppointmentsController < ApplicationController
         # set appointment to room (1st and only for now)
         if @appointment.room_id == nil
           @appointment.room_id = @new_room.id
+          @appointment.save
         end
         # mark time slot as having an appointment and cancel related time slots
         

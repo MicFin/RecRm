@@ -135,7 +135,7 @@ class SurveysController < ApplicationController
           @diets =  @diets 
         end
         if current_user 
-          format.html { redirect_to user_dashboard_path, notice: 'survey was successfully updated.' }
+          format.html { redirect_to welcome_home_path, notice: 'Questionnaire was successfully saved.' }
         else
           format.html { redirect_to dietitian_authenticated_root_path, notice: 'survey was successfully updated.' }
         end

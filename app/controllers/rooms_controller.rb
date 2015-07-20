@@ -52,6 +52,7 @@ before_filter :authenticate_admin_user!, only: [:index]
       @user = current_user
       appointment_host = @user
       @tok_token =  @opentok.generate_token @room.sessionId 
+
       @dietitian = @appointment.dietitian
     end
     @family = appointment_host.head_of_families.last

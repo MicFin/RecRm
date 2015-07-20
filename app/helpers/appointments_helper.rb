@@ -31,8 +31,12 @@ module AppointmentsHelper
       # client upcoming appointment or clirent unpaid
       @upcoming_appointment = current_user.appointment_hosts.where(status: "Paid").last || current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
       # start date and time 
-      @upcoming_appointment.date = @upcoming_appointment.start_time.strftime("%A, %b %d") unless @upcoming_appointment.nil?
-      @upcoming_appointment.time = @upcoming_appointment.start_time.strftime("%I:%M%p") unless @upcoming_appointment.nil?
+      if @upcoming_appointment 
+        @upcoming_appointment.date = @upcoming_appointment.start_time.strftime("%A, %b %d") unless @upcoming_appointment.nil?
+        @upcoming_appointment.time = @upcoming_appointment.start_time.strftime("%I:%M%p") unless @upcoming_appointment.nil?
+        @survey = @upcoming_appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: false).last
+        @surveyable = @upcoming_appointment
+      end
   end
 
   def get_previous_appointments!
@@ -71,6 +75,10 @@ module AppointmentsHelper
     @previous_appointments = @previous_appointments.group_by{|appointment|  [appointment.start_time.to_date, appointment.start_time.strftime("%I:%M%p")] }
   end
 
+  def get_unpaid_appointment!
+    # Set unpaid appointment if there is one
+    @unpaid_appointment = current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
+  end
 
 #   def get_family_member_info!
 # # if params[:client_first_name]

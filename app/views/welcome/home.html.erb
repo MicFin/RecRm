@@ -6,7 +6,12 @@
 			<main class="col-xs-10 col-xs-offset-2">
 				<section class="jumbotron">
 					<div id="jumbotron-inner" class="row">
-						<% if @upcoming_appointment && @upcoming_appointment.status == "Paid"  %>
+
+						<% if @survey %>
+      				<div class="col-xs-12">
+        				<%= render "/surveys/form" %>
+        			</div>
+						<% elsif @upcoming_appointment && @upcoming_appointment.status == "Paid"  %>
 						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 							<div class="row">
 								<h2>YOUR NEXT SESSION IS:</h2>
@@ -20,9 +25,10 @@
 							<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
 							<div class="row">
 								<div class="col-xs-12 session-action">
-									<% if @upcoming_appointment.start_time < Time.now + 10.minutes %>
-										<%= button_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id, class: "btn btn-primary"} do %>
-											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+									<% if @upcoming_appointment.start_time  %>
+										<%= link_to in_session_room_path(:id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id), class: "btn btn-primary" do %>
+										<%#= link_to(in_session_room_path(:id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id)) {:controller => "rooms", :action => "in_session", :id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id, class: "btn btn-primary"} do %>
+											<div class="col-xs-3">
 												<span class="glyphicon glyphicon-heart"></span>
 											</div>
 											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -79,8 +85,7 @@
 												<span class="glyphicon glyphicon-edit"></span>
 											</div>
 											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-												<p>CONFIRM</p>
-												<p>APPOINTMENT</p>
+											<%=link_to "Confirm Appointment", purchase_appointment_path(@unpaid_appointment.id), {class: "btn btn-mini-fam btn-sm", :remote => true} %>
 											</div>
 										</button>
 									</div>
@@ -128,7 +133,9 @@
 						<% end %>
 					</div>
 				</section>
-				<section class="content-container recipes">
+
+
+<!-- 				<section class="content-container recipes">
 					<h3><span class="glyphicon glyphicon-list-alt"></span>Recipes</h3>
 					<div class="recipe col-xs-12 col-sm-5 col-md-3 col-lg-3 content-item" data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" title="Shrimp Scampi Soup" data-content="And here's some amazing content. It's very engaging. Right? <span>Read more...</span>" data-html="true">
 						<p class="new">NEW!</p>
@@ -182,7 +189,7 @@
 					</div>
 
 
-				</section>
+				</section> -->
 
 			</main>
 			<div class="col-xs-10 col-xs-offset-2">

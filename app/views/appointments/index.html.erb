@@ -22,7 +22,7 @@
           <tr class="appt-id" data-appt-id="<%=appointment.id%>">
             <td><%= appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
             <td><%= appointment.appointment_host.first_name%> <%= appointment.appointment_host.last_name%></td>
-            <td><a class="show-family-button" href="#">Review & Assign</a></td>
+            <td><a class="show-family-button" href="">Review & Assign</a></td>
           </tr>
         <% end %>
       </tbody>
@@ -58,7 +58,7 @@
           <tr class="appt-id" data-appt-id="<%=appointments_array[0].id%>">
             <td><%= appointments_array[0].created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
             <td><%= appointments_array[0].appointment_host.first_name%> <%= appointments_array[0].appointment_host.last_name%></td>
-            <td><a class="assign-appointment-request" href="#">Review & Assign</a></td>
+            <td><a class="assign-appointment-request" href="">Review & Assign</a></td>
           </tr>
         <% end %>
       </tbody>

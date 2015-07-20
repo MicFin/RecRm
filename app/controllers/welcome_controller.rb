@@ -13,21 +13,23 @@ class WelcomeController < Users::RegistrationsController
     @previous_appointments
     get_upcoming_appointment!
     @upcoming_appointment
+    @survey
+    @surveyable
+    get_unpaid_appointment!
+    @unpaid_appointment
+
     # all clients recipes 
     @recipes 
     # all clients articles
     @articles 
+
     # FamiliessHelper
     get_family!
     @family
     @family_members
-    # for survey
-    # @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: false).last
 
-    # for survey
-    # if @survey
-    #   @surveyable = @appointment
-    # end      
+    
+    
   end
 
 

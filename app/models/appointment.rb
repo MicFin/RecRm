@@ -99,7 +99,8 @@ class Appointment < ActiveRecord::Base
           begin
             charge = Stripe::Charge.create(
             :customer    => stripe_id,
-            :amount      => 8999,
+            # :amount      => 8999,
+            :amount      => 11400,
             # :amount      => 0000,
             # :amount      => 0151,
             :description => 'Kindrdfood 1 Hour',
@@ -118,7 +119,8 @@ class Appointment < ActiveRecord::Base
           begin
             charge = Stripe::Charge.create(
             :card        => stripe_card_token,
-            :amount      => 8999,
+            # :amount      => 8999,
+            :amount      => 11400,
             # :amount      => 0000,
             # :amount      => 0151,
             :description => 'Kindrdfood 1 Hour',
@@ -131,7 +133,8 @@ class Appointment < ActiveRecord::Base
             errors.add :base, "There was a problem with your credit card."
           end
         end
-        self.invoice_price = 8999
+        # self.invoice_price = 8999
+        self.invoice_price = 11400
       else 
         self.invoice_price = 0
       end

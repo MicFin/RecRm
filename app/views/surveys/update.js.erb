@@ -1,3 +1,6 @@
+
+/// UGLY CODE
+
 $("#new-user-options form").remove();
 
 <% if @survey_type == "Post-Appointment-Dietitian" %>
@@ -91,6 +94,6 @@ $(".family-member-health-preview").on("click", function(e){
   <% if @user.class == Dietitian %>
       window.location.href = "/welcome/index";
   <% else %>
-    window.location.href = "/dashboard/home";
+    window.location.href = "/welcome/home";
   <% end %>
 <% end %>

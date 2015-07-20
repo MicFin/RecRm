@@ -56,7 +56,7 @@
 }
 
 .fc-toolbar .fc-right {
-		position: absolute;
+	position: absolute;
   right: -10%;
   top: 50%;
 }
@@ -69,4 +69,14 @@
 #select-appt-cal {
 	  margin-top: 5%;
 	  position: relative;
+}
+
+#weekly-data-container + #availability-cal {
+	.fc-toolbar > div {
+		  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+	}
 }

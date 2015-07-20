@@ -123,7 +123,10 @@ class WelcomeController < Users::RegistrationsController
     @diseases = @diseases 
     @intolerances = @intolerances 
     @allergies = @allergies
-      
+
+    # combine and sort allergies and intolerances array
+    @allergies.push(@intolerances).flatten!.sort_by{|word| word.order}
+
   end
 
   def build_nutrition

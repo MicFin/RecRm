@@ -236,6 +236,19 @@ var Welcome = {
 
 	// },
 	addNutrition: function(){
+	
+		// input for patient groups and has a data-trigger of true
+		$("input[name='user[patient_group_ids][]'][data-triggers='true']").on("click", function(e){
+		
+	    if ( $("input[name='user[patient_group_ids][]'][data-triggers='true']").is(":checked") ) {
+	        $('.triggers-container').removeClass("hidden");
+	    } 
+	    else {
+	        $('.triggers-container ').addClass("hidden");
+	    }
+		});
+
+
 		$("#addNutritionModel").on("click", "#add-disease-button", function(e){
 			$("#add-disease-form").removeClass("hidden");
 			$(this).addClass("hidden");

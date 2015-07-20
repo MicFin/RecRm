@@ -1,7 +1,4 @@
 
-
-
-
 <div id="qol-page" class="container-fluid">
   <nav class="row navbar navbar-default">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -22,6 +19,9 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#link-approach">OUR APPROACH <span class="sr-only">(current)</span></a></li>
         <li><a href="#link-team">OUR TEAM</a></li>
+<!--         <li><a href="#">FOR PROVIDERS</a></li>
+        <li><a href="#">CONTACT US</a></li> -->
+        <li id="sign-in-or-up-link"><%= link_to "LOGIN", new_session_path("user"), :remote => true %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
 	</nav>
@@ -33,55 +33,14 @@
 			<h1>Eat Easier.</h1>
 			<h1>Eat Happier.</h1>
 			<h3>Great food and good nutrition start with the right guidance.</h3>
-			<div class="alert alert-warning">
-				<p>ONLY IF THEY HAVE NO ACCESS TO THE INTERNET:</p>
-				<p>Have the customer call (877) 367-2918</p>
-				<p>If they have questions or challenges</p>
-				<p>Dial (617) 575-2203 for customer service or technical support.</p>
-			</div>
 		</div>
 		<div class="col-xs-12 col-sm-6 outside-form-container">
 			<div class="text-center">
-				<h3>2 FREE sessions* for clients!</h3>
-				<p>As a Sucraid customer, they qualify for both a complimentary one-hour session and a half-hour follow up session with a KindRD Nutritionist, replace the stress with great taste and variety!</p>
-					<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
+				<h3>Welcome to Kindrdfood!</h3>
+				<p>Please create your account to schedule a session with one of our Registered Dietitian Nutritionists.</p>
 
-						<div class="form-group col-xs-8 col-xs-offset-2">
-							<label for="first-name">First Name</label>
-							<%= f.input_field :first_name, autofocus: true, class: "form-control", type: "text", placeholder: "First" %>
-						</div>
-						<div class="form-group col-xs-8 col-xs-offset-2">
-							<label for="last-name">Last Name</label>
-							<%= f.input_field :last_name, autofocus: true, class: "form-control", type: "text", placeholder: "Last" %>
-
-						</div>
-						<div class="form-group col-xs-8 col-xs-offset-2">
-							<label for="email">Email Address</label>
-							<%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
-						</div>
-							<%= f.hidden_field :qol_referral, value: true %>
-
-						<div class="col-xs-8 col-xs-offset-2 text-right">
-							<%= f.button :submit, "Send Invitation", class: "btn btn-primary btn-lg", type: "submit" %>
-						</div>
-					<% end %>
+				<%= render "new_user_registration_form" %>
 			</div>
-		</div>
-	</div>
-
-	<div class="row qol-container landing-page-row">
-		<div class="col-xs-12 col-sm-5">
-		<%=image_tag "logos/logo-vertical.jpg", class: "img-responsive"  %>
-		</div>
-		<div class="hidden-xs col-sm-3">
-			<p><span class="glyphicon glyphicon-plus"></span></p>
-		</div>
-		<div class="col-xs-12 col-sm-4">
-		<%=image_tag "logos/qol-logo.jpg", class: "img-responsive" %>
-		</div>
-		<div class="qol-update col-xs-12 col-sm-6 col-sm-offset-3">
-			<p class="details">QOL has partnered with Kindrdfood to offer Sucraid customers an additional layer of support. Kindrdfood offers confidence and ease to families who have to change the way that they eat, because of a medical condition or dietary condition by providing expert 1-on-1 guidance and materials that make everyday easier.</p>
-
 		</div>
 	</div>
 	<div id="link-approach" class="row landing-page-row approach">
@@ -141,13 +100,9 @@
 	</div>
 	<section class="row landing-page-row call-to-action-bar">
 		<div class="col-xs-12 text-center">
-			<p>*Two complimentary sessions with a Kindrdfood specialist are free of charge to the client, identified by name and email address as referred by QOL Medical. Sessions are non-transferable. The first session is 1 hour long at a maximum and not divisible. The second session is a 30 minute maximum follow up session and is not divisible. These two sessions are subject to the terms & conditions and all policies of Kindrdfood and expire on the later of July 1, 2016 or 6 months from the receipt of this email. </p>
-<p>
-Sucraid is prescribed by your physician. Kindrdfood does not make any recommendations to use or not use Sucraid. Kindrdfood Inc. and all staff of Kindrdfood Inc. offer guidance based on the needs of each client individually, including nutrition given a use of Sucraid if prescribed.</p>
+			<h2>Ready to start enjoying every bite?</h2>
+			<button class="btn btn-lg btn-primary">Request Early Access</button>
 		</div>
 	</section>
 		<%= render "/layouts/footers/main_footer" %>
 </div>
-
-
-

@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
   get "/krdn" => redirect("/dietitians/sign_in")
 
-  devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'devise/sessions', :confirmations => "users/confirmations", :invitations => 'users/invitations' }
+  devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'users/sessions', :confirmations => "users/confirmations", :invitations => 'users/invitations' }
   
   # # root to: "welcome#index"
 

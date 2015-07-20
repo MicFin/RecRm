@@ -61,14 +61,17 @@
 		  margin-top: 25px;
 		}
 	}
+	// light gray outter outline
 	.outside-form-container{
 	  background-color: transparentize($gray-darker, .8);
   	border-radius: 15px;
   	padding: 20px;
+  	// dark gray inner outline
   	> div {
 		  background-color: transparentize($gray-darker, .5);
 		  border-radius: 15px;
 		  padding: 10px;
+		  overflow: hidden;
 		}  		
 	}
 	.qol-background-image{

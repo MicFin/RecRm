@@ -3,6 +3,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   include PatientGroupsHelper
   before_filter :configure_permitted_parameters, :except => [:new_user_intro, :new_user_family] 
 
+  # GET /resource/sign_up
+  def new
+    build_resource({})
+  
+    # custom devise respond to js or html
+    respond_to do |format|
+      format.js 
+      format.html{
+        respond_with self.resource
+      }
+    end
+  end
+
+
   # POST /resource
   def create
     

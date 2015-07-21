@@ -21,7 +21,7 @@
     <% else %>
       <div class="col-xs-12">
         <div id="upcoming-appointment-container" class="text-center" data-appointment-id="<%=@appointment.id%>">
-          <% if ( ( DateTime.now() >= @appointment.start_time - 15.minutes  ) && ( DateTime.now() <= @appointment.end_time ) ) %>
+          <% if ( ( DateTime.now() >= @appointment.start_time - 15.minutes  ) && ( DateTime.now() <= @appointment.end_time + 5.minutes) ) %>
 
             <%= link_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => @appointment.room_id, appointment: @appointment.id }, class: "text-center action kindrd-button btn-block tilt"%>
           <% else %>

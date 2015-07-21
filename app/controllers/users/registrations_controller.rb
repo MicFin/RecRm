@@ -347,23 +347,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params[:user][:password_confirmation].present?
   end
 
-  # def clean_params(params)
-  #   
-    # if params["user"]
-    #   if params["user"]["height"]
-    #     if (params["user"]["height"]["feet"].to_i >= 1)
-    #             params["user"]["height"]["feet"] = params["user"]["height"]["feet"].to_i * 12
-    #             params["user"]["height_inches"] = params["user"]["height"]["feet"].to_i + params["user"]["height"]["inches"].to_i
-    #     else 
-    #         params["user"]["height_inches"] = params["user"]["height"]["inches"].to_i
-    #     end
-    #     params["user"].delete "height"
-    #   end
-    #   if params["user"]["weight_ounces"]
-    #     params["user"]["weight_ounces"] = params["user"]["weight_ounces"].to_i * 16
-    #   end
-  #   return params
-  # end
   def after_update_path_for(resource)
         
       # if they have finished on boarding
@@ -415,11 +398,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     
     devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :registration_stage, :due_date, :patient_group_ids => [])
     end
+
     devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :registration_stage, :due_date, :patient_group_ids => [])
     end
-    # Only add some parameters
+
+    # USE THESE WHEN DOING CONFIRMATION
+    # To be continued ...
     devise_parameter_sanitizer.for(:accept_invitation).concat [:first_name, :last_name, :phone]
-    # Override accepted parameters
+
+    # USE THESE WHEN DOING CONFIRMATION
+    # To be continued ...
     devise_parameter_sanitizer.for(:accept_invitation) do |u|
       u.permit(:first_name, :last_name, :phone, :password, :password_confirmation,
                :invitation_token)

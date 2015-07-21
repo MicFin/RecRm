@@ -257,6 +257,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
+
     ## for first edit use case it is when the user/client is selecting a time for their appointment, that is why it asks for time_slot chosen.  should be different method than edit method
     if params[:time_slot_id]
       @time_slot = TimeSlot.find(params[:time_slot_id])
@@ -268,8 +269,9 @@ class AppointmentsController < ApplicationController
     else
       @dietitians = Dietitian.all 
     end
-    @user = current_user
-    
+  
+    @user = current_user  
+
     respond_to do |format|
       format.js
       format.html

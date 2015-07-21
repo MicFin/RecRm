@@ -1,0 +1,52 @@
+	header.col-xs-2{
+		position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 1000000;
+	}
+
+	header img.img-logo {
+		min-height: 50px;
+	  min-width: 60px;
+	  margin-bottom: 20px;
+	  margin-top: 20px;
+
+	  margin-left: 15px;
+	}
+
+	nav{
+		margin-top: 10px;
+	}
+
+	nav ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	nav ul li {
+		padding:10px;
+		border-top: 1px solid grey;
+		position: relative;
+
+	}
+
+	nav ul li.active{
+		background-color: green;
+		border-color: green;
+	}
+
+	nav ul li a {
+		color: grey;
+	}
+
+	nav ul li.active a{
+		color: white;
+	}
+
+	nav ul li a span.glyphicon{
+		margin-right: 20px;
+	}
+
+	nav ul li a span.badge{
+		margin-left: 20px;
+	}

@@ -18,8 +18,8 @@
 							</div>
 							<hr>
 							<div class="row">
-								<h1><%= @upcoming_appointment.date%> </h1>
-								<h1><%= @upcoming_appointment.time%> EST</h1>
+								<h1><%= @upcoming_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </h1>
+<!-- 								<h1><%#= @upcoming_appointment.time%> EST</h1> -->
 							</div>
 							<hr>
 							<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
@@ -76,8 +76,8 @@
 							</div>
 							<hr>
 							<div class="row">
-								<h1><%= @upcoming_appointment.date%> </h1>
-								<h1><%= @upcoming_appointment.time%> EST</h1>
+								<h1><%= @upcoming_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </h1>
+<!-- 								<h1><%#= @upcoming_appointment.time%> EST</h1> -->
 							</div>
 							<hr>
 							<div class="row">

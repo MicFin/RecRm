@@ -105,13 +105,7 @@ label[for="nav-trigger"] {
   display: none;  
 }
 
-.nav-trigger:checked ~ #site-wrap #layoutContainer{
-	width: 200px;
-	height: 200px;	
-  position: fixed;
-  top: 150px;
-  left: 80%;
-}
+
 
 .nav-trigger:checked ~ #site-wrap #tool-box-container{
 	display: inline-block;	

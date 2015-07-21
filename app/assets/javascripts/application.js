@@ -59,7 +59,6 @@
 //= require form_validations
 //= require availabilities
 //= require time_slots
-//= require user_session
 //= require on_page_load
 //= require appointment
 //= require appointments_index

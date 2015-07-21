@@ -1,0 +1,111 @@
+
+
+
+// VIDEO STYLING
+#videobox2, #videobox{
+	height:100%;
+}
+
+#videobox.small-video{
+	position: absolute;
+	bottom: 1%;
+	right: 4%;
+	z-index: 100000;
+}
+
+#layoutContainer{
+	position:relative;
+}
+
+
+// MESSAGING STYLING
+#user-message{
+	width: 200px;
+}
+#send-message-button{
+	margin-left: 20px;
+	width: 20%%;
+	background-color: $carrotorange;
+	color: white;
+}
+
+#chat-box{
+	border: 1px solid lightgray;
+	margin-top: 2%;
+	background-color: white;
+	height: 200px;
+	overflow: scroll;
+}
+
+
+
+
+
+
+
+
+///// INTRO SESSION MODAL POP UP /////
+
+// full page modal
+#sessionIntroModal .modal-dialog, 
+#familyModal .modal-dialog, 
+#appointmentPrepModal .modal-dialog, 
+#appointmentReviewModal .modal-dialog {
+  width: 98%;
+  height: 92%;
+  padding: 0;
+}
+
+// full page modal
+#sessionIntroModal .modal-content, 
+#familyModal .modal-content, 
+#appointmentPrepModal .modal-dialog {
+  height: 99%;
+}
+
+#sessionIntroModal #allow-camera-row span {
+	-moz-transform: scaleX(-1) rotate(240deg);
+	-o-transform: scaleX(-1) rotate(240deg);
+	-webkit-transform: scaleX(-1) rotate(240deg);
+	transform: scaleX(-1) rotate(240deg);
+	filter: FlipH;
+	font-size: 10em;
+	color: #399e48;
+}
+#sessionIntroModal #allow-camera-denied-row span {
+	font-size: 10em;
+	color: #399e48;
+	z-index: 10000;
+}
+
+
+#sessionIntroModalLabel .img-responsive {
+	display: inline-block;
+}
+
+#sessionIntroModal .allow-camera-container{
+	border: 5px solid $carrotorange;
+	background-color: $lightorange;
+	color: white;
+	padding: 5%;
+	text-align: center;
+	border-radius: 10px;
+}
+
+#sessionIntroModal #allow-camera-row .allow-camera-container{
+	margin-top:10%;
+}
+
+#sessionIntroModal #allow-camera-denied-row .allow-camera-container{
+	margin-top: -5%;
+}	
+
+.allow-camera-container ol li {
+	font-size: 20px;
+}
+
+/////// INTRO Tour ////
+
+.popover[class*=tour-] {
+	z-index: 1100;
+}

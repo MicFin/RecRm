@@ -79,8 +79,6 @@ $(document).ready(function() {
 	// Availability Calendar
 	AvailabilityCalendar.set();
 	
-	// user in session 
-	UserSession.javascript();
 
 	AppointmentsIndex.setButtons();
 

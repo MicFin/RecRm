@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   include PatientGroupsHelper
 before_filter :config_opentok,:except => [:index]
-# only admin can view rooms pages
+# only admin can view rooms index page
 before_filter :authenticate_admin_user!, only: [:index]
 
   def index
@@ -27,66 +27,66 @@ before_filter :authenticate_admin_user!, only: [:index]
   end
 
   def in_session
-    @room = Room.find(params[:id]) 
+
+    # Set room
+    @room = Room.find(params[:id])
+
+    # Set appointment
+    # Could also do @room.appointments but could have multiple appointments
+    # Need to decide room construct 1 per dietitian? per session? what?
     @appointment = Appointment.find(params[:appointment])
     
+    # Get client pre appointment survey
+    # Not done well, just grabs last one
     @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: true).last
+
+    # Set surveyable
     @surveyable = @appointment
+
+    # Different user types require specific variables for a room
+    # Check user type and create variables
     if current_admin_user
+
+      # Set @user to current admin
       @user = current_admin_user
+
     elsif current_dietitian
+
+      # Set @user to current dietitian
       @user = current_dietitian
+
+      # Set client 
       @client = @appointment.appointment_host
-      appointment_host = @appointment.appointment_host
+
+      # appointment_host = @appointment.appointment_host
+
+      # Generate tokbox token
       @tok_token =  @opentok.generate_token(@room.sessionId, {role: :moderator, data: "Moderator"}) 
+
+      # Get dietitian pre appointment survey
       @dietitian_pre_appt_survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).last.questions.order("position")
-      ## add to new appointment type, duration, status
+
+      ## Create new appointment for dietitian to schedule if needed
       ## should probably use AJAX to call appointment controller for this info
       @new_appointment = Appointment.new(dietitian_id: current_dietitian.id, appointment_host_id: @client.id, patient_focus_id: @appointment.patient_focus_id, status: "Follow Up Unpaid")
+
+
       # @tok_token =  @opentok.generate_token @room.sessionId({
       #   :role        => :moderator
       #   :expire_time => Time.now.to_i+(7 * 24 * 60 * 60) # in one week
       #   :data        => 'name=Johnny'
       # });
     else
+      # Set @user to current dietitian
       @user = current_user
-      appointment_host = @user
+
+      # Generate tokbox token
       @tok_token =  @opentok.generate_token @room.sessionId 
 
+      # Get dietitian for appointment
       @dietitian = @appointment.dietitian
     end
-    @family = appointment_host.head_of_families.last
-    appointment_focus = @appointment.patient_focus
-    @updated_user = appointment_focus
-    @family_members = []
-    @family_members << appointment_focus
-
-    family_count = @family.users.count
     
-    if family_count > 0
-
-      if appointment_host != appointment_focus
-  
-        @family_members << appointment_host
-        @family.users.each do |family_member| 
-          if family_member != appointment_focus
-      
-            @family_members << family_member 
-          end
-        end
-      else
-        @family.users.each do |family_member|
-            @family_members << family_member
-        end
-      end
-    else
-      @family_members << appointment_host
-    end
-    get_patient_groups!
-    @diseases = @diseases 
-    @intolerances = @intolerances 
-    @allergies = @allergies
-    @diets = @diets 
   end
 
   private

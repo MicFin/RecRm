@@ -40,8 +40,8 @@
 @import "partials/families/show";
 @import "partials/families/new";
 @import "partials/landing_pages/qol";
-
-
+@import "partials/rooms/users/in_session_user";
+@import "partials/rooms/users/in_session_user_nav";
 
 
 @import "partials/recipe_breadcrumb";
@@ -70,8 +70,6 @@
 @import "partials/sign_up_form";
 @import "partials/new_user_intro";
 @import "partials/time_slots";
-@import "partials/user_session";
-@import "partials/user_in_session";
 @import "partials/user_home_page";
 @import "partials/family_form_modal";
 @import "partials/availabilities_index";

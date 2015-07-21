@@ -1,19 +1,21 @@
 
-  <div class="row">
-  <% if @user.class == User %>
 
-    <%= render "/rooms/user_rooms/user_session"%>
-    <%= render "/rooms/user_rooms/intro_session" %>
-  <% elsif @user.class == Dietitian %>
-  
-    <%= render "/rooms/dietitian_rooms/dietitian_session"%>
-    <%= render "/rooms/user_rooms/intro_session" %> 
-  <% elsif @user.class == AdminUser %>
+    <% if @user.class == User %>
 
-    <%= render "admin_in_room"%>
-  
-  <% end %>
-  </div>
+      <%= render "/rooms/users/user_session"%>
+      <%= render "/rooms/user_rooms/intro_session" %>
+
+    <% elsif @user.class == Dietitian %>
+    
+      <%= render "/rooms/dietitian_rooms/dietitian_session"%>
+      <%= render "/rooms/user_rooms/intro_session" %> 
+
+    <% elsif @user.class == AdminUser %>
+
+      <%= render "admin_in_room"%>
+    
+    <% end %>
+
 
 <script src="//static.opentok.com/webrtc/v2.2/js/opentok.min.js"></script>
 <!-- <script src="http://static.opentok.com/v0.91/js/TB.min.js" type="text/javascript"></script> -->

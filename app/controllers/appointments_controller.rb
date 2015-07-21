@@ -329,6 +329,7 @@ class AppointmentsController < ApplicationController
       # set appointment to room (1st and only for now)
       if @appointment.room_id == nil
         @appointment.room_id = @new_room.id
+        @appointment.save
       end
     #### should remove above
 

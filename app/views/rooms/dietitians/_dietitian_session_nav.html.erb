@@ -6,12 +6,13 @@
 
 					</div>
 					<div class="col-xs-12 col-md-6">
-						<p>Welcome, <%=current_user.first_name%>!</p>
-						<p><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
+						<p>Welcome, <%=current_dietitian.first_name%>!</p>
+						<p><%= link_to "Log Out", destroy_dietitian_session_path, :method => :delete %></p>
 					</div>
 				</div>
 				<nav>	
 					<ul>
+					<li><button id="end-session-button" type="button" class="btn btn-danger btn-lg">End Session</button></li>
 <!-- 						<li class="active">
 							<a href=""><p><span class="glyphicon glyphicon-facetime-video"></span></p><p><span class="hidden-xs hidden-sm nav-item">Video</span></p></a>
 						</li> -->

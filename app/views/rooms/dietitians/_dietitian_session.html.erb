@@ -1,0 +1,45 @@
+<div id="in-session" class="row">
+
+  <%= render "rooms/dietitians/dietitian_session_nav"%>
+
+  <div id="layoutContainer" class="col-xs-8 col-xs-offset-2">
+    <div class="video-center" id="videobox2">
+      <div id="videobox">
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-1 hidden">
+    <div id="chat-container" class="row">
+      <div id="chat-box" class="col-xs-12 form-group">
+        <h4>Start a conversation!</h4>
+      </div>
+      <form class="form-inline" role="form">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="family-member-name form-control" id="user-message" placeholder="   Write Message Here">
+          </div>
+        </div>
+        <button id="send-message-button" type="button" class="btn btn-default">Send</button>
+      </form>
+    </div>
+  </div>
+<div id="tool-next-session-container" class="col-xs-12 tool-box-item">
+  <div id="next-session-container">
+    <%= render "/rooms/dietitian_rooms/next_session_form" %>
+  </div>
+  <div id="availability-cal"></div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  TokBox.initialize();
+ $('#datetimepicker-appt-start').datetimepicker({ dateFormat: 'D, dd M yy', sideBySide: true });
+    $('#datetimepicker-appt-end').datetimepicker({ dateFormat: 'D, dd M yy', sideBySide: true });
+    $("#datetimepicker-appt-start").on("dp.change",function (e) {
+      $('#datetimepicker-appt-end').data("DateTimePicker").setMinDate(e.date);
+      $('#datetimepicker-appt-end').data("DateTimePicker").setDate(e.date);
+    });
+});
+</script>

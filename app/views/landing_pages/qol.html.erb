@@ -63,6 +63,8 @@
             <%= f.password_field :password_confirmation, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
           </div>
           <div class="form-group col-xs-8 col-xs-offset-2">
+
+          	<%= f.hidden_field :qol_referral, value: true %>
            <input type="checkbox"><span class="white-font"> I am a Sucraid customer referred by QOL Medical</span>
           </div>
 					<div class="col-xs-8 col-xs-offset-2 text-right">

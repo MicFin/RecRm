@@ -20,13 +20,18 @@ Rails.application.routes.draw do
   get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
   get 'qoladmin', to: "landing_pages#qol_admin", as: "landing_pages_qol_admin"
   get 'qol', to: "landing_pages#qol", as: "landing_pages_qol"
+  get 'tara', to: 'landing_pages#tara', as: 'landing_pages_tara'
+
+  # is it better to do a redirect or another route that goes to the same controller method?
+  # get 'join', to: 'landing_pages#tara', as: 'landing_pages_join'
+  get "/join" => redirect("/tara")
 
   resources :plans
 
   
   # get 'Ta10lI8839dAmi', to: 'home#index', as: 'main_landing_page'
   get 'Ta10lI8839dAmi', to: 'home#join', as: 'main_landing_page'
-  get 'join', to: 'home#join', as: 'tara_landing_page'
+
   # get 'lI45StA00OdAMi', to: 'home#discount_landing_page', as: 'discount_landing_page'
   get 'home', to: 'home#home_page', as: 'home_page'
   # get 'provider3126', to: "home#provider3126", as: "provider3126"

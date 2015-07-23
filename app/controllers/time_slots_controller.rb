@@ -1,6 +1,9 @@
 class TimeSlotsController < ApplicationController
   before_action :set_time_slot, only: [:show, :edit, :update, :create_from_existing, :destroy]
 
+
+  #### NEED TO CLEAN THIS UP
+  #### UNDER CONSTRUCTION
   # GET /time_slots
   # .json is created specifically for calendar usage right now
   # need to change it to show all for dietitian calendar nad not user...right now uses same
@@ -10,20 +13,21 @@ class TimeSlotsController < ApplicationController
     #  review all current 30 minute time slots
     if params[:minutes] == "30" && params[:type] == "Review"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 30)
-    #  review all current 60 minute, current time slots
-    # incorrectly being called for user select appt list
-    elsif params[:minutes] == "60" && params[:type] == "vacant-appts"
-      # @time_slots = TimeSlot.where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now + 1.days]) 
-      @time_slots = TimeSlot.where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now + 2.days]) 
-      # temporary fix for only sending back Tara's schedule to clients she gives a link to and are marked as having tara_rerral as true
-      # if current_user.tara_referral == true
-      #   @time_slots.to_a.delete_if do |time_slot|
-      #     if time_slot.dietitian.email != "tara@kindrdfood.com"
-      #       true # Make sure the if statement returns true, so it gets marked for deletion
-      #     end
-      #   end
 
-      # end
+    #  review all current 60 minute, Current time slots
+    #  incorrectly being called for user select appt list
+    elsif params[:minutes] == "60" && params[:type] == "vacant-appts"
+      @time_slots = TimeSlot.where(status: "Current").where(minutes: 60).where(['start_time > ?', DateTime.now + 2.days]) 
+
+      # temporary fix for only sending back Tara's schedule to clients she gives a link to and are marked as having tara_rerral as true
+      if current_user.tara_referral == true
+        @time_slots.to_a.delete_if do |time_slot|
+          if time_slot.dietitian.email != "tara@kindrdfood.com"
+            true # Make sure the if statement returns true, so it gets marked for deletion
+          end
+        end
+
+      end
 
       @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
     #  review all current 60 minute, current time slots

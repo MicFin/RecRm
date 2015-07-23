@@ -51,8 +51,8 @@ class AppointmentsController < ApplicationController
     end
   end
 
+
   def select_time
-    
     @time_slots = TimeSlot.select_appointment_time_slots 
     @sign_up_stage = @appointment.stage 
     @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')

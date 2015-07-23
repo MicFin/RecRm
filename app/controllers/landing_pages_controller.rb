@@ -15,4 +15,14 @@ class LandingPagesController < ApplicationController
     @user = User.new 
   end
 
+# tara referral landing page
+  def tara
+    @user = User.new 
+  end
+
+# /join redirects to /tara referral landing page
+  # def join
+  #   @user = User.new 
+  # end
+
 end

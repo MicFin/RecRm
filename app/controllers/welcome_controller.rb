@@ -314,7 +314,7 @@ class WelcomeController < Users::RegistrationsController
       elsif current_dietitian
         @user = current_dietitian
       else
-        redirect_to unauthenticated_user_path
+        redirect_to dietitian_unauthenticated_root_path
       end
 
     end

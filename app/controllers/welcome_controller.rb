@@ -9,7 +9,6 @@ class WelcomeController < Users::RegistrationsController
   # User dashboard
   # /welcome/home
   def home
-
     # update registration for any old users that are already loggin in
     # can remove after older users' registration statuses are updated.
     current_user.update_registration_stage
@@ -97,7 +96,6 @@ class WelcomeController < Users::RegistrationsController
   def get_started
     
     @user = current_user
-    
     # Stage 1 - user confirmed but did not complete account set up
     if current_user.registration_stage == 1
       render :get_started
@@ -308,7 +306,6 @@ class WelcomeController < Users::RegistrationsController
   private
 
     def check_user_logged_in! 
-    
       # Check if user is a dietitian or a user and set @user
       # Gets overriden in other methods, should reevaluate
       # Should check admin first then dietitian or be a user
@@ -317,6 +314,7 @@ class WelcomeController < Users::RegistrationsController
       elsif current_dietitian
         @user = current_dietitian
       else
+        redirect_to unauthenticated_user_path
       end
 
     end

@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+
+
+
+
+  ### ROUTES AVAILABLE TO ADMIN USERS 
   devise_scope :admin_user do
     authenticated :admin_user do 
       root to: "admin/dashboard#index"
@@ -16,22 +21,17 @@ Rails.application.routes.draw do
 
 
 
-
+  ### ROUTES AVAILABLE TO NON USERS 
   get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
   get 'qoladmin', to: "landing_pages#qol_admin", as: "landing_pages_qol_admin"
   get 'qol', to: "landing_pages#qol", as: "landing_pages_qol"
   get 'tara', to: 'landing_pages#tara', as: 'landing_pages_tara'
-
   # is it better to do a redirect or another route that goes to the same controller method?
   # get 'join', to: 'landing_pages#tara', as: 'landing_pages_join'
   get "/join" => redirect("/tara")
-
   resources :plans
-
-  
   # get 'Ta10lI8839dAmi', to: 'home#index', as: 'main_landing_page'
   get 'Ta10lI8839dAmi', to: 'home#join', as: 'main_landing_page'
-
   # get 'lI45StA00OdAMi', to: 'home#discount_landing_page', as: 'discount_landing_page'
   get 'home', to: 'home#home_page', as: 'home_page'
   # get 'provider3126', to: "home#provider3126", as: "provider3126"
@@ -40,10 +40,11 @@ Rails.application.routes.draw do
   get 'provider9172', to: "home#join", as: "provider9172"
   get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
   get "/krdn" => redirect("/dietitians/sign_in")
-
-  devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'users/sessions', :confirmations => "users/confirmations", :invitations => 'users/invitations' }
   
-  # # root to: "welcome#index"
+  # root to: "landing_pages#index"
+
+  ### ROUTES AVAILABLE TO USERS 
+  devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'users/sessions', :confirmations => "users/confirmations", :invitations => 'users/invitations' }
 
   devise_scope :user do
       get 'welcome/index', to: "welcome#index", as: "welcome"
@@ -59,16 +60,9 @@ Rails.application.routes.draw do
       get 'welcome/add_preferences', to: "welcome#add_preferences", as: "welcome_add_preferences"
       patch 'welcome/build_preferences', to: "welcome#build_preferences", as: "welcome_build_preferences"
       get 'welcome/set_appointment', to: "welcome#set_appointment", as: "welcome_set_appointment"
-      # patch 'welcome/build_preferences', to: "welcome#build_preferences", as: "welcome_build_preferences"
-
-
       get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
-
-      # get 'registrations/new_user_intro/:id', to: 'users/registrations#new_user_intro', as: 'new_user_intro'
-
       get 'registrations/new_user_family/:id', to: 'users/registrations#new_user_family', as: 'new_user_family'
       get 'registrations/edit_user_health_groups/:id', to: 'users/registrations#edit_user_health_groups', as: 'edit_user_health_groups'
-      # update health gorups
       patch 'registrations/update_user_health_groups/:id', to: 'users/registrations#update_user_health_groups', as: 'update_user_health_groups'
       get 'registrations/new_family_member/', to: 'users/registrations#new_family_member', as: 'new_family_member'
       post 'registrations/create_family_member', to: 'users/registrations#create_family_member', as: 'create_family_member'
@@ -95,12 +89,19 @@ Rails.application.routes.draw do
       # resources :charges
       resources :subscriptions
     end
+
+    # ROUTES FOR UNCONFIRMED USERS
     unauthenticated :user do
       match '/user/confirmation' => 'users/confirmations#update', :via => :patch, :as => :update_user_confirmation
     end   
 
   end
 
+
+
+
+
+  ### ROUTES AVAILABLE TO DIETITIANS 
   devise_for :dietitians, :controllers => { :registrations => "dietitians/registrations" }
 
   devise_scope :dietitian do
@@ -198,11 +199,11 @@ Rails.application.routes.draw do
       resources :rooms, only: [:index, :create]
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_dietitian_room, :via => :get
     end
-    # unauthenticated :dietitian do
-    #   root :to => "devise/sessions#new", as: :dietitian_unauthenticated_root
-    # end   
+    
+    # ROUTES FOR UNAUTHENTICATED DIETITIAN
     unauthenticated :dietitian do
-      # root :to => "home#home_page", as: :dietitian_unauthenticated_root
+      
+      # THIS IS THE MAIN ROOT FOR ALL NON REGISTERED USERS
       root :to => "landing_pages#index", as: :dietitian_unauthenticated_root
     end   
   end

@@ -5,6 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kindrdfood</title>
+
+
+    <!--[if lt IE 7]>
+        <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js">
+        </script>
+    <![endif]-->
+
+    <!--[if (gte IE 6)&(lte IE 8)]>
+      <script type="text/javascript" src="/js/selectivizr/selectivizr.js"></script>
+      <noscript><link rel="stylesheet" /></noscript>
+    <![endif]-->
+
+
 <!--     <link href="css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css"> -->
     <%= include_gon %>
@@ -17,10 +30,9 @@
 
     <%= javascript_include_tag 'application' %>
 
-  <!--[if (gte IE 6)&(lte IE 8)]>
-      <script type="text/javascript" src="/js/selectivizr/selectivizr.js"></script>
-      <noscript><link rel="stylesheet" /></noscript>
-    <![endif]-->
+
+
+
 
 
     <%= csrf_meta_tags %> 

@@ -47,6 +47,7 @@
   background-color: lightgrey;
   margin: 25px;
   border-radius: 5px;
+  behavior: url($pie-path);
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -55,6 +56,7 @@
 .recipe-mini-view {
   background-color: white;
   border-radius: 5px;
+  behavior: url($pie-path);
   height: 300px;
   margin: 15px;
   text-align: left;

@@ -90,6 +90,7 @@
 	padding: 5%;
 	text-align: center;
 	border-radius: 10px;
+	behavior: url($pie-path);
 }
 
 #sessionIntroModal #allow-camera-row .allow-camera-container{

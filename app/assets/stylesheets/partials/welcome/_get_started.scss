@@ -16,6 +16,7 @@
 	  }
 	  .modal-content{
 	  	  border-radius: 15px;
+	  	  behavior: url($pie-path);
 	  }
 	  h1 {
 	  	color: $brand-carrot-green;

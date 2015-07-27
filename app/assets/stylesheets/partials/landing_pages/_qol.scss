@@ -66,12 +66,14 @@
 	.outside-form-container{
 	  background-color: transparentize($gray-darker, .8);
   	border-radius: 15px;
+  	behavior: url($pie-path);
   	padding: 20px;
 
   	// dark gray inner outline
   	> div {
 		  background-color: transparentize($gray-darker, .5);
 		  border-radius: 15px;
+		  behavior: url($pie-path);
 		  padding: 10px;
 		  overflow: hidden;
 
@@ -148,6 +150,7 @@
     /* you need to match the shadow color to your background or image border for the desired effect*/
     border-color: $brand-bg;
 	  box-shadow: 0 10px 30px 20px $brand-bg inset;
+	  behavior: url($pie-path);
 	  background-position: right -30px bottom -15px;
 	}
 
@@ -166,6 +169,7 @@
     /* you need to match the shadow color to your background or image border for the desired effect*/
     border-color: $brand-bg;
 	  box-shadow: 0 0 30px 20px $brand-bg inset;
+	  behavior: url($pie-path);
 	  background-position: right -30px bottom -15px;
 	}
 
@@ -194,6 +198,7 @@
     /* you need to match the shadow color to your background or image border for the desired effect*/
     border-color: $brand-bg;
   	box-shadow: 0px 0px 20px 20px #f4f5f5 inset;
+	  behavior: url($pie-path);
 	  background-position: right 0px bottom 0px;
 	}
 
@@ -207,6 +212,7 @@
     /* you need to match the shadow color to your background or image border for the desired effect*/
     border-color: $brand-bg;
   	box-shadow: 0px 0px 20px 20px #f4f5f5 inset;
+  	behavior: url($pie-path);
   	background-position: right -80px bottom 0px;
 	}
 

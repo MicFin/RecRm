@@ -17,8 +17,9 @@
 
     <%= javascript_include_tag 'application' %>
 
-    <!--[if lte IE 8]>
-        <%#= stylesheet_link_tag "browser_specific/ie", :media => "all" %>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+      <script type="text/javascript" src="/js/selectivizr/selectivizr.js"></script>
+      <noscript><link rel="stylesheet" /></noscript>
     <![endif]-->
 
 

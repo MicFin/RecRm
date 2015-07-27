@@ -156,6 +156,7 @@
     border: 1px solid $carrotgreen;
     background: rgba(0, 0, 0, 0);
     border-radius: 50%;
+    behavior: url($pie-path);
     position: absolute;
     z-index: 1;
 }

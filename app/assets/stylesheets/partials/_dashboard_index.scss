@@ -3,6 +3,7 @@
 	background: $gray;
 	text-align: center;
 	border-radius: 15px;
+	behavior: url($pie-path);
 	margin: 50px;
 	padding-top: 5%;
 	h3{

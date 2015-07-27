@@ -1,12 +1,26 @@
+
+// Bootstrap
 @import "../modules/bootstrap/bootstrap_overrides/override_navbar";
 @import "../modules/bootstrap/bootstrap_overrides/override_collapse_accordion";
 @import "../modules/bootstrap/bootstrap_overrides/override_alerts";
 @import "../modules/bootstrap/bootstrap_overrides/new_form_controls";
 @import "../modules/bootstrap/bootstrap_overrides/override_buttons.scss";
+
+// CSS3pie bootstrap
+@import "../modules/bootstrap/bootstrap_overrides/css3pie";
+
+// Bootstrap tour
 @import "../modules/bootstrap/bootstrap_tour/bootstrap-tour-min";
 @import "../modules/bootstrap/bootstrap_tour/bootstrap-tour-overrides";
+@import "../modules/bootstrap/bootstrap_tour/bootstrap-tour-overrides";
+
+// Jquery ui
 @import "../modules/jqueryui/jquery-ui-theme-min";
 @import "../modules/jqueryui/jquery_ui_theme_structure";
+
+// Fullcalendar
 @import "../modules/fullcalendar/full_calendar_overrides";
+
+// Jquery Fullpage
 @import "../modules/jqueryfullpage/jquery_fullpage";
 

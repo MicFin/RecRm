@@ -11,6 +11,7 @@
 	font-size: .85em;
 	line-height: 1.3;
 	border-radius: 3px;
+	behavior: url($pie-path);
 	border: 1px solid $carrotgreen;
 	background-color: $lightgreen;
 	font-weight: normal;

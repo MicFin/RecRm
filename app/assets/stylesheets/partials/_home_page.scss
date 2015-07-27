@@ -116,6 +116,7 @@
 		height: 70%;
 		.intro-container{
 		  border-radius: 50px;
+		  behavior: url($pie-path);
 		  border: 1px solid green;
 		  padding: 5%;
 		  margin: 5%;
@@ -134,6 +135,7 @@
 		  background-color: $lightorange;
 		  padding-top: 3%;
 		  border-radius: 15px;
+		  behavior: url($pie-path);
 		  text-align: center;
 		  .form-control {
 		  	width: 100%;
@@ -145,6 +147,7 @@
 		  font-size: 30px;
 		  line-height: 1.33;
 		  border-radius: 6px;
+		  behavior: url($pie-path);
 		  width: 100%;
 		}
 	}
@@ -220,6 +223,7 @@
 			  padding: 10px 20px;
 			  font-size: 40px;
 			  border-radius: 15px;
+behavior: url($pie-path);
 
 				@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
 			    margin-bottom: 0;
@@ -227,7 +231,8 @@
 				  padding: 0px 10px;
 				  font-size: 50px;
 				  border-radius: 15px;
-				}
+				behavior: url($pie-path);}
+				
 
 				@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
 				  margin-bottom: 0;
@@ -235,7 +240,8 @@
 				  padding: 15px 20px;
 				  font-size: 25px;
 				  border-radius: 15px;
-	  		}
+	  		behavior: url($pie-path);}
+	  		
 	  	}
 	  }
 	}
@@ -256,6 +262,7 @@
 	  	padding: 10px 25px;
 	  	font-size: 30px;
 	  	border-radius: 15px;
+	 		behavior: url($pie-path);
 	 		background-color: $lightorange;
 	 		color: $white;
 		}
@@ -298,7 +305,8 @@
 		  padding: 10px 20px;
 		  font-size: 40px;
 		  border-radius: 15px;
-		}
+		behavior: url($pie-path);}
+		
 		.section-4-middle{
 		  margin-top: -5%;
 		  h3{
@@ -326,6 +334,7 @@
 			max-height: 500px;
 			max-width: 100%;
   		border-radius: 15px;
+behavior: url($pie-path);
 
 		}
 		h1 {
@@ -348,6 +357,7 @@
 		  background-color: $lightorange;
 		  padding-top: 0;
 		  border-radius: 15px;
+		  behavior: url($pie-path);
 		  text-align: center;
 		  .form-control {
 		  	width: 100%;
@@ -359,6 +369,7 @@
 		  font-size: 30px;
 		  line-height: 1.33;
 		  border-radius: 6px;
+		  behavior: url($pie-path);
 		  width: 100%;
 		}
 		a{
@@ -366,6 +377,7 @@
 		}
 		.beta-message{
 			  border-radius: 15px;
+			  behavior: url($pie-path);
 			  border: 1px solid $lightorange;
 			  margin-top: 2%;
 			  h1{

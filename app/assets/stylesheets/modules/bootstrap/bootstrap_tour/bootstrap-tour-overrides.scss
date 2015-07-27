@@ -22,6 +22,7 @@
 		background-color: $lightorange;
 		border-bottom: 1px solid #ebebeb;
 		border-radius: 0;
+		behavior: url($pie-path);
 		text-align: center;
 	}
 	.popover-content {

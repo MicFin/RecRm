@@ -49,6 +49,7 @@
 		  background-color: $lightorange;
 		  padding-top: 3%;
 		  border-radius: 15px;
+		  behavior: url($pie-path);
 		  text-align: right;
 		  .form-fields{
 		  	right: 15%;
@@ -60,6 +61,7 @@
 		  font-size: 30px;
 		  line-height: 1.33;
 		  border-radius: 6px;
+		  behavior: url($pie-path);
 		  width: 100%;
 		}
 	}
@@ -133,6 +135,7 @@
 			  padding: 30px 48px;
 			  font-size: 50px;
 			  border-radius: 15px;
+behavior: url($pie-path);
 
 				@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
 			    margin-bottom: 0;
@@ -140,7 +143,8 @@
 				  padding: 0px 10px;
 				  font-size: 50px;
 				  border-radius: 15px;
-				}
+				behavior: url($pie-path);}
+				
 
 				@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
 				  margin-bottom: 0;
@@ -148,7 +152,8 @@
 				  padding: 15px 20px;
 				  font-size: 25px;
 				  border-radius: 15px;
-	  		}
+	  		behavior: url($pie-path);}
+	  		
 	  	}
 	  }
 	}
@@ -158,6 +163,7 @@
 	  	padding: 10px 25px;
 	  	font-size: 30px;
 	  	border-radius: 15px;
+	 		behavior: url($pie-path);
 	 		background-color: $lightorange;
 	 		color: $white;
 		}
@@ -177,6 +183,7 @@
 	  	padding: 30px 48px;
 	  	font-size: 50px;
 	  	border-radius: 15px;
+	 		behavior: url($pie-path);
 	 		margin: 10%;
 		}
 		.section-4-middle{

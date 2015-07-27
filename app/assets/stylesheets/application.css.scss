@@ -22,14 +22,15 @@
 
 // import bootstrap-sprockets before bootstrap if using bootstrap >= 3.2
 @import 'bootstrap-datetimepicker';
-// vendor
 
+// Vendors
 @import "themes/bootstrap_customizer_theme";
-
 @import "vendor/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
 
+// Mixins
+@import "mixins/box_shadow";
 
-// partials
+// Partials
 @import "partials/welcome/home";
 @import "partials/welcome/get_started";
 @import "partials/welcome/add_family";
@@ -43,6 +44,8 @@
 @import "partials/rooms/users/in_session_user";
 @import "partials/rooms/users/in_session_user_nav";
 
+
+// Old Partials
 
 @import "partials/recipe_breadcrumb";
 @import "partials/add_recipe_main";

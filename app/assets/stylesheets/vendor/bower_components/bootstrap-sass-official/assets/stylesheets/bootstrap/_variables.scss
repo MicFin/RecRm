@@ -1,3 +1,9 @@
+
+
+
+/// This is likely being overrideden by the bootstrap theme.  
+///     bootstrap_customizer_theme.css.scss
+
 // When true, asset path helpers are used, otherwise the regular CSS `url()` is used.
 // When there no function is defined, `fn('')` is parsed as string that equals the right hand side
 // NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
@@ -44,7 +50,7 @@ $link-hover-color:      darken($link-color, 15%) !default;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  Trebuchet, Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;

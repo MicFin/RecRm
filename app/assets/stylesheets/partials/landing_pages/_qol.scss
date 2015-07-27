@@ -1,6 +1,7 @@
 #qol-page, #qol-sign-in-page {
 
 	// fonts
+
 	h2.heading {
 		color: $brand-carrot-green;
 	}
@@ -66,12 +67,18 @@
 	  background-color: transparentize($gray-darker, .8);
   	border-radius: 15px;
   	padding: 20px;
+
   	// dark gray inner outline
   	> div {
 		  background-color: transparentize($gray-darker, .5);
 		  border-radius: 15px;
 		  padding: 10px;
 		  overflow: hidden;
+
+		  // padding around text
+	  	> p {
+	  		padding: 0 50px;
+	  	}
 		}  		
 	}
 	.qol-background-image{
@@ -83,6 +90,13 @@
 		  text-align: center;
 		  color: $brand-white;
 		  padding: 20px;
+			h1, h2, h3, h4, h5, h6 {
+				text-shadow: 2px 2px 4px $brand-black;
+			}
+			h3.tag-line{
+				width: 75%;
+			}
+
 	}
 	// .qol-background-image + div.row {
 	// 	border-bottom: 4px solid $gray-dark;

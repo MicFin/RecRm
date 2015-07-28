@@ -32,8 +32,17 @@ Kindrdfood.welcome.getStarted = {
         BirthDate: "user[date_of_birth(1i)] user[date_of_birth(2i)] user[date_of_birth(3i)]"
       },
       errorPlacement: function(error, element) {
+
+        // if the error is a birth day field then only show 1 error message below all birthday field
         if (element.attr("name") == "user[date_of_birth(1i)]" || element.attr("name") == "user[date_of_birth(2i)]" || element.attr("name") == "user[date_of_birth(3i)]" ) {
           error.insertAfter("#user_date_of_birth_1i");
+
+        // if the error is the gender field then show error message below gender fields
+        } else if ( element.attr("name") == "user[sex]"){
+          var targetLocation = $("#user_sex_male").parent().parent();
+          error.insertAfter(targetLocation);
+
+        // all other errors go after the relevant field
         } else {
           error.insertAfter(element);
         }

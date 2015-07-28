@@ -44,7 +44,7 @@
 
 //= require landing_pages/smooth_scroll
 
-
+//= require browser_details
 
 // NEW ABOVE NEW ABOVE
 

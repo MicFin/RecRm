@@ -113,6 +113,9 @@ gem 'stripe-rails', "0.3.1"
 # https://github.com/carstengehling/route_downcaser 
 gem 'route_downcaser', "1.1.4"
 
+# browser details for server requests
+# https://github.com/gshutler/browser_details
+gem 'browser_details', "0.0.6"
 
 
 # automatic cron jobs

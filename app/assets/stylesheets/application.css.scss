@@ -28,6 +28,8 @@
 @import "vendor/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
 $pie-path: "vendor/bower_components/css3pie/PIE.htc";
 
+// Modules
+@import "modules/all";
 
 // Mixins
 @import "mixins/box_shadow";
@@ -81,7 +83,7 @@ $pie-path: "vendor/bower_components/css3pie/PIE.htc";
 @import "partials/home_index";
 @import "partials/home_page";
 
-@import "modules/all";
+
 
 
 // GLOBAL COLORS

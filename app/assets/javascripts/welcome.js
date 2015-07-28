@@ -1,15 +1,13 @@
 	
 $(document).ready(function() {
+
 	// JS for welcome#add_family
-	Welcome.addFamily();
+	Kindrdfood.welcome.addFamily.init();
 
 	// JS for welcome#add_nutrition
-	Welcome.addNutrition();
-
-	// JS for landing_pages#qoladmin
-	LandingPages.formValidation();
+	Kindrdfood.welcome.addNutrition.init();
 
 	// JS for welcome#get_started
-	GetStarted.formValidation();
-	
+	Kindrdfood.welcome.getStarted.init();
+
 });

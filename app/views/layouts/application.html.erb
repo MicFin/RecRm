@@ -25,17 +25,15 @@
     <%= stripe_javascript_tag %>
 <!--     above should only run when on checkout page but is currently in all layouts -->
 
-<!--     Loads application wide CSS at application.css.scss -->
-    <%= stylesheet_link_tag    'application', media: 'all' %>
 
-<!--     Loads controller specific CSS at EX: welcome.css.scss-->
+<!--     Loads application wide CSS at application.css.scss and controller specific CSS at EX: welcome.css.scss-->
     <%= stylesheet_link_tag "application", params[:controller], :media => "all"%>
 
 <!--     Loads application wide JS at applicationjs -->
-    <%= javascript_include_tag 'application', media: 'all' %>
+    <%#= javascript_include_tag 'application', media: 'all' %>
 
-<!--     Loads controller specific JS at EX: welcome.js -->
-    <%= javascript_include_tag "application", params[:controller] %>
+<!--     Loads application wide JS at application.js controller specific JS at EX: welcome.js-->
+    <%= javascript_include_tag "application", params[:controller], media: 'all' %>
 
 
 
@@ -72,9 +70,6 @@
     <%= render '/layouts/google_analytics' %>
   <% end %>
 
-  <!-- 	JQUERY VALIDATES SCRIPT -->
-  <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js" type="text/javascript"></script>
-  <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/additional-methods.min.js" type="text/javascript"></script>
 
 
 </body>

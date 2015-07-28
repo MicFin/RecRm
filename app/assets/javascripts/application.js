@@ -33,18 +33,29 @@
 //= require fullcalendar
 
 
-// NEW BELOW NEW BELOW NEW BELOW
 
+// Plugins JS
+//= require plugins/jquery-validate.min.js
+//= require plugins/jquery-validate-extra-methods.min.js
+//= require plugins/smooth_scroll
 
+// Namespace creation, MUST COME BEFORE ALL CUSTOM JS THAT UTILIZES APP NAMESPACE
+//= require kindrdfood
+
+// Welcome Controller JS
 //= require welcome/add_family
 //= require welcome/add_nutrition
 //= require welcome/get_started
 
-//= require landing_pages/qol_admin/form_validation
+// Landing Pages Controller JS
+//= require landing_pages/qol_admin
 
-//= require landing_pages/smooth_scroll
-
+// Browser detail
 //= require browser_details
+
+
+
+
 
 // NEW ABOVE NEW ABOVE
 

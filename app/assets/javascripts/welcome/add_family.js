@@ -1,7 +1,9 @@
 
+Kindrdfood.welcome = Kindrdfood.welcome || {};
 
-var Welcome = {
-	addFamily: function(){
+Kindrdfood.welcome.addFamily = {
+
+	init: function(){
 
 		// user selects self or family member to display basic information form for either
 		$('input:radio[name="appointment_focus"]').change(

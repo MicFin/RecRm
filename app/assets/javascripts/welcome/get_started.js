@@ -1,11 +1,10 @@
 
 
+Kindrdfood.welcome = Kindrdfood.welcome || {};
 
+Kindrdfood.welcome.getStarted = {
 
-
-var GetStarted = {
-
-  formValidation: function(){
+  init: function(){
     $("#get-started-page form").validate({
       rules: {
 	      "user[date_of_birth(1i)]":{

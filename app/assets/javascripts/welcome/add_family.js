@@ -2,6 +2,8 @@
 
 var Welcome = {
 	addFamily: function(){
+
+		// user selects self or family member to display basic information form for either
 		$('input:radio[name="appointment_focus"]').change(
 		    function(){
 		      if ( $(this).val() === "user-form" ) {
@@ -12,8 +14,9 @@ var Welcome = {
 		      	$(".user-form").addClass("hidden");
 		      }
 		    }
-
 		); 
+
+		// if user selects that they are pregnant, then show the due date field
 		$('.user-form input:radio[name="pregnancy"]').change(
 		    function(){
 		      if ( $(this).val() === "yes" ) {
@@ -23,6 +26,8 @@ var Welcome = {
 		      }
 		    }
 		); 
+
+		// if new user is more than 18 years old then show field for being pregnant
 		$(".new-user-form select[name='user[date_of_birth(1i)]']").change(function() {
 		  if ( parseInt($(this).val()) < moment().subtract(18, "years").year()){
 		   	$(".new-user-form .pregnancy-container").removeClass("hidden");
@@ -30,6 +35,8 @@ var Welcome = {
 				$(".new-user-form .pregnancy-container").addClass("hidden");
 		  }
 		});
+
+
 		$(".user-form select[name='user[date_of_birth(1i)]']").change(function() {
 		  if ( parseInt($(this).val()) < moment().subtract(18, "years").year()){
 		   	$(".user-form .pregnancy-container").removeClass("hidden");

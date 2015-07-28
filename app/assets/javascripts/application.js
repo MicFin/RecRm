@@ -25,7 +25,7 @@
 //= require jquery.Jcrop
 //= require jquery-fullpage-min
 //= require jquery-toggleText
-//= require jquery-masked-input.min
+//= require plugins/jquery-masked-input.min
 //= require moment
 //= require bootstrap
 //= require bootstrap-datetimepicker

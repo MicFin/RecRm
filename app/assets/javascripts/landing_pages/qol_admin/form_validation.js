@@ -15,7 +15,16 @@ var LandingPages = {
         "user[email]":{
           email: true,
           required: true,
-        }
+        },
+        "user[password]":{
+          required: true,
+          minlength: 8
+        },
+        "user[password_confirmation]":{
+          required: true,
+          minlength: 8,
+          equalTo: "#user_password"
+        },
       },
       messages: {
         "user[first_name]":{
@@ -29,6 +38,15 @@ var LandingPages = {
         "user[email]":{
           email: "Enter valid email",
           required: "Enter valid email"
+        },
+        "user[password]":{
+          required: "Enter password",
+          minlength: "Must be at least 8 characters"
+        },
+        "user[password_confirmation]":{
+          required: "Confirm password",
+          minlength: "Must be at least 8 characters",
+          equalTo: "Confirmation and password do not match"
         },
       }
     });

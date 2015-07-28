@@ -6,18 +6,7 @@ $(document).ready(function() {
 	OverrideBootstrap.setAccordion();
 
 
-	// JS for welcome#add_family
-	Welcome.addFamily();
 
-	// JS for welcome#add_nutrition
-	Welcome.addNutrition();
-
-	// JS for landing_pages#qoladmin
-	LandingPages.formValidation();
-
-	// JS for welcome#get_started
-	GetStarted.formValidation();
-	
 	// JS for landing_pages#smooth_scroll
 	if (pathname.search("/rooms") >= 0) {
 

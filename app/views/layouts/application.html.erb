@@ -24,12 +24,18 @@
 <!--     below should only run when on checkout page but is currently in all layouts -->
     <%= stripe_javascript_tag %>
 <!--     above should only run when on checkout page but is currently in all layouts -->
+
+<!--     Loads application wide CSS at application.css.scss -->
     <%= stylesheet_link_tag    'application', media: 'all' %>
 
+<!--     Loads controller specific CSS at EX: welcome.css.scss-->
     <%= stylesheet_link_tag "application", params[:controller], :media => "all"%>
 
-    <%= javascript_include_tag 'application' %>
+<!--     Loads application wide JS at applicationjs -->
+    <%= javascript_include_tag 'application', media: 'all' %>
 
+<!--     Loads controller specific JS at EX: welcome.js -->
+    <%= javascript_include_tag "application", params[:controller] %>
 
 
 
@@ -49,6 +55,7 @@
 
 
 <body>
+
   <!-- LAYOUTS -->
 		<%# if current_user %>
 			<%#= yield %>

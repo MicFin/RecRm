@@ -117,6 +117,9 @@ gem 'route_downcaser', "1.1.4"
 # https://github.com/gshutler/browser_details
 gem 'browser_details', "0.0.6"
 
+# minimizes rails logs for better reading
+# https://github.com/roidrage/lograge
+gem "lograge", "0.3.4"
 
 # automatic cron jobs
 # user for payments and emails?

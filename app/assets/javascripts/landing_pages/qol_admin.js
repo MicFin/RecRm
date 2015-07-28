@@ -1,4 +1,6 @@
 
+Kindrdfood = Kindrdfood || {};
+
 // create landing pages object if not already created
 Kindrdfood.landingPages = Kindrdfood.landingPages || {};
 

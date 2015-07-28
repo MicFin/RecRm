@@ -1,4 +1,5 @@
 
+Kindrdfood = Kindrdfood || {};
 
 Kindrdfood.welcome = Kindrdfood.welcome || {};
 

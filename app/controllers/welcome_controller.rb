@@ -183,7 +183,6 @@ class WelcomeController < Users::RegistrationsController
     # Gets family member if there is one or gets current user
     # Should make a before method
     @user = current_user.head_of_families.last.users.last || @user
-binding.pry
     # Gather all patient groups
     # from PatientGroupsHelper
     get_patient_groups!

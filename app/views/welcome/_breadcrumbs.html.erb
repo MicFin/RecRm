@@ -1,0 +1,56 @@
+    <div id="welcome-breadcrumb" class="row">
+        <div class="btn-group btn-breadcrumb">
+        <% if current_user.registration_stage <= 1 %>
+        	
+        	<%= link_to destroy_user_session_path, {class: "btn btn-warning", :method => :delete} do %>
+            <i class="glyphicon glyphicon-home"></i>
+          <% end %>
+ 					<%= link_to "Basic Info", welcome_add_family_path, class: "btn btn-warning", :disabled => true %>
+          <%= link_to "Health History", welcome_add_nutrition_path, class: "btn btn-warning", :disabled => true %>
+          <%= link_to "Food Preferences", welcome_add_preferences_path, class: "btn btn-warning", :disabled => true %>
+          <%= link_to "Schedule Appointment", welcome_set_appointment_path, class: "btn btn-warning", :disabled => true %>
+
+        <% elsif current_user.registration_stage <= 2 %>
+
+        	<%= link_to destroy_user_session_path, {class: "btn btn-warning", :method => :delete} do %>
+            <i class="glyphicon glyphicon-home"></i>
+          <% end %>
+          <%= link_to "Basic Info", welcome_add_family_path, class: "btn btn-warning" %>
+          <%= link_to "Health History", welcome_add_nutrition_path, class: "btn btn-warning", :disabled => true %>
+          <%= link_to "Food Preferences", welcome_add_preferences_path, class: "btn btn-warning", :disabled => true %>
+          <%= link_to "Schedule Appointment", welcome_set_appointment_path, class: "btn btn-warning", :disabled => true %>
+
+				<% elsif current_user.registration_stage <= 3 %>
+
+        	<%= link_to destroy_user_session_path, {class: "btn btn-warning", :method => :delete} do %>
+            <i class="glyphicon glyphicon-home"></i>
+          <% end %>
+          <%= link_to "Basic Info", welcome_add_family_path, class: "btn btn-warning" %>
+          <%= link_to "Health History", welcome_add_nutrition_path, class: "btn btn-warning" %>
+          <%= link_to "Food Preferences", welcome_add_preferences_path, class: "btn btn-warning", :disabled => true %>
+          <%= link_to "Schedule Appointment", welcome_set_appointment_path, class: "btn btn-warning", :disabled => true %>
+				
+				<% elsif current_user.registration_stage <= 4 %>
+
+        	<%= link_to destroy_user_session_path, {class: "btn btn-warning", :method => :delete} do %>
+            <i class="glyphicon glyphicon-home"></i>
+          <% end %>
+          <%= link_to "Basic Info", welcome_add_family_path, class: "btn btn-warning" %>
+          <%= link_to "Health History", welcome_add_nutrition_path, class: "btn btn-warning" %>
+          <%= link_to "Food Preferences", welcome_add_preferences_path, class: "btn btn-warning" %>
+          <%= link_to "Schedule Appointment", welcome_set_appointment_path, class: "btn btn-warning", :disabled => true %>
+
+				<% elsif current_user.registration_stage <= 5 %>
+
+        	<%= link_to destroy_user_session_path, {class: "btn btn-warning", :method => :delete} do %>
+            <i class="glyphicon glyphicon-home"></i>
+          <% end %>
+          <%= link_to "Basic Info", welcome_add_family_path, class: "btn btn-warning" %>
+          <%= link_to "Health History", welcome_add_nutrition_path, class: "btn btn-warning" %>
+          <%= link_to "Food Preferences", welcome_add_preferences_path, class: "btn btn-warning" %>
+          <%= link_to "Schedule Appointment", welcome_set_appointment_path, class: "btn btn-warning" %>
+
+        <% end %>
+   
+        </div>
+	</div>

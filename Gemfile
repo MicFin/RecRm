@@ -121,6 +121,10 @@ gem 'browser_details', "0.0.6"
 # https://github.com/roidrage/lograge
 gem "lograge", "0.3.4"
 
+# Adds selected class to links of current url
+# https://github.com/vigetlabs/nav_lynx
+gem 'nav_lynx'
+
 # automatic cron jobs
 # user for payments and emails?
 # https://github.com/javan/whenever

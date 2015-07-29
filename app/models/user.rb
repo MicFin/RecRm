@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  attr_accessor :health_group_ids
+
   # used for form in families/new
 
   rolify :role_cname => 'UserRole'
@@ -32,14 +35,38 @@ class User < ActiveRecord::Base
   validates :phone_number, :phony_plausible => true
 
 
-  # Called in
+  # returns an array of patient groups for a user that are type disease
+  def get_patient_group_ids
+     disease_ids = self.patient_groups.map{|disease|disease.id}
+     return disease_ids
+  end
+
+  # returns an array of patient groups for a user that are type disease
+  def get_disease_ids
+     diseases = self.patient_groups & PatientGroup.diseases
+     disease_ids = diseases.map{|disease|disease.id}
+     return disease_ids
+  end
+
+  # returns an array of patient groups for a user that are diets or symptoms
+  def get_preferences_ids
+    groups = self.patient_groups
+    symptoms = groups & PatientGroup.symptoms
+    diets = groups & PatientGroup.diets
+    preferences = diets + symptoms
+    
+    disease_ids = preferences.flatten.map{|disease|disease.id}
+    
+    return disease_ids
+  end
+
+    # Called in
   # - registrations#check_registration_stage
   # Parameter(s)
   # - none
   # Return Value(s)
   # - "0"
   # - "1"
-
   def update_registration_stage
     
     if (self.appointment_hosts.where(status: "Paid").count >= 1 || self.appointment_hosts.where(status: "Follow Up Unpaid").count >= 1) 

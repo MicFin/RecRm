@@ -1,6 +1,8 @@
-/** The Magic **/
+
 
 #welcome-breadcrumb{
+
+  /** The arrows **/
   .btn-breadcrumb .btn:not(:last-child):after {
     content: " ";
     display: block;
@@ -30,6 +32,13 @@
     left: 100%;
     z-index: 3;
   }
+  // Arrow coloring for btn-warning buttons
+  .btn-breadcrumb .btn.btn-warning:not(:last-child):after {
+    border-left: 10px solid #f0ad4e;
+  }
+  .btn-breadcrumb .btn.btn-warning:not(:last-child):before {
+    border-left: 10px solid #eea236;
+  }
   /** The Spacing **/
   .btn-breadcrumb .btn {
     padding:6px 12px 6px 24px;
@@ -41,15 +50,7 @@
     padding:6px 18px 6px 24px;
   }
 
-  /** Warning button **/
 
-  // Arrow for buttons
-  .btn-breadcrumb .btn.btn-warning:not(:last-child):after {
-    border-left: 10px solid #f0ad4e;
-  }
-  .btn-breadcrumb .btn.btn-warning:not(:last-child):before {
-    border-left: 10px solid #eea236;
-  }
 
   // Disabled buttons
   .btn-breadcrumb .btn.btn-warning[disabled]:not(:last-child):after, 
@@ -59,8 +60,11 @@
     border-color: transparent;
   }
 
+  // Selected button
   .btn-breadcrumb .btn.btn-warning.selected{
     color: $brand-light-green;
+    font-weight: bold;
+    font-family: cursive;
   }
 
   // Arrows on hover

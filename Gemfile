@@ -123,6 +123,7 @@ gem "lograge", "0.3.4"
 
 # active links helper method
 # https://github.com/comfy/active_link_to
+# https://github.com/comfy/active_link_to/issues/14
 gem 'active_link_to', "1.0.3"
 
 # automatic cron jobs

@@ -16,17 +16,8 @@
 					<%= simple_form_for(@user, :url => {:controller => 'welcome', :action => 'build_nutrition'}, html: { method: :patch, class: 'col-xs-12 text-center', role:"form" }) do |f| %>
 
 						<div id="health-group-container" class="row">
-						
-						  <% @diseases.each do |disease| %>
-						  	<span>
-						  	<% if disease.has_triggers == true %>
-						  		<input id="user_patient_group_ids_<%=disease.id%>" name="user[patient_group_ids][]" data-triggers="true" type="checkbox" value="<%=disease.id%>">
-						  	<% else %>
-						  		<input id="user_patient_group_ids_<%=disease.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=disease.id%>">
-						  	<% end%>
-						  		<label class="collection_check_boxes" for="user_patient_group_ids_<%=disease.id%>"><%=disease.name%></label>
-						  	</span>
-						  <% end %>
+							<%= f.collection_check_boxes :patient_group_ids, @diseases, :id, :name, :checked => @user.patient_group_ids %>
+
 						 		<div id="add-disease-button" class="add-another-disease">Add Another</div>
 						 		<div id="add-disease-form" class="add-another-disease-form hidden">
 							 		<input id="new-health-group-field" type="text" placeholder="Autism" class="form-control-12"/>

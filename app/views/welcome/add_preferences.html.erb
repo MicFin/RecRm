@@ -14,17 +14,8 @@
 					<%= simple_form_for(@user, :url => {:controller => 'welcome', :action => 'build_preferences'}, html: { method: :patch, class: 'col-xs-12 text-center', role:"form" }) do |f| %>
 
 						<div id="health-group-container" class="row">
-						
-						  <% @symptoms.each do |symptom| %>
-						  	<span>
-						  	<% if symptom.has_triggers == true %>
-						  		<input id="user_patient_group_ids_<%=symptom.id%>" name="user[patient_group_ids][]" data-triggers="true" type="checkbox" value="<%=symptom.id%>">
-						  	<% else %>
-						  		<input id="user_patient_group_ids_<%=symptom.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=symptom.id%>">
-						  	<% end%>
-						  		<label class="collection_check_boxes" for="user_patient_group_ids_<%=symptom.id%>"><%=symptom.name%></label>
-						  	</span>
-						  <% end %>
+							<%= f.collection_check_boxes :patient_group_ids, @symptoms, :id, :name, :checked => @user.health_group_ids %>
+
 						 		<div id="add-disease-button" class="add-another-disease">Add Another</div>
 						 		<div id="add-disease-form" class="add-another-disease-form hidden">
 							 		<input id="new-health-group-field" type="text" placeholder="Autism" class="form-control-12"/>
@@ -34,15 +25,16 @@
 						</div>
 						<div class="row triggers-container form-group">
 							<h4>Select any food preferences.</h4>
-							<% @diets.each do |diet| %>
-								<div class="col-xs-6 col-sm-4 form-group">
+							<%= f.collection_check_boxes :patient_group_ids, @diets, :id, :name, :checked => @user.health_group_ids, :item_wrapper_class => 'col-xs-6 col-sm-4 form-group' %>
+							<%# @diets.each do |diet| %>
+				<!-- 				<div class="col-xs-6 col-sm-4 form-group">
 						  		
 						  		
-						  			<input id="user_patient_group_ids_<%=diet.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=diet.id%>">
+						  			<input id="user_patient_group_ids_<%#=diet.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%#=diet.id%>">
 
-						  			<label class="checkbox-inline" for="user_patient_group_ids_<%=diet.id%>"><%=diet.name%></label>
-						  		</div>
-						  <% end %>
+						  			<label class="checkbox-inline" for="user_patient_group_ids_<%#=diet.id%>"><%#=diet.name%></label>
+						  		</div> -->
+						  <%# end %>
 						  <div id="add-allergy-container" class="col-xs-12 form-group">
 							  <input id="add-allergy-field" type="text", placeholder="Blueberries">
 								<button id="new-allergy-group-button" class="btn btn-sm btn-warning">Add Another</button>

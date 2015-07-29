@@ -128,8 +128,12 @@ class WelcomeController < Users::RegistrationsController
   # /welcome/add_family
   def add_family
 
-    # @family = Family.new
-    @new_user = User.new(last_name: @user.last_name)
+    # get last new user or create a new user
+    if current_user.head_of_families.where(name: "Main").first.users.length > 0
+      @new_user = current_user.head_of_families.where(name: "Main").first.users.last
+    else
+      @new_user = User.new(last_name: @user.last_name)
+    end
 
     # Shows views/welcome/add_family.html.erb
   end
@@ -139,18 +143,20 @@ class WelcomeController < Users::RegistrationsController
   # PATCH
   def build_family
     
-    # Create new family with default name Main
-    @family = current_user.head_of_families.create(name: "Main")
+    # Create new family with default name Main or find the Main family
+    @family = current_user.head_of_families.find_or_create_by(name: "Main")
 
     # Give user role head of family 
+    # Safe to reassign, does not override other roles or duplicate current
     @user.add_role "Head of Family", @family
 
     # Height and weight fields come in wrong format, need to clean for database.
     clean_height_and_weight_input
     
     # If submitted user has a family role then it means the user created a family member
+    # Will duplicate family member even if one already exists 
     if params[:user][:family_role]
-
+      
       # Create new family member and add roles
       @new_user = @family.users.create(devise_parameter_sanitizer.sanitize(:sign_up))
       @new_user.add_role "Family Member Account"
@@ -167,8 +173,10 @@ class WelcomeController < Users::RegistrationsController
 
     # Set registration status
     # Should add to function current_user.update_registration_stage
-    current_user.registration_stage = 3
-    current_user.save
+    if current_user.registration_stage < 3
+      current_user.registration_stage = 3
+      current_user.save
+    end
 
     # Send back to welcome#get_started to continue registration
     redirect_to welcome_get_started_path
@@ -182,7 +190,12 @@ class WelcomeController < Users::RegistrationsController
     
     # Gets family member if there is one or gets current user
     # Should make a before method
-    @user = current_user.head_of_families.last.users.last || @user
+    @user = current_user.head_of_families.where(name: "Main").first.users.last || @user
+    
+
+    # set current patient group ids for checkbox form
+    @user.patient_group_ids = @user.get_patient_group_ids
+
     # Gather all patient groups
     # from PatientGroupsHelper
     get_patient_groups!
@@ -203,20 +216,30 @@ class WelcomeController < Users::RegistrationsController
 
     # Gets family member if there is one or gets current user
     # Should make a before method
-    @user = current_user.head_of_families.last.users.last || @user
-
+    @user = current_user.head_of_families.where(name: "Main").first.users.last || @user
+    
     # User may have submitted new health groups
     find_or_create_new_health_groups
+
+
+    # Check if user has any preferences already
+    user_preferences_ids = @user.get_preferences_ids
+    if user_preferences_ids.count > 0  
+
+      # Add preferences IDs to the params so that they get included when it updates the users health groups 
+      user_preferences_ids.each {|id| params[:user][:patient_group_ids] << id}
+    end
 
     # Update without password
     # Do not want user entering password for each update during registration
     @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
-
+    
     # Set registration status
     # Should add to function current_user.update_registration_stage
-    current_user.registration_stage = 4
-    current_user.save
-    
+    if current_user.registration_stage < 4
+      current_user.registration_stage = 4
+      current_user.save
+    end
     # Send back to welcome#get_started to continue registration
     redirect_to welcome_get_started_path
   
@@ -229,8 +252,11 @@ class WelcomeController < Users::RegistrationsController
 
     # Gets family member if there is one or gets current user
     # Should make a before method
-    @user = current_user.head_of_families.last.users.last || @user
+    @user = current_user.head_of_families.where(name: "Main").first.users.last || @user
     
+    # set current disease ids for checkbox form
+    @user.patient_group_ids = @user.get_patient_group_ids
+
     # Gather diets and symptoms from patient groups
     # from PatientGroupsHelper
     get_patient_groups!
@@ -247,7 +273,7 @@ class WelcomeController < Users::RegistrationsController
 
     # Gets family member if there is one or gets current user
     # Should make a before method
-    @user = current_user.head_of_families.last.users.last || @user
+    @user = current_user.head_of_families.where(name: "Main").first.users.last || @user
 
     # User may have submitted new health groups
     find_or_create_new_health_groups
@@ -255,11 +281,12 @@ class WelcomeController < Users::RegistrationsController
     # Check if any data was submitted
     if params[:user]
 
-      # Check if user has any health groups already
-      if @user.patient_groups 
+      # Check if user has any diseases
+      user_disease_ids = @user.get_disease_ids
+      if user_disease_ids.count > 0  
 
-        # Add health groups that were previously added to the params so that they get included when it updates the users health groups
-        @user.patient_groups.each {|patient_group| params[:user][:patient_group_ids] << patient_group.id}
+        # Add disease IDs to the params so that they get included when it updates the users health groups 
+        user_disease_ids.each {|id| params[:user][:patient_group_ids] << id}
       end
 
     end
@@ -270,9 +297,10 @@ class WelcomeController < Users::RegistrationsController
 
     # Set registration status
     # Should add to function current_user.update_registration_stage
-    current_user.registration_stage = 5
-    current_user.save
-
+    if current_user.registration_stage < 5
+      current_user.registration_stage = 5
+      current_user.save
+    end
     # Send back to welcome#get_started to continue registration
     redirect_to welcome_get_started_path 
 
@@ -285,7 +313,7 @@ class WelcomeController < Users::RegistrationsController
 
     # Gets family member if there is one or gets current user
     # Should make a before method    
-    patient_focus = current_user.head_of_families.last.users.last || @user
+    patient_focus = current_user.head_of_families.where(name: "Main").first.users.last || @user
     
     # Create appointment
     # Should maybe use .new so that it doesn't save until purchased

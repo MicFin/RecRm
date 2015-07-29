@@ -270,7 +270,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_link_to
+  active_link_to (= 1.0.3)
   activeadmin!
   acts_as_list (= 0.3.0)
   better_errors (= 1.1.0)

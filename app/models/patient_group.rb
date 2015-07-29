@@ -90,6 +90,17 @@ class PatientGroup < ActiveRecord::Base
     return symptoms.sort_by{|word| word.name}
   end
 
+  def self.diets
+    diets=[]
+    self.where(unverified: false).each do |diet|
+      if diet.category.downcase == "diet"
+        unless diet.input_option == true
+          diets << diet
+        end
+      end
+    end
+    return diets.sort_by{|word| word.name}
+  end
 
   # Returns an array of Patient Groups with the category "allergy" that are safe for the input array of allergens
   def self.safe_allergy_groups(array_of_recipes_allergens)

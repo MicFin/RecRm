@@ -1,15 +1,14 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets/directives) for details
-// about supported directives.
-//
+// This is a manifest file that'll be compiled into application.js, which will include all the files listed below. Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts, or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.  It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the compiled file. Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets/directives) for details about supported directives.
+
+//////////////////////////////////////////////////////////////////////////////
+// 																																				  //
+// 			SITE WIDE REQUIREMENTS are listed below 								 						//
+//																																					//
+//			controller specific javascript requirements 												//
+//			are in the controller_name.js files 																//
+//																																					//
+//////////////////////////////////////////////////////////////////////////////
+
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
@@ -41,16 +40,9 @@
 
 //= require plugins/smooth_scroll
 
-// Namespace creation, MUST COME BEFORE ALL CUSTOM JS THAT UTILIZES APP NAMESPACE
+// Namespace creation for all controller specific javascript
 //= require kindrdfood
 
-// Welcome Controller JS
-//= require welcome/add_family
-//= require welcome/add_nutrition
-//= require welcome/get_started
-
-// Landing Pages Controller JS
-//= require landing_pages/qol_admin
 
 // Browser Specific JS
 //= require browser_details
@@ -59,13 +51,12 @@
 
 
 
-// NEW ABOVE NEW ABOVE
+// CLEAN BELOW, MOVE OR IDEALLY REMOVE AS HTML CAN BE REMOVED
 
 //= require new_recipe_bread_crumb
 //= require health_groups_and_categories_preview
 //= require dietitian_nav
 //= require dietitian_edit_profile
-//= require articles_form
 //= require recipe_step_list
 //= require override_bootstrap
 //= require user_sign_up

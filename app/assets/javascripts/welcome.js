@@ -1,4 +1,10 @@
 	
+
+// Welcome Controller JS
+//= require welcome/add_family
+//= require welcome/add_nutrition
+//= require welcome/get_started
+	
 $(document).ready(function() {
 
 	// JS for welcome#add_family

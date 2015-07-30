@@ -22,21 +22,23 @@
 //= require jquery.ui.sortable
 //= require jquery.ui.draggable
 //= require jquery.ui.resizable
-//= require jquery.Jcrop
-//= require jquery-fullpage-min
-//= require jquery-toggleText
+
+//= require plugins/jquery.Jcrop
+//= require plugins/jquery-toggleText
+//= require plugins/remove_prefix_class
 //= require plugins/jquery-masked-input.min
+
 //= require moment
+
 //= require bootstrap
 //= require bootstrap-datetimepicker
-//= require bootstrap-tour-min
+//= require plugins/bootstrap-tour-min
+
 //= require fullcalendar
 
-
-
-// Plugins JS
 //= require plugins/jquery-validate.min.js
 //= require plugins/jquery-validate-extra-methods.min.js
+
 //= require plugins/smooth_scroll
 
 // Namespace creation, MUST COME BEFORE ALL CUSTOM JS THAT UTILIZES APP NAMESPACE
@@ -50,7 +52,7 @@
 // Landing Pages Controller JS
 //= require landing_pages/qol_admin
 
-// Browser detail
+// Browser Specific JS
 //= require browser_details
 
 

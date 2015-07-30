@@ -1,3 +1,6 @@
+
+# http://goobbe.com/questions/4924763/how-to-generate-a-radio-inline-label-with-simple-form-and-bootstrap
+
 class RadioButtonsInlineInput < SimpleForm::Inputs::CollectionRadioButtonsInput
   def input
     label_method, value_method = detect_collection_methods

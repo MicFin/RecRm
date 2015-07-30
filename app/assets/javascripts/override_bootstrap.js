@@ -1,4 +1,6 @@
+
 var OverrideBootstrap = {
+  
   // override bootstrap accordion to work with non standard set up
   setAccordion: function(){
     $('#quality-review-main-container .panel-title > a').on("click", function(e){

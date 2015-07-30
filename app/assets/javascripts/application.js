@@ -9,6 +9,9 @@
 //																																					//
 //////////////////////////////////////////////////////////////////////////////
 
+//= require browser_specific/modernizr.min
+//= require browser_specific/modernizr_polyfills_rules
+
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks

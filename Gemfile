@@ -14,21 +14,26 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 3.1.2'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', "2.2.2"
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-
+# responsive design css and javascript
 gem 'bootstrap-sass', '~> 3.1.1.1'
 
+# user authorization
 gem 'devise', "3.2.4"
 
 # Adds support to devise for sending invitations by email (it requires to be authenticated) and accept the invitation setting the password.
@@ -85,6 +90,7 @@ gem "opentok", "2.2.1"
 # http://activeadmin.info/
 gem 'activeadmin', github: 'gregbell/active_admin'
 # gem 'activeadmin', '1.0.0.pre'
+
 # This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list. The class that has this specified needs to have a position column defined as an integer on the mapped database table. https://github.com/swanandp/acts_as_list
 gem 'acts_as_list', "0.3.0"
 
@@ -95,11 +101,12 @@ gem "pundit", "0.2.2"
 # https://github.com/RolifyCommunity/rolify
 gem 'rolify', "3.4.1"
 
+# javascript calendar 
 gem 'fullcalendar-rails', '~> 2.3.1'
 
-gem 'stripe', "1.16.0"
 # rails stripe payment integration
 # https://github.com/thefrontside/stripe-rails
+gem 'stripe', "1.16.0"
 gem 'stripe-rails', "0.3.1"
 
 # rails URL downcaser uses Rack middleware to make URLs case insensitive.

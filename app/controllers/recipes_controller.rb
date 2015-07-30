@@ -104,7 +104,6 @@ class RecipesController < ApplicationController
 	# 	@recipe.meals = @meals
 	# 	@recipe.cultures = @cultures
 
-	# 	gon.rabl as: 'recipe'
 	# end
 
   def show

@@ -129,7 +129,7 @@ class WelcomeController < Users::RegistrationsController
   def add_family
 
     # get last new user or create a new user
-    if current_user.head_of_families.where(name: "Main").first.users.length > 0
+    if current_user.head_of_families.where(name: "Main").length > 0 && current_user.head_of_families.where(name: "Main").first.users.length > 0
       @new_user = current_user.head_of_families.where(name: "Main").first.users.last
     else
       @new_user = User.new(last_name: @user.last_name)

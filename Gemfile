@@ -80,11 +80,6 @@ gem 'phony_rails', "0.6.1"
 # video conferencing 
 gem "opentok", "2.2.1"
 
-#allows you to set variables within controller and access them in javascript 
-#http://railscasts.com/episodes/324-passing-data-to-javascript?view=asciicast
-gem 'gon', "5.1.0"
-
-gem 'rabl', "0.10.1"
 
 # creates AdminUser model, migrations, controllers, routing, views, etc for an administrative user with dashboard.  Very Ruby friendly and customizable.  Will use AdminUser as our tech admin but can register other User models with ActiveAdmin and give certain permissions
 # http://activeadmin.info/

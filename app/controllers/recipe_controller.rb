@@ -33,7 +33,6 @@ class RecipeController < ApplicationController
 		@recipe.holidays = @holidays
 		@recipe.cultures = @cultures
 
-		gon.rabl as: 'recipe'
 
 	end
 

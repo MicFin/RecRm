@@ -4,7 +4,14 @@
 # turned off .tree in app.css
 # same with app.js
 # http://theflyingdeveloper.com/controller-specific-assets-with-rails-4/
-%w( welcome families landing_pages rooms ).each do |controller|
+%w( 
+  welcome 
+  families 
+  landing_pages 
+  rooms 
+  time_slots 
+  availabilities
+  ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.css", "#{controller}.js"]
 end
 
@@ -22,7 +29,8 @@ end
     selectivizr 
     require-js.min 
     placeholder.min 
-    respond.min ).each do |polyfill|
+    respond.min 
+    ).each do |polyfill|
   Rails.application.config.assets.precompile += ["browser_specific/polyfills/#{polyfill}.js"]
 end
 

@@ -17,6 +17,11 @@ Modernizr.load([
 	// IE 9 and below
 	{
 		test: Modernizr.cssgradients,
-		nope: ['/assets/browser_specific/polyfills/PIE.js', '/assets/browser_specific/polyfills/selectivizr.js' ]
+		nope: [
+			'/assets/browser_specific/polyfills/selectivizr.js', 
+			"/assets/stylesheets/modules/bootstrap/bootstrap_overrides/ie7.css", 
+			"/assets/stylesheets/modules/bootstrap/bootstrap_overrides/css3pie.css", 
+			'/assets/browser_specific/polyfills/PIE.js'
+		]
 	}
 ]);

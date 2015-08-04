@@ -8,17 +8,30 @@
   Rails.application.config.assets.precompile += ["#{controller}.css", "#{controller}.js"]
 end
 
-# precompiles polyfills that are only loaded when Modernizr needs them
+# precompile IE specific css and JS
+# https://stackoverflow.com/questions/7134034/using-rails-3-1-assets-pipeline-to-conditionally-use-certain-css
+  Rails.application.config.assets.precompile += [
+    "browser_specific/modernizr.min.js", 
+    "browser_specific/modernizr_polyfills_rules.js"
+  ]
+
+# precompiles JS polyfills that are only loaded when Modernizr needs them
 # http://blog.endpoint.com/2013/05/using-modernizr-with-rails-asset.html
-# PIE 
-# selectivizr 
-# require-js.min 
-# placeholder.min 
-# respond.min
-%w( PIE selectivizr require-js.min placeholder.min respond.min ).each do |polyfill|
+
+%w( PIE 
+    selectivizr 
+    require-js.min 
+    placeholder.min 
+    respond.min ).each do |polyfill|
   Rails.application.config.assets.precompile += ["browser_specific/polyfills/#{polyfill}.js"]
 end
 
-# precompiles polyfills that are only loaded when Modernizr needs them
+# precompiles CSS polyfills that are only loaded when Modernizr needs them
 # http://blog.endpoint.com/2013/05/using-modernizr-with-rails-asset.html
-  Rails.application.config.assets.precompile += ["*stylesheets/partials/browser_specific*"]
+  Rails.application.config.assets.precompile += [
+    "stylesheets/modules/bootstrap/bootstrap_overrides/css3pie.css", 
+    "stylesheets/modules/bootstrap/bootstrap_overrides/ie7.css", 
+    "stylesheets/partials/browser_specific/landing_pages/qol.css"
+  ]
+
+

@@ -9,20 +9,39 @@
 
 
 
-
-<!--     <link href="css/main.css" rel="stylesheet">
-    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css"> -->
-
 <!--     below should only run when on checkout page but is currently in all layouts -->
     <%= stripe_javascript_tag %>
 <!--     above should only run when on checkout page but is currently in all layouts -->
 
+<!--     
+    CSS for all browsers other than IE
+    Loads application wide CSS at application.css.scss and controller specific CSS at EX: welcome.css.scss 
+-->
 
-<!--     Loads application wide CSS at application.css.scss and controller specific CSS at EX: welcome.css.scss-->
-    <%= stylesheet_link_tag "application", params[:controller], :media => "all"%>
+<%= stylesheet_link_tag "application", params[:controller], :media => "all"%>
 
-<!--     Loads application wide JS at application.js controller specific JS at EX: welcome.js-->
+<!--[if !IE]><!-->
+    <%#= stylesheet_link_tag "application", params[:controller], :media => "all"%>
+    <%# UNCOMMENT BELOW TO TEST IN CHROME %>
+    <%#= stylesheet_link_tag "application-ie", :media => "all"%>
+
+<!-- <![endif]-->
+
+<!-- 
+    CSS for IE 9 and below browsers
+    Loads application wide CSS at application.css.scss and controller specific CSS at EX: welcome.css.scss 
+-->
+<!--[if IE]>
+    <%#= stylesheet_link_tag "application-ie", :media => "all"%>
+    <%= javascript_include_tag "browser_specific/modernizr.min" %>
+    <%= javascript_include_tag "browser_specific/modernizr_polyfills_rules" %>
+<![endif]-->
+
+<!--     
+    Loads application wide JS at application.js, controller specific JS at EX: welcome.js
+-->
     <%= javascript_include_tag "application", params[:controller], media: 'all' %>
+
 
 <!--     Returns meta tags “csrf-param” and “csrf-token” with the name of the cross-site request forgery protection parameter and token, respectively.  
   http://apidock.com/rails/ActionView/Helpers/CsrfHelper/csrf_meta_tags -->
@@ -40,8 +59,13 @@
   </head>
 
 
+<!--[if IE]>
+  <body class="ie-browser">
+<![endif]-->
 
-<body>
+<!--[if !IE]><!-->
+    <body class="ie-browser">
+<!-- <![endif]-->
 
   <!-- LAYOUTS -->
   <%= yield %>

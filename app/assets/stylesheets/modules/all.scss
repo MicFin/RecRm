@@ -4,14 +4,18 @@
 @import "../modules/bootstrap/bootstrap_overrides/override_collapse_accordion";
 @import "../modules/bootstrap/bootstrap_overrides/override_alerts";
 @import "../modules/bootstrap/bootstrap_overrides/new_form_controls";
-@import "../modules/bootstrap/bootstrap_overrides/override_buttons.scss";
+@import "../modules/bootstrap/bootstrap_overrides/override_buttons";
 
-// CSS3pie bootstrap
-@import "../modules/bootstrap/bootstrap_overrides/css3pie";
+// // IE7 Bootstrap
+// Loaded by modernizr when needed
+// @import "../modules/bootstrap/bootstrap_overrides/ie7";
+
+// // CSS3pie bootstrap
+// Loaded by modernizr when needed
+// @import "../modules/bootstrap/bootstrap_overrides/css3pie";
 
 // Bootstrap tour
 @import "../modules/bootstrap/bootstrap_tour/bootstrap-tour-min";
-@import "../modules/bootstrap/bootstrap_tour/bootstrap-tour-overrides";
 @import "../modules/bootstrap/bootstrap_tour/bootstrap-tour-overrides";
 
 // Jquery ui

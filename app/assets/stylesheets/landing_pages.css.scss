@@ -2,5 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+$pie-path: "vendor/bower_components/css3pie/PIE.htc";
+$box-sizing-path: "partials/browser_specific/box-sizing.htc";
 @import "partials/browser_specific/landing_pages/qol";

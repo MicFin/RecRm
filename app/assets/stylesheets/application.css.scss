@@ -15,8 +15,7 @@
  *= require_self
  *= require fullcalendar
  */
-
-
+ 
 // @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -26,15 +25,28 @@
 // Vendors
 @import "themes/bootstrap_customizer_theme";
 @import "vendor/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+
 $pie-path: "vendor/bower_components/css3pie/PIE.htc";
+$box-sizing-path: "partials/browser_specific/box-sizing.htc";
 
 // Modules
+// elements used on multiple pages that are loosely tied
+// to our domain and data structure. examples are dependent
+// on the needs of your site. as a general guideline, all 
+// modules should be used on multiple pages. elements used 
+// on a single page should be included in views.
+// CURRENTLY NOT USED AS STATED ABOVE,USED TO OVERRIDE VENDOR STYLES
 @import "modules/all";
 
 // Mixins
 @import "mixins/box_shadow";
 
+// @import 'application-all';
+
+
 // Partials
+@import "partials/landing_pages/qol";
 @import "partials/welcome/home";
 @import "partials/welcome/get_started";
 @import "partials/welcome/add_family";
@@ -45,7 +57,6 @@ $pie-path: "vendor/bower_components/css3pie/PIE.htc";
 @import "partials/layouts/footers/main_footer";
 @import "partials/families/show";
 @import "partials/families/new";
-@import "partials/landing_pages/qol";
 @import "partials/rooms/users/in_session_user";
 @import "partials/rooms/users/in_session_user_nav";
 

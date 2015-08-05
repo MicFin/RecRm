@@ -4,37 +4,28 @@ Rails.application.routes.draw do
   
   ActiveAdmin.routes(self)
 
+  ### ROUTES AVAILABLE TO NON USERS 
+  get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
+  get 'qoladmin', to: "landing_pages#qol_admin", as: "landing_pages_qol_admin"
+  get 'qol', to: "landing_pages#qol", as: "landing_pages_qol"
+  get 'tara', to: 'landing_pages#tara', as: 'landing_pages_tara'
+  get "/join" => redirect("/tara")
+
+  # is it better to do a redirect or another route that goes to the same controller method?
+  ### REDIRECTS
+  get 'provider3126' => redirect("/")
+  get 'provider9172' => redirect("/")
+  get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
+  get "/krdn" => redirect("/dietitians/sign_in")
+
+  resources :plans
+
   ### ROUTES AVAILABLE TO ADMIN USERS 
   devise_scope :admin_user do
     authenticated :admin_user do 
       root to: "admin/dashboard#index"
     end
   end
-
-  ### ROUTES AVAILABLE TO NON USERS 
-  get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
-  get 'qoladmin', to: "landing_pages#qol_admin", as: "landing_pages_qol_admin"
-  get 'qol', to: "landing_pages#qol", as: "landing_pages_qol"
-  get 'tara', to: 'landing_pages#tara', as: 'landing_pages_tara'
-
-  # is it better to do a redirect or another route that goes to the same controller method?
-  # get 'join', to: 'landing_pages#tara', as: 'landing_pages_join'
-  get "/join" => redirect("/tara")
-
-  resources :plans
-
-  get 'Ta10lI8839dAmi', to: 'home#join', as: 'main_landing_page'
-
-  # get 'lI45StA00OdAMi', to: 'home#discount_landing_page', as: 'discount_landing_page'
-  get 'home', to: 'home#home_page', as: 'home_page'
-
-
-  get 'provider3126' => redirect("/")
-  get 'provider9172' => redirect("/")
-  get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
-  get "/krdn" => redirect("/dietitians/sign_in")
-  
-
 
   ### ROUTES AVAILABLE TO USERS 
   devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'users/sessions', :confirmations => "users/confirmations", :invitations => 'users/invitations' }

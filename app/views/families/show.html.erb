@@ -1,6 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-
 <div id="family-page" class="container-fluid">
     <div class="row">
 
@@ -16,12 +13,14 @@
           <button class="btn btn-primary">Add Family Member</button>
         </section>
         <section id="family-members-container" class="row">
+
+          <% @family.family_members.each do |family_member| %>
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
             <div class="col-xs-12">
               <%= image_tag "icons/add_user_photo.png" %>
             </div>
-            <p>Mike</p>
-            <%= link_to 'Edit', families_edit_family_member_path(@family, current_user) %>
+            <p><%= family_member.full_name%> </p>
+            <%= link_to 'Edit', families_edit_family_member_path(@family.id, family_member.id) %>
             <div class="profile-progress text-left">
               <h3 class="text-center">Profile Progress</h3>
               <ul>
@@ -33,40 +32,8 @@
               </ul>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
-            <div class="col-xs-12">
-              <%= image_tag "icons/add_user_photo.png" %>
-            </div>
-            <p>Mike</p>
-            <a href="">Edit</a>
-            <div class="profile-progress text-left">
-              <h3 class="text-center">Profile Progress</h3>
-              <ul>
-                <li><span class="glyphicon glyphicon-check"></span>Basic Info</li>
-                <li><span class="glyphicon glyphicon-check"></span>Health History</li>
-                <li><span class="glyphicon glyphicon-remove-circle"></span>Food Preferences</li>
-                <li><span class="glyphicon glyphicon-remove-circle"></span>Fun Facts</li>
+          <% end %>
 
-              </ul>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
-            <div class="col-xs-12">
-              <%= image_tag "icons/add_user_photo.png" %>
-            </div>
-            <p>Mike</p>
-            <a href="">Edit</a>
-            <div class="profile-progress text-left">
-              <h3 class="text-center">Profile Progress</h3>
-              <ul>
-                <li><span class="glyphicon glyphicon-check"></span>Basic Info</li>
-                <li><span class="glyphicon glyphicon-check"></span>Health History</li>
-                <li><span class="glyphicon glyphicon-remove-circle"></span>Food Preferences</li>
-                <li><span class="glyphicon glyphicon-remove-circle"></span>Fun Facts</li>
-
-              </ul>
-            </div>
-          </div>
         </section>
         <section id="physician-container" class="row">
           <h3><span class="glyphicon glyphicon-briefcase"></span>Family Physicians</h3>

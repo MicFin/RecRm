@@ -12,7 +12,8 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.last(250)
+    # binding.pry
+    @recipes = Recipe.first(803)
     respond_to do |format|
       format.html
       format.csv { send_data @recipes.to_csv }

@@ -45,7 +45,6 @@ class FamiliesController < ApplicationController
 
   # GET /families/1/edit_family_member/2
   def edit_family_member
-    binding.pry
     @user = current_user
     @family_member = User.find(params[:member_id])
 

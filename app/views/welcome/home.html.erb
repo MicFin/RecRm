@@ -26,9 +26,9 @@
 							<div class="row">
 								<div class="col-xs-12 session-action">
 
-									<%# if ( (DateTime.now >= @upcoming_appointment.start_time - 10.minutes) && ( DateTime.now() <= @appointment.end_time + 5.minutes) ) %>
+									<% if ( (DateTime.now >= @upcoming_appointment.start_time - 10.minutes) && ( DateTime.now() <= @appointment.end_time + 5.minutes) ) %>
 
-									<% if true %>
+									<%# if true %>
 										<%= link_to in_session_room_path(:id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id), class: "btn btn-primary" do %>
 						
 											<div class="col-xs-3">

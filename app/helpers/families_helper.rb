@@ -3,10 +3,18 @@ module FamiliesHelper
 	
 	def get_family!
 			# returns family members array
-	    @family = current_user.head_of_families.last
-      @family_members = []
-      @family_members << current_user 
-      @family.users.each { |user| @family_members << user } unless @family.nil?
+	    @family = current_user.head_of_families.where(name: "Main").first
+      get_family_members!
+      binding.pry
+	end
+
+	def get_family_members!
+      if !@family.nil?
+      	@family_members = []
+      	@family_members << current_user 
+      	@family.users.each { |user| @family_members << user }
+      	@family.family_members = @family_members 
+      end
 	end
 
 	# def get_family_patient_groups!

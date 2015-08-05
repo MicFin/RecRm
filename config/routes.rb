@@ -29,8 +29,8 @@ Rails.application.routes.draw do
   get 'home', to: 'home#home_page', as: 'home_page'
 
 
-  # get 'provider3126', to: "home#provider3126", as: "provider3126"
-  # get 'provider9172', to: "home#join", as: "provider9172"
+  get 'provider3126' => redirect("/")
+  get 'provider9172' => redirect("/")
   get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
   get "/krdn" => redirect("/dietitians/sign_in")
   
@@ -69,6 +69,8 @@ Rails.application.routes.draw do
       resources :recipes 
 
       delete 'families/:id/remove_member/:member_id', to: "families#remove_member", as: 'remove_family_member'
+      get 'families/:id/edit_family_member/:member_id', to: "families#edit_family_member", as: 'families_edit_family_member'
+
       resources :families
 
       get 'appointments/:id/purchase', to: "appointments#purchase", as: "purchase_appointment"

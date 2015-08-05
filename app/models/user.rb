@@ -198,6 +198,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def full_name
+    return "#{first_name} #{last_name}" 
+  end
+
   def age
     ### months up to 2 years + months
     dob = self.date_of_birth

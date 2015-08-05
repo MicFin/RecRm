@@ -1,6 +1,7 @@
 class FamiliesController < ApplicationController
   include PatientGroupsHelper
-  before_action :set_family, only: [:show, :edit, :update, :destroy]
+  include FamiliesHelper
+  before_action :set_family, only: [:show, :edit, :edit_family_member, :update, :destroy]
 
   # GET /families
   # GET /families.json
@@ -12,8 +13,10 @@ class FamiliesController < ApplicationController
   # GET /families/1.json
   def show
     @user = current_user
-    @family_members = @family.users 
-    @family_members << @family.head_of_family
+
+    # Gather user's family data
+    # from FamiliessHelper
+    get_family_members!
   end
 
   # GET /families/new
@@ -38,6 +41,14 @@ class FamiliesController < ApplicationController
 
   # GET /families/1/edit
   def edit
+  end
+
+  # GET /families/1/edit_family_member/2
+  def edit_family_member
+    binding.pry
+    @user = current_user
+    @family_member = User.find(params[:member_id])
+
   end
 
   # POST /families

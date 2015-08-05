@@ -43,8 +43,6 @@ class WelcomeController < Users::RegistrationsController
     # from FamiliessHelper
     get_family!
     @family
-    @family_members
-    
     # Shows views/welcome/home.html.erb
   end
 

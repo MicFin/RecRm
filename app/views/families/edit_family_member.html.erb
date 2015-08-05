@@ -8,11 +8,11 @@
 
       <main class="col-xs-10 col-xs-offset-2">
         <section>
-          <h1>The Finneran Family</h1>
+          <h1><%=@family_member.full_name%> </h1>
         </section>
         <hr>
         <section class="row">
-          <p>Who eats at your table?  Create a profile for yourself and your entire family.  Help your dietitian understand what makes your family's table unique!</p>
+          <p>More info here</p>
           <button class="btn btn-primary">Add Family Member</button>
         </section>
         <section id="family-members-container" class="row">
@@ -21,41 +21,7 @@
               <%= image_tag "icons/add_user_photo.png" %>
             </div>
             <p>Mike</p>
-            <%= link_to 'Edit', families_edit_family_member_path(@family, current_user) %>
-            <div class="profile-progress text-left">
-              <h3 class="text-center">Profile Progress</h3>
-              <ul>
-                <li><span class="glyphicon glyphicon-check"></span>Basic Info</li>
-                <li><span class="glyphicon glyphicon-check"></span>Health History</li>
-                <li><span class="glyphicon glyphicon-remove-circle"></span>Food Preferences</li>
-                <li><span class="glyphicon glyphicon-remove-circle"></span>Fun Facts</li>
-
-              </ul>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
-            <div class="col-xs-12">
-              <%= image_tag "icons/add_user_photo.png" %>
-            </div>
-            <p>Mike</p>
-            <a href="">Edit</a>
-            <div class="profile-progress text-left">
-              <h3 class="text-center">Profile Progress</h3>
-              <ul>
-                <li><span class="glyphicon glyphicon-check"></span>Basic Info</li>
-                <li><span class="glyphicon glyphicon-check"></span>Health History</li>
-                <li><span class="glyphicon glyphicon-remove-circle"></span>Food Preferences</li>
-                <li><span class="glyphicon glyphicon-remove-circle"></span>Fun Facts</li>
-
-              </ul>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
-            <div class="col-xs-12">
-              <%= image_tag "icons/add_user_photo.png" %>
-            </div>
-            <p>Mike</p>
-            <a href="">Edit</a>
+            <%#= link_to 'Edit', families_edit_family_member_path(@family, current_user) %>
             <div class="profile-progress text-left">
               <h3 class="text-center">Profile Progress</h3>
               <ul>

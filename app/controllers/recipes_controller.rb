@@ -15,7 +15,7 @@ class RecipesController < ApplicationController
     # binding.pry
     @recipes = []
     Recipe.first(803).each do |recipe| 
-      if (recipe.dietitian.email != "mrfinneran@gmail.com") && (recipe.dietitian.email != "mike@kindrdfood.com") && (recipe.dietitian.email != "david@kindrdfood.com") && (recipe.dietitian.email != "mrfinneran+rd@gmail.com") && (recipe.steps.count > 1) && (recipe.ingredients.count > 1)
+      if (recipe.dietitian) && (recipe.dietitian.email != "mrfinneran@gmail.com") && (recipe.dietitian.email != "mike@kindrdfood.com") && (recipe.dietitian.email != "david@kindrdfood.com") && (recipe.dietitian.email != "mrfinneran+rd@gmail.com") && (recipe.steps.count > 1) && (recipe.ingredients.count > 1)
         @recipes << recipe unless recipe.name.downcase.include? "test"
       end
     end

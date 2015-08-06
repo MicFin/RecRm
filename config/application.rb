@@ -26,8 +26,10 @@ module Myapp
 
     # set time zone default to EST
     # http://railscasts.com/episodes/106-time-zones-revised?view=asciicast
-    config.time_zone = 'Eastern Time (US & Canada)'
-    
+    # removed due to advice in 
+    # http://jessehouse.com/blog/2013/11/15/working-with-timezones-and-ruby-on-rails/
+    # config.time_zone = 'Eastern Time (US & Canada)'
+
     config.action_view.embed_authenticity_token_in_remote_forms = true
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]

@@ -5,56 +5,26 @@ class RecipesController < ApplicationController
   include IngredientsRecipesHelper
   include PatientGroupsHelper
   
-  ## might not need load marketing itemable
   before_action :set_recipe, only: [:show, :edit, :destroy, :review_recipe]
   before_action :set_characteristic_forms, only: [:new, :edit]
   before_action :set_characteristic_display, only: [:show, :review_recipe]
+
   # GET /recipes
   # GET /recipes.json
   def index
-    # binding.pry
     @recipes = []
-    Recipe.first(803).each do |recipe| 
-      if (recipe.dietitian) && (recipe.dietitian.email != "mrfinneran@gmail.com") && (recipe.dietitian.email != "mike@kindrdfood.com") && (recipe.dietitian.email != "david@kindrdfood.com") && (recipe.dietitian.email != "mrfinneran+rd@gmail.com") && (recipe.steps.count > 1) && (recipe.ingredients.count > 1)
-        @recipes << recipe unless recipe.name.downcase.include? "test"
-      end
-    end
+    #  This was written to get the last recipes from the database for chef review.  Filtered out the recipes that didn't have a dietitian or were written by certain authors, had more than 1 step and ingredient, and didn't have the word test in it
+    # Recipe.first(803).each do |recipe| 
+    #   if (recipe.dietitian) && (recipe.dietitian.email != "mrfinneran@gmail.com") && (recipe.dietitian.email != "mike@kindrdfood.com") && (recipe.dietitian.email != "david@kindrdfood.com") && (recipe.dietitian.email != "mrfinneran+rd@gmail.com") && (recipe.steps.count > 1) && (recipe.ingredients.count > 1)
+    #     @recipes << recipe unless recipe.name.downcase.include? "test"
+    #   end
+    # end
     respond_to do |format|
       format.html
       format.csv { send_data @recipes.to_csv }
-      # format.xls { send_data @recipes.to_csv(col_sep: "\t") }
       format.xls
     end
-    # respond_to do | format |  
-    #   format.html # index.html.erb
-    #   format.json { render :json => @recipes }
-    #   format.xlsx {
-    #     # xlsx_package = Recipe.to_xlsx
-    #     xlsx_package = Recipe.to_xlsx :header_style => {
-    #         :bg_color => "00", 
-    #         :fg_color => "FF", 
-    #         :sz => 16, 
-    #         :alignment => { :horizontal => :center }
-    #       }
-    #       # :style => {:border => Axlsx::STYLE_THIN_BORDER}
 
-    #       sheet = xlsx_package.workbook.worksheets.first  
-
-    #       timestamp = xlsx_package.workbook.styles.add_style :format_code => "MM-DD-YYYY", :border => Axlsx::STYLE_THIN_BORDER
-        
-    #       sheet.col_style 1, timestamp, :row_offset => 1
-    
-    #     begin 
-    #       temp = Tempfile.new("recipes.xlsx") 
-    #       xlsx_package.serialize temp.path
-    #       # send_file temp.path, :filename => "recipes.xlsx", :type => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    #       send_data xlsx_package.to_stream.read, :filename => 'recipes.xlsx', :type=> "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    #     ensure
-    #       temp.close 
-    #       temp.unlink
-    #     end
-    #   }  
-    # end
   end
 
   ###notes
@@ -84,34 +54,9 @@ class RecipesController < ApplicationController
     @incomplete_quality_reviews = current_dietitian.incomplete_quality_reviews
     # @incomplete_review_conflicts = ReviewConflict.assigned_to_dietitian(current_dietitian.id)
   end
+
   # GET /recipes/1
   # GET /recipes/1.json
-
-	# def show #old
-	# 	# make sure to call this first
-	# 	@recipe = Recipe.find(params[:id])
-
-	# 	# ingredients_helper
-	# 	get_ingredients!
-
-	# 	# steps_helper
-	# 	get_recipe_steps!
-
-	# 	# characteristics_helper
-	# 	get_recipe_characteristics!
-
-	# 	@recipe.ingredient_list = @recipe_ingredients
-	# 	@recipe.step_list = @recipe_steps
-	# 	@recipe.cook_time = @cook_time
-	# 	@recipe.prep_time = @prep_time
-	# 	@recipe.difficulty = @difficulty
-	# 	@recipe.courses = @courses
-	# 	@recipe.age_groups = @age_groups
-	# 	@recipe.meals = @meals
-	# 	@recipe.cultures = @cultures
-
-	# end
-
   def show
     @recipe_id = params[:id]
     @recipe = Recipe.find(@recipe_id)
@@ -124,6 +69,7 @@ class RecipesController < ApplicationController
     @categories_array = @recipe.fetch_categories_array
     @marketing_items_by_group = @recipe.marketing_items_by_group
   end
+
   # GET /recipes/:id/review_recipe
   # GET /recipes/:id/review_recipe.json
   def review_recipe
@@ -268,70 +214,6 @@ class RecipesController < ApplicationController
       end
     end
   end
-  # def create
-  #   # remove empty strings from the characteristic_ids array, these are from the placeholder label on the form
-  #   params["recipe"]["characteristic_ids"].reject! { |characteristic_id| characteristic_id.empty? }
-  #   # convert remaining strings in array to integers, not sure why they are coming over as strings
-  #   params["recipe"]["characteristic_ids"].map!{ |characteristic_id| characteristic_id.to_i }
-  #   @recipe = Recipe.new(recipe_params)
-  #   # assign dieititan to recipe
-  #   @recipe.dietitian_id = current_dietitian.id
-  #   respond_to do |format|
-  #     # if recipe saves correctly
-  #     if @recipe.save
-  #       # if html send to ingredients_index index 
-  #       # pass recipe_id to ingredients_recipe index method
-  #       format.html { redirect_to ingredients_recipes_path(recipe_id: @recipe.id), notice: 'Recipe was successfully created.' }
-  #       format.json { render :show, status: :created, location: @recipe }
-  #     else
-  #       set_characteristic_forms
-  #       format.html { render :new }
-  #       format.json { render json: @recipe.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # def select_health_groups
-  #   @allergies = PatientGroup.allergies
-  #   @diseases = PatientGroup.diseases
-  #   @intolerances = PatientGroup.intolerances
-  # end
-
-  # def add_health_groups
-  #   respond_to do |format|
-  #     if @recipe.update(recipe_params)
-  #       format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @recipe }
-  #       # we want it to add to right and go to select meal_info
-  #       format.js
-  #     else
-  #       set_characteristic_forms
-  #       format.html { render :edit }
-  #       format.json { render json: @recipe.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # def select_meal_info
-  #   @courses = PatientGroup.allergies
-  #   @meals = PatientGroup.diseases
-  #   @culture = PatientGroup.intolerances
-  # end
-
-  # def add_meal_info
-  #   respond_to do |format|
-  #     if @recipe.update(recipe_params)
-  #       format.html { redirect_to review_recipe_path(@recipe), notice: 'Recipe was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @recipe }
-  #       # we want it to add to right and go to marketing new
-  #       format.js
-  #     else
-  #       set_characteristic_forms
-  #       format.html { render :edit }
-  #       format.json { render json: @recipe.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
 
   # GET /recipes/1/edit
   def edit

@@ -17,8 +17,8 @@
               <h3>Background</h3>
               <table class="table borderless">
                 <tr>
-                  <th>DOB: </th>
-                  <td><%=@family_member.date_of_birth%></td>
+                  <th>DOBf: </th>
+                  <td><%=@family_member.date_of_birth.to_s(:short_birth_date)%></td>
                 </tr>
                 <tr>
                   <td>Height:</td>

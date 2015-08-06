@@ -128,6 +128,10 @@ gem "lograge", "0.3.4"
 # https://github.com/comfy/active_link_to/issues/14
 gem 'active_link_to', "1.0.3"
 
+# This is a simple gem which bundles jstimezonedetect and a jquery plugin for it
+# https://github.com/scottwater/detect_timezone_rails
+# gem 'detect_timezone_rails'
+
 # automatic cron jobs
 # user for payments and emails?
 # https://github.com/javan/whenever

@@ -28,6 +28,7 @@ module Myapp
     # http://railscasts.com/episodes/106-time-zones-revised?view=asciicast
     # removed due to advice in 
     # http://jessehouse.com/blog/2013/11/15/working-with-timezones-and-ruby-on-rails/
+    # but added again
     # config.time_zone = 'Eastern Time (US & Canada)'
 
     config.action_view.embed_authenticity_token_in_remote_forms = true

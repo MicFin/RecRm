@@ -6,7 +6,6 @@
 // when page has loaded...
 $(document).ready(function() {
 
-
 	// use smooth scroll
 	SmoothScroll.start();	
 

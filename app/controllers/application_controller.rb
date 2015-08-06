@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 	after_filter :dietitian_activity
 
   # http://railscasts.com/episodes/106-time-zones-revised?view=asciicast
-  around_filter :user_time_zone, if: :current_user || :current_dietitian 
+  around_filter :user_time_zone, :if => proc {current_user}
 
   # shared by the user and dietitian registrations controllers
 	def after_sign_in_path_for(resource)
@@ -83,7 +83,7 @@ private
   end
 
   def user_time_zone(&block)
-    Time.use_zone(current_user.time_zone, &block)
+    Time.use_zone(current_user.time_zone, &block) 
   end
   #   # Users that require confirmation, currently from QOL landing page
   # # only QOL admin should be creating these so can redirect to qol

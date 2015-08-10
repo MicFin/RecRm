@@ -72,7 +72,14 @@ Kindrdfood.welcome.getStarted = {
         },
       }
     });
+
+    // set masking rules for phone number and zip code
 		$("#user_phone_number").mask("1(999)999-9999");
     $("#user_zip_code").mask('99999');
+
+    // default timezone to browser timezone
+    var timezone = jstz.determine();
+    var rails_timezone = window.RailsTimeZone.to(timezone.name());
+    $("#get-started-page form #user_time_zone").val(rails_timezone);
   }
 }

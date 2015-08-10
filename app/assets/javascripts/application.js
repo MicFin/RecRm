@@ -40,6 +40,8 @@
 
 //= require plugins/smooth_scroll
 
+//= require plugins/time_zones
+
 // Namespace creation for all controller specific javascript
 //= require kindrdfood
 

@@ -49,12 +49,8 @@ Rails.application.routes.draw do
 
       get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
 
-      get 'registrations/new_user_family/:id', to: 'users/registrations#new_user_family', as: 'new_user_family'
-      get 'registrations/edit_user_health_groups/:id', to: 'users/registrations#edit_user_health_groups', as: 'edit_user_health_groups'
-      patch 'registrations/update_user_health_groups/:id', to: 'users/registrations#update_user_health_groups', as: 'update_user_health_groups'
-      get 'registrations/new_family_member/', to: 'users/registrations#new_family_member', as: 'new_family_member'
-      post 'registrations/create_family_member', to: 'users/registrations#create_family_member', as: 'create_family_member'
-
+      patch 'registrations/update_time_zone', to: "users/registrations#update_time_zone", as: "users_registrations_update_time_zone"
+      
       resources :time_slots
 
       resources :recipes 

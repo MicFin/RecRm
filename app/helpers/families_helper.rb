@@ -5,7 +5,6 @@ module FamiliesHelper
 			# returns family members array
 	    @family = current_user.head_of_families.where(name: "Main").first
       get_family_members!
-      binding.pry
 	end
 
 	def get_family_members!

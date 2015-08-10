@@ -4,7 +4,6 @@
   <div id="addNutritionModel" class="modal fade in" style="display: block;">
     <div class="modal-dialog">
       <div class="modal-content">
-
         <div class="modal-body">
           <%= image_tag("/assets/logos/kf-logo-registration.png", class: "img-responsive logo") %>
           <%= render "breadcrumbs" %>
@@ -12,6 +11,16 @@
           <div id="set-appt-time" data-appt-id="<%=@appointment.id%>" class="col-xs-12 col-sm-8 col-sm-offset-2">
             <h1>Select Your Appointment</h1>
             <h4>All first appointments are for 1 hour</h4>
+
+            <%= simple_form_for(@user, as: "user", url: users_registrations_update_time_zone_path, html: {class: 'col-xs-8 col-xs-offset-2 text-left', role:"form" }, :method => :patch, remote: true) do |f| %>
+
+              <%= f.input :time_zone, priority: /US/, :input_html => { class: "form-control"}, autofocus: true, label: false, :default => @user.time_zone %>
+
+             <div class="actions text-right">
+                <%= f.button :submit, "change your time zone", class: "btn btn-link" %>
+              </div>
+            <% end %>
+
             <% if @appointment.stripe_card_token %>
               <h2>This appointment is already set for <%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M")%> - <%=@appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p")%></h2>
             <% else %>

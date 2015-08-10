@@ -103,6 +103,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update_time_zone
+
+    # update the user's time zone
+    @user = current_user
+    @user.update_attribute(:time_zone, params[:user][:time_zone])
+
+    # get original page where time zone was updated from
+    session[:return_to] ||= request.referer
+
+    respond_to do |format|
+
+      # update_time_zone.js replace calendar with new events based on updated time zone
+      format.js
+
+      # redirect back to original page where time zone was updated
+      format.html { redirect_to session.delete(:return_to) }
+    end
+  end
+
   protected
 
   # check if we need password to update user data

@@ -34,8 +34,9 @@ class User < ActiveRecord::Base
   # validates phone number is in a correct format
   validates :phone_number, :phony_plausible => true
 
-  # # validates timezone is created
-  # validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map.keys
+  # validates timezone is created
+  # allows nil if no time zone is saved
+  validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map.keys, :allow_blank => true
 
   # returns an array of patient groups for a user that are type disease
   def get_patient_group_ids

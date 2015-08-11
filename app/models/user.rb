@@ -217,7 +217,6 @@ class User < ActiveRecord::Base
       # get the number of full years from now since birth by dividing the difference in days by 365
       years = (now - dob).to_i / 365
 
-      binding.pry
       # for under 3 year olds return in terms of months
       if years < 3
         months = now.month - dob.month

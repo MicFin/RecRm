@@ -15,19 +15,27 @@
 				</div>
 				<nav>	
 					<ul>
-						<li class="active"><a href="">
-							<%= link_to welcome_home_path do %>
-							  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
-							<% end %>
-						</li>
-						<li>
-							<%= link_to(@family) do %>
-							  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Family</span>
-							<% end %>
-						</li>
-<!-- 						<li><a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Appointments</span></a></li> -->
-<!-- 						<li><a href=""><span class="glyphicon glyphicon-comment"></span><span class="hidden-xs hidden-sm nav-item">Messages</span><span class="badge">4</span></a></li> -->
-<!-- 						<li><a href=""><span class="glyphicon glyphicon-cog"></span><span class="hidden-xs hidden-sm nav-item">Settings</span></a></li> -->
+						
+						<%= active_link_to welcome_home_path, :wrap_tag => :li  do %>
+						  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
+						<% end %>
+		
+						<%= active_link_to @family, :wrap_tag => :li do %>
+						  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Family</span>
+						<% end %>
+
+<!-- 						<%#= active_link_to @family, :wrap_tag => :li do %>
+						  <span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
+						<%# end %> -->
+
+<!-- 						<%#= active_link_to @family, :wrap_tag => :li do %>
+						  <span class="glyphicon glyphicon-comment"></span><span class="hidden-xs hidden-sm nav-item">Messages</span><span class="badge">4</span>
+						<%# end %> -->
+
+<!-- 						<%#= active_link_to @family, :wrap_tag => :li do %>
+						 	<span class="glyphicon glyphicon-cog"></span><span class="hidden-xs hidden-sm nav-item">Settings</span>
+						<%# end %> -->
+
 						<li><a href=""><span class="glyphicon glyphicon-envelope"></span><span class="hidden-xs hidden-sm nav-item">Contact Us</span></a></li>	
 					</ul>
 				</nav>

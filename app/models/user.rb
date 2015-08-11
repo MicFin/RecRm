@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   attr_accessor :health_group_ids
-
+  attr_accessor :health_groups
   # used for form in families/new
 
   rolify :role_cname => 'UserRole'
@@ -206,42 +206,55 @@ class User < ActiveRecord::Base
   end
 
   def age
-    ### months up to 2 years + months
+    ### shown in months up to 2 years + 11 months
     dob = self.date_of_birth
+
     # if a date of birth is on file
     if dob != nil 
-      now = Time.now.utc.to_date
-      # age is (today's year - birthday year) 
-      # if today's month is greater than dob month or same month but day is greater or equal to then subract
-      # if born on Jan 5 2000 and it is Jan 5 2015 then age = 15 
-      # if born on Jan 5 2000 and it is Jan 6 2015 then age = 14
-      # if born on Jan 6 2000 and it is Jan 5 2015 then age = 15
-      age = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
-      # for under 1 year old
-      if age < 1
-        age = now.month - dob.month
-        if age > 1
-          final_age = age.to_s + " months old"
-        else 
-          final_age = age.to_s + " month old"
-        end
-      # for between 1 and 2 year olds
-      elsif (age >= 1 ) && (age <= 2)
+
+      now = Date.current
+      
+      # get the number of full years from now since birth by dividing the difference in days by 365
+      years = (now - dob).to_i / 365
+
+      binding.pry
+      # for under 3 year olds return in terms of months
+      if years < 3
         months = now.month - dob.month
-        final_age = (24 + months).to_s + " months old"
-      # for 3 and older
+        if years == 0
+          if months > 1
+            final_age = months.to_s + " months old"
+          else 
+            final_age = months.to_s + " month old"
+          end
+        elsif years == 1
+          if months > 1
+            final_age = years.to_s + " year and " + months.to_s + " months old"
+          else 
+            final_age = years.to_s + " year and " + months.to_s + " month old"
+          end
+        else
+          if months > 1
+            final_age = years.to_s + " years and " + months.to_s + " months old"
+          else 
+            final_age = years.to_s + " years and " + months.to_s + " month old"
+          end  
+        end
+
+      # for older than 3 return in terms of years and months
       else
         months = now.month - dob.month
         if months == 1
-          final_age = age.to_s + " years and 1 month old"
+          final_age = years.to_s + " years and 1 month old"
         elsif months > 1
-          final_age = age.to_s + " years and " + months.to_s + " months old"
+          final_age = years.to_s + " years and " + months.to_s + " months old"
         else
-          final_age = age.to_s + " years old"
+          final_age = years.to_s + " years old"
         end
       end
       return final_age
     else
+      # change nil to "No Date of Birth"
       return nil
     end
   end
@@ -271,7 +284,7 @@ class User < ActiveRecord::Base
       pounds = self.weight_ounces / 16
       ounces = self.weight_ounces % 16
       if pounds <= 0
-        return "#{ounces} ounces"
+        return "#{ounces} ounces (#{kilograms} kg)"
       elsif ounces > 0
         return "#{pounds} pounds #{ounces} ounces (#{kilograms} kg)"
       else

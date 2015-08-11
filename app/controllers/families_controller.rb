@@ -47,6 +47,15 @@ class FamiliesController < ApplicationController
   def edit_family_member
     @user = current_user
     @family_member = User.find(params[:member_id])
+    @family_member.health_groups = @family_member.patient_groups 
+    
+    # PatientGroupsHelper
+    get_patient_groups!
+    @diseases
+    @intolerances
+    @allergies
+    @symptoms
+    @diets
 
   end
 

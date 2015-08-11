@@ -2,7 +2,7 @@
         <div class="btn-group btn-breadcrumb">
         <% if current_user.registration_stage <= 1 %>
         	
-        	<%= active_link_to destroy_user_session_path,  { :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :method => :delete} do %>
+        	<%= active_link_to destroy_user_session_path, { :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :method => :delete} do %>
             <i class="glyphicon glyphicon-home"></i>
           <% end %>
  					<%= active_link_to "Basic Info", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>

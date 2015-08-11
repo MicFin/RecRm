@@ -13,27 +13,27 @@
           </section>
           <hr>
           <section class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6">
               <h3>Background</h3>
               <table class="table borderless">
                 <tr>
-                  <th>DOBf: </th>
+                  <th>Date of Birth: </th>
                   <td><%=@family_member.date_of_birth.to_s(:short_birth_date)%></td>
                 </tr>
                 <tr>
-                  <td>Height:</td>
+                  <th>Height:</th>
                   <td><%=@family_member.height%></td> 
                 </tr> 
                 <tr>
-                  <td>Weight:</td>
+                  <th>Weight:</th>
                   <td><%=@family_member.weight%></td>
                 </tr>
                 <tr>
-                  <td>Gender:</td>
+                  <th>Gender:</th>
                   <td><%=@family_member.sex%></td>
                 </tr>
                 <tr>
-                  <td>Relationship:</td>
+                  <th>Relationship:</th>
                   <td><%=@family_member.family_role%></td>
                 </tr>
               </table>
@@ -41,7 +41,9 @@
           </section>
           <section class="row">
             <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
-        
+              <% @diseases.each do |disease| %>
+                <h4><%=disease.name%></h4>
+              <% end %>
             </div>
           </section>
           <section id="physician-container" class="row">

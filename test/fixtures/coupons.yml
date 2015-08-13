@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  description: MyString
+  valid_from: 
+  valid_until: 
+  redemption_limit: 1
+  redemptions_count: 1
+  amount: 1
+  type: 
+  status: MyString
+
+two:
+  code: MyString
+  description: MyString
+  valid_from: 
+  valid_until: 
+  redemption_limit: 1
+  redemptions_count: 1
+  amount: 1
+  type: 
+  status: MyString

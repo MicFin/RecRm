@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @coupon.code %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @coupon.description %>
+</p>
+
+<p>
+  <strong>Valid from:</strong>
+  <%= @coupon.valid_from %>
+</p>
+
+<p>
+  <strong>Valid until:</strong>
+  <%= @coupon.valid_until %>
+</p>
+
+<p>
+  <strong>Redemption limit:</strong>
+  <%= @coupon.redemption_limit %>
+</p>
+
+<p>
+  <strong>Redemptions count:</strong>
+  <%= @coupon.redemptions_count %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @coupon.amount %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @coupon.type %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @coupon.status %>
+</p>
+
+<%= link_to 'Edit', edit_coupon_path(@coupon) %> |
+<%= link_to 'Back', coupons_path %>

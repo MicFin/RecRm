@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806031538) do
+ActiveRecord::Schema.define(version: 20150813192720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,25 @@ ActiveRecord::Schema.define(version: 20150806031538) do
   end
 
   add_index "content_quotas", ["dietitian_id"], name: "index_content_quotas_on_dietitian_id", using: :btree
+
+  create_table "coupons", force: true do |t|
+    t.string   "code"
+    t.string   "description"
+    t.datetime "valid_from"
+    t.datetime "valid_until"
+    t.integer  "redemption_limit",  default: 1
+    t.integer  "redemptions_count", default: 0
+    t.integer  "amount"
+    t.string   "type"
+    t.string   "status"
+    t.integer  "user_id"
+    t.integer  "appointment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "coupons", ["appointment_id"], name: "index_coupons_on_appointment_id", using: :btree
+  add_index "coupons", ["user_id"], name: "index_coupons_on_user_id", using: :btree
 
   create_table "dietitians", force: true do |t|
     t.string   "email",                  default: "", null: false

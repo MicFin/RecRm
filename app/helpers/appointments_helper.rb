@@ -2,7 +2,12 @@ module AppointmentsHelper
 
   def get_upcoming_appointments!
     @upcoming_appointments = []
-    current_dietitian.appointments.map do |appointment| 
+    if current_dietitian.has_role? "Admin Dietitian"
+      list_of_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+    else
+      list_of_appointments = current_dietitian.appointments 
+    end
+    list_of_appointments.map do |appointment| 
       family = appointment.appointment_host.head_of_families.last 
       family.health_groups_names = family.health_groups.map(&:name)
       family.age_groups = family.ages

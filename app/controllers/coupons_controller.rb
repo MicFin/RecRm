@@ -76,8 +76,8 @@ class CouponsController < ApplicationController
     # Only admin users can access coupon controller
     # should handle with pundit/rolify  correctly
     def authenticate_admin
-      if !current_dietitian || !current_dietitian.has_role? "Admin Dietitian"
-        redirect_to welcome_home_path 
-      end
+      # if !current_dietitian || !current_dietitian.has_role? "Admin Dietitian"
+      #   redirect_to welcome_home_path 
+      # end
     end
 end

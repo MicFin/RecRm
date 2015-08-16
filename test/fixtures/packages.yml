@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  name: MyString
+  full_price: 1
+  description: MyText
+  num_half_appointments: 1
+  num_full_appointments: MyString
+  expiration_in_months: 1
+
+two:
+  type: 
+  name: MyString
+  full_price: 1
+  description: MyText
+  num_half_appointments: 1
+  num_full_appointments: MyString
+  expiration_in_months: 1

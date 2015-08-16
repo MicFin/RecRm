@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813192720) do
+ActiveRecord::Schema.define(version: 20150814193751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -300,6 +300,18 @@ ActiveRecord::Schema.define(version: 20150813192720) do
 
   add_index "member_plans", ["plan_id"], name: "index_member_plans_on_plan_id", using: :btree
 
+  create_table "packages", force: true do |t|
+    t.string   "type"
+    t.string   "name"
+    t.integer  "full_price"
+    t.text     "description"
+    t.integer  "num_half_appointments"
+    t.string   "num_full_appointments"
+    t.integer  "expiration_in_months"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "patient_groups", force: true do |t|
     t.string   "name"
     t.string   "category"
@@ -503,6 +515,16 @@ ActiveRecord::Schema.define(version: 20150813192720) do
 
   add_index "user_families", ["family_id"], name: "index_user_families_on_family_id", using: :btree
   add_index "user_families", ["user_id"], name: "index_user_families_on_user_id", using: :btree
+
+  create_table "user_packages", force: true do |t|
+    t.integer "user_id"
+    t.integer "package_id"
+    t.date    "purchase_date"
+    t.date    "expiration_date"
+  end
+
+  add_index "user_packages", ["package_id"], name: "index_user_packages_on_package_id", using: :btree
+  add_index "user_packages", ["user_id"], name: "index_user_packages_on_user_id", using: :btree
 
   create_table "user_roles", force: true do |t|
     t.string   "name"

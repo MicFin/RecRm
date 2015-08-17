@@ -52,6 +52,11 @@ class CouponsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /coupons/1/redeem_coupon
+  def redeem_coupon
+    binding.pry
+  end
+
   # DELETE /coupons/1
   # DELETE /coupons/1.json
   def destroy

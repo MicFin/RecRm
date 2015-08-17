@@ -32,6 +32,8 @@ class Appointment < ActiveRecord::Base
   belongs_to :time_slot
   has_many :surveys, :as => :surveyable
   
+  has_one :purchase, as: :purchasable
+  
   def prep_complete?
     if self.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).count > 0
       return true

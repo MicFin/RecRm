@@ -360,6 +360,7 @@ ActiveRecord::Schema.define(version: 20150817183853) do
     t.datetime "updated_at"
   end
 
+  add_index "purchases", ["purchasable_id", "purchasable_type"], name: "index_purchases_on_purchasable_id_and_purchasable_type", using: :btree
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
 
   create_table "quality_reviews", force: true do |t|

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :packages
+  resources :packages do 
+    resources :purchases
+  end
 
   resources :coupons
 
@@ -72,6 +74,7 @@ Rails.application.routes.draw do
       post 'appointments/create_appointment_request_times', to: 'appointments#create_appointment_request_times', as: 'create_appointment_request_times'
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_user_survey_update'
       resources :appointments do 
+        resources :purchases
         resources :surveys do 
           resources :questions 
         end

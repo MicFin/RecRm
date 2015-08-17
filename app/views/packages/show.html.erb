@@ -1,15 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Type:</strong>
-  <%= @package.type %>
-</p>
 
 <p>
   <strong>Name:</strong>
   <%= @package.name %>
 </p>
-
+<p>
+  <strong>Category:</strong>
+  <%= @package.category %>
+</p>
 <p>
   <strong>Full price:</strong>
   <%= @package.full_price %>
@@ -21,14 +20,15 @@
 </p>
 
 <p>
+  <strong>Num full appointments:</strong>
+  <%= @package.num_full_appointments %>
+</p>
+
+<p>
   <strong>Num half appointments:</strong>
   <%= @package.num_half_appointments %>
 </p>
 
-<p>
-  <strong>Num full appointments:</strong>
-  <%= @package.num_full_appointments %>
-</p>
 
 <p>
   <strong>Expiration in months:</strong>

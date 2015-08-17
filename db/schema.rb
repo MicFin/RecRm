@@ -183,7 +183,7 @@ ActiveRecord::Schema.define(version: 20150817183853) do
     t.integer  "redemption_limit",  default: 1
     t.integer  "redemptions_count", default: 0
     t.integer  "amount"
-    t.string   "type"
+    t.string   "amount_type"
     t.string   "status"
     t.integer  "user_id"
     t.integer  "appointment_id"

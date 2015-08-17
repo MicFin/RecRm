@@ -71,6 +71,6 @@ binding.pry
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def package_params
-      params.require(:package).permit(:type, :name, :full_price, :description, :num_half_appointments, :num_full_appointments, :expiration_in_months)
+      params.require(:package).permit(:category, :name, :full_price, :description, :num_half_appointments, :num_full_appointments, :expiration_in_months)
     end
 end

@@ -70,7 +70,7 @@ class CouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params.require(:coupon).permit(:code, :description, :valid_from, :valid_until, :redemption_limit, :redemptions_count, :amount, :type, :status)
+      params.require(:coupon).permit(:code, :description, :valid_from, :valid_until, :redemption_limit, :redemptions_count, :amount, :amount_type, :status)
     end
 
     # Only admin users can access coupon controller

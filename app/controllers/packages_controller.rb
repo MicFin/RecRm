@@ -52,6 +52,19 @@ class PackagesController < ApplicationController
     end
   end
 
+  # # PATCH/PUT /packages/1/purchase
+  # def purchase
+  #   respond_to do |format|
+  #     if @package.update(package_params)
+  #       format.html { redirect_to @package, notice: 'Package was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @package }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @package.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
   # DELETE /packages/1
   # DELETE /packages/1.json
   def destroy

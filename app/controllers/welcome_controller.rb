@@ -94,8 +94,13 @@ class WelcomeController < Users::RegistrationsController
   def get_started
     
     @user = current_user
+
+    # If user is a repeat customer then send to register appointment path
+    if @user.repeat_customer? 
+      redirect_to welcome_register_appointment_path
+
     # Stage 1 - user confirmed but did not complete account set up
-    if current_user.registration_stage == 1
+    elsif current_user.registration_stage == 1
       render :get_started
 
     # Stage 2 - user did not create family
@@ -121,6 +126,40 @@ class WelcomeController < Users::RegistrationsController
 
   end
 
+  def register_appointment
+
+    @user = current_user
+
+    # Set user appointment in registration or create a new one
+    @appointment = @user.appointment_in_registration || Appointment.new(appointment_host_id: @user.id, status: "In Registration")
+
+    # If user is NOT a repeat customer then send to welcome get started path
+    if !@user.repeat_customer? 
+      redirect_to welcome_get_started_path
+
+    # Stage 1 - user verify or create family focus for appointment
+    elsif @appointment.registration_stage < 1 
+      redirect_to welcome_add_family_path
+
+    # Stage 2 - user created family but did not save health groups
+    elsif @appointment.registration_stage == 2
+      redirect_to welcome_add_nutrition_path
+
+    # Stage 3 - user saved health groups but did not save diet
+    elsif @appointment.registration_stage == 3
+      redirect_to welcome_add_preferences_path
+
+    # Stage 4 - user did not set up appointment
+    elsif @appointment.registration_stage == 4
+      redirect_to welcome_set_appointment_path
+
+     # Done with registration, return to dashboard
+    else
+      redirect_to welcome_home_path
+    end
+
+  end
+  
   # 1st stage of registration
   # Select who the appointment is for and build other family member if necessary
   # /welcome/add_family
@@ -169,11 +208,22 @@ class WelcomeController < Users::RegistrationsController
 
     end
 
-    # Set registration status
-    # Should add to function current_user.update_registration_stage
-    if current_user.registration_stage < 3
-      current_user.registration_stage = 3
-      current_user.save
+
+    # If repeat customer then update appointment in registration stage
+    if @user.repeat_customer? 
+      if @user.appointment_in_registration.registration_stage < 2 
+        @user.appointment_in_registration.registration_stage = 2
+        @user.appointment_in_registration.save
+      end
+
+    # If not a repeat customer then update user registration stage
+    else
+      # Set registration status
+      # Should add to function current_user.update_registration_stage
+      if current_user.registration_stage < 3
+        current_user.registration_stage = 3
+        current_user.save
+      end
     end
 
     # Send back to welcome#get_started to continue registration

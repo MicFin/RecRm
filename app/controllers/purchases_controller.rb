@@ -15,12 +15,21 @@ class PurchasesController < ApplicationController
     # @purchases = @purchasable.purchases
   end
 
+  # GET purchasable_type/purchasable_id/purchases/new
   def new
+    binding.pry 
+    # if 30 in 
+    # if 1 hr
+    # if package
     @user = current_user
     @purchase = @purchasable.purchases.new
   end
-    
+
+  # POST /purchases
+  # POST /purchases.json
   def create
+
+    binding.pry
     @purchase = @purchasable.purchases.new(params[:purchase])
     if @purchase.save
       redirect_to [@purchasable, :purchases], notice: "Purchase created."
@@ -32,10 +41,10 @@ class PurchasesController < ApplicationController
 
 private
 
-  # def load_purchasable
-  #   # resource, id = request.path.split('/')[1,2]
-  #   # @purchasable = resource.singularize.classify.constantize.find(id)
-  # klass = [Appointment, Package ].detect { |c| params["#{c.name.underscore}_id"]}
-  # @purchasable = klass.find(params["#{klass.name.underscore}_id"])
-  # end
+  def load_purchasable
+    # resource, id = request.path.split('/')[1,2]
+    # @purchasable = resource.singularize.classify.constantize.find(id)
+  klass = [Appointment, Package ].detect { |c| params["#{c.name.underscore}_id"]}
+  @purchasable = klass.find(params["#{klass.name.underscore}_id"])
+  end
 end

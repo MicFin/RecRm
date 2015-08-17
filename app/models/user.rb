@@ -38,6 +38,16 @@ class User < ActiveRecord::Base
   # allows nil if no time zone is saved
   validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map.keys, :allow_blank => true
 
+  # return the user's appointment currently in registration or returns nil
+  def appointment_in_registration
+    return self.appointment_hosts.where(status: "In Registration").last || nil
+  end
+
+  # returns true if user is a repeat customer
+  def repeat_customer?
+    return self.appointment_hosts.where(status: "Paid").count >= 1
+  end
+
   # returns an array of patient groups for a user that are type disease
   def get_patient_group_ids
      disease_ids = self.patient_groups.map{|disease|disease.id}

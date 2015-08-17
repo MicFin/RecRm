@@ -1,11 +1,22 @@
-class PurchaseController < ApplicationController
-  before_filter :load_purchasable
+class PurchasesController < ApplicationController
+  # before_filter :load_purchasable
+  include FamiliesHelper
   
   def index
-    @purchases = @purchasable.purchases
+    @user = current_user
+    @appointment = Appointment.new(appointment_host_id: @user.id, status: "In Registration")
+    @package = Package.last
+
+    # Gather user's family data
+    # from FamiliessHelper
+    get_family!
+    @family
+
+    # @purchases = @purchasable.purchases
   end
 
   def new
+    @user = current_user
     @purchase = @purchasable.purchases.new
   end
     
@@ -17,12 +28,14 @@ class PurchaseController < ApplicationController
       render :new
     end
   end
+
+
 private
 
-  def load_purchasable
-    # resource, id = request.path.split('/')[1,2]
-    # @purchasable = resource.singularize.classify.constantize.find(id)
-  klass = [Appointment, Package ].detect { |c| params["#{c.name.underscore}_id"]}
-  @purchasable = klass.find(params["#{klass.name.underscore}_id"])
-  end
+  # def load_purchasable
+  #   # resource, id = request.path.split('/')[1,2]
+  #   # @purchasable = resource.singularize.classify.constantize.find(id)
+  # klass = [Appointment, Package ].detect { |c| params["#{c.name.underscore}_id"]}
+  # @purchasable = klass.find(params["#{klass.name.underscore}_id"])
+  # end
 end

@@ -1,0 +1,44 @@
+<div id="welcome-page" class="container-fluid">
+	<div class="row">
+
+		<%= render "/layouts/navbars/user_nav" %>
+
+		<main class="col-xs-10 col-xs-offset-2">
+			<section class="jumbotron">
+				<div id="jumbotron-inner" class="row">
+					<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+						<hr>
+						<div class="row">
+							<h1>Individual and Package Options</h1>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-xs-12 session-action">
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+									<button class="btn btn-default">
+										<h2>30 minute</h2>
+										<h2>Appointment</h2>
+									</button>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+									<button class="btn btn-default">
+										<h2>1 hour</h2>
+										<h2>Appointment</h2>
+									</button>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+									<button class="btn btn-default">
+										<h2>Package A</h2>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<div class="col-xs-10 col-xs-offset-2">
+			<%=render "/layouts/footers/main_footer" %>
+		</div>
+	</div>
+</div>

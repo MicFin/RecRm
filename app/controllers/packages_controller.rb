@@ -24,10 +24,9 @@ class PackagesController < ApplicationController
   # POST /packages
   # POST /packages.json
   def create
-    binding.pry
+
     @package = Package.new(package_params)
 
-binding.pry
     respond_to do |format|
       if @package.save
         format.html { redirect_to @package, notice: 'Package was successfully created.' }

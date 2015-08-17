@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814194231) do
+ActiveRecord::Schema.define(version: 20150817183853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,18 @@ ActiveRecord::Schema.define(version: 20150814194231) do
 
   add_index "content_quotas", ["dietitian_id"], name: "index_content_quotas_on_dietitian_id", using: :btree
 
+  create_table "coupon_redemptions", force: true do |t|
+    t.integer  "coupon_id"
+    t.integer  "user_id"
+    t.integer  "purchase_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "coupon_redemptions", ["coupon_id"], name: "index_coupon_redemptions_on_coupon_id", using: :btree
+  add_index "coupon_redemptions", ["purchase_id"], name: "index_coupon_redemptions_on_purchase_id", using: :btree
+  add_index "coupon_redemptions", ["user_id"], name: "index_coupon_redemptions_on_user_id", using: :btree
+
   create_table "coupons", force: true do |t|
     t.string   "code"
     t.string   "description"
@@ -301,7 +313,7 @@ ActiveRecord::Schema.define(version: 20150814194231) do
   add_index "member_plans", ["plan_id"], name: "index_member_plans_on_plan_id", using: :btree
 
   create_table "packages", force: true do |t|
-    t.string   "type"
+    t.string   "category"
     t.string   "name"
     t.integer  "full_price"
     t.text     "description"

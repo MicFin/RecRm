@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coupon_id: 
+  user_id: 
+  purchase: 
+
+two:
+  coupon_id: 
+  user_id: 
+  purchase: 

@@ -1,5 +1,7 @@
 class Coupon < ActiveRecord::Base
 
+  has_many :coupon_redemptions
+
   def self.generate_code   
     now = Time.now.utc.to_date
     age = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)

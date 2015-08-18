@@ -1,4 +1,17 @@
+
+
 class TimeSlot < ActiveRecord::Base
+  #   t.string   "title"
+  #   t.datetime "start_time"
+  #   t.datetime "end_time"
+  #   t.datetime "created_at"
+  #   t.datetime "updated_at"
+  #   t.integer  "minutes"
+  #   t.string   "status" 
+  #       - Current 
+  #   t.integer  "availability_id"
+  #   t.boolean  "vacancy", default: true
+
   belongs_to :availability
   has_one :dietitian, through: :availability
   has_one :appointment

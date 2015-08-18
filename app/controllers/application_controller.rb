@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
     #note: request.referrer can be used to return user to the page they were on
     
 		# when a user signs in 
-    
 		if resource.class == User
       
       # update user registration stage

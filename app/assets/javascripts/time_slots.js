@@ -77,7 +77,7 @@ var SelectApptCalendar = {
         url: '/time_slots.json',
         type: 'GET',
         data: {
-          minutes: '60',
+          // minutes: '60',
           type: 'vacant-appts'
         },
         error: function() {

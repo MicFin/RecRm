@@ -189,14 +189,14 @@ class WelcomeController < Users::RegistrationsController
         @new_user.add_role "Family Member Account"
         @new_user.add_role "Family Member", @family
         @new_user.save
-        appointment.appointment_focus = @new_user
+        appointment.patient_focus = @new_user
       end
 
     # If no family role was submitted then user selected self 
     # Update and assign to appointment's patient focus
     else
       @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
-      appointment.appointment_focus = @user
+      appointment.patient_focus = @user
     end
 
     # Save appointment with new patient focus
@@ -205,9 +205,8 @@ class WelcomeController < Users::RegistrationsController
     # Update the registration stage for the user
     update_stage(2, current_user)
   
-
-    # Send back to welcome#get_started to continue registration
-    redirect_to welcome_get_started_path
+    # Send to welcome#add_nutrition path to continue registration
+    redirect_to welcome_add_nutrition_path
 
   end
 
@@ -223,7 +222,8 @@ class WelcomeController < Users::RegistrationsController
     # set current patient group ids for checkbox form
     @user.patient_group_ids = @user.get_patient_group_ids
 
-    # Gather all patient groups
+    # Gather all major patient groups
+    # Also gets user unverified groups
     # from PatientGroupsHelper
     get_patient_groups!
     @diseases = @diseases 
@@ -248,7 +248,7 @@ class WelcomeController < Users::RegistrationsController
     # User may have submitted new health groups
     find_or_create_new_health_groups
 
-
+    binding.pry
     # Check if user has any preferences already
     user_preferences_ids = @user.get_preferences_ids
     if user_preferences_ids.count > 0  
@@ -264,8 +264,8 @@ class WelcomeController < Users::RegistrationsController
     # Update the registration stage for the user
     update_stage(3, current_user)
 
-    # Send back to welcome#get_started to continue registration
-    redirect_to welcome_get_started_path
+    # Send to welcome#add_preferences path to continue registration
+    redirect_to welcome_add_preferences_path
   
   end
 
@@ -361,22 +361,23 @@ class WelcomeController < Users::RegistrationsController
 
     # If a user submits new health groups then check if they are in our database or create them and prepare them to be saved
     def find_or_create_new_health_groups
-
+      binding.pry
       # Check if user input was submitted
       if params["user"]
 
         # Check if health new health groups were submitted
-        if params["user"]["new_health_groups"]
-
+        if params["new_health_groups"]
+    binding.pry
           #  Find or create new health groups and add them to the params to be saved
-          params["user"]["new_health_groups"].each do |health_group|
+          params["new_health_groups"].each do |health_group|
              group = PatientGroup.find_or_create_by(name: health_group, unverified: true) 
              group.save
              params["user"]["patient_group_ids"].push(group.id)
+    binding.pry
           end
-
+    binding.pry
           # Delete the new health groups param
-          params["user"].delete "new_health_groups"
+          params.delete "new_health_groups"
         end 
       end
     end

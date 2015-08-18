@@ -10,7 +10,7 @@
 
 	        <%= render "breadcrumbs" %>
 	        
-	        <h1>Click on all that apply.</h1>
+	        <h1>Click on all that apply for <%=@user.first_name%></h1>
 	        <h4>To deselect, simply click on the square again.</h4>
 					
 					<%= simple_form_for(@user, :url => {:controller => 'welcome', :action => 'build_nutrition'}, html: { method: :patch, class: 'col-xs-12 text-center', role:"form" }) do |f| %>

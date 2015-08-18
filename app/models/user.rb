@@ -7,17 +7,23 @@ class User < ActiveRecord::Base
   rolify :role_cname => 'UserRole'
 
   before_save :uppercase_name
+
 	# Include default devise modules. Others available are:
 	# :lockable, :timeoutable and :omniauthable, :invitable
 	devise :invitable, :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
-
-  has_many :user_families
+  # If a user is deleted then so should their family connection
+  has_many :user_families, :dependent => :destroy
   has_many :families, through: :user_families
+
   has_many :head_of_families, :class_name => "Family", :foreign_key => "head_of_family_id"
+
+  # If a user is deleted then so should their patient group connections
 	has_and_belongs_to_many :patient_groups
+  before_destroy { patient_groups.clear }
+
 	has_many :appointments
   has_many :patient_focus, :class_name => "Appointment", :foreign_key => "patient_focus_id"
   has_many :appointment_hosts, :class_name => "Appointment", :foreign_key => "appointment_host_id"
@@ -48,10 +54,10 @@ class User < ActiveRecord::Base
     return self.appointment_hosts.where(status: "Paid").count >= 1
   end
 
-  # returns an array of patient groups for a user that are type disease
+  # returns an array of patient groups for a user 
   def get_patient_group_ids
-     disease_ids = self.patient_groups.map{|disease|disease.id}
-     return disease_ids
+     patient_group_ids = self.patient_groups.map{|disease|disease.id}
+     return patient_group_ids
   end
 
   # returns an array of patient groups for a user that are type disease
@@ -68,9 +74,9 @@ class User < ActiveRecord::Base
     diets = groups & PatientGroup.diets
     preferences = diets + symptoms
     
-    disease_ids = preferences.flatten.map{|disease|disease.id}
+    preferences_ids = preferences.flatten.map{|disease|disease.id}
     
-    return disease_ids
+    return preferences_ids
   end
 
     # Called in
@@ -133,13 +139,32 @@ class User < ActiveRecord::Base
   end
 
   def unverified_health_groups
-    unverified_array = []
+    unverified_groups = {
+      "diseases" => [],
+      "intolerances" => [],
+      "allergies"=> [],
+      "symptoms"=> [],
+      "diets"=> [],
+    }
+    binding.pry
     self.patient_groups.each do |group|
       if group.unverified == true 
-        unverified_array << group
+        if group.category.downcase == "diseases"
+          unverified_groups["diseases"] << group
+        elsif group.category.downcase == "intolerances"
+          unverified_groups["intolerances"] << group
+        elsif group.category.downcase == "allergies"
+          unverified_groups["allergies"] << group
+        elsif group.category.downcase == "symptoms"
+          unverified_groups["symptoms"] << group
+        elsif group.category.downcase == "diets"
+          unverified_groups["diets"] << group
+        else
+          # nothing
+        end
       end
     end
-    return unverified_array
+    return unverified_groups
   end
     
   # returns height_hash = {'feet'=> ##, 'inches' => ##}

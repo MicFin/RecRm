@@ -8,12 +8,14 @@ module FamiliesHelper
 	end
 
 	def get_family_members!
+		binding.pry
       if !@family.nil?
       	@family.children = @family.users
       	@family.family_members = []
       	@family.family_members << @family.children << current_user
       	@family.family_members.flatten!
       end
+      binding.pry
 	end
 
 	# def get_family_patient_groups!

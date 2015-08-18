@@ -1,23 +1,34 @@
 module PatientGroupsHelper
 
+  # Requires @user to be defined before calling
   def get_patient_groups!
-    @diseases = PatientGroup.diseases
 
+    # Get common patient groups
+    @diseases = PatientGroup.diseases
     @intolerances = PatientGroup.intolerances
     @allergies = PatientGroup.allergies
     @symptoms = PatientGroup.symptoms
     @diets = PatientGroup.diets
-    # @patient_groups = {}
-    # @patient_groups["EoE"] = PatientGroup.where(name:"EoE").first
-    # @patient_groups["FPIES"] = PatientGroup.where(name:"FPIES").first
-    # @patient_groups["CSID"] = PatientGroup.where(name:"CSID").first
-    # @patient_groups["IBS"] = PatientGroup.where(name:"IBS").first
-    # @patient_groups["Celiac"] = PatientGroup.where(name:"Celiac Disease").first
-    # @patient_groups["Crohns"] = PatientGroup.where(name:"Crohn's Disease").first
-    # @patient_groups["IBS"] = PatientGroup.where(name:"IBS").first
-    # @patient_groups["Colitis"] = PatientGroup.where(name:"Allergic Colitis").first
-    # @patient_groups["Diabetes"] = PatientGroup.where(name:"Diabetes").first
-
+    binding.pry
+    # Check if user has any unverified health groups that should be added to the lists
+    @user ||= current_user
+    unverified_groups = @user.unverified_health_groups
+    if unverified_groups["diseases"].count > 0
+        unverified_groups["diseases"].each{|disease| @diseases << disease}
+    end
+    if unverified_groups["intolerances"].count > 0
+        unverified_groups["intolerances"].each{|intolerance| @intolerances << intolerance}
+    end
+    if unverified_groups["allergies"].count > 0
+        unverified_groups["allergies"].each{|allergy| @allergies << allergy}
+    end
+    if unverified_groups["symptoms"].count > 0
+        unverified_groups["symptoms"].each{|symptom| @symptoms << symptom}
+    end
+    if unverified_groups["diets"].count > 0
+        unverified_groups["diets"].each{|diet| @diets << diet}
+    end
+    binding.pry
   end
 
 end

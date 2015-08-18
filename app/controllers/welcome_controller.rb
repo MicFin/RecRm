@@ -96,15 +96,15 @@ class WelcomeController < Users::RegistrationsController
     @user = current_user
 
     # set stage of registration to user's registration stage
-    stage_of_registration = current_user.registration_stage
+    stage_of_registration = @user.registration_stage
 
-    # If user is a repeat customer 
+    # If user is a repeat customer then we need to reassign the stage of registration to be based on the appointment and not the user
     if @user.repeat_customer? 
-      binding.pry
+
       # set appointment or create a new one
       # registration stage should start at 2 for appointments
       appointment = @user.appointment_in_registration
-      appointment ||= Appointment.create(appointment_host_id: @user.id, status: "In Registration", registration_stage: 2)
+      appointment ||= Appointment.create(appointment_host_id: @user.id, status: "In Registration", registration_stage: 2, duration: 60)
 
       # change stage of registration to the appointment registration stage
       stage_of_registration = appointment.registration_stage
@@ -142,20 +142,14 @@ class WelcomeController < Users::RegistrationsController
   # /welcome/add_family
   def add_family
 
-
     # Gather user's family data
-    # from FamiliessHelper
+    # from FamiliesHelper
     get_family!
     @family
-    binding.pry
-    # if current_user.head_of_families.where(name: "Main").length > 0 && current_user.head_of_families.where(name: "Main").first.users.length > 0
 
-    #   @new_user = current_user.head_of_families.where(name: "Main").first.users.last
-    
-    # else
-      @new_user = User.new(last_name: @user.last_name)
-    # end
-
+    # New user for form
+    @new_user = User.new(last_name: @user.last_name)
+  
     # Shows views/welcome/add_family.html.erb
   end
 
@@ -174,21 +168,22 @@ class WelcomeController < Users::RegistrationsController
     # Height and weight fields come in wrong format, need to clean for database.
     clean_height_and_weight_input
     
-    # If submitted user has a family role then it means the user created a family member
-    # Will duplicate family member even if one already exists 
-    binding.pry
-    appointment = @user.appointment_in_registration
+    # Create appointment
+    appointment = Appointment.create(appointment_host_id: @user.id, status: "In Registration", registration_stage: 2)
+
+    # If submitted user has a family role then it means the user created a family member or edited an old family member 
     if params[:user][:family_role]
       
-      binding.pry
-      # If has an ID then update 
+      # If has an ID then they edited an old family member so update
+      # Assign to appointment's patient focus
       if params[:user][:id]
         @family_member = User.find(params[:user][:id])
         @family_member.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
-        appointment.appointment_focus = @family_member
+        appointment.patient_focus = @family_member
 
       # If no ID then a new user must be created
       # Create new family member and add roles
+      # Assign to appointment's patient focus
       else
         @new_user = @family.users.create(devise_parameter_sanitizer.sanitize(:sign_up))
         @new_user.add_role "Family Member Account"
@@ -198,17 +193,17 @@ class WelcomeController < Users::RegistrationsController
       end
 
     # If no family role was submitted then user selected self 
+    # Update and assign to appointment's patient focus
     else
-
-      # Update user profile
       @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
       appointment.appointment_focus = @user
     end
 
+    # Save appointment with new patient focus
     appointment.save
 
     # Update the registration stage for the user
-    update_stage(2, @user)
+    update_stage(2, current_user)
   
 
     # Send back to welcome#get_started to continue registration
@@ -221,10 +216,9 @@ class WelcomeController < Users::RegistrationsController
   # /welcome/add_nutrition
   def add_nutrition
     
-    # Gets family member if there is one or gets current user
-    # Should make a before method
-    @user = current_user.head_of_families.where(name: "Main").first.users.last || @user
-    
+    # Reassign @user to the appointment's patient focus
+    appointment = @user.appointment_in_registration
+    @user = appointment.patient_focus
 
     # set current patient group ids for checkbox form
     @user.patient_group_ids = @user.get_patient_group_ids
@@ -247,9 +241,9 @@ class WelcomeController < Users::RegistrationsController
   # PATCH
   def build_nutrition
 
-    # Gets family member if there is one or gets current user
-    # Should make a before method
-    @user = current_user.head_of_families.where(name: "Main").first.users.last || @user
+    # Reassign @user to the appointment's patient focus
+    appointment = @user.appointment_in_registration
+    @user = appointment.patient_focus
     
     # User may have submitted new health groups
     find_or_create_new_health_groups
@@ -268,7 +262,7 @@ class WelcomeController < Users::RegistrationsController
     @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
     
     # Update the registration stage for the user
-    update_stage(3, @user)
+    update_stage(3, current_user)
 
     # Send back to welcome#get_started to continue registration
     redirect_to welcome_get_started_path
@@ -280,9 +274,9 @@ class WelcomeController < Users::RegistrationsController
   # /welcome/add_preferences
   def add_preferences
 
-    # Gets family member if there is one or gets current user
-    # Should make a before method
-    @user = current_user.head_of_families.where(name: "Main").first.users.last || @user
+    # Reassign @user to the appointment's patient focus
+    appointment = @user.appointment_in_registration
+    @user = appointment.patient_focus
     
     # set current disease ids for checkbox form
     @user.patient_group_ids = @user.get_patient_group_ids
@@ -301,9 +295,9 @@ class WelcomeController < Users::RegistrationsController
   # PATCH
   def build_preferences
 
-    # Gets family member if there is one or gets current user
-    # Should make a before method
-    @user = current_user.head_of_families.where(name: "Main").first.users.last || @user
+    # Reassign @user to the appointment's patient focus
+    appointment = @user.appointment_in_registration
+    @user = appointment.patient_focus
 
     # User may have submitted new health groups
     find_or_create_new_health_groups
@@ -326,7 +320,7 @@ class WelcomeController < Users::RegistrationsController
     @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
 
     # Update the registration stage for the user
-    update_stage(4, @user)
+    update_stage(4, current_user)
 
     # Send back to welcome#get_started to continue registration
     redirect_to welcome_get_started_path 
@@ -338,17 +332,8 @@ class WelcomeController < Users::RegistrationsController
   # /welcome/set_appointment
   def set_appointment
 
-    # Gets family member if there is one or gets current user
-    # Should make a before method    
-    patient_focus = current_user.head_of_families.where(name: "Main").first.users.last || @user
-    
-    # Create appointment
-    # Should maybe use .new so that it doesn't save until purchased
-    @appointment = Appointment.create(appointment_host_id: @user.id, patient_focus_id: patient_focus.id, status: "In Registration")
-
-    # Fetch all available time slots
-    # Might not need to do this since JS makes the call in timeslots.js for the calendar build
-    @time_slots = TimeSlot.select_appointment_time_slots
+    # get appointment
+    @appointment = @user.appointment_in_registration
 
     # Get any appointment requests the user has made
     @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
@@ -453,9 +438,11 @@ class WelcomeController < Users::RegistrationsController
 
       # If repeat customer then update appointment in registration stage
       if user.repeat_customer? 
-        if user.appointment_in_registration.registration_stage < next_stage 
-          user.appointment_in_registration.registration_stage = next_stage
-          user.appointment_in_registration.save
+        current_appointment = user.appointment_in_registration
+
+        if current_appointment.registration_stage < next_stage 
+          current_appointment.registration_stage = next_stage
+          current_appointment.save
         end
 
       # If not a repeat customer then update user registration stage
@@ -468,4 +455,5 @@ class WelcomeController < Users::RegistrationsController
         end
       end
     end
+
 end

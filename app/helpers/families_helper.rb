@@ -14,7 +14,6 @@ module FamiliesHelper
       	@family.family_members << @family.children << current_user
       	@family.family_members.flatten!
       end
-      binding.pry
 	end
 
 	# def get_family_patient_groups!

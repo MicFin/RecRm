@@ -56,7 +56,7 @@ class Appointment < ActiveRecord::Base
     return dietitians
   end
 
-
+  # find where this is used, shoudl now be using registration_stage model table column
   def stage
 
     if self.start_time != nil 

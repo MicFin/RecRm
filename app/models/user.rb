@@ -82,32 +82,36 @@ class User < ActiveRecord::Base
   # - "1"
   def update_registration_stage
     
+    # if the user has a paid or follow up unpaid appointment then mark as regsitration stage of 6 
     if (self.appointment_hosts.where(status: "Paid").count >= 1 || self.appointment_hosts.where(status: "Follow Up Unpaid").count >= 1) 
       self.registration_stage = 6
+
     else
+
       # Stage 0 - user has not confirmed account
       if self.confirmation_required? && !self.confirmed?
         self.registration_stage = 0
-      # Stage 1 - user confirmed but did not complete account set up
+
+      # Stage 1 - user did not complete account set up
       elsif !self.phone_number
         self.registration_stage = 1
+
       # Stage 2 - user created account but did not create family
       elsif self.head_of_families.length < 1 
         self.registration_stage =  2
-
 
       # Stage 3 - user created family but did not save health groups
       
       # Stage 4 - user saved health groups but did not save diet
 
-      # Stage 5 - user did not set up appointment
-      elsif self.appointment_hosts.length >= 1
+      # Stage 5 - user created but did not pay for appointment
+      # elsif self.appointment_hosts.length >= 1
         
       else 
-        return 4
+        # return 4
       end
-      save
     end
+    save
     # done
   end
 

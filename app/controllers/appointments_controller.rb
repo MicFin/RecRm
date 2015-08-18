@@ -17,10 +17,11 @@ class AppointmentsController < ApplicationController
       @previous_appointments
       get_upcoming_appointment!
       @upcoming_appointment
+      
       # FamiliessHelper
       get_family!
       @family
-      @family_members
+      @family_members = @family.family_members
 
     elsif ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id] == "All") ) 
       @appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')

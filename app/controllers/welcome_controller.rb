@@ -95,28 +95,39 @@ class WelcomeController < Users::RegistrationsController
     
     @user = current_user
 
-    # If user is a repeat customer then send to register appointment path
+    # set stage of registration to user's registration stage
+    stage_of_registration = current_user.registration_stage
+
+    # If user is a repeat customer 
     if @user.repeat_customer? 
-      redirect_to welcome_register_appointment_path
+      binding.pry
+      # set appointment or create a new one
+      # registration stage should start at 2 for appointments
+      appointment = @user.appointment_in_registration
+      appointment ||= Appointment.create(appointment_host_id: @user.id, status: "In Registration", registration_stage: 2)
+
+      # change stage of registration to the appointment registration stage
+      stage_of_registration = appointment.registration_stage
+    end
 
     # Stage 1 - user confirmed but did not complete account set up
-    elsif current_user.registration_stage == 1
+    if stage_of_registration == 1
       render :get_started
 
     # Stage 2 - user did not create family
-    elsif current_user.registration_stage == 2
+    elsif stage_of_registration == 2
       redirect_to welcome_add_family_path
 
     # Stage 3 - user created family but did not save health groups
-    elsif current_user.registration_stage == 3
+    elsif stage_of_registration == 3
       redirect_to welcome_add_nutrition_path
 
     # Stage 4 - user saved health groups but did not save diet
-    elsif current_user.registration_stage == 4
+    elsif stage_of_registration == 4
       redirect_to welcome_add_preferences_path
 
     # Stage 5 - user did not set up appointment
-    elsif current_user.registration_stage == 5
+    elsif stage_of_registration == 5
       redirect_to welcome_set_appointment_path
 
      # Done with registration, return to dashboard
@@ -126,51 +137,24 @@ class WelcomeController < Users::RegistrationsController
 
   end
 
-  def register_appointment
-
-    @user = current_user
-
-    # Set user appointment in registration or create a new one
-    @appointment = @user.appointment_in_registration || Appointment.new(appointment_host_id: @user.id, status: "In Registration")
-
-    # If user is NOT a repeat customer then send to welcome get started path
-    if !@user.repeat_customer? 
-      redirect_to welcome_get_started_path
-
-    # Stage 1 - user verify or create family focus for appointment
-    elsif @appointment.registration_stage < 1 
-      redirect_to welcome_add_family_path
-
-    # Stage 2 - user created family but did not save health groups
-    elsif @appointment.registration_stage == 2
-      redirect_to welcome_add_nutrition_path
-
-    # Stage 3 - user saved health groups but did not save diet
-    elsif @appointment.registration_stage == 3
-      redirect_to welcome_add_preferences_path
-
-    # Stage 4 - user did not set up appointment
-    elsif @appointment.registration_stage == 4
-      redirect_to welcome_set_appointment_path
-
-     # Done with registration, return to dashboard
-    else
-      redirect_to welcome_home_path
-    end
-
-  end
-  
-  # 1st stage of registration
+  # 2nd stage of registration
   # Select who the appointment is for and build other family member if necessary
   # /welcome/add_family
   def add_family
 
-    # get last new user or create a new user
-    if current_user.head_of_families.where(name: "Main").length > 0 && current_user.head_of_families.where(name: "Main").first.users.length > 0
-      @new_user = current_user.head_of_families.where(name: "Main").first.users.last
-    else
+
+    # Gather user's family data
+    # from FamiliessHelper
+    get_family!
+    @family
+    binding.pry
+    # if current_user.head_of_families.where(name: "Main").length > 0 && current_user.head_of_families.where(name: "Main").first.users.length > 0
+
+    #   @new_user = current_user.head_of_families.where(name: "Main").first.users.last
+    
+    # else
       @new_user = User.new(last_name: @user.last_name)
-    end
+    # end
 
     # Shows views/welcome/add_family.html.erb
   end
@@ -192,46 +176,47 @@ class WelcomeController < Users::RegistrationsController
     
     # If submitted user has a family role then it means the user created a family member
     # Will duplicate family member even if one already exists 
+    binding.pry
+    appointment = @user.appointment_in_registration
     if params[:user][:family_role]
       
+      binding.pry
+      # If has an ID then update 
+      if params[:user][:id]
+        @family_member = User.find(params[:user][:id])
+        @family_member.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
+        appointment.appointment_focus = @family_member
+
+      # If no ID then a new user must be created
       # Create new family member and add roles
-      @new_user = @family.users.create(devise_parameter_sanitizer.sanitize(:sign_up))
-      @new_user.add_role "Family Member Account"
-      @new_user.add_role "Family Member", @family
-      @new_user.save
+      else
+        @new_user = @family.users.create(devise_parameter_sanitizer.sanitize(:sign_up))
+        @new_user.add_role "Family Member Account"
+        @new_user.add_role "Family Member", @family
+        @new_user.save
+        appointment.appointment_focus = @new_user
+      end
 
     # If no family role was submitted then user selected self 
     else
 
       # Update user profile
       @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
-
+      appointment.appointment_focus = @user
     end
 
+    appointment.save
 
-    # If repeat customer then update appointment in registration stage
-    if @user.repeat_customer? 
-      if @user.appointment_in_registration.registration_stage < 2 
-        @user.appointment_in_registration.registration_stage = 2
-        @user.appointment_in_registration.save
-      end
-
-    # If not a repeat customer then update user registration stage
-    else
-      # Set registration status
-      # Should add to function current_user.update_registration_stage
-      if current_user.registration_stage < 3
-        current_user.registration_stage = 3
-        current_user.save
-      end
-    end
+    # Update the registration stage for the user
+    update_stage(2, @user)
+  
 
     # Send back to welcome#get_started to continue registration
     redirect_to welcome_get_started_path
 
   end
 
-  # 2nd stage of registration
+  # 3rd stage of registration
   # Select add nutritional information to the user profile 
   # /welcome/add_nutrition
   def add_nutrition
@@ -282,18 +267,15 @@ class WelcomeController < Users::RegistrationsController
     # Do not want user entering password for each update during registration
     @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
     
-    # Set registration status
-    # Should add to function current_user.update_registration_stage
-    if current_user.registration_stage < 4
-      current_user.registration_stage = 4
-      current_user.save
-    end
+    # Update the registration stage for the user
+    update_stage(3, @user)
+
     # Send back to welcome#get_started to continue registration
     redirect_to welcome_get_started_path
   
   end
 
-  # 3rd stage of registration
+  # 4th stage of registration
   # Select add food preferences information to the user profile 
   # /welcome/add_preferences
   def add_preferences
@@ -343,18 +325,15 @@ class WelcomeController < Users::RegistrationsController
     # Do not want user entering password for each update during registration
     @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
 
-    # Set registration status
-    # Should add to function current_user.update_registration_stage
-    if current_user.registration_stage < 5
-      current_user.registration_stage = 5
-      current_user.save
-    end
+    # Update the registration stage for the user
+    update_stage(4, @user)
+
     # Send back to welcome#get_started to continue registration
     redirect_to welcome_get_started_path 
 
   end
 
-  # 4th stage of registration
+  # 5th stage of registration
   # Select appointment time and checkout
   # /welcome/set_appointment
   def set_appointment
@@ -463,6 +442,29 @@ class WelcomeController < Users::RegistrationsController
 
           # Delete weight param since it will be saved as weight_ounces
           params["user"].delete "weight"
+        end
+      end
+    end
+
+
+    def update_stage(stage_complete, user)
+
+      next_stage = stage_complete + 1
+
+      # If repeat customer then update appointment in registration stage
+      if user.repeat_customer? 
+        if user.appointment_in_registration.registration_stage < next_stage 
+          user.appointment_in_registration.registration_stage = next_stage
+          user.appointment_in_registration.save
+        end
+
+      # If not a repeat customer then update user registration stage
+      else
+        # Set registration status
+        # Should add to function current_user.update_registration_stage
+        if user.registration_stage < next_stage
+          user.registration_stage = next_stage
+          user.save
         end
       end
     end

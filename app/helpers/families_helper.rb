@@ -9,11 +9,12 @@ module FamiliesHelper
 
 	def get_family_members!
       if !@family.nil?
-      	@family_members = []
-      	@family_members << current_user 
-      	@family.users.each { |user| @family_members << user }
-      	@family.family_members = @family_members 
+      	@family.children = @family.users
+      	@family.family_members = []
+      	@family.family_members << @family.children << current_user
+      	@family.family_members.flatten!
       end
+      binding.pry
 	end
 
 	# def get_family_patient_groups!

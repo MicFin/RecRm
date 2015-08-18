@@ -3,6 +3,7 @@ class Family < ActiveRecord::Base
   attr_accessor :age_groups
   attr_accessor :number_of_members
   attr_accessor :family_members
+  attr_accessor :children
   attr_accessor :family_names
   attr_accessor :family_member_info
 

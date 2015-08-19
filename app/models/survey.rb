@@ -1,7 +1,7 @@
 class Survey < ActiveRecord::Base
   belongs_to :user
   belongs_to :surveyable, :polymorphic => true
-  has_many :questions
+  has_many :questions, :dependent => :destroy
 
 
   def self.generate_for_user(client, survey_user, survey_type)

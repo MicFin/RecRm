@@ -146,9 +146,9 @@ class User < ActiveRecord::Base
       "symptoms"=> [],
       "diets"=> [],
     }
-    binding.pry
     self.patient_groups.each do |group|
       if group.unverified == true 
+        binding.pry
         if group.category.downcase == "diseases"
           unverified_groups["diseases"] << group
         elsif group.category.downcase == "intolerances"

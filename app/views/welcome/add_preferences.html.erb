@@ -18,7 +18,7 @@
 
 						 		<div id="add-disease-button" class="add-another-disease">Add Another</div>
 						 		<div id="add-disease-form" class="add-another-disease-form hidden">
-							 		<input id="new-health-group-field" type="text" placeholder="Autism" class="form-control-12"/>
+							 		<input id="new-health-group-field" type="text" data-group-type="symptoms" placeholder="Autism" class="form-control-12"/>
 							 		<button id="new-health-group-button" type="button" class="btn btn-block btn-warning">Add</button>
 
 						 		</div>
@@ -26,17 +26,9 @@
 						<div class="row triggers-container form-group">
 							<h4>Select any food preferences.</h4>
 							<%= f.collection_check_boxes :patient_group_ids, @diets, :id, :name, :checked => @user.health_group_ids, :item_wrapper_class => 'col-xs-6 col-sm-4 form-group' %>
-							<%# @diets.each do |diet| %>
-				<!-- 				<div class="col-xs-6 col-sm-4 form-group">
-						  		
-						  		
-						  			<input id="user_patient_group_ids_<%#=diet.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%#=diet.id%>">
-
-						  			<label class="checkbox-inline" for="user_patient_group_ids_<%#=diet.id%>"><%#=diet.name%></label>
-						  		</div> -->
-						  <%# end %>
+	
 						  <div id="add-allergy-container" class="col-xs-12 form-group">
-							  <input id="add-allergy-field" type="text", placeholder="Blueberries">
+							  <input id="add-allergy-field" type="text", data-group-type="diets" placeholder="Low zinc">
 								<button id="new-allergy-group-button" class="btn btn-sm btn-warning">Add Another</button>
 						  </div>	
 							

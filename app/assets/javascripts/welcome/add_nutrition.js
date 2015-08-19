@@ -26,8 +26,9 @@ Kindrdfood.welcome.addNutrition = {
 		$("#addNutritionModel").on("click", "#new-health-group-button", function(e){
       e.preventDefault();
       var group_name = $("#new-health-group-field").val();
+      var group_type = $("#new-health-group-field").attr("data-group-type");
       $("#add-disease-button").before(
-      	'<span><input name="new_health_groups[]" type="checkbox" value="' + group_name + '" checked><label class="collection_check_boxes">'+ group_name+'</label></span>');
+      	'<span><input name="new_health_groups['+group_type+'][]" type="checkbox" value="' + group_name + '" checked><label class="collection_check_boxes">'+ group_name+'</label></span>');
       $("#new-health-group-field").val("");
       $("#add-disease-form").addClass("hidden");
       $("#add-disease-button").removeClass("hidden");
@@ -35,9 +36,10 @@ Kindrdfood.welcome.addNutrition = {
 		$("#addNutritionModel").on("click", "#new-allergy-group-button", function(e){
         e.preventDefault();
         var group_name = $("#add-allergy-field").val();
+        var group_type = $("#add-allergy-field").data("group-type");
         $("#add-allergy-container").before(
           '<div class="col-xs-6 col-sm-4 form-group">' +
-						'<input id="user_patient_group_ids_' + group_name+'" name="new_health_groups[]" type="checkbox" value="' + group_name+'" checked>' +
+						'<input id="user_patient_group_ids_' + group_name+'" name="new_health_groups['+group_type+'][]" type="checkbox" value="' + group_name+'" checked>' +
 						'<label class="checkbox-inline" for="user_patient_group_ids_' + group_name+'">'+group_name +
 						'</label>' +
 					'</div>');

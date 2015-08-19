@@ -229,7 +229,6 @@ class WelcomeController < Users::RegistrationsController
     @diseases = @diseases 
     @intolerances = @intolerances 
     @allergies = @allergies
-
     # combine and then sort allergies and intolerances to replace just allergies
     @allergies.push(@intolerances).flatten!.sort_by{|word| word.order}
 
@@ -244,11 +243,10 @@ class WelcomeController < Users::RegistrationsController
     # Reassign @user to the appointment's patient focus
     appointment = @user.appointment_in_registration
     @user = appointment.patient_focus
-    
+
     # User may have submitted new health groups
     find_or_create_new_health_groups
 
-    binding.pry
     # Check if user has any preferences already
     user_preferences_ids = @user.get_preferences_ids
     if user_preferences_ids.count > 0  
@@ -361,21 +359,21 @@ class WelcomeController < Users::RegistrationsController
 
     # If a user submits new health groups then check if they are in our database or create them and prepare them to be saved
     def find_or_create_new_health_groups
-      binding.pry
+      
       # Check if user input was submitted
       if params["user"]
 
         # Check if health new health groups were submitted
         if params["new_health_groups"]
-    binding.pry
+    
           #  Find or create new health groups and add them to the params to be saved
-          params["new_health_groups"].each do |health_group|
-             group = PatientGroup.find_or_create_by(name: health_group, unverified: true) 
+          params["new_health_groups"].each do |group_type, health_group|
+             group = PatientGroup.find_or_create_by(name: health_group, unverified: true, category: group_type, order: 10000) 
              group.save
              params["user"]["patient_group_ids"].push(group.id)
-    binding.pry
+    
           end
-    binding.pry
+    
           # Delete the new health groups param
           params.delete "new_health_groups"
         end 

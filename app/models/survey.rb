@@ -1,4 +1,7 @@
 class Survey < ActiveRecord::Base
+
+
+  ### SURVEYS AND QUESTIONS NEED TO BE RESTRUCTURED SO THAT QUESTIONS ARE NOT CREATED EACH TIME
   belongs_to :user
   belongs_to :surveyable, :polymorphic => true
   has_many :questions, :dependent => :destroy
@@ -7,7 +10,7 @@ class Survey < ActiveRecord::Base
   def self.generate_for_user(client, survey_user, survey_type)
     
     if survey_type == "User-Food"
-      new_suervey = Survey.new(survey_type: "User-Food")
+      new_survey = Survey.new(survey_type: "User-Food")
       new_survey.surveyable_id = survey_user.id
       new_survey.surveyable_type = "User"
       new_survey.user = client

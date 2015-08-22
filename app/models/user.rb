@@ -60,22 +60,29 @@ class User < ActiveRecord::Base
      return patient_group_ids
   end
 
-  # returns an array of patient groups for a user that are type disease
-  def get_disease_ids
-     diseases = self.patient_groups & PatientGroup.diseases
-     disease_ids = diseases.map{|disease|disease.id}
-     return disease_ids
+  # returns an array of patient groups for a user that are type disease, allergy, or intolerance
+  def get_nutrition_ids
+    groups = self.patient_groups
+    nutrition_groups = []
+    groups.each do |group|
+      if (group.category == "disease") || (group.category == "allergy") || (group.category == "intolerance")
+        nutrition_groups << group
+      end
+    end
+    nutrition_ids = nutrition_groups.flatten.map{|disease|disease.id}
+    return nutrition_ids
   end
 
   # returns an array of patient groups for a user that are diets or symptoms
   def get_preferences_ids
     groups = self.patient_groups
-    symptoms = groups & PatientGroup.symptoms
-    diets = groups & PatientGroup.diets
-    preferences = diets + symptoms
-    
-    preferences_ids = preferences.flatten.map{|disease|disease.id}
-    
+    preference_groups = []
+    groups.each do |group|
+      if (group.category == "symptom") || (group.category == "diet")
+        preference_groups << group
+      end
+    end
+    preferences_ids = preference_groups.flatten.map{|disease|disease.id}
     return preferences_ids
   end
 
@@ -140,25 +147,25 @@ class User < ActiveRecord::Base
 
   def unverified_health_groups
     unverified_groups = {
-      "diseases" => [],
-      "intolerances" => [],
-      "allergies"=> [],
-      "symptoms"=> [],
-      "diets"=> [],
+      "disease" => [],
+      "intolerance" => [],
+      "allergy"=> [],
+      "symptom"=> [],
+      "diet"=> [],
     }
     self.patient_groups.each do |group|
       if group.unverified == true 
-        binding.pry
-        if group.category.downcase == "diseases"
-          unverified_groups["diseases"] << group
-        elsif group.category.downcase == "intolerances"
-          unverified_groups["intolerances"] << group
-        elsif group.category.downcase == "allergies"
-          unverified_groups["allergies"] << group
-        elsif group.category.downcase == "symptoms"
-          unverified_groups["symptoms"] << group
-        elsif group.category.downcase == "diets"
-          unverified_groups["diets"] << group
+        
+        if group.category.downcase == "disease"
+          unverified_groups["disease"] << group
+        elsif group.category.downcase == "intolerance"
+          unverified_groups["intolerance"] << group
+        elsif group.category.downcase == "allergy"
+          unverified_groups["allergy"] << group
+        elsif group.category.downcase == "symptom"
+          unverified_groups["symptom"] << group
+        elsif group.category.downcase == "diet"
+          unverified_groups["diet"] << group
         else
           # nothing
         end

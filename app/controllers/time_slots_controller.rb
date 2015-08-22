@@ -1,6 +1,6 @@
 class TimeSlotsController < ApplicationController
   before_action :set_time_slot, only: [:show, :edit, :update, :create_from_existing, :destroy]
-
+  # before_action :set_time_slot, except: [:index, :new, :create, :create_from_availability]
 
 
   #### UNDER CONSTRUCTION
@@ -9,15 +9,18 @@ class TimeSlotsController < ApplicationController
   # .json is created specifically for calendar usage
   def index
     
+    if current_dietitian 
+      @time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(vacancy: true).where(minutes: 30)
+
     #  Review all current 30 minute time slots
-    if params[:minutes] == "30" && params[:type] == "Review"
+    elsif params[:minutes] == "30" && params[:type] == "Review"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 30)
     #  review all current 60 minute, current time slots
     elsif params[:minutes] == "60" && params[:type] == "Review"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60)
 
     # Else it is a request for a user to select a time slot  
-    # Also, if type is vacant-appts then for user to select an appointment time
+    # Also could do, if type is vacant-appts then for user to select an appointment time
     # elsif params[:type] = "vacant-appts"
     else
       # Set appointment to user's appointment in registration
@@ -124,6 +127,8 @@ class TimeSlotsController < ApplicationController
   end
 
   # get /time_slots/create_from_availability
+  # method not working
+  # method name coming in as parameter and before action set time slot being claled
   def create_from_availability
     open_availabilities = Availability.where(status: "Set")
     
@@ -149,6 +154,7 @@ class TimeSlotsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_time_slot
+      binding.pry
       @time_slot = TimeSlot.find(params[:id])
     end
 

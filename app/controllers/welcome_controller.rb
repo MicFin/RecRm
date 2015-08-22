@@ -304,7 +304,8 @@ class WelcomeController < Users::RegistrationsController
     if params[:user]
 
       # Check if user has any diseases
-      user_disease_ids = @user.get_disease_ids
+      user_disease_ids = @user.get_nutrition_ids
+      
       if user_disease_ids.count > 0  
 
         # Add disease IDs to the params so that they get included when it updates the users health groups 
@@ -332,7 +333,7 @@ class WelcomeController < Users::RegistrationsController
 
     # get appointment
     @appointment = @user.appointment_in_registration
-
+    
     # Get any appointment requests the user has made
     @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
     
@@ -367,11 +368,12 @@ class WelcomeController < Users::RegistrationsController
         if params["new_health_groups"]
     
           #  Find or create new health groups and add them to the params to be saved
-          params["new_health_groups"].each do |group_type, health_group|
-             group = PatientGroup.find_or_create_by(name: health_group, unverified: true, category: group_type, order: 10000) 
-             group.save
-             params["user"]["patient_group_ids"].push(group.id)
-    
+          params["new_health_groups"].each do |group_type, health_groups|
+            health_groups.each do |health_group|
+              group = PatientGroup.find_or_create_by(name: health_group, unverified: true, category: group_type, order: 10000) 
+              group.save
+              params["user"]["patient_group_ids"].push(group.id)
+            end 
           end
     
           # Delete the new health groups param

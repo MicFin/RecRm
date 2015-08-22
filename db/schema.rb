@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817203504) do
+ActiveRecord::Schema.define(version: 20150821181851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,8 +170,11 @@ ActiveRecord::Schema.define(version: 20150817203504) do
     t.integer  "purchase_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
+    t.integer  "appointment_id"
   end
 
+  add_index "coupon_redemptions", ["appointment_id"], name: "index_coupon_redemptions_on_appointment_id", using: :btree
   add_index "coupon_redemptions", ["coupon_id"], name: "index_coupon_redemptions_on_coupon_id", using: :btree
   add_index "coupon_redemptions", ["purchase_id"], name: "index_coupon_redemptions_on_purchase_id", using: :btree
   add_index "coupon_redemptions", ["user_id"], name: "index_coupon_redemptions_on_user_id", using: :btree
@@ -186,14 +189,9 @@ ActiveRecord::Schema.define(version: 20150817203504) do
     t.integer  "amount"
     t.string   "amount_type"
     t.string   "status"
-    t.integer  "user_id"
-    t.integer  "appointment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "coupons", ["appointment_id"], name: "index_coupons_on_appointment_id", using: :btree
-  add_index "coupons", ["user_id"], name: "index_coupons_on_user_id", using: :btree
 
   create_table "dietitians", force: true do |t|
     t.string   "email",                  default: "", null: false

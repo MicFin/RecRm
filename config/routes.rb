@@ -15,8 +15,17 @@ Rails.application.routes.draw do
   # should change these to not being opened to all users
   resources :packages
   resources :purchases
-  resources :coupons
-  resources :plans
+  resources :plans 
+
+  resources :coupons do 
+    collection do 
+      # /coupons/redeem_coupon
+      get :redeem_coupon, to: 'coupons#redeem_coupon', as: 'redeem_coupon'
+    end
+  end
+
+
+
 
   # is it better to do a redirect or another route that goes to the same controller method?
   ### REDIRECTS
@@ -65,16 +74,11 @@ Rails.application.routes.draw do
       patch 'registrations/update_time_zone', to: "users/registrations#update_time_zone", as: "users_registrations_update_time_zone"
 
       # Families paths
-      resources :families
       delete 'families/:id/remove_member/:member_id', to: "families#remove_member", as: 'remove_family_member'
       get 'families/:id/edit_family_member/:member_id', to: "families#edit_family_member", as: 'families_edit_family_member'
+      resources :families
 
       # Appointments paths
-      resources :appointments do 
-        resources :surveys do 
-          resources :questions 
-        end
-      end
       get '/appointments/begin_registration/:duration', to: "appointments#begin_registration", as: "appointments_begin_registration" 
       get 'appointments/:id/purchase', to: "appointments#purchase", as: "purchase_appointment"
       get 'appointments/:id/select_time', to: 'appointments#select_time', as: 'select_time'
@@ -83,14 +87,20 @@ Rails.application.routes.draw do
       get 'appointments/new_appointment_request_times', to: 'appointments#new_appointment_request_times', as: 'new_appointment_request_times'
       post 'appointments/create_appointment_request_times', to: 'appointments#create_appointment_request_times', as: 'create_appointment_request_times'
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_user_survey_update'
+      patch 'appointments/:id/update_duration', to: "appointments#update_duration", as: "appointments_update_duration"
+      resources :appointments do 
+        resources :surveys do 
+          resources :questions 
+        end
+      end
 
       # Surveys paths
       get 'users/:user_id/surveys/new', to: 'surveys#new', as: 'new_user_survey'
       patch 'users/:user_id/surveys/:id', to: 'surveys#update', as: 'user_survey'
 
       # Rooms paths
-      resources :rooms, only: [:index, :create]
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_room, :via => :get
+      resources :rooms, only: [:index, :create]
 
       # Subscriptions paths
       resources :subscriptions
@@ -133,12 +143,12 @@ Rails.application.routes.draw do
       get 'dietitans/:dietitian_id/images/:id/crop', to: 'images#crop', as: 'crop_dietitian_image'
       
       # Appointment paths
-      resources :appointments
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_dietitian_survey_update'
       get 'appointments/:id/appointment_review', to: 'appointments#appointment_review', as: 'appointment_review'
       get 'appointments/:id/appointment_prep', to: 'appointments#appointment_prep', as: 'appointment_prep'
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_dietitian_appointment'
-      
+      resources :appointments
+
       # Dashboard paths
       get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
       get 'dashboard/recipe_status', to: 'dashboard#recipe_status', as: 'dashboard_recipe_status'
@@ -152,10 +162,10 @@ Rails.application.routes.draw do
       patch 'recipes/:recipe_id/review_conflicts/:id/edit_review_conflict', to: 'review_conflicts#edit_review_conflict', as: "edit_review_conflict"
 
       # Role assignment paths
-      resources :roles
       get 'roles/assignments', to: 'roles#assignments', as: 'roles_assignments'
       get 'roles/assignments/edit/:id', to: 'roles#edit_assignments', as: 'edit_assignments'
       patch 'roles/assignments/update/:id', to: 'roles#update_assignments', as: 'update_assignments'
+      resources :roles
 
       # Content quota paths
       resources :content_quotas
@@ -168,14 +178,14 @@ Rails.application.routes.draw do
       resources :member_plans
 
       # Time slot paths
-      resources :time_slots
       get 'time_slots/:id/create_from_existing', to: 'time_slots#create_from_existing', as: "create_from_existing_time_slot"
       get 'time_slots/create_from_availability', to: 'time_slots#create_from_availability', as: "create_time_slots_from_availability"
+      resources :time_slots
 
       # Availabilities paths
-      resources :availabilities
       post 'availabilities/set_schedule', to: 'availabilities#set_schedule', as: "set_schedule"
       patch 'availabilities/update_schedule', to: 'availabilities#update_schedule', as: "update_schedule"
+      resources :availabilities
 
       # Articles paths
       resources :articles do 
@@ -231,17 +241,17 @@ Rails.application.routes.draw do
       end
 
       # Allergen paths
-      resources :allergens 
       # edit ingerdient allergens 
       get 'ingredients/edit_allergens/:id', to: 'ingredients#edit_allergens', as: "edit_allergens"
       patch 'ingredients/update_allergens/:id', to: 'ingredients#update_allergens', as: "update_allergens"
+      resources :allergens 
 
       # Allergen ingredients paths
       resources :allergens_ingredients
 
       # Rooms paths
-      resources :rooms, only: [:index, :create]
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_dietitian_room, :via => :get
+      resources :rooms, only: [:index, :create]
     end
     
     # ROUTES FOR UNAUTHENTICATED DIETITIAN

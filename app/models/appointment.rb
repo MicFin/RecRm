@@ -19,11 +19,14 @@
     # t.string   "status"
     
 class Appointment < ActiveRecord::Base
+  before_save :update_appointment_price, :if => Proc.new {|model| model.duration_changed? }
+
   attr_accessor :family_info
   attr_accessor :prepped 
   attr_accessor :follow_up 
   attr_accessor :time 
   attr_accessor :date 
+  attr_accessor :price
 
   belongs_to :appointment_host, :class_name => "User", :foreign_key => "appointment_host_id"
   belongs_to :patient_focus, :class_name => "User", :foreign_key => "patient_focus_id"
@@ -33,7 +36,19 @@ class Appointment < ActiveRecord::Base
   has_many :surveys, :as => :surveyable
   
   has_one :purchase, as: :purchasable
-  
+  has_one :coupon
+
+  def redeem_coupon(coupon)
+    coupon = coupon || self.coupons.last 
+    regular_price = self.invoice_price
+    if coupon.amount_type.downcase == "percent"
+      self.invoice_price = regular_price - ( regular_price * (coupon.amount * 0.01).to_i )
+    else
+      self.invoice_price = regular_price - coupon.amount
+    end
+    save
+  end
+
   def prep_complete?
     if self.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).count > 0
       return true
@@ -154,6 +169,61 @@ class Appointment < ActiveRecord::Base
       self.duration = 60
       save!
     end
+  end
+
+  def show_regular_price
+    return "$"+'%.2f' % (self.regular_price.to_i/100.0)
+  end
+
+  def show_invoice_price
+    return "$"+'%.2f' % (self.invoice_price.to_i/100.0)
+  end
+
+  def show_duration
+    if self.duration == 30
+      return "1/2 hour"
+    else
+      return "1 hour"
+    end
+  end
+  # def apply_discounts(coupon)
+  #   if self.tara_referral == true 
+  #     self.
+  # end
+  private
+
+  def update_appointment_price
+
+    # Regular price
+    if self.duration == 30
+      self.regular_price = 6999
+    else
+      self.regular_price = 11499
+    end
+
+    # Tara referral invoice pricing
+    if self.appointment_host.tara_referral == true 
+      if self.duration == 30
+        self.invoice_price = 4999
+      else
+        self.invoice_price = 8999
+      end
+
+    # QOL invoice pricing
+    elsif self.appointment_host.qol_referral == true 
+        self.invoice_price = 0
+
+    # No Discount invoice pricing
+    else
+      if self.duration == 30
+        self.invoice_price = 6999
+      else
+        self.invoice_price = 11499
+      end
+    end
+
+    # Redeem any discounts applied to appointment
+    self.redeem_coupon
   end
 
 end

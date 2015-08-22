@@ -9,26 +9,26 @@ module PatientGroupsHelper
     @allergies = PatientGroup.allergies
     @symptoms = PatientGroup.symptoms
     @diets = PatientGroup.diets
-    binding.pry
+
     # Check if user has any unverified health groups that should be added to the lists
     @user ||= current_user
     unverified_groups = @user.unverified_health_groups
-    if unverified_groups["diseases"].count > 0
-        unverified_groups["diseases"].each{|disease| @diseases << disease}
+    if unverified_groups["disease"].count > 0
+        unverified_groups["disease"].each{|disease| @diseases << disease}
     end
-    if unverified_groups["intolerances"].count > 0
-        unverified_groups["intolerances"].each{|intolerance| @intolerances << intolerance}
+    if unverified_groups["intolerance"].count > 0
+        unverified_groups["intolerance"].each{|intolerance| @intolerances << intolerance}
     end
-    if unverified_groups["allergies"].count > 0
-        unverified_groups["allergies"].each{|allergy| @allergies << allergy}
+    if unverified_groups["allergy"].count > 0
+        unverified_groups["allergy"].each{|allergy| @allergies << allergy}
     end
-    if unverified_groups["symptoms"].count > 0
-        unverified_groups["symptoms"].each{|symptom| @symptoms << symptom}
+    if unverified_groups["symptom"].count > 0
+        unverified_groups["symptom"].each{|symptom| @symptoms << symptom}
     end
-    if unverified_groups["diets"].count > 0
-        unverified_groups["diets"].each{|diet| @diets << diet}
+    if unverified_groups["diet"].count > 0
+        unverified_groups["diet"].each{|diet| @diets << diet}
     end
-    binding.pry
+
   end
 
 end

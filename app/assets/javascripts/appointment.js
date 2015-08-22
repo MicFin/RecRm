@@ -8,6 +8,8 @@ $(document).ready(function() {
 // # Next we create the payment object and give it a setupForm function. In this function we get the payment form by its id and add a callback that fires when the form’s submit event fires. When the form is submitted we disable the submit button to stop it from being accidentally submitted again by setting the button’s disabled attribute to true. Then we call a processCard function and return false so that the form isn’t submitted.
 payment = {
   setupForm: function() {
+
+    // Set submit button
     $('body #btn-purchase-appt').on("click", function(e) {
       if ($('#card_number').length){ 
         e.preventDefault();
@@ -17,6 +19,22 @@ payment = {
         $('form').submit();
       };
     });
+
+    // Set coupon button
+    $("#coupon-button").on("click", function(e){
+      e.preventDefault();
+      var coupon_code = $("#coupon-field").val();
+      var data = {coupon_code: coupon_code};
+      $.ajax({
+        type: "GET",
+        datatype: "script",
+        data: data,
+        url: "/coupons/redeem_coupon",
+        success: function(response){
+        } 
+      })
+
+    })
   },
 // # The processCard function creates an object representing the credit card’s values in the format that Stripe expects and reads the appropriate values for each field from the form’s fields using val(). The next line is the important one. We call Stripe.createToken with two arguments. The first is the card object that we’ve just created (we can also pass in an optional amount here). The second is a function that will handle the response from Stripe, which happens asynchronously. We’ll pass in payment.handleStripeResponse here.
   processCard: function() {

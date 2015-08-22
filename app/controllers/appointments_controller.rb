@@ -3,7 +3,7 @@ class AppointmentsController < ApplicationController
   include PatientGroupsHelper
   include FamiliesHelper
  # before_filter :check_user_logged_in!, :only
-  before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :end_appointment, :destroy]
+  before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :update_duration, :end_appointment, :destroy]
   before_filter :config_opentok, :only => [:update]
 
   # GET /appointments
@@ -284,6 +284,8 @@ class AppointmentsController < ApplicationController
       @new_appointment = @appointment
 
     else
+
+      # unknown scenario
       @dietitians = Dietitian.all 
     end
   
@@ -450,6 +452,24 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def update_duration
+
+   # update the appointment's duration
+    @appointment.update_attribute(:duration, params[:appointment][:duration])
+
+    # get original page where appointment was updated from
+    session[:return_to] ||= request.referer
+
+    respond_to do |format|
+
+      # update_time_zone.js replace calendar with new events based on updated time zone
+      format.js
+
+      # redirect back to original page where time zone was updated
+      format.html { redirect_to session.delete(:return_to) }
+    end
+  end
+
   # GET /appointments/1/end_appointment
   def end_appointment
 
@@ -531,7 +551,7 @@ class AppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :start_time, :end_time, :room_id, :note, :client_note, :other_note, :created_at, :updated_at, :status, :time_slot_id, :stripe_card_token)
+      params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :start_time, :end_time, :room_id, :note, :client_note, :other_note, :created_at, :updated_at, :status, :time_slot_id, :stripe_card_token, :duration)
     end
   
     def clean_dates_for_database

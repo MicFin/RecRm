@@ -61,8 +61,8 @@ class Appointment < ActiveRecord::Base
       else
         self.invoice_price = regular_price - coupon.amount
       end
-      
-      save
+
+      self.save
     end
   end
 
@@ -238,7 +238,7 @@ class Appointment < ActiveRecord::Base
         self.invoice_price = 11499
       end
     end
-
+    self.save
     # Redeem any discounts applied to appointment
     self.redeem_coupon
   end

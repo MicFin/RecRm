@@ -70,7 +70,7 @@ class CouponsController < ApplicationController
     if coupon && (coupon.redemption_limit > coupon.redemptions_count)
       @variable = "yes coupon"
       create_coupon_redemption(coupon)
-      binding.pry
+      
     else
       @variable = "no coupon"
     end

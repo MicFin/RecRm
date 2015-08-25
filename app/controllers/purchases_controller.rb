@@ -17,7 +17,7 @@ class PurchasesController < ApplicationController
 
   # GET purchasable_type/purchasable_id/purchases/new
   def new
-    binding.pry 
+     
     # if 30 in 
     # if 1 hr
     # if package
@@ -29,7 +29,7 @@ class PurchasesController < ApplicationController
   # POST /purchases.json
   def create
 
-    binding.pry
+    
     @purchase = @purchasable.purchases.new(params[:purchase])
     if @purchase.save
       redirect_to [@purchasable, :purchases], notice: "Purchase created."

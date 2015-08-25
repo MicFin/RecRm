@@ -15,6 +15,7 @@ class TimeSlotsController < ApplicationController
     #  Review all current 30 minute time slots
     elsif params[:minutes] == "30" && params[:type] == "Review"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 30)
+
     #  review all current 60 minute, current time slots
     elsif params[:minutes] == "60" && params[:type] == "Review"
       @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60)
@@ -23,17 +24,19 @@ class TimeSlotsController < ApplicationController
     # Also could do, if type is vacant-appts then for user to select an appointment time
     # elsif params[:type] = "vacant-appts"
     else
+      
       # Set appointment to user's appointment in registration
       appointment = current_user.appointment_in_registration
 
-      # Set duration to the duration of the appointment
-      duration = appointment.duration
+      # Set duration to the duration of the appointment or default to 60
+      duration = appointment.duration || 60
 
       # Get all time slots that fit criteria
       # Must be "Current", vacant, correct duration
       # and not start within 2 day buffer
-      @time_slots = TimeSlot.where(status: "Current").where(vacancy: true).where(minutes: duration).where(['start_time > ?', DateTime.now + 2.days]) 
-
+      day_buffer = 2 
+      @time_slots = TimeSlot.where(status: "Current").where(vacancy: true).where(minutes: duration).where(['start_time > ?', DateTime.now + day_buffer.days]) 
+      
       # Temporary fix for only sending back Tara's schedule to clients she gives a link to and are marked as having tara_rerral as true
       if current_user.tara_referral == true
         @time_slots.to_a.delete_if do |time_slot|
@@ -42,9 +45,9 @@ class TimeSlotsController < ApplicationController
           end
         end
       end
-
+      
       @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
-
+      
     end
     
     # Why do I need the dietitians?
@@ -154,7 +157,7 @@ class TimeSlotsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_time_slot
-      binding.pry
+      
       @time_slot = TimeSlot.find(params[:id])
     end
 

@@ -36,17 +36,34 @@ class Appointment < ActiveRecord::Base
   has_many :surveys, :as => :surveyable
   
   has_one :purchase, as: :purchasable
-  has_one :coupon
+  has_one :coupon_redemption
+  has_one :coupon, through: :coupon_redemption
 
-  def redeem_coupon(coupon)
-    coupon = coupon || self.coupons.last 
-    regular_price = self.invoice_price
-    if coupon.amount_type.downcase == "percent"
-      self.invoice_price = regular_price - ( regular_price * (coupon.amount * 0.01).to_i )
-    else
-      self.invoice_price = regular_price - coupon.amount
+  # optional coupon parameter or get last coupon
+  def redeem_coupon(coupon=nil)
+
+    # use coupon passed in as parameter or appointment's current coupon
+    coupon = coupon || self.coupon 
+
+    # if a coupon was passed in or is attached to appointment then
+    if !coupon.nil?
+
+      # set regular invoice price
+      regular_price = self.invoice_price
+
+      # if coupon type is percentage then
+      # change invoice price to discounted by percent
+      if coupon.amount_type.downcase == "percent"
+        self.invoice_price = regular_price - ( regular_price * (coupon.amount * 0.01).to_i )
+
+      # if coupon type is not percentage then it is dollar amount 
+      # change invoice price to be discounted by dollar amount
+      else
+        self.invoice_price = regular_price - coupon.amount
+      end
+      
+      save
     end
-    save
   end
 
   def prep_complete?

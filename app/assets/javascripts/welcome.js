@@ -4,6 +4,8 @@
 //= require welcome/add_family
 //= require welcome/add_nutrition
 //= require welcome/get_started
+//= require welcome/payment_modal
+
 	
 $(document).ready(function() {
 

@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     collection do 
       # /coupons/redeem_coupon
       get :redeem_coupon, to: 'coupons#redeem_coupon', as: 'redeem_coupon'
+      # /coupons/remove_coupon
+      get :remove_coupon, to: "coupons#remove_coupon", as: 'remove_coupon'
     end
   end
 

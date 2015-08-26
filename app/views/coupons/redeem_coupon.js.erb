@@ -1,1 +1,11 @@
-alert("<%=@variable%>");
+
+<% if @invoice_price.nil? %> 
+
+	Kindrdfood.welcome.paymentModal.redeemCoupon.showMessage("<%= j render(:partial => '/layouts/alerts') %>");
+
+<% else %>
+	
+	Kindrdfood.welcome.paymentModal.redeemCoupon.erb("<%=@regular_price%>", "<%=@invoice_price%>", "<%=@coupon_description%>", "<%= j render(:partial => '/layouts/alerts') %>");
+
+<% end %>
+

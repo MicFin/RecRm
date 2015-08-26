@@ -4,11 +4,12 @@ class WelcomeController < Users::RegistrationsController
   include PatientGroupsHelper
   include FamiliesHelper
 	before_filter :check_user_logged_in!
-
+  before_action :get_registration_stage, only: [:get_started, :add_family, :add_nutrition, :add_preferences, :set_appointment]
 
   # User dashboard
   # /welcome/home
   def home
+    
     # update registration for any old users that are already loggin in
     # can remove after older users' registration statuses are updated.
     current_user.update_registration_stage
@@ -95,39 +96,24 @@ class WelcomeController < Users::RegistrationsController
     
     @user = current_user
 
-    # set stage of registration to user's registration stage
-    stage_of_registration = @user.registration_stage
-
-    # If user is a repeat customer then we need to reassign the stage of registration to be based on the appointment and not the user
-    if @user.repeat_customer? 
-
-      # set appointment or create a new one
-      # registration stage should start at 2 for appointments
-      appointment = @user.appointment_in_registration
-      appointment ||= Appointment.create(appointment_host_id: @user.id, status: "In Registration", registration_stage: 2, duration: 60)
-
-      # change stage of registration to the appointment registration stage
-      stage_of_registration = appointment.registration_stage
-    end
-
     # Stage 1 - user confirmed but did not complete account set up
-    if stage_of_registration == 1
+    if @stage_of_registration == 1
       render :get_started
 
     # Stage 2 - user did not create family
-    elsif stage_of_registration == 2
+    elsif @stage_of_registration == 2
       redirect_to welcome_add_family_path
 
     # Stage 3 - user created family but did not save health groups
-    elsif stage_of_registration == 3
+    elsif @stage_of_registration == 3
       redirect_to welcome_add_nutrition_path
 
     # Stage 4 - user saved health groups but did not save diet
-    elsif stage_of_registration == 4
+    elsif @stage_of_registration == 4
       redirect_to welcome_add_preferences_path
 
     # Stage 5 - user did not set up appointment
-    elsif stage_of_registration == 5
+    elsif @stage_of_registration == 5
       redirect_to welcome_set_appointment_path
 
      # Done with registration, return to dashboard
@@ -141,6 +127,10 @@ class WelcomeController < Users::RegistrationsController
   # Select who the appointment is for and build other family member if necessary
   # /welcome/add_family
   def add_family
+
+    if @stage_of_registration < 2
+      redirect_to welcome_get_started_path
+    end
 
     # Gather user's family data
     # from FamiliesHelper
@@ -168,8 +158,8 @@ class WelcomeController < Users::RegistrationsController
     # Height and weight fields come in wrong format, need to clean for database.
     clean_height_and_weight_input
     
-    # Create appointment
-    appointment = Appointment.create(appointment_host_id: @user.id, status: "In Registration", registration_stage: 2)
+    # Get appointment
+    appointment = @user.appointment_in_registration
 
     # If submitted user has a family role then it means the user created a family member or edited an old family member 
     if params[:user][:family_role]
@@ -215,6 +205,10 @@ class WelcomeController < Users::RegistrationsController
   # /welcome/add_nutrition
   def add_nutrition
     
+    if @stage_of_registration < 3
+      redirect_to welcome_get_started_path and return
+    end
+
     # Reassign @user to the appointment's patient focus
     appointment = @user.appointment_in_registration
     @user = appointment.patient_focus
@@ -271,6 +265,10 @@ class WelcomeController < Users::RegistrationsController
   # Select add food preferences information to the user profile 
   # /welcome/add_preferences
   def add_preferences
+
+    if @stage_of_registration < 4
+      redirect_to welcome_get_started_path
+    end
 
     # Reassign @user to the appointment's patient focus
     appointment = @user.appointment_in_registration
@@ -330,10 +328,13 @@ class WelcomeController < Users::RegistrationsController
   # Select appointment time and checkout
   # /welcome/set_appointment
   def set_appointment
+    if @stage_of_registration < 5
+      redirect_to welcome_get_started_path
+    end
 
     # get appointment
     @appointment = @user.appointment_in_registration
-    
+
     # Get any appointment requests the user has made
     @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
     
@@ -342,6 +343,11 @@ class WelcomeController < Users::RegistrationsController
 
 
   private
+
+    def get_registration_stage
+      # set stage of registration to user's registration stage
+      @stage_of_registration = @user.appointment_registration_stage
+    end
 
     def check_user_logged_in! 
       # Check if user is a dietitian or a user and set @user

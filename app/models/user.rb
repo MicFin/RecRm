@@ -24,6 +24,9 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :patient_groups
   before_destroy { patient_groups.clear }
 
+  has_many :coupon_redemptions 
+  has_many :coupons, through: :coupon_redemptions
+  
 	has_many :appointments
   has_many :patient_focus, :class_name => "Appointment", :foreign_key => "patient_focus_id"
   has_many :appointment_hosts, :class_name => "Appointment", :foreign_key => "appointment_host_id"
@@ -43,6 +46,28 @@ class User < ActiveRecord::Base
   # validates timezone is created
   # allows nil if no time zone is saved
   validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map.keys, :allow_blank => true
+
+
+  # Gets a users appointment registration stage or self registration stage if first time
+  def appointment_registration_stage
+
+    # If user is a repeat customer then
+    if self.repeat_customer? 
+
+      # set appointment or create a new one
+      # registration stage should start at 2 for appointments
+      appointment = self.appointment_in_registration || Appointment.create(appointment_host_id: self.id, status: "In Registration", registration_stage: 2,duration: 60)
+
+      # change stage of registration to the appointment registration stage
+      stage_of_registration = appointment.registration_stage
+
+    # If not a repeat customer then 
+    # set stage of registration to user's registration stage
+    else
+      stage_of_registration = self.registration_stage
+    end 
+    return stage_of_registration
+  end
 
   # return the user's appointment currently in registration or returns nil
   def appointment_in_registration

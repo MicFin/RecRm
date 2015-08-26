@@ -1,6 +1,8 @@
 class Coupon < ActiveRecord::Base
 
   has_many :coupon_redemptions
+  has_many :appointments, through: :coupon_redemptions
+  has_many :users, through: :coupon_redemptions
 
   def redeemed
     self.redemptions_count = self.redemptions_count + 1
@@ -16,7 +18,7 @@ class Coupon < ActiveRecord::Base
     super(age) #must add this otherwise you need to add this thing and place the value which you want to save. 
   end
 
- def code=(value)
+  def code=(value)
     # custom actions
     ###
     write_attribute(:code, value)

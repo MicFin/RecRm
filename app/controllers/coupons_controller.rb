@@ -57,25 +57,44 @@ class CouponsController < ApplicationController
 
     coupon_code = params[:coupon_code]
 
-    # Look for a coupon that meets the following conditions 
-      # valid from is greater than or equal to today
-      # valid until is less than or equal to today
-      # coupon code matches user input and status is active
-    coupon = Coupon.where("valid_from <= ? AND valid_until >= ?", Date.today, Date.today).where({
-        code: coupon_code,
-        status: "Active"
-      }).last
+    # If coupon is redeemable
+    if CouponRedeemer.redeem_coupon(coupon_code, current_user)
 
-    # Check if coupon redemptions are maxed out
-    if coupon && (coupon.redemption_limit > coupon.redemptions_count)
-      @variable = "yes coupon"
-      create_coupon_redemption(coupon)
-      
+      # Get appointment in registration
+      appointment = current_user.appointment_in_registration
+
+      # Set new prices and coupon description
+      @invoice_price = appointment.show_invoice_price
+      @regular_price = appointment.show_regular_price
+      @coupon_description = appointment.coupon_redemption.coupon.description
+
+      flash.clear
+      flash.now[:notice] = 'Coupon applied!'
+
     else
-      @variable = "no coupon"
+
+      # alert user coupon is not valid
+      flash.clear
+      flash.now[:alert] = 'Invalid coupon'
     end
+
     respond_to do |format|
-      format.js 
+      format.js
+    end
+  end
+
+ # GET /coupon/remove_coupon
+  def remove_coupon
+
+    current_user.appointment_in_registration.remove_coupon
+    @invoice_price = current_user.appointment_in_registration.show_invoice_price
+
+    # alert user coupon has been removed
+    flash.clear
+    flash.now[:alert] = 'Coupon removed'
+
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -91,32 +110,6 @@ class CouponsController < ApplicationController
 
   private
 
-  def create_coupon_redemption(coupon)
-
-    # Get users appointment currently in registration
-    appointment = current_user.appointment_in_registration
-
-    # Create CouponRedemption with status of Incomplete
-    redemption = CouponRedemption.new(coupon_id: coupon.id, user_id: current_user.id, appointment_id: appointment.id, status: "Incomplete")
-
-
-    if redemption.save 
-
-      # Apply coupon to appointment
-      appointment.redeem_coupon(coupon)
-
-      # Redeem Coupon 
-      # Should be AFTER payment completed
-      coupon.redeemed
-
-      # Change CouponRedemption status to Completed
-      redemption.status = "Completed"
-      redemption.save
-    end
-    
-
-
-  end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_coupon

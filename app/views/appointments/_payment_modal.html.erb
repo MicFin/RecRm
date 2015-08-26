@@ -19,25 +19,50 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Select a different time and date</button>
           </div>
           <% if @user.qol_referral == false %>
+
+
             <div class="col-xs-8 col-xs-offset-2 text-center">
-            
               <% if @appointment.regular_price != @appointment.invoice_price %>
-                <h1><%=@appointment.show_duration%>: <del><%=@appointment.show_regular_price%></del> <%= @appointment.show_invoice_price%></h1>
-                <h2>Early Access Discount</h2>
+             
+
+                <div class="col-xs-12 form-group">
+                  <h1><%=@appointment.show_duration%>: <del class="regular-price"><%=@appointment.show_regular_price%></del> <span class="invoice-price"><%= @appointment.show_invoice_price%></span></h1>
+                  <h2 id="coupon-description"><%=@appointment.coupon_redemption.coupon.description%></h2>
+                </div>
+                <div class="col-xs-12 form-group">
+                  <div class="col-xs-8">
+                    <input type="text" class="form-control hidden" id="coupon-field" placeholder="Enter discount code" name="coupon">
+                  </div>
+                  <div class="col-xs-2">
+                    <button id="coupon-button" class="btn btn-sm btn-link hidden">APPLY DISCOUNT</button>
+                    <button id="remove-coupon-button" class="btn btn-link">remove discount</button>
+                  </div>
+                </div>
 
               <% else %>
-                <h1><%=@appointment.show_duration%>: <%= @appointment.show_invoice_price%></h1>
+            
+
+                <div class="col-xs-12 form-group">
+                  <h1><%=@appointment.show_duration%>: <span class="invoice-price"><%= @appointment.show_invoice_price%></span></h1>
+                  <h2 id='coupon-description'></h2>
+                </div>
+                <div class="cl-xs-12 form-group">
+                  <div class="col-xs-8">
+                    <input type="text" class="form-control" id="coupon-field" placeholder="Enter discount code" name="coupon">
+                  </div>
+                  <div class="col-xs-2">
+                    <button id="coupon-button" class="btn btn-sm btn-link">APPLY DISCOUNT</button>
+                    <button id="remove-coupon-button" class="btn btn-link hidden">remove discount</button>
+                  </div>
+                </div>
+
+
               <% end %>
-          
             </div>
           <% end %>
         </div>
         <div class="row form-group">
-          <div class="col-xs-4 col-xs-offset-3">
-            <input type="text" class="form-control" id="coupon-field" placeholder="Enter discount code" name="coupon">
-          </div>
-          <div class="col-xs-2">
-            <button id="coupon-button" class="btn btn-sm btn-link">APPLY DISCOUNT</button>
+          <div class="col-xs-8 col-xs-offset-2 discount-response">
           </div>
         </div>
         <%= simple_form_for(@appointment) do |f| %>

@@ -388,6 +388,7 @@ class AppointmentsController < ApplicationController
         # check if credit card should be saved to stripe account
         credit_card_usage = params[:credit_card_usage]
         
+        # Update the appointment and make the stripe payment
         @appointment.update_with_payment(credit_card_usage)
 
 

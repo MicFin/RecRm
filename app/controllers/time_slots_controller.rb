@@ -34,7 +34,7 @@ class TimeSlotsController < ApplicationController
       # Get all time slots that fit criteria
       # Must be "Current", vacant, correct duration
       # and not start within 2 day buffer unless nitko for now
-      if current_user.email == "d.nitko@comcast.net")
+      if current_user.email == "d.nitko@comcast.net"
         day_buffer = 0
       else
         day_buffer = 2 

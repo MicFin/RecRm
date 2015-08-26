@@ -52,21 +52,21 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # GET /appointments/begin_registration/:duration
-  def begin_registration
-    @user = current_user
+  # # GET /appointments/begin_registration/:duration
+  # def begin_registration
+  #   @user = current_user
 
-    # Set appointment to appointment in registration or create a new one
-    @appointment = @user.appointment_in_registration || 
-    Appointment.create(appointment_host_id: @user.id, status: "In Registration", registration_stage: 2)
+  #   # Set appointment to appointment in registration or create a new one
+  #   @appointment = @user.appointment_in_registration || 
+  #   Appointment.create(appointment_host_id: @user.id, status: "In Registration", registration_stage: 2)
 
-    # Set appointment duration to parameter 30 or 60
-    @appointment.duration = params[:duration]
-    @appointment.save
+  #   # Set appointment duration to parameter 30 or 60
+  #   @appointment.duration = params[:duration]
+  #   @appointment.save
 
-    # Redirect to welcome get started path to complete appointment registration 
-    redirect_to welcome_get_started_path
-  end
+  #   # Redirect to welcome get started path to complete appointment registration 
+  #   redirect_to welcome_get_started_path
+  # end
 
 
   def select_time

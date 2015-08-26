@@ -33,8 +33,13 @@ class TimeSlotsController < ApplicationController
 
       # Get all time slots that fit criteria
       # Must be "Current", vacant, correct duration
-      # and not start within 2 day buffer
-      day_buffer = 2 
+      # and not start within 2 day buffer unless nitko for now
+      if current_user.email == "d.nitko@comcast.net")
+        day_buffer = 0
+      else
+        day_buffer = 2 
+      end
+
       @time_slots = TimeSlot.where(status: "Current").where(vacancy: true).where(minutes: duration).where(['start_time > ?', DateTime.now + day_buffer.days]) 
       
       # Temporary fix for only sending back Tara's schedule to clients she gives a link to and are marked as having tara_rerral as true

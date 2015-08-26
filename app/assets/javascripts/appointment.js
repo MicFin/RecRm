@@ -61,7 +61,7 @@ payment = {
 // # The handleStripeResponse function takes two arguments: a status and a response. If the status has a value of 200 then the transaction succeeded and we’ll have a response token stored in response.id. For now we’ll just alert the response value so that we can see what it is. If the status isn’t 200 then an error has occurred so we’ll alert the error message.
   handleStripeResponse: function(status, response) {
     if (status === 200) {
-      $('#appointment_stripe_card_token').val(response.id);
+      $('#purchase_stripe_card_token').val(response.id);
       $('form').submit();
     } else {
       $('#stripe_error').text(response.error.message);

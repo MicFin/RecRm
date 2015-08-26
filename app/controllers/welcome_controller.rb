@@ -9,7 +9,7 @@ class WelcomeController < Users::RegistrationsController
   # User dashboard
   # /welcome/home
   def home
-    
+
     # update registration for any old users that are already loggin in
     # can remove after older users' registration statuses are updated.
     current_user.update_registration_stage
@@ -95,7 +95,7 @@ class WelcomeController < Users::RegistrationsController
   def get_started
     
     @user = current_user
-
+    
     # Stage 1 - user confirmed but did not complete account set up
     if @stage_of_registration == 1
       render :get_started
@@ -160,7 +160,7 @@ class WelcomeController < Users::RegistrationsController
     
     # Get appointment
     appointment = @user.appointment_in_registration
-
+    
     # If submitted user has a family role then it means the user created a family member or edited an old family member 
     if params[:user][:family_role]
       

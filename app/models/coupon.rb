@@ -1,7 +1,7 @@
 class Coupon < ActiveRecord::Base
 
   has_many :coupon_redemptions
-  has_many :appointments, through: :coupon_redemptions
+  has_many :purchases, through: :coupon_redemptions
   has_many :users, through: :coupon_redemptions
 
   def redeemed

@@ -202,11 +202,19 @@ var SelectApptCalendar = {
         var start = calEvent.start;
         var end = calEvent.end;
         var appt_id = $("#set-appt-time").data("appt-id")
+        // $.ajax({
+        //    type: "GET",
+        //    datatype: "json",
+        //    data: {time_slot_id: calEvent.id},
+        //    url: "/appointments/"+appt_id+"/edit",
+        //    success: function(response){
+        //    } 
+        // });
         $.ajax({
            type: "GET",
            datatype: "json",
            data: {time_slot_id: calEvent.id},
-           url: "/appointments/"+appt_id+"/edit",
+           url: "/appointments/" + appt_id + "/purchases/new",
            success: function(response){
            } 
         });

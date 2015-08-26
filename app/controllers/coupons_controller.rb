@@ -54,19 +54,20 @@ class CouponsController < ApplicationController
 
   # GET /coupon/redeem_coupon
   def redeem_coupon
-
+    
     coupon_code = params[:coupon_code]
 
     # If coupon is redeemable
     if CouponRedeemer.redeem_coupon(coupon_code, current_user)
 
       # Get appointment in registration
-      appointment = current_user.appointment_in_registration
+      purchase = current_user.appointment_in_registration.purchase
 
       # Set new prices and coupon description
-      @invoice_price = appointment.show_invoice_price
-      @regular_price = appointment.show_regular_price
-      @coupon_description = appointment.coupon_redemption.coupon.description
+      @invoice_price = purchase.show_invoice_price
+      @invoice_cost = purchase.show_invoice_cost
+      
+      @coupon_description = purchase.coupon_redemption.coupon.description
 
       flash.clear
       flash.now[:notice] = 'Coupon applied!'
@@ -85,9 +86,9 @@ class CouponsController < ApplicationController
 
  # GET /coupon/remove_coupon
   def remove_coupon
-
-    current_user.appointment_in_registration.remove_coupon
-    @invoice_price = current_user.appointment_in_registration.show_invoice_price
+    appointment = current_user.appointment_in_registration
+    appointment.purchase.remove_coupon
+    @invoice_price = appointment.purchase.show_invoice_price
 
     # alert user coupon has been removed
     flash.clear

@@ -1,0 +1,14 @@
+<% if @user.qol_referral === true %>
+
+	$("#set-appointment-page").after("<%= j render(:partial => 'purchases_modal') %>");
+	$('#paymentModal').modal();
+	// payment.setupForm();
+
+
+<% else %>
+
+	$("#set-appointment-page").after("<%= j render(:partial => 'purchases_modal') %>");
+	$('#paymentModal').modal();
+	payment.setupForm();
+
+<% end %>

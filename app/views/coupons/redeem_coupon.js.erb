@@ -5,7 +5,7 @@
 
 <% else %>
 	
-	Kindrdfood.welcome.paymentModal.redeemCoupon.erb("<%=@regular_price%>", "<%=@invoice_price%>", "<%=@coupon_description%>", "<%= j render(:partial => '/layouts/alerts') %>");
+	Kindrdfood.welcome.paymentModal.redeemCoupon.erb("<%=@invoice_cost%>", "<%=@invoice_price%>", "<%=@coupon_description%>", "<%= j render(:partial => '/layouts/alerts') %>");
 
 <% end %>
 

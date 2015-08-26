@@ -51,21 +51,22 @@ class User < ActiveRecord::Base
   # Gets a users appointment registration stage or self registration stage if first time
   def appointment_registration_stage
 
+    # set appointment or create a new one
+    # appointment registration stage should start at 2 for appointments
+    appointment = self.appointment_in_registration || Appointment.create(appointment_host_id: self.id, status: "In Registration", registration_stage: 2,duration: 60)
+
     # If user is a repeat customer then
+    # change stage of registration to the appointment registration stage
     if self.repeat_customer? 
-
-      # set appointment or create a new one
-      # registration stage should start at 2 for appointments
-      appointment = self.appointment_in_registration || Appointment.create(appointment_host_id: self.id, status: "In Registration", registration_stage: 2,duration: 60)
-
-      # change stage of registration to the appointment registration stage
       stage_of_registration = appointment.registration_stage
 
     # If not a repeat customer then 
-    # set stage of registration to user's registration stage
+    # Set stage of registration to user's registration stage
     else
       stage_of_registration = self.registration_stage
+
     end 
+
     return stage_of_registration
   end
 

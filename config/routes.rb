@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   # should change these to not being opened to all users
   resources :packages
-  resources :purchases
   resources :plans 
 
   resources :coupons do 
@@ -90,7 +89,9 @@ Rails.application.routes.draw do
       post 'appointments/create_appointment_request_times', to: 'appointments#create_appointment_request_times', as: 'create_appointment_request_times'
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_user_survey_update'
       patch 'appointments/:id/update_duration', to: "appointments#update_duration", as: "appointments_update_duration"
+      post 'appointments/:appointment_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_payment'
       resources :appointments do 
+        resources :purchases 
         resources :surveys do 
           resources :questions 
         end

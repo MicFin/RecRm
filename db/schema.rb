@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821181851) do
+ActiveRecord::Schema.define(version: 20150826070211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,10 +171,8 @@ ActiveRecord::Schema.define(version: 20150821181851) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
-    t.integer  "appointment_id"
   end
 
-  add_index "coupon_redemptions", ["appointment_id"], name: "index_coupon_redemptions_on_appointment_id", using: :btree
   add_index "coupon_redemptions", ["coupon_id"], name: "index_coupon_redemptions_on_coupon_id", using: :btree
   add_index "coupon_redemptions", ["purchase_id"], name: "index_coupon_redemptions_on_purchase_id", using: :btree
   add_index "coupon_redemptions", ["user_id"], name: "index_coupon_redemptions_on_user_id", using: :btree
@@ -357,6 +355,11 @@ ActiveRecord::Schema.define(version: 20150821181851) do
     t.string   "purchasable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stripe_card_token"
+    t.integer  "invoice_price"
+    t.integer  "invoice_cost"
+    t.string   "status"
+    t.datetime "completed_at"
   end
 
   add_index "purchases", ["purchasable_id", "purchasable_type"], name: "index_purchases_on_purchasable_id_and_purchasable_type", using: :btree

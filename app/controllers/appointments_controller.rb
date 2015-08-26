@@ -275,10 +275,8 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/edit
   def edit
 
-    ## for first edit use case it is when the user/client is selecting a time for their appointment, that is why it asks for time_slot chosen.  should be different method than edit method
-    if params[:time_slot_id]
-      @time_slot = TimeSlot.find(params[:time_slot_id])
-    elsif @appointment.status == "Follow Up Unpaid"
+   
+    if @appointment.status == "Follow Up Unpaid"
       # unpaid appointment that is edited after a dietitian creates the follow up unpaid appointment
       # set new_appointment variable for next_session_form.html.erb
       @new_appointment = @appointment
@@ -350,16 +348,9 @@ class AppointmentsController < ApplicationController
         @appointment.room_id = @new_room.id
         @appointment.save
       end
-    #### should remove above
-
-
-
-    end
-    # if update saves
-
 
     ##### added for manually assigning a room, should be removed from logic
-    if params[:new_room_needed] == "true"
+    elsif params[:new_room_needed] == "true"
         
         # @new_session = @opentok.create_session 
         # @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
@@ -379,23 +370,23 @@ class AppointmentsController < ApplicationController
 
     elsif @appointment.update(appointment_params)
       
-      # if stripe card payment update incnluded in update then user is paying 
+      # # if stripe card payment update incnluded in update then user is paying 
 
-      if appointment_params[:stripe_card_token]
-        # pay for appointment
-        token = appointment_params[:stripe_card_token]
+      # if appointment_params[:stripe_card_token]
+      #   # pay for appointment
+      #   token = appointment_params[:stripe_card_token]
     
-        # check if credit card should be saved to stripe account
-        credit_card_usage = params[:credit_card_usage]
+      #   # check if credit card should be saved to stripe account
+      #   credit_card_usage = params[:credit_card_usage]
         
-        # Update the appointment and make the stripe payment
-        @appointment.update_with_payment(credit_card_usage)
+      #   # Update the appointment and make the stripe payment
+      #   @appointment.update_with_payment(credit_card_usage)
 
 
-        @pre_appt_survey = Survey.generate_for_appointment(@appointment, current_user)
+      #   @pre_appt_survey = Survey.generate_for_appointment(@appointment, current_user)
 
       # or when admin dietitian assigns dietitian
-      elsif (@appointment.dietitian_id != nil)
+      if (@appointment.dietitian_id != nil)
         ## assumes that appointment has been paid for and assigned a dietitian by admin dietitian
         
         @new_session = @opentok.create_session 
@@ -431,7 +422,7 @@ class AppointmentsController < ApplicationController
       # other updates that could happen
       else
 
-          
+         
       end
     end
     

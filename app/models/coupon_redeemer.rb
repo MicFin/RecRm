@@ -27,11 +27,12 @@ class CouponRedeemer < ActiveRecord::Base
     # If the coupon is active apply it and return true
     if coupon 
 
-      # Get users appointment currently in registration
+      # Get users purchase currently in registration
       appointment = user.appointment_in_registration
-  
-      # Apply coupon to appointment price
-      appointment.redeem_coupon(coupon)
+      purchase = appointment.purchase
+
+      # Apply coupon to purchase
+      purchase.redeem_coupon(appointment, coupon)
 
       return true
 

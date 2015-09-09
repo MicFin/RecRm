@@ -1,0 +1,35 @@
+.landing-page {
+
+	// navigation bar
+	.navbar {
+		margin-bottom: 0px;
+		min-height: 50px;
+
+		// navigation list 
+		ul.navbar-nav{
+			margin: 10px;
+
+			// last navigation list item is for LOGIN
+			li:last-child a {
+				color: $brand-light-orange;
+			}
+		}
+
+		// navigation logo
+		.navbar-brand{
+			padding: 0px;
+		}
+	} // end navigation bar styling
+
+	nav{
+		// Sizes logo for responsive nav
+		.landing-page-logo{
+			@media (max-width: $screen-sm-max) {
+				max-height: 50px;
+			}
+			@media (min-width: $screen-sm-max) {
+				max-height: 70px;	
+			}		
+		}
+	}
+}

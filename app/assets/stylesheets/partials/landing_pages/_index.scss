@@ -1,0 +1,324 @@
+// need to replace ID's with .landing-page class
+// and add specific ID's that are accurate
+.landing-page {
+
+	@extend .container-fluid;
+
+	// Main under Nav and above Footer
+	.landing-page-body {
+
+		// Spacing for fixed responsive nav
+		@media (max-width: $screen-sm-max) {
+			margin-top: 50px;
+		}
+		@media (min-width: $screen-sm-max) {
+			margin-top: 70px;	
+		}		
+
+
+		// fonts
+		h2.heading, h3.heading {
+			color: $brand-carrot-green;
+		}
+		p.details {
+			font-size: 18px;
+		}
+
+		.alerts-container{
+			@include make-row( );
+		}
+
+		.splash-image-section {
+			@include make-row( );
+			background-image: url("food/veggies-landing.jpg");
+		  background-size: cover;
+		  background-repeat: no-repeat;
+		  position: relative;
+		  min-height: 450px;
+		  text-align: center;
+		  color: $brand-white;
+		  padding: 20px;
+			h1, h2, h3, h4, h5, h6 {
+				text-shadow: 2px 2px 4px $brand-black;
+			}
+			h3.tag-line{
+				width: 75%;
+			}
+
+			// tag line
+			.left-splash-column {
+				@include make-xs-column( 12 );
+			  @include make-sm-column( 5 );
+			  @include make-md-column( 5 );
+			  @include make-lg-column( 5 );
+			  @include make-sm-column-offset( 1 );
+			  @extend .text-left;
+				margin-top: 50px;
+				h1 {
+					font-size: 60px;
+				}
+				button{
+				  margin-top: 25px;
+				}
+			}
+
+			// light gray outter outline
+			.right-splash-column{
+				@include make-xs-column( 12 );
+				@include make-sm-column( 6 );
+			  background-color: transparentize($gray-darker, .8);
+		  	border-radius: 15px;
+		  	
+		  	padding: 20px;
+
+		  	// dark gray inner outline
+		  	> div {
+				  background-color: transparentize($gray-darker, .5);
+				  border-radius: 15px;
+				  text-align: center;
+				  padding: 10px;
+				  overflow: hidden;
+
+				  // padding around text
+			  	> p {
+			  		padding: 0 50px;
+			  	}
+
+			  	> form {
+			  		@include make-row( ); 
+			  		@extend .text-left;
+
+			  		.form-row {
+			  			@extend .form-group;
+			  			@include make-xs-column( 12 );
+			  			@include make-sm-column( 8 );
+			  			@include make-sm-column-offset( 2 );
+			  		}
+			  	}
+				}
+			}
+		}
+
+		// landing page row
+		.landing-page-row {
+			@include make-row( );
+			padding: 5%;
+
+			// hr
+			hr.small-hr {
+				width: 25%;
+		    border: none;
+		    height: 1px;
+		    /* Set the hr color */
+		    color: $gray-darker; /* old IE */
+		    background-color: $gray-light; /* Modern Browsers */
+		    margin-left: 0px;
+			}
+
+			// two column left template
+			&.two-column-left {
+				.two-column-text {
+					@include make-xs-column( 12 );
+					@include make-sm-column( 6 );
+					@extend .text-left;
+				}
+				.two-column-image {
+					@include make-xs-column( 12 );
+				  @include make-sm-column( 4 );
+				  @include make-sm-column-offset( 1 );
+				  background-image: url("temp/happy-family.png");
+				  background-size: cover;
+				  background-repeat: no-repeat;
+				  min-height: 400px;
+				  background-color: transparent;
+
+			    /* you need to match the shadow color to your background or image border for the desired effect*/
+			    border-color: $brand-bg;
+				  box-shadow: 0 10px 30px 20px $brand-bg inset;
+				  
+				  background-position: right -30px bottom -15px;
+				}
+			}
+
+			// two column right template
+			&.two-column-right {
+				.two-column-text {
+					@include make-xs-column( 12 );
+					@include make-sm-column( 6 );
+					@include make-sm-column-offset( 1 );
+					@extend .text-left;
+				}
+				.two-column-image {
+					@include make-xs-column( 12 );
+				  @include make-sm-column( 4 );
+				  @include make-sm-column-offset( 1 );
+					background-image: url("temp/cooking.png");
+				  background-size: cover;
+				  background-repeat: no-repeat;
+				  min-height: 400px;
+				  background-color: transparent;
+
+			     // you need to match the shadow color to your background or image border for the desired effect
+			    border-color: $brand-bg;
+				  // box-shadow: 0 0 30px 20px $brand-bg inset;
+				  
+				  background-position: right -30px bottom -15px;
+				}
+				
+			}
+
+			// three column template
+			&.three-column, &.four-column{
+				h2.heading{
+					margin-bottom: 70px;
+				}
+				ul{
+					text-align:left;
+					padding: 25px;
+				}
+				h3 {
+					min-height: 50px;
+					@extend .heading;
+				}
+				img{
+					height: 100px;
+		    	margin: 0 auto;
+		    	// first aid image is small but with large border
+		    	&.first-aid{
+		    		height: 200px;
+		    		margin: -50px auto;
+		    	}
+				}
+				.three-column-container, .four-column-container {
+					@include make-xs-column( 10 );
+				  @include make-xs-column-offset( 1 );
+				  @extend .text-center;
+				  .three-column-one{
+				  	@include make-xs-column( 12 );
+				  	@include make-sm-column( 4 );
+				  }
+				  .four-column-one{
+				  	@include make-xs-column( 12 );
+				  	@include make-sm-column( 3 );
+				  }
+				  
+				}
+			}
+
+			// two column list template
+			&.two-column-list{
+
+				.two-column-list-left{
+					@include make-xs-column( 4 );					
+				}
+				.two-column-list-right {
+					@include make-xs-column( 8 );
+				}
+
+			}
+
+			&.three-column-design {
+				.three-column-container{
+					@include make-xs-column( 12 );
+					margin-top: 75px;
+					.column-banner {
+						@include make-xs-column( 12 );
+						@include make-xs-column( 3 );
+						margin: 4%;
+						background-color: $gray-lighter;
+						@include box-shadow(1px, 1px, 35px, $gray-light, $inset: false);
+						min-height: 400px;
+						.banner-container {
+					    width: 125%;
+					    text-align: center;
+					    margin-left: -13%;
+					    background-color: green;
+					    padding: 5%;
+					    position: relative;
+					    z-index: 0;
+							p {
+						    z-index: 100;
+								position: relative;
+								font-size: 20px;
+								color: white;
+							}
+							.banner-circle {
+						    position: absolute;
+						    height: 150px;
+						    width: 150px;
+						    top: -72px;
+						    left: 23%;
+						    background-color: inherit;
+						    border-radius: 100px;
+
+								span {
+
+								}
+							}
+						}
+						ul {
+							list-style: none;
+	    				margin-top: 50px;
+							text-align: center;
+							padding-left: 0;
+							li {
+						    margin-top: 10px;
+	    					margin-bottom: 10px;
+							}
+						}
+					}
+				}
+			}
+			// divider template
+			&.divider {
+				background-image: url("landing_page/cell_phone_in_hand.jpg");
+			  background-size: cover;
+			  background-repeat: no-repeat;
+			  position: relative;
+			  color: $brand-white;
+			  background-position: right 0px bottom -200px;
+
+			  // for xs small screen change position
+			  @media screen and (max-width: $screen-xs-max){
+			  	background-position: right 0px bottom 0px;
+			  
+			  }
+			  text-shadow: 2px 2px 4px black;
+			}
+
+			// testimonial section
+			&.landing-page-testimonial{
+				background: $gray-divider;
+				color: $brand-light-green;
+				.testimonial-container{
+					@extend .text-center;
+					@include make-xs-column( 12 );
+				}
+			}
+
+			// call to action section
+			&.call-to-action-bar{
+				background-color: $brand-light-green;
+				color: $brand-white;
+			}
+		}
+		
+	}
+
+
+	// for QOL page only
+	.qol-container{
+		background-color: $brand-white;
+		img{
+			max-height: 300px;
+		}
+		span{
+			font-size: 200px;
+  		color: $brand-light-orange;
+		}
+		.qol-update{
+			margin-top: 5%;
+		}
+	}
+}
+

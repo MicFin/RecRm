@@ -1,0 +1,26 @@
+
+
+#our-solution-landing-page{
+
+		.landing-page-row{
+			
+
+			&.two-column-center {
+				.two-column-container{
+					@include make-xs-column( 10 );
+				  @include make-xs-column-offset( 1 );
+				  @extend .text-center;
+				  .two-column-one{
+				  	@include make-xs-column( 12 );
+				  	@include make-sm-column( 6 );
+				  	img{
+				  		margin-top: 50px;
+				  		margin-bottom: 50px;
+				  	}
+				  }
+				}
+			}
+		}
+
+
+}

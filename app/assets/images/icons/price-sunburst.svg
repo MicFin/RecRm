@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 155 155"
+	 enable-background="new 0 0 155 155" xml:space="preserve">
+<metadata>
+	<sfw  xmlns="&ns_sfw;">
+		<slices></slices>
+		<sliceSourceBounds  height="492.4" width="764.6" x="-75.6" y="-492.7" bottomLeftOrigin="true"></sliceSourceBounds>
+	</sfw>
+</metadata>
+<polygon fill="#BEDABE" points="139.2,83.7 149.7,77.7 139.2,71.7 148.3,63.7 136.9,59.9 144.2,50.3 132.3,48.7 137.6,37.9 
+	125.6,38.7 128.7,27.1 117.1,30.2 117.9,18.2 107,23.5 105.5,11.6 95.9,18.9 92,7.5 84.1,16.5 78.1,6.1 72,16.5 64.1,7.5 60.2,18.9 
+	50.7,11.6 49.1,23.5 38.3,18.2 39.1,30.2 27.4,27.1 30.6,38.7 18.5,37.9 23.9,48.7 11.9,50.3 19.3,59.9 7.8,63.7 16.9,71.7 
+	6.5,77.7 16.9,83.7 7.8,91.7 19.3,95.6 11.9,105.1 23.9,106.7 18.5,117.5 30.6,116.7 27.4,128.3 39.1,125.2 38.3,137.2 49.1,131.9 
+	50.7,143.9 60.2,136.5 64.1,147.9 72,138.9 78.1,149.3 84.1,138.9 92,147.9 95.9,136.5 105.5,143.9 107,131.9 117.8,137.2 
+	117.1,125.2 128.7,128.3 125.6,116.7 137.6,117.5 132.3,106.7 144.2,105.1 136.9,95.6 148.3,91.7 "/>
+<g>
+	<defs>
+		<rect id="SVGID_3_" x="-19.3" y="-9.5" width="193.8" height="164.4"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_3_"  overflow="visible"/>
+	</clipPath>
+	<polygon clip-path="url(#SVGID_2_)" fill="none" stroke="#389E49" stroke-width="5.5796" points="139.2,83.7 149.7,77.7 
+		139.2,71.7 148.3,63.7 136.9,59.9 144.2,50.3 132.3,48.7 137.6,37.9 125.6,38.7 128.7,27.1 117.1,30.2 117.9,18.2 107,23.5 
+		105.5,11.6 95.9,18.9 92,7.5 84.1,16.5 78.1,6.1 72,16.5 64.1,7.5 60.2,18.9 50.7,11.6 49.1,23.5 38.3,18.2 39.1,30.2 27.4,27.1 
+		30.6,38.7 18.5,37.9 23.9,48.7 11.9,50.3 19.3,59.9 7.8,63.7 16.9,71.7 6.5,77.7 16.9,83.7 7.8,91.7 19.3,95.6 11.9,105.1 
+		23.9,106.7 18.5,117.5 30.6,116.7 27.4,128.3 39.1,125.2 38.3,137.2 49.1,131.9 50.7,143.9 60.2,136.5 64.1,147.9 72,138.9 
+		78.1,149.3 84.1,138.9 92,147.9 95.9,136.5 105.5,143.9 107,131.9 117.8,137.2 117.1,125.2 128.7,128.3 125.6,116.7 137.6,117.5 
+		132.3,106.7 144.2,105.1 136.9,95.6 148.3,91.7 	"/>
+	<path clip-path="url(#SVGID_2_)" fill="#389E49" d="M78.1,140.6c34.7,0,62.9-28.2,62.9-62.9s-28.2-62.9-62.9-62.9
+		S15.1,43,15.1,77.7S43.3,140.6,78.1,140.6"/>
+	<circle clip-path="url(#SVGID_2_)" fill="none" stroke="#BEDABE" stroke-width="2.7885" cx="78.1" cy="77.7" r="62.9"/>
+</g>
+</svg>

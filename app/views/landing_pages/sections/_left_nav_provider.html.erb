@@ -1,0 +1,16 @@
+<nav class="left-nav">
+	<ul>
+		<%= active_link_to landing_pages_benefits_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+      Benefits to your patient
+    <% end %>
+		<%= active_link_to landing_pages_more_benefits_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+      Benefits to your practice
+    <% end %>
+		<%= active_link_to landing_pages_care_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+      For hospitals & managed care
+    <% end %>
+		<%= active_link_to landing_pages_refer_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+      How do I refer?
+    <% end %>
+	</ul>
+</nav>

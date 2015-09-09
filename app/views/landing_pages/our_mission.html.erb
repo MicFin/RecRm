@@ -1,0 +1,64 @@
+
+<div id="quality-landing-page" class="landing-page">
+	<%= render "/landing_pages/landing_page_nav" %>
+	<div class="landing-page-body">
+		<section id="alerts-container">
+			<%= render "/layouts/alerts" %>
+		</section>
+		<section class="splash-image-section">
+			<div class="left-splash-column">
+				<h1>Everyone deserves to enjoy great tasting food that is healthy and safe.</h1>
+			</div>
+		</section>
+		<section class="landing-page-row left-navigation">
+			<div class="left-nav-container">
+				<%= render "/landing_pages/sections/left_nav_why_kindrdfood" %>
+			</div>
+			<div class="left-nav-text-container">
+				<h2 class="heading">Kindrdfood is a mission driven company.</h2>
+				<p class="details">Help every household enjoy great tasting, healthy food with daily ease, regardless of any restrictions that limit the table. </p>
+				<hr class="small-hr">
+				<h3>Does our mission fit what you need?  Schedule your first session with a Kindrd Nutritionist.</h3>
+				<button class="btn btn-lg btn-primary">SCHEDULE NOW!</button>
+			</div>
+		</section>
+
+
+		<section class="landing-page-row our-story">
+			<div class="col-xs-12">
+				<h2 class="heading">Our Story </h2>
+				<p class="details">Our founding team met in late 2013 at a hackathon held at Boston Children’s Hospital (hacking pediatrics[link]). The team that we led won the hackathon, and a few of us stepped away to rethink what the most meaningful business would be to have an impact on gaps in nutrition and how we choose to eat as a society. After months of research into healthcare challenges and food sourcing challenges, the issues became clear, we formed the company and started to build the technology, the team and the plan to evolve. </p>
+
+				<p class="details">Today our team is inspired to offer the best possible guidance to people who have to change the way that they eat because of a medical condition, a dietary restriction or normal changes in the family. We work everyday with a love for good food, a love for what we’re doing, a passion to support those who need our help and a respect for anyone who takes on any medical and practical challenges at their table, and still demands great taste and variety in their meals.</p> 
+
+				<div class="col-xs-12">
+					<div class="col-xs-4">
+						<%=image_tag("temp/cooking.png", class: "img-responsive")%>
+					</div>
+					<div class="col-xs-4">
+						<%=image_tag("temp/cooking.png", class: "img-responsive")%>
+					</div>
+					<div class="col-xs-4">
+						<%=image_tag("temp/cooking.png", class: "img-responsive")%>
+					</div>
+				</div>
+				<h2 class="heading">The problem we see and our vision</h2>
+
+				<p class="details">Everyone in our society has a complicated and intimate relationship with the food that we eat, both as individuals and as families. Over the past century we have detached from our food sources and put our trust in manufacturers and stores to find and filter what we eat. Unfortunately, we have lost a lot in that process, including taste, variety and the ability to feed ourselves with confidence. We have lost the base of knowledge and skills that allow us to make wise choices and prepare delicious food with relative ease. </p>
+
+				<p class="details">Now, with an increase in dietary restrictions as well as the prospect of the use of nutrition as part of our medical care, our society has a challenge to enable the practical use of nutrition guided prevention and treatment. Instead of offering practical support, we leave patients to learn everything on their own, mostly leveraging information that exists online, fragmented, riddled with misinformation and alarmist rhetoric, unfiltered for quality and not personalized. Patients have to learn and change their day-to-day, most often starting from a point where limited food selection and cooking is foreign. </p>
+
+				<p class="details">At Kindrdfood, we believe that everyone should be able to enjoy great tasting food that is healthy and safe. A family taking on change should not feel limited or have to eat food that isn’t healthy, fulfilling and tasty. The path of change starts with excellent guidance, which begins with an expert. Our team of Registered Dietitian Nutritionists and seasoned chefs, come together to assure that our members are matched with the best fit for 1-on-1 personalized guidance, and that all supplemental education materials, recipes and meal plans are verified healthy, safe, and great tasting. </p>
+
+				<p class="details">Kindrdfood’s solution was founded on the vision that support, tools and information should all be in one place, should be accessible when and where you need it, should be of the highest quality and come from verified sources, should be personalized to everyone at the table, should be coordinated with healthcare, but most importantly should be focused on great taste and enjoying every bite. </p>
+				<div class="col-xs-12">
+					<%=image_tag("temp/cooking.png", class: "img-responsive")%>
+				</div>
+			</div>
+		</section>
+		
+		<%= render "/landing_pages/sections/call_to_action_who_we_help" %>
+	
+	</div>
+	<%= render "/layouts/footers/main_footer" %>
+</div>

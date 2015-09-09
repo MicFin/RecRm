@@ -1,0 +1,102 @@
+
+<div id="how-it-works-landing-page" class="landing-page">
+	<%= render "/landing_pages/landing_page_nav" %>
+	<div class="landing-page-body">
+		<section class="alerts-container">
+			<%= render "/layouts/alerts" %>
+		</section>
+		<section class="splash-image-section">
+			<div class="left-splash-column">
+				<h1>A real expert. Live. Plus everything you need afterward.</h1>
+			</div>
+		</section>
+		<section class="landing-page-row left-navigation">
+			<div class="left-nav-container">
+				<%= render "/landing_pages/sections/left_nav" %>
+			</div>
+			<div class="left-nav-text-container">
+				<h2 class="heading">You’re just a few short steps to scrumptious.</h2>
+	
+				<hr class="small-hr">
+				<h3>Schedule your first session with a Kindrd Nutritionist.</h3>
+				<button class="btn btn-lg btn-primary">SCHEDULE NOW!</button>
+			</div>
+		</section>
+
+		<section class="landing-page-row four-column">
+			<div class="four-column-container">
+				<h2 class="heading">Everything you need for day to day ease. We’re always here as your family grows and changes.</h2>
+				<div class="four-column-one">
+					<h1>Step 1</h1>
+					<h3>Setup a profile </h3>
+					<p>Kindrdfood uses this profile to match you with a Kindrd Nutritionist who specializes in your family’s changes and challenges.</p>
+					<ul>
+						<h4><li>Assures that your Kindrd Nutritionist is a good match for you and your family
+						</li></h4>
+						<h4><li>Makes time spent with your Kindrd Nutritionist as effective as possible
+						</li></h4>
+						<h4><li>Your full family profile can include everyone at your table
+						</li></h4>
+						<h4><li>Your Kindrd Nutritionist will use this information to send you well suited follow up materials
+						</li></h4>
+					</ul>
+				</div>
+				<div class="four-column-one">
+					<h1>Step 2</h1>
+					<h3>Schedule a virtual session</h3>
+					<p>You select a time that is convenient for you, usually within a few days depending on your availability.</p>
+					<ul>
+						<h4><li>If times on our calendar do not fit your availability, you can suggest times most convenient for you.
+						</li></h4>
+					</ul>
+				</div>
+				<div class="four-column-one">
+					<h1>Step 3</h1>
+					<h3>Connect for your live 1-on-1 session from anywhere</h3>
+					<p>Connect by video or by phone from anywhere that you like.</p>
+					<ul>
+						<h4><li>Video session by mobile or web from virtually anywhere.
+						</li></h4>
+						<h4><li>Phone session from anywhere that you have landline or cellular phone service.
+						</li></h4>
+						<h4><li>Your child is welcome to join you – we’re family friendly!
+						</li></h4>
+					</ul>
+				</div>
+				<div class="four-column-one">
+					<h1>Step 4</h1>
+					<h3>Receive recipes, meal plans and relevant materials</h3>
+					<p>Your Kindrd Nutritionist will send you specially selected recipes & materials designed to meet your unique needs.</p>
+					<ul>
+						<h4><li>Recipes specific to your family profile and challenges.
+						</li></h4>
+						<h4><li>Additional materials to help you navigate food in between appointments.
+						</li></h4>
+						<h4><li>A library to keep track of your guidance and resources!
+						</li></h4>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="landing-page-row price-divider">
+			<div class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+					<div class="price-image-container">
+						<%#=image_tag("")%>
+						<h1>$114</h1>
+					</div>
+				</div>
+				<div class="col-xs-8 col-xs-offset-2 text-center">
+					<h2>for the 1st 1 hour appointment</h2>
+					<h4>1/2 hour follow up sessions available for $69</h4>
+					<i>(At this time, we do not accept any form of health coverage.  We wish we could, but reimbursement for telehealth and nutrition are not well supported yet.)</i>
+				</div>
+			</div>
+		</section>
+
+
+		<%= render "/landing_pages/sections/call_to_action_benefits" %>
+	</div>
+	<%= render "/layouts/footers/main_footer" %>
+</div>

@@ -1,133 +1,141 @@
 
-<div id="qol-page" class="container-fluid">
-  <nav class="row navbar navbar-default">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">
-      <%= image_tag "logos/kf-logo-registration.png", id: "landing-page-logo", class: "img-responsive" %>
-      </a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#link-approach">OUR APPROACH <span class="sr-only">(current)</span></a></li>
-        <li><a href="#link-team">OUR TEAM</a></li>
-<!--         <li><a href="#">FOR PROVIDERS</a></li>
-        <li><a href="#">CONTACT US</a></li> -->
-        <li id="sign-in-or-up-link"><%= link_to "LOGIN", new_session_path("user"), :remote => true %></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-	</nav>
-	<div class="row">
-		<%= render "/layouts/alerts" %>
-	</div>
-	<div class="row qol-background-image">
-		<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-1 text-left left-column">
-			<h1>Eat Easier.</h1>
-			<h1>Eat Happier.</h1>
-			<h3>Great food and good nutrition start with the right guidance.</h3>
-		</div>
-		<div class="col-xs-12 col-sm-6 outside-form-container">
-			<div class="text-center">
-				<h3>Welcome to Kindrdfood!</h3>
-				<p>Please create your account to schedule a session with one of our Registered Dietitian Nutritionists.</p>
-
-				<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
-
-					<div class="form-group col-xs-8 col-xs-offset-2">
-						<l{abel for="first-name">First Name</label>
-						<%= f.input_field :first_name, autofocus: true, class: "form-control", type: "text", placeholder: "First" %>
-					</div>
-					<div class="form-group col-xs-8 col-xs-offset-2">
-						<label for="last-name">Last Name</label>
-						<%= f.input_field :last_name, autofocus: true, class: "form-control", type: "text", placeholder: "Last" %>
-					</div>
-					<div class="form-group col-xs-8 col-xs-offset-2">
-						<label for="email">Email Address</label>
-						<%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
-					</div>
-          <div class="form-group col-xs-8 col-xs-offset-2">
-            <label for="first-name">Password</label>
-            <%= f.password_field :password, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
-          </div>
-          <div class="form-group col-xs-8 col-xs-offset-2">
-            <label for="last-name">Confirm password</label>
-            <%= f.password_field :password_confirmation, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
-          </div>
-					<div class="col-xs-8 col-xs-offset-2 text-right">
-						<%= f.button :submit, "SCHEDULE TODAY!", class: "btn btn-primary btn-lg", type: "submit" %>
-					</div>
-				<% end %>
+<div id="index-landing-page" class="landing-page">
+	<%= render "/landing_pages/landing_page_nav" %>
+	<div class="landing-page-body">
+		<section id="alerts-container">
+			<%= render "/layouts/alerts" %>
+		</section>
+		<section class="splash-image-section">
+			<div class="left-splash-column">
+				<h1>Bring confidence back to your kitchen.</h1>
+				<h3>Great food and good nutrition start with the right guidance.</h3>
 			</div>
-		</div>
+			<div class="right-splash-column">
+				<div>
+					<h3>Welcome to Kindrdfood!</h3>
+					<p>Please create your account to schedule a session with one of our Registered Dietitian Nutritionists.</p>
+
+					<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
+
+						<div class="form-row">
+							<l{abel for="first-name">First Name</label>
+							<%= f.input_field :first_name, autofocus: true, class: "form-control", type: "text", placeholder: "First" %>
+						</div>
+						<div class="form-row">
+							<label for="last-name">Last Name</label>
+							<%= f.input_field :last_name, autofocus: true, class: "form-control", type: "text", placeholder: "Last" %>
+						</div>
+						<div class="form-row">
+							<label for="email">Email Address</label>
+							<%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
+						</div>
+	          <div class="form-row">
+	            <label for="first-name">Password</label>
+	            <%= f.password_field :password, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
+	          </div>
+	          <div class="form-row">
+	            <label for="last-name">Confirm password</label>
+	            <%= f.password_field :password_confirmation, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
+	          </div>
+						<div class="col-xs-8 col-xs-offset-2 text-right">
+							<%= f.button :submit, "SCHEDULE TODAY!", class: "btn btn-primary btn-lg", type: "submit" %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</section>
+		<section class="landing-page-row two-column-left">
+			<div class="two-column-text">
+				<h2 class="heading">Make mealtime a pleasure, everytime.</h2>
+				<p class="details">Kindrdfood is a convenient and trustworthy system that guides families who have to change the way that they eat, due to a medical condition, dietary restriction or a change in the family. Our simple application and team of experts make change easier by providing reliable, balanced guidance to help you get rid of the stress and enjoy your food with confidence. As a Kindrdfood client you will be matched with your very own Kindrd Nutritionist  – a highly trained and clinically experienced Registered Dietitian Nutritionist (RDN), who guide you remotely through live video or phone sessions. Your preferences, your needs, our best people are on it.</p>
+				<hr class="small-hr">
+				<h3>Food allergy? No problem. Infant in arms? We get it. New diagnosis? We’ll train you up.</h3>
+			</div>
+			<div class="two-column-image">
+			</div>
+		</section>
+		<section class="landing-page-row landing-page-testimonial">
+			<div class="testimonial-container">
+				<h2>“Since Daniel’s diagnosis we made 2 different meals every night, until [my Kindrd Nutritionist] got us on a plan that made everything so much easier and more enjoyable. I can’t imagine what things would be like for us if we hadn’t found Kindrdfood.”</h2>
+				<h4> – Beth </h4>
+			</div>
+		</section>
+		<section class="landing-page-row three-column">
+			<div class="three-column-container">
+				<h2 class="heading">Expect the best for you and your family.</h2>
+				<div class="three-column-one">
+					<%=image_tag "/assets/temp/baby.png", class: "img-responsive" %>
+					<h3>Growing Families</h3>
+					<ul>
+						<h4><li>New baby on the way or in arms</li></h4>
+						<h4><li>Breastfeeding; transition to solids, and more</li></h4>
+						<h4><li>Growing children</li></h4>
+						<h4><li>Seeking informed choices</li></h4>
+					</ul>
+				</div>
+				<div class="three-column-one">
+					<%=image_tag "/assets/temp/fork.png", class: "img-responsive" %>
+					<h3>Food allergies & dietary restrictions</h3>
+					<ul>
+						<h4><li>Improve variety and taste</li></h4>
+						<h4><li>New restrictions to navigate</li></h4>
+						<h4><li>Rare dietary restrictions</li></h4>
+					</ul>
+				</div>
+				<div class="three-column-one">
+				<%=image_tag "/assets/temp/first-aid.png", class: "img-responsive first-aid" %>
+					<h3>New medical conditions that limit your table</h3>
+					<ul>
+						<h4><li>New diagnoses</li></h4>
+						<h4><li>Practical challenges to tackle</li></h4>
+						<h4><li>Big change to habits for health</li></h4>
+					</ul>
+				</div>
+				<div class="col-xs-12">
+					<h3>Whatever limits your table, you deserve to enjoy great food. We can help.</h3>
+				</div>
+			</div>
+		</section>
+		<section class="landing-page-row two-column-right">
+			<div class="two-column-image">
+			</div>
+			<div class="two-column-text">
+				<h2 class="heading">Kindrd Nutritionists help you approach every meal with confidence.</h2>
+				<p class="details">At Kindrdfood, our team of specialized RDNs all have comprehensive expertise and have received rigorous clinical training, but we don’t stop there. Every Kindrd Nutritionist goes through additional training with Kindrdfood in nutrition subspecialties, family eating challenges and cooking for safety and great taste. We hold our team to the highest standards possible, so that you can rely on the best.</p>
+				<hr class="small-hr">
+				<h3>Specialized and at your service. We’ve got you covered.</h3>
+			</div>
+		</section>		
+		<section class="landing-page-row divider">
+		 	<div class="col-xs-6">
+			 	<h2>Virtually in your kitchen and at your table.</h2>
+			 	<p class="details">Web?  Check.  Mobile?  Check.  At your convenience.</p>
+		 	</div>
+		 	<div class="col-xs-6">
+		 		<p class="details">Access Kindrdfood from wherever and whenever is convenient for you. All you need is access to the internet and you can connect with your Kindrd Nutritionist and all of the recipes and materials tailored to your family’s needs and preferences.</p>
+		 	</div>
+		</section>
+		<section class="landing-page-row two-column-left">
+			<div class="two-column-text">
+				<h2 class="heading">Guidance you can trust...Finally!</h2>
+				<p class="details">Our Kindrd Nutritionists have deep experience in nutrition and are seasoned professionals when it comes to partnering with you and your family. They’re the best! Our approach to service is personalized. Your Kindrd Nutritionist will help you keep your family safe and help you enjoy better food, regardless of what limits your table. Our clients gain the confidence and comfort of having a guide to help them learn and improve the quality and taste of everything that they eat.</p>
+				<hr class="small-hr">
+				<h3>Verified and validated. Experts and info you can trust.</h3>
+			</div>
+			<div class="two-column-image">
+			</div>
+		</section>
+		<section class="landing-page-row two-column-right">
+			<div class="two-column-image">
+			</div>
+			<div class="two-column-text">
+				<h2 class="heading">Why are you still using a search engine for your nutrition knowledge?</h2>
+				<p class="details">Searching the Internet often lands you on web pages with heavily biased and frequently incorrect information. You have to sift through and filter for yourself. Kindrdfood removes all of the guesswork for you and puts everything that you need in one trustworthy place. We do not accept food product or supplement endorsement deals, so neither the 1-on-1 guidance nor any content is adulterated by product marketing. We make it easy for you to learn with certainty.</p>
+				<hr class="small-hr">
+				<h3>Filtered, verified, personalized and all in one place.</h3>
+			</div>
+		</section>
+		<%= render "/landing_pages/sections/call_to_action" %>
 	</div>
-	<div id="link-approach" class="row landing-page-row approach">
-		<div class="col-xs-12 col-sm-6 text-left">
-			<h2 class="heading">We make mealtime a pleasure, everytime.</h2>
-			<p class="details">Kindrdfood is the secret weapon for families who have to change the way they eat due to a medical condition, dietary restriction or a new family addition.  We make changes easy with trustworthy, balanced guidance so that you can relax and enjoy your food with confidence.  As a Kindrdfood client, you will be matched with your very own KindRD Nutritionist - a highly trained and clinically experienced Registered Dietitian Nutritionist (RDN), with amazing cooking chops who guides you remotely through live video sessions.  Your preferences, your needs, our best people are on it.</p>
-			<hr class="small-hr">
-			<h3>Food allergy?  No problem.  Infant in arms?  We get it.  New diagnosis?  We'll train you up.</h3>
-		</div>
-		<div class="col-xs-12 col-sm-4 col-sm-offset-1 faded-image">
-		</div>
-	</div>
-	<section class="row landing-page-row testimonial">
-		<div class="col-xs-12 text-center">
-			<h2>It was such a relief to get answers that I could trust, my kitchen just got happier!</h2>
-			<p>KF Member</p>
-		</div>
-	</section>
-	<div id="link-team" class="row landing-page-row team">
-		<div class="col-xs-12 col-sm-4 col-sm-offset-1 faded-image-2">
-		</div>
-		<div class="col-xs-12 col-sm-6 col-sm-offset-1 text-left">
-			<h2 class="heading">KindRD Nutritionists take your food to a new level.</h2>
-			<p class="details">At Kindrdfood, we have a team of specialized RDNs, who have all been clinically trained, but we don't stop there.  Every KindRD Nutritionist goes through additional training in nutrition subspecialties, family eating challenges, and cooking for safety and great taste.  We hold our team to the highest standards possible, so that you can rely on the best.</p>
-			<hr class="small-hr">
-			<h3>In the kitchen, in the store, and at the table.  We've got you covered!</h3>
-		</div>
-	</div>
-	<section class="row landing-page-row mobile">
-	 	<div class="col-xs-6">
-		 	<h2>In your kitchen and at your table.</h2>
-		 	<p class="details">Web?  Check.  Mobile?  Check.  At your convenience.</p>
-	 	</div>
-	 	<div class="col-xs-6">
-	 		<p class="details">Access Kindrdfood from wherever and whenever it is convenient for you.  All you need is access to the internet or a telephone and you can connect with your KindRD Nutritionist and all of the recipes and materials that suit your family's personalized needs and preferences.</p>
-	 	</div>
-	</section>
-	<div class="row landing-page-row">
-		<div class="col-xs-12 col-sm-6 text-left">
-			<h2 class="heading">Guidance you can trust...Finally!</h2>
-			<p class="details">KindRD Nutritionists are hired based on the highest standards of competence and service delivery.  Then we train them more.  More nutrition.  More family strategies.  More cooking skills.  They're the best!  Our approach to service is personalized and not biased toward manufacturers' agendas or popular nutrition.  Your KindRD Nutritionist will help you keep your family safe and help you enjoy better food, regardless of what limits your table.  Our clients get the confidence and comfort of having a partner to guide them in learning and improving the quality and taste of everything they eat.</p>
-			<hr class="small-hr">
-			<h3>Verified and validated.  Experts and information you can trust.</h3>
-		</div>
-		<div class="hidden-xs col-sm-4 col-sm-offset-1 faded-image-3">
-		</div>
-	</div>
-	<div class="row landing-page-row problem">
-		<div class="col-xs-12 col-sm-4 col-sm-offset-1 faded-image-4">
-		</div>
-		<div class="col-xs-12 col-sm-6 col-sm-offset-1 text-left">
-			<h2 class="heading">Why are you still using a search engine for your nutrition knowledge?</h2>
-			<p class="details">Searching the internet can land you on pages with heavily spun and frequently incorrect information, leaving you alone to sift through the fragments of questionable data across more sites than anyone would care to visit.  Kindrdfood puts everything that you need in one trustworthy place.  We do not accept food product or supplement endorsements, so neither the 1-on-1 guidance nor any content is adulterated by product marketing.  We make it easy for you to learn, without having to question the credibility of the guidance you receive.</p>
-			<hr class="small-hr">
-			<h3>Filtered, verified, personalized, and all in one place.</h3>
-		</div>
-	</div>
-	<section class="row landing-page-row call-to-action-bar">
-		<div class="col-xs-12 text-center">
-			<h2>Ready to start enjoying every bite?</h2>
-			<button class="btn btn-lg btn-primary">Request Early Access</button>
-		</div>
-	</section>
-		<%= render "/layouts/footers/main_footer" %>
+	<%= render "/layouts/footers/main_footer" %>
 </div>

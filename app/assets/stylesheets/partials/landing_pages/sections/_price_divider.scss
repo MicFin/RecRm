@@ -1,0 +1,23 @@
+    
+.landing-page{
+
+	.price-divider {
+		min-height: 200px;
+		.price-image-container{
+			background-image: url("/assets/icons/price-sunburst.svg");
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center; 
+			min-height: 200px;
+			position: relative;
+			h1{
+		    position: absolute;
+		    left: 37%;
+		    top: 58px;
+		    color: white;
+			}
+		}
+	}
+}
+
+    

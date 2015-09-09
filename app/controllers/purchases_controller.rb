@@ -5,16 +5,16 @@ class PurchasesController < ApplicationController
   include FamiliesHelper
   
   def index
-    @user = current_user
-    @appointment = Appointment.new(appointment_host_id: @user.id, status: "In Registration")
-    @package = Package.last
+    # @user = current_user
+    # @appointment = Appointment.new(appointment_host_id: @user.id, status: "In Registration")
+    # @package = Package.last
 
-    # Gather user's family data
-    # from FamiliessHelper
-    get_family!
-    @family
+    # # Gather user's family data
+    # # from FamiliessHelper
+    # get_family!
+    # @family
 
-    # @purchases = @purchasable.purchases
+    # # @purchases = @purchasable.purchases
   end
 
   # GET purchasable_type/purchasable_id/purchases/new
@@ -27,8 +27,12 @@ class PurchasesController < ApplicationController
 
       @purchase = @purchasable.purchase || Purchase.new(user_id: @user.id, status: "Incomplete", purchasable_type: "Appointment", purchasable_id: @purchasable.id )
       @purchase.save
+
+    else
+      @purchase = @purchasable.purchase || Purchase.new(user_id: @user.id, status: "Incomplete", purchasable_type: "Package", purchasable_id: @purchasable.id )
+      @purchase.save
     end
-    
+  
     # Only js response
     respond_to do |format|
       format.js
@@ -95,6 +99,8 @@ private
     
     @purchase = Purchase.find(params[:id])
   end
+end
+
     # t.integer  "user_id"            // User who made purchase
     # t.integer  "purchasable_id"     // Appointment or Package ID
     # t.string   "purchasable_type"   // Appointment or Package
@@ -105,4 +111,3 @@ private
     # t.integer  "invoice_cost"       // Total cost of invoice
     # t.string   "status"             // Status: Incomplete or Complete
     # t.datetime "completed_at"       // Date and time purchase completed
-end

@@ -2,6 +2,7 @@ class DashboardController < ApplicationController
   include PatientGroupsHelper
   before_action :verify_admin, only: [:index, :recipe_status]
   before_filter :check_user_logged_in!, only: [:home]
+  
   # GET /admin_dashboard
   def index
     @online_dietitians = Dietitian.online

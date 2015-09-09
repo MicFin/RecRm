@@ -1,0 +1,59 @@
+
+<div id="our-solution-landing-page" class="landing-page">
+	<%= render "/landing_pages/landing_page_nav" %>
+	<div class="landing-page-body">
+		<section class="alerts-container">
+			<%= render "/layouts/alerts" %>
+		</section>
+		<section class="splash-image-section">
+			<div class="left-splash-column">
+				<h1>Bring confidence back to your kitchen.</h1>
+			</div>
+		</section>
+		<section class="landing-page-row left-navigation">
+			<div class="left-nav-container">
+				<%= render "/landing_pages/sections/left_nav" %>
+			</div>
+			<div class="left-nav-text-container">
+				<h2 class="heading">Make every meal a pleasure from beginning to end.</h2>
+				<p class="details">Benefit from the best guidance available for your family’s food and nutrition regardless of any restrictions that limit the table. To assure great taste and variety while taking into account your family’s personalized characteristics, our team of experts are armed with the best training, experience, materials and recipes that have been reviewed by our executive chef and team of dietitians for quality. Great quality. Great people. Great food.</p>
+				<hr class="small-hr">
+				<h3>Schedule your first session with a Kindrd Nutritionist.</h3>
+				<button class="btn btn-lg btn-primary">SCHEDULE NOW!</button>
+			</div>
+		</section>
+		<section class="landing-page-row two-column-left">
+			<div class="two-column-text">
+				<h2 class="heading">1-on-1 experts in food, nutrition and cooking at your fingertips.</h2>
+				<p class="details">Connect with a specially matched Kindrd Nutritionist at a time that is convenient for you. Our video conference or phone system allows you to connect from any location.</p>
+				<ul>
+					<h4><li>Schedule when you want (even within a few days!)</li></h4>
+					<h4><li>From anywhere that works for you</li></h4>
+					<h4><li>Connect face to face with a specially matched Kindrd Nutritionist</li></h4>
+				</ul>
+				</p>
+			</div>
+			<div class="two-column-image">
+			</div>
+		</section>
+		<section class="landing-page-row two-column-center">
+			<div class="two-column-container">
+				<h2 class="heading">Personalized follow up</h2>
+				<div class="two-column-one">
+					<%=image_tag("temp/cooking.png", class: "img-responsive")%>
+					<h2 class="heading">Supportive materials</h2>
+					<p class="details">Your Kindrd Nutritionist will offer you personalized, relevant materials and follow up assessments to make your guidance actionable and easy to refer back to. This may include information about knowledge and skills, or simply notes capturing the guidance that you receive.
+					</p>
+				</div>
+				<div class="two-column-one">
+					<%=image_tag("temp/cooking.png", class: "img-responsive") %>
+					<h2 class="heading">Recipes & meal plans</h2>
+					<p class="details">Personally selected for your family’s preferences and requirements. Everyone at the table, so you are preparing one meal that is healthy, safe and tasty. Meal plans offer an effective, time saving guide to help manage the daily pressure of managing your family’s meals.
+					</p>
+				</div>
+			</div>
+		</section>
+		<%= render "/landing_pages/sections/call_to_action_benefits" %>
+	</div>
+	<%= render "/layouts/footers/main_footer" %>
+</div>

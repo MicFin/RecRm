@@ -1,0 +1,42 @@
+  <nav class="navbar-fixed-top navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <%= image_tag "logos/kf-logo-registration.png", class: "img-responsive landing-page-logo" %>
+      </a>
+    </div>
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+          <%= active_link_to landing_pages_our_solution_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+              WHAT WE DO
+            <% end %>
+
+          <%= active_link_to landing_pages_why_kindrdfood_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+              WHY KINDRDFOOD?
+            <% end %>
+
+          <%= active_link_to landing_pages_our_solution_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+              INFO & ARTICLES
+            <% end %>
+
+          <%= active_link_to landing_pages_benefits_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+              FOR PROVIDERS
+            <% end %>
+
+          <%= active_link_to landing_pages_our_solution_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+              SOCIAL MEDIA
+            <% end %>
+
+        <li id="sign-in-or-up-link"><%= link_to "LOGIN", new_session_path("user"), :remote => true %></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+	</nav>

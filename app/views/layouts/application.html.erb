@@ -11,17 +11,14 @@
 
 <!--     below should only run when on checkout page but is currently in all layouts -->
     <%= stripe_javascript_tag %>
-<!--     above should only run when on checkout page but is currently in all layouts -->
 
 <!--     
     CSS for all browsers other than IE
     Loads application wide CSS at application.css.scss and controller specific CSS at EX: welcome.css.scss 
 -->
 
-<%= stylesheet_link_tag "application", params[:controller], :media => "all"%>
-
 <!--[if !IE]><!-->
-    <%#= stylesheet_link_tag "application", params[:controller], :media => "all"%>
+    <%= stylesheet_link_tag "application", params[:controller], :media => "all"%>
     <%# UNCOMMENT BELOW TO TEST IN CHROME %>
     <%#= stylesheet_link_tag "application-ie", :media => "all"%>
 
@@ -65,7 +62,7 @@
 <![endif]-->
 
 <!--[if !IE]><!-->
-    <body class="ie-browser">
+    <body>
 <!-- <![endif]-->
 
   <!-- LAYOUTS -->

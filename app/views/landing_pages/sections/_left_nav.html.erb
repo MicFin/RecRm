@@ -1,0 +1,16 @@
+<nav class="left-nav">
+	<ul>
+		<%= active_link_to landing_pages_our_solution_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+      What we do
+    <% end %>
+		<%= active_link_to landing_pages_results_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+      Results for you
+    <% end %>
+		<%= active_link_to landing_pages_how_it_works_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+      How it works & pricing
+    <% end %>
+		<%= active_link_to landing_pages_who_we_help_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
+      Who we help
+    <% end %>
+	</ul>
+</nav>

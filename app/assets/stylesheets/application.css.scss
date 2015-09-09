@@ -49,6 +49,11 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 // wanted to load these in the controller specific .css.scss
 // but bootstrap variables for color, etc didn't work there without reloading them
 @import "partials/landing_pages/qol";
+@import "partials/landing_pages/index";
+@import "partials/landing_pages/our_solution";
+@import "partials/landing_pages/nav";
+@import "partials/landing_pages/sections/left_nav";
+@import "partials/landing_pages/sections/price_divider";
 @import "partials/welcome/home";
 @import "partials/welcome/get_started";
 @import "partials/welcome/add_family";

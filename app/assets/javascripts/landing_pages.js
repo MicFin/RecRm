@@ -2,6 +2,7 @@
 
 // Landing Pages Controller JS
 //= require landing_pages/qol_admin
+//= require landing_pages/index
 
 // when page has loaded...
 $(document).ready(function() {
@@ -13,4 +14,6 @@ $(document).ready(function() {
 	Kindrdfood.landingPages.qolAdmin.validateSignUpForm();
 	Kindrdfood.landingPages.qolAdmin.validateSignInForm();
 
+	// // JS for landing_pages#index
+	// Kindrdfood.landingPages.test.init();
 });

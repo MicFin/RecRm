@@ -11,9 +11,25 @@ Rails.application.routes.draw do
   get 'qol', to: "landing_pages#qol", as: "landing_pages_qol"
   get 'tara', to: 'landing_pages#tara', as: 'landing_pages_tara'
   get "/join" => redirect("/tara")
-
+  get 'our_solution', to: "landing_pages#our_solution", as: "landing_pages_our_solution"
+  get 'results', to: "landing_pages#results", as: "landing_pages_results"
+  get 'how_it_works', to: "landing_pages#how_it_works", as: "landing_pages_how_it_works"
+  get 'who_we_help', to: "landing_pages#who_we_help", as: "landing_pages_who_we_help"
+  get 'why_kindrdfood', to: "landing_pages#why_kindrdfood", as: "landing_pages_why_kindrdfood"
+  get 'quality', to: "landing_pages#quality", as: "landing_pages_quality"
+  get 'navigate_change', to: "landing_pages#navigate_change", as: "landing_pages_navigate_change"
+  get 'our_mission', to: "landing_pages#our_mission", as: "landing_pages_our_mission"
+  get 'leaders', to: "landing_pages#leaders", as: "landing_pages_leaders"
+  get 'benefits', to: "landing_pages#benefits", as: "landing_pages_benefits"
+  get 'more_benefits', to: "landing_pages#more_benefits", as: "landing_pages_more_benefits"
+  get 'care', to: "landing_pages#care", as: "landing_pages_care"
+  get 'refer', to: "landing_pages#refer", as: "landing_pages_refer"
   # should change these to not being opened to all users
-  resources :packages
+  post 'packages/:package_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_package_payment'
+  resources :packages do 
+    resources :purchases 
+  end
+
   resources :plans 
 
   resources :coupons do 

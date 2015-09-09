@@ -19,13 +19,15 @@ class CouponRedeemer < ActiveRecord::Base
     end
   end
 
-  def self.redeem_coupon(coupon_code, user)
+  def self.redeem_coupon(coupon_code, user, purchase=nil)
 
     # Find active coupon
     coupon = CouponRedeemer.find_coupon(coupon_code)
 
     # If the coupon is active apply it and return true
     if coupon 
+
+      # IF 
 
       # Get users purchase currently in registration
       appointment = user.appointment_in_registration

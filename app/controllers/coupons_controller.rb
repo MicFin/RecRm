@@ -56,7 +56,7 @@ class CouponsController < ApplicationController
   def redeem_coupon
     
     coupon_code = params[:coupon_code]
-
+    
     # If coupon is redeemable
     if CouponRedeemer.redeem_coupon(coupon_code, current_user)
 

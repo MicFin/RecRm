@@ -1,12 +1,15 @@
-<% if @user.qol_referral === true %>
+<% if @purchasable.class == Package %>
+	$("body").append("<%= j render(:partial => 'purchase_package_modal') %>");
+	$('#paymentModal').modal();
+	payment.setupForm();
 
+<% elsif @user.qol_referral === true %>
 	$("#set-appointment-page").after("<%= j render(:partial => 'purchases_modal') %>");
 	$('#paymentModal').modal();
 	// payment.setupForm();
 
 
 <% else %>
-
 	$("#set-appointment-page").after("<%= j render(:partial => 'purchases_modal') %>");
 	$('#paymentModal').modal();
 	payment.setupForm();

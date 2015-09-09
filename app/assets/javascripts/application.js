@@ -9,6 +9,9 @@
 //																																					//
 //////////////////////////////////////////////////////////////////////////////
 
+
+//  SOME OF THESE COULD BE MOVED TO CONTROLLER SPECIFIC REQUIREMENTS
+
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
@@ -39,6 +42,8 @@
 //= require plugins/jquery-validate-extra-methods.min.js
 
 //= require plugins/smooth_scroll
+
+// REMOVED require plugins/skrollr.min.js
 
 //= require plugins/time_zones
 

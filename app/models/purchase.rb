@@ -133,7 +133,7 @@ class Purchase < ActiveRecord::Base
     if coupon 
         
       # Create CouponRedemption with status of Incomplete
-      redemption = CouponRedemption.create(coupon_id: coupon.id, user_id: purchasable.appointment_host.id, status: "Applied", purchase_id: self.id)
+      redemption = CouponRedemption.create(coupon_id: coupon.id, user_id: self.user_id, status: "Applied", purchase_id: self.id)
       
     # No coupon passed in then check if there is a coupon already applied
     else
@@ -167,15 +167,28 @@ class Purchase < ActiveRecord::Base
   end
 
   def update_pricing
+
+    # If purchasable is Appointment
     if purchasable_type == "Appointment" 
       appointment = Appointment.find(purchasable_id)
       
-
       # Reset invoice price
       reset_invoice_price(appointment)
       self.save
+
       # Redeem any discounts applied to purchase
       redeem_coupon(appointment)
+
+    # If purchasable is Package
+    else
+      package = Package.find(purchasable_id)
+
+      # Reset invoice price
+      reset_invoice_price(package)
+      self.save
+
+      # Redeem any discounts applied to purchase
+      redeem_coupon(package)
     end
   end
 
@@ -184,8 +197,7 @@ class Purchase < ActiveRecord::Base
 
     # Destroy coupon redemption
     self.coupon_redemption.destroy unless self.coupon_redemption.nil?
-    
-
+      
     # Reset the appointment price
     # must save afterwards
     appointment = Appointment.find(purchasable_id)
@@ -199,36 +211,44 @@ class Purchase < ActiveRecord::Base
     # Resets purchase invoice prices
     def reset_invoice_price(purchasable)
 
-      duration = purchasable.duration
+      # If purchasable is an Appointment
+      if purchasable.class == Appointment 
+        duration = purchasable.duration
 
-      # Regular price
-      if duration == 30
-        self.invoice_cost = 6999
-      else
-        self.invoice_cost = 11499
-      end
-
-      # Tara referral invoice pricing
-      if user.tara_referral == true 
+        # Regular price
         if duration == 30
-          self.invoice_price = 4999
+          self.invoice_cost = 6999
         else
-          self.invoice_price = 8999
+          self.invoice_cost = 11499
         end
 
-      # QOL invoice pricing
-      elsif user.qol_referral == true 
-          self.invoice_price = 0
+        # Tara referral invoice pricing
+        if user.tara_referral == true 
+          if duration == 30
+            self.invoice_price = 4999
+          else
+            self.invoice_price = 8999
+          end
 
-      # No Discount invoice pricing
-      else
-        if duration == 30
-          self.invoice_price = 6999
+        # QOL invoice pricing
+        elsif user.qol_referral == true 
+            self.invoice_price = 0
+
+        # No Discount invoice pricing
         else
-          self.invoice_price = 11499
+          if duration == 30
+            self.invoice_price = 6999
+          else
+            self.invoice_price = 11499
+          end
         end
-      end
 
+      # If purchasable is a Package
+      else
+        price = purchasable.full_price
+        self.invoice_cost = price
+        self.invoice_price = price
+      end
     end
 
 end

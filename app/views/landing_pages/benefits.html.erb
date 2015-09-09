@@ -1,0 +1,118 @@
+
+<div id="our-solution-landing-page" class="landing-page">
+	<%= render "/landing_pages/landing_page_nav" %>
+	<div class="landing-page-body">
+		<section class="alerts-container">
+			<%= render "/layouts/alerts" %>
+		</section>
+		<section class="splash-image-section">
+			<div class="left-splash-column">
+				<h1>Kindrdfood is focused on personalized guidance for your patients from exceptional dietitians.</h1>
+			</div>
+		</section>
+		<section class="landing-page-row left-navigation">
+			<div class="left-nav-container">
+				<%= render "/landing_pages/sections/left_nav_provider" %>
+			</div>
+			<div class="left-nav-text-container">
+				<h2 class="heading">As a registered physician referrer, you can offer your patients discounted first sessions.</h2>
+				<hr class="small-hr">
+				<h3>Take the 1 time only, 5 minutes (or less) and register to refer through our website: </h3>
+				<button class="btn btn-lg btn-primary">REGISTER</button>
+			</div>
+		</section>
+		<section class="landing-page-row two-column-left">
+			<div class="two-column-text">
+				<h2 class="heading">Help your patients navigate food, regardless of any conditions or restrictions.</h2>
+				<p class="details">Kindrdfood is a convenient and trustworthy system that guides families who have to change the way that they eat, due to a medical condition, dietary restriction or a change in the family. Our simple application and team of experts make change easier by providing reliable, balanced guidance to help you get rid of the stress and enjoy your food with confidence. As a Kindrdfood client you will be matched with your very own Kindrd Nutritionist  – a highly trained and clinically experienced Registered Dietitian Nutritionist (RDN), who guide you remotely through live video or phone sessions. Your preferences, your needs, our best people are on it.</p>
+				<hr class="small-hr">
+				<h3>Learn more about what we do <%=link_to "here", landing_pages_how_it_works_path %></h3>
+				
+			</div>
+			<div class="two-column-image">
+			</div>
+		</section>
+
+		<section class="landing-page-row landing-page-testimonial">
+			<div class="testimonial-container">
+				<h2>Kindrdfood can support your patients with a broad spectrum of conditions and challenges.</h2>
+			</div>
+		</section>
+		<section class="landing-page-row three-column-design">
+			<div class="col-xs-12 text-center">
+				<h3>Adult and pediatrics. Primary care challenges, subspecialty challenges. Our team has expertise and a broad base of knowledge to support even the most challenging conditions. </h3>
+				<p>Here are a few examples of clients we work with:</p>
+			</div>
+			<div class="three-column-container">
+				<div class="column-banner">
+					<div class="banner-container">
+						<div class="banner-circle">
+							<span></span>
+						</div>
+						<p>Standard Support</p>
+					</div>
+					<ul>
+						<li>Healthy pregnancy</li>
+						<li>Normal infants </li>
+						<li>Food allergies & intolerances</li>
+						<li>Allergic colitis</li>
+						<li>Weight management</li>
+						<li>Picky eaters; family habits</li>
+
+					</ul>
+				</div>
+				<div class="column-banner">
+					<div class="banner-container">
+						<div class="banner-circle">
+							<span></span>
+						</div>
+						<p>Chronic Challenges</p>
+					</div>
+					<ul>
+						<li>Diabetes</li>
+						<li>IBD (Crohn’s & ulcerative colitis)</li>
+						<li>IBS</li>
+						<li>Celiac disease</li>
+					</ul>
+				</div>
+
+				<div class="column-banner">
+					<div class="banner-container">
+						<div class="banner-circle">
+							<span></span>
+						</div>
+						<p>Rare Conditions</p>
+					</div>
+					<ul>
+						<li>EoE (eosinophilic esophagitis)</li>
+						<li>CSID (congenital sucrose isomaltase deficiency)</li>
+						<li>FPIES (Food protein induced enterocolitis syndrome)</li>
+
+					</ul>
+				</div>
+			</div>
+		</section>
+
+
+
+		<section class="landing-page-row two-column-center">
+			<div class="two-column-container">
+				<h2 class="heading">Personalized follow up</h2>
+				<div class="two-column-one">
+					<%=image_tag("temp/cooking.png", class: "img-responsive")%>
+					<h2 class="heading">Supportive materials</h2>
+					<p class="details">Your Kindrd Nutritionist will offer you personalized, relevant materials and follow up assessments to make your guidance actionable and easy to refer back to. This may include information about knowledge and skills, or simply notes capturing the guidance that you receive.
+					</p>
+				</div>
+				<div class="two-column-one">
+					<%=image_tag("temp/cooking.png", class: "img-responsive") %>
+					<h2 class="heading">Recipes & meal plans</h2>
+					<p class="details">Personally selected for your family’s preferences and requirements. Everyone at the table, so you are preparing one meal that is healthy, safe and tasty. Meal plans offer an effective, time saving guide to help manage the daily pressure of managing your family’s meals.
+					</p>
+				</div>
+			</div>
+		</section>
+		<%= render "/landing_pages/sections/call_to_action_benefits" %>
+	</div>
+	<%= render "/layouts/footers/main_footer" %>
+</div>

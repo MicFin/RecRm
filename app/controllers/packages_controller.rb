@@ -1,6 +1,6 @@
 class PackagesController < ApplicationController
   before_action :set_package, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_admin, only: [:new, :show, :new, :edit, :create, :destroy, :update]
   # GET /packages
   # GET /packages.json
   def index
@@ -88,5 +88,16 @@ class PackagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def package_params
       params.require(:package).permit(:category, :name, :full_price, :description, :num_half_appointments, :num_full_appointments, :expiration_in_months)
+    end
+
+    # Only admin users can access coupon controller
+    # should handle with pundit/rolify  correctly
+    def authenticate_admin
+
+      if current_dietitian && (current_dietitian.has_role? "Admin Dietitian")
+         
+      else
+        redirect_to welcome_home_path
+      end
     end
 end

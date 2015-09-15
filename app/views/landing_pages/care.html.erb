@@ -1,0 +1,37 @@
+
+
+
+<div id="care-landing-page" class="landing-page">
+	<%= render "/landing_pages/landing_page_nav" %>
+	<div class="landing-page-body">
+		<section class="alerts-container">
+			<%= render "/layouts/alerts" %>
+		</section>
+		<section class="splash-image-section">
+			<div class="left-splash-column">
+				<h1>Kindrdfood partners with healthcare organizations, large and small, on a case by case basis.</h1>
+			</div>
+		</section>
+		<section class="landing-page-row left-navigation">
+			<div class="left-nav-container">
+				<%= render "/landing_pages/sections/left_nav_provider" %>
+			</div>
+			<div class="left-nav-text-container">
+				<h2 class="heading">To inquire about a possible relationship with your organization, contact us here: </h2>
+				<hr class="small-hr">
+			
+
+					<h3>Partnerships Contact Info</h3>
+
+					<h3>Phone: 	617-575-2203  Ext. 3</h3>
+
+					<h3>Email:  	partnerships@kindrdfood.com</h3>
+
+			</div>
+		</section>
+
+		<%= render "/landing_pages/sections/call_to_action_benefits" %>
+	</div>
+	<%= render "/landing_pages/landing_page_footer" %>
+	<%= render "/landing_pages/sign_up_modal", user: @user %>
+</div>

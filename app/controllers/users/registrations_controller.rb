@@ -21,9 +21,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     
     build_resource(sign_up_params)
-
+    
     if resource.save
       yield resource if block_given?
+      
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)
@@ -60,9 +61,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # only QOL admin should be creating these so can redirect to qol
   def after_inactive_sign_up_path_for(resource)
     
+    # if physician or qol admin paths
     # override confirmation sent flash notice for QOLadmin
-    flash[:notice] = 'Client was successfully added.'
-    landing_pages_qol_admin_path
+    flash[:notice] = 'Kindrdfood invitation was successfully sent.'
+
+    if resource.qol_referral == true 
+      landing_pages_qol_admin_path
+    else
+      landing_pages_refer_path
+    end
   end
 
   def sign_up_params
@@ -149,11 +156,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_parameters
     
-    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :registration_stage, :due_date, :time_zone, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :patient_group_ids => [])
     end
 
     # might want tot remove qol_referral from permitted params for update
-    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :registration_stage, :due_date, :time_zone, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :patient_group_ids => [])
     end
 
     # USE THESE WHEN DOING CONFIRMATION

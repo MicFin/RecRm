@@ -15,32 +15,7 @@
 					<h3>Welcome to Kindrdfood!</h3>
 					<p>Please create your account to schedule a session with one of our Registered Dietitian Nutritionists.</p>
 
-					<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
-
-						<div class="form-row">
-							<l{abel for="first-name">First Name</label>
-							<%= f.input_field :first_name, autofocus: true, class: "form-control", type: "text", placeholder: "First" %>
-						</div>
-						<div class="form-row">
-							<label for="last-name">Last Name</label>
-							<%= f.input_field :last_name, autofocus: true, class: "form-control", type: "text", placeholder: "Last" %>
-						</div>
-						<div class="form-row">
-							<label for="email">Email Address</label>
-							<%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
-						</div>
-	          <div class="form-row">
-	            <label for="first-name">Password</label>
-	            <%= f.password_field :password, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
-	          </div>
-	          <div class="form-row">
-	            <label for="last-name">Confirm password</label>
-	            <%= f.password_field :password_confirmation, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
-	          </div>
-						<div class="col-xs-8 col-xs-offset-2 text-right">
-							<%= f.button :submit, "SCHEDULE TODAY!", class: "btn btn-primary btn-lg", type: "submit" %>
-						</div>
-					<% end %>
+					<%= render "/landing_pages/sign_up_form", :user => @user %>
 				</div>
 			</div>
 		</section>
@@ -51,7 +26,7 @@
 				<hr class="small-hr">
 				<h3>Food allergy? No problem. Infant in arms? We get it. New diagnosis? We’ll train you up.</h3>
 			</div>
-			<div class="two-column-image">
+			<div class="two-column-image img-happy-family">
 			</div>
 		</section>
 		<section class="landing-page-row landing-page-testimonial">
@@ -91,13 +66,15 @@
 						<h4><li>Big change to habits for health</li></h4>
 					</ul>
 				</div>
-				<div class="col-xs-12">
-					<h3>Whatever limits your table, you deserve to enjoy great food. We can help.</h3>
-				</div>
+			</div>
+		</section>
+		<section class="landing-page-row landing-page-testimonial">
+			<div class="testimonial-container">
+				<h2>Whatever limits your table, you deserve to enjoy great food. We can help.</h2>
 			</div>
 		</section>
 		<section class="landing-page-row two-column-right">
-			<div class="two-column-image">
+			<div class="two-column-image img-ipad-kitchen">
 			</div>
 			<div class="two-column-text">
 				<h2 class="heading">Kindrd Nutritionists help you approach every meal with confidence.</h2>
@@ -122,11 +99,11 @@
 				<hr class="small-hr">
 				<h3>Verified and validated. Experts and info you can trust.</h3>
 			</div>
-			<div class="two-column-image">
+			<div class="two-column-image img-rdns-discussing">
 			</div>
 		</section>
 		<section class="landing-page-row two-column-right">
-			<div class="two-column-image">
+			<div class="two-column-image img-confused-kid">
 			</div>
 			<div class="two-column-text">
 				<h2 class="heading">Why are you still using a search engine for your nutrition knowledge?</h2>
@@ -137,5 +114,6 @@
 		</section>
 		<%= render "/landing_pages/sections/call_to_action" %>
 	</div>
-	<%= render "/layouts/footers/main_footer" %>
+	<%= render "/landing_pages/landing_page_footer" %>
+	<%= render "/landing_pages/sign_up_modal", user: @user %>
 </div>

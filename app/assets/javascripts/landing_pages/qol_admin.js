@@ -6,7 +6,7 @@ Kindrdfood.landingPages = Kindrdfood.landingPages || {};
 
 Kindrdfood.landingPages.qolAdmin = {
     validateSignUpForm: function(){
-      $("#qol-page form").validate({
+      $("#qol-page form, .new-user-form").validate({
         rules: {
           "user[first_name]":{
             required: true,
@@ -56,7 +56,7 @@ Kindrdfood.landingPages.qolAdmin = {
       });
     },
     validateSignInForm: function(){
-      $("#qol-sign-in-page form").validate({
+      $("form.sign-in-form").validate({
         rules: {
           "user[password]":{
             required: true,

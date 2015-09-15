@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'qol', to: "landing_pages#qol", as: "landing_pages_qol"
   get 'tara', to: 'landing_pages#tara', as: 'landing_pages_tara'
   get "/join" => redirect("/tara")
+  
   get 'our_solution', to: "landing_pages#our_solution", as: "landing_pages_our_solution"
   get 'results', to: "landing_pages#results", as: "landing_pages_results"
   get 'how_it_works', to: "landing_pages#how_it_works", as: "landing_pages_how_it_works"

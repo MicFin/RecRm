@@ -6,33 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kindrdfood</title>
 
-
+<!--     Font Sheet -->
+    <link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 
 <!--     below should only run when on checkout page but is currently in all layouts -->
     <%= stripe_javascript_tag %>
 
+<!--[if IE]>
+    <%= javascript_include_tag "browser_specific/modernizr.min" %>
+    <%= javascript_include_tag "browser_specific/modernizr_polyfills_rules" %>
+<![endif]-->
+
 <!--     
     CSS for all browsers other than IE
     Loads application wide CSS at application.css.scss and controller specific CSS at EX: welcome.css.scss 
 -->
-
-<!--[if !IE]><!-->
+    
     <%= stylesheet_link_tag "application", params[:controller], :media => "all"%>
-    <%# UNCOMMENT BELOW TO TEST IN CHROME %>
-    <%#= stylesheet_link_tag "application-ie", :media => "all"%>
 
-<!-- <![endif]-->
-
-<!-- 
-    CSS for IE 9 and below browsers
-    Loads application wide CSS at application.css.scss and controller specific CSS at EX: welcome.css.scss 
--->
-<!--[if IE]>
-    <%#= stylesheet_link_tag "application-ie", :media => "all"%>
-    <%= javascript_include_tag "browser_specific/modernizr.min" %>
-    <%= javascript_include_tag "browser_specific/modernizr_polyfills_rules" %>
-<![endif]-->
 
 <!--     
     Loads application wide JS at application.js, controller specific JS at EX: welcome.js
@@ -52,13 +45,11 @@
       <%= tag :meta, :name => "stripe-key", :content => "pk_live_eKJSALzXBAibHjg97Osuzfdm" %>
     <% end %>
 
-<!--     Font Sheet -->
-    <link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
   </head>
 
 
 <!--[if IE]>
-  <body class="ie-browser">
+
 <![endif]-->
 
 <!--[if !IE]><!-->

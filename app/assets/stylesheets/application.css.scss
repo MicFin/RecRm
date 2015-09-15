@@ -54,17 +54,33 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 @import "partials/landing_pages/nav";
 @import "partials/landing_pages/sections/left_nav";
 @import "partials/landing_pages/sections/price_divider";
+@import "partials/landing_pages/why_kindrdfood";
+@import "partials/landing_pages/our_mission";
+@import "partials/landing_pages/benefits";
+@import "partials/landing_pages/results";
+@import "partials/landing_pages/how_it_works";
+@import "partials/landing_pages/who_we_help";
+@import "partials/landing_pages/quality";
+@import "partials/landing_pages/navigate_change";
+@import "partials/landing_pages/more_benefits";
+@import "partials/landing_pages/sign_up_modal";
+@import "partials/landing_pages/refer";
+@import "partials/landing_pages/care";
+
 @import "partials/welcome/home";
 @import "partials/welcome/get_started";
 @import "partials/welcome/add_family";
 @import "partials/welcome/add_nutrition";
 @import "partials/welcome/set_appointment";
 @import "partials/welcome/breadcrumbs";
+
 @import "partials/layouts/navbars/user_nav";
 @import "partials/layouts/footers/main_footer";
+
 @import "partials/families/show";
 @import "partials/families/new";
 @import "partials/families/edit_family_member";
+
 @import "partials/rooms/users/in_session_user";
 @import "partials/rooms/users/in_session_user_nav";
 

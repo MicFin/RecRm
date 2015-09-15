@@ -1,5 +1,5 @@
 
-<div id="quality-landing-page" class="landing-page">
+<div id="our-mission-page" class="landing-page">
 	<%= render "/landing_pages/landing_page_nav" %>
 	<div class="landing-page-body">
 		<section id="alerts-container">
@@ -19,7 +19,7 @@
 				<p class="details">Help every household enjoy great tasting, healthy food with daily ease, regardless of any restrictions that limit the table. </p>
 				<hr class="small-hr">
 				<h3>Does our mission fit what you need?  Schedule your first session with a Kindrd Nutritionist.</h3>
-				<button class="btn btn-lg btn-primary">SCHEDULE NOW!</button>
+				<button class="sign-up-button btn btn-lg btn-primary">SCHEDULE NOW!</button>
 			</div>
 		</section>
 
@@ -31,15 +31,15 @@
 
 				<p class="details">Today our team is inspired to offer the best possible guidance to people who have to change the way that they eat because of a medical condition, a dietary restriction or normal changes in the family. We work everyday with a love for good food, a love for what we’re doing, a passion to support those who need our help and a respect for anyone who takes on any medical and practical challenges at their table, and still demands great taste and variety in their meals.</p> 
 
-				<div class="col-xs-12">
+				<div class="col-xs-12 team-images-container">
 					<div class="col-xs-4">
-						<%=image_tag("temp/cooking.png", class: "img-responsive")%>
+						<%=image_tag("people/tara-history.jpg", class: "img-responsive")%>
 					</div>
 					<div class="col-xs-4">
-						<%=image_tag("temp/cooking.png", class: "img-responsive")%>
+						<%=image_tag("people/hacking-ped.jpg", class: "img-responsive")%>
 					</div>
 					<div class="col-xs-4">
-						<%=image_tag("temp/cooking.png", class: "img-responsive")%>
+						<%=image_tag("logos/kf-whiteboard.jpg", class: "img-responsive")%>
 					</div>
 				</div>
 				<h2 class="heading">The problem we see and our vision</h2>
@@ -51,14 +51,12 @@
 				<p class="details">At Kindrdfood, we believe that everyone should be able to enjoy great tasting food that is healthy and safe. A family taking on change should not feel limited or have to eat food that isn’t healthy, fulfilling and tasty. The path of change starts with excellent guidance, which begins with an expert. Our team of Registered Dietitian Nutritionists and seasoned chefs, come together to assure that our members are matched with the best fit for 1-on-1 personalized guidance, and that all supplemental education materials, recipes and meal plans are verified healthy, safe, and great tasting. </p>
 
 				<p class="details">Kindrdfood’s solution was founded on the vision that support, tools and information should all be in one place, should be accessible when and where you need it, should be of the highest quality and come from verified sources, should be personalized to everyone at the table, should be coordinated with healthcare, but most importantly should be focused on great taste and enjoying every bite. </p>
-				<div class="col-xs-12">
-					<%=image_tag("temp/cooking.png", class: "img-responsive")%>
-				</div>
 			</div>
 		</section>
 		
 		<%= render "/landing_pages/sections/call_to_action_who_we_help" %>
 	
 	</div>
-	<%= render "/layouts/footers/main_footer" %>
+	<%= render "/landing_pages/landing_page_footer" %>
+		<%= render "/landing_pages/sign_up_modal", user: @user %>
 </div>

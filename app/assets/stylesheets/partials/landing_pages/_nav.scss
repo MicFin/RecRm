@@ -1,5 +1,6 @@
 .landing-page {
 
+
 	// navigation bar
 	.navbar {
 		margin-bottom: 0px;
@@ -12,6 +13,7 @@
 			// last navigation list item is for LOGIN
 			li:last-child a {
 				color: $brand-light-orange;
+				display: inline-block;
 			}
 		}
 
@@ -21,7 +23,14 @@
 		}
 	} // end navigation bar styling
 
-	nav{
+	nav {
+		a.btn-social-icon{
+		    display: inline-block;
+		}
+		a.btn-social-icon:hover{
+    	color: $brand-light-orange;
+    	background-color: transparent;
+		}
 		// Sizes logo for responsive nav
 		.landing-page-logo{
 			@media (max-width: $screen-sm-max) {

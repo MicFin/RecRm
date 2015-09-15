@@ -1,5 +1,5 @@
 
-<div id="our-solution-landing-page" class="landing-page">
+<div id="results-landing-page" class="landing-page">
 	<%= render "/landing_pages/landing_page_nav" %>
 	<div class="landing-page-body">
 		<section class="alerts-container">
@@ -19,7 +19,7 @@
 				<p class="details">Kindrdfood offers you a new way to approach food with knowledge and confidence, based on personalized guidance and materials you can trust. We carefully pair each new client with the best match on our team of experts, based on their family profile and challenges.  Your specially matched Kindrd Nutritionist delivers personalized guidance through live video sessions and materials that can make taking on change and the day to day challenges easier, healthier and full of variety.</p>
 				<hr class="small-hr">
 				<h3>Schedule your first session with a Kindrd Nutritionist.</h3>
-				<button class="btn btn-lg btn-primary">SCHEDULE NOW!</button>
+				<button class="sign-up-button btn btn-lg btn-primary">SCHEDULE NOW!</button>
 			</div>
 		</section>
 		<section class="landing-page-row three-column">
@@ -112,5 +112,6 @@
 
 		<%= render "/landing_pages/sections/call_to_action_benefits" %>
 	</div>
-	<%= render "/layouts/footers/main_footer" %>
+	<%= render "/landing_pages/landing_page_footer" %>
+		<%= render "/landing_pages/sign_up_modal", user: @user %>
 </div>

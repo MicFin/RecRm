@@ -19,18 +19,23 @@ class PurchasesController < ApplicationController
 
   # GET purchasable_type/purchasable_id/purchases/new
   def new
-
+    
     @user = current_user 
     
     if @purchasable.class == Appointment
+      
       @time_slot = TimeSlot.find(params[:time_slot_id])
 
       @purchase = @purchasable.purchase || Purchase.new(user_id: @user.id, status: "Incomplete", purchasable_type: "Appointment", purchasable_id: @purchasable.id )
+      
+      @purchase.save
+      
+    else
+
+      @purchase = Purchase.create(user_id: @user.id, status: "Incomplete", purchasable_type: "Package", purchasable_id: @purchasable.id )
+      
       @purchase.save
 
-    else
-      @purchase = @purchasable.purchase || Purchase.new(user_id: @user.id, status: "Incomplete", purchasable_type: "Package", purchasable_id: @purchasable.id )
-      @purchase.save
     end
   
     # Only js response
@@ -55,7 +60,7 @@ class PurchasesController < ApplicationController
   # GET /purchasable_type/purchasable_id/purchase/:id/make_payment
   def make_payment
     
-
+    
     token = purchase_params[:stripe_card_token]
     @purchase.stripe_card_token = token
     @purchase.save
@@ -66,24 +71,35 @@ class PurchasesController < ApplicationController
     # Update the purchase and make the stripe payment
     @purchase.update_with_payment(credit_card_usage, @purchasable)
 
-    binding.pry
+    
     # If an appointment
-    if false
+    if @purchasable.class == Appointment
+
       # Get the time slot and save start and end time to appointment
       time_slot = TimeSlot.find(params[:time_slot_id])
       @purchasable.start_time = time_slot.start_time
       @purchasable.end_time = time_slot.end_time
       @purchasable.save
+
       # Create pre appointment survey
       @pre_appt_survey = Survey.generate_for_appointment(@purchasable, current_user)
 
+      # Set flash message
+      flash_message = 'Appointment was successfully made.'
+
     # Else a package
     else
-    binding.pry 
+
+      # Create the user package 
+      current_user.user_packages.create(package_id: @purchasable.id, purchase_date: Date.current)
+
+      # Set flash message
+      flash_message = 'Package was successfully purchased.'
     end
+
     # Only HTML response
     respond_to do |format|
-      format.html { redirect_to welcome_home_path, notice: 'Appointment was successfully created.' }
+      format.html { redirect_to welcome_home_path, notice: flash_message }
       # format.js
     end
 
@@ -92,6 +108,7 @@ class PurchasesController < ApplicationController
 private
 
   def load_purchasable
+
     # resource, id = request.path.split('/')[1,2]
     # @purchasable = resource.singularize.classify.constantize.find(id)
     klass = [Appointment, Package ].detect { |c| params["#{c.name.underscore}_id"]}

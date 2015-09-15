@@ -15,15 +15,26 @@
             <hr>
             <div class="row">
               <div class="col-xs-12 session-action">
-                <% @packages.each do |package| %>
-                  <div class="col-xs-6">
-                    <h3><%= package.name %></h3>
-                    <p><%= package.description %></p>
-                    <p><%= package.num_full_appointments %> - One hour appointments </p>
-                    <p><%= package.num_half_appointments %> - Half hour appointments</p>
-                    <p>Price: <%= package.show_full_price %></p>
-                    <p><%= link_to 'Purchase', new_package_purchase_path(package), remote: true, class: "btn btn-lg btn-primary"%></p>
+                <% if current_user.packages.length >=1 %>
+                  <div class="col-xs-10 col-xs-offset-1">
+                    <h2>YOUR CURRENT PACKAGE</h2>
+                    <h3><%= current_user.packages.last.name %></h3>
+                    <p><%= current_user.packages.last.description %></p>
+                    <p><%= current_user.packages.last.num_full_appointments %> - One hour appointments left</p>
+                    <p><%= current_user.packages.last.num_half_appointments %> - Half hour appointments left</p>
                   </div>
+
+                <% else %>
+                  <% @packages.each do |package| %>
+                    <div class="col-xs-6">
+                      <h3><%= package.name %></h3>
+                      <p><%= package.description %></p>
+                      <p><%= package.num_full_appointments %> - One hour appointments </p>
+                      <p><%= package.num_half_appointments %> - Half hour appointments</p>
+                      <p>Price: <%= package.show_full_price %></p>
+                      <p><%= link_to 'Purchase', new_package_purchase_path(package), remote: true, class: "btn btn-lg btn-primary"%></p>
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>

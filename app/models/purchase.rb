@@ -37,7 +37,8 @@ class Purchase < ActiveRecord::Base
     if valid?
 
       # Skip payment for invoices less than or equal to 0
-      if invoice_price >= 0 
+
+      if invoice_price > 0 
 
         # create new customer or find current customer
         if user.stripe_id
@@ -104,9 +105,11 @@ class Purchase < ActiveRecord::Base
       ### Need to test
       self.status = "Paid"
 
-      # Mark Appointment or Package as Paid
-      purchasable.status = "Paid"
-      purchasable.save
+      # Mark Appointment as Paid
+      if purchasable.class == Appointment
+        purchasable.status = "Paid"
+        purchasable.save
+      end
 
       # Complete any coupon redemptions used
       if self.coupon_redemption
@@ -232,7 +235,11 @@ class Purchase < ActiveRecord::Base
 
         # QOL invoice pricing
         elsif user.qol_referral == true 
-            self.invoice_price = 0
+          self.invoice_price = 0
+
+        # Unused package session pricing
+        elsif purchasable.status == "Unused Package Session"
+          self.invoice_price = 0
 
         # No Discount invoice pricing
         else

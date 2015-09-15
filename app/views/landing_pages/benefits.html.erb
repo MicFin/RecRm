@@ -1,5 +1,5 @@
 
-<div id="our-solution-landing-page" class="landing-page">
+<div id="benefits-landing-page" class="landing-page">
 	<%= render "/landing_pages/landing_page_nav" %>
 	<div class="landing-page-body">
 		<section class="alerts-container">
@@ -18,7 +18,7 @@
 				<h2 class="heading">As a registered physician referrer, you can offer your patients discounted first sessions.</h2>
 				<hr class="small-hr">
 				<h3>Take the 1 time only, 5 minutes (or less) and register to refer through our website: </h3>
-				<button class="btn btn-lg btn-primary">REGISTER</button>
+				<%=link_to "REGISTER", landing_pages_refer_path, class: "btn btn-lg btn-primary" %>
 			</div>
 		</section>
 		<section class="landing-page-row two-column-left">
@@ -29,7 +29,7 @@
 				<h3>Learn more about what we do <%=link_to "here", landing_pages_how_it_works_path %></h3>
 				
 			</div>
-			<div class="two-column-image">
+			<div class="two-column-image img-provider">
 			</div>
 		</section>
 
@@ -94,25 +94,27 @@
 		</section>
 
 
-
+		<section class="landing-page-row landing-page-testimonial">
+			<div class="testimonial-container">
+				<h2>Personalized follow up</h2>
+			</div>
+		</section>
 		<section class="landing-page-row two-column-center">
-			<div class="two-column-container">
-				<h2 class="heading">Personalized follow up</h2>
-				<div class="two-column-one">
-					<%=image_tag("temp/cooking.png", class: "img-responsive")%>
+				<div class="col-xs-12 col-sm-6">
+					<%=image_tag("icons/supportive-materials.svg", class: "img-responsive")%>
 					<h2 class="heading">Supportive materials</h2>
 					<p class="details">Your Kindrd Nutritionist will offer you personalized, relevant materials and follow up assessments to make your guidance actionable and easy to refer back to. This may include information about knowledge and skills, or simply notes capturing the guidance that you receive.
 					</p>
 				</div>
-				<div class="two-column-one">
-					<%=image_tag("temp/cooking.png", class: "img-responsive") %>
+				<div class="col-xs-12 col-sm-6">
+					<%=image_tag("icons/recipes-mealplans.svg", class: "img-responsive") %>
 					<h2 class="heading">Recipes & meal plans</h2>
 					<p class="details">Personally selected for your family’s preferences and requirements. Everyone at the table, so you are preparing one meal that is healthy, safe and tasty. Meal plans offer an effective, time saving guide to help manage the daily pressure of managing your family’s meals.
 					</p>
 				</div>
-			</div>
 		</section>
 		<%= render "/landing_pages/sections/call_to_action_benefits" %>
 	</div>
-	<%= render "/layouts/footers/main_footer" %>
+	<%= render "/landing_pages/landing_page_footer" %>
+	<%= render "/landing_pages/sign_up_modal", user: @user %>
 </div>

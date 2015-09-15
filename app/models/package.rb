@@ -1,5 +1,5 @@
 class Package < ActiveRecord::Base
-  has_one :purchase, as: :purchasable
+  has_many :purchases, as: :purchasable
   has_many :user_packages
   has_many :users, through: :user_packages
 

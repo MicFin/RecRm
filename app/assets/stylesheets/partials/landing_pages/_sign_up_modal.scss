@@ -1,0 +1,14 @@
+
+#sign-up-modal{
+	form {
+		@include make-row( ); 
+		@extend .text-left;
+
+		.form-row {
+			@extend .form-group;
+			@include make-xs-column( 12 );
+			@include make-sm-column( 8 );
+			@include make-sm-column-offset( 2 );
+		}
+	}
+}

@@ -1,0 +1,12 @@
+#why-kindrdfood-landing-page {
+	.splash-image-section {
+			background-image: url("people/girl-with-fruit.jpg");
+			    background-position: 0px -20px;
+	}
+	.left-splash-column {
+		@include make-xs-column( 10 );
+		@include make-sm-column( 10 );
+	  @include make-md-column( 10 );
+	  @include make-lg-column( 10 );
+	}
+}

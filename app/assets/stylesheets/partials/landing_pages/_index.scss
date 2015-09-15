@@ -115,6 +115,59 @@
 		    margin-left: 0px;
 			}
 
+			// image backgrounds
+			.img-happy-family{
+				background-image: url("people/happy-family.jpg");
+			}
+			.img-ipad-kitchen{
+				background-image: url("people/happy-woman-tablet-kitchen.jpg");
+			}
+			.img-rdns-discussing{
+				background-image: url("team/rdns-discussing-at-table.jpg");
+			}
+			.img-confused-kid{
+				background-image: url("people/confused-kid.jpg");
+			}
+			.img-mom-and-child-on-laptop{
+				background-image: url("people/mom-and-child-on-laptop.jpg");
+			}
+			.two-column-one img {
+				max-height: 150px;
+			}
+			.img-mom-daughter-prep-dinner{
+				background-image: url("people/mom-daughter-prep-dinner.jpg");
+			}
+			.img-growing-family{
+				background-image: url("people/growing-family.jpg");
+			}
+			.img-woman-tablet-rdn-charts{
+				background-image: url("people/woman-tablet-rdn-charts.jpg");
+			}
+			.img-father-son-prep{
+				background-image: url("people/father-son-prep.jpg");
+			}
+
+			.img-bday-boy{
+				background-image: url("people/bday-boy.jpg");
+			}
+
+			.img-girl-school-lunch{
+				background-image: url("people/girl-school-lunch.jpg");
+			}
+
+			.img-success-faster{
+				background-image: url("people/success-faster.jpg");
+			}
+			
+			.img-provider{
+				background-image: url("people/physician-on-laptop.jpg");
+			}
+			
+			.img-apple-on-desk{
+				background-image: url("food/apple-on-desk.jpg");
+			}
+			
+
 			// two column left template
 			&.two-column-left {
 				.two-column-text {
@@ -124,19 +177,18 @@
 				}
 				.two-column-image {
 					@include make-xs-column( 12 );
-				  @include make-sm-column( 4 );
-				  @include make-sm-column-offset( 1 );
-				  background-image: url("temp/happy-family.png");
+				  @include make-sm-column( 6 );
+				  // @include make-sm-column-offset( 1 );
 				  background-size: cover;
 				  background-repeat: no-repeat;
 				  min-height: 400px;
 				  background-color: transparent;
 
 			    /* you need to match the shadow color to your background or image border for the desired effect*/
-			    border-color: $brand-bg;
-				  box-shadow: 0 10px 30px 20px $brand-bg inset;
+			    // border-color: $brand-bg;
+				  // box-shadow: 0 10px 30px 20px $brand-bg inset;
 				  
-				  background-position: right -30px bottom -15px;
+				  // background-position: right -30px bottom -15px;
 				}
 			}
 
@@ -145,24 +197,24 @@
 				.two-column-text {
 					@include make-xs-column( 12 );
 					@include make-sm-column( 6 );
-					@include make-sm-column-offset( 1 );
+					// @include make-sm-column-offset( 1 );
 					@extend .text-left;
 				}
 				.two-column-image {
 					@include make-xs-column( 12 );
-				  @include make-sm-column( 4 );
-				  @include make-sm-column-offset( 1 );
-					background-image: url("temp/cooking.png");
+				  @include make-sm-column( 6 );
+				  // @include make-sm-column-offset( 1 );
+					// background-image: url("temp/cooking.png");
 				  background-size: cover;
 				  background-repeat: no-repeat;
 				  min-height: 400px;
 				  background-color: transparent;
 
 			     // you need to match the shadow color to your background or image border for the desired effect
-			    border-color: $brand-bg;
+			    // border-color: $brand-bg;
 				  // box-shadow: 0 0 30px 20px $brand-bg inset;
 				  
-				  background-position: right -30px bottom -15px;
+				  // background-position: right -30px bottom -15px;
 				}
 				
 			}
@@ -218,12 +270,14 @@
 			}
 
 			&.three-column-design {
+
 				.three-column-container{
 					@include make-xs-column( 12 );
 					margin-top: 75px;
+
 					.column-banner {
 						@include make-xs-column( 12 );
-						@include make-xs-column( 3 );
+						@include make-md-column( 3 );				
 						margin: 4%;
 						background-color: $gray-lighter;
 						@include box-shadow(1px, 1px, 35px, $gray-light, $inset: false);
@@ -254,6 +308,8 @@
 								span {
 
 								}
+								@extend .hidden-xs;
+								@extend .hidden-sm
 							}
 						}
 						ul {
@@ -298,7 +354,8 @@
 
 			// call to action section
 			&.call-to-action-bar{
-				background-color: $brand-light-green;
+				background-color: $brand-green;
+				border-bottom: 2px solid $gray-divider;
 				color: $brand-white;
 			}
 		}

@@ -9,11 +9,6 @@ Modernizr.load([
   	test: Modernizr.mq('only all'),
   	nope: ['/assets/browser_specific/polyfills/respond.min.js']
 	},
-	// // IE 8 and below
-	// {
-	// 	test: Modernizr.backgroundsize,
-	// 	yep: ['/assets/stylesheets/partials/browser_specific/background-size.min.htc']
-	// },
 	// IE 9 and below
 	{
 		test: Modernizr.cssgradients,

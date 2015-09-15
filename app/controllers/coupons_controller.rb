@@ -1,6 +1,6 @@
 class CouponsController < ApplicationController
   before_action :set_coupon, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_admin
+  before_filter :authenticate_admin, only: [:index, :new, :show, :edit, :create, :update, :destroy]
 
   # GET /coupons
   # GET /coupons.json
@@ -127,8 +127,11 @@ class CouponsController < ApplicationController
     # Only admin users can access coupon controller
     # should handle with pundit/rolify  correctly
     def authenticate_admin
-      # if !current_dietitian || !current_dietitian.has_role? "Admin Dietitian"
-      #   redirect_to welcome_home_path 
-      # end
+
+      if current_dietitian && (current_dietitian.has_role? "Admin Dietitian")
+         
+      else
+        redirect_to welcome_home_path
+      end
     end
 end

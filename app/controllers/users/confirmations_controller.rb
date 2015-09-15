@@ -25,6 +25,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     if !@confirmable.errors.empty?
       self.resource = @confirmable
       # this view has not been styled
+      # Resend confirmation instructions
       render 'devise/confirmations/new' #Change this if you don't have the views on default path
     end
   end

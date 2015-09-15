@@ -295,7 +295,10 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  # shouldnt need this
   def purchase
+    
+
     @user = current_user
     # payment_modal template requires a time_slot for start and end time
     @time_slot = @appointment 

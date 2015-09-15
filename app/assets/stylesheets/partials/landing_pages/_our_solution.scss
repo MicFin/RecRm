@@ -1,10 +1,11 @@
 
 
 #our-solution-landing-page{
-
+		.splash-image-section{
+			background-image: url("food/salad.jpg");
+		}
 		.landing-page-row{
 			
-
 			&.two-column-center {
 				.two-column-container{
 					@include make-xs-column( 10 );
@@ -21,6 +22,5 @@
 				}
 			}
 		}
-
 
 }

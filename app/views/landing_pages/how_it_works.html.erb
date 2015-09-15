@@ -19,7 +19,7 @@
 	
 				<hr class="small-hr">
 				<h3>Schedule your first session with a Kindrd Nutritionist.</h3>
-				<button class="btn btn-lg btn-primary">SCHEDULE NOW!</button>
+				<button class="sign-up-button btn btn-lg btn-primary">SCHEDULE NOW!</button>
 			</div>
 		</section>
 
@@ -98,5 +98,6 @@
 
 		<%= render "/landing_pages/sections/call_to_action_benefits" %>
 	</div>
-	<%= render "/layouts/footers/main_footer" %>
+	<%= render "/landing_pages/landing_page_footer" %>
+		<%= render "/landing_pages/sign_up_modal", user: @user %>
 </div>

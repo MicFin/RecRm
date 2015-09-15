@@ -19,7 +19,7 @@
 	
 				<hr class="small-hr">
 				<h3>Schedule your first session with a Kindrd Nutritionist.</h3>
-				<button class="btn btn-lg btn-primary">SCHEDULE NOW!</button>
+				<button class="sign-up-button btn btn-lg btn-primary">SCHEDULE NOW!</button>
 			</div>
 		</section>
 
@@ -42,7 +42,12 @@
 					Even with a healthy family, getting a great tasting meal around the table can be quite a challenge. Kindrdfood provides support you need to help your family enjoy better meals that are healthy for your specific family make up. 
 				</p>
 			</div>
-			<h3>Great taste and variety, at every stage of life.</h3>
+
+		</section>
+		<section class="landing-page-row landing-page-testimonial">
+			<div class="testimonial-container">
+				<h2>Great taste and variety, at every stage of life.</h2>
+			</div>
 		</section>
 		<section class="landing-page-row two-column-list">
 			<h2 class="heading">Navigate allergies or intolerances with ease. </h2>
@@ -62,7 +67,12 @@
 					Medical dietary restrictions can be overwhelming. Learning what you need to, in order to choose the right products and feel capable to feed yourself and your family can be daunting without the right guidance. Complex dietary restrictions? No problem – Kindrd Nutritionists are trained to provide guidance for even the most complicated dietary restrictions. They are armed with validated materials and great recipes for any skill level to jump start a more fulfilling experience with food, everyday. In the end, your family should enjoy great food regardless of what may limit your table. 
 				</p>
 			</div>
-			<h3>Trustworthy guidance will set you free.</h3>
+			<h3></h3>
+		</section>
+		<section class="landing-page-row landing-page-testimonial">
+			<div class="testimonial-container">
+				<h2>Trustworthy guidance will set you free.</h2>
+			</div>
 		</section>
 		<section class="landing-page-row two-column-list">
 			<h2 class="heading">Medical conditions present practical challenges for your plate.</h2>
@@ -83,7 +93,11 @@
 					Your family may have great medical care, but when you get home and have to eat with limitations, the practical challenges can be stressful. With Kindrdfood as your partner, you can gain knowledge, skills and a collection of personalized recipes that help you enjoy a variety of safe, healthy great tasting food.
 				</p>
 			</div>
-			<h3>Get rid of the stress. We’ll light your path.</h3>
+		</section>
+		<section class="landing-page-row landing-page-testimonial">
+			<div class="testimonial-container">
+				<h2>Get rid of the stress. We’ll light your path.</h2>
+			</div>
 		</section>
 		<section class="landing-page-row two-column-list">
 			<h2 class="heading">Improve taste, variety, and quality of your food. With or without a health goal in mind.</h2>
@@ -105,10 +119,14 @@
 					Changing the way that you and your family eat, for any reason, can be a stressful, cyclic challenge. Ups and downs with nobody to help can leave you considering giving up. You can navigate change more easily with Kindrdfood. Our expert team and filtered, high quality materials and recipes will have you on the road to success. 
 				</p>
 			</div>
-			<h3>We’re with you every step of the way to your goals.</h3>
 		</section>
-
+		<section class="landing-page-row landing-page-testimonial">
+			<div class="testimonial-container">
+				<h2>We’re with you every step of the way to your goals.</h2>
+			</div>
+		</section>
 		<%= render "/landing_pages/sections/call_to_action_why_kf" %>
 	</div>
-	<%= render "/layouts/footers/main_footer" %>
+	<%= render "/landing_pages/landing_page_footer" %>
+		<%= render "/landing_pages/sign_up_modal", user: @user %>
 </div>

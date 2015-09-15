@@ -6,7 +6,6 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="paymentModalLabel"><%=image_tag "/assets/nav_images/logo.png", class: "img-responsive" %></h4>
       </div>
-      
       <div class="modal-body">
         <div class="row form-group">
           <div class="col-xs-12 text-center">
@@ -62,7 +61,8 @@
           </div>
         </div>
         <%= simple_form_for @purchase, 
-          :url => make_payment_path(@purchasable, @purchase),
+          :url => make_package_payment_path(@purchasable, @purchase),
+       
           :method => 'post' do |f| %>
     
           <% if @purchase.errors.any? %>

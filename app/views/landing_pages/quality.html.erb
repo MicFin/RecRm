@@ -19,7 +19,7 @@
 				<p class="details">One of the most important things that Kindrdfood does is make sure that our clients have access to the most qualified experts and verified information available. </p>
 				<hr class="small-hr">
 				<h3>Schedule your first session with a Kindrd Nutritionist.</h3>
-				<button class="btn btn-lg btn-primary">SCHEDULE NOW!</button>
+				<button class="sign-up-button btn btn-lg btn-primary">SCHEDULE NOW!</button>
 			</div>
 		</section>
 
@@ -31,7 +31,7 @@
 				<hr class="small-hr">
 				<h3>Connect to the best and the rest is delicious. </h3>
 			</div>
-			<div class="two-column-image">
+			<div class="two-column-image img-growing-family">
 			</div>
 		</section>
 
@@ -44,7 +44,7 @@
 		</section>
 
 		<section class="landing-page-row two-column-right">
-			<div class="two-column-image">
+			<div class="two-column-image img-rdns-discussing">
 			</div>
 			<div class="two-column-text">
 				<h2 class="heading">Dietitian verified materials and recipes.</h2>
@@ -61,7 +61,7 @@
 				<hr class="small-hr">
 				<h3>As individuals and as a team, we’re here to help you.</h3>
 			</div>
-			<div class="two-column-image">
+			<div class="two-column-image img-woman-tablet-rdn-charts">
 			</div>
 		</section>
 
@@ -73,7 +73,7 @@
 		</section>
 
 		<section class="landing-page-row two-column-right">
-			<div class="two-column-image">
+			<div class="two-column-image img-father-son-prep">
 			</div>
 			<div class="two-column-text">
 				<h2 class="heading">No hidden agenda.</h2>
@@ -86,5 +86,6 @@
 
 		<%= render "/landing_pages/sections/call_to_action_quality" %>
 	</div>
-	<%= render "/layouts/footers/main_footer" %>
+	<%= render "/landing_pages/landing_page_footer" %>
+		<%= render "/landing_pages/sign_up_modal", user: @user %>
 </div>

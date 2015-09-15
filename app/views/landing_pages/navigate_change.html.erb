@@ -1,5 +1,5 @@
 
-<div id="quality-landing-page" class="landing-page">
+<div id="navigate-change-landing-page" class="landing-page">
 	<%= render "/landing_pages/landing_page_nav" %>
 	<div class="landing-page-body">
 		<section id="alerts-container">
@@ -19,7 +19,7 @@
 				<p class="details">One of the most important things that Kindrdfood does is make sure that our clients have access to the most qualified experts and verified information available. </p>
 				<hr class="small-hr">
 				<h3>Schedule your first session with a Kindrd Nutritionist.</h3>
-				<button class="btn btn-lg btn-primary">SCHEDULE NOW!</button>
+				<button class="sign-up-button btn btn-lg btn-primary">SCHEDULE NOW!</button>
 			</div>
 		</section>
 
@@ -31,12 +31,12 @@
 				<hr class="small-hr">
 				<h3>Confidence restored. No more misinformation. </h3>
 			</div>
-			<div class="two-column-image">
+			<div class="two-column-image img-girl-school-lunch">
 			</div>
 		</section>
 
 		<section class="landing-page-row two-column-right">
-			<div class="two-column-image">
+			<div class="two-column-image img-success-faster">
 			</div>
 			<div class="two-column-text">
 				<h2 class="heading">Get to success faster. </h2>
@@ -53,12 +53,13 @@
 				<hr class="small-hr">
 				<h3>Confidence restored. Stress away. </h3>
 			</div>
-			<div class="two-column-image">
+			<div class="two-column-image img-bday-boy">
 			</div>
 		</section>
 
 
 		<%= render "/landing_pages/sections/call_to_action_who_we_help" %>
 	</div>
-	<%= render "/layouts/footers/main_footer" %>
+	<%= render "/landing_pages/landing_page_footer" %>
+		<%= render "/landing_pages/sign_up_modal", user: @user %>
 </div>

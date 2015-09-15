@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
 
   # return the user's appointment currently in registration or returns nil
   def appointment_in_registration
-    return self.appointment_hosts.where(status: "In Registration").last || nil
+    return self.appointment_hosts.where(status: "In Registration").last || self.appointment_hosts.where(status: "Unused Package Session").last || nil
   end
 
   # returns true if user is a repeat customer
@@ -268,9 +268,14 @@ class User < ActiveRecord::Base
   end
 
   def uppercase_name
-    if first_name || last_name 
+
+    if first_name && last_name 
       self.first_name.capitalize!
       self.last_name.capitalize!
+
+    elsif first_name
+      self.first_name.capitalize!
+
     else
       return true
     end
@@ -371,8 +376,9 @@ class User < ActiveRecord::Base
 
   # only require confirmation for qol referrals
   def confirmation_required?
-    # if a QOL referral does not have a password then require confirmation email because the user was created by QOL admin
-    if self.qol_referral && self.encrypted_password.blank?
+    # if a QOL referral does not have a password then require confirmation email because the user was created by QOL admin OR is physician referral
+    
+    if (self.qol_referral && self.encrypted_password.blank?) || self.physician_referral
       return true
 
     # else if not a QOL referral or QOL referral has a password 

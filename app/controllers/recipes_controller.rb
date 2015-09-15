@@ -28,32 +28,32 @@ class RecipesController < ApplicationController
   end
 
   ###notes
-  ## this method and view is being used as the dietitian dashboard right now, it should be moved to a home controller or another controller
-  def dietitian_recipes_index
-    if current_dietitian.has_role? "Marketing Reviewer"
-      @all_completed_recipes = Recipe.where(completed: true).limit(250).order("created_at").reverse
-    else
-      @all_completed_recipes = Recipe.where(completed: true).limit(20).order("created_at").reverse
-    end
-    @recipes = Recipe.where(dietitian_id: current_dietitian.id, completed: true).order("created_at").reverse
-    @incomplete_recipes = current_dietitian.incomplete_recipes
-    @recipe_reviews_to_assign = []
-    if current_dietitian.has_role? "Admin Dietitian"
-      @recipes_need_original_review = Recipe.all_need_original_review
-      @recipes_need_first_tier_review = Recipe.all_need_first_tier_review
-      @recipes_need_second_tier_review = Recipe.all_need_second_tier_review
-      @recipes_in_second_tier_review = Recipe.all_in_second_tier_review
-      @recipes_in_first_tier_review = Recipe.all_in_first_tier_review
-      @all_live_recipes = Recipe.all_live_recipes
-      # @assign_review_conflicts_hash = ReviewConflict.assign_by_risk_level
-      # @review_conflicts_in_review_hash = ReviewConflict.in_review_by_risk_level
-      @resolved_quality_revews = QualityReview.where(resolved: true)
-      # @resolved_review_conflicts = ReviewConflict.where(resolved: true)
-      @test_recipes = Recipe.where(dietitian_id: 11).where(:created_at => Date.today.at_beginning_of_week.beginning_of_day..Date.tomorrow.end_of_day)
-    end
-    @incomplete_quality_reviews = current_dietitian.incomplete_quality_reviews
-    # @incomplete_review_conflicts = ReviewConflict.assigned_to_dietitian(current_dietitian.id)
-  end
+  # ## old dietitian dash a home controller or another controller
+  # def dietitian_recipes_index
+  #   if current_dietitian.has_role? "Marketing Reviewer"
+  #     @all_completed_recipes = Recipe.where(completed: true).limit(250).order("created_at").reverse
+  #   else
+  #     @all_completed_recipes = Recipe.where(completed: true).limit(20).order("created_at").reverse
+  #   end
+  #   @recipes = Recipe.where(dietitian_id: current_dietitian.id, completed: true).order("created_at").reverse
+  #   @incomplete_recipes = current_dietitian.incomplete_recipes
+  #   @recipe_reviews_to_assign = []
+  #   if current_dietitian.has_role? "Admin Dietitian"
+  #     @recipes_need_original_review = Recipe.all_need_original_review
+  #     @recipes_need_first_tier_review = Recipe.all_need_first_tier_review
+  #     @recipes_need_second_tier_review = Recipe.all_need_second_tier_review
+  #     @recipes_in_second_tier_review = Recipe.all_in_second_tier_review
+  #     @recipes_in_first_tier_review = Recipe.all_in_first_tier_review
+  #     @all_live_recipes = Recipe.all_live_recipes
+  #     # @assign_review_conflicts_hash = ReviewConflict.assign_by_risk_level
+  #     # @review_conflicts_in_review_hash = ReviewConflict.in_review_by_risk_level
+  #     @resolved_quality_revews = QualityReview.where(resolved: true)
+  #     # @resolved_review_conflicts = ReviewConflict.where(resolved: true)
+  #     @test_recipes = Recipe.where(dietitian_id: 11).where(:created_at => Date.today.at_beginning_of_week.beginning_of_day..Date.tomorrow.end_of_day)
+  #   end
+  #   @incomplete_quality_reviews = current_dietitian.incomplete_quality_reviews
+  #   # @incomplete_review_conflicts = ReviewConflict.assigned_to_dietitian(current_dietitian.id)
+  # end
 
   # GET /recipes/1
   # GET /recipes/1.json

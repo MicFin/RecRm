@@ -1,0 +1,50 @@
+			<header class="col-xs-2">
+				<div class="row">
+					<div class="col-xs-12">
+					
+						<%=image_tag "/assets/logos/kindrdfood-web.png", class: "img-responsive img-logo" %>
+
+					</div>
+<!-- 					<div class="col-md-6">
+						<img class="img-responsive" src="images/face.jpg"> 	
+					</div> -->
+					<div class="col-xs-12 col-md-6">
+						<p>Welcome, <%=current_dietitian.first_name%>!</p>
+						<p><%= link_to "Log Out", destroy_dietitian_session_path, :method => :delete %></p>
+					</div>
+				</div>
+				<nav>	
+					<ul>
+						<%= active_link_to welcome_home_path, :wrap_tag => :li  do %>
+						  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
+						<% end %>
+						<%= active_link_to edit_dietitian_registration_path, :wrap_tag => :li  do %>
+						  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Profile</span>
+						<% end %>
+		
+						<%= active_link_to availabilities_path, :wrap_tag => :li do %>
+						  <span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Schedule</span>
+						<% end %>
+
+						<%= active_link_to dietitian_recipes_path(current_dietitian), :wrap_tag => :li do %>
+						  <span class="glyphicon glyphicon-cutlery"></span><span class="hidden-xs hidden-sm nav-item">Recipes</span>
+						<% end %>
+						<%= active_link_to welcome_home_path, :wrap_tag => :li do %>
+						  <span class="glyphicon glyphicon-list-alt"></span><span class="hidden-xs hidden-sm nav-item">Articles</span>
+						<% end %>
+<!-- 						<%#= active_link_to @family, :wrap_tag => :li do %>
+						  <span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
+						<%# end %> -->
+
+<!-- 						<%#= active_link_to @family, :wrap_tag => :li do %>
+						  <span class="glyphicon glyphicon-comment"></span><span class="hidden-xs hidden-sm nav-item">Messages</span><span class="badge">4</span>
+						<%# end %> -->
+
+<!-- 						<%#= active_link_to @family, :wrap_tag => :li do %>
+						 	<span class="glyphicon glyphicon-cog"></span><span class="hidden-xs hidden-sm nav-item">Settings</span>
+						<%# end %> -->
+
+						<li><a href=""><span class="glyphicon glyphicon-envelope"></span><span class="hidden-xs hidden-sm nav-item">Contact Us</span></a></li>	
+					</ul>
+				</nav>
+			</header>

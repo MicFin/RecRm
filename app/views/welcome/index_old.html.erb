@@ -1,0 +1,252 @@
+
+
+
+<div id="dashboard-container" class="">
+
+ 	<div id="dash-main" class="row">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+
+
+
+			<h2>
+
+				Sessions
+			</h2>
+
+
+
+			<div id="appointment-update-container">
+				<% if @upcoming_appointments.count >= 1%>
+					<% @upcoming_appointments.each do |date_time_array, appointment| %>
+						<div class="row dashbord-list-top">
+							<div class="col-xs-12 text-left">
+									<p><%=date_time_array[0].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y")%></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-3">
+								<p><%=date_time_array[1]%></p>
+							</div>
+							<div class="col-xs-6">
+								<p><%=appointment.first.family_info.family_names%></p>
+							</div>
+							<div class="col-xs-3">
+								<% if appointment.first.prepped == true %>
+									<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
+								<% else %>
+									<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-danger prep-appointment-button">Prep</button>
+								<% end %>
+								<% if (current_dietitian.has_role? "Admin Dietitian") && (appointment.first.room_id) %>
+									<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => appointment.first.room_id, appointment: appointment.first.id }%>
+								<% end %>
+							</div>
+						</div>
+						<div class="row hidden-xs dashboard-list-bottom">
+							<div class="col-xs-3">
+							</div>
+							<div class="col-xs-9">
+								<% appointment.first.family_info.health_groups_names.each do |health_group|%>
+						 			<div class="btn btn-white-orange btn-sm">
+						 				<%=	health_group %>
+						 			</div>
+								<% end %>
+							</div>
+						</div>
+					<% end %>
+				<% else %>
+					<div class="empty-list-container col-xs-12">
+						<h3>No upcoming appointments.</h3>
+					</div>
+				<% end %>
+			</div>
+			<div id="previous-appointments-container">
+				<% if @previous_appointments.count >= 1%>
+					<% @previous_appointments.each do |date_time_array, appointment| %>
+						<div class="row dashbord-list-top">
+							<div class="col-xs-12 text-left">
+									<p><%=date_time_array[0].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y")%></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-3">
+								<p><%=date_time_array[1]%></p>
+							</div>
+							<div class="col-xs-6">
+								<p><%=appointment.first.family_info.family_names%></p>
+							</div>
+							<div class="col-xs-3">
+									<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success appointment-review-button">View</button>
+							</div>
+						</div>
+						<div class="row hidden-xs dashboard-list-bottom">
+							<div class="col-xs-3">
+							</div>
+							<div class="col-xs-9">
+								<% appointment.first.family_info.health_groups_names.each do |health_group|%>
+						 			<div class="btn btn-white-orange btn-sm">
+						 				<%=	health_group %>
+						 			</div>
+								<% end %>
+							</div>
+						</div>
+					<% end %>
+				<% else %>
+					<div class="empty-list-container col-xs-12">
+						<h3>No previous appointments.</h3>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+	
+			<% if (@next_appointment != nil) && (@next_appointment.room_id != nil) %>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+					<%= link_to image_tag("computer.png", class: "tilt"), {:controller => "rooms", :action => "in_session", :id => @next_appointment.room_id, appointment: @next_appointment.id }%>
+					<p><%=@next_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></p>
+					<p><%=@next_appointment.family_info.family_names%></p>
+					<button data-appt-id="<%=@next_appointment.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
+				</div>
+			<% else %>
+				<div class="col-xs-12">
+					<p><%= link_to image_tag("chef-hat.png", class: "tilt"), :controller => "recipes", :action => "new" %>	</p>
+					<p>Create a Recipe</p>
+				</div>
+			<% end %>
+			<% if current_dietitian.has_role? "Admin Dietitian" %>
+				<div class="col-xs-6 ">
+    			<%= link_to "Admin Dash", dashboard_path, class: "btn btn-warning"%>
+    		</div>
+				<div class="col-xs-6 ">
+				  <%= link_to "Demo Appt", {:controller => "rooms", :action => "in_session", :id => "17", appointment: "53" }, class: "btn btn-warning" %>
+				  <div class="col-xs-12">
+				  <button data-appt-id="53" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
+				  </div>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			<h2>Review Recipes</h2>
+			<div class="col-xs-6 text-left">
+				<p>Goal: <%=@user.quality_review_quota_count%></p>
+			</div>
+			<div class="col-xs-6 text-right">
+				<p>Completed: <%=@user.quality_review_quota_completed_count%>/<%=@user.quality_review_quota_count%></p>
+			</div>
+			<div id="appointment-update-container">
+			<% if @incomplete_quality_reviews.count > 100 %>
+				<% @incomplete_quality_reviews.each do |quality_review| %>
+					<div class="row dashbord-list-top">
+						<div class="col-xs-9 text-left">
+								<p><%=quality_review.recipe_name%></p>
+						</div>
+						<div class="col-xs-3">
+							<%=link_to "Review", quality_reviews_start_review_path(quality_review.quality_reviewable, quality_review), class: "btn btn-sm btn-success" %>
+						</div>
+					</div>
+					<div class="row dashboard-list-bottom">
+						<div class="col-xs-12">
+							<p><%=quality_review.number_of_ingredients%> ingredients</p>
+						</div>
+						<div class="col-xs-3">
+						</div>
+						<div class="col-xs-9">
+						<% quality_review.health_groups_names.each do |health_group|%>
+				 			<div class="btn btn-white-orange btn-sm">
+				 				<%=	health_group %>
+				 			</div>
+						<% end %>
+						</div>
+					</div>
+				<% end %>
+			<% else %>
+				<div class="empty-list-container col-xs-12">
+					<h3>No recipes to review.</h3>
+				</div>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+			<%# if appointment.first.room_id %>
+			<%# if (((DateTime.now.in_time_zone("Eastern Time (US & Canada)") - @appointment.first.start_time) / 60 / 60) > -5)%>
+				<%#= link_to 'Join Session', {:controller => "rooms", :action => "in_session", :id => appointment.first.room_id, appointment: appointment.first.id }, class: "text-center action kindrd-button btn-block tilt"%>
+			<%# else %>
+			<%# end %>
+
+<script type="text/javascript">
+	$(".prep-appointment-button").on("click", function(e){
+		e.preventDefault();
+		var appointment_id = $(this).data("appt-id");
+
+		$.ajax({
+			type: "GET",
+			datatype: "script",
+			data: {},
+			url: "/appointments/"+appointment_id+"/appointment_prep/",
+			success: function(response){
+				$(".family-member-health-container").css("min-height", function(){ 
+  				return $(window).height()-100;
+				});
+
+       	// on family member view button click
+       	$(".family-member-health-preview").on("click", function(e){
+       		e.preventDefault();
+       		var family_member_id = $(this).data("family-member-id");
+       		$(".family-member-health-preview").removeClass("hidden");
+       		$(".family-member-health-container").addClass("hidden");
+       		$(".family-member").removeClass("selected-family-member");
+       		$("#family-member-"+family_member_id).addClass("selected-family-member");		
+       		$("#family-member-health-"+family_member_id).removeClass("hidden");
+         	$(".active-tab").removeClass("active-tab");
+         	$("#family-member-health-button").parent().addClass("active-tab");
+       	});
+	    }
+	  })
+	});
+
+	$(".appointment-review-button").on("click", function(e){
+		e.preventDefault();
+		var appointment_id = $(this).data("appt-id");
+
+		$.ajax({
+			type: "GET",
+			datatype: "script",
+			data: {},
+			url: "/appointments/"+appointment_id+"/appointment_review/",
+			success: function(response){
+				$(".family-member-health-container").css("min-height", function(){ 
+  				return $(window).height()-100;
+				});
+
+       	// on family member view button click
+       	$(".family-member-health-preview").on("click", function(e){
+       		e.preventDefault();
+       		var family_member_id = $(this).data("family-member-id");
+       		$(".family-member-health-preview").removeClass("hidden");
+       		$(".family-member-health-container").addClass("hidden");
+       		$(".family-member").removeClass("selected-family-member");
+       		$("#family-member-"+family_member_id).addClass("selected-family-member");		
+       		$("#family-member-health-"+family_member_id).removeClass("hidden");
+         	$(".active-tab").removeClass("active-tab");
+         	$("#family-member-health-button").parent().addClass("active-tab");
+       	});
+	    }
+	  })
+	});
+
+
+
+	$(".session-dropdown-option").on("click", function(e){
+		e.preventDefault();
+		var dropDownValue = $(this).data("sessions")
+		$("button.dropdown-toggle").html(dropDownValue + '<span class="caret"></span>');
+			if (dropDownValue === "Previous"){
+				$("#previous-appointments-container").removeClass("hidden");
+				$("#appointment-update-container").addClass("hidden");
+			} else {
+				$("#previous-appointments-container").addClass("hidden");
+				$("#appointment-update-container").removeClass("hidden");
+			}
+	})
+</script>

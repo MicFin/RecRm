@@ -235,18 +235,4 @@
 	  })
 	});
 
-
-
-	$(".session-dropdown-option").on("click", function(e){
-		e.preventDefault();
-		var dropDownValue = $(this).data("sessions")
-		$("button.dropdown-toggle").html(dropDownValue + '<span class="caret"></span>');
-			if (dropDownValue === "Previous"){
-				$("#previous-appointments-container").removeClass("hidden");
-				$("#appointment-update-container").addClass("hidden");
-			} else {
-				$("#previous-appointments-container").addClass("hidden");
-				$("#appointment-update-container").removeClass("hidden");
-			}
-	})
 </script>

@@ -45,6 +45,20 @@
 						<%# end %> -->
 
 						<li><a href=""><span class="glyphicon glyphicon-envelope"></span><span class="hidden-xs hidden-sm nav-item">Contact Us</span></a></li>	
+
+
+						<% if current_dietitian.has_role? "Admin Dietitian" %>
+
+							<%= active_link_to dashboard_path, :wrap_tag => :li do %>
+							  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">ADMIN DASH</span>
+							<% end %>
+
+							<%= active_link_to in_session_room_path(17), :data => { :room_id => 53, :id=>17}, :wrap_tag => :li do %>
+							  <span class="glyphicon glyphicon-camera"></span><span class="hidden-xs hidden-sm nav-item">DEMO ROOM</span>
+							  <button data-appt-id="53" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
+							<% end %>
+						<% end %>
+			
 					</ul>
 				</nav>
 			</header>

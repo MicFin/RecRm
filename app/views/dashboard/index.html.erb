@@ -1,50 +1,53 @@
-<div id="roles-index-container">
-  <div class="col-xs-12">
-		<div class="col-xs-3 dashboard-button-container no-hover">
-		<h3>Dietitians Online</h3>
-	 	<%@online_dietitians.each do |dietitian| %>
-	 		<h4 class="white-font"><%=dietitian.email%></h4>
-	 	<% end %>
- 		</div>
-		<%= link_to roles_path do %>
-			<div class="col-xs-3 dashboard-button-container ">
-				<h3>Team Roles</h3>
-	 		</div>
-		<% end %>
-		<%= link_to content_quotas_path do %>
-			<div class="col-xs-3 dashboard-button-container ">
-				<h3>Weekly Content Goals</h3>
-	 		</div>
-		<% end %>
-		<%= link_to dashboard_recipe_status_path do %>
-		  <div class="col-xs-3 dashboard-button-container ">
-		  	<h3>Current Recipe Status</h3>
-		 	</div>
-		<% end %>
-		<%= link_to recipe_data_path do %>
-			<div class="col-xs-3 dashboard-button-container ">
-				<h3>Recipe Creation Data</h3>
-	 		</div>
-		<% end %>
-		<%= link_to ingredients_path do %>
-		  <div class="col-xs-3 dashboard-button-container ">
-		  	<h3>Health Groups, Allergens, and Ingredients</h3>
-		 	</div>
-		<% end %>
-		<%= link_to time_slots_path do %>
-		  <div class="col-xs-3 dashboard-button-container ">
-		  	<h3>Set Available Appointment Times</h3>
-		 	</div>
-		<% end %>
-		<%= link_to appointments_path do %>
-		  <div class="col-xs-3 dashboard-button-container ">
-		  	<h3>Set Appointments</h3>
-		 	</div>
-		<% end %>		
-		<%= link_to packages_path do %>
-		  <div class="col-xs-3 dashboard-button-container ">
-		  	<h3>Manage Packages</h3>
-		 	</div>
-		<% end %>		
-  </div>
-</div>
+<div id="welcome-page" class="container-fluid">
+		<div class="row">
+
+			<%= render "/layouts/navbars/dietitian_admin_nav" %>
+
+			<main class="col-xs-10 col-xs-offset-2">
+				<section class="jumbotron">
+					<div id="jumbotron-inner" class="row">
+						<h3>Dietitians Online</h3>
+					 	<%@online_dietitians.each do |dietitian| %>
+					 		<h4 class="white-font"><%=dietitian.email%></h4>
+					 	<% end %>
+				
+					</div>
+				</section>
+				<section id="roles-index-container">
+					<%= link_to content_quotas_path do %>
+						<div class="col-xs-3 dashboard-button-container ">
+							<h3>Weekly Content Goals</h3>
+				 		</div>
+					<% end %>
+					<%= link_to dashboard_recipe_status_path do %>
+					  <div class="col-xs-3 dashboard-button-container ">
+					  	<h3>Current Recipe Status</h3>
+					 	</div>
+					<% end %>
+					<%= link_to recipe_data_path do %>
+						<div class="col-xs-3 dashboard-button-container ">
+							<h3>Recipe Creation Data</h3>
+				 		</div>
+					<% end %>
+					<%= link_to ingredients_path do %>
+					  <div class="col-xs-3 dashboard-button-container ">
+					  	<h3>Health Groups, Allergens, and Ingredients</h3>
+					 	</div>
+					<% end %>
+			  </section>
+			</main>
+			<div class="col-xs-10 col-xs-offset-2">
+				<%=render "/layouts/footers/main_footer" %>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+

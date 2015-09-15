@@ -6,11 +6,12 @@
 
 		@include make-xs-column( 12 );
 		@include make-sm-column( 4 );
-		@include make-sm-column-offset( 1 );
+		// @include make-sm-column-offset( 1 );
 
 		nav.left-nav ul {
 			list-style: none;
 			padding: 0;
+			font-size: 20px;
 		}
 
 		nav.left-nav ul li {
@@ -32,21 +33,11 @@
 		nav.left-nav ul li.active a{
 			color: white;
 		}
-		nav.left-nav ul li.active a:after {
-			border-bottom: 20px solid rgba(0, 0, 0, 0);
-		  border-left: 20px solid green;
-		  border-top: 20px solid rgba(0, 0, 0, 0);
-		  content: "";
-		  right: -20px;
-		  position: absolute;
-		  top: 0px;
-		  z-index: 100;
-		}
 	}
 
 	.left-nav-text-container{
 		@include make-xs-column( 12 );
-		@include make-sm-column( 6 );
+		@include make-sm-column( 8 );
 		@extend .text-left;
 	}
 }

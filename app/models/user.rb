@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
   has_many :coupon_redemptions 
   has_many :coupons, through: :coupon_redemptions
   
+  has_many :user_packages
+  has_many :packages, through: :user_packages
+
 	has_many :appointments
   has_many :patient_focus, :class_name => "Appointment", :foreign_key => "patient_focus_id"
   has_many :appointment_hosts, :class_name => "Appointment", :foreign_key => "appointment_host_id"

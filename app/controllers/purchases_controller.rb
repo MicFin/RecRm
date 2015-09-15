@@ -66,13 +66,21 @@ class PurchasesController < ApplicationController
     # Update the purchase and make the stripe payment
     @purchase.update_with_payment(credit_card_usage, @purchasable)
 
-    time_slot = TimeSlot.find(params[:time_slot_id])
-    @purchasable.start_time = time_slot.start_time
-    @purchasable.end_time = time_slot.end_time
-    @purchasable.save
+    binding.pry
+    # If an appointment
+    if false
+      # Get the time slot and save start and end time to appointment
+      time_slot = TimeSlot.find(params[:time_slot_id])
+      @purchasable.start_time = time_slot.start_time
+      @purchasable.end_time = time_slot.end_time
+      @purchasable.save
+      # Create pre appointment survey
+      @pre_appt_survey = Survey.generate_for_appointment(@purchasable, current_user)
 
-    @pre_appt_survey = Survey.generate_for_appointment(@purchasable, current_user)
-
+    # Else a package
+    else
+    binding.pry 
+    end
     # Only HTML response
     respond_to do |format|
       format.html { redirect_to welcome_home_path, notice: 'Appointment was successfully created.' }

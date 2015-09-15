@@ -5,7 +5,9 @@ class PackagesController < ApplicationController
   # GET /packages.json
   def index
     @packages = Package.all
-    @family = current_user.head_of_families.last
+    if current_user 
+      @family = current_user.head_of_families.last
+    end
   end
 
   # GET /packages/1

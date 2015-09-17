@@ -346,9 +346,40 @@
 			&.landing-page-testimonial{
 				background: $gray-divider;
 				color: $brand-light-green;
+				position: relative;
+
+				.img-quote-left{
+					background-image: url("icons/open-quote.svg");
+			    height: 75%;
+			    position: absolute;
+			    left: 0;
+			    top: 0;
+			    width: 50%;
+			    background-repeat: no-repeat;
+			    z-index: 0;
+				}
+
+				.img-quote-right{
+			    background-image: url("icons/closed-quote.svg");
+			    height: 75%;
+			    position: absolute;
+			    right: 0;
+			    bottom: 0;
+			    width: 50%;
+			    background-repeat: no-repeat;
+			    z-index: 0;
+			    background-position: bottom right;
+				}
+
 				.testimonial-container{
 					@extend .text-center;
 					@include make-xs-column( 12 );
+
+					h2{
+			    	z-index: 10;
+			    	position: relative;
+			    	line-height: 1.5;
+					}
 				}
 			}
 

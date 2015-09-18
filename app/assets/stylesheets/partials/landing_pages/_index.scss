@@ -382,6 +382,17 @@
 			    	position: relative;
 			    	line-height: 1.5;
 					}
+					h4, p {
+						color: black;
+					}
+					p {
+						text-align: left;
+					}
+					.testimonial-signature{
+						@include make-xs-column( 12 );
+						@include make-sm-column( 7 ) ;
+						@include make-sm-column-offset( 3 );
+					}
 				}
 			}
 

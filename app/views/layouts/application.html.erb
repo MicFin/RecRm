@@ -15,25 +15,34 @@
 <!--     below should only run when on checkout page but is currently in all layouts -->
     <%= stripe_javascript_tag %>
 
+
 <!--[if IE]>
     <%= javascript_include_tag "browser_specific/modernizr.min" %>
     <%= javascript_include_tag "browser_specific/modernizr_polyfills_rules" %>
 <![endif]-->
 
+
 <!--     
-    CSS for all browsers other than IE
-    Loads application wide CSS at application.css.scss and controller specific CSS at EX: welcome.css.scss 
+    CSS for all browsers 
+    Loads application wide CSS at application.css.scss  
+    Loads controller specific CSS at EX: welcome.css.scss 
 -->
     
     <%= stylesheet_link_tag "application", params[:controller], :media => "all"%>
 
 
 <!--     
-    Loads application wide JS at application.js, controller specific JS at EX: welcome.js
+    Loads application wide JS at application.js
+    Loads controller specific JS at EX: welcome.js
 -->
     <%= javascript_include_tag "application", params[:controller], media: 'all' %>
 
-<%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js" %>
+
+<!--     
+    Loads application wide JS at application.js
+    Loads controller specific JS at EX: welcome.js
+-->
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js" %>
 
 <!--     Returns meta tags “csrf-param” and “csrf-token” with the name of the cross-site request forgery protection parameter and token, respectively.  
   http://apidock.com/rails/ActionView/Helpers/CsrfHelper/csrf_meta_tags -->

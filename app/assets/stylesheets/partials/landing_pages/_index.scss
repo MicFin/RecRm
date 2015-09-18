@@ -261,9 +261,11 @@
 			&.two-column-list{
 
 				.two-column-list-left{
-					@include make-xs-column( 4 );					
+					@include make-xs-column( 12 );
+					@include make-sm-column( 4 );					
 				}
 				.two-column-list-right {
+					@include make-xs-column( 12 );
 					@include make-xs-column( 8 );
 				}
 

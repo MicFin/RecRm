@@ -285,9 +285,13 @@
 						@include box-shadow(1px, 1px, 35px, $gray-light, $inset: false);
 						min-height: 400px;
 						.banner-container {
-					    width: 125%;
+					    width: 120%;
+					    margin-left: -10%;
+					    @media (max-width: $screen-sm-max) {
+					    	width: 110%;
+					      margin-left: -5%;
+					    }
 					    text-align: center;
-					    margin-left: -13%;
 					    background-color: green;
 					    padding: 5%;
 					    position: relative;

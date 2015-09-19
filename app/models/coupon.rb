@@ -18,12 +18,12 @@ class Coupon < ActiveRecord::Base
     # super(age) #must add this otherwise you need to add this thing and place the value which you want to save. 
   end
 
-  def code=(value)
-    # # custom actions
-    # ###
-    # write_attribute(:code, value)
-    # # this is same as self[:code] = value
-  end
+  # def code=(value)
+  #   # # custom actions
+  #   # ###
+  #   # write_attribute(:code, value)
+  #   # # this is same as self[:code] = value
+  # end
 
 
 end

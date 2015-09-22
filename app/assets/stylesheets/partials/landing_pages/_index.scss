@@ -17,7 +17,7 @@
 
 
 		// fonts
-		h2.heading, h3.heading {
+		h2.heading, h3.heading, h4.heading {
 			color: $brand-carrot-green;
 		}
 		p.details {
@@ -102,7 +102,7 @@
 		// landing page row
 		.landing-page-row {
 			@include make-row( );
-			padding: 5%;
+			padding: 75px 5%;
 
 			// hr
 			hr.small-hr {
@@ -170,10 +170,15 @@
 
 			// two column left template
 			&.two-column-left {
+				padding: 125px 5%;
 				.two-column-text {
 					@include make-xs-column( 12 );
 					@include make-sm-column( 6 );
 					@extend .text-left;
+					padding-right: 5%;
+					h2 {
+						margin-top: 0;
+					}
 				}
 				.two-column-image {
 					@include make-xs-column( 12 );
@@ -191,15 +196,27 @@
 				  // background-position: right -30px bottom -15px;
 				}
 			}
-
+			&.two-column-left + .two-column-right {
+		    padding: 0 5% 75px 5%;
+			}
+			&.two-column-right + .two-column-left {
+		    padding: 0 5% 75px 5%;
+			}
 			// two column right template
 			&.two-column-right {
+				padding: 125px 5%;
+
 				.two-column-text {
 					@include make-xs-column( 12 );
 					@include make-sm-column( 6 );
 					// @include make-sm-column-offset( 1 );
 					@extend .text-left;
+					padding-left: 5%;
+					h2 {
+						margin-top: 0;
+					}
 				}
+
 				.two-column-image {
 					@include make-xs-column( 12 );
 				  @include make-sm-column( 6 );
@@ -222,7 +239,7 @@
 			// three column template
 			&.three-column, &.four-column{
 				h2.heading{
-					margin-bottom: 70px;
+					margin-bottom: 125px;
 				}
 				ul{
 					text-align:left;
@@ -242,12 +259,22 @@
 		    	}
 				}
 				.three-column-container, .four-column-container {
-					@include make-xs-column( 10 );
-				  @include make-xs-column-offset( 1 );
+					@include make-xs-column( 12 );
+				  // @include make-xs-column-offset( 1 );
 				  @extend .text-center;
+				  h2 {
+				  	font-size: 35px;
+				  }
 				  .three-column-one{
 				  	@include make-xs-column( 12 );
 				  	@include make-sm-column( 4 );
+				  	h3 {
+				  		font-style: italic;
+				  	}
+				  	ul {
+				  		list-style: none;
+				  		text-align: center;
+				  	}
 				  }
 				  .four-column-one{
 				  	@include make-xs-column( 12 );
@@ -351,7 +378,7 @@
 			// testimonial section
 			&.landing-page-testimonial{
 				background: $gray-divider;
-				color: $brand-light-green;
+				color: $gray;
 				position: relative;
 
 				.img-quote-left{

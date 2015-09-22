@@ -366,13 +366,7 @@
 			  position: relative;
 			  background-attachment: fixed;
 			  color: $brand-white;
-			  background-position: right 0px bottom 0;
-
-			  // for xs small screen change position
-			  @media screen and (max-width: $screen-xs-max){
-			  	background-position: right 0px bottom 0px;
-			  
-			  }
+			  background-position: center;
 			  text-shadow: 2px 2px 4px black;
 			}
 

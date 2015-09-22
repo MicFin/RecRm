@@ -46,3 +46,4 @@ end
   ]
 
 
+  Rails.application.config.assets.precompile += ["application_split2.css", "application_split3.css", "application_split4.css"]

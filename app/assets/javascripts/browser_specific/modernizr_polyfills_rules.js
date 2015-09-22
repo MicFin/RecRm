@@ -14,8 +14,8 @@ Modernizr.load([
 		test: Modernizr.cssgradients,
 		nope: [
 			'/assets/browser_specific/polyfills/selectivizr.js', 
-			"/assets/stylesheets/modules/bootstrap/bootstrap_overrides/ie7.css", 
-			"/assets/stylesheets/modules/bootstrap/bootstrap_overrides/css3pie.css", 
+			"/assets/modules/bootstrap/bootstrap_overrides/ie7.css", 
+			"/assets/modules/bootstrap/bootstrap_overrides/css3pie.css", 
 			'/assets/browser_specific/polyfills/PIE.js'
 		]
 	}

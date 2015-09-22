@@ -146,6 +146,9 @@ gem 'active_link_to', "1.0.3"
 # # A Rails plugin to provide templates for the axlsx gem
 # gem 'axlsx_rails', "0.3.0"
 
+# Splits CSS files to avoid limit for IE9 and below 
+# https://github.com/zweilove/css_splitter
+gem 'css_splitter'
 
 group :development do
 # Better error gives you better explanations for errors

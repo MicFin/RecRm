@@ -1,54 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kindrdfood</title>
     <%= favicon_link_tag 'logos/kindrdfood-carrot.png', rel: 'icon', type: 'image/png' %>
     <%= favicon_link_tag "logos/kindrdfood-carrot.png", rel: 'apple-touch-icon', type: 'image/png' %>
-<!--     Font Sheet -->
+    
+    <!--     Font Sheet -->
     <link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 
-<!--     below should only run when on checkout page but is currently in all layouts -->
+    <!--     
+        stripe javascript should only run when on checkout page but is currently in all layouts, move to controller specific
+    -->
     <%= stripe_javascript_tag %>
 
-
-<!--[if IE]>
-    <%= javascript_include_tag "browser_specific/modernizr.min" %>
-    <%= javascript_include_tag "browser_specific/modernizr_polyfills_rules" %>
-<![endif]-->
-
-
-<!--     
-    CSS for all browsers 
-    Loads application wide CSS at application.css.scss  
-    Loads controller specific CSS at EX: welcome.css.scss 
--->
-    
-    <%= stylesheet_link_tag "application", params[:controller], :media => "all"%>
+    <!--     
+        Loads modernizr polyfills for IE 10 and below
+    -->
+    <!--[if lt IE 10]>
+        <%= javascript_include_tag "browser_specific/modernizr.min" %>
+        <%= javascript_include_tag "browser_specific/modernizr_polyfills_rules" %>
+    <![endif]-->
 
 
-<!--     
-    Loads application wide JS at application.js
-    Loads controller specific JS at EX: welcome.js
--->
+    <!--     
+        Loads application wide CSS at application.css.scss  
+        Split style sheet splits stylesheets if IE9 or below into
+        application.css, application_split2.css, application_split3.css, application_split4.css 
+    -->
+    <%= split_stylesheet_link_tag "application", debug: false, :split_count => 4, :media => "all"  %>
+
+    <!--     
+        Loads controller specific CSS at EX: welcome.css.scss 
+    -->
+    <%= stylesheet_link_tag params[:controller], :media => "all"%>
+
+
+    <!--     
+        Loads application wide JS at application.js
+        Loads controller specific JS at EX: welcome.js
+    -->
     <%= javascript_include_tag "application", params[:controller], media: 'all' %>
 
 
-<!--     
-    Loads application wide JS at application.js
-    Loads controller specific JS at EX: welcome.js
--->
+    <!--     
+        Loads jstimezonedetect, should add to asset pipeline on controller specific pages
+    -->
     <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js" %>
 
-<!--     Returns meta tags “csrf-param” and “csrf-token” with the name of the cross-site request forgery protection parameter and token, respectively.  
-  http://apidock.com/rails/ActionView/Helpers/CsrfHelper/csrf_meta_tags -->
+    <!--     
+        Returns meta tags “csrf-param” and “csrf-token” with the name of the cross-site request forgery protection parameter and token, respectively.  
+        http://apidock.com/rails/ActionView/Helpers/CsrfHelper/csrf_meta_tags 
+    -->
     <%= csrf_meta_tags %> 
 
-<!--       This is required to process a stripe payment.  It is called in Appointment.rb update_with_payment -->
+    <!--       
+        This is required to process a stripe payment.  It is called in Appointment.rb update_with_payment 
+    -->
     <% if Rails.env.development? %>
       <%= tag :meta, :name => "stripe-key", :content => "pk_test_cZieXcu5WhjQKKDCmOY0PtoA" %>
     <% else %>
@@ -58,13 +73,9 @@
   </head>
 
 
-<!--[if IE]>
 
-<![endif]-->
+  <body>
 
-<!--[if !IE]><!-->
-    <body>
-<!-- <![endif]-->
 
   <!-- LAYOUTS -->
   <%= yield %>

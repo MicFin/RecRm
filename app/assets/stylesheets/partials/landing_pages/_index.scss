@@ -364,8 +364,9 @@
 			  background-size: cover;
 			  background-repeat: no-repeat;
 			  position: relative;
+			  background-attachment: fixed;
 			  color: $brand-white;
-			  background-position: right 0px bottom -200px;
+			  background-position: right 0px bottom 0;
 
 			  // for xs small screen change position
 			  @media screen and (max-width: $screen-xs-max){

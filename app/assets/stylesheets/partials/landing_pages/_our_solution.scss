@@ -3,6 +3,7 @@
 #our-solution-landing-page{
 		.splash-image-section{
 			background-image: url("food/salad.jpg");
+			background-position: center;
 		}
 		.landing-page-row{
 			
@@ -17,6 +18,9 @@
 				  	img{
 				  		margin-top: 50px;
 				  		margin-bottom: 50px;
+				  	} 
+				  	h2 {
+		  		    margin-bottom: 40px;
 				  	}
 				  }
 				}

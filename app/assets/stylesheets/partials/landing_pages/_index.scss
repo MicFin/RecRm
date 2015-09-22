@@ -364,7 +364,10 @@
 			  background-size: cover;
 			  background-repeat: no-repeat;
 			  position: relative;
-			  background-attachment: fixed;
+
+			  @media (min-width: $screen-sm-min) {
+			  	background-attachment: fixed;
+			  }
 			  color: $brand-white;
 			  background-position: center;
 			  text-shadow: 2px 2px 4px black;

@@ -1,5 +1,28 @@
 #results-landing-page{
-		.splash-image-section{
-			background-image: url("food/salad2.jpg");
+	.splash-image-section{
+		background-image: url("food/salad2.jpg");
+		background-position: center;
+	}
+
+	.three-column {
+			
+		.three-column-container {
+
+		  .three-column-one{
+
+		  	ul {
+		  		// list-style: none;
+		  		list-style: circle outside;
+		  		text-align: left;
+		  	// 	li:before{
+					// 	content: '';
+					// 	display: inline-block;
+					// 	height: 10px;
+					// 	width: 10px;
+					// 	background-image: url('logos/kindrdfood-carrot.png');
+		  	// 	}
+		  	}
+		  }
 		}
+	}
 }

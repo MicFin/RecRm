@@ -1,46 +1,51 @@
 
-.landing-page{
+.landing-page {
 
 
-	.left-nav-container{ 
+	.landing-page-row.left-navigation {
 
-		@include make-xs-column( 12 );
-		@include make-sm-column( 4 );
-		// @include make-sm-column-offset( 1 );
+		padding: 75px 5% 0px 5%;
 
-		nav.left-nav ul {
-			list-style: none;
-			padding: 0;
-			font-size: 20px;
+		.left-nav-container{ 
+
+			@include make-xs-column( 12 );
+			@include make-sm-column( 4 );
+			// @include make-sm-column-offset( 1 );
+
+			nav.left-nav ul {
+				list-style: none;
+				padding: 0;
+				font-size: 20px;
+			}
+
+			nav.left-nav ul li {
+				padding:10px;
+				border-top: 1px solid grey;
+				position: relative;
+
+			}
+
+			nav.left-nav ul li.active{
+				background-color: green;
+				border-color: green;
+			}
+
+			nav.left-nav ul li a {
+				color: grey;
+			}
+
+			nav.left-nav ul li.active a{
+				color: white;
+			}
 		}
 
-		nav.left-nav ul li {
-			padding:10px;
-			border-top: 1px solid grey;
-			position: relative;
-
-		}
-
-		nav.left-nav ul li.active{
-			background-color: green;
-			border-color: green;
-		}
-
-		nav.left-nav ul li a {
-			color: grey;
-		}
-
-		nav.left-nav ul li.active a{
-			color: white;
-		}
-	}
-
-	.left-nav-text-container{
-		@include make-xs-column( 12 );
-		@include make-sm-column( 8 );
-		@extend .text-left;
-		h3, h4 {
-			padding: 1% 0;
+		.left-nav-text-container{
+			@include make-xs-column( 12 );
+			@include make-sm-column( 8 );
+			@extend .text-left;
+			h3, h4 {
+				padding: 1% 0;
+			}
 		}
 	}
 }

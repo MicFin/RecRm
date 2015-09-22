@@ -1,5 +1,31 @@
 #who-we-help-landing-page{
-		.splash-image-section{
-			background-image: url("food/oranges.jpg");
-		}
+	.splash-image-section{
+		background-image: url("food/oranges.jpg");
+
+		// flips background image horizontally
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -ms-filter: "FlipH";
+    filter: FlipH;
+	}
+
+	.splash-image-section .left-splash-column {
+		
+		// flips  child elements back to normal
+		// margin right actually adds margin to the left, same with float
+		margin-right: 8%;
+		float: right;
+		-moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -ms-filter: "FlipH";
+    filter: FlipH;
+	}
+
+
 }

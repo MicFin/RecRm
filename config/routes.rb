@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'quality', to: "landing_pages#quality", as: "landing_pages_quality"
   get 'navigate_change', to: "landing_pages#navigate_change", as: "landing_pages_navigate_change"
   get 'our_mission', to: "landing_pages#our_mission", as: "landing_pages_our_mission"
-  get 'leaders', to: "landing_pages#leaders", as: "landing_pages_leaders"
+  get 'leadership', to: "landing_pages#leadership", as: "landing_pages_leadership"
   get 'benefits', to: "landing_pages#benefits", as: "landing_pages_benefits"
   get 'more_benefits', to: "landing_pages#more_benefits", as: "landing_pages_more_benefits"
   get 'care', to: "landing_pages#care", as: "landing_pages_care"

@@ -197,10 +197,10 @@
 				}
 			}
 			&.two-column-left + .two-column-right {
-		    padding: 0 5% 75px 5%;
+		    padding: 75px 5%;
 			}
 			&.two-column-right + .two-column-left {
-		    padding: 0 5% 75px 5%;
+		    padding: 75px 5%;
 			}
 			// two column right template
 			&.two-column-right {
@@ -234,6 +234,26 @@
 				  // background-position: right -30px bottom -15px;
 				}
 				
+			}
+
+			// two column center template
+			&.two-column-center {
+				.two-column-container{
+					@include make-xs-column( 10 );
+				  @include make-xs-column-offset( 1 );
+				  @extend .text-center;
+				  .two-column-one{
+				  	@include make-xs-column( 12 );
+				  	@include make-sm-column( 6 );
+				  	img{
+				  		margin-top: 50px;
+				  		margin-bottom: 50px;
+				  	} 
+				  	h2 {
+		  		    margin-bottom: 40px;
+				  	}
+				  }
+				}
 			}
 
 			// three column template

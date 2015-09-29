@@ -1,15 +1,22 @@
 
 <div id="why-kindrdfood-landing-page" class="landing-page">
+
 	<%= render "/landing_pages/landing_page_nav" %>
+
 	<div class="landing-page-body">
-		<section id="alerts-container">
+
+		<section class="alerts-container">
+
 			<%= render "/layouts/alerts" %>
+
 		</section>
+
 		<section class="splash-image-section">
 			<div class="left-splash-column">
 				<h1>With a Kindrd Nutritionist by your side, a sense of ease, and something delicious are in your future.</h1>
 			</div>
 		</section>
+
 		<section class="landing-page-row left-navigation">
 			<div class="left-nav-container">
 				<%= render "/landing_pages/sections/left_nav_why_kindrdfood" %>
@@ -21,9 +28,13 @@
 				<button class="sign-up-button btn btn-lg btn-primary">SCHEDULE NOW!</button>
 			</div>
 		</section>
-		<section class="landing-page-row two-column-list">
-			<h2 class="heading">The Kindrd Nutritionist team is made up of the best.</h2>
-			<div class="two-column-list-left">
+
+		<section class="landing-page-row two-column-left">
+			<div class="two-column-text">
+				<h2 class="heading">The Kindrd Nutritionist team is made up of the best.</h2>
+				<p class="details">
+					Every Kindrd Nutritionist is a Registered Dietitian with a history of deep clinical and academic training. Each has a love for food and a passion to support you on your family’s food journey. Our team thrives on making sure your team is happy and healthy. Each Kindrdfood Nutritionist on our team has:
+				</p>
 				<ul>
 					<h4><li>Clinical experience from some of the best hospitals
 					</li></h4>
@@ -34,35 +45,32 @@
 					<h4><li>A broad base and some specialized knowledge areas
 					</li></h4>
 				</ul>
+				<hr class="small-hr">
+				<h3>Good people are the best ingredients.</h3>
 			</div>
-			<div class="two-column-list-right">
+			<div class="two-column-image img-rdns-discussing">
+			</div>
+		</section>
+
+		<section class="landing-page-row two-column-right">
+			<div class="two-column-image img-apple-on-desk">
+			</div>
+			<div class="two-column-text">
+				<h2 class="heading">We are always improving.  </h2>
 				<p class="details">
-					Every Kindrd Nutritionist is a Registered Dietitian with a history of deep clinical and academic training. Each has a love for food and a passion to support you on your family’s food journey. Our team thrives on making sure your team is happy and healthy. Each Kindrdfood Nutritionist on our team has:
+					Kindrd Nutritionists go through a thorough training that includes an array of core nutrition topics and conditions to assure a consistent level of knowledge and practice, even for rare conditions. Additionally, with the help of our Executive Chef, we assure a high level of knowledge in culinary technique, even taking into account people dealing with limited facilities, time and knowledge of cooking. As part of training, we assure that there is a clear separation from what is known about nutrition and what are rational currently accepted beliefs, so there is no guess work for you. Only trustworthy guidance.
 				</p>
+				<hr class="small-hr">
+				<h3>Selected and trained to deliver you the best.</h3>
 			</div>
 		</section>
-		<section class="landing-page-row landing-page-testimonial">
-			<div class="testimonial-container">
-				<h2>Good people are the best ingredients.</h2>
-			</div>
-		</section>
+
 		<section class="landing-page-row two-column-left">
 			<div class="two-column-text">
-				<h2 class="heading">We are always improving. </h2>
-				<p class="details">Kindrd Nutritionists go through a thorough training that includes an array of core nutrition topics and conditions to assure a consistent level of knowledge and practice, even for rare conditions. Additionally, with the help of our Executive Chef, we assure a high level of knowledge in culinary technique, even taking into account people dealing with limited facilities, time and knowledge of cooking. As part of training, we assure that there is a clear separation from what is known about nutrition and what are rational currently accepted beliefs, so there is no guess work for you. Only trustworthy guidance. </p>
-				<hr class="small-hr">
-			</div>
-			<div class="two-column-image img-mom-daughter-prep-dinner">
-			</div>
-		</section>
-		<section class="landing-page-row landing-page-testimonial">
-			<div class="testimonial-container">
-				<h2>Selected and trained to deliver you the best.</h2>
-			</div>
-		</section>
-		<section class="landing-page-row two-column-list">
-			<h2 class="heading">It’s all about culture.</h2>
-			<div class="two-column-list-left">
+				<h2 class="heading">It’s all about culture.</h2>
+				<p class="details">
+					Our team is a close community. This is not a network of independent practitioners. The Kindrd Nutritionist team meets regularly to discuss current topics, challenging cases (anonymously), and explore opportunities to improve. We love spending time together, and that’s the best part of it. Kindrd Nutritionist culture is all about:
+				</p>
 				<ul>
 					<h4><li>Authenticity 
 					</li></h4>
@@ -75,22 +83,14 @@
 					<h4><li>Importance of nutrition based on science
 					</li></h4>
 				</ul>
+<!-- 				<hr class="small-hr">
+				<h3>Good people are the best ingredients.</h3> -->
 			</div>
-			<div class="two-column-list-right">
-				<p class="details">
-					Our team is a close community. This is not a network of independent practitioners. The Kindrd Nutritionist team meets regularly to discuss current topics, challenging cases (anonymously), and explore opportunities to improve. We love spending time together, and that’s the best part of it. Kindrd Nutritionist culture is all about:
-				</p>
+			<div class="two-column-image img-rdns-discussing">
 			</div>
 		</section>
-<!-- 		<section class="landing-page-row landing-page-testimonial">
-			<div class="img-quote-left">
-			</div>
-			<div class="img-quote-right">
-			</div>
-			<div class="testimonial-container">
-				<h2>“Alone we can do so little, together we can do so much.” - Helen Keller</h2>
-			</div>
-		</section> -->
+
+
 		<%= render "/landing_pages/sections/call_to_action_quality" %>
 	</div>
 	<%= render "/landing_pages/landing_page_footer" %>

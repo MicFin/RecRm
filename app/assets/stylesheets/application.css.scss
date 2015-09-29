@@ -48,6 +48,8 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 // Partials
 // wanted to load these in the controller specific .css.scss
 // but bootstrap variables for color, etc didn't work there without reloading them
+
+	// Landing pages controller
 @import "partials/landing_pages/qol";
 @import "partials/landing_pages/index";
 @import "partials/landing_pages/our_solution";
@@ -66,7 +68,9 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 @import "partials/landing_pages/sign_up_modal";
 @import "partials/landing_pages/refer";
 @import "partials/landing_pages/care";
+@import "partials/landing_pages/leadership";
 
+	// welcome controller
 @import "partials/welcome/home";
 @import "partials/welcome/get_started";
 @import "partials/welcome/add_family";
@@ -77,10 +81,12 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 @import "partials/layouts/navbars/user_nav";
 @import "partials/layouts/footers/main_footer";
 
+	// Families controller
 @import "partials/families/show";
 @import "partials/families/new";
 @import "partials/families/edit_family_member";
 
+	// Rooms controller
 @import "partials/rooms/users/in_session_user";
 @import "partials/rooms/users/in_session_user_nav";
 
@@ -118,19 +124,6 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 @import "partials/availabilities_index";
 @import "partials/home_index";
 @import "partials/home_page";
-
-
-// // 100% height and width
-// @mixin box-sizing($border){
-// 	-webkit-box-sizing: $border; 	
-// 	-moz-box-sizing: $border;   
-// 	-ms-box-sizing: $border;
-// 	box-sizing: border-box$border;  
-// }
-
-// @mixin scale($x, $y){
-// 	-webkit-transform: scale($x, $y); 	
-// }
 
 
 

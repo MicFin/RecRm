@@ -45,7 +45,7 @@ class LandingPagesController < ApplicationController
   def our_mission
   end
 
-  def leaders
+  def leadership
   end
 
   def benefits

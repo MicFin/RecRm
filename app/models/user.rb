@@ -8,11 +8,16 @@ class User < ActiveRecord::Base
 
   before_save :uppercase_name
 
+  # A callback event is fired before and after an invitation is accepted (User#accept_invitation!)
+  # after_invitation_accepted :email_invited_by
+  # before_invitation_accepted :email_invited_by
+
 	# Include default devise modules. Others available are:
 	# :lockable, :timeoutable and :omniauthable, :invitable
 	devise :invitable, :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  has_many :invitations, :class_name => self.to_s, :as => :invited_by
 
   # If a user is deleted then so should their family connection
   has_many :user_families, :dependent => :destroy

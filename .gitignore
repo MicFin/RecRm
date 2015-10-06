@@ -22,9 +22,7 @@
 /public/.DS_Store
 
 # Ignore local file uploads
-# /public/uploads
-# /uploads/ckeditor
-# /uploads/image
-# /uploads/tmp
+/public/uploads
+
 
 .env 

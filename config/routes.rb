@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  mount Monologue::Engine, at: '/education' # or whatever path, be it "/blog" or "/monologue"
+  mount Ckeditor::Engine => '/ckeditor'
+  # or whatever path, be it "/blog" or "/monologue"
+  mount Monologue::Engine, at: '/education' 
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   ActiveAdmin.routes(self)

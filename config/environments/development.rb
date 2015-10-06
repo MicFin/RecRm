@@ -1,6 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+
+  # ENV['PATH'] += File::PATH_SEPARATOR + '/usr/local/bin'
 # config.stripe.publishable_key = ENV['STRIPE_PUBLIC_KEY']
 
 # Paperclip.options[:command_path] = "/usr/local/bin/"

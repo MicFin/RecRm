@@ -14,6 +14,10 @@ module Myapp
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # # NOT USING
+    # config.before_initialize do
+    #   ENV['PATH'] += File::PATH_SEPARATOR + '/usr/local/bin'
+    # end
 
 
     if Rails.env.production?
@@ -48,6 +52,9 @@ module Myapp
       end)
     end
 
+    # # NOT USING
+    # ENV['PATH'] = "/usr/local/bin:#{ENV['PATH']}"
+    # ENV['PATH'] += File::PATH_SEPARATOR + '/usr/local/bin'
 
   end
 end

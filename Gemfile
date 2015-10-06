@@ -71,7 +71,8 @@ gem 'jquery-ui-rails', "4.2.1"
 
 # http://railscasts.com/episodes/253-carrierwave-file-uploads?view=asciicast
 gem 'carrierwave', "0.10.0"
-gem "rmagick", "2.13.4"
+# gem "rmagick", "2.13.4"
+gem 'mini_magick'
 # http://railscasts.com/episodes/383-uploading-to-amazon-s3?view=asciicast
 # gem 'fog', "~> 1.3.1"
 gem 'carrierwave-aws', "0.4.1"

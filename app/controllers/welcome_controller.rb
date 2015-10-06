@@ -10,41 +10,49 @@ class WelcomeController < Users::RegistrationsController
   # /welcome/home
   def home
 
-    # update registration for any old users that are already loggin in
-    # can remove after older users' registration statuses are updated.
-    current_user.update_registration_stage
+    # if user is a provider then go to new user invitation page
+    if current_user.provider?
 
-    # if user isnt finished onboarding 
-    if !current_user.finished_on_boarding?
+      new_user_invitation_path
 
-      # then send them to get started
-      redirect_to welcome_get_started_path and return
+    else
+
+      # update registration for any old users that are already loggin in
+      # can remove after older users' registration statuses are updated.
+      current_user.update_registration_stage
+
+      # if user isnt finished onboarding 
+      if !current_user.finished_on_boarding?
+
+        # then send them to get started
+        redirect_to welcome_get_started_path and return
+      end
+
+      # Gather user's appointment data
+      # from AppointmentsHelper
+      get_previous_appointments!
+      @previous_appointments
+      get_upcoming_appointment!
+      @upcoming_appointment
+      @survey
+      @surveyable
+      get_unpaid_appointment!
+      @unpaid_appointment
+
+      # Gather user's recipe data 
+      # To be continued...
+      @recipes 
+
+      # Gather user's articles data
+      # To be continued...
+      @articles 
+
+      # Gather user's family data
+      # from FamiliessHelper
+      get_family!
+      @family
+      # Shows views/welcome/home.html.erb
     end
-
-    # Gather user's appointment data
-    # from AppointmentsHelper
-    get_previous_appointments!
-    @previous_appointments
-    get_upcoming_appointment!
-    @upcoming_appointment
-    @survey
-    @surveyable
-    get_unpaid_appointment!
-    @unpaid_appointment
-
-    # Gather user's recipe data 
-    # To be continued...
-    @recipes 
-
-    # Gather user's articles data
-    # To be continued...
-    @articles 
-
-    # Gather user's family data
-    # from FamiliessHelper
-    get_family!
-    @family
-    # Shows views/welcome/home.html.erb
   end
 
   ### This is currently the dietitian's dashboard

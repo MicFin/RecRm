@@ -6,7 +6,10 @@ class Users::InvitationsController < Devise::InvitationsController
   #     super
   #   end
   # end
-
+  def index
+    @invitations_not_accepted = User.invitation_not_accepted
+    @invitations_accepted = User.invitation_accepted 
+  end
 
   # def after_accept_path_for
   # end

@@ -1,0 +1,74 @@
+<div id="welcome-page" class="container-fluid">
+		<div class="row">
+
+			<%= render "/layouts/navbars/dietitian_admin_nav" %>
+
+			<main class="col-xs-10 col-xs-offset-2">
+				<section>
+					<h2>Sent Referrals</h2>
+					<table class="table">
+	 					<thead>
+	              <tr>
+	                <th>Referral created date</th>
+	                <th>Referral sent date</th>
+	                <th>Referred by</th>
+	                <th>Email</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <% @invitations_not_accepted.each do | user | %>
+
+	                <tr>
+	                  <td><%=user.invitation_created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></td>
+	                  <td><%=user.invitation_sent_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></td>
+	                  <td><%=user.invited_by.first_name%> <%=user.invited_by.last_name%></td>
+	                  <td><%=user.email %></td>
+	                </tr>
+	              <% end %>
+	            </tbody>
+	          </table>
+					</table>
+			  </section>
+				<section>
+					<h2>Accepted Referrals</h2>
+					<table class="table">
+	 					<thead>
+	              <tr>
+	                <th>Referral created date</th>
+	                <th>Referral sent date</th>
+	                <th>Referral accepted date</th>
+	                <th>Referred by</th>
+	                <th>Email</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <% @invitations_accepted.each do | user | %>
+
+	                <tr>
+	                  <td><%=user.invitation_created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></td>
+	                  <td><%=user.invitation_sent_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></td>
+	                  <td><%=user.invitation_accepted_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></td>
+	                  <td><%=user.invited_by.first_name%> <%=user.invited_by.last_name%></td>
+	                  <td><%=user.email %></td>
+	                </tr>
+	              <% end %>
+	            </tbody>
+	          </table>
+					</table>
+			  </section>
+			</main>
+			<div class="col-xs-10 col-xs-offset-2">
+				<%=render "/layouts/footers/main_footer" %>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+

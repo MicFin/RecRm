@@ -21,7 +21,9 @@
 						<%= active_link_to appointments_path, :wrap_tag => :li  do %>
 						  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Upcoming Appointments</span>
 						<% end %>
-		
+						<%= active_link_to users_invitations_path, :wrap_tag => :li  do %>
+						  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Referrals</span>
+						<% end %>		
 						<%= active_link_to time_slots_path, :wrap_tag => :li do %>
 						  <span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Dietitian Schedules</span>
 						<% end %>

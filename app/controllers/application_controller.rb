@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
     
     #note: request.referrer can be used to return user to the page they were on
- 
 		# when a user signs in 
 		if resource.class == User
       
@@ -79,6 +78,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # def after_accept_path_for(resource_name)
+  #   binding.pry
+  # end
 private
 
 	def dietitian_activity

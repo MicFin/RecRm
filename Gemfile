@@ -150,6 +150,10 @@ gem 'active_link_to', "1.0.3"
 # https://github.com/zweilove/css_splitter
 gem 'css_splitter'
 
+# blogging engine
+# https://github.com/jipiboily/monologue
+gem 'monologue', "0.4.1"
+
 group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors

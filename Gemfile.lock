@@ -81,6 +81,9 @@ GEM
     carrierwave-aws (0.4.1)
       aws-sdk (>= 1.29)
       carrierwave (>= 0.7)
+    ckeditor (4.0.11)
+      mime-types
+      orm_adapter (~> 0.5.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -150,6 +153,15 @@ GEM
     minitest (5.7.0)
     momentjs-rails (2.8.4)
       railties (>= 3.1)
+    monologue (0.4.1)
+      bcrypt (~> 3.1.7)
+      ckeditor (~> 4.0.11)
+      coffee-rails (~> 4.0.0)
+      jquery-rails
+      rails (>= 4.0.4)
+      sass-rails (~> 4.0.0)
+      select2-rails (~> 3.2)
+      truncate_html
     multi_json (1.10.1)
     multi_xml (0.5.5)
     netrc (0.8.0)
@@ -219,6 +231,8 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    select2-rails (3.5.9.3)
+      thor (~> 0.14)
     sextant (0.2.4)
       rails (>= 3.2)
     simple_form (3.0.2)
@@ -248,6 +262,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    truncate_html (0.9.3)
     turbolinks (2.2.2)
       coffee-rails
     tzinfo (1.2.2)
@@ -284,6 +299,7 @@ DEPENDENCIES
   jquery-ui-rails (= 4.2.1)
   lograge (= 0.3.4)
   momentjs-rails (~> 2.8.4)
+  monologue (= 0.4.1)
   opentok (= 2.2.1)
   pg (= 0.17.1)
   phony_rails (= 0.6.1)

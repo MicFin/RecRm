@@ -19,7 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    
+
     build_resource(sign_up_params)
     
     if resource.save
@@ -156,23 +156,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_parameters
     
-    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :provider, :hospitals_or_practices, :academic_affiliations, :academic_affiliations, :subspecialty, :fax, :terms_accepted, :patient_group_ids => [])
     end
 
     # might want tot remove qol_referral from permitted params for update
-    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :provider, :hospitals_or_practices, :academic_affiliations, :academic_affiliations, :subspecialty, :fax, :terms_accepted, :patient_group_ids => [])
     end
 
-    # USE THESE WHEN DOING CONFIRMATION
-    # To be continued ...
-    devise_parameter_sanitizer.for(:accept_invitation).concat [:first_name, :last_name, :phone]
 
-    # USE THESE WHEN DOING CONFIRMATION
-    # To be continued ...
-    devise_parameter_sanitizer.for(:accept_invitation) do |u|
-      u.permit(:first_name, :last_name, :phone, :password, :password_confirmation,
-               :invitation_token)
-    end
+    # # USE THESE WHEN DOING CONFIRMATION
+    # # To be continued ...
+    # devise_parameter_sanitizer.for(:accept_invitation).concat [:first_name, :last_name, :phone]
+
+    # # USE THESE WHEN DOING CONFIRMATION
+    # # To be continued ...
+    # devise_parameter_sanitizer.for(:accept_invitation) do |u|
+    #   u.permit(:first_name, :last_name, :phone, :password, :password_confirmation, :invitation_token)
+    # end
   end
   
 end

@@ -1,0 +1,19 @@
+
+<!-- Partial msut recieve user -->
+<div id="provider-sign-up-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title">Welcome to Kindrdfood!</h2>
+      </div>
+      <div class="modal-body">
+        <h4>Give all of your patients a discount on their first session by registering here and referring through the site!</h4>
+
+         <%= render "/landing_pages/provider_sign_up_form", :user => user %>
+
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

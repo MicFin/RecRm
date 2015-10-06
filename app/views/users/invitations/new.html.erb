@@ -1,11 +1,44 @@
-<h2><%= t "devise.invitations.new.header" %></h2>
 
-<%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
-  <%= devise_error_messages! %>
 
-<% resource.class.invite_key_fields.each do |field| -%>
-  <%= f.input field %>
-<% end -%>
 
-<%= f.submit t("devise.invitations.new.submit_button") %>
-<% end %>
+<div id="refer-landing-page" class="landing-page">
+	<%= render "/landing_pages/landing_page_nav" %>
+	<div class="landing-page-body">
+		<section class="alerts-container">
+			<%= render "/layouts/alerts" %>
+		</section>
+		<section class="splash-image-section">
+			<div class="left-splash-column">
+				<h2>Refer a patient right now, by having an email sent to them:</h2>
+
+
+
+				<%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post, class: 'row text-left', role:"form"} do |f| %>
+				  <%#= devise_error_messages! %>
+
+					<%# resource.class.invite_key_fields.each do |field| -%>
+				  	<%#= f.input field %>
+					<%# end -%>
+
+					<%#= f.submit t("devise.invitations.new.submit_button") %>
+
+					<div class="form-group col-xs-8 col-xs-offset-2">
+						<label for="first-name">First Name</label>
+						<%= f.input_field :first_name, autofocus: true, class: "form-control", type: "text", placeholder: "First" %>
+					</div>
+
+					<div class="form-group col-xs-8 col-xs-offset-2">
+						<label for="email">Email Address</label>
+						<%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
+					</div>
+						<%= f.hidden_field :physician_referral, value: true %>
+					<div class="col-xs-8 col-xs-offset-2 text-right">
+						<%= f.button :submit, "Send Invitation", class: "btn btn-default btn-lg", type: "submit" %>
+					</div>
+				<% end %>
+
+			</div>
+	</div>
+	<%= render "/landing_pages/landing_page_footer" %>
+
+</div>

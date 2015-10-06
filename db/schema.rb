@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006061805) do
+ActiveRecord::Schema.define(version: 20151006070859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -605,6 +605,12 @@ ActiveRecord::Schema.define(version: 20151006061805) do
     t.string   "time_zone"
     t.boolean  "physician_referral",     default: false
     t.boolean  "provider",               default: false
+    t.text     "hospitals_or_practices"
+    t.text     "academic_affiliations"
+    t.string   "specialty"
+    t.string   "subspecialty"
+    t.string   "fax"
+    t.boolean  "terms_accepted"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

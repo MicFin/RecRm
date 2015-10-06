@@ -22,7 +22,11 @@ Kindrdfood.landingPages.signUpForm = {
 			e.preventDefault();
 			$("#privacy-modal").modal();
 		})
-		// // use Skrollr
-		// var s = skrollr.init();
+
+		$(".js-register-provider").on("click", function(e){
+			e.preventDefault();
+			$("#provider-sign-up-modal").modal();
+		})
+
 	}
 }

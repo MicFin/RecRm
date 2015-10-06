@@ -12,30 +12,39 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
     
     #note: request.referrer can be used to return user to the page they were on
-    
+ 
 		# when a user signs in 
 		if resource.class == User
       
-      # update user registration stage
-      resource.update_registration_stage
       
-      # check if user has completed on boarding 
-      if resource.finished_on_boarding? 
+      # if user is a provider
+      if resource.provider?
 
-        welcome_home_path
-      # if user has not completed onboarding
+        new_user_invitation_path
+
+      # if user is not a provider
       else
-        # 
-        # registration_stage = resource.registration_stage
-        # # user has only confirmed their account 
-        # if registration_stage == 1
 
-          welcome_get_started_path
+        # update user registration stage
+        resource.update_registration_stage
+        
+        # check if user has completed on boarding 
+        if resource.finished_on_boarding? 
 
-        # else
-        # end
+          welcome_home_path
+        # if user has not completed onboarding
+        else
+          # 
+          # registration_stage = resource.registration_stage
+          # # user has only confirmed their account 
+          # if registration_stage == 1
+
+            welcome_get_started_path
+
+          # else
+          # end
+        end
       end
- 
 		elsif resource.class == Dietitian
 			if resource.sign_in_count <= 1
 	      # if first time give first time user experience
@@ -62,6 +71,13 @@ class ApplicationController < ActionController::Base
 		end
 
 	end
+
+  def after_invite_path_for(resource_name)
+    if current_user.provider?
+      flash[:notice] = "Invitation sent to " + resource_name.email
+      new_user_invitation_path
+    end
+  end
 
 private
 

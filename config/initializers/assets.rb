@@ -39,11 +39,14 @@ end
 
 # precompiles CSS polyfills that are only loaded when Modernizr needs them
 # http://blog.endpoint.com/2013/05/using-modernizr-with-rails-asset.html
-  Rails.application.config.assets.precompile += [
-    "stylesheets/modules/bootstrap/bootstrap_overrides/css3pie.css", 
-    "stylesheets/modules/bootstrap/bootstrap_overrides/ie7.css", 
-    "stylesheets/partials/browser_specific/landing_pages/qol.css"
-  ]
+Rails.application.config.assets.precompile += [
+  "stylesheets/modules/bootstrap/bootstrap_overrides/css3pie.css", 
+  "stylesheets/modules/bootstrap/bootstrap_overrides/ie7.css", 
+  "stylesheets/partials/browser_specific/landing_pages/qol.css"
+]
 
 
-  Rails.application.config.assets.precompile += ["application_split2.css", "application_split3.css", "application_split4.css"]
+Rails.application.config.assets.precompile += ["application_split2.css", "application_split3.css", "application_split4.css"]
+
+
+Rails.application.config.assets.precompile += %w( ckeditor/* )

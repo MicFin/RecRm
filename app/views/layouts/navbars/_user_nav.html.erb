@@ -19,9 +19,11 @@
 						<%= active_link_to welcome_home_path, :wrap_tag => :li  do %>
 						  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
 						<% end %>
-		
-						<%= active_link_to family_path(@family.id), :wrap_tag => :li do %>
-						  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Family</span>
+						
+						<% if @family %>
+							<%= active_link_to family_path(@family.id), :wrap_tag => :li do %>
+							  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Family</span>
+							<% end %>
 						<% end %>
 
 						<%= active_link_to welcome_get_started_path, :wrap_tag => :li do %>

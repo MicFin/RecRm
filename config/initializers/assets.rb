@@ -46,7 +46,10 @@ Rails.application.config.assets.precompile += [
 ]
 
 
+# compile the split application.css pages that are needed for IE7 css limit
 Rails.application.config.assets.precompile += ["application_split2.css", "application_split3.css", "application_split4.css"]
 
-
+# compile ckeditor
 Rails.application.config.assets.precompile += %w( ckeditor/* )
+
+

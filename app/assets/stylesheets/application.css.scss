@@ -90,6 +90,8 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 @import "partials/rooms/users/in_session_user";
 @import "partials/rooms/users/in_session_user_nav";
 
+// Monologue blog overrides
+@import "monologue/blog/custom";
 
 // Old Partials
 
@@ -124,6 +126,5 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 @import "partials/availabilities_index";
 @import "partials/home_index";
 @import "partials/home_page";
-
 
 

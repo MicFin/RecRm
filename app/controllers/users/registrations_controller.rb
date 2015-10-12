@@ -78,6 +78,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     
+      
     @user = current_user
     # check if a password is needed for this update
     successfully_updated = if needs_password?(@user, params)
@@ -93,7 +94,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # update_without_password doesn't know how to ignore it
       @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
     end
-
+    
     if successfully_updated
 
       # update user registration stage
@@ -135,7 +136,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-      params[:user][:email].present? ||
+      # params[:user][:email].present? ||
       params[:user][:password].present? ||
       params[:user][:password_confirmation].present?
   end
@@ -144,7 +145,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         
       # if they have not finished on boarding
       if !resource.finished_on_boarding? 
-    
+      
         redirect_to welcome_get_started_path
       end
 

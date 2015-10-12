@@ -102,6 +102,7 @@ class WelcomeController < Users::RegistrationsController
   # welcome/get_started
   def get_started
     
+    
     @user = current_user
     
     # Stage 1 - user confirmed but did not complete account set up

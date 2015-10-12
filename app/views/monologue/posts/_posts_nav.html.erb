@@ -12,14 +12,15 @@
       </a>
     </div>
 
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-          <%= active_link_to landing_pages_our_solution_path, { :active => [['landing_pages'], ['our_solution', 'results', 'how_it_works', 'who_we_help']], :class_active => 'active', :wrap_tag => :li} do %>
+          <%= active_link_to main_app.landing_pages_our_solution_path, { :active => [['landing_pages'], ['our_solution', 'results', 'how_it_works', 'who_we_help']], :class_active => 'active', :wrap_tag => :li} do %>
               WHAT WE DO
             <% end %>
 
-          <%= active_link_to landing_pages_why_kindrdfood_path, { :active => [['landing_pages'], ['why_kindrdfood', 'quality', 'navigate_change', 'our_mission', 'leadership']], :class_active => 'active', :wrap_tag => :li} do %>
+          <%= active_link_to main_app.landing_pages_why_kindrdfood_path, { :active => [['landing_pages'], ['why_kindrdfood', 'quality', 'navigate_change', 'our_mission', 'leadership']], :class_active => 'active', :wrap_tag => :li} do %>
               WHY KINDRDFOOD?
             <% end %>
 
@@ -27,7 +28,7 @@
               INFO & ARTICLES
             <%# end %> -->
 
-          <%= active_link_to landing_pages_benefits_path, { :active => [['landing_pages'], ['benefits', 'more_benefits', 'care', 'refer']], :class_active => 'active', :wrap_tag => :li} do %>
+          <%= active_link_to main_app.landing_pages_benefits_path, { :active => [['landing_pages'], ['benefits', 'more_benefits', 'care', 'refer']], :class_active => 'active', :wrap_tag => :li} do %>
               FOR PROVIDERS
             <% end %>
             <li>
@@ -38,7 +39,7 @@
                   <i class="fa fa-facebook"></i>
                 </a>
             </li>
-        <li id="sign-in-or-up-link"><%= link_to "LOGIN", new_session_path("user")%> | <%= link_to "SIGN UP", landing_pages_index_path%></li>
+        <li id="sign-in-or-up-link"><%= link_to "LOGIN", new_session_path("user")%> | <%= link_to "SIGN UP", main_app.landing_pages_index_path%></li>
       </ul>
     </div><!-- /.navbar-collapse -->
 	</nav>

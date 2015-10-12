@@ -166,6 +166,13 @@
 			.img-apple-on-desk{
 				background-image: url("food/apple-on-desk.jpg");
 			}
+			.img-growing-family{
+				background-image: url("people/growing-family.jpg");
+			}
+			.img-baking{
+				background-image: url("food/baking.jpg");
+			}
+			
 			
 
 			// two column left template
@@ -272,11 +279,6 @@
 				img{
 					height: 100px;
 		    	margin: 0 auto;
-		    	// first aid image is small but with large border
-		    	&.first-aid{
-		    		height: 200px;
-		    		margin: -50px auto;
-		    	}
 				}
 				.three-column-container, .four-column-container {
 					@include make-xs-column( 12 );
@@ -378,9 +380,10 @@
 					}
 				}
 			}
+
 			// divider template
 			&.divider {
-				background-image: url("landing_page/cell_phone_in_hand.jpg");
+				background-image: url("food/virtual-rdns.jpg");
 			  background-size: cover;
 			  background-repeat: no-repeat;
 			  position: relative;

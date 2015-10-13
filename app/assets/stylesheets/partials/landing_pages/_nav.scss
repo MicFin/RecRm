@@ -10,10 +10,21 @@
 		ul.navbar-nav{
 			margin: 10px;
 
-			// last navigation list item is for LOGIN
+			// last navigation list item is for Sign In
+
 			li:last-child a {
 				color: $brand-light-orange;
 				display: inline-block;
+			}
+
+			// last navigation list item is for Sign Up
+			li:last-child a:last-child {
+				color: $brand-white;
+				display: inline-block;
+			}
+			// last navigation list item is for Sign Up
+			li:last-child a:last-child:hover {
+				color: $brand-light-orange;
 			}
 		}
 

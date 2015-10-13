@@ -1,13 +1,6 @@
 
 #more-benefits-landing-page {
 
-	.splash-image-section {
-		background-image: url("people/birthday-girl.jpg");
-		background-position: 0px -200px;
- 		@media (max-width: $screen-sm-max) {
-  	  background-position: 70% -15px;
-		}
-	}
 	.left-splash-column {
 		@include make-xs-column( 8 );
 		@include make-sm-column( 5 );

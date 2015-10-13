@@ -3,9 +3,9 @@
 
 	.splash-image-section {
 		background-image: url("people/birthday-girl.jpg");
-		background-position: 0px -200px;
+		// background-position: 0px -200px;
  		@media (max-width: $screen-sm-max) {
-  	  background-position: 70% -15px;
+  	  // background-position: 70% -15px;
 		}
 	}
 	.landing-page-row.three-column, .landing-page-row.four-column {

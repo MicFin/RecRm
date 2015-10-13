@@ -5,7 +5,7 @@
 		<section class="alerts-container">
 			<%= render "/layouts/alerts" %>
 		</section>
-		<section class="splash-image-section">
+		<section class="splash-image-section img-relieved-child">
 			<div class="left-splash-column">
 				<h1>Kindrdfood is focused on personalized guidance for your patients from exceptional dietitians.</h1>
 			</div>
@@ -29,7 +29,7 @@
 				<h3>Learn more about what we do <%=link_to "here", landing_pages_how_it_works_path %></h3>
 				
 			</div>
-			<div class="two-column-image img-provider">
+			<div class="two-column-image img-mother-relieved">
 			</div>
 		</section>
 
@@ -118,20 +118,20 @@
 			<div class="two-column-container">
 				<div class="two-column-one">
 					<div class="col-xs-10 col-xs-offset-1">
-						<%=image_tag("icons/supportive-materials.svg", class: "img-responsive")%>
-						<h2 class="heading">Supportive materials</h2>
-						<p class="details">Your Kindrd Nutritionist will offer you personalized, relevant materials and follow up assessments to make your guidance actionable and easy to refer back to. This may include information about knowledge and skills, or simply notes capturing the guidance that you receive.
-						</p>
-					</div>
-				</div>
-				<div class="two-column-one">
-					<div class="col-xs-10 col-xs-offset-1">
 						<%=image_tag("icons/recipes-mealplans.svg", class: "img-responsive") %>
 						<h2 class="heading">Recipes & meal plans</h2>
 						<p class="details">Personally selected for your family’s preferences and requirements. Everyone at the table, so you are preparing one meal that is healthy, safe and tasty. Meal plans offer an effective, time saving guide to help manage the daily pressure of managing your family’s meals.</p>
 					</div>
 				</div>
 			</div>
+				<div class="two-column-one">
+					<div class="col-xs-10 col-xs-offset-1">
+						<%=image_tag("icons/supportive-materials.svg", class: "img-responsive")%>
+						<h2 class="heading">Supportive materials</h2>
+						<p class="details">Your Kindrd Nutritionist will offer you personalized, relevant materials and follow up assessments to make your guidance actionable and easy to refer back to. This may include information about knowledge and skills, or simply notes capturing the guidance that you receive.
+						</p>
+					</div>
+				</div>
 		</section>
 		<%= render "/landing_pages/sections/call_to_action_benefits" %>
 	</div>

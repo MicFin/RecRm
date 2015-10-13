@@ -1,5 +1,10 @@
 // need to replace ID's with .landing-page class
 // and add specific ID's that are accurate
+
+
+			/// landing page
+
+
 .landing-page {
 
 	@extend .container-fluid;
@@ -28,11 +33,14 @@
 			@include make-row( );
 		}
 
+
+
 		.splash-image-section {
 			@include make-row( );
 			background-image: url("food/veggies-landing.jpg");
 		  background-size: cover;
 		  background-repeat: no-repeat;
+		  background-position: center;
 		  position: relative;
 		  min-height: 450px;
 		  text-align: center;
@@ -114,65 +122,6 @@
 		    background-color: $gray-light; /* Modern Browsers */
 		    margin-left: 0px;
 			}
-
-			// image backgrounds
-			.img-happy-family{
-				background-image: url("people/happy-family.jpg");
-			}
-			.img-ipad-kitchen{
-				background-image: url("people/happy-woman-tablet-kitchen.jpg");
-			}
-			.img-rdns-discussing{
-				background-image: url("team/rdns-discussing-at-table.jpg");
-			}
-			.img-confused-kid{
-				background-image: url("people/confused-kid.jpg");
-			}
-			.img-mom-and-child-on-laptop{
-				background-image: url("people/mom-and-child-on-laptop.jpg");
-			}
-			.two-column-one img {
-				max-height: 150px;
-			}
-			.img-mom-daughter-prep-dinner{
-				background-image: url("people/mom-daughter-prep-dinner.jpg");
-			}
-			.img-growing-family{
-				background-image: url("people/growing-family.jpg");
-			}
-			.img-woman-tablet-rdn-charts{
-				background-image: url("people/woman-tablet-rdn-charts.jpg");
-			}
-			.img-father-son-prep{
-				background-image: url("people/father-son-prep.jpg");
-			}
-
-			.img-bday-boy{
-				background-image: url("people/bday-boy.jpg");
-			}
-
-			.img-girl-school-lunch{
-				background-image: url("people/girl-school-lunch.jpg");
-			}
-
-			.img-success-faster{
-				background-image: url("people/success-faster.jpg");
-			}
-			
-			.img-provider{
-				background-image: url("people/physician-on-laptop.jpg");
-			}
-			
-			.img-apple-on-desk{
-				background-image: url("food/apple-on-desk.jpg");
-			}
-			.img-growing-family{
-				background-image: url("people/growing-family.jpg");
-			}
-			.img-baking{
-				background-image: url("food/baking.jpg");
-			}
-			
 			
 
 			// two column left template
@@ -205,9 +154,11 @@
 			}
 			&.two-column-left + .two-column-right {
 		    padding: 75px 5%;
+		    border-top: 1px solid $gray-light;
 			}
 			&.two-column-right + .two-column-left {
 		    padding: 75px 5%;
+		    border-top: 1px solid $gray-light;
 			}
 			// two column right template
 			&.two-column-right {
@@ -456,6 +407,123 @@
 			}
 		}
 		
+
+
+//// image backgruonds
+
+// image backgrounds
+			.img-happy-family{
+				background-image: url("people/happy-family.jpg");
+			}
+			.img-ipad-kitchen{
+				background-image: url("people/happy-woman-tablet-kitchen.jpg");
+			}
+			.img-rdns-discussing{
+				background-image: url("team/rdns-discussing-at-table.jpg");
+			}
+			.img-confused-kid{
+				background-image: url("people/confused-kid.jpg");
+			}
+			.img-mom-and-child-on-laptop{
+				background-image: url("people/mom-and-child-on-laptop.jpg");
+			}
+			.two-column-one img {
+				max-height: 150px;
+			}
+			.img-mom-daughter-prep-dinner{
+				background-image: url("people/mom-daughter-prep-dinner.jpg");
+			}
+			.img-growing-family{
+				background-image: url("people/growing-family.jpg");
+			}
+			.img-growing-family2{
+				background-image: url("people/growing-family2.jpg");
+			}
+			.img-woman-tablet-rdn-charts{
+				background-image: url("people/woman-tablet-rdn-charts.jpg");
+			}
+			.img-father-son-prep{
+				background-image: url("people/father-son-prep.jpg");
+			}
+
+			.img-bday-boy{
+				background-image: url("people/bday-boy.jpg");
+			}
+
+			.img-girl-school-lunch{
+				background-image: url("people/healthy-lunch2.jpg");
+			}
+
+			// .img-success-faster{
+			// 	background-image: url("people/success-faster.jpg");
+			// }
+			
+			.img-provider{
+				background-image: url("people/doctor-typing.jpg");
+			}
+			
+			.img-apple-on-desk{
+				background-image: url("food/apple-on-desk.jpg");
+			}
+			.img-growing-family{
+				background-image: url("people/growing-family.jpg");
+			}
+			.img-baking{
+				background-image: url("food/baking.jpg");
+			}
+			.img-kids-playing-game{
+				background-image: url("team/kids-playing-game.jpg");
+			}
+
+			.img-success-hands{
+				background-image: url("people/navigate-change-success.jpg");
+			}
+			
+			.img-birthday-girl{
+				background-image: url("people/birthday-girl.jpg");
+			}
+
+			.img-girl-with-fruit{
+				background-image: url("people/girl-with-fruit.jpg");
+			}
+
+			.img-recipe-cards{
+				background-image: url("food/recipe-cards.jpg");
+			}
+
+			.img-dietitians-and-family{
+				background-image: url("people/doctor-patient-stay-focused.jpg");
+			}
+
+			.img-child-eating{
+				background-image: url("people/who-we-help-navigate-allergies.jpg");
+			}
+
+			.img-mother-daughter-eating{
+				background-image: url("people/who-we-help-conditions.jpg");
+			}
+
+			.img-mother-relieved{
+				background-image: url("people/navigate-change-kindrd-better.jpg");
+			}
+
+			.img-relieved-child{
+				background-image: url("people/benefit-for-practice-splash.jpg");
+			}
+
+			.img-hospital-connections{
+				background-image: url("landing_page/for-hospitals-splash-kf.jpg");
+			}
+
+			.img-rd-on-phone{
+				background-image: url("people/rd-communicating-avoid-self-guided.jpg");
+			}
+
+			.img-doctor-and-child{
+				background-image: url("people/doctor-patient-stay-focused2.jpg");
+			}
+
+			
 	}
 
 
@@ -474,4 +542,10 @@
 		}
 	}
 }
+
+
+
+
+
+
 

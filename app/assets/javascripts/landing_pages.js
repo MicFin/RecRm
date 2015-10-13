@@ -16,4 +16,7 @@ $(document).ready(function() {
 
 	// // JS for landing_pages#index
 	Kindrdfood.landingPages.signUpForm.init();
+
+	// // JS for privider landing page
+	Kindrdfood.landingPages.validateProviderForm();
 });

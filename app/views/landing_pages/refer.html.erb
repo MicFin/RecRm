@@ -9,30 +9,12 @@
 		</section>
 		<section class="splash-image-section">
 			<div class="left-splash-column">
-				<h2>Refer a patient right now, by having an email sent to them:</h2>
-				<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
-
-						<div class="form-group col-xs-8 col-xs-offset-2">
-							<label for="first-name">First Name</label>
-							<%= f.input_field :first_name, autofocus: true, class: "form-control", type: "text", placeholder: "First" %>
-						</div>
-
-						<div class="form-group col-xs-8 col-xs-offset-2">
-							<label for="email">Email Address</label>
-							<%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
-						</div>
-							<%= f.hidden_field :physician_referral, value: true %>
-
-						<div class="col-xs-8 col-xs-offset-2 text-right">
-							<%= f.button :submit, "Send Invitation", class: "btn btn-default btn-lg", type: "submit" %>
-						</div>
-					<% end %>
+				<h2 class="form-group">Give all of your patients a discount on their first session by registering here and referring through the site!</h2>
 			</div>
 			<div class="right-splash-column">
 				<div>
-					<h2 class="form-group">Give all of your patients a discount on their first session by registering here and referring through the site!</h2>
-				
-				<button class="js-register-provider btn btn-lg btn-primary">Register Now!</button>
+					
+				<%= render "/landing_pages/provider_sign_up_form", :user => @user %>
 				<!-- <%#= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
 
 						<div class="form-group col-xs-8 col-xs-offset-2">
@@ -67,11 +49,11 @@
 				<h2 class="heading">No cost to you to refer to Kindrdfood.</h2>
 				<hr class="small-hr">
 				<h3>Take the 1 time only, 5 minutes (or less) and register to refer through our website: </h3>
-				<%=link_to "REGISTER", landing_pages_refer_path, class: "btn btn-lg btn-primary" %>
+
 			</div>
 		</section>
 
-		<%= render "/landing_pages/sections/call_to_action_benefits" %>
+
 	</div>
 	<%= render "/landing_pages/landing_page_footer" %>
 	<%= render "/landing_pages/sign_up_modal", user: @user %>

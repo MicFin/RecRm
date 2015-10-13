@@ -11,33 +11,22 @@
     <%= f.input_field :last_name, autofocus: true, class: "form-control", type: "text", placeholder: "Last" %>
   </div>
   <div class="form-group col-xs-12">
-    <label for="hospital-or-practice">Hospital(s) or Practice(s)</label>
-    <%= f.input_field :hospitals_or_practices, autofocus: true, class: "form-control", type: "text", placeholder: "Boston Children's Hospital, South Shore Hospital" %>
+    <label for="hospital-or-practice">Hospital or Practice / Academic Affiliation</label>
+    <%= f.input_field :hospitals_or_practices, autofocus: true, class: "form-control", type: "text", placeholder: "Boston Children's Hospital, Harvard Medical" %>
   </div>
-  <div class="form-group col-xs-12">
+<!--   <div class="form-group col-xs-12">
     <label for="academic-affiliations">Academic Affiliation(s)</label>
-    <%= f.input_field :academic_affiliations, autofocus: true, class: "form-control", type: "text", placeholder: "Harvard Medical School, Boston University" %>
-  </div>
+    <%#= f.input_field :academic_affiliations, autofocus: true, class: "form-control", type: "text", placeholder: "Harvard Medical School, Boston University" %>
+  </div> -->
   <div class="form-group col-xs-6">
     <label for="specialty">Specialty</label>
-    <%= f.input_field :specialty, autofocus: true, class: "form-control", type: "text", placeholder: "Pediatrics" %>
-  </div>
-  <div class="form-group col-xs-6">
-    <label for="subspecialty">Sub Specialty</label>
-    <%= f.input_field :subspecialty, autofocus: true, class: "form-control", type: "text", placeholder: "Food Allergies" %>
+    <%= f.input_field :specialty, autofocus: true, class: "form-control", type: "text", placeholder: "Pediatric GI" %>
   </div>
   <div class="form-group col-xs-12">
     <label for="email">Email Address</label>
     <%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "email@youroffice.com" %>
   </div>
-  <div class="form-group col-xs-6">
-    <label for="phone_number">Phone Number</label>
-    <%= f.input :phone_number, placeholder: '1(###)###-####', autofocus: true, input_html: { class: "form-control"}, label: false %>
-  </div>
-  <div class="form-group col-xs-6">
-    <label for="fax">Fax Number</label>
-    <%= f.input :fax, placeholder: '1(###)###-####', autofocus: true, input_html: { class: "form-control"}, label: false %>
-  </div>
+
   <div class="form-group col-xs-6">
     <label for="first-name">Password</label>
     <%= f.password_field :password, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>

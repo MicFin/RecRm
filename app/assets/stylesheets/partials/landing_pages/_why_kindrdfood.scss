@@ -3,7 +3,6 @@
 	.left-splash-column {
 		@include make-xs-column( 8 );
 		@include make-sm-column( 5 );
-		@include make-sm-column-offset( 1 );
 	  @media (max-width: $screen-md-max) {
 	 	  h1 {
 	  	  font-size: 40px;

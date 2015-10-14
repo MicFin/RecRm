@@ -45,7 +45,7 @@
 		  min-height: 450px;
 		  text-align: center;
 		  color: $brand-white;
-		  padding: 20px;
+		  padding: 5%;
 			h1, h2, h3, h4, h5, h6 {
 				text-shadow: 2px 2px 4px $brand-black;
 			}
@@ -59,9 +59,7 @@
 			  @include make-sm-column( 5 );
 			  @include make-md-column( 5 );
 			  @include make-lg-column( 5 );
-			  @include make-sm-column-offset( 1 );
 			  @extend .text-left;
-				margin-top: 50px;
 				h1 {
 					font-size: 60px;
 				}
@@ -74,6 +72,7 @@
 			.right-splash-column{
 				@include make-xs-column( 12 );
 				@include make-sm-column( 6 );
+			  @include make-sm-column-offset( 1 );
 			  background-color: transparentize($gray-darker, .8);
 		  	border-radius: 15px;
 		  	
@@ -126,7 +125,6 @@
 
 			// two column left template
 			&.two-column-left {
-				padding: 125px 5%;
 				.two-column-text {
 					@include make-xs-column( 12 );
 					@include make-sm-column( 6 );
@@ -162,8 +160,6 @@
 			}
 			// two column right template
 			&.two-column-right {
-				padding: 125px 5%;
-
 				.two-column-text {
 					@include make-xs-column( 12 );
 					@include make-sm-column( 6 );
@@ -352,7 +348,8 @@
 				background: $gray-divider;
 				color: $gray;
 				position: relative;
-
+				font: $font-family-quote;
+    		padding: 25px 5%;
 				.img-quote-left{
 					background-image: url("icons/open-quote.svg");
 			    height: 75%;
@@ -380,7 +377,7 @@
 					@extend .text-center;
 					@include make-xs-column( 12 );
 
-					h2{
+					h2, h3{
 			    	z-index: 10;
 			    	position: relative;
 			    	line-height: 1.5;

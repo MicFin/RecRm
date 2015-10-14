@@ -23,7 +23,7 @@
 	  <%= f.button :submit, "Sign In", class: "btn btn-primary btn-lg", type: "submit" %>
 	</div>
 	
-	<div class="col-xs-12 text-left">
+	<div class="col-xs-12 text-right">
 		<!-- 				snippet from shared/links, should be made into a partial -->
 		<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'  %>
 		  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />

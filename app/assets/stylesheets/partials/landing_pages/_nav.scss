@@ -44,6 +44,7 @@
 		}
 		// Sizes logo for responsive nav
 		.landing-page-logo{
+			margin-left: 5%;
 			@media (max-width: $screen-sm-max) {
 				max-height: 50px;
 			}

@@ -8,6 +8,15 @@
   	  // background-position: 70% -15px;
 		}
 	}
+
+	.three-column-container h2, .four-column-container h2{
+		margin-bottom: 50px;
+	}
+
+	.four-column {
+		padding-top: 0;
+	}
+	
 	.landing-page-row.three-column, .landing-page-row.four-column {
 		.heading {
 			text-align: left;
@@ -16,5 +25,14 @@
 			height: 200px;
 		}
 		padding-bottom: 50px;
+		.three-column-one{
+			h3{
+				margin-bottom: -20px;
+				font-style: normal;
+			}
+			p {
+				margin-top: 30px;
+			}
+		}
 	}
 }

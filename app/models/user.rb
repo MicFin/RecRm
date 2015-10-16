@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
 
     # set appointment or create a new one
     # appointment registration stage should start at 2 for appointments
-    appointment = self.appointment_in_registration || Appointment.create(appointment_host_id: self.id, status: "In Registration", registration_stage: 2,duration: 60)
+    appointment = self.appointment_in_registration || Appointment.create(appointment_host_id: self.id, status: "In Registration", registration_stage: 2, duration: 60)
 
     # If user is a repeat customer then
     # change stage of registration to the appointment registration stage
@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
 
   # returns true if user is a repeat customer
   def repeat_customer?
-    return self.appointment_hosts.where(status: "Paid").count >= 1
+    return self.appointment_hosts.where(status: "Complete").count >= 1
   end
 
   # returns an array of patient groups for a user 

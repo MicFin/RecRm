@@ -9,7 +9,7 @@
 		// navigation list 
 		ul.navbar-nav{
 			margin: 10px;
-
+    	margin-right: 1%;
 			// last navigation list item is for Sign In
 
 			li:last-child a {
@@ -21,6 +21,9 @@
 			li:last-child a:last-child {
 				color: $brand-white;
 				display: inline-block;
+				line-height: 7px;
+		    position: relative;
+    		bottom: 2px;
 			}
 			// last navigation list item is for Sign Up
 			li:last-child a:last-child:hover {

@@ -49,8 +49,11 @@
 			h1, h2, h3, h4, h5, h6 {
 				text-shadow: 2px 2px 4px $brand-black;
 			}
-			h3.tag-line{
-				width: 75%;
+			h1, h2 {
+				margin-bottom:0;
+			} 
+			h1 + h1, h2 + h2 {
+				margin-top:0;
 			}
 
 			// tag line
@@ -381,9 +384,6 @@
 			    	z-index: 10;
 			    	position: relative;
 			    	line-height: 1.5;
-					}
-					h4, p {
-						color: black;
 					}
 					p {
 						text-align: left;

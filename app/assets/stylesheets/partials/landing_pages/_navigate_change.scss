@@ -1,20 +1,8 @@
 #navigate-change-landing-page {
 	.splash-image-section {
 		background-image: url("people/birthday-girl.jpg");
-		// background-position: 0px -120px;
- 		@media (max-width: $screen-xs-max) {
-  	  // background-position: 65% -15px;
-		}
 	}
-	.left-splash-column {
-		@include make-xs-column( 8 );
-		@include make-sm-column( 5 );
-	  @media (max-width: $screen-md-max) {
-	 	  h1 {
-	  	  font-size: 40px;
-	  	}
-		}
-	}
+
 	.img-success-faster {
   	@media (max-width: $screen-xs-max) {
  			display: none;

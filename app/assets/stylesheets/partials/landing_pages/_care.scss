@@ -1,14 +1,6 @@
 #care-landing-page {
 
 	.left-splash-column {
-		@include make-xs-column( 10 );
-		@include make-sm-column( 10 );
-	  @include make-md-column( 10 );
-	  @include make-lg-column( 10 );
-	}
-	.left-splash-column {
-		@include make-xs-column( 8 );
-		@include make-sm-column( 5 );
 	  @media (max-width: $screen-md-max) {
 	 	  h1 {
 	  	  font-size: 40px;

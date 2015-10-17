@@ -3,10 +3,7 @@
 
 	.splash-image-section {
 		background-image: url("people/birthday-girl.jpg");
-		// background-position: 0px -200px;
- 		@media (max-width: $screen-sm-max) {
-  	  // background-position: 70% -15px;
-		}
+
 	}
 
 	.three-column-container h2, .four-column-container h2{
@@ -21,9 +18,6 @@
 		.heading {
 			text-align: left;
 		}
-		img {
-			height: 200px;
-		}
 		padding-bottom: 50px;
 		.three-column-one{
 			h3{
@@ -33,6 +27,9 @@
 			p {
 				margin-top: 30px;
 			}
+		}
+		img {
+			height: 200px;
 		}
 	}
 }

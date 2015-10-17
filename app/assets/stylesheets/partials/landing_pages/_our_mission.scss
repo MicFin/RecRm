@@ -1,15 +1,15 @@
 
 #our-mission-page{
-	.left-splash-column {
-		@include make-xs-column( 10 );
-		@include make-sm-column( 10 );
-	  @include make-md-column( 10 );
-	  @include make-lg-column( 10 );
+	.splash-image-section {
+		background-image: url("splash_images/place-setting-splash.jpg");
 	}
 	.team-images-container{
-
     margin-top: 50px;
     margin-bottom: 50px;
-
+    &:last-of-type div:first-child, &:last-of-type div:last-child {
+    	@media (min-width: $screen-sm-min) {
+    		margin-top: 35px;
+    	}
+    }
 	}
 }

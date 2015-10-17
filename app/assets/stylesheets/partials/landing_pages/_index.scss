@@ -2,8 +2,9 @@
 // and add specific ID's that are accurate
 
 
-			/// landing page
 
+
+			/// landing page
 
 .landing-page {
 
@@ -58,13 +59,14 @@
 
 			// tag line
 			.left-splash-column {
-				@include make-xs-column( 12 );
-			  @include make-sm-column( 5 );
-			  @include make-md-column( 5 );
-			  @include make-lg-column( 5 );
+				@include make-xs-column( 10 );
+			  @include make-sm-column( 6 );
 			  @extend .text-left;
 				h1 {
 					font-size: 60px;
+				}
+				h2 {
+					font: $font-family-tagline;
 				}
 				button{
 				  margin-top: 25px;
@@ -75,7 +77,6 @@
 			.right-splash-column{
 				@include make-xs-column( 12 );
 				@include make-sm-column( 6 );
-			  @include make-sm-column-offset( 1 );
 			  background-color: transparentize($gray-darker, .8);
 		  	border-radius: 15px;
 		  	
@@ -91,18 +92,22 @@
 
 				  // padding around text
 			  	> p {
-			  		padding: 0 50px;
+			  		padding: 0 80px;
 			  	}
 
+			  	// sign up and sign in form
 			  	> form {
 			  		@include make-row( ); 
 			  		@extend .text-left;
-
+			  		margin-bottom: 20px;
 			  		.form-row {
 			  			@extend .form-group;
 			  			@include make-xs-column( 12 );
 			  			@include make-sm-column( 8 );
 			  			@include make-sm-column-offset( 2 );
+			  		}
+			  		input {
+			  			border-radius: 5px;
 			  		}
 			  	}
 				}
@@ -125,6 +130,9 @@
 		    margin-left: 0px;
 			}
 			
+			.two-column-text h3 {
+				line-height: 1.3;
+			}
 
 			// two column left template
 			&.two-column-left {
@@ -196,19 +204,24 @@
 			// two column center template
 			&.two-column-center {
 				.two-column-container{
-					@include make-xs-column( 10 );
-				  @include make-xs-column-offset( 1 );
+					@include make-xs-column( 12 );
+					@include make-sm-column( 10 );
+				  @include make-sm-column-offset( 1 );
 				  @extend .text-center;
-				  .two-column-one{
+				  .two-column-one {
 				  	@include make-xs-column( 12 );
 				  	@include make-sm-column( 6 );
-				  	img{
-				  		margin-top: 50px;
+				  	img {
 				  		margin-bottom: 50px;
 				  	} 
 				  	h2 {
 		  		    margin-bottom: 40px;
 				  	}
+				  }
+			  	.two-column-one + .two-column-one {
+			  		@media (max-width: $screen-sm-max) {
+				    	margin-top: 25px;
+				    }
 				  }
 				}
 			}
@@ -216,19 +229,15 @@
 			// three column template
 			&.three-column, &.four-column{
 				h2.heading{
-					margin-bottom: 125px;
-				}
-				ul{
-					text-align:left;
-					padding: 25px;
+					margin-bottom: 80px;
 				}
 				h3 {
 					min-height: 50px;
 					@extend .heading;
 				}
 				img{
-					height: 100px;
 		    	margin: 0 auto;
+		    	max-height: 200px;
 				}
 				.three-column-container, .four-column-container {
 					@include make-xs-column( 12 );
@@ -240,12 +249,14 @@
 				  .three-column-one{
 				  	@include make-xs-column( 12 );
 				  	@include make-sm-column( 4 );
-				  	h3 {
-				  		font-style: italic;
-				  	}
 				  	ul {
-				  		list-style: none;
-				  		text-align: center;
+				  		text-align: left;
+							text-align:left;
+							padding: 20px;
+				  	}
+				  	p{
+				  		margin-top: -25px;
+				  		text-align: left;
 				  	}
 				  }
 				  .four-column-one{
@@ -333,17 +344,20 @@
 
 			// divider template
 			&.divider {
-				background-image: url("food/virtual-rdns.jpg");
+				background-image: url("people/home-virtual-band.jpg");
 			  background-size: cover;
 			  background-repeat: no-repeat;
 			  position: relative;
-
+				padding: 15%;
 			  @media (min-width: $screen-sm-min) {
 			  	background-attachment: fixed;
 			  }
 			  color: $brand-white;
 			  background-position: center;
 			  text-shadow: 2px 2px 4px black;
+			  h1{
+			  	margin-top: 0px;
+			  }
 			}
 
 			// testimonial section
@@ -353,6 +367,8 @@
 				position: relative;
 				font: $font-family-quote;
     		padding: 25px 5%;
+    		border-top: 1px solid $gray-light;
+    		border-bottom: 1px solid $gray-light;
 				.img-quote-left{
 					background-image: url("icons/open-quote.svg");
 			    height: 75%;
@@ -385,13 +401,17 @@
 			    	position: relative;
 			    	line-height: 1.5;
 					}
-					p {
-						text-align: left;
-					}
 					.testimonial-signature{
 						@include make-xs-column( 12 );
-						@include make-sm-column( 7 ) ;
-						@include make-sm-column-offset( 3 );
+						@include make-sm-column( 8 ) ;
+						@include make-sm-column-offset( 2 );
+						p {
+							margin-bottom: 0;
+						}
+				    @media (max-width: $screen-sm-max) {
+					    padding-left: 0px;
+					    padding-right: 0px;
+				    }
 					}
 				}
 			}
@@ -401,14 +421,17 @@
 				background-color: $brand-green;
 				border-bottom: 2px solid $gray-divider;
 				color: $brand-white;
+				h2 {
+					margin-bottom: 25px;
+				}
 			}
 		}
 		
 
 
-//// image backgruonds
+				//// image backgruonds
 
-// image backgrounds
+				// image backgrounds
 			.img-happy-family{
 				background-image: url("people/happy-family.jpg");
 			}
@@ -520,6 +543,21 @@
 				background-image: url("people/doctor-patient-stay-focused2.jpg");
 			}
 
+			.img-doctor-patient{
+				background-image: url("people/doctor-patient.jpg");
+			}
+
+			.img-food-prep-guidance{
+				background-image: url("people/food-prep-guidance.jpg");
+			}
+			// .img-man-spices{
+			// 	background-image: url("people/man-spices.jpg");
+			// 	    min-height: 200px;
+   //  width: 100%;
+   //  max-width:300px;
+   //  background-size: cover;
+   //  background-position: center;
+			// }
 			
 	}
 
@@ -542,6 +580,9 @@
 
 
 
+#index-landing-page .landing-page-body .landing-page-row.three-column .three-column-container .three-column-one ul{
+	margin-left: 15%;
+}
 
 
 

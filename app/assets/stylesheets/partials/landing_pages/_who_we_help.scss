@@ -14,17 +14,25 @@
 
 	.splash-image-section .left-splash-column {
 		
-		// flips  child elements back to normal
-		// margin right actually adds margin to the left, same with float
-		margin-right: 8%;
-		float: right;
-		-moz-transform: scaleX(-1);
-        -o-transform: scaleX(-1);
-        -webkit-transform: scaleX(-1);
-        -ms-transform: scaleX(-1);
-        transform: scaleX(-1);
-        -ms-filter: "FlipH";
-        filter: FlipH;
+                float: right;
+                -moz-transform: scaleX(-1);
+                -o-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                -ms-transform: scaleX(-1);
+                transform: scaleX(-1);
+                -ms-filter: "FlipH";
+                filter: FlipH;
+
+                @media (max-width: $screen-xs-max) {
+                        h1 {
+                                font-size: 40px;
+                        }
+                }
+               @media (max-width: $screen-sm-max) {
+                        h1 {
+                                font-size: 50px;
+                        }
+                }
 	}
 
 

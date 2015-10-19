@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019172545) do
+ActiveRecord::Schema.define(version: 20151019184253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -334,14 +334,22 @@ ActiveRecord::Schema.define(version: 20151019172545) do
     t.text     "content"
     t.string   "url"
     t.datetime "published_at"
-    t.boolean  "nutrition_review",    default: false
-    t.boolean  "culinary_review",     default: false
-    t.boolean  "medical_review",      default: false
-    t.boolean  "marketing_review",    default: false
-    t.boolean  "editor_approved",     default: false
+    t.boolean  "nutrition_review",              default: false
+    t.boolean  "culinary_review",               default: false
+    t.boolean  "medical_review",                default: false
+    t.boolean  "marketing_review",              default: false
+    t.boolean  "editor_approved",               default: false
     t.datetime "final_sign_off_date"
     t.integer  "author_id"
     t.integer  "call_to_action_id"
+    t.datetime "nutrition_review_completed_at"
+    t.datetime "medical_review_completed_at"
+    t.datetime "culinary_review_completed_at"
+    t.datetime "marketing_review_completed_at"
+    t.datetime "editorial_review_completed_at"
+    t.text     "specs"
+    t.boolean  "specs_completed"
+    t.datetime "specs_completed_at"
   end
 
   add_index "monologue_posts", ["author_id"], name: "index_monologue_posts_on_author_id", using: :btree

@@ -1,3 +1,18 @@
 .post-header h1 a {
-	color: green;
+	color: $brand-light-green;
+}
+
+.landing-page .landing-page-body .splash-image-section {
+
+	background-image: url("people/woman-tablet.jpg");
+	background-position: 0px 65%;
+	min-height: 200px;
+
+	.left-splash-column{
+		width: 100%;
+
+		h1{
+			margin: 0;
+		}
+	}
 }

@@ -6,24 +6,45 @@
   <%= truncate(strip_tags(@post.content), length: 155) %>
 <% end %>
 
+
 <div class="landing-page">
-  
 
-<%= render "monologue/posts/posts_nav" %>
-  <article>
-    <%= render partial: 'monologue/posts/post_header', locals: {post: @post }%>
-    <div class="content" data-monologue="content">
-      <%= raw @post.content %>
-    </div>
+  <%= render "monologue/posts/posts_nav" %>
+  <div class="landing-page-body">
+    <section id="alerts-container">
+      <%= render "/layouts/alerts" %>
+    </section>
+    <section class="splash-image-section">
+      <div class="left-splash-column">
+        <h1>Articles and Information</h1>
+      </div>
+    </section>
 
-  	<div class="tags" data-monologue="tags">
-      <%= render @post.tags %>
-    </div>
+    <section class="articles-container">
+      <article>
+        <%= render partial: 'monologue/posts/post_header', locals: {post: @post }%>
+        <div class="content" data-monologue="content">
+          <%= raw @post.content %>
+        </div>
 
-    <%= render "monologue/posts/social_sharing" %>
+        <div class="tags" data-monologue="tags">
+          <%= render @post.tags %>
+        </div>
 
-    <div id="disqus_thread"></div>
-    <%= render 'layouts/monologue/application/disqus_embed' %>
-    <noscript>Please enable JavaScript to view the comments.</noscript>
-  </article>
+        <%#= render "monologue/posts/social_sharing" %>
+
+        <!--       <div id="disqus_thread"></div>
+        <%#= render 'layouts/monologue/application/disqus_embed' %>
+        <noscript>Please enable JavaScript to view the comments.</noscript> -->
+      </article>
+      
+    </section>
+    <nav class="articles-nav">
+      
+    </nav>
+    <aside class="call-to-action-container">
+      
+    </aside>
+
+  </div>
 </div>

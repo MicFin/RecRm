@@ -7,6 +7,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   end
 
   def new
+    @authors = Monologue::User.order(:email)
     @post = Monologue::Post.new
   end
 
@@ -31,6 +32,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   end
 
   def edit
+    @authors = Monologue::User.order(:email)
   end
 
   def update
@@ -65,7 +67,7 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :nutrition_review, :culinary_review, :medical_review, :marketing_review, :editor_approved, :final_sign_off_date)
+    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :nutrition_review, :culinary_review, :medical_review, :marketing_review, :editor_approved, :final_sign_off_date, :author_id)
   end
 end
  

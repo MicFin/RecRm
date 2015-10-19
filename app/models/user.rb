@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
 
   has_many :head_of_families, :class_name => "Family", :foreign_key => "head_of_family_id"
 
+  belongs_to :monologue_user, :class_name => "Monologue::User", :foreign_key => "monologue_user_id"
+
   # If a user is deleted then so should their patient group connections
 	has_and_belongs_to_many :patient_groups
   before_destroy { patient_groups.clear }

@@ -1,18 +1,48 @@
-.post-header h1 a {
-	color: $brand-light-green;
-}
 
-.landing-page .landing-page-body .splash-image-section {
 
-	background-image: url("people/woman-tablet.jpg");
-	background-position: 0px 65%;
-	min-height: 200px;
+.landing-page .landing-page-body {
+	.splash-image-section {
 
-	.left-splash-column{
-		width: 100%;
+		background-image: url("people/woman-tablet.jpg");
+		background-position: 0px 65%;
+		min-height: 200px;
+    margin-bottom: 3%;
 
-		h1{
-			margin: 0;
+		.left-splash-column{
+			width: 100%;
+
+			h1{
+				margin: 0;
+			}
 		}
 	}
+
+	.articles-container{
+	  @include make-xs-column( 9 );
+	  @extend .text-left;
+	}
+
+	.articles-side-bar{
+	  @include make-xs-column( 3 );
+	  @extend .text-left;
+		// padding: 25%;
+
+	  .articles-nav {
+   	  border: 10px solid $gray-divider;
+   	  border-radius: 5px;
+    	padding: 10%;
+    	h3 {
+    		color: $brand-light-green;
+    		margin-top:0;
+    	}
+	  }
+	}
+
+	.post-header h1 {
+		margin-top:0px;
+		a {
+			color: $brand-light-green;
+		}
+	}
+
 }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006123834) do
+ActiveRecord::Schema.define(version: 20151019151839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -340,8 +340,11 @@ ActiveRecord::Schema.define(version: 20151006123834) do
     t.boolean  "marketing_review",    default: false
     t.boolean  "editor_approved",     default: false
     t.datetime "final_sign_off_date"
+    t.integer  "author_id"
+    t.integer  "call_to_action_id"
   end
 
+  add_index "monologue_posts", ["author_id"], name: "index_monologue_posts_on_author_id", using: :btree
   add_index "monologue_posts", ["url"], name: "index_monologue_posts_on_url", unique: true, using: :btree
 
   create_table "monologue_taggings", force: true do |t|

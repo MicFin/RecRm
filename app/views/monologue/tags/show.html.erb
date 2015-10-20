@@ -1,0 +1,49 @@
+
+
+
+
+
+
+<div class="landing-page education-page">
+
+  <%= render "monologue/posts/posts_nav" %>
+  <div class="landing-page-body">
+    <section id="alerts-container">
+      <%= render "/layouts/alerts" %>
+    </section>
+    <section class="splash-image-section">
+      <div class="left-splash-column">
+        <h1>Articles and Information</h1>
+      </div>
+    </section>
+		<div class="tag-search">
+		  <%= t(".showing_post_with_tag")%> <strong>'<%= @tag.name %>'</strong>. <%=link_to t(".show_all_posts"),:root %>
+		</div>
+		<%= render @posts %>
+    <section class="articles-side-bar">
+      <nav class="articles-nav">
+        <h3>Specialty Topics</h3>
+        <ul>
+          <% @tags.each do |tag| %>
+            <li id="tag"><%=link_to "#{tag.name} (#{tag.frequency})", tag_url(tag) %> </li>
+        <!--     <li><a href=""><%#=tag.name%></a></li> -->
+          <% end %>
+        </ul>
+        <h3>Archives</h3>
+        <ul>
+          <li><a href="">Link1</a></li>
+          <li><a href="">Link2</a></li>
+        </ul>
+      </nav>
+      <aside class="call-to-action-container">
+        <button class="btn btn-lg btn-primary">SCHEDULE NOW</button>
+      </aside>
+    </section>
+  </div>
+</div>
+
+
+
+
+
+

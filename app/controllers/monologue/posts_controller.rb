@@ -2,6 +2,7 @@ class Monologue::PostsController < Monologue::ApplicationController
   def index
     @page = params[:page].nil? ? 1 : params[:page]
     @posts = Monologue::Post.page(@page).includes(:user).published
+    @post = Monologue::Post.published.last
   end
 
   def show

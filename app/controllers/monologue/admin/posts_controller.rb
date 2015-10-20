@@ -4,6 +4,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   
   def index
     @posts = Monologue::Post.default
+    @authors = Monologue::User.order(:email)
   end
 
   def new
@@ -22,6 +23,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   end
 
   def create
+    @authors = Monologue::User.order(:email)
     @post = Monologue::Post.new post_params
     @post.user_id = monologue_current_user.id
     if @post.save
@@ -36,6 +38,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   end
 
   def update
+    @authors = Monologue::User.order(:email)
     if @post.update(post_params)
       prepare_flash_and_redirect_to_edit()
     else
@@ -67,7 +70,7 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :nutrition_review, :culinary_review, :medical_review, :marketing_review, :editor_approved, :final_sign_off_date, :author_id)
+    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :nutrition_review, :culinary_review, :medical_review, :marketing_review, :editor_approved, :final_sign_off_date, :author_id, :specs, :call_to_action_id)
   end
 end
  

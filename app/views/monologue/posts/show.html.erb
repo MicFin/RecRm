@@ -7,7 +7,7 @@
 <% end %>
 
 
-<div class="landing-page">
+<div class="landing-page education-page">
 
   <%= render "monologue/posts/posts_nav" %>
   <div class="landing-page-body">
@@ -44,7 +44,8 @@
         <h3>Specialty Topics</h3>
         <ul>
           <% @tags.each do |tag| %>
-            <li><a href=""><%=tag.name%></a></li>
+            <li id="tag"><%=link_to "#{tag.name} (#{tag.frequency})", tag_url(tag) %> </li>
+        <!--     <li><a href=""><%#=tag.name%></a></li> -->
           <% end %>
         </ul>
         <h3>Archives</h3>

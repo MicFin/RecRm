@@ -32,11 +32,13 @@
 		// padding: 25%;
 
 	  .articles-nav {
-   	  border: 10px solid $gray-divider;
+   	  // border: 10px solid $gray-divider;
+   	  border: 10px solid rgba(217, 218, 219, 1.0);
    	  border-radius: 5px;
     	padding: 10%;
     	h3 {
-    		color: $brand-light-green;
+    		// color: $brand-light-green;
+    		color: #399E48;
     		margin-top:0;
     	}
 	  }
@@ -45,7 +47,8 @@
 	.post-header h1 {
 		margin-top:0px;
 		a {
-			color: $brand-light-green;
+			// color: $brand-light-green;
+			color: #399E48;
 		}
 	}
 

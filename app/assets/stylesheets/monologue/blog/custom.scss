@@ -18,12 +18,16 @@
 	}
 
 	.articles-container{
-	  @include make-xs-column( 9 );
+	  // @include make-xs-column( 9 );
+	  width:75%;
+	  float: left;
 	  @extend .text-left;
 	}
 
 	.articles-side-bar{
-	  @include make-xs-column( 3 );
+	  // @include make-xs-column( 3 );
+	  width:25%;
+	  float: left;
 	  @extend .text-left;
 		// padding: 25%;
 

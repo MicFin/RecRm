@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019184253) do
+ActiveRecord::Schema.define(version: 20151024014437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -334,11 +334,11 @@ ActiveRecord::Schema.define(version: 20151019184253) do
     t.text     "content"
     t.string   "url"
     t.datetime "published_at"
-    t.boolean  "nutrition_review",              default: false
-    t.boolean  "culinary_review",               default: false
-    t.boolean  "medical_review",                default: false
-    t.boolean  "marketing_review",              default: false
-    t.boolean  "editor_approved",               default: false
+    t.boolean  "nutrition_review_required",             default: false
+    t.boolean  "culinary_review_required",              default: false
+    t.boolean  "medical_review_required",               default: false
+    t.boolean  "marketing_review_required",             default: false
+    t.boolean  "editorial_initial_review_required",     default: true
     t.datetime "final_sign_off_date"
     t.integer  "author_id"
     t.integer  "call_to_action_id"
@@ -346,10 +346,27 @@ ActiveRecord::Schema.define(version: 20151019184253) do
     t.datetime "medical_review_completed_at"
     t.datetime "culinary_review_completed_at"
     t.datetime "marketing_review_completed_at"
-    t.datetime "editorial_review_completed_at"
+    t.datetime "editorial_initial_review_completed_at"
     t.text     "specs"
     t.boolean  "specs_completed"
     t.datetime "specs_completed_at"
+    t.boolean  "marketing_review_complete",             default: false
+    t.boolean  "nutrition_review_complete",             default: false
+    t.boolean  "culinary_review_complete",              default: false
+    t.boolean  "medical_review_complete",               default: false
+    t.boolean  "editorial_initial_review_complete",     default: false
+    t.boolean  "editorial__final_review_required",      default: true
+    t.boolean  "editorial_final_review_complete",       default: false
+    t.datetime "editorial_final_review_completed_at"
+    t.integer  "marketing_reviewer_id"
+    t.integer  "editorial_initial_reviewer"
+    t.integer  "editorial_final_reviewer"
+    t.integer  "nutrition_reviewer_id"
+    t.integer  "culinary_reviewer_id"
+    t.integer  "medical_reviewer_id"
+    t.integer  "editorial_reviewer_id"
+    t.integer  "spec_author_id"
+    t.boolean  "call_to_action_activated"
   end
 
   add_index "monologue_posts", ["author_id"], name: "index_monologue_posts_on_author_id", using: :btree

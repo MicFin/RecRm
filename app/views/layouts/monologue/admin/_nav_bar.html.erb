@@ -1,28 +1,37 @@
-<div class="navbar">
-  <div class="navbar-inner">
-    <div class="container" data-monologue="nav-bar">
-      <%= link_to "KF Content Management", admin_path, class: "brand" %>
-      <ul class="nav pull-left" data-monologue="nav-bar-left">
-        <%= activable_li_tag_with_link t(".create_content"), new_admin_post_path %>
-        <%= activable_li_tag_with_link t(".my_inbox"), admin_posts_path, admin_path %>
-        <%= activable_li_tag_with_link t(".articles"), admin_posts_path, admin_path %>
-        <%= activable_li_tag_with_link t(".recipes"), admin_posts_path, admin_path %>
-        <%= activable_li_tag_with_link t(".meal_plans"), admin_posts_path, admin_path %>
-        <%= activable_li_tag_with_link t(".pantries"), admin_posts_path, admin_path %>
-        <%#= activable_li_tag_with_link t(".comments"), admin_comments_path %>
-      </ul>
+<div class="navbar navbar-default" data-monologue="nav-bar">
 
-      <ul class="nav pull-right" data-monologue="nav-bar-right">
-        <%= activable_li_tag_with_link t(".users"), admin_users_path %>
-        <li id="fat-menu" class="dropdown">
-          <a href="#" id="settings" data-toggle="dropdown"><%= t(".settings") %> <b class="caret"></b></a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="settings">
-            <li><%= link_to t(".edit_user_info"), edit_admin_user_path(monologue_current_user)%></li>
-          </ul>
-        </li>
-        <li><%= link_to t(".log_out"), admin_logout_path %></li>
-      </ul>
+    <!-- <div class="container" > -->
+    <div class="navbar-header">
+
+        <%= link_to "KF Content", admin_path, class: "navbar-brand" %>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" data-monologue="nav-bar-right">
+          <%= activable_li_tag_with_link t(".create_content"), new_admin_post_path %>
+          <%= activable_li_tag_with_link t(".my_inbox"), admin_posts_path, admin_path %>
+          <%= activable_li_tag_with_link t(".articles"), admin_posts_path, admin_path %>
+          <%= activable_li_tag_with_link t(".recipes"), admin_posts_path, admin_path %>
+          <%= activable_li_tag_with_link t(".meal_plans"), admin_posts_path, admin_path %>
+          <%= activable_li_tag_with_link t(".pantries"), admin_posts_path, admin_path %>
+          <%#= activable_li_tag_with_link t(".comments"), admin_comments_path %>
+
+          <%= activable_li_tag_with_link t(".users"), admin_users_path %>
+          <li id="fat-menu" class="dropdown">
+            <a href="#" id="settings" data-toggle="dropdown"><%= t(".settings") %> <b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="settings">
+              <li><%= link_to t(".edit_user_info"), edit_admin_user_path(monologue_current_user)%></li>
+            </ul>
+          </li>
+          <li><%= link_to t(".log_out"), admin_logout_path %></li>
+        </ul>
+      </div>
 
     </div>
-  </div>
+
 </div>

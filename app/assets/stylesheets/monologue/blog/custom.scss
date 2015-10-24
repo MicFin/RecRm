@@ -1,55 +1,63 @@
 
+.monologue-application {
 
-.landing-page.education-page .landing-page-body {
-	.splash-image-section {
 
-		background-image: url("people/woman-tablet.jpg");
-		background-position: 0px 65%;
-		min-height: 200px;
-    margin-bottom: 3%;
+	label {
+		font-size: 18px;
+	  line-height: 20px;
+	}
 
-		.left-splash-column{
-			width: 100%;
+	.landing-page.education-page .landing-page-body {
+		.splash-image-section {
 
-			h1{
-				margin: 0;
+			background-image: url("people/woman-tablet.jpg");
+			background-position: 0px 65%;
+			min-height: 200px;
+	    margin-bottom: 3%;
+
+			.left-splash-column{
+				width: 100%;
+
+				h1{
+					margin: 0;
+				}
 			}
 		}
-	}
 
-	.articles-container{
-	  // @include make-xs-column( 9 );
-	  width:75%;
-	  float: left;
-	  @extend .text-left;
-	}
-
-	.articles-side-bar{
-	  // @include make-xs-column( 3 );
-	  width:25%;
-	  float: left;
-	  @extend .text-left;
-		// padding: 25%;
-
-	  .articles-nav {
-   	  // border: 10px solid $gray-divider;
-   	  border: 10px solid rgba(217, 218, 219, 1.0);
-   	  border-radius: 5px;
-    	padding: 10%;
-    	h3 {
-    		// color: $brand-light-green;
-    		color: #399E48;
-    		margin-top:0;
-    	}
-	  }
-	}
-
-	.post-header h1 {
-		margin-top:0px;
-		a {
-			// color: $brand-light-green;
-			color: #399E48;
+		.articles-container{
+		  // @include make-xs-column( 9 );
+		  width:75%;
+		  float: left;
+		  @extend .text-left;
 		}
-	}
 
+		.articles-side-bar{
+		  // @include make-xs-column( 3 );
+		  width:25%;
+		  float: left;
+		  @extend .text-left;
+			// padding: 25%;
+
+		  .articles-nav {
+	   	  // border: 10px solid $gray-divider;
+	   	  border: 10px solid rgba(217, 218, 219, 1.0);
+	   	  border-radius: 5px;
+	    	padding: 10%;
+	    	h3 {
+	    		// color: $brand-light-green;
+	    		color: #399E48;
+	    		margin-top:0;
+	    	}
+		  }
+		}
+
+		.post-header h1 {
+			margin-top:0px;
+			a {
+				// color: $brand-light-green;
+				color: #399E48;
+			}
+		}
+
+	}
 }

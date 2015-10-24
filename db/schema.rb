@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024014437) do
+ActiveRecord::Schema.define(version: 20151024032923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -359,18 +359,24 @@ ActiveRecord::Schema.define(version: 20151024014437) do
     t.boolean  "editorial_final_review_complete",       default: false
     t.datetime "editorial_final_review_completed_at"
     t.integer  "marketing_reviewer_id"
-    t.integer  "editorial_initial_reviewer"
-    t.integer  "editorial_final_reviewer"
+    t.integer  "editorial_initial_reviewer_id"
     t.integer  "nutrition_reviewer_id"
     t.integer  "culinary_reviewer_id"
     t.integer  "medical_reviewer_id"
-    t.integer  "editorial_reviewer_id"
+    t.integer  "editorial_final_reviewer_id"
     t.integer  "spec_author_id"
     t.boolean  "call_to_action_activated"
+    t.boolean  "author_complete"
+    t.datetime "author_completed_at"
   end
 
   add_index "monologue_posts", ["author_id"], name: "index_monologue_posts_on_author_id", using: :btree
+  add_index "monologue_posts", ["culinary_reviewer_id"], name: "index_monologue_posts_on_culinary_reviewer_id", using: :btree
+  add_index "monologue_posts", ["editorial_initial_reviewer_id"], name: "index_monologue_posts_on_editorial_initial_reviewer_id", using: :btree
+  add_index "monologue_posts", ["nutrition_reviewer_id"], name: "index_monologue_posts_on_nutrition_reviewer_id", using: :btree
+  add_index "monologue_posts", ["spec_author_id"], name: "index_monologue_posts_on_spec_author_id", using: :btree
   add_index "monologue_posts", ["url"], name: "index_monologue_posts_on_url", unique: true, using: :btree
+  add_index "monologue_posts", ["user_id"], name: "index_monologue_posts_on_user_id", using: :btree
 
   create_table "monologue_taggings", force: true do |t|
     t.integer "post_id"

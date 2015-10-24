@@ -4,19 +4,14 @@
     <h2>Stage 1: Editorial Guidance</h2>
     <p>The editorial calendar will drive what content gets created.  Here, the editorial team can select the guidance necessary so that the specs of the article can be created.</p>
     <div class="row form-group">
-      <div class="col-xs-3">
-        <%= post.text_field :published_at, label:  t(".targeted_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
-      </div>
-    </div>
-    <div class="row form-group">
       <div class="col-xs-12">
       <label>What type of content is it?</label>
-      <div class="checkbox">
-        <%= post.check_box :tag_list, label: "Article: Client Fulfillment" %>
-        <%= post.check_box :tag_list, label: "Article: Digital Marketing" %>
-        <%= post.check_box :tag_list, label: "Recipe" %>
-        <%= post.check_box :tag_list, label: "Meal Plan" %>
-        <%= post.check_box :tag_list, label: "Pantry List" %>
+        <div class="checkbox">
+          <%= post.check_box :tag_list, label: "Article: Client Fulfillment" %>
+          <%= post.check_box :tag_list, label: "Article: Digital Marketing" %>
+          <%= post.check_box :tag_list, label: "Recipe" %>
+          <%= post.check_box :tag_list, label: "Meal Plan" %>
+          <%= post.check_box :tag_list, label: "Pantry List" %>
         </div>
       </div>
     </div>
@@ -31,29 +26,135 @@
         <%= post.text_field :tag_list, label:  raw(t(".themes")), class: "post_tag_list" %>
       </div>
     </div>
+    <div class="row form-group">
+      <div class="col-xs-12">
+      <label>Required Reviews</label>
+        <div class="checkbox">
+          <%= post.check_box :nutrition_review_required, label: "Nutrition" %>
+          <%= post.check_box :culinary_review_required, label: "Culinary" %>
+          <%= post.check_box :medical_review_required, label: "Medical" %>
+          <%= post.check_box :marketing_review_required, label: "Marketing" %>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-xs-3">
+        <%= post.text_field :published_at, label:  t(".target_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
+      </div>
+      <div class="col-xs-3">
+        <%= post.collection_select :spec_author_id, @authors, :id,:email, include_blank: true, label: "Assign Specs Author"  %>
+      </div>
+    </div>
   </div>
 </section>
 <section class="row">
   <div class="col-xs-12">
     <h2>Stage 2: Content Specs</h2>
     <p>Specifications should be based on the goals set forth by the editorial team.  Specs can be in short form but should help guide the author that will be crafting the content.</p>
-    <%= post.collection_select :author_id, @authors, :id,:email, include_blank: true, label: "Assign Author"  %>
-    <%= post.text_area :specs, label:  t(".specs"), rows: 3 %>
+    <div class="row form-group">
 
-  </div>
+      <div class="col-xs-12 form-group">
+        <%= post.text_area :specs, label:  t(".specs"), rows: 10 %>        
+      </div>
+      <div class="col-xs-3 form-group">
+        <%= post.collection_select :author_id, @authors, :id,:email, include_blank: true, label: "Assign Author"  %>
+      </div>
+
+    </div>
+    <div class="row form-group">
+      <div class="col-xs-12">
+      <label>Specs Complete?</label>
+        <div class="checkbox">
+          <%= post.check_box :specs_completed, label: "Send to Author" %>
+        </div>
+      </div>
+    </div>
 </section>
 <section class="row">
   <div class="col-xs-12">
     <h2>Stage 3: Happy Writing</h2> 
     <p>Using the category guidance, specifications, and keywords provided by the editorial team, write the best gosh darn piece of content you can!</p>
     <%= post.text_area :content, label:  t(".happy_writing"), class:  "col-xs-12 ckeditor", id: "post_content" %>
-  </div>
-  <div class="col-xs-12">
-    <div class="form-actions">
-      <%= post.button t(".preview"), class: "btn btn-lg btn-default", type: "button", value: "preview"%>
+    <div class="row form-group">
+      <div class="col-xs-12 form-group">
+        <div class="form-actions">
+          <%= post.button t(".preview"), class: "btn btn-lg btn-default", type: "button", value: "preview"%>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-xs-12">
+        <label>Finished?</label>
+        <div class="checkbox">
+          <%= post.check_box :specs_completed, label: "Send to Editor" %>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<section class="row">
+  <div class="col-xs-12">
+      <h2>Stage 5: Reviews</h2>
+      <table class="table post-review-table">
+        <tr class="active">
+          <th>Review</th>
+          <th>Required?</th>
+          <th>Completed?</th>
+          <th>Completion Date</th>
+          <th>Reviewer</th>
+        </tr>
+        <tr class="primary">
+          <td>Initial Editorial</td>
+          <td><%= post.check_box :culinary_review_required, label:  t(".culinary_review_required") %></td>
+          <td><%= post.check_box :culinary_review_required, label:  t(".culinary_review_required") %></td>
+          <td><div class="row form-group">
+      <div class="col-xs-3">
+            <%= post.text_field :published_at, label:  t(".targeted_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
+          </td>
+          <td></td>
+        </tr>
+        <tr class="warning">
+          <td>Culinary</td>
+          <td></td>
+          <td><%= post.check_box :nutrition_review_required, label:  t(".nutrition_review_required") %></td>
+          <td><%= post.text_field :nutrition_review_completed_at, label:  t(".targeted_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.nutrition_review_completed_at.nil? ? "" : post.object.nutrition_review_completed_at.strftime("%Y-%m-%d") %></td>
+          <td></td>
+        </tr>
+        <tr class="danger">
+          <td>Nutrition</td>
+          <td></td>
+          <td><%= post.check_box :medical_review_required, label:  t(".medical_review_required") %></td>
+          <td><div class="row form-group">
+      <div class="col-xs-3">
+            <%= post.text_field :published_at, label:  t(".targeted_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
+          </td>
+          <td></td>
+        </tr>
+        <tr class="info">
+          <td>Medical</td>
+          <td></td>
+          <td><%= post.check_box :editorial_initial_review_complete, label:  t(".editorial") %></td>
+          <td><div class="row form-group">
+          <div class="col-xs-3">
+            <%= post.text_field :published_at, label:  t(".targeted_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
+          </td>
+          <td></td>
+        </tr>
+        <tr class="success">
+          <td>Marketing</td>
+          <td></td>
+          <td><%= post.check_box :editorial_initial_review_complete, label:  t(".editorial") %></td>
+          <td><div class="row form-group">
+          <div class="col-xs-3">
+            <%= post.text_field :published_at, label:  t(".targeted_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+</section>
+
 
 <section class="row">
   <div class="col-xs-12">
@@ -72,70 +173,20 @@
 </section>
 
 
-<section class="row">
-  <div class="col-xs-12">
-      <h2>Stage 5: Specialty Review</h2>
-      <table class="table">
-        <tr class="active">
-          <th>Review</th>
-          <th>Required?</th>
-          <th>Completed?</th>
-          <th>Completion Date</th>
-          <th>Reviewer</th>
-        </tr>
-        <tr class="success">
-          <td>Culinary</td>
-          <td></td>
-          <td><%= post.check_box :culinary_review, label:  t(".culinary_review") %></td>
-          <td><div class="row form-group">
-      <div class="col-xs-3">
-            <%= post.text_field :published_at, label:  t(".targeted_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
-          </td>
-          <td></td>
-        </tr>
-        <tr class="warning">
-          <td>Nutrition</td>
-          <td></td>
-          <td><%= post.check_box :nutrition_review, label:  t(".nutrition_review") %></td>
-          <td><%= post.text_field :nutrition_review_completed_at, label:  t(".targeted_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.nutrition_review_completed_at.nil? ? "" : post.object.nutrition_review_completed_at.strftime("%Y-%m-%d") %></td>
-          <td></td>
-        </tr>
-        <tr class="danger">
-          <td>Medical</td>
-          <td></td>
-          <td><%= post.check_box :medical_review, label:  t(".medical_review") %></td>
-          <td><div class="row form-group">
-      <div class="col-xs-3">
-            <%= post.text_field :published_at, label:  t(".targeted_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
-          </td>
-          <td></td>
-        </tr>
-        <tr class="info">
-          <td>Editorial</td>
-          <td></td>
-          <td><%= post.check_box :editor_approved, label:  t(".editorial") %></td>
-          <td><div class="row form-group">
-      <div class="col-xs-3">
-            <%= post.text_field :published_at, label:  t(".targeted_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
-          </td>
-          <td></td>
-        </tr>
-      </table>
-  </div>
-</section>
+
 
 <section class="row">
   <div class="col-xs-12">
 
     <h2>Stage 6: Final Review</h2>
     <div class="col-xs-3">
-      <%= post.check_box :editor_approved, label:  t(".editor_approved") %>
+      <%= post.check_box :editorial_final_review_complete, label:  t(".editorial_final_review_complete") %>
     </div>
     <div class="col-xs-3">
       <%= post.check_box :published, label:  t(".published") %>
     </div>
     <div class="col-xs-3">
-      <%= post.check_box :medical_review, label:  t(".medical_review") %>
+      <%= post.check_box :medical_review_required, label:  t(".medical_review_required") %>
     </div>
 
   </div>

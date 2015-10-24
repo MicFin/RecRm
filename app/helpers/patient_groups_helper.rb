@@ -12,6 +12,7 @@ module PatientGroupsHelper
 
     # Check if user has any unverified health groups that should be added to the lists
     @user ||= current_user
+
     unverified_groups = @user.unverified_health_groups
     if unverified_groups["disease"].count > 0
         unverified_groups["disease"].each{|disease| @diseases << disease}

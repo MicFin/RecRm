@@ -171,6 +171,8 @@ class AppointmentsController < ApplicationController
         else
           @family_members << @client
         end
+      # get patient group requires the client as user
+      @user = @client
       get_patient_groups!
       @diseases = @diseases 
       @intolerances = @intolerances 

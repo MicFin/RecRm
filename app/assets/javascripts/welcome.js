@@ -5,7 +5,7 @@
 //= require welcome/add_nutrition
 //= require welcome/get_started
 //= require welcome/payment_modal
-
+//= require welcome/index
 	
 $(document).ready(function() {
 
@@ -18,4 +18,6 @@ $(document).ready(function() {
 	// JS for welcome#get_started
 	Kindrdfood.welcome.getStarted.init();
 
+	// JS for welcome#index
+	Kindrdfood.welcome.index.init();
 });

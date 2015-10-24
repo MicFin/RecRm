@@ -117,14 +117,15 @@
                     <% else %>
                       <p>No health groups</p>
                     <% end %>
-                    <% if family_member.unverified_health_groups.count >= 1%>
+          <!--           <%# if family_member.unverified_health_groups.count >= 1%>
                       <label>Unverified Health Groups</label>
-                      <% family_member.unverified_health_groups.each do |health_group| %>
+                      <%# family_member.unverified_health_groups.each do |health_group| %>
                         <div class="btn btn-white-orange btn-lg">
-                          <%= health_group.name %>
+
+                          <%#= health_group.name %>
                         </div>
-                      <% end%>
-                    <% end %>
+                      <%# end%>
+                    <%# end %> -->
                   </div>
                   <div class="col-xs-12 form-group">
                     <label>Additional info about <span class="dynamic-user-name"><%=family_member.first_name%></span></label>

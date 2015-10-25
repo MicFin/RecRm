@@ -73,9 +73,12 @@ class WelcomeController < Users::RegistrationsController
     if @user == current_dietitian
 
       # AppointmentsHelper
+      # shouldnt need all 3
       get_upcoming_appointments!
       @upcoming_appointments
       @next_appointment
+      # get_upcoming_appointments!
+      # @upcoming_appointment
       get_previous_appointments!
       @previous_appointments
       

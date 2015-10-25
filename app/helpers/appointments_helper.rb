@@ -19,6 +19,7 @@ module AppointmentsHelper
     end
     @upcoming_appointments = @upcoming_appointments.group_by{|appointment|  [appointment.start_time.to_date, appointment.start_time.strftime("%I:%M%p")] }
     @next_appointment = current_dietitian.appointments.where(status: "Paid").where(start_time: 30.minutes.ago..5.hours.from_now).last
+    # @next_appointment = current_dietitian.appointments.where(status: "Paid").last
     # @next_appointment = current_dietitian.appointments.where.not(status: "Follow Up Unpaid").last
 
     if @next_appointment != nil  
@@ -34,6 +35,7 @@ module AppointmentsHelper
 
   def get_upcoming_appointment!
       # client upcoming appointment or clirent unpaid
+
       @upcoming_appointment = current_user.appointment_hosts.where(status: "Paid").last || current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
       # start date and time 
       if @upcoming_appointment 

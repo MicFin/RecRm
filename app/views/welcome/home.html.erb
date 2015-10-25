@@ -12,45 +12,112 @@
         				<%= render "/surveys/form" %>
         			</div>
 						<% elsif @upcoming_appointment && @upcoming_appointment.status == "Paid"  %>
-						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-							<div class="row">
-								<h2>YOUR NEXT SESSION IS:</h2>
-							</div>
-							<hr>
-							<div class="row">
-								<h1><%= @upcoming_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </h1>
-<!-- 								<h1><%#= @upcoming_appointment.time%> EST</h1> -->
-							</div>
-							<hr>
-							<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
-							<div class="row">
-								<div class="col-xs-12 session-action">
+							<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+								<div class="row">
+									<h2>YOUR NEXT SESSION IS:</h2>
+								</div>
+								<hr>
+								<div class="row">
+									<h1><%= @upcoming_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </h1>
+								</div>
+								<hr>
+								<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
+								<div class="row">
+									<div class="col-xs-12 session-action">
 
-									<% if ( (DateTime.now >= @upcoming_appointment.start_time - 10.minutes) && ( DateTime.now() <= @upcoming_appointment.end_time + 5.minutes) ) %>
+										<% if ( (DateTime.now >= @upcoming_appointment.start_time - 10.minutes) && ( DateTime.now() <= @upcoming_appointment.end_time + 5.minutes) ) %>
 
-									<%# if true %>
-									
-										<%= link_to in_session_room_path(:id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id), class: "btn btn-primary" do %>
-						
-											<div class="col-xs-3">
-												<p><span class="glyphicon glyphicon-heart"></span></p>
+										<%# if true %>
+										
+											<%= link_to in_session_room_path(:id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id), class: "btn btn-primary" do %>
+							
+												<div class="col-xs-3">
+													<p><span class="glyphicon glyphicon-heart"></span></p>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+													<p>START</p>
+													<p>APPOINTMENT</p>
+												</div>
+												<% end %>
+										<% else %>
+											<h2>We look forward to meeting with you!</h2>
+											<!-- <p>Take a moment to prepare for your session</p>
+											<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+												<button class="btn btn-primary">
+													<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+														<span class="glyphicon glyphicon-edit"></span>
+													</div>
+													<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+														<p>SESSION</p>
+														<p>PREP</p>
+													</div>
+												</button>
 											</div>
-											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-												<p>START</p>
-												<p>APPOINTMENT</p>
-											</div>
+											<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+												<button class="btn btn-default">
+													<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+														<span class="glyphicon glyphicon-comment"></span>
+													</div>
+													<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+														<p>CONTACT</p>
+														<p>YOUR KRDN</p>
+													</div>
+												</button>
+											</div> -->
+										<% end %>
+
+									</div>
+								</div>
+							</div>
+						<% elsif @upcoming_appointment && @upcoming_appointment.status ==  "Follow Up Unpaid"%>
+							<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+								<div class="row">
+									<h2>YOUR NEXT SESSION IS:</h2>
+								</div>
+								<hr>
+								<div class="row">
+									<h1><%= @upcoming_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </h1>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-xs-12 session-action">
+										<p>This appointment has not been confirmed.  Please confirm the appointment below.</p>
+										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-3 col-lg-6">
+											<%=link_to purchase_appointment_path(@unpaid_appointment.id), class: "btn btn-primary", :remote => true do %>
+												<div class="col-xs-3">
+													<p><span class="glyphicon glyphicon-exclamation-sign"></span></p>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+													<p>CONFIRM</p>
+													<p>APPOINTMENT</p>
+												</div>
 											<% end %>
-									<% else %>
-										<h2>We look forward to meeting with you!</h2>
-										<!-- <p>Take a moment to prepare for your session</p>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						<% else %>
+							<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+								<div class="row">
+									<h2> </h2>
+								</div>
+								<hr>
+								<div class="row">
+									<h1>SCHEDULE YOUR NEXT APPOINTMENT</h1>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-xs-12 session-action">
+										<p>Need help?</p>
 										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
 											<button class="btn btn-primary">
 												<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-													<span class="glyphicon glyphicon-edit"></span>
+													<span class="glyphicon glyphicon-calendar"></span>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-													<p>SESSION</p>
-													<p>PREP</p>
+													<p>MAKE</p>
+													<p>APPOINTMENT</p>
 												</div>
 											</button>
 										</div>
@@ -64,79 +131,10 @@
 													<p>YOUR KRDN</p>
 												</div>
 											</button>
-										</div> -->
-									<% end %>
-
-								</div>
-							</div>
-						</div>
-						<% elsif @upcoming_appointment && @upcoming_appointment.status ==  "Follow Up Unpaid"%>
-						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-							<div class="row">
-								<h2>YOUR NEXT SESSION IS:</h2>
-							</div>
-							<hr>
-							<div class="row">
-								<h1><%= @upcoming_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </h1>
-<!-- 								<h1><%#= @upcoming_appointment.time%> EST</h1> -->
-							</div>
-							<hr>
-							<div class="row">
-								<div class="col-xs-12 session-action">
-									<p>This appointment has not been confirmed.  Please confirm the appointment below.</p>
-									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-3 col-lg-6">
-										<%=link_to purchase_appointment_path(@unpaid_appointment.id), class: "btn btn-primary", :remote => true do %>
-											<div class="col-xs-3">
-												<p><span class="glyphicon glyphicon-exclamation-sign"></span></p>
-											</div>
-											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-												<p>CONFIRM</p>
-												<p>APPOINTMENT</p>
-											</div>
-										<% end %>
-
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<% else %>
-						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-							<div class="row">
-								<h2> </h2>
-							</div>
-							<hr>
-							<div class="row">
-								<h1>SCHEDULE YOUR NEXT APPOINTMENT</h1>
-							</div>
-							<hr>
-							<div class="row">
-								<div class="col-xs-12 session-action">
-									<p>Need help?</p>
-									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-										<button class="btn btn-primary">
-											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-												<span class="glyphicon glyphicon-calendar"></span>
-											</div>
-											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-												<p>MAKE</p>
-												<p>APPOINTMENT</p>
-											</div>
-										</button>
-									</div>
-									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-										<button class="btn btn-default">
-											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-												<span class="glyphicon glyphicon-comment"></span>
-											</div>
-											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-												<p>CONTACT</p>
-												<p>YOUR KRDN</p>
-											</div>
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
 						<% end %>
 					</div>
 				</section>

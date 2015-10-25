@@ -46,7 +46,7 @@
 										<% if @next_appointment != nil && @next_appointment.room_id != nil %>
 											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
 
-												<%=link_to in_session_room_path(@next_appointment), :data => { :room_id => @next_appointment.room_id }, :class=> "btn btn-primary" do %>
+												<%=link_to in_session_room_path(:id => @next_appointment.room_id, appointment: @next_appointment.id), :class=> "btn btn-primary" do %>
 													<div class="col-xs-3">
 														<p><span class="glyphicon glyphicon-exclamation-sign"></span></p>
 													</div>

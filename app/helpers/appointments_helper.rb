@@ -17,7 +17,7 @@ module AppointmentsHelper
       appointment.prepped = appointment.prep_complete?
       @upcoming_appointments << appointment
     end
-    @upcoming_appointments = @upcoming_appointments.group_by{|appointment|  [appointment.start_time.to_date, appointment.start_time.strftime("%I:%M%p")] }
+    @upcoming_appointments = @upcoming_appointments.group_by{|appointment|  [appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y"), appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p")] }
     @next_appointment = current_dietitian.appointments.where(status: "Paid").where(start_time: 30.minutes.ago..5.hours.from_now).last
     # @next_appointment = current_dietitian.appointments.where(status: "Paid").last
     # @next_appointment = current_dietitian.appointments.where.not(status: "Follow Up Unpaid").last
@@ -79,7 +79,7 @@ module AppointmentsHelper
     end
 
     # group previous appointmetns by time
-    @previous_appointments = @previous_appointments.group_by{|appointment|  [appointment.start_time.to_date, appointment.start_time.strftime("%I:%M%p")] }
+    @previous_appointments = @previous_appointments.group_by{|appointment|  [appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y"), appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p")] }
   end
 
   def get_unpaid_appointment!

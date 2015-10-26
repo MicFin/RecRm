@@ -1,4 +1,10 @@
+.breadcrumb-sign-out {
+  float:right;
+}
 
+.breadcrumb-sign-out + img {
+  clear: both;
+}
 
 #welcome-breadcrumb{
 
@@ -39,15 +45,16 @@
   .btn-breadcrumb .btn.btn-warning:not(:last-child):before {
     border-left: 10px solid #eea236;
   }
+
   /** The Spacing **/
   .btn-breadcrumb .btn {
-    padding:6px 12px 6px 24px;
+    padding:6px 14px 6px 14px;
   }
   .btn-breadcrumb .btn:first-child {
     padding:6px 6px 6px 10px;
   }
   .btn-breadcrumb .btn:last-child {
-    padding:6px 18px 6px 24px;
+    padding:6px 14px 6px 14px;
   }
 
 

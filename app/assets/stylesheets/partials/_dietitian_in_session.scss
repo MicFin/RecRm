@@ -159,9 +159,6 @@ label[for="nav-trigger"] {
   padding-bottom: 50px;
 }
 
-#end-session-button{
-  margin-top: 25px;
-}
 #wrapper {
 	/* Without this, the body has excess horizontal scroll when the menu is open */
   overflow-x: hidden;
@@ -173,6 +170,13 @@ label[for="nav-trigger"] {
   margin-top: 0px;
 }
 
+#end-session-button{
+  float:right;
+}
+
+.session-timer-text{
+  float:left;
+}
 
 /////// NExt Appointment
 

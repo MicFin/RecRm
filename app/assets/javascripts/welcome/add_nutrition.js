@@ -8,7 +8,7 @@ Kindrdfood.welcome.addNutrition = {
 	init: function(){
 	
 		// input for patient groups and has a data-trigger of true
-		$("input[name='user[patient_group_ids][]'][data-triggers='true']").on("click", function(e){
+		$("#health-group-container").on("click", "input[name='user[patient_group_ids][]'][data-triggers='true']", function(e){
 		
 	    if ( $("input[name='user[patient_group_ids][]'][data-triggers='true']").is(":checked") ) {
 	        $('.triggers-container').removeClass("hidden");

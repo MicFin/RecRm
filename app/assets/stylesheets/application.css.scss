@@ -89,6 +89,9 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 	// Rooms controller
 @import "partials/rooms/users/in_session_user";
 @import "partials/rooms/users/in_session_user_nav";
+@import "partials/rooms/dietitians/in_session_dietitian";
+@import "partials/rooms/dietitians/in_session_dietitian_nav";
+
 
 // Monologue blog overrides
 @import "monologue/blog/custom";

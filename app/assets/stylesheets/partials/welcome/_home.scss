@@ -1,12 +1,12 @@
 
 // REMOVE ENTIRE STYLE SHEET IF NOT NEEDED ON WELCOME PAGE
 
-#welcome-page, #family-page {
+#welcome-page, #family-page, #session-page {
 	header.col-xs-2{
 		position: fixed;
 	  top: 0;
 	  left: 0;
-	  z-index: 1000000;
+	  z-index: 1000;
 	}
 
 	header img.img-logo {
@@ -47,17 +47,17 @@
 		}
 	}
 
-	main .jumbotron button, .sessions button {
+	main .jumbotron button, 	main .jumbotron a, .sessions button {
 		max-width: 200px;
 		padding: 12px;
 	}
 
-	main .jumbotron button .glyphicon, .sessions button .glyphicon {
+	main .jumbotron button .glyphicon, 	main .jumbotron a .glyphicon, .sessions button .glyphicon {
 		font-size: 40px;
 		float: left;
 	}
 
-	main .jumbotron button p, .sessions button p {
+	main .jumbotron button p, main .jumbotron a p, .sessions button p {
 	  margin-bottom: 0;
 	  font-size: 15px;
 	  text-align: left;

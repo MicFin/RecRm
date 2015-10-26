@@ -107,7 +107,7 @@ class WelcomeController < Users::RegistrationsController
     
     
     @user = current_user
-    
+
     # Stage 1 - user confirmed but did not complete account set up
     if @stage_of_registration == 1
       render :get_started

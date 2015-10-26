@@ -15,11 +15,14 @@
 				</div>
 				<nav>	
 					<ul>
-						<%= active_link_to dietitian_authenticated_root_path, :wrap_tag => :li  do %>
-						  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
+						<%= active_link_to welcome_path, :wrap_tag => :li  do %>
+						  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dietitian Home</span>
+						<% end %>
+						<%= active_link_to dashboard_path, :wrap_tag => :li  do %>
+						  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">ADMIN DASH</span>
 						<% end %>
 						<%= active_link_to appointments_path, :wrap_tag => :li  do %>
-						  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Upcoming Appointments</span>
+						  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
 						<% end %>
 						<%= active_link_to users_invitations_path, :wrap_tag => :li  do %>
 						  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Referrals</span>

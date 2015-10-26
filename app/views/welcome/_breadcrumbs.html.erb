@@ -1,12 +1,20 @@
+    <div class="breadcrumb-sign-out">
+      <%= active_link_to destroy_user_session_path, { :active => :exclusive, :class_active => 'selected', :method => :delete} do %>
+        <i>sign out </i>
+      <% end %>
+      <%= active_link_to welcome_home_path, { :active => :exclusive, :class_active => 'selected', class: "btn btn-warning"} do %>
+        <i class="glyphicon glyphicon-home"></i>
+      <% end %>
+    </div>
+     <%= image_tag("/assets/logos/kf-logo-registration.png", class: "img-responsive logo") %>
     <div id="welcome-breadcrumb" class="row">
+
         <div class="btn-group btn-breadcrumb">
         
         <% if current_user.appointment_registration_stage <= 1 %>
-        	
-        	<%= active_link_to destroy_user_session_path, { :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :method => :delete} do %>
-            <i class="glyphicon glyphicon-home"></i>
-          <% end %>
- 					<%= active_link_to "Basic Info", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
+    
+          <%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
+ 					<%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
           <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
           <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
           <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>

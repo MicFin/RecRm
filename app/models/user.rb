@@ -87,7 +87,11 @@ class User < ActiveRecord::Base
 
   # returns true if user is a repeat customer
   def repeat_customer?
-    return self.appointment_hosts.where(status: "Complete").count >= 1
+    if self.appointment_hosts.where(status: "Complete").count >= 1 || self.appointment_hosts.where(status: "Paid").count >= 1 
+      return true
+    else
+      return false
+    end
   end
 
   # returns an array of patient groups for a user 

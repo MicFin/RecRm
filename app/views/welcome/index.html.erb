@@ -44,21 +44,36 @@
 								<div class="row">
 									<div class="col-xs-12 session-action">
 										<% if @next_appointment != nil && @next_appointment.room_id != nil %>
-											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+										
 
+											<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+		
 												<%=link_to in_session_room_path(:id => @next_appointment.room_id, appointment: @next_appointment.id), :class=> "btn btn-primary" do %>
+				
 													<div class="col-xs-3">
-														<p><span class="glyphicon glyphicon-exclamation-sign"></span></p>
+														<p><span class="glyphicon glyphicon-heart"></span></p>
 													</div>
 													<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 														<p>ENTER</p>
 														<p>SESSION</p>
 													</div>
 												<% end %>
-												<p><%=@next_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></p>
-												<p><%=@next_appointment.family_info.family_names%></p>
-												<button data-appt-id="<%=@next_appointment.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
 											</div>
+											
+											<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+													<button data-appt-id="<%=@next_appointment.id%>" class="btn btn-sm btn-default prep-appointment-button" >
+														<div class="col-xs-3">
+															<span class="glyphicon glyphicon-edit"></span>
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+															<p>APPOINTMENT</p>
+															<p>PREP</p>
+														</div>
+													</button>
+											</div>
+
+
+					
 										<% else %>
 											<div class="col-xs-12">
 												<p><%= link_to image_tag("chef-hat.png", class: "tilt"), :controller => "recipes", :action => "new" %>	</p>
@@ -82,72 +97,137 @@
 						<% end %>
 					</div>
 				</section>
-				<section class="content-container recipes">
+				<section class="content-container">
 					<h3><span class="glyphicon glyphicon-calendar"></span>Upcoming Appointments</h3>
-					<div id="appointment-update-container">
-						<% if @upcoming_appointments.count >= 1%>
-							<% @upcoming_appointments.each do |date_time_array, appointment| %>
-							
-								<div class="recipe col-xs-12  content-item" >
-									<p class="new">	<%=date_time_array[0].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y")%> <%=date_time_array[1]%></p>
-					
-									<p><%=appointment.first.family_info.family_names%></p>
-				
-									<% if appointment.first.prepped == true %>
-										<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
-									<% else %>
-										<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-danger prep-appointment-button">Prep</button>
-									<% end %>
 
-									<% if (current_dietitian.has_role? "Admin Dietitian") && (appointment.first.room_id) %>
-										<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => appointment.first.room_id, appointment: appointment.first.id }%>
-									<% end %>
-									<% appointment.first.family_info.health_groups_names.each do |health_group|%>
-							 			<div class="btn btn-white-orange btn-sm">
-							 				<%=	health_group %>
-							 			</div>
-									<% end %>
-								</div>
-							<% end %>
-						<% else %>
-							<div class="empty-list-container col-xs-12">
-								<h3>No upcoming appointments.</h3>
-							</div>
-						<% end %>
-					</div>
+  				<table class="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Client</th>
+                <th>Patient</th>
+                <th>Patient Age</th>
+                <th>Duration</th>
+                <th>Date of Purchase</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+							<% if @upcoming_appointments.count >= 1%>
+								<% @upcoming_appointments.each do |date_time_array, appointment| %>
+									<tr>	
+										<td>
+											<%=date_time_array[0]%> <%=date_time_array[1]%></td>
+										<td><%= appointment.first.appointment_host.first_name%></td>
+
+                		<td><%= appointment.first.patient_focus.first_name%></td>
+	                  <td><%= appointment.first.patient_focus.age%></td>
+                  	<td><%= appointment.first.show_duration%></td>
+
+                  	<td><%= appointment.first.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+
+
+
+										<% if appointment.first.prepped == true %>
+											<td><button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button></td>
+										<% else %>
+											<td>
+												<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-danger prep-appointment-button">Prep</button>
+											</td>
+										<% end %>
+
+										<% if (current_dietitian.has_role? "Admin Dietitian") && (appointment.first.room_id) %>
+											<td>
+												<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => appointment.first.room_id, appointment: appointment.first.id }%>
+												</td>
+										<% end %>
+
+
+                	</tr>
+                <% end %>
+							<% else %>
+								<tr>
+									<td>No upcoming appointments.</td>
+								</tr>
+
+              <% end %>
+            </tbody>
+          </table>
+
+
 				</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
 				<section class="content-container recipes">
 					<h3><span class="glyphicon glyphicon-calendar"></span>Previous Appointments</h3>
-					<div id="previous-appointments-container">
-						<% if @previous_appointments.count >= 1%>
-							<% @previous_appointments.each do |date_time_array, appointment| %>
-										<div class="recipe col-xs-12  content-item" >
-									<p class="new">	<%=date_time_array[0].in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y")%> <%=date_time_array[1]%></p>
-					
-									<p><%=appointment.first.family_info.family_names%></p>
-				
-									<% if appointment.first.prepped == true %>
-										<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
-									<% else %>
-										<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-danger prep-appointment-button">Prep</button>
-									<% end %>
 
-									<% if (current_dietitian.has_role? "Admin Dietitian") && (appointment.first.room_id) %>
-										<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => appointment.first.room_id, appointment: appointment.first.id }%>
-									<% end %>
-									<% appointment.first.family_info.health_groups_names.each do |health_group|%>
-							 			<div class="btn btn-white-orange btn-sm">
-							 				<%=	health_group %>
-							 			</div>
-									<% end %>
-								</div>
-							<% end %>
-						<% else %>
-							<div class="empty-list-container col-xs-12">
-								<h3>No previous appointments.</h3>
-							</div>
-						<% end %>
-					</div>
+					 <table class="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Client</th>
+                <th>Patient</th>
+                <th>Patient Age</th>
+                <th>Duration</th>
+                <th>Date of Purchase</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+							<% if @previous_appointments.count >= 1%>
+								<% @previous_appointments.each do |date_time_array, appointment| %>
+									<tr>	
+										<td>
+											<%=date_time_array[0]%> <%=date_time_array[1]%></td>
+										<td><%= appointment.first.appointment_host.first_name%></td>
+
+                		<td><%= appointment.first.patient_focus.first_name%></td>
+	                  <td><%= appointment.first.patient_focus.age%></td>
+                  	<td><%= appointment.first.show_duration%></td>
+
+                  	<td><%= appointment.first.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+
+
+
+										<% if appointment.first.prepped == true %>
+											<td><button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button></td>
+										<% else %>
+											<td>
+												<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-danger prep-appointment-button">Prep</button>
+											</td>
+										<% end %>
+
+										<% if (current_dietitian.has_role? "Admin Dietitian") && (appointment.first.room_id) %>
+											<td>
+												<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => appointment.first.room_id, appointment: appointment.first.id }%>
+												</td>
+										<% end %>
+
+
+                	</tr>
+                <% end %>
+							<% else %>
+								<tr>
+									<td>No upcoming appointments.</td>
+								</tr>
+
+              <% end %>
+            </tbody>
+          </table>
+				
 				</section>
 				
 

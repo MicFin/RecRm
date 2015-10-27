@@ -16,7 +16,7 @@ payment = {
         $('input[type=submit]').attr('disabled', true);
         return payment.processCard();
       } else {
-        $('form').submit();
+        $('#paymentModal form').submit();
       };
     });
 
@@ -62,7 +62,7 @@ payment = {
   handleStripeResponse: function(status, response) {
     if (status === 200) {
       $('#purchase_stripe_card_token').val(response.id);
-      $('form').submit();
+      $('#paymentModal form').submit();
     } else {
       $('#stripe_error').text(response.error.message);
       return $('input[type=submit]').attr('disabled', false);

@@ -1,0 +1,5 @@
+$("#edit-survey-modal").remove();
+
+$("body").append("<%= j render(:partial => '/surveys/modals/edit_modal', :locals => {:appointment => @appointment}) %>");
+
+$("#edit-survey-modal").modal();

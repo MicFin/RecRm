@@ -1,0 +1,90 @@
+	<div class="form-group row">
+					  	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					    	<%= f.input :first_name, placeholder: "First", autofocus: true, input_html: { class: "form-control"} %>
+					    </div>
+							<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					    	<%= f.input :last_name, autofocus: true, input_html: { class: "form-control"} %>
+					    </div>
+					  </div>
+						<div class="form-group row">
+							<div class="col-xs-12">
+							<%= label_tag :family_role, "Relation to You:" %>
+					    	<%= f.input :family_role, autofocus: true, input_html: { class: "form-control"}, placeholder: "Daughter", label: false %>
+					    </div>
+					  </div>
+					  <div class="row form-group">
+				  		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			     			<%= label_tag :birth_date, "Birth Date:" %>
+			     		</div>
+				     	<div class="col-xs-12">
+				      	<%= f.date_select :date_of_birth, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: 1910, order: [:month, :day, :year]}, {:class => "form-control-3"} %>
+				    	</div>
+			    	</div>
+						<div class="row form-group">
+					  	<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+				     		<%= label_tag :height_inches, "Height:" %>
+				     	</div>
+				     	<div id="height-attributes" class="col-xs-10">
+				        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+				          <input type="number" name="user[height][feet]" placeholder="4" style="padding-left: 10%" value="<%=@new_user.height_hash['feet']%>"/> 
+				        </div>
+				        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+				          <%= label_tag :feet, "feet"%>
+				        </div>
+				        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+				          <input type="number" name="user[height][inches]" placeholder="11" style="padding-left: 10%" value="<%=@new_user.height_hash['inches']%>"/> 
+				        </div>
+				        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+								  <%= label_tag :inches, "inches"%>
+				        </div>
+			        </div>
+			      </div>
+			      <div class="row form-group">
+					  	<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+				     		<%= label_tag :weight_ounces, "Weight:" %>
+				     	</div>
+				     	<div id="weight-attributes" class="col-xs-10">
+				        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+				          <input type="number" name="user[weight][pounds]" placeholder="100" style="padding-left: 10%" value="<%=@new_user.weight_hash['pounds']%>"/> 
+				        </div>
+				        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+				          <%= label_tag :pounds, "pounds"%>
+				        </div>
+					     	<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+				          <input type="number" name="user[weight][ounces]" placeholder="100" style="padding-left: 10%" value="<%=@new_user.weight_hash['ounces']%>"/> 
+				        </div>
+			        	<div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+								  <%= label_tag :ounces, "ounces"%>
+				        </div>
+			        </div>
+			      </div>
+					  <div class="form-group row">
+	  					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	  						<%= label_tag :sex, "Gender:" %>
+					    	<%= f.input :sex, 
+					    	:collection => [["female", 'Female'] ,["male", 'Male']],
+					    	:label_method => :last, 
+					    	:value_method => :first,
+					    	:as => :radio_buttons_inline,
+					    	:label => false %>
+					    </div>
+	  					<div class="pregnancy-container hidden col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	  						<div class="col-xs-12">
+	  							<%= label_tag :pregnant, "Pregnant?" %>
+	  						</div>
+					    	<label class="radio-inline">
+								  <input type="radio" name="pregnancy" id="inlineRadio1" value="yes"> Yes
+								</label>
+								<label class="radio-inline">
+								  <input type="radio" name="pregnancy" id="inlineRadio2" value="no"> No
+								</label>
+						  </div>
+					  </div>
+					  <div class="row form-group due-date-container hidden">
+				  		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			     			<%= label_tag :due_date, "Due Date:" %>
+			     		</div>
+				     	<div class="col-xs-12">
+				      	<%= f.date_select :due_date, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: Date.today.year+1, max_years_allowed: 5, order: [:month, :day, :year]}, {:class => "form-control-4"} %>
+				    	</div>
+			    	</div>

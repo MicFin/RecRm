@@ -78,38 +78,91 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     
+    # user updating a fmaily member
+    if params[:family_member] == "true"
+      @family_member = User.find(params[:user][:id])
+      successfully_updated = @family_member.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
       
-    @user = current_user
-    # check if a password is needed for this update
-    successfully_updated = if needs_password?(@user, params)
-      # if password is needed
-      # then update with password
-      @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
-      
-    else
-      
-      # if no password is needed 
-      # remove the virtual current_password attribute
-      params[:user].delete(:current_password)
-      # update_without_password doesn't know how to ignore it
-      @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
-    end
-    
-    if successfully_updated
+      if successfully_updated
 
-      # update user registration stage
-      @user.update_registration_stage
+        set_flash_message :notice, :updated
+        # Sign in the user bypassing validation in case their password changed
+        
+        redirect_to families_edit_family_member_path(@family_member.families.last, @family_member)
+      else
+        render "/families/edit_family_member"
+      end
 
-      set_flash_message :notice, :updated
-      # Sign in the user bypassing validation in case their password changed
-      
-      sign_in @user, :bypass => true
-      
-      after_update_path_for(@user)
     else
-      render "edit"
+      @user = current_user
+      # check if a password is needed for this update
+      successfully_updated = if needs_password?(@user, params)
+        # if password is needed
+        # then update with password
+        @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
+        
+      else
+        
+        # if no password is needed 
+        # remove the virtual current_password attribute
+        params[:user].delete(:current_password)
+        # update_without_password doesn't know how to ignore it
+        @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
+      end
+      
+      
+      if successfully_updated
+
+        # update user registration stage
+        @user.update_registration_stage
+
+        set_flash_message :notice, :updated
+        # Sign in the user bypassing validation in case their password changed
+        
+        sign_in @user, :bypass => true
+        
+        after_update_path_for(@user)
+      else
+        render "edit"
+      end
     end
   end
+
+  # def update_family_member
+    
+    
+  #   @user = current_user
+  #   # check if a password is needed for this update
+  #   successfully_updated = if needs_password?(@user, params)
+  #     # if password is needed
+  #     # then update with password
+  #     @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
+      
+  #   else
+      
+  #     # if no password is needed 
+  #     # remove the virtual current_password attribute
+  #     params[:user].delete(:current_password)
+  #     # update_without_password doesn't know how to ignore it
+  #     @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
+  #   end
+    
+    
+  #   if successfully_updated
+
+  #     # update user registration stage
+  #     @user.update_registration_stage
+
+  #     set_flash_message :notice, :updated
+  #     # Sign in the user bypassing validation in case their password changed
+      
+  #     sign_in @user, :bypass => true
+      
+  #     after_update_path_for(@user)
+  #   else
+  #     render "edit"
+  #   end
+  # end
 
   def update_time_zone
 

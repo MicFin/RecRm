@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   end
 
   # def after_accept_path_for(resource_name)
-  #   binding.pry
+  #   
   # end
 private
 

@@ -21,40 +21,32 @@
 
         <% elsif current_user.appointment_registration_stage <= 2 %>
 
-        	<%= active_link_to destroy_user_session_path, {:active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :method => :delete} do %>
-            <i class="glyphicon glyphicon-home"></i>
-          <% end %>
-          <%= active_link_to "Basic Info", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
+        	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
+          <%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
           <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
           <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
 
 				<% elsif current_user.appointment_registration_stage <= 3 %>
 
-        	<%= active_link_to destroy_user_session_path,  {:active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :method => :delete} do %>
-            <i class="glyphicon glyphicon-home"></i>
-          <% end %>
-          <%= active_link_to "Basic Info", welcome_add_family_path, :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
+        	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
+          <%= active_link_to "Your Table", welcome_add_family_path, :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
           <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
 				
 				<% elsif current_user.appointment_registration_stage <= 4 %>
 
-        	<%= active_link_to destroy_user_session_path,  {:active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :method => :delete} do %>
-            <i class="glyphicon glyphicon-home"></i>
-          <% end %>
-          <%= active_link_to "Basic Info", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
+        	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
+          <%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
 
 				<% elsif current_user.appointment_registration_stage <= 5 %>
 
-        	<%= active_link_to destroy_user_session_path,  {:active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :method => :delete} do %>
-            <i class="glyphicon glyphicon-home"></i>
-          <% end %>
-          <%= active_link_to "Basic Info", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
+        	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
+          <%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>

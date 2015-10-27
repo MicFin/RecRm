@@ -36,6 +36,8 @@ class WelcomeController < Users::RegistrationsController
       @upcoming_appointment
       @survey
       @surveyable
+      get_upcoming_appointments!
+      @upcoming_appointments
       get_unpaid_appointment!
       @unpaid_appointment
 
@@ -151,7 +153,7 @@ class WelcomeController < Users::RegistrationsController
 
     # New user for form
     @new_user = User.new(last_name: @user.last_name)
-  
+    
     # Shows views/welcome/add_family.html.erb
   end
 
@@ -249,7 +251,7 @@ class WelcomeController < Users::RegistrationsController
     # Reassign @user to the appointment's patient focus
     appointment = @user.appointment_in_registration
     @user = appointment.patient_focus
-
+    
     # User may have submitted new health groups
     find_or_create_new_health_groups
 
@@ -260,7 +262,7 @@ class WelcomeController < Users::RegistrationsController
       # Add preferences IDs to the params so that they get included when it updates the users health groups 
       user_preferences_ids.each {|id| params[:user][:patient_group_ids] << id}
     end
-
+    
     # Update without password
     # Do not want user entering password for each update during registration
     @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))

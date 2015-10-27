@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
 
   # returns true if user is a repeat customer
   def repeat_customer?
-    if self.appointment_hosts.where(status: "Complete").count >= 1 || self.appointment_hosts.where(status: "Paid").count >= 1 
+    if self.appointment_hosts.where(status: "Complete").count >= 1 || self.appointment_hosts.where(status: "Paid").count >= 1 || self.registration_stage >= 6
       return true
     else
       return false

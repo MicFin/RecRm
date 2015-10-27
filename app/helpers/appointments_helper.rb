@@ -2,10 +2,13 @@ module AppointmentsHelper
 
   def get_upcoming_appointments!
     @upcoming_appointments = []
-    if current_dietitian.has_role? "Admin Dietitian"
+    user = current_dietitian || current_user
+    if user.has_role? "Admin Dietitian"
       list_of_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+    elsif user.is_a? User 
+      list_of_appointments = user.appointment_hosts.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
     else
-      list_of_appointments = current_dietitian.appointments 
+      list_of_appointments = user.appointments.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
     end
     list_of_appointments.map do |appointment| 
       family = appointment.appointment_host.head_of_families.last 
@@ -18,9 +21,12 @@ module AppointmentsHelper
       @upcoming_appointments << appointment
     end
     @upcoming_appointments = @upcoming_appointments.group_by{|appointment|  [appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y"), appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p")] }
-    @next_appointment = current_dietitian.appointments.where(status: "Paid").where(start_time: 30.minutes.ago..5.hours.from_now).last
-    # @next_appointment = current_dietitian.appointments.where(status: "Paid").last
-    # @next_appointment = current_dietitian.appointments.where.not(status: "Follow Up Unpaid").last
+
+    if user.is_a? Dietitian 
+      @next_appointment = user.appointments.where(status: "Paid").where(start_time: 30.minutes.ago..5.hours.from_now).last
+    end
+    # @next_appointment = user.appointments.where(status: "Paid").last
+    # @next_appointment = user.appointments.where.not(status: "Follow Up Unpaid").last
 
     if @next_appointment != nil  
       family = @next_appointment.appointment_host.head_of_families.last 

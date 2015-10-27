@@ -5,7 +5,7 @@
 
       <main class="col-xs-10 col-xs-offset-2">
         <section>
-          <h1>The Finneran Family</h1>
+          <h1>The <%=@family.name%> Family</h1>
         </section>
         <hr>
         <section class="row">
@@ -14,28 +14,29 @@
         </section>
         <section id="family-members-container" class="row">
 
-          <% @family.family_members.each do |family_member| %>
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
-            <div class="col-xs-12">
-              <%= image_tag "icons/add_user_photo.png" %>
-            </div>
-            <p><%= family_member.full_name%> </p>
-            <%= link_to 'Edit', families_edit_family_member_path(@family.id, family_member.id) %>
-            <div class="profile-progress text-left">
-              <h3 class="text-center">Profile Progress</h3>
-              <ul>
-                <li><span class="glyphicon glyphicon-check"></span>Basic Info</li>
-                <li><span class="glyphicon glyphicon-check"></span>Health History</li>
-                <li><span class="glyphicon glyphicon-remove-circle"></span>Food Preferences</li>
-                <li><span class="glyphicon glyphicon-remove-circle"></span>Fun Facts</li>
-
-              </ul>
-            </div>
-          </div>
+          <%# @family.family_members.each do |family_member| %>
+          <% if @family && @family.children %>
+            <% @family.children.each.with_index(1) do |family_member, index| %>
+              <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
+                <div class="col-xs-12">
+                  <%= image_tag "icons/add_user_photo.png" %>
+                </div>
+                <p><%= family_member.full_name%> </p>
+                <%= link_to 'Edit', families_edit_family_member_path(@family.id, family_member.id) %>
+              </div>
+            <% end %>
           <% end %>
+  
+
+
+
+
+
+
+          <%# end %>
 
         </section>
-        <section id="physician-container" class="row">
+<!--         <section id="physician-container" class="row">
           <h3><span class="glyphicon glyphicon-briefcase"></span>Family Physicians</h3>
           <div class="col-xs-12 col-sm-5 col-md-3 col-lg-3">
             <p><b>Primary Care</b></p>
@@ -66,7 +67,7 @@
           </div>
 
 
-        </section>
+        </section> -->
 
       </main>
       <div class="col-xs-10 col-xs-offset-2">

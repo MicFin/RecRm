@@ -63,7 +63,7 @@
   height: 99%;
 }
 
-#sessionIntroModal #allow-camera-row span {
+#sessionIntroModal #allow-camera-row span.right-arrow {
 	-moz-transform: scaleX(-1) rotate(240deg);
 	-o-transform: scaleX(-1) rotate(240deg);
 	-webkit-transform: scaleX(-1) rotate(240deg);
@@ -72,6 +72,17 @@
 	font-size: 10em;
 	color: #399e48;
 }
+
+#sessionIntroModal #allow-camera-row span.left-arrow {
+	-moz-transform: scaleX(1) rotate(240deg);
+	-o-transform: scaleX(1) rotate(240deg);
+	-webkit-transform: scaleX(1) rotate(240deg);
+	transform: scaleX(1) rotate(240deg);
+	filter: FlipH;
+	font-size: 10em;
+	color: #399e48;
+}
+
 #sessionIntroModal #allow-camera-denied-row span {
 	font-size: 10em;
 	color: #399e48;
@@ -84,13 +95,20 @@
 }
 
 #sessionIntroModal .allow-camera-container{
-	border: 5px solid $carrotorange;
-	background-color: $lightorange;
-	color: white;
+	// border: 1px solid $gray-light;
+	background-color: $gray-divider;
+	color: $gray-light;
 	padding: 5%;
 	text-align: center;
 	border-radius: 10px;
 	behavior: url($pie-path);
+	h1{
+		color: $brand-carrot-green;
+	}
+    -webkit-box-shadow: 0px 0px 8px 2px #999999;
+    -moz-box-shadow: 0px 0px 8px 2px #999999;
+    box-shadow: 0px 0px 8px 2px #999999;
+    behavior: url("vendor/bower_components/css3pie/PIE.htc");
 }
 
 #sessionIntroModal #allow-camera-row .allow-camera-container{

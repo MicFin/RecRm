@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_filter :load_surveyable, only: [:index, :new, :create, :show]
+  before_filter :load_surveyable, only: [:index, :new, :edit, :create, :show]
   before_action :set_survey, only: [:edit, :update]
   include PatientGroupsHelper
 
@@ -81,6 +81,10 @@ class SurveysController < ApplicationController
 
   def edit
 
+    respond_to do |format|
+      format.js 
+      format.html
+    end
   end
 
   def update

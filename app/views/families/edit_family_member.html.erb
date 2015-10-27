@@ -35,7 +35,7 @@
                   <% if @family_member.main_avatar %>
                     <%= image_tag @family_member.main_avatar.icon.url %>
                     <%= f.fields_for :images, @family_member.images.build do |builder| %>
-                        <div><%= builder.input :remove_image, as: :boolean %></div>
+                        <%= builder.input :remove_image, as: :boolean %>
                     <% end %>
                   <% else %>
                     <%= image_tag "icons/add_user_photo.png", class: "temp-image" %>
@@ -66,9 +66,9 @@
 
                 <h3>Health and Nutrition</h3>
 
-                <%= render '/welcome/add_nutrition/nutrition_form_fields', f: f %>
+                <%= render '/users/registrations/forms/nutrition_form_fields', f: f %>
 
-                <%= render '/welcome/add_preferences/preferences_form_fields', f: f %>
+                <%= render '/users/registrations/forms/preferences_form_fields', f: f %>
 
 
 

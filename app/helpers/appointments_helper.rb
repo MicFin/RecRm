@@ -24,8 +24,8 @@ module AppointmentsHelper
 
     if user.is_a? Dietitian 
       @next_appointment = user.appointments.where(status: "Paid").where(start_time: 30.minutes.ago..5.hours.from_now).last
+      #@next_appointment = user.appointments.where(status: "Paid").last
     end
-    # @next_appointment = user.appointments.where(status: "Paid").last
     # @next_appointment = user.appointments.where.not(status: "Follow Up Unpaid").last
 
     if @next_appointment != nil  
@@ -42,7 +42,8 @@ module AppointmentsHelper
   def get_upcoming_appointment!
       # client upcoming appointment or clirent unpaid
 
-      @upcoming_appointment = current_user.appointment_hosts.where(status: "Paid").last || current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
+      @upcoming_appointment = current_user.appointment_hosts.where.not(dietitian_id: nil).where(status: "Paid").last || current_user.appointment_hosts.where.not(dietitian_id: nil).where(status: "Follow Up Unpaid").last
+
       # start date and time 
       if @upcoming_appointment 
         @upcoming_appointment.date = @upcoming_appointment.start_time.strftime("%A, %b %d") unless @upcoming_appointment.nil?

@@ -103,7 +103,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       find_or_create_new_health_groups
 
       clean_height_and_weight_input
-
+      
       successfully_updated = @family_member.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
       
       if successfully_updated
@@ -317,11 +317,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_parameters
     
-    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :provider, :hospitals_or_practices, :academic_affiliations, :academic_affiliations, :subspecialty, :fax, :terms_accepted, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:sign_up) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :family_note, :family_role, :early_access, :tara_referral, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :provider, :hospitals_or_practices, :academic_affiliations, :academic_affiliations, :subspecialty, :fax, :terms_accepted, :remove_image, :images_attributes => [:image_type, :imageable_id, :imageable_type, :position, :image_cache, :crop_x, :crop_y, :crop_w, :crop_h, :crop_image, :remove_image, :image], :patient_group_ids => [])
     end
 
     # might want tot remove qol_referral from permitted params for update
-    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :provider, :hospitals_or_practices, :academic_affiliations, :academic_affiliations, :subspecialty, :fax, :terms_accepted, :patient_group_ids => [])
+    devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :provider, :hospitals_or_practices, :academic_affiliations, :academic_affiliations, :subspecialty, :fax, :terms_accepted, :remove_image, :images_attributes => [:image_type, :imageable_id, :imageable_type, :position, :image_cache, :crop_x, :crop_y, :crop_w, :crop_h, :crop_image, :remove_image, :image], :patient_group_ids => [])
     end
 
 

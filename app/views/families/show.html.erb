@@ -4,6 +4,9 @@
       <%= render "/layouts/navbars/user_nav" %>
 
       <main class="col-xs-10 col-xs-offset-2">
+       <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+        </section>
         <section>
           <h1>The <%=@family.name%> Family</h1>
         </section>
@@ -16,21 +19,33 @@
         <section id="family-members-container" class="row">
           <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
             <div class="col-xs-12">
-              <%= image_tag "icons/add_user_photo.png" %>
+              
+              <%= link_to families_edit_family_member_path(@family.id, @user.id) do %>
+                <% if @user.main_avatar %>
+                  <%= image_tag @user.main_avatar.icon.url %>
+                <% else %>
+                  <%= image_tag "icons/add_user_photo.png" %>
+                <% end %>
+              
+                <p><%= @user.full_name%> </p>
+                <p>(me)</p>
+              <% end %>
             </div>
-            <p><%= @user.full_name%> </p>
-            <p>(me)</p>
-            <%= link_to 'Edit', families_edit_family_member_path(@family.id, @user.id) %>
           </div>
           <%# @family.family_members.each do |family_member| %>
           <% if @family && @family.children %>
             <% @family.children.each.with_index(1) do |family_member, index| %>
               <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
                 <div class="col-xs-12">
-                  <%= image_tag "icons/add_user_photo.png" %>
+                  <%= link_to families_edit_family_member_path(@family.id, family_member.id) do %>
+                    <% if family_member.main_avatar %>
+                      <%= image_tag family_member.main_avatar.icon.url %>
+                    <% else %>
+                      <%= image_tag "icons/add_user_photo.png" %>
+                    <% end %>
+                    <p><%= family_member.full_name%> </p>
+                  <% end %>
                 </div>
-                <p><%= family_member.full_name%> </p>
-                <%= link_to 'Edit', families_edit_family_member_path(@family.id, family_member.id) %>
               </div>
             <% end %>
           <% end %>

@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
 
-  attr_accessor :health_group_ids
-  attr_accessor :health_groups
-  # used for form in families/new
+  attr_accessor :health_group_ids, :health_groups, :image_cache, :remove_image
+
 
   rolify :role_cname => 'UserRole'
 
@@ -44,6 +43,9 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :member_plans, through: :subscriptions
   has_many :surveys
+
+  has_many :images, :as => :imageable, dependent: :destroy
+  accepts_nested_attributes_for :images, allow_destroy: true
     ### wanted to have a user have many surveys but then also haev a user be surveyable but it looks strange and may act weird so didnt implement yet
   has_many :surveys, :as => :surveyable
   
@@ -57,6 +59,20 @@ class User < ActiveRecord::Base
   # allows nil if no time zone is saved
   validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map.keys, :allow_blank => true
 
+
+
+  def main_avatar
+    if self.images.count >= 1
+      avatar = self.images.where(image_type: "Avatar").where(position: 1)
+      if avatar.count >= 1
+        return avatar.first.image
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
 
   # Gets a users appointment registration stage or self registration stage if first time
   def appointment_registration_stage

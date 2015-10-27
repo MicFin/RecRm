@@ -259,8 +259,13 @@ Kindrdfood.welcome.addFamily = {
       }
     });
 	},
-  validateFamilyMemberForm: function(form_class_name){
-    $("#welcome-add-family form." + form_class_name).validate({
+  validateFamilyMemberForm: function(form_class_name, page_selector){
+    if (page_selector !== undefined){
+      var pageId = page_selector;
+    }else {
+      var pageId = "#welcome-add-family";
+    }
+    $(pageId + " form." + form_class_name).validate({
       rules: {
         "user[first_name]":{
           required: true,

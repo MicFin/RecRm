@@ -1,7 +1,7 @@
 class FamiliesController < ApplicationController
   include PatientGroupsHelper
   include FamiliesHelper
-  before_action :set_family, only: [:show, :edit, :edit_family_member, :new_family_member, :update, :destroy]
+  before_action :set_family, only: [:show, :edit, :edit_family_member, :new_family_member, :update, :destroy, :remove_member]
 
   # GET /families
   # GET /families.json
@@ -177,8 +177,8 @@ class FamiliesController < ApplicationController
     family_member = User.find(@removed_member_id)
     family_member.destroy
     respond_to do |format|
-      # format.html { redirect_to families_url, notice: 'Family was successfully destroyed.' }
-      # format.json { head :no_content }
+      format.html { redirect_to @family, notice: 'Family member was successfully removed.' }
+      format.json { head :no_content }
       format.js
     end
   end

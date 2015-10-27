@@ -23,5 +23,24 @@ var Images = {
       marginLeft: '-' + Math.round(100 / coords.w * coords.x) + 'px',
       marginTop: '-' + Math.round(100 / coords.h * coords.y) + 'px'
     });
+  },
+  set_image_preview: function(){
+    function readURL(input) {
+
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#image-preview').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+    $(".upload").change(function(){
+      $("#image-preview").removeClass("hidden");
+      readURL(this);
+      $(".temp-image").hide();
+    });
   }
 }

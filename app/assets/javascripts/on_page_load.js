@@ -72,7 +72,9 @@ $(document).ready(function() {
 	DietitianEditProfile.set_image_preview();
 
 	// set cropping of images 
+	Images.set_image_preview();
 	Images.set_crop();
+
 
 	// if ($("#quality-review-main-container").length >= 1){
 	// 	BasicForm.validateReview();

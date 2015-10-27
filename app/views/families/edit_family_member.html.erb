@@ -7,17 +7,20 @@
         <section class="alerts-container">
           <%= render "/layouts/alerts" %>
         </section>
-        <div class="col-xs-2">
-          <%= link_to "back to family", family_path(@family) %>
-          <%= image_tag "icons/add_user_photo.png" %>
+        <div class="col-xs-12">
+          <section class="row">
+            <div class="col-xs-10">
+              <%= link_to "back to family", family_path(@family) %>
+            </div>
+            <div class="col-xs-1">
+              <% if @family_member.id != current_user.id %>
+                <%= link_to "delete family member", remove_family_member_path(@family, @family_member), :confirm => "Are you sure you want to delete #{@family_member.full_name}?", class: "btn btn-xs btn-default", :method => :delete %>
+              <% end %>
+            </div>
+            <div class="col-xs-12">
+              <h1><%=@family_member.full_name%> </h1>
+            </div>
 
-          <% if @family_member.id != current_user.id %>
-            <%= link_to "delete family member", remove_family_member_path(@family, @family_member), :confirm => "Are you sure you want to delete #{@family_member.full_name}?", class: "btn btn-xs btn-default", :method => :delete, remote: true %>
-          <% end %>
-        </div>
-        <div class="col-xs-10">
-          <section>
-            <h1><%=@family_member.full_name%> </h1>
           </section>
           <hr>
           <section class="row">
@@ -25,9 +28,38 @@
                         
 
               <%= simple_form_for(@family_member,  as: "user", url: registration_path("user"), html: { class: 'col-xs-12 text-left', role:"form"}) do |f| %>
-                <h3>Background</h3>
 
                 <input type="hidden" name="family_member" value="true">
+
+                <div id="main-avatar-container" class="col-xs-12 form-group">
+                  <% if @family_member.main_avatar %>
+                    <%= image_tag @family_member.main_avatar.icon.url %>
+                    <%= f.fields_for :images, @family_member.images.build do |builder| %>
+                        <div><%= builder.input :remove_image, as: :boolean %></div>
+                    <% end %>
+                  <% else %>
+                    <%= image_tag "icons/add_user_photo.png", class: "temp-image" %>
+                    <%= f.fields_for :images, @family_member.images.build do |builder| %>
+                    <label>Add a profile picture!</label>
+            <!--         <p>(you can crop the picture after you save)</p> -->
+                    <img id="image-preview" class="hidden" src="#" alt="your image" />
+                      <fieldset>
+                      <div class="fileUpload btn btn-primary">
+                      <span>Upload</span>
+                        <%= builder.file_field :image, class: "upload" %>
+                        </div>
+                        <%= builder.hidden_field :image_cache %>
+                        <%= builder.hidden_field :position, value: 1  %>
+                        <%= builder.hidden_field :imageable_type, value: @family_member.class %>
+                        <%= builder.hidden_field :imageable_id, value: @family_member.id %>
+                        <%= builder.hidden_field :image_type, value: "Avatar" %>
+                      </fieldset>
+                    <% end %>
+                  <% end %>
+                </div>
+
+
+
 
                 <%= render '/welcome/add_family/family_member_edit_info_form_fields', {f: f, family_member: @family_member}%>
 

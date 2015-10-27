@@ -1,0 +1,20 @@
+						<div id="health-group-container" class="row">
+							<%= f.collection_check_boxes :patient_group_ids, @symptoms, :id, :name, :checked => @user.health_group_ids, :item_wrapper_class => 'col-xs-6 col-sm-4 form-group', label_html: { class: 'checkbox-inline' }%>
+
+						 		<div id="add-disease-button" class="add-another-disease">Add Another</div>
+						 		<div id="add-disease-form" class="add-another-disease-form hidden">
+							 		<input id="new-health-group-field" type="text" data-group-type="symptom" placeholder="Autism" class="form-control-12"/>
+							 		<button id="new-health-group-button" type="button" class="btn btn-block btn-warning">Add</button>
+
+						 		</div>
+						</div>
+						<div class="row triggers-container form-group">
+							<h4>Select any food preferences.</h4>
+							<%= f.collection_check_boxes :patient_group_ids, @diets, :id, :name, :checked => @user.health_group_ids, :item_wrapper_class => 'col-xs-6 col-sm-4 form-group' %>
+	
+						  <div id="add-allergy-container" class="col-xs-12 form-group">
+							  <input id="add-allergy-field" type="text", data-group-type="diet" placeholder="Low zinc">
+								<button id="new-allergy-group-button" class="btn btn-sm btn-warning">Add Another</button>
+						  </div>	
+							
+						</div>

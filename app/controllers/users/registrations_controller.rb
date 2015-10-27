@@ -5,6 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+    
     build_resource({})
   
     # custom devise respond to js or html
@@ -20,31 +21,48 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
 
-    build_resource(sign_up_params)
-    
-    if resource.save
-      yield resource if block_given?
-      
-      if resource.active_for_authentication?
-        set_flash_message :notice, :signed_up if is_flashing_format?
-        sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
-      else
-        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-        expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
-      end
-    else
-      clean_up_passwords resource
 
-      # should check if QOL sign up or not then redirect or change flash alert
-      # set flash error messages
-      resource.errors.full_messages.each {|x| flash[:error] = x}
-      # override devise default to go to last location
-      redirect_to request.referrer
-    end
+      build_resource(sign_up_params)
+      
+      if resource.save
+        yield resource if block_given?
+        
+        if resource.active_for_authentication?
+          set_flash_message :notice, :signed_up if is_flashing_format?
+          sign_up(resource_name, resource)
+          respond_with resource, location: after_sign_up_path_for(resource)
+        else
+          set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+          expire_data_after_sign_in!
+          respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        end
+      else
+        clean_up_passwords resource
+
+        # should check if QOL sign up or not then redirect or change flash alert
+        # set flash error messages
+        resource.errors.full_messages.each {|x| flash[:error] = x}
+        # override devise default to go to last location
+        redirect_to request.referrer
+      end
   end
 
+  def create_family_member
+    
+    family = current_user.head_of_families.last
+    find_or_create_new_health_groups
+
+    clean_height_and_weight_input
+    @family_member = family.users.create(devise_parameter_sanitizer.sanitize(:sign_up))
+    @family_member.add_role "Family Member Account"
+    @family_member.add_role "Family Member", family
+    
+    if @family_member.save
+      redirect_to family_path(family)
+    else
+      render "/families/new_family_member"
+    end
+  end
   # Signs in a user on sign up. You can overwrite this method in your own
   # RegistrationsController.
   def sign_up(resource_name, resource)
@@ -77,18 +95,30 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    
+
     # user updating a fmaily member
     if params[:family_member] == "true"
       @family_member = User.find(params[:user][:id])
+
+      find_or_create_new_health_groups
+
+      clean_height_and_weight_input
+
       successfully_updated = @family_member.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
       
       if successfully_updated
 
         set_flash_message :notice, :updated
-        # Sign in the user bypassing validation in case their password changed
-        
-        redirect_to families_edit_family_member_path(@family_member.families.last, @family_member)
+
+        if @family_member.families != [] 
+          
+          family = @family_member.families.last 
+
+        else 
+          family = @family_member.head_of_families.last 
+        end
+
+        redirect_to family_path(family)
       else
         render "/families/edit_family_member"
       end
@@ -203,6 +233,83 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
 
   end
+
+
+    # If a user submits new health groups then check if they are in our database or create them and prepare them to be saved
+    def find_or_create_new_health_groups
+      
+      # Check if user input was submitted
+      if params["user"]
+
+        # Check if health new health groups were submitted
+        if params["new_health_groups"]
+    
+          #  Find or create new health groups and add them to the params to be saved
+          params["new_health_groups"].each do |group_type, health_groups|
+            health_groups.each do |health_group|
+              group = PatientGroup.find_or_create_by(name: health_group, unverified: true, category: group_type, order: 10000) 
+              group.save
+              params["user"]["patient_group_ids"].push(group.id)
+            end 
+          end
+    
+          # Delete the new health groups param
+          params.delete "new_health_groups"
+        end 
+      end
+    end
+
+    # Height and weight must be changed from ft+in and lb+oz to just inches and ounces before being saved
+    def clean_height_and_weight_input
+
+      # Check if user input was submitted
+      if params["user"]
+
+        # Check if user height was submitted
+        if params["user"]["height"]
+
+          # Check if user height feet was submitted
+          if (params["user"]["height"]["feet"].to_i >= 1)
+
+            # Convert feet to inches
+            params["user"]["height"]["feet"] = params["user"]["height"]["feet"].to_i * 12
+
+            # Add to inches to get a total in inches
+            params["user"]["height_inches"] = params["user"]["height"]["feet"].to_i + params["user"]["height"]["inches"].to_i
+
+          # If no feet submitted then update param
+          else 
+              params["user"]["height_inches"] = params["user"]["height"]["inches"].to_i
+          end
+
+          # Delete height param since it will be saved as height_inches
+          params["user"].delete "height"
+        end
+
+        # Check if user weight was submitted
+        if params["user"]["weight"]
+
+          # Check if user weight pounds was submitted
+          if (params["user"]["weight"]["pounds"].to_i >= 1)
+
+            # Convert pounds to ounces
+            params["user"]["weight"]["pounds"] = params["user"]["weight"]["pounds"].to_i * 16
+            
+            # Add to ounces to get a total in ounces
+            params["user"]["weight_ounces"] = params["user"]["weight"]["pounds"].to_i + params["user"]["weight"]["ounces"].to_i
+
+          # If no feet submitted then update param
+          else 
+              params["user"]["weight_ounces"] = params["user"]["weight"]["ounces"].to_i
+          end
+
+          # Delete weight param since it will be saved as weight_ounces
+          params["user"].delete "weight"
+        end
+      end
+    end
+
+
 
   private
 

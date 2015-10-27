@@ -93,10 +93,12 @@ Rails.application.routes.draw do
 
       # Registrations paths
       patch 'registrations/update_time_zone', to: "users/registrations#update_time_zone", as: "users_registrations_update_time_zone"
+      post 'registrations/create_family_member', to: "users/registrations#create_family_member", as: "users_registrations_create_family_member"
 
       # Families paths
       delete 'families/:id/remove_member/:member_id', to: "families#remove_member", as: 'remove_family_member'
       get 'families/:id/edit_family_member/:member_id', to: "families#edit_family_member", as: 'families_edit_family_member'
+      get 'families/:id/new_family_member', to: "families#new_family_member", as: 'families_new_family_member'
       resources :families
 
       # Appointments paths

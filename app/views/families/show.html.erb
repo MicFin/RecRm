@@ -10,10 +10,18 @@
         <hr>
         <section class="row">
           <p>Who eats at your table?  Create a profile for yourself and your entire family.  Help your dietitian understand what makes your family's table unique!</p>
-          <button class="btn btn-primary">Add Family Member</button>
+          <%= link_to "Add family member", families_new_family_member_path(@family.id), class: "btn btn-md btn-default" %>
+          <!-- <button class="btn btn-primary">Add Family Member</button> -->
         </section>
         <section id="family-members-container" class="row">
-
+          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
+            <div class="col-xs-12">
+              <%= image_tag "icons/add_user_photo.png" %>
+            </div>
+            <p><%= @user.full_name%> </p>
+            <p>(me)</p>
+            <%= link_to 'Edit', families_edit_family_member_path(@family.id, @user.id) %>
+          </div>
           <%# @family.family_members.each do |family_member| %>
           <% if @family && @family.children %>
             <% @family.children.each.with_index(1) do |family_member, index| %>

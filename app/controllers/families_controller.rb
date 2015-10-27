@@ -1,7 +1,7 @@
 class FamiliesController < ApplicationController
   include PatientGroupsHelper
   include FamiliesHelper
-  before_action :set_family, only: [:show, :edit, :edit_family_member, :update_family_member, :update, :destroy]
+  before_action :set_family, only: [:show, :edit, :edit_family_member, :new_family_member, :update, :destroy]
 
   # GET /families
   # GET /families.json
@@ -57,8 +57,32 @@ class FamiliesController < ApplicationController
   def edit_family_member
     @user = current_user
     @family_member = User.find(params[:member_id])
+    # health group forms use @user and hsould use @family_member
+    @user = @family_member
     @family_member.health_groups = @family_member.patient_groups 
     
+    # PatientGroupsHelper
+    get_patient_groups!
+    @diseases
+    @intolerances
+    @allergies
+    @symptoms
+    @diets
+
+    respond_to do |format|
+    
+       format.js
+       format.html
+    end
+
+
+  end
+
+  # GET /families/1/new_family_member/
+  def new_family_member
+    @user = current_user
+    @family_member = User.new(last_name: @user.last_name)
+    @user = @family_member
     # PatientGroupsHelper
     get_patient_groups!
     @diseases

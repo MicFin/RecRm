@@ -4,6 +4,9 @@
       <%= render "/layouts/navbars/user_nav" %>
 
       <main class="col-xs-10 col-xs-offset-2">
+        <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+        </section>
         <div class="col-xs-2">
           <%= link_to "back to family", family_path(@family) %>
           <%= image_tag "icons/add_user_photo.png" %>

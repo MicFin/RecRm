@@ -1,0 +1,2 @@
+module FoodDiariesHelper
+end

@@ -1,0 +1,25 @@
+<h1>Listing food_diaries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @food_diaries.each do |food_diary| %>
+      <tr>
+        <td><%= food_diary.user %></td>
+        <td><%= link_to 'Show', food_diary %></td>
+        <td><%= link_to 'Edit', edit_food_diary_path(food_diary) %></td>
+        <td><%= link_to 'Destroy', food_diary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Food diary', new_food_diary_path %>

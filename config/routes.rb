@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :food_diaries
+
   resources :growth_entries
 
   resources :growth_charts

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  resources :growth_entries
+
+  resources :growth_charts
+
   resources :survey_groups
 
   mount Ckeditor::Engine => '/ckeditor'

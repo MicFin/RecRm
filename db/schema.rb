@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102200928) do
+ActiveRecord::Schema.define(version: 20151102214830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -245,6 +245,26 @@ ActiveRecord::Schema.define(version: 20151102200928) do
   end
 
   add_index "families", ["head_of_family_id"], name: "index_families_on_head_of_family_id", using: :btree
+
+  create_table "growth_charts", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "growth_charts", ["user_id"], name: "index_growth_charts_on_user_id", using: :btree
+
+  create_table "growth_entries", force: true do |t|
+    t.integer  "growth_chart_id"
+    t.date     "measured_at"
+    t.integer  "height_in_inches"
+    t.integer  "weight_in_ounces"
+    t.string   "age"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "growth_entries", ["growth_chart_id"], name: "index_growth_entries_on_growth_chart_id", using: :btree
 
   create_table "images", force: true do |t|
     t.string   "image_type"

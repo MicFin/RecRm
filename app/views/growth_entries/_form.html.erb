@@ -1,0 +1,15 @@
+<%= simple_form_for(@growth_entry) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :growth_chart %>
+    <%= f.input :entry_measured_at %>
+    <%= f.input :height_in_inches %>
+    <%= f.input :weight_in_ounces %>
+    <%= f.input :age %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

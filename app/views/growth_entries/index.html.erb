@@ -1,0 +1,33 @@
+<h1>Listing growth_entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Growth chart</th>
+      <th>Entry measured at</th>
+      <th>Height in inches</th>
+      <th>Weight in ounces</th>
+      <th>Age</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @growth_entries.each do |growth_entry| %>
+      <tr>
+        <td><%= growth_entry.growth_chart %></td>
+        <td><%= growth_entry.entry_measured_at %></td>
+        <td><%= growth_entry.height_in_inches %></td>
+        <td><%= growth_entry.weight_in_ounces %></td>
+        <td><%= growth_entry.age %></td>
+        <td><%= link_to 'Show', growth_entry %></td>
+        <td><%= link_to 'Edit', edit_growth_entry_path(growth_entry) %></td>
+        <td><%= link_to 'Destroy', growth_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Growth entry', new_growth_entry_path %>

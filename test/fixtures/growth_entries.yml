@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  growth_chart_id: 
+  entry_measured_at: 2015-11-02
+  height_in_inches: 1
+  weight_in_ounces: 1
+  age: MyString
+
+two:
+  growth_chart_id: 
+  entry_measured_at: 2015-11-02
+  height_in_inches: 1
+  weight_in_ounces: 1
+  age: MyString

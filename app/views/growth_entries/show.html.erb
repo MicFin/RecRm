@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Growth chart:</strong>
+  <%= @growth_entry.growth_chart %>
+</p>
+
+<p>
+  <strong>Entry measured at:</strong>
+  <%= @growth_entry.entry_measured_at %>
+</p>
+
+<p>
+  <strong>Height in inches:</strong>
+  <%= @growth_entry.height_in_inches %>
+</p>
+
+<p>
+  <strong>Weight in ounces:</strong>
+  <%= @growth_entry.weight_in_ounces %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @growth_entry.age %>
+</p>
+
+<%= link_to 'Edit', edit_growth_entry_path(@growth_entry) %> |
+<%= link_to 'Back', growth_entries_path %>

@@ -44,22 +44,7 @@ class SurveysController < ApplicationController
 
   def new
     
-    if params[:survey_type] == "User-Food"
-      # check for current surveys
-      current_surveys = Survey.where(surveyable_id: @surveyable.id).where(survey_type: "User-Food")
-      if current_surveys.count >= 1
-        @survey = current_surveys.last
-      else
-        @survey = Survey.generate_for_user(current_user, @surveyable, "User-Food")
-      end
-    elsif params[:survey_type] == "User-Life"
-      current_surveys = Survey.where(surveyable_id: @surveyable.id).where(survey_type: "User-Life")
-      if current_surveys.count >= 1
-        @survey = current_surveys.last
-      else
-        @survey = Survey.generate_for_user(current_user, @surveyable, "User-Life")
-      end
-    elsif params[:survey_type] == "Pre-Appointment-Dietitian"
+    if params[:survey_type] == "Pre-Appointment-Dietitian"
       @survey = Survey.generate_for_appointment(@surveyable, current_dietitian)
     else
     end

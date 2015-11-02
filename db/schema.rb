@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102195809) do
+ActiveRecord::Schema.define(version: 20151102200928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -480,17 +480,14 @@ ActiveRecord::Schema.define(version: 20151102195809) do
     t.string   "question_type"
     t.text     "content"
     t.integer  "position"
-    t.integer  "survey_group_question_id"
-    t.string   "survey_group"
-    t.integer  "survey_id"
-    t.text     "answer"
     t.text     "choices"
-    t.integer  "tier",                     default: 1
+    t.integer  "tier",            default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "survey_group_id"
   end
 
-  add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
+  add_index "questions", ["survey_group_id"], name: "index_questions_on_survey_group_id", using: :btree
 
   create_table "recipe_steps", force: true do |t|
     t.text     "directions"
@@ -619,6 +616,17 @@ ActiveRecord::Schema.define(version: 20151102195809) do
   end
 
   add_index "surveys", ["survey_group_id"], name: "index_surveys_on_survey_group_id", using: :btree
+
+  create_table "surveys_questions", force: true do |t|
+    t.integer  "survey_id"
+    t.integer  "question_id"
+    t.text     "answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "surveys_questions", ["question_id"], name: "index_surveys_questions_on_question_id", using: :btree
+  add_index "surveys_questions", ["survey_id"], name: "index_surveys_questions_on_survey_id", using: :btree
 
   create_table "time_slots", force: true do |t|
     t.string   "title"

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Food diary:</strong>
+  <%= @food_diary_entry.food_diary %>
+</p>
+
+<p>
+  <strong>Consumed at:</strong>
+  <%= @food_diary_entry.consumed_at %>
+</p>
+
+<p>
+  <strong>Food item:</strong>
+  <%= @food_diary_entry.food_item %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @food_diary_entry.location %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @food_diary_entry.note %>
+</p>
+
+<%= link_to 'Edit', edit_food_diary_entry_path(@food_diary_entry) %> |
+<%= link_to 'Back', food_diary_entries_path %>

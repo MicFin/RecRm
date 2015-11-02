@@ -1,0 +1,33 @@
+<h1>Listing food_diary_entries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Food diary</th>
+      <th>Consumed at</th>
+      <th>Food item</th>
+      <th>Location</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @food_diary_entries.each do |food_diary_entry| %>
+      <tr>
+        <td><%= food_diary_entry.food_diary %></td>
+        <td><%= food_diary_entry.consumed_at %></td>
+        <td><%= food_diary_entry.food_item %></td>
+        <td><%= food_diary_entry.location %></td>
+        <td><%= food_diary_entry.note %></td>
+        <td><%= link_to 'Show', food_diary_entry %></td>
+        <td><%= link_to 'Edit', edit_food_diary_entry_path(food_diary_entry) %></td>
+        <td><%= link_to 'Destroy', food_diary_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Food diary entry', new_food_diary_entry_path %>

@@ -1,0 +1,15 @@
+<%= simple_form_for(@food_diary_entry) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :food_diary %>
+    <%= f.input :consumed_at %>
+    <%= f.input :food_item %>
+    <%= f.input :location %>
+    <%= f.input :note %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

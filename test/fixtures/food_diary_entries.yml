@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  food_diary_id: 
+  consumed_at: 2015-11-02 16:53:44
+  food_item: MyString
+  location: MyString
+  note: MyText
+
+two:
+  food_diary_id: 
+  consumed_at: 2015-11-02 16:53:44
+  food_item: MyString
+  location: MyString
+  note: MyText

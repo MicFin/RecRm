@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @survey_group.name %>
+</p>
+
+<p>
+  <strong>Version number:</strong>
+  <%= @survey_group.version_number %>
+</p>
+
+<%= link_to 'Edit', edit_survey_group_path(@survey_group) %> |
+<%= link_to 'Back', survey_groups_path %>

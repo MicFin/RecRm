@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
 		# when a user signs in 
 		if resource.class == User
       
-      
       # if user is a provider
       if resource.provider?
 

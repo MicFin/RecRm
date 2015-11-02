@@ -1,0 +1,27 @@
+<h1>Listing survey_groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Version number</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @survey_groups.each do |survey_group| %>
+      <tr>
+        <td><%= survey_group.name %></td>
+        <td><%= survey_group.version_number %></td>
+        <td><%= link_to 'Show', survey_group %></td>
+        <td><%= link_to 'Edit', edit_survey_group_path(survey_group) %></td>
+        <td><%= link_to 'Destroy', survey_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Survey group', new_survey_group_path %>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+
+  resources :survey_groups
+
   mount Ckeditor::Engine => '/ckeditor'
   # or whatever path, be it "/blog" or "/monologue"
   mount Monologue::Engine, at: '/education' 

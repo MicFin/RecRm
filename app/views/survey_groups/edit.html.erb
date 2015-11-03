@@ -1,6 +1,72 @@
-<h1>Editing survey_group</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @survey_group %> |
-<%= link_to 'Back', survey_groups_path %>
+
+<div id="welcome-page" class="container-fluid">
+    <div class="row">
+
+      <%= render "/layouts/navbars/dietitian_admin_nav" %>
+
+      <main class="col-xs-10 col-xs-offset-2">
+        <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+        </section>
+        <section>
+          <h1>Surveys</h1>
+        </section>
+        <hr>
+        <section class="row">
+          <p>Edit Survey Group</p>
+          
+        </section>
+        <section class="row">
+					<%= render 'form' %>
+
+        </section>
+
+        <section class="row">
+          <h4>Survey Questions</h4>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>Question</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @survey_group.questions.order("position").each do |question| %>
+              <tr>
+                <td><%= question.position %></td>
+                <td><%= question.content %></td>
+
+                <td><%= link_to 'Edit', edit_survey_group_question_path(@survey_group, question) %></td>
+                <td><%= link_to 'Destroy', survey_group_question_path(@survey_group, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>         
+        </section>
+        <section class="row">
+          <h4>Add New Question</h4>
+          <%= render '/questions/form', question: @question %>
+        </section>
+      </main>
+      <div class="col-xs-10 col-xs-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+

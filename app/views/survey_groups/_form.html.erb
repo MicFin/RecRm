@@ -1,12 +1,23 @@
 <%= simple_form_for(@survey_group) do |f| %>
   <%= f.error_notification %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Version number</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :version_number %>
-  </div>
+    <tbody>
+        <tr>
+          <td><%= f.input :name, label: false %></td>
+          <td><%= f.input :version_number, label: false %></td>
+          <td><%= f.button :submit, class: "btn btn-md btn-default" %></td>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+        </tr>
+
+    </tbody>
+  </table>
+
 <% end %>

@@ -27,22 +27,7 @@
   <% end %>
   <div id="survey-questions-container" class="row">
     <%@survey.questions.order("position").each do |question| %>
-      <div id="survey-question-container-<%=question.id%>"class="col-xs-12">
-        <% if question.question_type == "Response" %>
-          <%= render "/surveys/question_types/question_type_response", question: question %>
-        <% elsif question.question_type == "Short Response"%>
-          <%= render "/surveys/question_types/question_type_short_response", question: question %>
-        <% elsif question.question_type == "Check Box" %>
-          <%= render "/surveys/question_types/question_type_check_box", question: question %>
-        <% elsif question.question_type == "Drop Down"%>
-          <%= render "/surveys/question_types/question_type_drop_down", question: question  %>
-        <% elsif question.question_type == "Radio"%>
-          <%= render "/surveys/question_types/question_type_radio", question: question %>
-        <% else #number %>
-          <%= render "/surveys/question_types/question_type_number", question: question %>
-        <% end %>
-        <%=f.hidden_field :completed, value: true %>
-      </div>
+
     <% end %>
   </div>
   <div class="row">

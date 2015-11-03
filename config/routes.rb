@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   end
 
 
-  resources :survey_groups
+  resources :survey_groups do 
+    resources :questions 
+  end
 
   mount Ckeditor::Engine => '/ckeditor'
   # or whatever path, be it "/blog" or "/monologue"
@@ -129,9 +131,7 @@ Rails.application.routes.draw do
       post 'appointments/:appointment_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_payment'
       resources :appointments do 
         resources :purchases 
-        resources :surveys do 
-          resources :questions 
-        end
+        resources :surveys
       end
 
       # Surveys paths

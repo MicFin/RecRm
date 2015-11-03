@@ -1,6 +1,37 @@
-<h1>Editing question</h1>
 
-<%= render 'form' %>
+<div id="welcome-page" class="container-fluid">
+    <div class="row">
 
-<%= link_to 'Show', @question %> |
-<%= link_to 'Back', questions_path %>
+      <%= render "/layouts/navbars/dietitian_admin_nav" %>
+
+      <main class="col-xs-10 col-xs-offset-2">
+        <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+        </section>
+        <section>
+          <h1>Surveys</h1>
+        </section>
+        <hr>
+        <section class="row">
+          <p>Edit Survey Question</p>
+          
+					<%= render "form", question: @question %>       
+        </section>
+      </main>
+      <div class="col-xs-10 col-xs-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+

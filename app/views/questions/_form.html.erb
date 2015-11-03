@@ -1,10 +1,25 @@
-<%= simple_form_for(@question) do |f| %>
+<%= simple_form_for [@survey_group, question], html: {class: "form-horizontal"} do |f| %>
   <%= f.error_notification %>
+	<%= f.hidden_field :survey_group_id, value: @survey_group.id %>
+	<%= f.hidden_field :question_type, value: "Response" %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th>Question</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-  <div class="form-inputs">
-  </div>
+    <tbody>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+        <tr>
+          <td><%= f.input :position, label: false %></td>
+          <td><%= f.input :content, label: false %></td>
+
+          <td><%= f.button :submit, label: false %></td>
+        </tr>
+    </tbody>
+  </table> 
+    
 <% end %>

@@ -39,6 +39,10 @@
 						  <span class="glyphicon glyphicon-list-alt"></span><span class="hidden-xs hidden-sm nav-item">Coupons</span>
 						<% end %>
 
+						<%= active_link_to survey_groups_path, :wrap_tag => :li do %>
+						  <span class="glyphicon glyphicon-list-alt"></span><span class="hidden-xs hidden-sm nav-item">Surveys</span>
+						<% end %>
+
 							<%= active_link_to roles_path, :wrap_tag => :li do %>
 							  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Permissions</span>
 							<% end %>

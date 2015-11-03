@@ -81,8 +81,8 @@ class PurchasesController < ApplicationController
       @purchasable.end_time = time_slot.end_time
       @purchasable.save
 
-      # Create pre appointment survey
-      @pre_appt_survey = Survey.generate_for_appointment(@purchasable, current_user)
+      # # Create pre appointment survey
+      # @pre_appt_survey = Survey.generate_for_appointment(@purchasable, current_user)
 
       # Set flash message
       flash_message = 'Appointment was successfully made.'

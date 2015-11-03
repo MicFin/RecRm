@@ -5,6 +5,7 @@ class SurveyGroupsController < ApplicationController
   # GET /survey_groups.json
   def index
     @survey_groups = SurveyGroup.all
+    @survey_group = SurveyGroup.new
   end
 
   # GET /survey_groups/1
@@ -19,6 +20,7 @@ class SurveyGroupsController < ApplicationController
 
   # GET /survey_groups/1/edit
   def edit
+    @question = Question.new
   end
 
   # POST /survey_groups
@@ -28,7 +30,7 @@ class SurveyGroupsController < ApplicationController
 
     respond_to do |format|
       if @survey_group.save
-        format.html { redirect_to @survey_group, notice: 'Survey group was successfully created.' }
+        format.html { redirect_to edit_survey_group_path(@survey_group), notice: 'Survey group was successfully created.' }
         format.json { render :show, status: :created, location: @survey_group }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class SurveyGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @survey_group.update(survey_group_params)
-        format.html { redirect_to @survey_group, notice: 'Survey group was successfully updated.' }
+        format.html { redirect_to survey_groups_path, notice: 'Survey group was successfully updated.' }
         format.json { render :show, status: :ok, location: @survey_group }
       else
         format.html { render :edit }

@@ -178,7 +178,7 @@
               		<td><%= appointment.first.patient_focus.first_name%></td>
                 	<td><%= appointment.first.show_duration%></td>
                 	<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-xs btn-primary", remote: true%></td>
-                	<td><%= link_to "Join", in_session_room_path(:id => appointment.room_id, appointment: appointment.id), class: "btn btn-xs btn-success" %>
+                	<td><%= link_to "Join", in_session_room_path(:id => appointment.first.room_id, appointment: appointment.first.id), class: "btn btn-xs btn-success" %>
 									</td>
                 	<td><button class="btn btn-xs btn-default">Cancel/Reschedule</button></td>
               	</tr>

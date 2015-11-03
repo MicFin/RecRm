@@ -1,312 +1,256 @@
 <div id="welcome-page" class="container-fluid">
-		<div class="row">
+	<div class="row">
 
-			<%= render "/layouts/navbars/user_nav" %>
+		<%= render "/layouts/navbars/user_nav" %>
 
-			<main class="col-xs-10 col-xs-offset-2">
-				<section class="jumbotron">
-					<div id="jumbotron-inner" class="row">
+		<main class="col-xs-10 col-xs-offset-2">
+			<section class="jumbotron">
+				<div id="jumbotron-inner" class="row">
 
-						<% if @upcoming_appointment && @upcoming_appointment.status == "Paid"  %>
-							<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-								<div class="row">
-									<h2>YOUR NEXT SESSION IS:</h2>
-								</div>
-								<hr>
-								<div class="row">
-									<h1><%= @upcoming_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </h1>
-								</div>
-								<hr>
-								<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
-								<div class="row">
-									<div class="col-xs-12 session-action">
-
-										<% if ( (@upcoming_appointment.room_id) && (DateTime.now >= @upcoming_appointment.start_time - 10.minutes) && ( DateTime.now() <= @upcoming_appointment.end_time + 5.minutes) ) %>
-
-										<%# if (@upcoming_appointment.room_id)  %>
-											<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-		
-												<%= link_to in_session_room_path(:id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id), class: "btn btn-primary" do %>
-				
-													<div class="col-xs-3">
-														<p><span class="glyphicon glyphicon-heart"></span></p>
-													</div>
-													<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-														<p>START</p>
-														<p>APPOINTMENT</p>
-													</div>
-												<% end %>
-											</div>
-											
-								<!-- 							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-												<button class="btn btn-default">
-													<div class="col-xs-3">
-														<span class="glyphicon glyphicon-edit"></span>
-													</div>
-													<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-														<p>APPOINTMENT</p>
-														<p>PREP</p>
-													</div>
-												</button>
-											</div> -->
-										<% else %>
-											<h2>We look forward to meeting with you!</h2>
-											<!-- <p>Take a moment to prepare for your session</p>
-											<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-												<button class="btn btn-primary">
-													<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-														<span class="glyphicon glyphicon-edit"></span>
-													</div>
-													<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-														<p>SESSION</p>
-														<p>PREP</p>
-													</div>
-												</button>
-											</div>
-											<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-												<button class="btn btn-default">
-													<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-														<span class="glyphicon glyphicon-comment"></span>
-													</div>
-													<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-														<p>CONTACT</p>
-														<p>YOUR KRDN</p>
-													</div>
-												</button>
-											</div> -->
-										<% end %>
-
-									</div>
-								</div>
+					<% if @upcoming_appointment && @upcoming_appointment.status == "Paid"  %>
+						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+							<div class="row">
+								<h2>YOUR NEXT SESSION IS:</h2>
 							</div>
-						<% elsif @upcoming_appointment && @upcoming_appointment.status ==  "Follow Up Unpaid"%>
-							<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-								<div class="row">
-									<h2>YOUR NEXT SESSION IS:</h2>
-								</div>
-								<hr>
-								<div class="row">
-									<h1><%= @upcoming_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </h1>
-								</div>
-								<hr>
-								<div class="row">
-									<div class="col-xs-12 session-action">
-										<p>This appointment has not been confirmed.  Please confirm the appointment below.</p>
-										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-3 col-lg-6">
-											<%=link_to purchase_appointment_path(@unpaid_appointment.id), class: "btn btn-primary", :remote => true do %>
+							<hr>
+							<div class="row">
+								<h1><%= @upcoming_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </h1>
+							</div>
+							<hr>
+							<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
+							<div class="row">
+								<div class="col-xs-12 session-action">
+
+									<% if ( (@upcoming_appointment.room_id) && (DateTime.now >= @upcoming_appointment.start_time - 10.minutes) && ( DateTime.now() <= @upcoming_appointment.end_time + 5.minutes) ) %>
+
+									<%# if (@upcoming_appointment.room_id)  %>
+										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+	
+											<%= link_to in_session_room_path(:id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id), class: "btn btn-primary" do %>
+			
 												<div class="col-xs-3">
-													<p><span class="glyphicon glyphicon-exclamation-sign"></span></p>
+													<p><span class="glyphicon glyphicon-heart"></span></p>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-													<p>CONFIRM</p>
+													<p>START</p>
 													<p>APPOINTMENT</p>
 												</div>
 											<% end %>
-
 										</div>
-									</div>
-								</div>
-							</div>
-						<% else %>
-							<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-								<div class="row">
-									<h2> </h2>
-								</div>
-								<hr>
-								<div class="row">
-									<h1>SCHEDULE YOUR NEXT APPOINTMENT</h1>
-								</div>
-								<hr>
-								<div class="row">
-									<div class="col-xs-12 session-action">
-										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-
-
-										<%= link_to welcome_get_started_path do %>
-											<button class="btn btn-primary">
-												<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-													<span class="glyphicon glyphicon-calendar"></span>
+										
+							<!-- 							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+											<button class="btn btn-default">
+												<div class="col-xs-3">
+													<span class="glyphicon glyphicon-edit"></span>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-													<p>MAKE</p>
 													<p>APPOINTMENT</p>
+													<p>PREP</p>
 												</div>
-											</button> 
-										<% end %>
-							<!-- 			-->
+											</button>
+										</div> -->
+									<% else %>
+										<h2>We look forward to meeting with you!</h2>
+										<!-- <p>Take a moment to prepare for your session</p>
+										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+											<button class="btn btn-primary">
+												<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+													<span class="glyphicon glyphicon-edit"></span>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+													<p>SESSION</p>
+													<p>PREP</p>
+												</div>
+											</button>
 										</div>
 										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-<!-- 										 -->
-											<%= link_to packages_path, class: "btn btn-default " do %>
-						
+											<button class="btn btn-default">
 												<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 													<span class="glyphicon glyphicon-comment"></span>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-													<p>PURCHASE</p>
-													<p>PACKAGE</p>
+													<p>CONTACT</p>
+													<p>YOUR KRDN</p>
 												</div>
-				
-											<% end %>
-										</div>
+											</button>
+										</div> -->
+									<% end %>
+
+								</div>
+							</div>
+						</div>
+					<% elsif @upcoming_appointment && @upcoming_appointment.status ==  "Follow Up Unpaid"%>
+						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+							<div class="row">
+								<h2>YOUR NEXT SESSION IS:</h2>
+							</div>
+							<hr>
+							<div class="row">
+								<h1><%= @upcoming_appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%> </h1>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-xs-12 session-action">
+									<p>This appointment has not been confirmed.  Please confirm the appointment below.</p>
+									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-3 col-lg-6">
+										<%=link_to purchase_appointment_path(@unpaid_appointment.id), class: "btn btn-primary", :remote => true do %>
+											<div class="col-xs-3">
+												<p><span class="glyphicon glyphicon-exclamation-sign"></span></p>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+												<p>CONFIRM</p>
+												<p>APPOINTMENT</p>
+											</div>
+										<% end %>
+
 									</div>
 								</div>
 							</div>
-						<% end %>
-					</div>
-				</section>
-
-				<section class="content-container">
-					<h3><span class="glyphicon glyphicon-calendar"></span>Upcoming Appointments</h3>
-
-  				<table class="table">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Appointment Focus</th>
-                <th>Duration</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-            <tbody>
-							<% if @upcoming_appointments.count >= 1%>
-								<% @upcoming_appointments.each do |date_time_array, appointment| %>
-									<tr>	
-										<td>
-											<%=date_time_array[0]%> <%=date_time_array[1]%></td>
-
-                		<td><%= appointment.first.patient_focus.first_name%></td>
-                  	<td><%= appointment.first.show_duration%></td>
-                  	<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-xs btn-primary", remote: true%></td>
-                  <!-- 	<td><button data-appointment-id="<%#=appointment.id%>" class="btn btn-xs btn-primary">Prep</button></td> -->
-                  	<td><button class="btn btn-xs btn-default">Cancel/Reschedule</button></td>
-                	</tr>
-                <% end %>
-							<% else %>
-								<tr>
-									<td>No upcoming appointments.</td>
-								</tr>
-
-              <% end %>
-            </tbody>
-          </table>
-
-
-				</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<section class="content-container recipes">
-					<h3><span class="glyphicon glyphicon-calendar"></span>Previous Appointments</h3>
-
-					 <table class="table">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Appointment Focus</th>
-                <th>Duration</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-
-            <tbody>
-							<% if @previous_appointments.count >= 1%>
-								<% @previous_appointments.each do |date_time_array, appointment| %>
-									<tr>	
-										<td>
-											<%=date_time_array[0]%> <%=date_time_array[1]%></td>
-
-                		<td><%= appointment.first.patient_focus.first_name%></td>
-
-                  	<td><%= appointment.first.show_duration%></td>
-                  	<td><button class="btn btn-xs btn-default">Review</button></td>
-                	</tr>
-                <% end %>
-							<% else %>
-								<tr>
-									<td>No previous appointments.</td>
-								</tr>
-
-              <% end %>
-            </tbody>
-          </table>
-				
-				</section>
-
-<!-- 				<section class="content-container recipes">
-					<h3><span class="glyphicon glyphicon-list-alt"></span>Recipes</h3>
-					<div class="recipe col-xs-12 col-sm-5 col-md-3 col-lg-3 content-item" data-container="body" data-toggle="popover" data-placement="top" data-trigger="hover" title="Shrimp Scampi Soup" data-content="And here's some amazing content. It's very engaging. Right? <span>Read more...</span>" data-html="true">
-						<p class="new">NEW!</p>
-
-					</div>
-					<div class="recipe col-xs-12 col-sm-5 col-md-3 col-lg-3 content-item">
-						<p class="new">NEW!</p>
-
-					</div>
-					<div class="recipe col-xs-12 col-sm-5 col-md-3 col-lg-3 content-item">
-
-					</div>
-
-				</section>
-				<section class="content-container articles">
-					<h3><span class="glyphicon glyphicon-duplicate"></span>Articles</h3>
-					<div class="article col-xs-12 col-sm-5 col-md-3 col-lg-3 content-item">
-						<p class="new">NEW!</p>
-
-					</div>
-					<div class="article col-xs-12 col-sm-5 col-md-3 col-lg-3 content-item">
-						<p class="new">NEW!</p>
-
-					</div>
-					<div class="article col-xs-12 col-sm-5 col-md-3 col-lg-3 content-item">
-
-					</div>
-				</section>
-				<section class="content-container sessions">
-					<h3><span class="glyphicon glyphicon-calendar"></span>Sessions</h3>
-					<div class="session col-xs-12 col-sm-5 col-md-3 col-lg-3">
-						<p>May 5, 2015</p>
-						<p>with Tara McCarthy, RDN</p>
-						<a href="">View</a>
-					</div>
-					<div class="session col-xs-12 col-sm-5 col-md-3 col-lg-3">
-						<p>May 5, 2015</p>
-						<p>with Tara McCarthy, RDN</p>
-						<a href="">View</a>
-					</div>
-					<div class="session col-xs-12 col-sm-5 col-md-3 col-lg-3">
-						<button class="btn btn-primary">
-							<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-								<span class="glyphicon glyphicon-calendar"></span>
+						</div>
+					<% else %>
+						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+							<div class="row">
+								<h2> </h2>
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-								<p>SCHEDULE A </p>
-								<p>NEW SESSION</p>
+							<hr>
+							<div class="row">
+								<h1>SCHEDULE YOUR NEXT APPOINTMENT</h1>
 							</div>
-						</button>
-					</div>
+							<hr>
+							<div class="row">
+								<div class="col-xs-12 session-action">
+									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
 
 
-				</section> -->
+									<%= link_to welcome_get_started_path do %>
+										<button class="btn btn-primary">
+											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+												<span class="glyphicon glyphicon-calendar"></span>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+												<p>MAKE</p>
+												<p>APPOINTMENT</p>
+											</div>
+										</button> 
+									<% end %>
+						<!-- 			-->
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+									<!-- 										 -->
+										<%= link_to packages_path, class: "btn btn-default " do %>
+					
+											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+												<span class="glyphicon glyphicon-comment"></span>
+											</div>
+											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+												<p>PURCHASE</p>
+												<p>PACKAGE</p>
+											</div>
+			
+										<% end %>
+									</div>
+								</div>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			</section>
 
-			</main>
-			<div class="col-xs-10 col-xs-offset-2">
-				<%=render "/layouts/footers/main_footer" %>
-			</div>
+			<section class="content-container">
+				<h3><span class="glyphicon glyphicon-calendar"></span>Upcoming Appointments</h3>
+
+				<table class="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Appointment Focus</th>
+              <th>Duration</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+						<% if @upcoming_appointments.count >= 1%>
+							<% @upcoming_appointments.each do |date_time_array, appointment| %>
+								<tr>	
+									<td>
+										<%=date_time_array[0]%> <%=date_time_array[1]%></td>
+
+              		<td><%= appointment.first.patient_focus.first_name%></td>
+                	<td><%= appointment.first.show_duration%></td>
+                	<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-xs btn-primary", remote: true%></td>
+                <!-- 	<td><button data-appointment-id="<%#=appointment.id%>" class="btn btn-xs btn-primary">Prep</button></td> -->
+                	<td><button class="btn btn-xs btn-default">Cancel/Reschedule</button></td>
+              	</tr>
+              <% end %>
+						<% else %>
+							<tr>
+								<td>No upcoming appointments.</td>
+							</tr>
+
+            <% end %>
+          </tbody>
+        </table>
+
+
+			</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<section class="content-container recipes">
+				<h3><span class="glyphicon glyphicon-calendar"></span>Previous Appointments</h3>
+
+				 <table class="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Appointment Focus</th>
+              <th>Duration</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+						<% if @previous_appointments.count >= 1%>
+							<% @previous_appointments.each do |date_time_array, appointment| %>
+								<tr>	
+									<td>
+										<%=date_time_array[0]%> <%=date_time_array[1]%></td>
+
+              		<td><%= appointment.first.patient_focus.first_name%></td>
+
+                	<td><%= appointment.first.show_duration%></td>
+                	<td><button class="btn btn-xs btn-default">Review</button></td>
+              	</tr>
+              <% end %>
+						<% else %>
+							<tr>
+								<td>No previous appointments.</td>
+							</tr>
+
+            <% end %>
+          </tbody>
+        </table>
+			
+			</section>
+
+		</main>
+		<div class="col-xs-10 col-xs-offset-2">
+			<%=render "/layouts/footers/main_footer" %>
 		</div>
 	</div>
+</div>
 
-<div id="myModal" class="modal fade">
+<!-- <div id="myModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -320,6 +264,6 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div> -->

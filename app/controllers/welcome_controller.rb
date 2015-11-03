@@ -38,7 +38,7 @@ class WelcomeController < Users::RegistrationsController
       @upcoming_appointments
       get_unpaid_appointment!
       @unpaid_appointment
-
+      binding.pry
       # Gather user's recipe data 
       # To be continued...
       @recipes 

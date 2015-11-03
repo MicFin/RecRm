@@ -153,8 +153,11 @@
                   <td><%= appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
                   <td><%= appointment.appointment_host.first_name%></td>
                   <td><%= appointment.patient_focus.first_name%></td>
-
-                  <td><%= appointment.dietitian.last_name %></td>
+                  <% if appointment.dietitian %>
+                    <td><%= appointment.dietitian.last_name %></td>
+                  <% else %>
+                    <td></td>
+                  <% end %>
                   <td><%= appointment.show_duration%></td>
                   <td><%= appointment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
 

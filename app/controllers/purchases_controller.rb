@@ -82,7 +82,7 @@ class PurchasesController < ApplicationController
       @purchasable.save
 
       # # Create pre appointment survey
-      # @pre_appt_survey = Survey.generate_for_appointment(@purchasable, current_user)
+      @pre_appt_survey = Survey.generate_for_appointment(@purchasable, current_user)
 
       # Set flash message
       flash_message = 'Appointment was successfully made.'

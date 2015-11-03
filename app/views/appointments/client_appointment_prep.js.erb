@@ -1,0 +1,5 @@
+$("#client-prep-modal").remove();
+
+$("body").append("<%= j render(:partial => '/appointments/appointment_prep/prep_modal', :locals => {:appointment => @appointment, :client_prep => @client_prep}) %>");
+
+$("#client-prep-modal").modal();

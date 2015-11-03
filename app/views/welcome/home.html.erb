@@ -181,7 +181,7 @@
 
                 		<td><%= appointment.first.patient_focus.first_name%></td>
                   	<td><%= appointment.first.show_duration%></td>
-                  	<td><%= link_to "Prep", edit_appointment_survey_path(appointment.first.id, appointment.first.surveys.where(survey_type: "Pre-Appointment-Client").last.id), class: "btn btn-xs btn-primary", remote: true%></td>
+                  	<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-xs btn-primary", remote: true%></td>
                   <!-- 	<td><button data-appointment-id="<%#=appointment.id%>" class="btn btn-xs btn-primary">Prep</button></td> -->
                   	<td><button class="btn btn-xs btn-default">Cancel/Reschedule</button></td>
                 	</tr>

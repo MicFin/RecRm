@@ -3,7 +3,7 @@ class AppointmentsController < ApplicationController
   include PatientGroupsHelper
   include FamiliesHelper
  # before_filter :check_user_logged_in!, :only
-  before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :update_duration, :end_appointment, :destroy]
+  before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :update_duration, :end_appointment, :destroy, :client_appointment_prep]
   before_filter :config_opentok, :only => [:update]
 
   # GET /appointments
@@ -64,6 +64,17 @@ class AppointmentsController < ApplicationController
     
     @appointment.status = "Appt-Prep-Survey-Complete"
     @appointment.save
+  end
+
+  def client_appointment_prep
+    patient_focus = @appointment.patient_focus
+    growth_chart = patient_focus.growth_chart || GrowthChart.create(user_id: patient_focus)
+    food_diary = patient_focus.food_diary || FoodDiary.create(user_id: patient_focus.id)
+    survey = Survey.generate_for_appointment(@appointment, current_user)
+    @client_prep = {growth_chart: growth_chart, food_diary: food_diary, survey: survey}
+    respond_to do |format|
+      format.js 
+    end
   end
 
   # GET /appointments/new_appointment_request_times

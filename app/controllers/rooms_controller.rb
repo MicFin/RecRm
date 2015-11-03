@@ -38,10 +38,10 @@ before_filter :authenticate_admin_user!, only: [:index]
     
     # Get client pre appointment survey
     # Not done well, just grabs last one
-    @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: true).last
+    # @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: true).last
 
-    # Set surveyable
-    @surveyable = @appointment
+    # # Set surveyable
+    # @surveyable = @appointment
 
     # Different user types require specific variables for a room
     # Check user type and create variables
@@ -63,8 +63,8 @@ before_filter :authenticate_admin_user!, only: [:index]
       # Generate tokbox token
       @tok_token =  @opentok.generate_token(@room.sessionId, {role: :moderator, data: "Moderator"}) 
 
-      # Get dietitian pre appointment survey
-      @dietitian_pre_appt_survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).last.questions.order("position")
+      # # Get dietitian pre appointment survey
+      # @dietitian_pre_appt_survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).last.questions.order("position")
 
       ## Create new appointment for dietitian to schedule if needed
       ## should probably use AJAX to call appointment controller for this info

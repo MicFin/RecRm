@@ -6,7 +6,7 @@
         <h2 class="modal-title">Appointment Prep</p></h2>
       </div>
       <div class="modal-body">
-         <%= binding.pry%>
+
          <%= render "/appointments/appointment_prep/survey_form", surveyable: @appointment, survey: @client_prep[:survey] %>
          <%= render "/growth_entries/form", growth_chart: @client_prep[:growth_chart], growth_entry: @client_prep[:growth_entry] %>
          <%= render "/food_diary_entries/form", food_diary: @client_prep[:food_diary], food_diary_entry: @client_prep[:food_diary_entry] %>

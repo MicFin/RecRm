@@ -35,30 +35,7 @@
           <li> <%=family_member.first_name%>: <%=family_member.age%> <%=family_member.family_role%></li>
         <% end %>
         </ul>
-        <% if survey != nil %>
-          <div id="pre-appt-survey-<%=appointment.id%>" class="col-xs-12 alert alert-success">
-            <div id="survey-questions-container" class="row">
-            <%survey.questions.order("position").each do |question| %>
-              <div id="survey-question-container-<%=question.id%>"class="col-xs-12">
-                <% if question.question_type == "Response" %>
-                  <%= render "/surveys/answer_types/answer_type_response", question: question %>
-                <% elsif question.question_type == "Short Response"%>
-                  <%= render "/surveys/answer_types/answer_type_short_response", question: question %>
-                <% elsif question.question_type == "Check Box" %>
-                  <%= render "/surveys/answer_types/answer_type_check_box", question: question %>
-                <% elsif question.question_type == "Drop Down"%>
-                  <%= render "/surveys/answer_types/answer_type_drop_down", question: question  %>
-                <% elsif question.question_type == "Radio"%>
-                  <%= render "/surveys/answer_types/answer_type_radio", question: question %>
-                <% else %>
-                <% end %>
-              </div>
-            <% end %>
-            </div>
-          </div>
-          <% else %>
-            <p>Client Questionnaire Not Complete</p>
-          <% end %>
+  
         <div class="col-xs-12 text-centerdi form-group">
           <h4>Time Slots This Week</h4>
           <table class="table">

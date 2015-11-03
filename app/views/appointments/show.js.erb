@@ -1,3 +1,3 @@
 $("#apptDetailModal").remove();
-$("body").append("<%= j render(:partial => 'appointment_details', :locals => {:dietitians_data => @dietitians_data, :appointment => @appointment, dietitians: @dietitians, survey: @survey}) %>");
+$("body").append("<%= j render(:partial => 'appointment_details', :locals => {:dietitians_data => @dietitians_data, :appointment => @appointment, dietitians: @dietitians}) %>");
 $('#apptDetailModal').modal();

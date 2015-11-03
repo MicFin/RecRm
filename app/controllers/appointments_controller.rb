@@ -260,8 +260,9 @@ class AppointmentsController < ApplicationController
         @dietitians_data[dietitian]["loss_time_slots"] = dietitian.loss_time_slots(@appointment) 
         @dietitians_data[dietitian]["loss_cal_slots"] = dietitian.loss_calendar_slots(@appointment)      
       end
-      @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
+      # @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
     end
+
     respond_to do |format|
       format.js
     end

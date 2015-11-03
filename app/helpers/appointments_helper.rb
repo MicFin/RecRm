@@ -64,7 +64,7 @@ module AppointmentsHelper
           family.number_of_members = family.family_member_count
           family.family_names = family.all_first_names
           appointment.family_info = family
-          appointment.follow_up = appointment.surveys.where(survey_type: "Follow-Up").last
+          # appointment.follow_up = appointment.surveys.where(survey_type: "Follow-Up").last
           @previous_appointments << appointment
         end
       end

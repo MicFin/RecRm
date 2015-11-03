@@ -48,8 +48,7 @@ module AppointmentsHelper
       if @upcoming_appointment 
         @upcoming_appointment.date = @upcoming_appointment.start_time.strftime("%A, %b %d") unless @upcoming_appointment.nil?
         @upcoming_appointment.time = @upcoming_appointment.start_time.strftime("%I:%M%p") unless @upcoming_appointment.nil?
-        @survey = @upcoming_appointment.surveys.where(survey_type: "Pre-Appointment-Client").where(completed: false).last
-        @surveyable = @upcoming_appointment
+
       end
   end
 

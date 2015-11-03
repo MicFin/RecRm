@@ -71,7 +71,10 @@ class AppointmentsController < ApplicationController
     growth_chart = patient_focus.growth_chart || GrowthChart.create(user_id: patient_focus)
     food_diary = patient_focus.food_diary || FoodDiary.create(user_id: patient_focus.id)
     survey = Survey.generate_for_appointment(@appointment, current_user)
-    @client_prep = {growth_chart: growth_chart, food_diary: food_diary, survey: survey}
+    food_diary_entry = FoodDiaryEntry.new(food_diary_id: food_diary.id)
+    growth_entry = GrowthEntry.new(growth_chart_id: growth_chart.id)
+    @client_prep = {growth_chart: growth_chart, food_diary: food_diary, survey: survey, food_diary_entry: food_diary_entry, growth_entry: growth_entry}
+    
     respond_to do |format|
       format.js 
     end

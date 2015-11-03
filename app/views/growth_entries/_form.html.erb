@@ -1,6 +1,6 @@
-<%= simple_form_for [@growth_chart, @growth_entry], html: {class: 'form-horizontal', role:"form" } do |f| %>
+<%= simple_form_for [growth_chart, growth_entry], html: {class: 'form-horizontal', role:"form" } do |f| %>
   <%= f.error_notification %>
-  <%= f.hidden_field :growth_chart_id, value: @growth_chart.id %>
+  <%= f.hidden_field :growth_chart_id, value: growth_chart.id %>
 
     <table class="table">
         <thead>

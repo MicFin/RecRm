@@ -34,8 +34,6 @@ class WelcomeController < Users::RegistrationsController
       @previous_appointments
       get_upcoming_appointment!
       @upcoming_appointment
-      @survey
-      @surveyable
       get_upcoming_appointments!
       @upcoming_appointments
       get_unpaid_appointment!

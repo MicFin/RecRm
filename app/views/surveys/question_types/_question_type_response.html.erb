@@ -1,15 +1,15 @@
 
-<% if question.tier == 1 %>
+<% if survey_question.question.tier == 1 %>
 <div class="question-container question-container-response">
 <% else %>
 <div class="question-container question-container-response tier-2">
 <% end %>
-	<h4><%=question.content%></h4>
-	<% if question.answer != nil && question.answer != ""%>
-		<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=question.id%>]" rows="4"><%= question.answer %>
+	<h4><%=survey_question.question.content%></h4>
+	<% if survey_question.answer != nil && survey_question.answer != ""%>
+		<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=survey_question.id%>]" rows="4"><%= survey_question.answer %>
 		</textarea>
 	<% else %>
-		<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=question.id%>]" rows="4"></textarea>
+		<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=survey_question.id%>]" rows="4"></textarea>
 	<% end %>
 </div>
 	

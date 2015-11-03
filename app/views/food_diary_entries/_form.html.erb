@@ -1,6 +1,6 @@
-<%= simple_form_for [@food_diary, @food_diary_entry],  html: {class: 'form-horizontal', role:"form" } do |f| %>
+<%= simple_form_for [food_diary, food_diary_entry],  html: {class: 'form-horizontal', role:"form" } do |f| %>
   <%= f.error_notification %>
-    <%= f.hidden_field :food_diary_id, value: @food_diary.id %>
+    <%= f.hidden_field :food_diary_id, value: food_diary.id %>
       <table class="table">
           <thead>
             <tr>

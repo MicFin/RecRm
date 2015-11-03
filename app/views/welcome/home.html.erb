@@ -7,11 +7,7 @@
 				<section class="jumbotron">
 					<div id="jumbotron-inner" class="row">
 
-						<% if @survey %>
-      				<div class="col-xs-12">
-        				<%= render "/surveys/form" %>
-        			</div>
-						<% elsif @upcoming_appointment && @upcoming_appointment.status == "Paid"  %>
+						<% if @upcoming_appointment && @upcoming_appointment.status == "Paid"  %>
 							<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 								<div class="row">
 									<h2>YOUR NEXT SESSION IS:</h2>

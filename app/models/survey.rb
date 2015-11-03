@@ -27,12 +27,7 @@ class Survey < ActiveRecord::Base
         new_survey.surveyable_type = "Appointment"
         new_survey.save
         new_survey.generate_survey_questions
-        binding.pry
-        # Question.new(position: 1, tier: 1, content: "What are the top 3 nutritional challenges for your child or family?", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 1, choices: "", survey_id: new_survey.id).save
-        # Question.new(position: 2, tier: 2, content: "What is the 1 thing that you would really like to accomplish during this session?", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
-        # Question.new(position: 3, tier: 1, content: "What did #{appointment.patient_focus.first_name} eat and drink yesterday? (this snapshot, even if not a typical day, is important)", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 3, choices: "", survey_id: new_survey.id).save
-        # Question.new(position: 4, tier: 1, content: "Please share any other information that is important for understanding #{appointment.patient_focus.first_name}'s nutrition.", question_type: "Response", survey_group: "Pre-Appointment-Client", survey_group_question_id: 4, choices: "", survey_id: new_survey.id).save
-  
+        
         new_survey.save
       else
         new_survey = appointment_survey.last

@@ -1,29 +1,29 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-before_action :set_survey_group, only: [:new, :edit, :update, :create, :destroy]
+  before_action :set_survey_group, only: [:new, :edit, :update, :create, :destroy]
 
-  # GET /questions
-  # GET /questions.json
+  # GET /survey_groups/:survey_group_id/questions
+  # GET /survey_groups/:survey_group_id/questions.json
   def index
     @questions = Question.all
   end
 
-  # GET /questions/1
-  # GET /questions/1.json
+  # GET /survey_groups/:survey_group_id/questions/1
+  # GET /survey_groups/:survey_group_id/questions/1.json
   def show
   end
 
-  # GET /questions/new
+  # GET /survey_groups/:survey_group_id/questions/new
   def new
     @question = Question.new
   end
 
-  # GET /questions/1/edit
+  # GET /survey_groups/:survey_group_id/questions/1/edit
   def edit
   end
 
-  # POST /questions
-  # POST /questions.json
+  # POST /survey_groups/:survey_group_id/questions
+  # POST /survey_groups/:survey_group_id/questions.json
   def create
     @question = Question.new(question_params)
 
@@ -38,8 +38,8 @@ before_action :set_survey_group, only: [:new, :edit, :update, :create, :destroy]
     end
   end
 
-  # PATCH/PUT /questions/1
-  # PATCH/PUT /questions/1.json
+  # PATCH/PUT /survey_groups/:survey_group_id/questions/1
+  # PATCH/PUT /survey_groups/:survey_group_id/questions/1.json
   def update
     respond_to do |format|
       if @question.update(question_params)
@@ -52,8 +52,8 @@ before_action :set_survey_group, only: [:new, :edit, :update, :create, :destroy]
     end
   end
 
-  # DELETE /questions/1
-  # DELETE /questions/1.json
+  # DELETE /survey_groups/:survey_group_id/questions/1
+  # DELETE /survey_groups/:survey_group_id/questions/1.json
   def destroy
     @question.destroy
     respond_to do |format|

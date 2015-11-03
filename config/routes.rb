@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
 
 
-  resources :food_diary_entries
+  
 
-  resources :food_diaries
+  resources :food_diaries do 
+    resources :food_diary_entries
+  end
 
-  resources :growth_entries
+  
+  resources :growth_charts do 
+     resources :growth_entries
+  end
 
-  resources :growth_charts
 
   resources :survey_groups
 

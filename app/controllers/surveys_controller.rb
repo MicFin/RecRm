@@ -13,28 +13,28 @@ class SurveysController < ApplicationController
     else
       @modal = true
     end
-    if params[:survey_type] == "User-Food"
-      @survey_type="User-Food"
-      @surveyable_id = @surveyable.id
-      # check for current surveys
-      current_surveys = Survey.where(surveyable_id: @surveyable_id).where(survey_type: "User-Food")
-      if current_surveys.count >= 1
-        @survey = current_surveys.last
-      else
-        @survey = nil
-      end
-    elsif params[:survey_type] == "User-Life"
-      @survey_type= "User-Life"
-      @surveyable_id = @surveyable.id
-      current_surveys = Survey.where(surveyable_id: @surveyable_id).where(survey_type: "User-Life")
-      if current_surveys.count >= 1
-        @survey = current_surveys.last
-      else
-        @survey = nil
-      end
-    else
+    # if params[:survey_type] == "User-Food"
+    #   @survey_type="User-Food"
+    #   @surveyable_id = @surveyable.id
+    #   # check for current surveys
+    #   current_surveys = Survey.where(surveyable_id: @surveyable_id).where(survey_type: "User-Food")
+    #   if current_surveys.count >= 1
+    #     @survey = current_surveys.last
+    #   else
+    #     @survey = nil
+    #   end
+    # elsif params[:survey_type] == "User-Life"
+    #   @survey_type= "User-Life"
+    #   @surveyable_id = @surveyable.id
+    #   current_surveys = Survey.where(surveyable_id: @surveyable_id).where(survey_type: "User-Life")
+    #   if current_surveys.count >= 1
+    #     @survey = current_surveys.last
+    #   else
+    #     @survey = nil
+    #   end
+    # else
       @survey = nil 
-    end
+    # end
     respond_to do |format|
       format.js 
     end
@@ -46,7 +46,6 @@ class SurveysController < ApplicationController
     
     if params[:survey_type] == "Pre-Appointment-Dietitian"
       @survey = Survey.generate_for_appointment(@surveyable, current_dietitian)
-    else
     end
     
     # @survey = @surveyable.surveys.new

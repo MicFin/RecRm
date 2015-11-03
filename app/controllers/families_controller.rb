@@ -21,7 +21,8 @@ class FamiliesController < ApplicationController
 
     # New user for form
     @new_user = User.new(last_name: @user.last_name)
-
+    @growth_chart = GrowthChart.new
+    @food_diary = FoodDiary.new
     respond_to do |format|
     
        format.js

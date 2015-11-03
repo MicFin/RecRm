@@ -1,5 +1,33 @@
-<h1>New food_diary_entry</h1>
 
-<%= render 'form' %>
+<div id="family-page" class="container-fluid">
+  <div class="row">
 
-<%= link_to 'Back', food_diary_entries_path %>
+    <%= render "/layouts/navbars/user_nav" %>
+
+    <main class="col-xs-10 col-xs-offset-2">
+     <section class="alerts-container">
+        <%= render "/layouts/alerts" %>
+      </section>
+      <section>
+
+
+
+        <h1><%=@food_diary.user.first_name%>'s Food Diary</h1>
+      </section>
+      <hr>
+      <section class="row">
+        <p>Add food diary</p>
+        <%= render 'form' %>
+      </section>
+
+
+    </main>
+    <div class="col-xs-10 col-xs-offset-2">
+      <%=render "/layouts/footers/main_footer" %>
+    </div>
+  </div>
+</div>
+
+
+
+

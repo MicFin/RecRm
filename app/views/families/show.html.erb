@@ -30,6 +30,20 @@
                 <p><%= @user.full_name%> </p>
                 <p>(me)</p>
               <% end %>
+                  <div class="col-xs-12 form-group">
+                    <% if @user.growth_chart %>
+                      <%= link_to "Growth Chart", growth_chart_path(@user.growth_chart), class: "btn btn-block btn-primary" %>
+                    <% else %>
+                      <%= render "/growth_charts/form", family_member: @user %>
+                    <% end %>
+                  </div>
+                  <div class="col-xs-12 form-group">
+                    <% if @user.food_diary %>
+                      <%= link_to "Food Diary", food_diary_path(@user.food_diary), class: "btn btn-block btn-primary" %>
+                    <% else %>
+                      <%= render "/food_diaries/form", family_member: @user %>
+                    <% end %>
+                  </div>
             </div>
           </div>
           <%# @family.family_members.each do |family_member| %>
@@ -45,6 +59,23 @@
                     <% end %>
                     <p><%= family_member.full_name%> </p>
                   <% end %>
+                
+                  <div class="col-xs-12 form-group">
+                    <% if family_member.growth_chart %>
+                      <%= link_to "Growth Chart", growth_chart_path(family_member.growth_chart), class: "btn btn-block btn-primary" %>
+                    <% else %>
+                      <%= render "/growth_charts/form", family_member: family_member %>
+                    <% end %>
+                  </div>
+                  <div class="col-xs-12 form-group">
+                    <% if family_member.food_diary %>
+                      <%= link_to "Food Diary", food_diary_path(family_member.food_diary), class: "btn btn-block btn-primary" %>
+                    <% else %>
+                      <%= render "/food_diaries/form", family_member: family_member %>
+                    <% end %>
+                  </div>
+
+      
                 </div>
               </div>
             <% end %>

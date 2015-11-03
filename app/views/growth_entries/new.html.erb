@@ -1,5 +1,32 @@
-<h1>New growth_entry</h1>
+<div id="family-page" class="container-fluid">
+  <div class="row">
 
-<%= render 'form' %>
+    <%= render "/layouts/navbars/user_nav" %>
 
-<%= link_to 'Back', growth_entries_path %>
+    <main class="col-xs-10 col-xs-offset-2">
+     <section class="alerts-container">
+        <%= render "/layouts/alerts" %>
+      </section>
+      <section>
+
+
+
+        <h1><%=@growth_chart.user.first_name%>'s Growth Chart </h1>
+      </section>
+      <hr>
+      <section class="row">
+        <p>Add growth history</p>
+        <%= render 'form' %>
+      </section>
+
+
+    </main>
+    <div class="col-xs-10 col-xs-offset-2">
+      <%=render "/layouts/footers/main_footer" %>
+    </div>
+  </div>
+</div>
+
+
+
+

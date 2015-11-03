@@ -44,6 +44,9 @@ class User < ActiveRecord::Base
   has_many :member_plans, through: :subscriptions
   has_many :surveys
 
+  has_one :growth_chart
+  has_one :food_diary
+
   has_many :images, :as => :imageable, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
     ### wanted to have a user have many surveys but then also haev a user be surveyable but it looks strange and may act weird so didnt implement yet

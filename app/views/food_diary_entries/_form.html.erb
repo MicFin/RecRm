@@ -1,15 +1,25 @@
-<%= simple_form_for(@food_diary_entry) do |f| %>
+<%= simple_form_for [@food_diary, @food_diary_entry],  html: {class: 'form-horizontal', role:"form" } do |f| %>
   <%= f.error_notification %>
+    <%= f.hidden_field :food_diary_id, value: @food_diary.id %>
+      <table class="table">
+          <thead>
+            <tr>
+              <th>Consumed at</th>
+              <th>Location</th>
+              <th>Meal, Formula, Breast Milk, or Beverage</th>
 
-  <div class="form-inputs">
-    <%= f.association :food_diary %>
-    <%= f.input :consumed_at %>
-    <%= f.input :food_item %>
-    <%= f.input :location %>
-    <%= f.input :note %>
-  </div>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+          <tbody>
+            <td> <%= f.input :consumed_at, label: false %></td>
+            <td> <%= f.input :food_item, label: false %></td>
+            <td><%= f.input :location, label: false %></td>
+            <td><%= f.button :submit, "Save" %></td>    
+ 
+          </tbody>
+        </table>
+
+
 <% end %>

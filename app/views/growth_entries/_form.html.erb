@@ -1,15 +1,31 @@
-<%= simple_form_for(@growth_entry) do |f| %>
+<%= simple_form_for [@growth_chart, @growth_entry], html: {class: 'form-horizontal', role:"form" } do |f| %>
   <%= f.error_notification %>
+  <%= f.hidden_field :growth_chart_id, value: @growth_chart.id %>
 
-  <div class="form-inputs">
-    <%= f.association :growth_chart %>
-    <%= f.input :entry_measured_at %>
-    <%= f.input :height_in_inches %>
-    <%= f.input :weight_in_ounces %>
-    <%= f.input :age %>
-  </div>
+    <table class="table">
+        <thead>
+            <tr>
+              <th>Measured at</th>
+              <th>Height in inches</th>
+              <th>Weight in ounces</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+      <tbody>
+          <tr>
+            <td> <%= f.input :measured_at, label: false %></td>
+            <td> <%= f.input :height_in_inches, label: false %></td>
+            <td><%= f.input :weight_in_ounces, label: false %></td>
+            <td><%= f.button :submit, "Save" %></td>
+          </tr>
+      </tbody>
+    </table>
+   
+   
+    
+    <%#= f.input :age %>
+
+
+
 <% end %>

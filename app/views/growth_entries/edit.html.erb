@@ -1,6 +1,34 @@
-<h1>Editing growth_entry</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @growth_entry %> |
-<%= link_to 'Back', growth_entries_path %>
+<div id="family-page" class="container-fluid">
+  <div class="row">
+
+    <%= render "/layouts/navbars/user_nav" %>
+
+    <main class="col-xs-10 col-xs-offset-2">
+     <section class="alerts-container">
+        <%= render "/layouts/alerts" %>
+      </section>
+      <section>
+
+
+
+        <h1><%=@growth_chart.user.first_name%>'s Growth Chart </h1>
+      </section>
+      <hr>
+      <section class="row">
+        <p>Edit growth history</p>
+        <%= render 'form' %>
+      </section>
+
+
+    </main>
+    <div class="col-xs-10 col-xs-offset-2">
+      <%=render "/layouts/footers/main_footer" %>
+    </div>
+  </div>
+</div>
+
+
+
+

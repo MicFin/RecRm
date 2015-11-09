@@ -1,29 +1,40 @@
-
-<div id="in-session" class="row">
+<div id="in-session" class="container-fluid">
+  <div class="row">
 
         <%= render "rooms/users/user_session_nav"%>
-
-        <div id="layoutContainer" class="col-xs-8 col-xs-offset-2">
-          <div class="video-center" id="videobox2">
-            <div id="videobox">
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-1 ">
-          <div id="chat-container" class="row">
-            <div id="chat-box" class="col-xs-12 form-group">
-              <h4>Start a conversation!</h4>
-            </div>
-            <form class="form-inline" role="form">
-              <div class="form-group">
-                <div class="input-group">
-                  <input class="family-member-name form-control" id="user-message" placeholder="   Write Message Here">
+        <main class="col-xs-10 col-xs-offset-2">
+          <p>You are meeting with:</p>
+          <h1><%=@appointment.dietitian.signature%></h1>
+          <section class="row form-group">
+            <div class="col-xs-10 session-tools-container hidden"></div>
+            <div id="layoutContainer" class="col-xs-12">
+              <div class="video-center" id="videobox2">
+                <div id="videobox">
                 </div>
               </div>
-              <button id="send-message-button" type="button" class="btn btn-default">Send</button>
-            </form>
-          </div>
-        </div>
+            </div>
+          </section>
+    <!--       <div id="right-session-column" class="col-xs-3">
+            <div id="chat-container" class="row">
+              <div id="chat-box" class="col-xs-12 form-group">
+                <h4>Start a conversation!</h4>
+              </div>
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input class="family-member-name form-control" id="user-message" placeholder="   Write Message Here">
+                  </div>
+                </div>
+                <button id="send-message-button" type="button" class="btn btn-default">Send</button>
+              </form>
+            </div>
+          </div> -->
+          <section class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+              <p>Having trouble? <a href="tel:6175752203;ext=1">Call 617-575-2203</a></p>
+            </div>
+          </section>
+        </main>
 </div>
 
 <script type="text/javascript">

@@ -7,121 +7,20 @@
        <section class="alerts-container">
           <%= render "/layouts/alerts" %>
         </section>
+
+
+
+
         <section>
           <h1>The <%=current_user.last_name%> Family</h1>
         </section>
         <hr>
-        <section class="row">
-          <p>Who eats at your table?  Create a profile for yourself and your entire family.  Help your dietitian understand what makes your family's table unique!</p>
-          <%= link_to "Add family member", families_new_family_member_path(@family.id), class: "btn btn-md btn-default" %>
-          <!-- <button class="btn btn-primary">Add Family Member</button> -->
-        </section>
-        <section id="family-members-container" class="row">
-          <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
-            <div class="col-xs-12">
-              
-              <%= link_to families_edit_family_member_path(@family.id, @user.id) do %>
-                <% if @user.main_avatar %>
-                  <%= image_tag @user.main_avatar.icon.url %>
-                <% else %>
-                  <%= image_tag "icons/add_user_photo.png" %>
-                <% end %>
-              
-                <p><%= @user.full_name%> (me)</p>
-              <% end %>
-                  <div class="col-xs-12 form-group">
-                    <% if @user.growth_chart %>
-                      <%= link_to "Growth Chart", growth_chart_path(@user.growth_chart), class: "btn btn-block btn-primary" %>
-                    <% else %>
-                      <%= render "/growth_charts/form", family_member: @user %>
-                    <% end %>
-                  </div>
-                  <div class="col-xs-12 form-group">
-                    <% if @user.food_diary %>
-                      <%= link_to "Food Diary", food_diary_path(@user.food_diary), class: "btn btn-block btn-primary" %>
-                    <% else %>
-                      <%= render "/food_diaries/form", family_member: @user %>
-                    <% end %>
-                  </div>
-            </div>
-          </div>
-          <%# @family.family_members.each do |family_member| %>
-          <% if @family && @family.children %>
-            <% @family.children.each.with_index(1) do |family_member, index| %>
-              <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
-                <div class="col-xs-12">
-                  <%= link_to families_edit_family_member_path(@family.id, family_member.id) do %>
-   
-                    <% if family_member.main_avatar && family_member.main_avatar.icon.url %>
-                      <%= image_tag family_member.main_avatar.icon.url %>
-                    <% else %>
-                      <%= image_tag "icons/add_user_photo.png" %>
-                    <% end %>
-                    <p><%= family_member.full_name%> </p>
-                  <% end %>
-                
-                  <div class="col-xs-12 form-group">
-                    <% if family_member.growth_chart %>
-                      <%= link_to "Growth Chart", growth_chart_path(family_member.growth_chart), class: "btn btn-block btn-primary" %>
-                    <% else %>
-                      <%= render "/growth_charts/form", family_member: family_member %>
-                    <% end %>
-                  </div>
-                  <div class="col-xs-12 form-group">
-                    <% if family_member.food_diary %>
-                      <%= link_to "Food Diary", food_diary_path(family_member.food_diary), class: "btn btn-block btn-primary" %>
-                    <% else %>
-                      <%= render "/food_diaries/form", family_member: family_member %>
-                    <% end %>
-                  </div>
-
-      
-                </div>
-              </div>
-            <% end %>
-          <% end %>
+        <div class="session-tools-container">
+          <%= render "/families/list_family_members", family: @family, user: @user%>
+        </div>
   
 
 
-
-
-
-
-          <%# end %>
-
-        </section>
-<!--         <section id="physician-container" class="row">
-          <h3><span class="glyphicon glyphicon-briefcase"></span>Family Physicians</h3>
-          <div class="col-xs-12 col-sm-5 col-md-3 col-lg-3">
-            <p><b>Primary Care</b></p>
-            <p>Dr. Liz Hait</p>
-            <p>(781)985-6975</p>
-            <p>1 Main Rd</p>
-            <p>Cohasset, MA</p>
-            <a href="">View</a>
-          </div>
-          <div class="col-xs-12 col-sm-5 col-md-3 col-lg-3">
-            <p><b>Primary Care</b></p>
-            <p>Dr. Liz Hait</p>
-            <p>(781)985-6975</p>
-            <p>1 Main Rd</p>
-            <p>Cohasset, MA</p>
-            <a href="">View</a>
-          </div>
-          <div class="col-xs-12 col-sm-5 col-md-3 col-lg-3">
-            <button class="btn btn-default">
-              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                <span class="glyphicon glyphicon-briefcase"></span>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                <p>ADD A </p>
-                <p>PHYSICIAN</p>
-              </div>
-            </button>
-          </div>
-
-
-        </section> -->
 
       </main>
       <div class="col-xs-10 col-xs-offset-2">

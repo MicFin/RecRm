@@ -16,7 +16,10 @@
 							<a href=""><p><span class="glyphicon glyphicon-facetime-video"></span></p><p><span class="hidden-xs hidden-sm nav-item">Video</span></p></a>
 						</li>
 						<li>
-							<a href=""><p><span class="glyphicon glyphicon-user"></span></p><p><span class="hidden-xs hidden-sm nav-item">Family</span></p></a>
+							<%=link_to family_path(current_user.head_of_families.first.id), remote: true do %>
+								<p><span class="glyphicon glyphicon-user"></span></p><p><span class="hidden-xs hidden-sm nav-item">Family</span></p>
+							<% end %>	
+			
 						</li>
 						<li>
 							<a href=""><p><span class="glyphicon glyphicon-calendar"></span></p><p><span class="hidden-xs hidden-sm nav-item">Appointments</span></p></a>

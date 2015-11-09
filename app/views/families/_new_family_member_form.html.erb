@@ -1,0 +1,66 @@
+
+
+      		<section class="row">
+            <div class="col-xs-10">
+              <%= link_to "back to family", family_path(family), remote: true %>
+            </div>
+            <div class="col-xs-12">
+              <h1>New Family Member</h1>
+            </div>
+          </section>
+          <hr>
+          <section class="row">
+            <div class="col-xs-12">
+          
+              <%= simple_form_for(family_member,  :url => {:controller => 'users/registrations', :action => 'create_family_member'}, html: { class: 'col-xs-12 text-left', role:"form"}) do |f| %>
+
+
+                <div id="main-avatar-container" class="col-xs-12 form-group">
+                  <% if family_member.main_avatar %>
+                    <%= image_tag family_member.main_avatar.icon.url %>
+                    <%= f.fields_for :images, family_member.images.build do |builder| %>
+                        <div><%= builder.input :remove_image, as: :boolean %></div>
+                    <% end %>
+                  <% else %>
+                    <%= image_tag "icons/add_user_photo.png", class: "temp-image" %>
+                    <%= f.fields_for :images, family_member.images.build do |builder| %>
+                    <label>Add a profile picture!</label>
+                      <!--             <p>(you can crop the picture after you save)</p> -->
+                    <img id="image-preview" class="hidden" src="#" alt="your image" />
+                      <fieldset>
+                      <div class="fileUpload btn btn-primary">
+                      <span>Upload</span>
+                        <%= builder.file_field :image, class: "upload" %>
+                        </div>
+                        <%= builder.hidden_field :image_cache %>
+                        <%= builder.hidden_field :position, value: 1  %>
+                        <%= builder.hidden_field :imageable_type, value: family_member.class %>
+                        <%= builder.hidden_field :imageable_id, value: family_member.id %>
+                        <%= builder.hidden_field :image_type, value: "Avatar" %>
+                      </fieldset>
+                    <% end %>
+                  <% end %>
+                </div>              
+
+                <input type="hidden" name="family_member" value="true">
+
+
+                <%= render '/welcome/add_family/family_member_edit_info_form_fields', {f: f, family_member: family_member}%>
+
+
+                <%= render '/users/registrations/forms/nutrition_form_fields', f: f %>
+
+                <%= render '/users/registrations/forms/preferences_form_fields', f: f %>
+
+
+
+
+                <div class="actions text-right">
+                
+                  <%= f.button :submit, "Save", class: "btn btn-primary btn-lg" %>
+                </div>
+              <% end %>
+
+
+            </div>
+          </section>

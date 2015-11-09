@@ -61,6 +61,8 @@ class FamiliesController < ApplicationController
     # health group forms use @user and hsould use @family_member
     @user = @family_member
     @family_member.health_groups = @family_member.patient_groups 
+    @growth_chart = GrowthChart.new
+    @food_diary = FoodDiary.new
     
     # PatientGroupsHelper
     get_patient_groups!

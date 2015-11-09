@@ -1,0 +1,22 @@
+<table class="table growth-entries-table">
+		  <thead>
+				    <tr>
+				      <th>Entry measured at</th>
+				      <th>Height in inches</th>
+				      <th>Weight in ounces</th>
+				      <th>Age</th>
+				      <th colspan="3"></th>
+				    </tr>
+				  </thead>
+	<tbody>
+			<% if growth_chart && growth_chart.growth_entries.length >= 1 %>
+		    <% growth_chart.growth_entries.each do |growth_entry| %>
+		      <%= render "/growth_entries/show_entry", growth_entry: growth_entry, growth_chart: growth_chart %>
+		    <% end %>
+	    <% else %>
+	    	<tr>
+	    		<td>No entries</td>
+	    	</tr>
+	    <% end %>
+	 </tbody>
+</table>

@@ -1,0 +1,2 @@
+	$(".growth-entries-table tbody").prepend("<%= j render(:partial => '/growth_entries/show_entry', :locals => { :growth_entry=> @growth_entry, :growth_chart => @growth_chart}) %>");
+	$("#new_growth_entry input[type='number']").val("");

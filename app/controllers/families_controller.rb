@@ -79,6 +79,7 @@ class FamiliesController < ApplicationController
 
   end
 
+
   # GET /families/1/new_family_member/
   def new_family_member
     @user = current_user

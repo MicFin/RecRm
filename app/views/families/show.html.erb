@@ -27,8 +27,7 @@
                   <%= image_tag "icons/add_user_photo.png" %>
                 <% end %>
               
-                <p><%= @user.full_name%> </p>
-                <p>(me)</p>
+                <p><%= @user.full_name%> (me)</p>
               <% end %>
                   <div class="col-xs-12 form-group">
                     <% if @user.growth_chart %>
@@ -52,7 +51,8 @@
               <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 text-center">
                 <div class="col-xs-12">
                   <%= link_to families_edit_family_member_path(@family.id, family_member.id) do %>
-                    <% if family_member.main_avatar %>
+   
+                    <% if family_member.main_avatar && family_member.main_avatar.icon.url %>
                       <%= image_tag family_member.main_avatar.icon.url %>
                     <% else %>
                       <%= image_tag "icons/add_user_photo.png" %>

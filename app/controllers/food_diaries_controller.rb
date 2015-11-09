@@ -10,6 +10,8 @@ class FoodDiariesController < ApplicationController
   # GET /food_diaries/1
   # GET /food_diaries/1.json
   def show
+
+    @food_diary_entry = FoodDiaryEntry.new
   end
 
   # GET /food_diaries/new
@@ -58,6 +60,7 @@ class FoodDiariesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to food_diaries_url, notice: 'Food diary was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

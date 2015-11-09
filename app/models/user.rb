@@ -113,6 +113,28 @@ class User < ActiveRecord::Base
     end
   end
 
+def health_groups_by_category
+  groups = self.patient_groups
+  groups_by_category = {
+    diseases: [], 
+    allergies: [],
+    symptoms: [],
+    preferences: []
+  }
+  groups.each do |group|
+    if (group.category == "diet")
+      groups_by_category[:preferences] << group
+    elsif (group.category == "disease")
+      groups_by_category[:diseases] << group
+    elsif (group.category == "allergy" || group.category == "intolerance")
+      groups_by_category[:allergies] << group
+    else
+      groups_by_category[:symptoms] << group
+    end
+
+  end
+  return groups_by_category
+end
   # returns an array of patient groups for a user 
   def get_patient_group_ids
      patient_group_ids = self.patient_groups.map{|disease|disease.id}

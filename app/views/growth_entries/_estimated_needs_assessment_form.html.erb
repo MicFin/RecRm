@@ -1,0 +1,25 @@
+<%= simple_form_for [growth_chart, growth_entry], html: {class: 'form-horizontal', role:"form" }, remote: true do |f| %>
+  <%= f.error_notification %>
+  <%= f.hidden_field :growth_chart_id, value: growth_chart.id %>
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+              <th>Energy (calorie range)</th>
+              <th>Protein (grams/day)</th>
+              <th>Fluids (ounces)</th>
+            </tr>
+          </thead>
+      <tbody>
+          <tr>
+            <td> <%= f.input :energy_requirement, label: false, placeholder: "1100-1500" %></td>
+            <td> <%= f.input :protein_requirement, label: false, placeholder: "50" %></td>
+            <td> <%= f.input :fluids_requirement, label: false, placeholder: "120" %></td>
+          </tr>
+      </tbody>
+    </table>
+
+              
+<%= f.button :submit, "Save", class: "btn btn-block btn-success" %>
+<p class="text-center">Measured at <%= growth_entry.measured_at.in_time_zone.strftime("%B %d, %Y")%></p>
+<% end %>
+

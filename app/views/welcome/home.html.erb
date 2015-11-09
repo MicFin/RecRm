@@ -38,42 +38,48 @@
 											<% end %>
 										</div>
 										
-											<!-- 							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-											<button class="btn btn-default">
-												<div class="col-xs-3">
-													<span class="glyphicon glyphicon-edit"></span>
-												</div>
-												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-													<p>APPOINTMENT</p>
-													<p>PREP</p>
-												</div>
-											</button>
-										</div> -->
+										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+												<%= link_to client_appointment_prep_path(@upcoming_appointment.id), class: "btn btn-xs btn-primary", remote: true do %>
+								
+														<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+															<span class="glyphicon glyphicon-edit"></span>
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+															<p>PREP FOR</p>
+															<p>APPOINTMENT</p>
+														</div>
+	
+												<% end %>
+										</div> 
 									<% else %>
 										<h2>We look forward to meeting with you!</h2>
-											<!-- <p>Take a moment to prepare for your session</p>
-											<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-												<button class="btn btn-primary">
-													<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-														<span class="glyphicon glyphicon-edit"></span>
-													</div>
-													<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-														<p>SESSION</p>
-														<p>PREP</p>
-													</div>
-												</button>
+											<p>Take a moment to prepare for your session</p>
+											<div class="col-xs-12 col-md-6 col-lg-offset-3 col-lg-6">
+
+												<%= link_to client_appointment_prep_path(@upcoming_appointment.id), class: "btn btn-xs btn-primary", remote: true do %>
+								
+														<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+															<span class="glyphicon glyphicon-edit"></span>
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+															<p>PREP FOR</p>
+															<p>APPOINTMENT</p>
+														</div>
+	
+												<% end %>
 											</div>
-											<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-												<button class="btn btn-default">
-													<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-														<span class="glyphicon glyphicon-comment"></span>
+					<!-- 	 					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
+												<a disabled class="btn btn-primary">
+				
+													<div class="col-xs-3">
+														<p><span class="glyphicon glyphicon-heart"></span></p>
 													</div>
 													<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-														<p>CONTACT</p>
-														<p>YOUR KRDN</p>
+														<p>START</p>
+														<p>APPOINTMENT</p>
 													</div>
-												</button>
-											</div> -->
+												</a>
+											</div>  -->
 									<% end %>
 
 								</div>
@@ -169,19 +175,23 @@
             </tr>
           </thead>
           <tbody>
-						<% if @upcoming_appointments.count >= 1%>
+						<% if @upcoming_appointments.count >= 1 %>
 							<% @upcoming_appointments.each do |date_time_array, appointment| %>
-								<tr>	
-									<td>
-										<%=date_time_array[0]%> <%=date_time_array[1]%></td>
 
-              		<td><%= appointment.first.patient_focus.first_name%></td>
-                	<td><%= appointment.first.show_duration%></td>
-                	<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-xs btn-primary", remote: true%></td>
-                	<td><%= link_to "Join", in_session_room_path(:id => appointment.first.room_id, appointment: appointment.first.id), class: "btn btn-xs btn-success" %>
-									</td>
-                	<td><button class="btn btn-xs btn-default">Cancel/Reschedule</button></td>
-              	</tr>
+								
+									<tr>	
+										<td>
+											<%=date_time_array[0]%> <%=date_time_array[1]%></td>
+
+	              		<td><%= appointment.first.patient_focus.first_name%></td>
+	                	<td><%= appointment.first.show_duration%></td>
+	                	<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-xs btn-primary", remote: true%></td>
+
+	                	<td><%#= link_to "Join", in_session_room_path(:id => appointment.first.room_id, appointment: appointment.first.id), class: "btn btn-xs btn-success" %>
+										</td>
+	                	<td><button class="btn btn-xs btn-default">Reschedule</button></td>
+	              	</tr>
+	          
               <% end %>
 						<% else %>
 							<tr>

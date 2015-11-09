@@ -65,7 +65,7 @@ $("#new-user-options form").remove();
   $(".modal-backdrop").first().remove();
 
 
-$(".family-member-health-preview").on("click", function(e){
+  $(".family-member-health-preview").on("click", function(e){
             e.preventDefault();
             var family_member_id = $(this).data("family-member-id");
             // hide all info containers //
@@ -94,6 +94,6 @@ $(".family-member-health-preview").on("click", function(e){
   <% if @user.class == Dietitian %>
       window.location.href = "/welcome/index";
   <% else %>
-    window.location.href = "/welcome/home";
+    $(".modal").modal("hide");
   <% end %>
 <% end %>

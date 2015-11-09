@@ -1,31 +1,25 @@
-<%= simple_form_for [growth_chart, growth_entry], html: {class: 'form-horizontal', role:"form" } do |f| %>
+<%= simple_form_for [growth_chart, growth_entry], html: {class: 'form-horizontal', role:"form" }, remote: true do |f| %>
   <%= f.error_notification %>
   <%= f.hidden_field :growth_chart_id, value: growth_chart.id %>
 
     <table class="table">
         <thead>
             <tr>
-              <th>Measured at</th>
+              <th colspan="3">Measured at</th>
               <th>Height in inches</th>
               <th>Weight in ounces</th>
               <th colspan="3"></th>
             </tr>
           </thead>
-
       <tbody>
           <tr>
-            <td> <%= f.input :measured_at, label: false %></td>
-            <td> <%= f.input :height_in_inches, label: false %></td>
-            <td><%= f.input :weight_in_ounces, label: false %></td>
-            <td><%= f.button :submit, "Save" %></td>
+             <td colspan="3"><%= f.input :measured_at, label: false, as: :date, start_year: Date.today.year, end_year: Date.today.year,
+                              order: [:month, :day, :year], input_html: {class: "form-control" }%></td>
+            <td> <%= f.input :height_in_inches, label: false, placeholder: "28" %></td>
+            <td><%= f.input :weight_in_ounces, label: false, placeholder: "60" %></td>
+            <td><%= f.button :submit, "Save", class: "btn btn-sm btn-success" %></td>
           </tr>
       </tbody>
     </table>
-   
-   
-    
-    <%#= f.input :age %>
-
-
 
 <% end %>

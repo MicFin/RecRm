@@ -24,15 +24,18 @@ class GrowthEntriesController < ApplicationController
   # POST /growth_chart/:growth_chart_id/growth_entries
   # POST /growth_chart/:growth_chart_id/growth_entries.json
   def create
+
     @growth_entry = GrowthEntry.new(growth_entry_params)
 
     respond_to do |format|
       if @growth_entry.save
         format.html { redirect_to @growth_chart, notice: 'Growth entry was successfully created.' }
         format.json { render :show, status: :created, location: @growth_entry }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @growth_entry.errors, status: :unprocessable_entity }
+        format.js 
       end
     end
   end
@@ -41,23 +44,28 @@ class GrowthEntriesController < ApplicationController
   # PATCH/PUT /growth_chart/:growth_chart_id/growth_entries/1.json
   def update
     respond_to do |format|
-      if @growth_entry.update(growth_entry_params)
+      if @growth_entry.update_attributes(growth_entry_params)
         format.html { redirect_to @growth_chart, notice: 'Growth entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @growth_entry }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @growth_entry.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
 
+
   # DELETE /growth_chart/:growth_chart_id/growth_entries/1
   # DELETE /growth_chart/:growth_chart_id/growth_entries/1.json
   def destroy
+    @growth_entry_id = @growth_entry.id
     @growth_entry.destroy
     respond_to do |format|
       format.html { redirect_to @growth_chart, notice: 'Growth entry was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -73,6 +81,6 @@ class GrowthEntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def growth_entry_params
-      params.require(:growth_entry).permit(:growth_chart_id, :measured_at, :height_in_inches, :weight_in_ounces, :age)
+      params.require(:growth_entry).permit(:growth_chart_id, :measured_at, :height_in_inches, :weight_in_ounces, :age, :user_id, :fluids_requirement, :energy_requirement, :protein_requirement, :bmi_percentile, :bmi_z_score, :height_percentile, :height_z_score, :weight_percentile, :weight_z_score, :dietitian_note, :client_note)
     end
 end

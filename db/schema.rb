@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103115720) do
+ActiveRecord::Schema.define(version: 20151109142340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -284,6 +284,17 @@ ActiveRecord::Schema.define(version: 20151103115720) do
     t.string   "age"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "height_percentile"
+    t.integer  "height_z_score"
+    t.integer  "weight_percentile"
+    t.integer  "weight_z_score"
+    t.integer  "bmi_percentile"
+    t.integer  "bmi_z_score"
+    t.text     "dietitian_note"
+    t.text     "client_note"
+    t.string   "energy_requirement"
+    t.integer  "protein_requirement"
+    t.integer  "fluids_requirement"
   end
 
   add_index "growth_entries", ["growth_chart_id"], name: "index_growth_entries_on_growth_chart_id", using: :btree

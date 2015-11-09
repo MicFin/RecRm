@@ -7,9 +7,65 @@
       </div>
       <div class="modal-body">
 
-         <%= render "/appointments/appointment_prep/survey_form", surveyable: @appointment, survey: @client_prep[:survey] %>
-         <%#= render "/growth_entries/form", growth_chart: @client_prep[:growth_chart], growth_entry: @client_prep[:growth_entry] %>
-         <%#= render "/food_diary_entries/form", food_diary: @client_prep[:food_diary], food_diary_entry: @client_prep[:food_diary_entry] %>
+      <div class="row form-group">
+        
+        <div class="col-xs-12 form-group">
+          
+        <div id="carousel-client-prep" class="carousel slide" data-interval="false" data-ride="carousel">
+          <!-- Indicators -->
+            <!--   <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol> -->
+
+            <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+
+            <div class="item active">
+              <div class="carousel-content">
+                <h3>Please add <%= @appointment.patient_focus.first_name%>'s most recent height and weight to the growth log.</h3>
+
+                <%= render "/growth_entries/form", growth_chart: @client_prep[:growth_chart], growth_entry: @client_prep[:growth_entry] %>
+
+                <%= render "/growth_entries/list", growth_chart: @client_prep[:growth_chart], growth_entry: @client_prep[:growth_entry] %>
+              </div>
+             
+            </div>
+            <div class="item">
+              <div class="carousel-content">
+                <h3>Please add what <%= @appointment.patient_focus.first_name%> ate yesterday to the food diary.</h3>
+                <%= render "/food_diary_entries/form", food_diary: @client_prep[:food_diary], food_diary_entry: @client_prep[:food_diary_entry] %>
+                <%= render "/food_diary_entries/list", food_diary: @client_prep[:food_diary], food_diary_entry: @client_prep[:food_diary_entry] %>
+              </div>
+              
+            </div>
+            <div class="item">
+              <div class="carousel-content">
+                <%= render "/appointments/appointment_prep/survey_form", surveyable: @appointment, survey: @client_prep[:survey] %>
+              </div>
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+        </div>
+      </div>
+
+
+         <!-- Controls -->
+  <div class="row">
+    <div class="col-xs-4 ">
+    <a href="#carousel-client-prep" class="btn btn-block btn-primary" role="button" data-slide="prev">Previous</a>
+    </div>
+    <div class="col-xs-4 col-xs-offset-4">
+    <a href="#carousel-client-prep" class="btn btn-block btn-primary" role="button" data-slide="next">Next</a>
+    </div>
+  </div>
+         
 
       </div>
     </div><!-- /.modal-content -->

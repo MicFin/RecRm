@@ -1,0 +1,25 @@
+      	<table class="table food-diary-table">
+				  <thead>
+				    <tr>
+				      <th>Consumed at</th>
+				      <th>Location</th>
+				      <th>Meal, Formula, Breast Milk, or Beverage</th>
+
+				      <th colspan="3"></th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+				  <% if food_diary && food_diary.food_diary_entries.count >= 1 %>
+				    <% food_diary.food_diary_entries.each do |food_diary_entry| %>
+
+				      <%= render "/food_diary_entries/show_entry", food_diary_entry: food_diary_entry, food_diary: food_diary %>
+				      
+				    <% end %>
+				  <% else %>
+				  	<tr>
+				  		<td>No entries</td>
+				  	</tr>
+				  <% end %>
+				  </tbody>
+				</table>

@@ -1,0 +1,2 @@
+	$(".food-diary-table tbody").prepend("<%= j render(:partial => '/food_diary_entries/show_entry', :locals => { :food_diary_entry=> @food_diary_entry, :food_diary => @food_diary}) %>");
+	$("#new_food_diary_entry input[type='number']").val("");

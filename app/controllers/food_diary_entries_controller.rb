@@ -30,9 +30,11 @@ class FoodDiaryEntriesController < ApplicationController
       if @food_diary_entry.save
         format.html { redirect_to @food_diary, notice: 'Food diary entry was successfully created.' }
         format.json { render :show, status: :created, location: @food_diary_entry }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @food_diary_entry.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -54,10 +56,12 @@ class FoodDiaryEntriesController < ApplicationController
   # DELETE /food_dairy/:food_diary_id/food_diary_entries/1
   # DELETE /food_dairy/:food_diary_id/food_diary_entries/1.json
   def destroy
+     @food_diary_entry_id = @food_diary_entry.id
     @food_diary_entry.destroy
     respond_to do |format|
       format.html { redirect_to @food_diary, notice: 'Food diary entry was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

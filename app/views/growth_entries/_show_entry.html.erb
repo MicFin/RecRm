@@ -1,0 +1,8 @@
+<tr data-growth-entry-id="<%=growth_entry.id%>">
+  <td><%= growth_entry.measured_at.in_time_zone.strftime("%B %d, %Y") %></td>
+  <td><%= growth_entry.height_in_inches %></td>
+  <td><%= growth_entry.weight_in_ounces %></td>
+  <td><%= growth_entry.age %></td>
+  <td><%#= link_to 'Edit', edit_growth_chart_growth_entry_path(@growth_chart, growth_entry) %></td>
+  <td><%= link_to 'Delete', growth_chart_growth_entry_path(growth_chart, growth_entry), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+</tr>

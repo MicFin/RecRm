@@ -76,11 +76,11 @@ class SurveysController < ApplicationController
     respond_to do |format|
       if @survey.update(survey_params)
         @surveyable = @survey.surveyable
-        @survey_type = @survey.survey_type
+        @survey_type = @survey.survey_group.name
         @user_id = params[:user_id]
         @user = current_dietitian || current_user
         
-        if @survey.survey_type == "Post-Appointment-Dietitian"
+        if @survey.survey_group.name == "Dietitian Pre-Appointment"
           @follow_up = Survey.generate_for_follow_up(@surveyable)
           @appointment= @surveyable
           @user_pre_appt_survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
@@ -125,7 +125,7 @@ class SurveysController < ApplicationController
         if current_user 
           format.html { redirect_to welcome_home_path, notice: 'Questionnaire was successfully saved.' }
         else
-          format.html { redirect_to dietitian_authenticated_root_path, notice: 'survey was successfully updated.' }
+          format.html { redirect_to dietitian_authenticated_root_path, notice: 'Questionnaire was successfully updated.' }
         end
         format.json { render :show, status: :ok, location: @survey }
         format.js
@@ -139,9 +139,10 @@ class SurveysController < ApplicationController
   private
 
   def update_questions_with_answers(questions_hash)
+
     ## save each question with the answer
     questions_hash.each do |question_id, answer|
-      question = Question.find(question_id.to_i)
+      question = SurveysQuestion.find(question_id.to_i)
       question.answer = answer
       question.save
     end

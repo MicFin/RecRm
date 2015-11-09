@@ -130,10 +130,11 @@
 
 
 										<% if appointment.first.prepped == true %>
-											<td><button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button></td>
+											<td><!-- <button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-success prep-appointment-button">Prep</button> --><%= link_to "Prep", appointment_prep_path(appointment.first.id), class: "btn btn-small btn-success" %></td>
 										<% else %>
 											<td>
-												<button data-appt-id="<%=appointment.first.id%>" class="btn btn-sm btn-danger prep-appointment-button">Prep</button>
+												<!-- <button data-appt-id="<%#=appointment.first.id%>" class="btn btn-sm btn-danger prep-appointment-button">Prep</button> -->
+												<%= link_to "Prep", appointment_prep_path(appointment.first.id), class: "btn btn-small btn-danger" %>
 											</td>
 										<% end %>
 

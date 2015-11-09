@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get 'benefits', to: "landing_pages#benefits", as: "landing_pages_benefits"
   get 'more_benefits', to: "landing_pages#more_benefits", as: "landing_pages_more_benefits"
   get 'care', to: "landing_pages#care", as: "landing_pages_care"
+  get 'contact_us', to: "landing_pages#contact_us", as: "landing_pages_contact_us"
   get 'refer', to: "landing_pages#refer", as: "landing_pages_refer"
   # should change these to not being opened to all users
   post 'packages/:package_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_package_payment'

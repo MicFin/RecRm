@@ -57,6 +57,9 @@ class LandingPagesController < ApplicationController
   def care
   end
 
+  def contact_us
+  end
+
   def refer
   end
 

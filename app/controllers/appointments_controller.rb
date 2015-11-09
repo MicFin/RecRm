@@ -66,9 +66,10 @@ class AppointmentsController < ApplicationController
     @appointment.save
   end
 
+  # get client appointment prep to be completed or edited by client
   def client_appointment_prep
     patient_focus = @appointment.patient_focus
-    growth_chart = patient_focus.growth_chart || GrowthChart.create(user_id: patient_focus)
+    growth_chart = patient_focus.growth_chart || GrowthChart.create(user_id: patient_focus.id)
     food_diary = patient_focus.food_diary || FoodDiary.create(user_id: patient_focus.id)
     survey = Survey.generate_for_appointment(@appointment, current_user)
     food_diary_entry = FoodDiaryEntry.new(food_diary_id: food_diary.id)
@@ -133,61 +134,46 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/appointment_prep
   # currently called from dietitian prep (with modal) 
-  # dietitian insession 
+  # dietitian insession as well
+  
   def appointment_prep
    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
     
     if @appointment.dietitian == current_dietitian 
       @client = @appointment.appointment_host
-      # set @family before get_family_info
-  
-      @family = @client.head_of_families.first
-      # get_family_info!
-      # @family_members
-      # @family
-        # create family should be a helper method on the family model
-        @family_members = []
-        if @appointment.patient_focus 
-          appointment_focus = @appointment.patient_focus
-          @family_members << appointment_focus
-        end
-        family_count = @family.users.count
-        
-        if family_count > 0
-          if @client != appointment_focus
-            @family_members << @client
-            @family.users.each do |family_member| 
-              if family_member != appointment_focus
-                @family_members << family_member 
-              end
-            end
-          else
-            @family.users.each do |family_member|
-                @family_members << family_member
-            end
-          end
-        else
-          @family_members << @client
-        end
       # get patient group requires the client as user
-      @user = @client
-      get_patient_groups!
-      @diseases = @diseases 
-      @intolerances = @intolerances 
-      @allergies = @allergies
-      @diets =  @diets 
+
+
+      # Gather user's family data
+      # from AppointmentsHelper
+      get_appointment_family_info!
+      @family
+
+      @survey = @appointment.surveys.where(survey_group_id: 1).first
+
+      # Gather all major patient groups
+      # Also gets user unverified groups
+      # from PatientGroupsHelper
+      # get_patient_groups!
+      # @diseases = @diseases 
+      # @intolerances = @intolerances 
+      # @allergies = @allergies
+      # @diets = @diets
+      # @symptoms = @symptoms
+
       # @unverified_health_groups = @family_members[0].unverified_health_groups
-      @dietitian_survey = Survey.generate_for_appointment(@appointment, current_dietitian)
-      @survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
-      @surveyable = @appointment
-      if params[:modal] == "false" 
-        @modal = false 
-      else
-        @modal = true 
-      end
+      # @dietitian_survey = Survey.generate_for_appointment(@appointment, current_dietitian)
+      #@survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
+      # @surveyable = @appointment
+      # if params[:modal] == "false" 
+      #   @modal = false 
+      # else
+      #   @modal = true 
+      # end
       
     end
     respond_to do |format|
+      format.html
       format.js
     end
   end
@@ -260,7 +246,7 @@ class AppointmentsController < ApplicationController
         @dietitians_data[dietitian]["loss_time_slots"] = dietitian.loss_time_slots(@appointment) 
         @dietitians_data[dietitian]["loss_cal_slots"] = dietitian.loss_calendar_slots(@appointment)      
       end
-      # @survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
+      #@survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
     end
 
     respond_to do |format|
@@ -353,41 +339,8 @@ class AppointmentsController < ApplicationController
         @appointment.save
       end
 
-    ##### added for manually assigning a room, should be removed from logic
-    elsif params[:new_room_needed] == "true"
-        
-        # @new_session = @opentok.create_session 
-        # @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
-        # ## creating a new room each time, should either purge old rooms or assign rooms to dietitians 
-        # @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Early Access Session")
-        # @new_room.save
-        # dietitian = @appointment.dietitian
-        # dietitian.add_role "Session Host", @new_room
-        # user = @appointment.appointment_host
-        # user.add_role "Session Guest", @new_room
-        # user.save
-        # # set appointment to room (1st and only for now)
-        # if @appointment.room_id == nil
-        #   @appointment.room_id = @new_room.id
-        # end
-    ##### should remove above
-
     elsif @appointment.update(appointment_params)
       
-      # # if stripe card payment update incnluded in update then user is paying 
-
-      # if appointment_params[:stripe_card_token]
-      #   # pay for appointment
-      #   token = appointment_params[:stripe_card_token]
-    
-      #   # check if credit card should be saved to stripe account
-      #   credit_card_usage = params[:credit_card_usage]
-        
-      #   # Update the appointment and make the stripe payment
-      #   @appointment.update_with_payment(credit_card_usage)
-
-
-      #   @pre_appt_survey = Survey.generate_for_appointment(@appointment, current_user)
 
       # or when admin dietitian assigns dietitian
       if (@appointment.dietitian_id != nil)
@@ -395,22 +348,24 @@ class AppointmentsController < ApplicationController
         
         @new_session = @opentok.create_session 
         @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
+
         ## creating a new room each time, should either purge old rooms or assign rooms to dietitians 
-        @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Early Access Session")
-        # @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, name: "Early Access Session")
+        @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Appointment")
         @new_room.save
         dietitian = @appointment.dietitian
         dietitian.add_role "Session Host", @new_room
         user = @appointment.appointment_host
         user.add_role "Session Guest", @new_room
         user.save
+
         # set appointment to room (1st and only for now)
         if @appointment.room_id == nil
           @appointment.room_id = @new_room.id
           @appointment.save
         end
+
+
         # mark time slot as having an appointment and cancel related time slots
-        
         TimeSlot.where(start_time: @appointment.start_time).where(end_time: @appointment.end_time).each do |ts|
           if ts.dietitian == @appointment.dietitian
             time_slot = ts 

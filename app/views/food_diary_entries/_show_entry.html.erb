@@ -1,0 +1,9 @@
+<tr data-food-diary-entry-id="<%=food_diary_entry.id%>">
+
+  <td><%= food_diary_entry.consumed_at.in_time_zone.strftime("%B %d, %Y %I:%M %p") %></td>
+  <td><%= food_diary_entry.location %></td>
+  <td><%= food_diary_entry.food_item %></td>
+<!--   <td><%#= link_to 'Edit', edit_food_diary_food_diary_entry_path(food_diary, food_diary_entry) %></td> -->
+  <td><%= link_to 'Destroy', food_diary_food_diary_entry_path(food_diary, food_diary_entry), method: :delete, data: { confirm: 'Are you sure?', remote: true } %></td>
+	
+</tr>

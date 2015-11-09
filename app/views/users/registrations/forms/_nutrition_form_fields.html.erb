@@ -1,26 +1,26 @@
 						<div id="health-group-container" class="row">
 							<%#= f.collection_check_boxes :patient_group_ids, @diseases, :id, :name, :checked => @user.patient_group_ids %>
-
+								<h3>Health Groups</h3>
 								<% @diseases.each do |disease| %>
 
 
 									<% if disease.has_triggers? %>
 
 										<% if @user.patient_group_ids.include? disease.id %>
-											<div class="col-xs-6 col-sm-4 form-group">
+											<div class="col-xs-12 col-sm-4 form-group">
 									
 												<input id="user_patient_group_ids_<%=disease.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=disease.id%>" data-triggers='true' checked>
 												<label class="checkbox-inline" for="user_patient_group_ids_<%=disease.id%>"><%=disease.name%></label>
 		
 											</div>
 										<% else %>
-											<div class="col-xs-6 col-sm-4 form-group">
+											<div class="col-xs-12 col-sm-4 form-group">
 												<input id="user_patient_group_ids_<%=disease.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=disease.id%>" data-triggers='true'>
 												<label class="checkbox-inline" for="user_patient_group_ids_<%=disease.id%>"><%=disease.name%></label>
 											</div>
 										<% end %>
 									<% else %>
-										<div class="col-xs-6 col-sm-4 form-group">
+										<div class="col-xs-12 col-sm-4 form-group">
 											<% if @user.patient_group_ids.include? disease.id %>
 												
 												<input id="user_patient_group_ids_<%=disease.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=disease.id%>" checked>
@@ -37,10 +37,9 @@
 
 								<% end %>
 
-						 		<div id="add-disease-button" class="add-another-disease">Add Another</div>
-						 		<div id="add-disease-form" class="add-another-disease-form hidden">
-							 		<input id="new-health-group-field" data-group-type="disease" type="text" placeholder="Autism" class="form-control-12"/>
-							 		<button id="new-health-group-button" type="button" class="btn btn-block btn-warning">Add</button>
+						 		<div id="add-disease-form" class="add-another-disease-form">
+							 		<input id="new-health-group-field" data-group-type="disease" type="text" placeholder="Autism"/>
+							 		<button id="new-health-group-button" type="button" class="btn btn-sm btn-warning">Add Another</button>
 
 						 		</div>
 						</div>
@@ -50,9 +49,9 @@
 						<% else %>
 							<div class="row triggers-container form-group">
 						<% end %>
-							<h4>Select all that apply.</h4>
+							<h3>Allergies and Intolerances</h3>
 							<% @allergies.each do |allergy| %>
-								<div class="col-xs-6 col-sm-4 form-group">
+								<div class="col-xs-12 col-sm-4 form-group">
 						  		
 						  		<% if @user.patient_group_ids.include? allergy.id %>
 						  				<input id="user_patient_group_ids_<%=allergy.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=allergy.id%>" checked>

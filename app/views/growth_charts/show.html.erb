@@ -15,35 +15,10 @@
       </section>
       <hr>
       <section class="row">
-        <%= link_to 'New growth entry', new_growth_chart_growth_entry_path(@growth_chart), class: "btn btn-md btn-default" %>
+        <%= render "/growth_entries/form", growth_chart: @growth_chart, growth_entry: @growth_entry %>
       </section>
       <section class="row">
-      	<table class="table">
-				  <thead>
-				    <tr>
-				      <th>Entry measured at</th>
-				      <th>Height in inches</th>
-				      <th>Weight in ounces</th>
-				      <th>Age</th>
-				      <th colspan="3"></th>
-				    </tr>
-				  </thead>
-
-				  <tbody>
-				    <% @growth_chart.growth_entries.each do |growth_entry| %>
-				      <tr>
-				        <td><%= growth_entry.measured_at %></td>
-				        <td><%= growth_entry.height_in_inches %></td>
-				        <td><%= growth_entry.weight_in_ounces %></td>
-				        <td><%= growth_entry.age %></td>
-				        <td><%= link_to 'Edit', edit_growth_chart_growth_entry_path(@growth_chart, growth_entry) %></td>
-				        <td><%= link_to 'Destroy', growth_chart_growth_entry_path(@growth_chart, growth_entry), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-				      </tr>
-				    <% end %>
-				  </tbody>
-				</table>
-
-
+      	<%= render "/growth_entries/list", growth_chart: @growth_chart, growth_entry: @growth_entry  %>
       </section>
 
 

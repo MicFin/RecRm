@@ -37,14 +37,16 @@
 <%= split_stylesheet_link_tag "application", debug: false, :split_count => 4, :media => "all"  %>
 
 <!--     
+    Loads monologue specific css
+-->
+<%= stylesheet_link_tag    "monologue/blog/application" %>
+
+<!--     
     Loads application wide JS at application.js
     Loads controller specific JS at EX: welcome.js
 -->
 <%= javascript_include_tag "application", media: 'all' %>
 
-
-<%#= stylesheet_link_tag    "monologue/blog/application" %>
-<%#= javascript_include_tag "monologue/blog/application" %>
 
 <!--     
     Loads jstimezonedetect, should add to asset pipeline on controller specific pages

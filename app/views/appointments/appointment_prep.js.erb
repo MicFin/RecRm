@@ -1,23 +1,13 @@
 
-// <%# if @modal == false %>
-// 	$("#tool-box-container #tool-client-info-container").empty().append("<%= j render(:partial => '/appointments/prep') %>");
-// <%# else %>
 
-// 	$("#appointmentPrepModal").remove();
-// 	$("body").append("<%= j render(:partial => '/appointments/prep_modal', :locals => { family_members: @family_members, appointment: @appointment, survey: @survey}) %>");
-// 	$("#appointmentPrepModal").modal({
-// 							backdrop: 'static',
-// 	            keyboard: false
-// 	});
-// 	$("#family-member-health-prep-survey").addClass("hidden");
-// <%# end %>
-
-
+// remove existing modal
 $("#appointmentPrepModal").remove();
 
+// add modal with updated data
 $("body").append("<%= j render(:partial => '/appointments/prep_modal', :locals => { appointment: @appointment}) %>");
 
-	$("#appointmentPrepModal").modal({
-							backdrop: 'static',
-	            keyboard: false
-	});
+// activate modal
+$("#appointmentPrepModal").modal({
+						backdrop: 'static',
+            keyboard: false
+});

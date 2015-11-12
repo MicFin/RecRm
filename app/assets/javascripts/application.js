@@ -33,7 +33,9 @@
 //= require moment
 
 //= require bootstrap
+
 //= require bootstrap-datetimepicker
+
 //= require plugins/bootstrap-tour-min
 
 //= require fullcalendar
@@ -50,6 +52,10 @@
 // Namespace creation for all controller specific javascript
 //= require kindrdfood
 
+
+// Custom namespaced javascript for cross controller usage
+//= require form_validations/growth_entries
+//= require datetimepickers/date_time_picker
 
 // Browser Specific JS
 //= require browser_details

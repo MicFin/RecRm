@@ -13,8 +13,16 @@
           </thead>
 
           <tbody>
-            <td> <%= f.input :consumed_at, label: false, as: :datetime, start_year: Date.today.year, end_year: Date.today.year,
-                              order: [:month, :day, :year], input_html: {class: "form-control" } %></td>
+            <td class="col-xs-3"> <%#= f.input :consumed_at, label: false, as: :datetime, start_year: Date.today.year, end_year: Date.today.year,
+                              order: [:month, :day, :year], input_html: {class: "form-control" } %>
+              <div class='input-group date' id='datetimepicker'>
+                <input type="datetime" data-request-num="1" name="food_diary_entry[consumed_at]" class="form-control" placeholder="Select" />
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar">
+                  </span>
+                </span>
+              </div>
+            </td>
             <td><%= f.input :location, label: false, placeholder: "Home" %></td>
             <td> <%= f.input :food_item, label: false, placeholder: "1 cup of food" %></td>
 

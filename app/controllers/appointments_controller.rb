@@ -138,7 +138,7 @@ class AppointmentsController < ApplicationController
   
   def appointment_prep
    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
-    
+    @survey = @appointment.surveys.where(survey_group_id: 1).first
     if @appointment.dietitian == current_dietitian 
       @client = @appointment.appointment_host
       # get patient group requires the client as user
@@ -149,7 +149,7 @@ class AppointmentsController < ApplicationController
       get_appointment_family_info!
       @family
 
-      @survey = @appointment.surveys.where(survey_group_id: 1).first
+      
 
       # Gather all major patient groups
       # Also gets user unverified groups

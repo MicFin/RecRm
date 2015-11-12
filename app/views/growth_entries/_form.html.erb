@@ -5,18 +5,22 @@
     <table class="table">
         <thead>
             <tr>
-              <th colspan="3">Measured at</th>
+              <th colspan="6">Date measured</th>
               <th>Height in inches</th>
               <th>Weight in ounces</th>
-              <th colspan="3"></th>
+              <th></th>
             </tr>
           </thead>
       <tbody>
           <tr>
-             <td colspan="3"><%= f.input :measured_at, label: false, as: :date, start_year: Date.today.year, end_year: Date.today.year,
-                              order: [:month, :day, :year], input_html: {class: "form-control" }%></td>
-            <td> <%= f.input :height_in_inches, label: false, placeholder: "28" %></td>
-            <td><%= f.input :weight_in_ounces, label: false, placeholder: "60" %></td>
+
+            <td colspan="6">
+
+              <%= f.date_select :measured_at, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: 1910, order: [:month, :day, :year]}, {:class => "form-control-3", label: false} %>
+            </td>
+       
+            <td> <%= f.input :height_in_inches, label: false, placeholder: "28", input_html: {class: "form-control-6" } %></td>
+            <td><%= f.input :weight_in_ounces, label: false, placeholder: "60", input_html: {class: "form-control-6" } %></td>
             <td><%= f.button :submit, "Save", class: "btn btn-sm btn-success" %></td>
           </tr>
       </tbody>

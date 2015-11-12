@@ -42,7 +42,6 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 // Mixins
 @import "mixins/box_shadow";
 
-// @import 'application-all';
 
 
 // Partials
@@ -93,9 +92,7 @@ $box-sizing-path: "partials/browser_specific/box-sizing.htc";
 @import "partials/rooms/dietitians/in_session_dietitian_nav";
 
 
-// Monologue blog overrides
-@import "monologue/blog/custom";
-@import "monologue/admin/application";
+
 
 // Old Partials
 

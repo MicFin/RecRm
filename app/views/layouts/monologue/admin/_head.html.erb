@@ -32,6 +32,12 @@
 <%= split_stylesheet_link_tag "application", debug: false, :split_count => 4, :media => "all"  %>
 
 <!--     
+    Loads monologue specific css
+-->
+<%= stylesheet_link_tag    "monologue/admin/application" %>
+
+
+<!--     
     Loads application wide JS at application.js
     Loads controller specific JS at EX: welcome.js
 -->

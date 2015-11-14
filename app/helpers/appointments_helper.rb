@@ -94,8 +94,8 @@ module AppointmentsHelper
   end
 
   def get_appointment_family_info!
-    
-    @family = @appointment.patient_focus.families.first
+
+    @family = @appointment.appointment_host.head_of_families.first
     if !@family.nil?
       @family.children = @family.users
       @family.family_members = []

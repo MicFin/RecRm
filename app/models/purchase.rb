@@ -32,12 +32,12 @@ class Purchase < ActiveRecord::Base
 
   def update_with_payment(credit_card_usage, purchasable)
     
-    binding.pry
+    
     # if purchase is valid
     if valid?
 
       # Skip payment for invoices less than or equal to 0
-      binding.pry
+      
       if invoice_price > 0 
 
         # create new customer or find current customer
@@ -60,7 +60,7 @@ class Purchase < ActiveRecord::Base
           self.save!
         end
 
-        binding.pry
+        
         # set stripe_id variable now that it is created
         stripe_id = user.stripe_id
 
@@ -101,7 +101,7 @@ class Purchase < ActiveRecord::Base
         end
       end    
 
-      binding.pry
+      
       ### If Stripe fails then these should not be run
       ### But it probably does
       ### Need to test

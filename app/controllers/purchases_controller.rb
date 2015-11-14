@@ -71,7 +71,7 @@ class PurchasesController < ApplicationController
     # Update the purchase and make the stripe payment
     @purchase.update_with_payment(credit_card_usage, @purchasable)
 
-    binding.pry
+    
     # If an appointment
     if @purchasable.class == Appointment
 
@@ -81,10 +81,10 @@ class PurchasesController < ApplicationController
       @purchasable.end_time = time_slot.end_time
       @purchasable.save
 
-      binding.pry
+      
       # # Create pre appointment survey
       @pre_appt_survey = Survey.generate_for_appointment(@purchasable, current_user)
-      binding.pry
+      
       # Set flash message
       flash_message = 'Appointment was successfully made.'
 
@@ -98,7 +98,7 @@ class PurchasesController < ApplicationController
       flash_message = 'Package was successfully purchased.'
     end
 
-    binding.pry
+    
     # Only HTML response
     respond_to do |format|
       format.html { redirect_to welcome_home_path, notice: flash_message }

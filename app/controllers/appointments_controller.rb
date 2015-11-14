@@ -138,6 +138,7 @@ class AppointmentsController < ApplicationController
   
   def appointment_prep
    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
+   binding.pry
     @survey = @appointment.surveys.where(survey_group_id: 1).first
     if @appointment.dietitian == current_dietitian 
       @client = @appointment.appointment_host
@@ -148,7 +149,6 @@ class AppointmentsController < ApplicationController
       # from AppointmentsHelper
       get_appointment_family_info!
       @family
-
       
 
       # Gather all major patient groups

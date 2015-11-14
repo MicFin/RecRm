@@ -24,7 +24,7 @@ class FoodDiaryEntriesController < ApplicationController
   # POST /food_dairy/:food_diary_id/food_diary_entries
   # POST /food_dairy/:food_diary_id/food_diary_entries.json
   def create
-    binding.pry
+    
     @food_diary_entry = FoodDiaryEntry.new(food_diary_entry_params)
 
     respond_to do |format|

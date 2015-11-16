@@ -1,1 +1,5 @@
-alert("Update saved");
+
+$(".growth-entries-table").replaceWith("<%= j render(:partial => '/growth_entries/list', :locals => {:growth_chart => @growth_chart}) %>");
+
+$("#update-growth-container-<%=@growth_entry.id%>").empty();
+$("#update-growth-container-<%=@growth_entry.id%>").removeClass("alert alert-danger");

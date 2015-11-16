@@ -77,6 +77,10 @@ gem 'mini_magick'
 # gem 'fog', "~> 1.3.1"
 gem 'carrierwave-aws', "0.4.1"
 
+# Asynchronous file uploads with JQuery for image uploads
+# https://github.com/JangoSteve/remotipart
+gem 'remotipart', '~> 1.2'
+
 gem 'momentjs-rails', '~> 2.8.4'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 

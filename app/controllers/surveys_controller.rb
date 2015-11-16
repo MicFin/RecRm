@@ -72,7 +72,9 @@ class SurveysController < ApplicationController
   end
 
   def update
+    
     update_questions_with_answers(params[:questions])
+    
     respond_to do |format|
       if @survey.update(survey_params)
         @surveyable = @survey.surveyable

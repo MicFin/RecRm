@@ -6,7 +6,7 @@
 $(document).ready(function() {
 
 	// JS for appointments#appointment_prep
-	Kindrdfood.appointments.appointmentPrep.init();
+	Kindrdfood.appointments.appointmentPrep.dietitianInit();
 });
 
 

@@ -54,8 +54,14 @@
 
 
 // Custom namespaced javascript for cross controller usage
-//= require form_validations/growth_entries
+// // form_validations must come last because it uses datetimepicker and images // //
+//= require images/new_image
 //= require datetimepickers/date_time_picker
+//= require ajax_specific/ajax_update_url
+//= require form_validations/growth_entries
+//= require form_validations/food_diary_entries
+//= require form_validations/family_member
+//= require bootstrap_overrides/carousel
 
 // Browser Specific JS
 //= require browser_details
@@ -80,7 +86,6 @@
 //= require appointment
 //= require appointments_index
 //= require tok_box_main.js
-//= require images
 //= require google_analytics
 //= require home_page
 

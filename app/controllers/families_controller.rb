@@ -97,8 +97,8 @@ class FamiliesController < ApplicationController
 
     respond_to do |format|
     
-       format.js
-       format.html
+      format.html
+      format.js
     end
 
 
@@ -178,12 +178,20 @@ class FamiliesController < ApplicationController
   def remove_member
     @removed_member_id = params[:member_id]
     @appointment = current_user.appointment_hosts.last
-    family_member = User.find(@removed_member_id)
-    family_member.destroy
+    @family_member = User.find(@removed_member_id)
+
     respond_to do |format|
-      format.html { redirect_to @family, notice: 'Family member was successfully removed.' }
-      format.json { head :no_content }
-      format.js
+      if @family_member.destroy
+        format.html { redirect_to @family, notice: 'Family member was successfully removed.' }
+        format.json { head :no_content }
+        format.js
+      else
+
+        flash.now[:error] = "Can not delete family member's that have appointments assigned to them."
+        format.html { redirect_to families_edit_family_member_path(@family, @family_member) }
+        format.json { render json: @family.errors, status: :unprocessable_entity }     
+        format.js    
+      end
     end
   end
 

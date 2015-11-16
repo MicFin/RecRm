@@ -7,6 +7,14 @@ class User < ActiveRecord::Base
 
   before_save :uppercase_name
 
+  before_save :delete_images, :if => Proc.new {|user| remove_image == "1"}  
+
+  after_save :create_original_growth_entry, :if => Proc.new {|user| user.height_inches_changed? }
+
+
+
+  before_destroy :check_for_appointments
+
   # A callback event is fired before and after an invitation is accepted (User#accept_invitation!)
   # after_invitation_accepted :email_invited_by
   # before_invitation_accepted :email_invited_by
@@ -48,7 +56,9 @@ class User < ActiveRecord::Base
   has_one :food_diary
 
   has_many :images, :as => :imageable, dependent: :destroy
+
   accepts_nested_attributes_for :images, allow_destroy: true
+
     ### wanted to have a user have many surveys but then also haev a user be surveyable but it looks strange and may act weird so didnt implement yet
   has_many :surveys, :as => :surveyable
   
@@ -346,8 +356,9 @@ end
 
       now = Date.current
       
-      # get the number of full years from now since birth by dividing the difference in days by 365
-      years = (now - dob).to_i / 365
+      # get the number of full years from now since birth 
+      # years = (now - dob).to_i / 365
+      years = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
 
       # for under 3 year olds return in terms of months
       if years < 3
@@ -467,5 +478,26 @@ end
     password == password_confirmation && !password.blank?
   end
   
+  private
+
+  def delete_images
+    self.images = []
+  end
+
+
+  def create_original_growth_entry
+    growth_chart = self.growth_chart || GrowthChart.create(user_id: self.id)
+    if growth_chart.growth_entries.count < 1 
+      GrowthEntry.create({growth_chart_id: growth_chart.id, height_in_inches: self.height_inches, weight_in_ounces: self.weight_ounces, measured_at: Date.today})
+    end
+  end
+
+  def check_for_appointments
+    if (self.patient_focus.count >= 1) || (self.appointment_hosts.count >= 1)
+      errors[:messages] << "Can not delete family member's that have appointments assigned to them."
+      return false
+    end
+
+  end
 
 end

@@ -10,21 +10,17 @@
         <%= render "/layouts/alerts" %>
       </section>
       <section>
-
-
-
-        <h1><%=@food_diary.user.first_name%>'s Food Diary </h1>
+        <h1>The <%=current_user.last_name%> Family</h1>
       </section>
       <hr>
-      <section class="row">
-        <%#= link_to 'New food diary entry', new_food_diary_food_diary_entry_path(@food_diary), class: "btn btn-md btn-default" %>
-        <%= render "/food_diary_entries/form", food_diary: @food_diary, food_diary_entry: @food_diary_entry %>
-      </section>
-      <section class="row">
-        <%= render "/food_diary_entries/list", food_diary: @food_diary, food_diary_entry: @food_diary_entry %>
+      <div class="session-tools-container">
+    
+        <%=render "/food_diaries/show", food_diary: @food_diary, food_diary_entry: @food_diary_entry %>
 
 
-      </section>
+
+      </div>
+
 
 
     </main>

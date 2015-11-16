@@ -1,6 +1,10 @@
 
+Kindrdfood = Kindrdfood || {};
 
-var Images = {
+
+Kindrdfood.images = Kindrdfood.images || {};
+
+Kindrdfood.images.newImage = {
 	set_crop: function(){
 		$('#cropbox').Jcrop({
 			setSelect: [0, 0, 600, 600],

@@ -8,8 +8,14 @@ $("body").append("<%= j render(:partial => '/appointments/appointment_prep/prep_
 // initiate modal
 $("#client-prep-modal").modal();
 
-// validate form
-Kindrdfood.formValidations.growthEntries.clientForm();
 
-// initiate datetimepicker
-Kindrdfood.dateTimePickers.dateTimePicker.init();
+  	// validate form
+		Kindrdfood.formValidations.growthEntries.clientForm();
+		Kindrdfood.formValidations.foodDiaryEntries.init();
+
+		// initiate carousel
+		Kindrdfood.bootstrapOverrides.carousel.init();
+		// initiate datetimepicker
+		Kindrdfood.dateTimePickers.dateTimePicker.init();
+
+

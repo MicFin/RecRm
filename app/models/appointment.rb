@@ -29,12 +29,12 @@ class Appointment < ActiveRecord::Base
   #   self.save
   # end
 
-  def prep_complete?
-    # if self.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).count > 0
-    #   return true
-    # else
-    #   return false
-    # end
+  def dietitian_prep_complete?
+    if self.surveys.where(survey_group_id: 3).where(completed: true).count > 0
+      return true
+    else
+      return false
+    end
   end
 
   def available_time_slots

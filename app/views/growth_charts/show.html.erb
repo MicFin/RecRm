@@ -8,19 +8,16 @@
         <%= render "/layouts/alerts" %>
       </section>
       <section>
-
-
-
-        <h1><%=@growth_chart.user.first_name%>'s Growth Chart </h1>
+        <h1>The <%=current_user.last_name%> Family</h1>
       </section>
       <hr>
-      <section class="row">
-        <%= render "/growth_entries/form", growth_chart: @growth_chart, growth_entry: @growth_entry %>
-      </section>
-      <section class="row">
-      	<%= render "/growth_entries/list", growth_chart: @growth_chart, growth_entry: @growth_entry  %>
-      </section>
+      <div class="session-tools-container">
+    
+        <%=render "/growth_charts/growth_chart_partial", growth_chart: @growth_chart, growth_entry: @growth_entry %>
 
+
+
+      </div>
 
     </main>
     <div class="col-xs-10 col-xs-offset-2">

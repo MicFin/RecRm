@@ -16,7 +16,7 @@ class ChargesController < ApplicationController
     begin
       customer.subscriptions.create(:plan => "3_month")
     rescue Stripe::CardError => e
-      flash[:error] = e.message
+      flash.now[:error] = e.message
       redirect_to charges_path
     end
   end

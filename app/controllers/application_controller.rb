@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
 
   def after_invite_path_for(resource_name)
     if current_user.provider?
-      flash[:notice] = "Invitation sent to " + resource_name.email
+      flash.now[:notice] = "Invitation sent to " + resource_name.email
       new_user_invitation_path
     end
   end

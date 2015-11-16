@@ -24,9 +24,9 @@ class FoodDiaryEntriesController < ApplicationController
   # POST /food_dairy/:food_diary_id/food_diary_entries
   # POST /food_dairy/:food_diary_id/food_diary_entries.json
   def create
-    
+    clean_date_form
     @food_diary_entry = FoodDiaryEntry.new(food_diary_entry_params)
-
+    
     respond_to do |format|
       if @food_diary_entry.save
         format.html { redirect_to @food_diary, notice: 'Food diary entry was successfully created.' }
@@ -43,6 +43,9 @@ class FoodDiaryEntriesController < ApplicationController
   # PATCH/PUT /food_dairy/:food_diary_id/food_diary_entries/1
   # PATCH/PUT /food_dairy/:food_diary_id/food_diary_entries/1.json
   def update
+
+    clean_date_form
+
     respond_to do |format|
       if @food_diary_entry.update(food_diary_entry_params)
         format.html { redirect_to @food_diary, notice: 'Food diary entry was successfully updated.' }
@@ -67,6 +70,12 @@ class FoodDiaryEntriesController < ApplicationController
   end
 
   private
+
+    # datetimepicker format comes back incorrect, should fix on front end and not clean data here
+    def clean_date_form
+      params[:food_diary_entry][:consumed_at] = params[:food_diary_entry][:consumed_at].gsub(%r{(.*)/(.*)/(.*)}, '\2/\1/\3') + " EST"
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_food_diary_entry
       @food_diary_entry = FoodDiaryEntry.find(params[:id])

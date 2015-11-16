@@ -11,6 +11,10 @@ class GrowthChartsController < ApplicationController
   # GET /growth_charts/1.json
   def show
     @growth_entry = GrowthEntry.new
+    respond_to do |format|
+      format.html
+      format.js
+    end    
   end
 
   # GET /growth_charts/new

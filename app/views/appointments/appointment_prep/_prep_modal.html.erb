@@ -11,7 +11,7 @@
         
         <div class="col-xs-12 form-group">
           
-        <div id="carousel-client-prep" class="carousel slide" data-interval="false" data-ride="carousel">
+        <div id="carousel-client-prep" class="carousel slide" data-wrap="false" data-interval="false" data-ride="carousel">
 
             <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox">
@@ -35,7 +35,7 @@
               
             </div>
             <div class="item">
-              <div class="carousel-content">
+              <div class="carousel-content container-fluid">
                 <%= render "/appointments/appointment_prep/survey_form", surveyable: @appointment, survey: @client_prep[:survey] %>
               </div>
 
@@ -51,14 +51,14 @@
 
 
          <!-- Controls -->
-  <div class="row">
-    <div class="col-xs-4 ">
-    <a href="#carousel-client-prep" class="btn btn-block btn-primary" role="button" data-slide="prev">Previous</a>
-    </div>
-    <div class="col-xs-4 col-xs-offset-4">
-    <a href="#carousel-client-prep" class="btn btn-block btn-primary" role="button" data-slide="next">Next</a>
-    </div>
-  </div>
+      <div class="row">
+        <div class="col-xs-4 ">
+        <a href="#carousel-client-prep" class="btn btn-block btn-primary" role="button" data-slide="prev">Previous</a>
+        </div>
+        <div class="col-xs-4 col-xs-offset-4">
+        <a href="#carousel-client-prep" class="btn btn-block btn-primary" role="button" data-slide="next">Next</a>
+        </div>
+      </div>
          
 
       </div>

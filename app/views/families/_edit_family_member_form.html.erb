@@ -10,14 +10,14 @@
             <div class="col-xs-12">
               <h1><%=family_member.full_name%> 
                     <% if family_member.growth_chart %>
-                      <%= link_to "Growth Chart", growth_chart_path(family_member.growth_chart), class: "btn btn-sm btn-primary" %>
+                      <%= link_to "Growth Chart", growth_chart_path(family_member.growth_chart), class: "btn btn-sm btn-primary", remote: true %>
                     <% else %>
                       <%= render "/growth_charts/form", family_member: family_member %>
                     <% end %>
       
              
                     <% if family_member.food_diary %>
-                      <%= link_to "Food Diary", food_diary_path(family_member.food_diary), class: "btn btn-sm btn-primary" %>
+                      <%= link_to "Food Diary", food_diary_path(family_member.food_diary), class: "btn btn-sm btn-primary", remote: true %>
                     <% else %>
                       <%= render "/food_diaries/form", family_member: family_member %>
                     <% end %>
@@ -30,16 +30,17 @@
             <div class="col-xs-12">
                         
 
-              <%= simple_form_for(family_member,  as: "user", url: registration_path("user"), html: { class: 'col-xs-12 text-left', role:"form"}) do |f| %>
+              <%= simple_form_for(family_member,  as: "user", url: registration_path("user"), html: { class: 'col-xs-12 text-left family-member-form', role:"form", remote: true}) do |f| %>
 
                 <input type="hidden" name="family_member" value="true">
 
                 <div id="main-avatar-container" class="col-xs-12 form-group">
+
                   <% if family_member.main_avatar %>
                     <%= image_tag family_member.main_avatar.icon.url %>
-                    <%= f.fields_for :images, family_member.images.build do |builder| %>
-                        <%= builder.input :remove_image, as: :boolean %>
-                    <% end %>
+
+                    <%= f.input :remove_image, as: :boolean, boolean_style: :inline %>
+            
                   <% else %>
                     <%= image_tag "icons/add_user_photo.png", class: "temp-image" %>
                     <%= f.fields_for :images, family_member.images.build do |builder| %>

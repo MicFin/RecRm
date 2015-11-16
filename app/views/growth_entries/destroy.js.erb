@@ -1,1 +1,21 @@
-$("tr[data-growth-entry-id='<%=@growth_entry_id%>'").remove();
+
+
+<% if @growth_entry.errors.any? %>
+	
+	if ( $(".alerts-container").count >= 1){
+
+		// adds error to screen
+		$(".alerts-container").html("<%= escape_javascript(render :partial=>'layouts/alerts') %>");
+
+	} else {
+
+		// adds error as pop up
+		alert("Can not delete growth entry that has been reviewd by a dietitian.")
+	}
+
+<% else %>
+
+	// remove growth entry from table
+	$("tr[data-growth-entry-id='<%=@growth_entry_id%>'").remove();
+
+<% end %>

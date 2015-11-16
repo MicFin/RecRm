@@ -12,7 +12,7 @@
           <section class="row">
             <div class="col-xs-12">
           
-              <%= simple_form_for(family_member,  :url => {:controller => 'users/registrations', :action => 'create_family_member'}, html: { class: 'col-xs-12 text-left', role:"form"}) do |f| %>
+              <%= simple_form_for(family_member,  :url => {:controller => 'users/registrations', :action => 'create_family_member'}, html: { class: 'col-xs-12 text-left family-member-form', role:"form", remote: true }) do |f| %>
 
 
                 <div id="main-avatar-container" class="col-xs-12 form-group">

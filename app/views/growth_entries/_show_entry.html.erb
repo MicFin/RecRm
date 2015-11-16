@@ -1,8 +1,8 @@
 <tr data-growth-entry-id="<%=growth_entry.id%>">
   <td><%= growth_entry.measured_at.in_time_zone.strftime("%B %d, %Y") %></td>
   <td><%= growth_entry.age %></td>
-  <td><%= growth_entry.height_in_inches %></td>
-  <td><%= growth_entry.weight_in_ounces %></td>
+  <td><%= growth_entry.height %></td>
+  <td><%= growth_entry.weight %></td>
   <% if current_dietitian %>
   	  <td><%= growth_entry.height_percentile %></td>
   	  <td><%= growth_entry.height_z_score %></td>

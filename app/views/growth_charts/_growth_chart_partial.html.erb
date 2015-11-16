@@ -1,0 +1,15 @@
+        <section class="row">
+          <div class="col-xs-10">
+            <%= link_to "back to family", family_path(growth_chart.user.families.last || growth_chart.user.head_of_families.last), remote: true %>
+          </div>
+          <div class="col-xs-12">
+            <h1><%=growth_chart.user.first_name%>'s Growth Chart </h1>
+          </div>
+        </section>
+        <hr>
+        <section class="row">
+          <%= render "/growth_entries/form", growth_chart: growth_chart, growth_entry: growth_entry %>
+        </section>
+        <section class="row">
+        	<%= render "/growth_entries/list", growth_chart: growth_chart, growth_entry: growth_entry  %>
+        </section>

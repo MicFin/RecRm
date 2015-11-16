@@ -149,8 +149,8 @@ class AppointmentsController < ApplicationController
       # from AppointmentsHelper
       get_appointment_family_info!
       @family
-      
 
+      @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
       # Gather all major patient groups
       # Also gets user unverified groups
       # from PatientGroupsHelper

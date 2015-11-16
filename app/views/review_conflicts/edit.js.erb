@@ -74,7 +74,7 @@
   $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_step_edit_form') %>");
 <% elsif @item.include? "allergen-" %>
   $("#<%=@item%>").replaceWith("<%= j render(:partial => 'review_recipe_allergen_edit_form') %>");
-    FormValidation.ingredientAllergensReview();
+
 <% elsif @item == "health-groups" %>
   $("#review-recipe-health-groups").replaceWith("<%= j render(:partial => 'review_recipe_health_groups_edit_form') %>");
 <% elsif @item == "recipe-categories" %>

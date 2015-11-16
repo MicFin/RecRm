@@ -26,6 +26,7 @@ class FoodDiariesController < ApplicationController
   # POST /food_diaries
   # POST /food_diaries.json
   def create
+    
     @food_diary = FoodDiary.new(food_diary_params)
 
     respond_to do |format|

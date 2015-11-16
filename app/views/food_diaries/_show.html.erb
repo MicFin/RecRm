@@ -1,0 +1,17 @@
+			<section class="row">
+ 				<div class="col-xs-10">
+           <%= link_to "back to family", family_path(food_diary.user.families.last || food_diary.user.head_of_families.last), remote: true %>
+        </div>
+        <div class="col-xs-12">
+					<h1><%=food_diary.user.first_name%>'s Food Diary </h1>
+        </div>				
+
+			</section>
+			
+      <hr>
+      <section class="row">
+        <%= render "/food_diary_entries/form", food_diary: food_diary, food_diary_entry: food_diary_entry %>
+      </section>
+      <section class="row">
+        <%= render "/food_diary_entries/list", food_diary: food_diary, food_diary_entry: food_diary_entry %>
+      </section>

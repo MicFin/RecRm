@@ -17,7 +17,7 @@ module AppointmentsHelper
       family.number_of_members = family.family_member_count
       family.family_names = family.all_first_names
       appointment.family_info = family
-      appointment.prepped = appointment.prep_complete?
+      appointment.prepped = appointment.dietitian_prep_complete?
       @upcoming_appointments << appointment
     end
     @upcoming_appointments = @upcoming_appointments.group_by{|appointment|  [appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y"), appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p")] }

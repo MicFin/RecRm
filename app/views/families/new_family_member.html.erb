@@ -7,7 +7,11 @@
         <section class="alerts-container">
           <%= render "/layouts/alerts" %>
         </section>
-        <div class="col-xs-12">
+        <section>
+          <h1>The <%=current_user.last_name%> Family</h1>
+        </section>
+        <hr>
+        <div class="session-tools-container">
           <%= render "/families/new_family_member_form", family: @family, family_member: @family_member %>
     
         </div>

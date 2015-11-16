@@ -6,7 +6,7 @@
 <% end %>
 	<h4><%=survey_question.question.content%></h4>
 	<% if survey_question.answer != nil && survey_question.answer != ""%>
-		<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=survey_question.id%>]" rows="4"><%= survey_question.answer %>
+		<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=survey_question.id%>]" rows="4"><%= survey_question.answer%>
 		</textarea>
 	<% else %>
 		<textarea class="form-control form-group" placeholder="Enter your response here." name="questions[<%=survey_question.id%>]" rows="4"></textarea>

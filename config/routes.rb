@@ -86,6 +86,14 @@ Rails.application.routes.draw do
 
   devise_scope :user do
 
+
+    # Images paths
+    get 'users/:id/images/new', to: 'images#new', as: 'new_user_image'
+    get 'users/:id/images/index', to: 'images#index', as: 'user_images'
+    post 'users/:id/images/create', to: 'images#create', as: 'create_user_image'
+    patch 'users/:user_id/images/:id/update', to: 'images#update', as: 'user_image'
+    get 'users/:user_id/images/:id/crop', to: 'images#crop', as: 'crop_user_image'
+      
     # Routes available to all users not just authenticated
     get 'welcome/index', to: "welcome#index", as: "welcome"
     get 'welcome/home', to: "welcome#home", as: "welcome_home"

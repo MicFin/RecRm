@@ -8,11 +8,49 @@ Kindrdfood.formValidations.growthEntries = {
   clientForm: function(){
     $("#new_growth_entry, form[id*='edit_growth_entry_']").validate({
       rules: {
-        "growth_entry[height_in_inches]":{
-          required: true,
+        "growth_entry[height][feet]":{
+          required: {
+            depends: function () { 
+              return ($("input[name='growth_entry[height][feet]']").val() != "" );
+            }
+          },
+          range: [0, 10],
+          number: true
         },
-        "growth_entry[weight_in_ounces]":{
-          required: true,
+        "growth_entry[height][inches]":{
+          required: {
+            depends: function () { 
+              if ( ( $("input[name='growth_entry[height][inches]']").val() != "" ) || ( $("input[name='growth_entry[height][feet]']").val() == "") ) {
+                return true 
+              } else {
+                return false
+              }
+            }
+          },
+          range: [0, 120],
+          number: true
+        },
+        "growth_entry[weight][pounds]":{
+          required: {
+            depends: function () { 
+              return ( $("input[name='growth_entry[weight][pounds]']").val() != "" );
+            }
+          },
+          range: [0, 1000],
+          number: true
+        },
+        "growth_entry[weight][ounces]":{
+          required: {
+            depends: function () { 
+              if ( ( $("input[name='growth_entry[weight][ounces]']").val() != "" ) || ( $("input[name='growth_entry[weight][pounds]']").val() == "") ) {
+                return true 
+              } else {
+                false
+              }
+            }
+          },
+          range: [0, 16],
+          number: true
         },
         "growth_entry[measured_at(1i)]":{
           required: true
@@ -25,11 +63,25 @@ Kindrdfood.formValidations.growthEntries = {
         }
       },
       messages: {
-        "growth_entry[height_in_inches]":{
-          required: "Please enter a height."
+        "growth_entry[height][feet]":{
+          required: "Enter height",
+          range: "Number between 0 and 10",
+          number: "Number between 0 and 10"
         },
-        "growth_entry[weight_in_ounces]":{
-          required: "Please enter a height."
+        "growth_entry[height][inches]":{
+          required: "Enter height",
+          range: "Number betweeen 0 and 120",
+          number: "Number betweeen 0 and 120"
+        },
+        "growth_entry[weight][pounds]":{
+          required: "Enter weight",
+          range: "Number between 0 and 1000",
+          number: "Number between 0 and 1000"
+        },
+        "growth_entry[weight][ounces]":{
+          required: "Enter weight",
+          range: "Number between 0 and 16",
+          number: "Number between 0 and 16"
         },
         "growth_entry[measured_at(1i)]":{
           required: "Enter year"

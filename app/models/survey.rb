@@ -35,26 +35,17 @@ class Survey < ActiveRecord::Base
 
       # for dietitian
     else 
-      appointment_survey = Survey.where(survey_type: "Pre-Appointment-Dietitian").where(surveyable_id: appointment.id).where(surveyable_type: "Appointment")
+      # survey group ID 3 is dietitian pre appointment survey
+      appointment_survey = Survey.where(survey_group_id: 3).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
+
       if appointment_survey.count < 1
-        new_survey = Survey.new(survey_type: "Pre-Appointment-Dietitian")
+        
+        new_survey = Survey.new(survey_group_id: 3)
         new_survey.surveyable_id = appointment.id
         new_survey.surveyable_type = "Appointment"
         new_survey.save
-        Question.new(position: 1, tier: 1, content: "Client history and referring concern", question_type: "Response", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 1, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 2, tier: 1, content: "#{appointment.patient_focus.first_name}'s height in centimeters", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 3, tier: 1, content: "#{appointment.patient_focus.first_name}'s height % for age", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 3, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 4, tier: 1, content: "#{appointment.patient_focus.first_name}'s height z-score", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 4, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 5, tier: 1, content: "#{appointment.patient_focus.first_name}'s weight in kg", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 5, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 6, tier: 1, content: "#{appointment.patient_focus.first_name}'s weight % for age", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 6, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 7, tier: 1, content: "#{appointment.patient_focus.first_name}'s weight z-score", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 7, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 8, tier: 1, content: "#{appointment.patient_focus.first_name}'s BMI", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 8, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 9, tier: 1, content: "#{appointment.patient_focus.first_name}'s BMI % for age", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 9, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 10, tier: 1, content: "#{appointment.patient_focus.first_name}'s BMI z-score", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 10, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 11, tier: 1, content: "#{appointment.patient_focus.first_name}'s estimated energy requirement (calories)", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 11, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 12, tier: 1, content: "#{appointment.patient_focus.first_name}'s protein RDA (g/day)", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 12, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 13, tier: 1, content: "#{appointment.patient_focus.first_name}'s fluid (mL/day)", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 13, choices: "", survey_id: new_survey.id).save
-        Question.new(position: 14, tier: 1, content: "Assessment / Plan for #{appointment.patient_focus.first_name}", question_type: "Number", survey_group: "Pre-Appointment-Dietitian", survey_group_question_id: 14, choices: "", survey_id: new_survey.id).save
+        new_survey.generate_survey_questions
+        
         new_survey.save
       else
         new_survey = appointment_survey.last

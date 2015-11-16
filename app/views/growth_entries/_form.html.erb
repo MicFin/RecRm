@@ -40,7 +40,7 @@
     <table class="table">
         <thead>
             <tr>
-              <th colspan="6">Date measured</th>
+              <th colspan="3">Date measured</th>
               <th>Height</th>
               <th>Weight</th>
               <th></th>
@@ -49,13 +49,31 @@
       <tbody>
           <tr>
 
-            <td colspan="6">
+            <td colspan="3">
 
               <%= f.date_select :measured_at, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: 1910, order: [:month, :day, :year]}, {:class => "form-control-3", label: false} %>
             </td>
        
-            <td> <%= f.input :height_in_inches, label: false, placeholder: "28", input_html: {class: "form-control-6" } %></td>
-            <td><%= f.input :weight_in_ounces, label: false, placeholder: "60", input_html: {class: "form-control-6" } %></td>
+            <td> <%#= f.input :height_in_inches, label: false, placeholder: "28", input_html: {class: "form-control-6" } %>
+        
+              <input type="number" name="growth_entry[height][feet]" placeholder="4" class="form-control-3" value="<%=growth_entry.height_hash['feet']%>"/> 
+              <%= label_tag :feet, "feet"%>
+      
+           
+              <input type="number" name="growth_entry[height][inches]" placeholder="11" class="form-control-3" value="<%=growth_entry.height_hash['inches']%>"/> 
+              <%= label_tag :inches, "inches"%>
+            </td>
+            <td><%#= f.input :weight_in_ounces, label: false, placeholder: "60", input_html: {class: "form-control-3" } %>
+
+              <input type="number" name="growth_entry[weight][pounds]" placeholder="4" class="form-control-3" value="<%=growth_entry.height_hash['feet']%>"/> 
+              <%= label_tag :pounds, "pounds"%>
+
+
+              <input type="number" name="growth_entry[weight][ounces]" placeholder="4" class="form-control-3" value="<%=growth_entry.height_hash['feet']%>"/> 
+              <%= label_tag :ounces, "ounces"%> 
+
+
+            </td>
             <td><%= f.button :submit, "Save", class: "btn btn-sm btn-success" %></td>
           </tr>
       </tbody>

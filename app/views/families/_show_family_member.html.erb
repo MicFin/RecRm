@@ -1,36 +1,44 @@
 
 <div class="row">
-	<div class="col-xs-12">
-		<h4>Relation:  <%=family_member.family_role%></h4>
-		<h4>Born:  <%=family_member.date_of_birth.in_time_zone.strftime("%B %d, %Y") %></h4>
-		<h4>Gender:  <%=family_member.sex %></h4>
+	<div class="col-xs-3">
+		<h4><%=family_member.full_name%></h4>	
+		<h4><%=family_member.family_role%> of client</h4>
+		<h4><%=family_member.age %></h4>
+		<h4><%=family_member.sex %></h4> 
 		<% if family_member.due_date != nil %>
-			<h4>Pregnant?  Yes </h4>
-			<h4>Due Date?  <%=family_member.due_date %></h4>
+			<h4>Due Date:  <%=family_member.due_date %></h4>
 		<% end %>
 	</div>
-	<div class="col-xs-12 col-sm-3">
-		<h3>Health Groups</h3>
-		<% family_member.health_groups_by_category[:diseases].each do | disease| %>
-			<p><%= disease.name %></p>
-		<% end %>
+	<div class="col-xs-3">
+		<h4>Health Groups</h4>
+		<div class="row">
+			<% family_member.health_groups_by_category[:diseases].each do | disease| %>
+				<button class="alert-danger">
+					<%= disease.name %>
+				</button>
+			<% end %>
+
+			<% family_member.health_groups_by_category[:allergies].each do | allergy| %>
+				<button class="alert-danger">
+					<%= allergy.name %>
+				</button>
+			<% end %>
+		</div>
 	</div>
-	<div class="col-xs-12 col-sm-3">
-		<h3>Allergies & Intolerances</h3>
-		<% family_member.health_groups_by_category[:allergies].each do | allergy| %>
-			<p><%= allergy.name %></p>
-		<% end %>
-	</div>
-	<div class="col-xs-12 col-sm-3">
-		<h3>Symptoms</h3>
+	<div class="col-xs-3">
+		<h4>Symptoms</h4>
 		<% family_member.health_groups_by_category[:symptoms].each do | symptom| %>
-			<p><%=symptom.name %></p>
+				<button class="alert-warning">
+					<%= symptom.name %>
+				</button>
 		<% end %>
 	</div>
-	<div class="col-xs-12 col-sm-3">
-		<h3>Preferences</h3>
+	<div class="col-xs-3">
+		<h4>Diet Preferences</h4>
 		<% family_member.health_groups_by_category[:preferences].each do | preference| %>
-			<p><%=preference.name %></p>
+				<button class="alert-warning">
+					<%= preference.name %>
+				</button>
 		<% end %>
 	</div>
 </div>

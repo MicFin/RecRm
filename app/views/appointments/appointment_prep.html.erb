@@ -8,111 +8,84 @@
           <%= render "/layouts/alerts" %>
         </section>
         <section>
-          <h1>The <%=@appointment.appointment_host.last_name%> Family</h1>
-        </section>
-        <hr>
-        <section class="row">
-          <div class="col-xs-12">
-            <h3><%= @appointment.start_time.in_time_zone.strftime("%B %d, %Y %I:%M %p") %> (<%= @appointment.duration%> mins)</h3>
-            <h3>Appointment with: <%= @appointment.appointment_host.first_name%> <%= @appointment.appointment_host.last_name%></h3>
-            <h3>Appointment for: <%= @appointment.patient_focus.first_name%> <%= @appointment.patient_focus.last_name%></h3>
-
+          <h3 class="header">Overview</h3> 
+          <div class="row">
+            <div class="col-xs-4">
+              <h4>Date:</h4>
+              <p><%= @appointment.start_time.in_time_zone.strftime("%A %B %d, %Y") %></p>
+            </div>
+            <div class="col-xs-4">
+              <h4>Time:</h4>
+              <p><%= @appointment.start_time.in_time_zone.strftime("%I:%M %p") %></p>
+            </div>
+            <div class="col-xs-4">
+              <h4>Client Time Zone:</h4>
+              <p><%= @appointment.start_time.in_time_zone.strftime("%I:%M %p") %></p>
+            </div>
           </div>
-
-        </section>
-        <hr>
-        <section class="row">
-          <div class="col-xs-8 col-xs-offset-2">
-            <%= render "surveys/survey_answers", survey: @survey%>
+          <div class="row">
+            <div class="col-xs-4">
+              <h4>Client:</h4>
+              <p><%= @appointment.appointment_host.full_name%></p>
+            </div>
+            <div class="col-xs-4">
+              <h4>Appointment Focus:</h4>
+              <p><%= @appointment.patient_focus.full_name%></p>
+            </div>
+            <div class="col-xs-4">
+              <h4>KRDN:</h4>
+              <p><%= @appointment.dietitian.first_name%> <%= @appointment.dietitian.last_name%></p>
+            </div>
           </div>
         </section>
         <hr>
-        <section id="family-members-container" class="row">
-          <% if @family && @family.family_members %>
-            <% @family.family_members.each.with_index(1) do |family_member, index| %>
+        <section>
+          <h3 class="header">Pre Appointment Questionnaire</h3>
+          <%= render "surveys/survey_answers", survey: @survey%>
+        </section>
+        <hr>
+        <section id="family-members-container">
+          <h3 class="header">The <%=@family.head_of_family.last_name%> Family</h3>
+          <div class="row">
+            <% if @family && @family.family_members %>
+              <% @family.family_members.each.with_index(1) do |family_member, index| %>
 
-            <% if family_member == @appointment.patient_focus%>
-              <div class="col-xs-12 alert alert-success">
-            <% else %>
-              <div class="col-xs-12">
-            <% end %>
+              <%# if family_member == @appointment.patient_focus%>
                 <div class="col-xs-12">
+       
+ 
                   <div class="row">
-                    <div class="col-xs-6 text-center">
+                    <div class="col-xs-2">
                       
                       <% if family_member.main_avatar && family_member.main_avatar.icon.url %>
                         <%= image_tag family_member.main_avatar.icon.url %>
                       <% else %>
                         <%= image_tag "icons/add_user_photo.png" %>
                       <% end %>
-                      <h2>
-                        <%= family_member.full_name%> 
-                      </h2>
                     </div>
-
-                    <% if family_member == @appointment.patient_focus%>
-                    <div class="col-xs-6 alert alert-warning">
-
-                      <div id="carousel-dietitian-prep" class="carousel slide" data-ride="carousel" data-interval="false">
-                                <!-- Controls -->
-                        <div class="row">
-                          <div class="col-xs-4">
-                            <a href="#carousel-dietitian-prep" class="btn btn-md btn-default" role="button" data-slide="prev">
-                              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                              <span class="sr-only"></span>
-                              New Growth
-                            </a>
-                          </div>
-                          <div class="col-xs-4 col-xs-offset-4">
-                            <a href="#carousel-dietitian-prep" class="btn btn-md btn-default" role="button" data-slide="next">
-                              Estimated Needs
-                              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                              <span class="sr-only"></span>
-                            </a>
-                          </div>
-                        </div>
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner" role="listbox">
-                          <div class="item active">
-                            <div class="carousel-content">
-                              <div class="col-xs-12">
-
-                                <%= render "growth_entries/growth_assessment_form", growth_chart: @appointment.patient_focus.growth_chart, growth_entry: @appointment.patient_focus.growth_chart.growth_entries.last %>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="item">
-                            <div class="carousel-content">
-                              <div class="col-xs-12">
-
-                                <%= render "growth_entries/estimated_needs_assessment_form", growth_chart: @appointment.patient_focus.growth_chart, growth_entry: @appointment.patient_focus.growth_chart.growth_entries.last %>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-
-
-                      </div>
-
+                    <div class="col-xs-10">
+                      <%= render "/families/show_family_member", family_member: family_member%>
                     </div>
-                    <% end %>
+                    
                   </div>
-                  <div class="panel-group" id="accordion-<%=family_member.id%>" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                      <div class="panel-heading" role="tab" id="headingOne-<%=family_member.id%>">
-                        <h4 class="panel-title">
-                          <a role="button" data-toggle="collapse" data-parent="#accordion-<%=family_member.id%>" href="#collapseOne-<%=family_member.id%>" aria-expanded="true" aria-controls="collapseOne-<%=family_member.id%>">
-                            Nutrition Profile
-                          </a>
-                        </h4>
-                      </div>
-                      <div id="collapseOne-<%=family_member.id%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne-<%=family_member.id%>">
-                        <div class="panel-body">
-                          <%= render "/families/show_family_member", family_member: family_member%>
-                        </div>
-                      </div>
+            
+
+                <% if family_member.growth_chart && family_member.growth_chart.growth_entries.length > 0 && family_member.growth_chart.growth_entries.first.energy_requirement == nil%>
+                  <div id="update-growth-container-<%=family_member.growth_chart.growth_entries.first.id%>" class="row update-growth-container alert alert-danger">
+                    <div class="col-xs-12">
+                      <h3>Please update growth and estimated needs</h3>
+                   
+                      <%= render "/growth_entries/form", growth_chart: family_member.growth_chart, growth_entry: family_member.growth_chart.growth_entries.first %>
+
                     </div>
+                  </div>
+                      
+                <% end %>
+
+
+
+
+                  <div class="panel-group" id="accordion-<%=family_member.id%>" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingTwo-<%=family_member.id%>">
                         <h4 class="panel-title">
@@ -123,7 +96,9 @@
                       </div>
                       <div id="collapseTwo-<%=family_member.id%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo-<%=family_member.id%>">
                         <div class="panel-body">
+
                           <%= render "/growth_entries/list", growth_chart: family_member.growth_chart %>
+
                         </div>
                       </div>
                     </div>
@@ -171,11 +146,10 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              <% end %>
             <% end %>
-          <% end %>
   
-
+          </div>
         </section>
 
 

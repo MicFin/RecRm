@@ -1,8 +1,24 @@
 <tr data-growth-entry-id="<%=growth_entry.id%>">
   <td><%= growth_entry.measured_at.in_time_zone.strftime("%B %d, %Y") %></td>
+  <td><%= growth_entry.age %></td>
   <td><%= growth_entry.height_in_inches %></td>
   <td><%= growth_entry.weight_in_ounces %></td>
-  <td><%= growth_entry.age %></td>
+  <% if current_dietitian %>
+  	  <td><%= growth_entry.height_percentile %></td>
+  	  <td><%= growth_entry.height_z_score %></td>
+  	  <td><%= growth_entry.weight_percentile %></td>
+  	  <td><%= growth_entry.weight_z_score %></td>
+  	  <td><%= growth_entry.bmi_percentile %></td>
+  	  <td><%= growth_entry.bmi_z_score %></td>
+      <td><%= growth_entry.energy_requirement %></td>
+      <td><%= growth_entry.protein_requirement %></td>
+      <td><%= growth_entry.fluids_requirement %></td>
+  	  <td><%= growth_entry.dietitian_note %></td>
+  <% end %>
   <td><%#= link_to 'Edit', edit_growth_chart_growth_entry_path(@growth_chart, growth_entry) %></td>
+  <% if current_user %>
   <td><%= link_to 'Delete', growth_chart_growth_entry_path(growth_chart, growth_entry), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+  <% else %>
+    <td></td>
+  <% end %>
 </tr>

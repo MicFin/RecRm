@@ -1,10 +1,24 @@
 <table class="table growth-entries-table">
 		  <thead>
 				    <tr>
-				      <th>Entry measured at</th>
-				      <th>Height in inches</th>
-				      <th>Weight in ounces</th>
+				      <th>Date measured</th>
 				      <th>Age</th>
+				      <th>Height</th>
+				      <th>Weight</th>
+				      <%=binding.pry%>
+				      <% if current_dietitian%>
+				      	<th>Height %</th>
+				      	<th>Height Z score</th>
+				      	<th>Weight %</th>
+				      	<th>Weight Z score</th>
+				      	<th>BMI %</th>
+				      	<th>BMI Z score</th>
+				      	<th>Energy (calorie range)</th>
+				      	<th>Protein (g/day)</th>
+				      	<th>Fluids (oz)</th>
+				      	<th>Note</th>
+				      <% end %>
+
 				      <th colspan="3"></th>
 				    </tr>
 				  </thead>

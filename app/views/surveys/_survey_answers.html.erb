@@ -1,9 +1,9 @@
 
 
 
-<div id="survey-questions-container" class="row">
+<div class="row">
   <%survey.surveys_questions.each do |question| %>
-    <div id="survey-question-container-<%=question.id%>" class="col-xs-12">
+    <div id="survey-question-container-<%=question.id%>" data-question-id="<%=question.id%>" class="col-xs-12 survey-question-container">
       <% if question.question.question_type == "Response" %>
         <%= render "/surveys/answer_types/answer_type_response", question: question %>
       <% elsif question.question.question_type == "Short Response"%>

@@ -2,12 +2,47 @@
   <%= f.error_notification %>
   <%= f.hidden_field :growth_chart_id, value: growth_chart.id %>
 
+  <% if (defined? current_dietitian) && current_dietitian%>
+    <table class="table">
+      <thead>
+        <tr>
+            <th>Height %</th>
+            <th>Height Z score</th>
+            <th>Weight %</th>
+            <th>Weight Z score</th>
+            <th>BMI %</th>
+            <th>BMI Z score</th>
+            <th>Energy (calorie range)</th>
+            <th>Protein (g/day)</th>
+            <th>Fluids (oz)</th>
+            <th colspan="2">Note</th>
+            <th></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+
+            <td><%= f.input :height_percentile, label: false, placeholder: "28", input_html: {class: "form-control" }  %></td>
+            <td><%= f.input :height_z_score, label: false, placeholder: "28", input_html: {class: "form-control" }  %></td>
+            <td><%= f.input :weight_percentile, label: false, placeholder: "28", input_html: {class: "form-control" }  %></td>
+            <td><%= f.input :weight_z_score, label: false, placeholder: "28", input_html: {class: "form-control" }  %></td>
+            <td><%= f.input :bmi_percentile, label: false, placeholder: "28", input_html: {class: "form-control" }  %></td>
+            <td><%= f.input :bmi_z_score, label: false, placeholder: "28", input_html: {class: "form-control" }  %></td>
+            <td><%= f.input :energy_requirement, label: false, placeholder: "28", input_html: {class: "form-control" }  %></td>
+            <td><%= f.input :protein_requirement, label: false, placeholder: "28", input_html: {class: "form-control" }  %></td>
+            <td><%= f.input :fluids_requirement, label: false, placeholder: "28", input_html: {class: "form-control" }  %></td>
+            <td colspan="2"><%= f.input :dietitian_note, label: false, placeholder: "28", input_html: {class: "form-control" }  %></td>
+            <td><%= f.button :submit, "Save", class: "btn btn-sm btn-success" %></td>
+          </tr>
+      </tbody>
+    </table>
+  <% else %>
     <table class="table">
         <thead>
             <tr>
               <th colspan="6">Date measured</th>
-              <th>Height in inches</th>
-              <th>Weight in ounces</th>
+              <th>Height</th>
+              <th>Weight</th>
               <th></th>
             </tr>
           </thead>
@@ -25,5 +60,5 @@
           </tr>
       </tbody>
     </table>
-
+  <% end %>
 <% end %>

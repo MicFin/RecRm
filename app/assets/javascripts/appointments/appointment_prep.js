@@ -7,6 +7,6 @@ Kindrdfood.appointments = Kindrdfood.appointments || {};
 
 Kindrdfood.appointments.appointmentPrep = {
   init: function(){
-  	// Kindrdfood.dateTimePickers.appointmentPrep.init();
+  	Kindrdfood.formValidations.growthEntries.dietitianForm();
 	}
 }

@@ -62,6 +62,7 @@
 //= require form_validations/growth_entries
 //= require form_validations/food_diary_entries
 //= require form_validations/family_member
+//= require form_validations/surveys
 //= require bootstrap_overrides/carousel
 
 // Browser Specific JS

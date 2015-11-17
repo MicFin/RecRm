@@ -8,7 +8,7 @@ Kindrdfood.rooms = Kindrdfood.rooms || {};
 Kindrdfood.rooms.user_session = {
 
 	init: function(){
-
+		// Kindrdfood.ajaxSpecific.ajaxUpdateUrl.init();
 	},
 	minimizeVideo: function(){
 			$("#layoutContainer").removeClass();

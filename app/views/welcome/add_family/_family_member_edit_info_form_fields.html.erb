@@ -8,13 +8,14 @@
                     <%= f.input :last_name, autofocus: true, input_html: { class: "form-control"} %>
                   </div>
                 </div>
+                <% if family_member.id != current_user.id %>
                 <div class="form-group row">
                   <div class="col-xs-12">
                   <%= label_tag :family_role, "Relation to You:" %>
                     <%= f.input :family_role, autofocus: true, input_html: { class: "form-control"}, placeholder: "Daughter", label: false %>
                   </div>
                 </div>
-
+                <% end %>
                 <div class="row form-group">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <%= label_tag :birth_date, "Birth Date:" %>

@@ -14,26 +14,30 @@
 					<ul>
 
 						<li class="active">
-							<a href=""><span class="glyphicon glyphicon-facetime-video"></span> <span class="hidden-xs hidden-sm nav-item">Video</span></a>
+							<a class="user-session-tool-video" href=""><span class="glyphicon glyphicon-facetime-video"></span> <span class="hidden-xs hidden-sm nav-item">Video</span></a>
 						</li>
 						<li>
-							<a href=""><span class="glyphicon glyphicon-facetime-video"></span> <span class="hidden-xs hidden-sm nav-item">My Notes</span></a>
+							<%=link_to appointment_prep_path(appointment), remote: true do %>
+								<p><span class="glyphicon glyphicon-user"></span></p><p><span class="hidden-xs hidden-sm nav-item">Client Family</span></p>
+							<% end %>	
+			
 						</li>
 						<li>
-							<a href=""><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs hidden-sm nav-item">Client's Family</span></a>
+							<%=link_to dietitian_appointment_survey_path(appointment.id, pre_appt_survey.id), remote: true do %>
+								<p><span class="glyphicon glyphicon-calendar"></span></p><p><span class="hidden-xs hidden-sm nav-item">Client Goals</span></p>
+							<% end %>	
 						</li>
 						<li>
-							<a href=""><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs hidden-sm nav-item">Session Survey</span></a>
+							<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
+								<p><span class="glyphicon glyphicon-calendar"></span></p><p><span class="hidden-xs hidden-sm nav-item">My Notes</span></p>
+							<% end %>	
 						</li>
-						<li>
-							<a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Past Appointments</span></a>
-						</li>
-						<li>
+	<!-- 					<li>
 							<a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Schedule a Follow Up</span></a>
 						</li>
 						<li>
 							<a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Flag Session</span></a>
-						</li>
+						</li> -->
 					</ul>
 				</nav>
 			</header>

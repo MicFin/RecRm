@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   before_filter :load_surveyable, only: [:index, :new, :edit, :create, :show]
-  before_action :set_survey, only: [:edit, :update]
+  before_action :set_survey, only: [:edit, :update, :show]
   include PatientGroupsHelper
 
   def index
@@ -8,33 +8,34 @@ class SurveysController < ApplicationController
   end
 
   def show
-    if params[:modal] == "false"
-      @modal = false 
-    else
-      @modal = true
-    end
-    # if params[:survey_type] == "User-Food"
-    #   @survey_type="User-Food"
-    #   @surveyable_id = @surveyable.id
-    #   # check for current surveys
-    #   current_surveys = Survey.where(surveyable_id: @surveyable_id).where(survey_type: "User-Food")
-    #   if current_surveys.count >= 1
-    #     @survey = current_surveys.last
-    #   else
-    #     @survey = nil
-    #   end
-    # elsif params[:survey_type] == "User-Life"
-    #   @survey_type= "User-Life"
-    #   @surveyable_id = @surveyable.id
-    #   current_surveys = Survey.where(surveyable_id: @surveyable_id).where(survey_type: "User-Life")
-    #   if current_surveys.count >= 1
-    #     @survey = current_surveys.last
-    #   else
-    #     @survey = nil
-    #   end
+    
+    # if params[:modal] == "false"
+    #   @modal = false 
     # else
-      @survey = nil 
+    #   @modal = true
     # end
+    # # if params[:survey_type] == "User-Food"
+    # #   @survey_type="User-Food"
+    # #   @surveyable_id = @surveyable.id
+    # #   # check for current surveys
+    # #   current_surveys = Survey.where(surveyable_id: @surveyable_id).where(survey_type: "User-Food")
+    # #   if current_surveys.count >= 1
+    # #     @survey = current_surveys.last
+    # #   else
+    # #     @survey = nil
+    # #   end
+    # # elsif params[:survey_type] == "User-Life"
+    # #   @survey_type= "User-Life"
+    # #   @surveyable_id = @surveyable.id
+    # #   current_surveys = Survey.where(surveyable_id: @surveyable_id).where(survey_type: "User-Life")
+    # #   if current_surveys.count >= 1
+    # #     @survey = current_surveys.last
+    # #   else
+    # #     @survey = nil
+    # #   end
+    # # else
+    #   @survey = nil 
+    # # end
     respond_to do |format|
       format.js 
     end
@@ -126,11 +127,14 @@ class SurveysController < ApplicationController
         end
         if current_user 
           format.html { redirect_to welcome_home_path, notice: 'Questionnaire was successfully saved.' }
+          format.json { render :show, status: :ok, location: @survey }
+          format.js
         else
           format.html { redirect_to dietitian_authenticated_root_path, notice: 'Questionnaire was successfully updated.' }
+          format.json { render :show, status: :ok, location: @survey }
+          format.js
         end
-        format.json { render :show, status: :ok, location: @survey }
-        format.js
+        
       else
         format.html { render :edit }
         format.json { render json: @survey.errors, status: :unprocessable_entity }

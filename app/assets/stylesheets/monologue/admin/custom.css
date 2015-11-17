@@ -16,7 +16,7 @@
   height:50px;
   font-size: 30px;
 }
-.monologue-admin label:not(.checkbox){
+.monologue-admin label:not(.checkbox):not(.radio-inline){
 	font-size: 18px;
 	line-height: 20px;
 	margin: 10px 0;
@@ -45,7 +45,7 @@
 This mimics the "form-control" class in bootstrap
 Should try doing .extend
 */
-.monologue-admin select, .monologue-admin textarea, .monologue-admin input{
+.monologue-admin select, .monologue-admin textarea, .monologue-admin input[type='text'] {
     display: block;
     width: 100%;
     padding: 6px 12px;

@@ -1,6 +1,11 @@
-$(".family-member-health-container").addClass("hidden");
-<% if @modal != false %>
-	$("#new-user-family-form").append("<%= j render(:partial => 'survey_answers') %>");
-<% else %>
-	$("#appt-prep-info-container").append("<%= j render(:partial => 'survey_answers') %>");
-<% end %>
+    
+    // if showing family in session room then return that save was made
+    if (Kindrdfood.rooms){
+
+      Kindrdfood.rooms.user_session.minimizeVideo();
+      $(".session-tools-container").removeClass("hidden");
+      $(".session-tools-container").html("<%= j render(:partial => '/surveys/survey_answers', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
+      
+
+    // else hide modal and adjust button
+    } 

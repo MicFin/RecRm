@@ -1,13 +1,15 @@
 
 
-// remove existing modal
-$("#appointmentPrepModal").remove();
 
-// add modal with updated data
-$("body").append("<%= j render(:partial => '/appointments/prep_modal', :locals => { appointment: @appointment}) %>");
+// if showing family in session room then return that save was made
 
-// activate modal
-$("#appointmentPrepModal").modal({
-						backdrop: 'static',
-            keyboard: false
-});
+if (Kindrdfood.rooms){
+
+  Kindrdfood.rooms.user_session.minimizeVideo();
+  $(".session-tools-container").removeClass("hidden");
+  $(".session-tools-container").html("<%= j render(:partial => '/appointments/appointment_prep/show_family', :locals => { :family=> @family }) %>");
+  
+
+// else remove and add modal
+// may not need this
+} 

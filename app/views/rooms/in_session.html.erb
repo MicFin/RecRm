@@ -162,7 +162,8 @@
         // if the moderator stream is disconnected
         if (event.stream.connection.data === "Moderator") {
           // if the moderator disconnected on purpose then disconnect all sessions because the session is over
-          // this is also the reason for if the dietitian accidentalyl closes window
+          // this is also the reason for if the dietitian accidentalyl closes window though
+          // Need to differentiate between the two
           if (event.reason === "clientDisconnected") {
             session.disconnect();
             $.ajax({
@@ -171,12 +172,12 @@
               data: {},
               url: "/appointments/"+appointment_id+"/end_appointment",
               success: function(response){
-                $(".active-tab").removeClass("active-tab");
-                $("#family-member-life-button").parent().addClass("active-tab");
+                $("#videobox2").append("<div class='col-xs-8 col-xs-offset-2'><h1><a href='/'>CLICK HERE TO EXIT APPOINTMENT</a></h1></div>");
               } 
             })
-          //trigger pop up form for post session
-          // if it was a connection problem
+          // trigger placeholder text
+          // if reason not clientDisconnected
+          // should look into that more
           } else {
             $("#videobox2").append("<h3 class='text-center' id='video-placeholder'>Oops, be right back!</h3>")
           } 
@@ -297,8 +298,7 @@
             data: {},
             url: "/appointments/"+appointment_id+"/end_appointment",
             success: function(response){
-              $(".active-tab").removeClass("active-tab");
-              $("#family-member-life-button").parent().addClass("active-tab");
+              $("#videobox2").append("<div class='col-xs-8 col-xs-offset-2'><h1><a href='/'>CLICK HERE TO EXIT APPOINTMENT</a></h1></div>");
             } 
           })
         }

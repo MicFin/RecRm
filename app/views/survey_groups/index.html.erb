@@ -15,6 +15,7 @@
           <table class="table">
             <thead>
               <tr>
+                <th>ID#</th>
                 <th>Name</th>
                 <th>Version number</th>
                 <th colspan="3"></th>
@@ -24,6 +25,7 @@
             <tbody>
               <% @survey_groups.each do |survey_group| %>
                 <tr>
+                  <td><%= survey_group.id %></td>
                   <td><%= survey_group.name %></td>
                   <td><%= survey_group.version_number %></td>
                   <td><%= link_to 'Edit', edit_survey_group_path(survey_group) %></td>
@@ -36,7 +38,6 @@
         </section>
         <section class="row">
           <h3>Create New Survey</h3>
-          <%#= link_to "Add new survey group", new_survey_group_path, class: "btn btn-md btn-default" %>
           <%= render "form" %>
         </section>
       </main>

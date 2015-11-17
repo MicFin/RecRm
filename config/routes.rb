@@ -195,9 +195,14 @@ Rails.application.routes.draw do
       # Appointment paths
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_dietitian_survey_update'
       get 'appointments/:id/appointment_review', to: 'appointments#appointment_review', as: 'appointment_review'
+      get 'appointments/:appointment_id/surveys/:id', to: 'surveys#show', as: 'dietitian_appointment_survey'
       get 'appointments/:id/appointment_prep', to: 'appointments#appointment_prep', as: 'appointment_prep'
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_dietitian_appointment'
-      resources :appointments
+      get '/appointments/:id/edit_assessment', to: 'appointments#edit_assessment', as: 'edit_assessment' 
+      resources :appointments do 
+        resources :surveys
+      end
+
 
       # Dashboard paths
       get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'

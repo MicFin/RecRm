@@ -76,7 +76,7 @@
 
 //= require new_recipe_bread_crumb
 //= require health_groups_and_categories_preview
-//= require dietitian_nav
+//= require jquery_validator_add_methods
 //= require dietitian_edit_profile
 //= require recipe_step_list
 //= require override_bootstrap

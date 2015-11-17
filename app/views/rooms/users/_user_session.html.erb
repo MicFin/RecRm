@@ -1,12 +1,14 @@
 <div id="in-session" class="container-fluid">
   <div class="row">
 
-        <%= render "rooms/users/user_session_nav"%>
+        <%= render "rooms/users/user_session_nav", survey: @survey, appointment: @appointment, pre_appt_survey: @pre_appt_survey%>
         <main class="col-xs-10 col-xs-offset-2">
           <p>You are meeting with:</p>
           <h1><%=@appointment.dietitian.signature%></h1>
           <section class="row form-group">
-            <div class="col-xs-10 session-tools-container hidden"></div>
+            <div class="col-xs-10 session-tools-container hidden">
+              <%#= render "/appointments/appointment_prep/survey_form", survey: @survey, surveyable: @surveyable %>
+            </div>
             <div id="layoutContainer" class="col-xs-12">
               <div class="video-center" id="videobox2">
                 <div id="videobox">
@@ -40,6 +42,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
     
+
+
+
     // MOVE TO ANOTHER FILE, CREATE BUILDER WITH DIFFERENT TEMPLATES and STEPS
   var tour = new Tour({
     storage: false,

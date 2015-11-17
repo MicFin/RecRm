@@ -70,6 +70,8 @@ before_filter :authenticate_admin_user!, only: [:index]
       ## should probably use AJAX to call appointment controller for this info
       @new_appointment = Appointment.new(dietitian_id: current_dietitian.id, appointment_host_id: @client.id, patient_focus_id: @appointment.patient_focus_id, status: "Follow Up Unpaid")
 
+      @survey = Survey.generate_for_session(@appointment, @user)
+      @pre_appt_survey = Survey.generate_for_appointment(@appointment, @client)
 
       # @tok_token =  @opentok.generate_token @room.sessionId({
       #   :role        => :moderator
@@ -85,6 +87,10 @@ before_filter :authenticate_admin_user!, only: [:index]
 
       # Get dietitian for appointment
       @dietitian = @appointment.dietitian
+
+      @survey = Survey.generate_for_session(@appointment, @user)
+      @pre_appt_survey = Survey.generate_for_appointment(@appointment, @user)
+      @surveyable = @appointment
     end
     
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109142340) do
+ActiveRecord::Schema.define(version: 20151117164927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -408,7 +408,7 @@ ActiveRecord::Schema.define(version: 20151109142340) do
     t.boolean  "culinary_review_complete",              default: false
     t.boolean  "medical_review_complete",               default: false
     t.boolean  "editorial_initial_review_complete",     default: false
-    t.boolean  "editorial__final_review_required",      default: true
+    t.boolean  "editorial_final_review_required",       default: true
     t.boolean  "editorial_final_review_complete",       default: false
     t.datetime "editorial_final_review_completed_at"
     t.integer  "marketing_reviewer_id"
@@ -421,6 +421,7 @@ ActiveRecord::Schema.define(version: 20151109142340) do
     t.boolean  "call_to_action_activated"
     t.boolean  "author_complete"
     t.datetime "author_completed_at"
+    t.string   "content_type"
   end
 
   add_index "monologue_posts", ["author_id"], name: "index_monologue_posts_on_author_id", using: :btree

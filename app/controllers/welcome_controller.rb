@@ -83,18 +83,18 @@ class WelcomeController < Users::RegistrationsController
       @previous_appointments
       
       # Get quota count
-      if @user.content_quotas.first != nil 
-        @user.quality_review_quota_count = @user.content_quotas.first.quality_reviews
-      else
-        @user.quality_review_quota_count = 0;
-      end
+      # if @user.content_quotas.first != nil 
+      #   @user.quality_review_quota_count = @user.content_quotas.first.quality_reviews
+      # else
+      #   @user.quality_review_quota_count = 0;
+      # end
 
-      # Get completed quota count
-      @user.quality_review_quota_completed_count = @user.quality_reviews.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count
+      # # Get completed quota count
+      # @user.quality_review_quota_completed_count = @user.quality_reviews.where(:created_at => @beginning_of_week.beginning_of_day..@today.end_of_day, completed: true).count
 
-      # Get reviews that are not completed
-      get_incomplete_quality_reviews!
-      @incomplete_quality_reviews
+      # # Get reviews that are not completed
+      # get_incomplete_quality_reviews!
+      # @incomplete_quality_reviews
 
       # Shows views/welcome/index.html.erb
     end

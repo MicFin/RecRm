@@ -5,14 +5,25 @@
     <p>The editorial calendar will drive what content gets created.  Here, the editorial team can select the guidance necessary so that the specs of the article can be created.</p>
     <div class="row form-group">
       <div class="col-xs-12">
-      <label>What type of content is it?</label>
-        <div class="checkbox">
-          <%= post.check_box :tag_list, label: "Article: Client Fulfillment" %>
-          <%= post.check_box :tag_list, label: "Article: Digital Marketing" %>
-          <%= post.check_box :tag_list, label: "Recipe" %>
-          <%= post.check_box :tag_list, label: "Meal Plan" %>
-          <%= post.check_box :tag_list, label: "Pantry List" %>
-        </div>
+        <label>What type of content is it?</label>
+      </div>
+      <div class="col-xs-12">
+        <label class="radio-inline">
+          <input type="radio" name="post[content_type]" id="inlineRadio1" value="Article: Client Fulfillment" <%=(@post.content_type == 'Article: Client Fulfillment') ? "checked" : false %> > Article: Client Fulfillment
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="post[content_type]" id="inlineRadio2" value="Article: Digital Marketing" <%=(@post.content_type == 'Article: Digital Marketing') ? "checked" : false %> > Article: Digital Marketing
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="post[content_type]" id="inlineRadio3" value="Recipe" <%=(@post.content_type == 'Recipe') ? "checked" : false %> > Recipe
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="post[content_type]" id="inlineRadio4" value="Meal Plan" <%=(@post.content_type == 'Meal Plan') ? "checked" : false %> > Meal Plan
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="post[content_type]" id="inlineRadio5" value="Pantry List" <%=(@post.content_type == 'Pantry List') ? "checked" : false %> > Pantry List
+        </label>
+      </div>
       </div>
     </div>
     <div class="row form-group"> 

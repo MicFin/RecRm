@@ -7,17 +7,24 @@ $("#new-user-options form").remove();
 
 
 <% else %> // Prep or post Appointment
-  <% if @user.class == Dietitian %>
-      window.location.href = "/welcome/index";
-  <% else %>
 
-    $(".modal").modal("hide");
 
-    <% if @survey.completed %>
-      $("a[href='/appointments/<%=@surveyable.id%>/client_appointment_prep']").removeClass("btn-md btn-danger").addClass("btn btn-sm btn-primary");
-    <% else %>
-      $("a[href='/appointments/<%=@surveyable.id%>/client_appointment_prep']").removeClass("btn-sm btn-primary").addClass("btn btn-md btn-danger");
-    <% end %>
+    // if showing family in session room then return that save was made
+    if (Kindrdfood.rooms){
 
-  <% end %>
+      alert("Saved");
+
+    // else hide modal and adjust button
+    } else {
+
+      $(".modal").modal("hide");
+
+      <% if @survey.completed %>
+        $("a[href='/appointments/<%=@surveyable.id%>/client_appointment_prep']").removeClass("btn-md btn-danger").addClass("btn btn-sm btn-primary");
+      <% else %>
+        $("a[href='/appointments/<%=@surveyable.id%>/client_appointment_prep']").removeClass("btn-sm btn-primary").addClass("btn btn-md btn-danger");
+      <% end %>
+    }
+
+
 <% end %>

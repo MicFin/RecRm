@@ -13,7 +13,7 @@
 				<nav>	
 					<ul>
 						<li class="active">
-							<a href=""><p><span class="glyphicon glyphicon-facetime-video"></span></p><p><span class="hidden-xs hidden-sm nav-item">Video</span></p></a>
+							<a class="user-session-tool-video" href=""><p><span class="glyphicon glyphicon-facetime-video"></span></p><p><span class="hidden-xs hidden-sm nav-item">Video</span></p></a>
 						</li>
 						<li>
 							<%=link_to family_path(current_user.head_of_families.first.id), remote: true do %>
@@ -22,14 +22,21 @@
 			
 						</li>
 						<li>
-							<a href=""><p><span class="glyphicon glyphicon-calendar"></span></p><p><span class="hidden-xs hidden-sm nav-item">Appointments</span></p></a>
+							<%=link_to appointment_survey_path(appointment, pre_appt_survey), remote: true do %>
+								<p><span class="glyphicon glyphicon-calendar"></span></p><p><span class="hidden-xs hidden-sm nav-item">Goals</span></p>
+							<% end %>	
 						</li>
 						<li>
+							<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
+								<p><span class="glyphicon glyphicon-calendar"></span></p><p><span class="hidden-xs hidden-sm nav-item">Notes</span></p>
+							<% end %>	
+						</li>
+			<!-- 			<li>
 							<a href=""><p><span class="glyphicon glyphicon-cog"></span></p><p><span class="hidden-xs hidden-sm nav-item">Settings</span></p></a>
 						</li>
 						<li>
 							<a href=""><p><span class="glyphicon glyphicon-envelope"></span></p><p><span class="hidden-xs hidden-sm nav-item">Contact Us</span></p></a>
-						</li>	
+						</li>	 -->
 					</ul>
 				</nav>
 			</header>

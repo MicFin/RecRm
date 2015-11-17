@@ -135,7 +135,6 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/appointment_prep
   # currently called from dietitian prep (with modal) 
   # dietitian insession as well
-  
   def appointment_prep
    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
 
@@ -151,25 +150,29 @@ class AppointmentsController < ApplicationController
       @family
 
       @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
-      # Gather all major patient groups
-      # Also gets user unverified groups
-      # from PatientGroupsHelper
-      # get_patient_groups!
-      # @diseases = @diseases 
-      # @intolerances = @intolerances 
-      # @allergies = @allergies
-      # @diets = @diets
-      # @symptoms = @symptoms
 
-      # @unverified_health_groups = @family_members[0].unverified_health_groups
-      # @dietitian_survey = Survey.generate_for_appointment(@appointment, current_dietitian)
-      #@survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
-      # @surveyable = @appointment
-      # if params[:modal] == "false" 
-      #   @modal = false 
-      # else
-      #   @modal = true 
-      # end
+      
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  # GET /appointments/1/edit_assessment  
+  def edit_assessment
+   # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
+    # @survey = @appointment.surveys.where(survey_group_id: 1).first
+    if @appointment.dietitian == current_dietitian 
+      @client = @appointment.appointment_host
+
+      # Gather user's family data
+      # from AppointmentsHelper
+      get_appointment_family_info!
+      @family
+
+      @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
+
       
     end
     respond_to do |format|
@@ -423,62 +426,33 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/end_appointment
   def end_appointment
+    respond_to do |format|
+      if current_user 
 
-    if current_user 
+        # if a user
+        # @survey = Survey.generate_for_post_appointment(@appointment, current_user)
+        # return user end of apt survey
+        
+          format.html { redirect_to user_authenticated_root_path, notice: 'Appointment was successfully completed.' }
+          format.js
+        
+      else
+        # else a dietitian
+        #  dietitian end of appointment survey
+        # @survey = Survey.generate_for_post_appointment(@appointment, current_dietitian)
+        # @follow_up = Survey.generate_for_follow_up(@appointment)
 
-      # if a user
-      @survey = Survey.generate_for_post_appointment(@appointment, current_user)
-      # return user end of apt survey
-    else
-      # else a dietitian
-      #  dietitian end of appointment survey
-      @survey = Survey.generate_for_post_appointment(@appointment, current_dietitian)
-      @appointment.status = "Complete"
-      @appointment.save
-      # @user_pre_appt_survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
-      # # @follow_up = Survey.generate_for_follow_up(@appointment)
-      # # mark appointment as complete, timestamp ending time, save length
-      # @appointment.status = "Complete"
-      # @appointment.save
-
-      # @client = @appointment.appointment_host
-      # # set @family before get_family_info
-
-      # @family = @client.head_of_families.first
-      # # get_family_info!
-      # # @family_members
-      # # @family
-      # # create family should be a helper method on the family model
-      # @family_members = []
-      # if @appointment.patient_focus 
-      #   appointment_focus = @appointment.patient_focus
-      #   @family_members << appointment_focus
-      # end
-      # family_count = @family.users.count
-      
-      # if family_count > 0
-      #   if @client != appointment_focus
-      #     @family_members << @client
-      #     @family.users.each do |family_member| 
-      #       if family_member != appointment_focus
-      #         @family_members << family_member 
-      #       end
-      #     end
-      #   else
-      #     @family.users.each do |family_member|
-      #         @family_members << family_member
-      #     end
-      #   end
-      # else
-      #   @family_members << @client
-      # end
-      # get_patient_groups!
-      # @diseases = @diseases 
-      # @intolerances = @intolerances 
-      # @allergies = @allergies
-      # @diets =  @diets 
-      # @unverified_health_groups = @family_members[0].unverified_health_groups
+        # mark appointment as complete, timestamp ending time, save length
+        @appointment.status = "Complete"
+        @appointment.save
+        # @user_pre_appt_survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
+        # # 
+          format.html { redirect_to dietitian_authenticated_root_path, notice: 'Appointment was successfully completed.' }
+          format.js
+        
+      end
     end
+
   end
 
   # DELETE /appointments/1

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   after_save :create_original_growth_entry, :if => Proc.new {|user| user.height_inches_changed? }
 
+  before_save :create_original_food_diary, :if => Proc.new {|user| user.food_diary == nil }
 
 
   before_destroy :check_for_appointments
@@ -490,6 +491,10 @@ end
     if growth_chart.growth_entries.count < 1 
       GrowthEntry.create({growth_chart_id: growth_chart.id, height_in_inches: self.height_inches, weight_in_ounces: self.weight_ounces, measured_at: Date.today})
     end
+  end
+
+  def create_original_food_diary
+    self.food_diary = FoodDiary.new
   end
 
   def check_for_appointments

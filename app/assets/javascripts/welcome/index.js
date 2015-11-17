@@ -66,6 +66,9 @@ Kindrdfood.welcome.index = {
 		    }
 		  })
 		});
-  	
+  	$(".reschedule-appointment").on("click", function(e){
+  		e.preventDefault();
+  		$("#rescheduleModal").modal("toggle");
+  	})
   }
 }

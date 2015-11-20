@@ -37,7 +37,7 @@ class TimeSlotsController < ApplicationController
       if current_user.email == "d.nitko@comcast.net"
         day_buffer = 0
       else
-        day_buffer = 2 
+        day_buffer = 0 
       end
 
       @time_slots = TimeSlot.where(status: "Current").where(vacancy: true).where(minutes: duration).where(['start_time > ?', DateTime.now + day_buffer.days]) 

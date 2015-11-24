@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   # or whatever path, be it "/blog" or "/monologue"
   mount Monologue::Engine, at: '/education' 
   
+
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   ActiveAdmin.routes(self)

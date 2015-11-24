@@ -3,7 +3,8 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   before_filter :load_post, only: [:edit, :update]
   
   def index
-    @posts = Monologue::Post.default
+    @posts = Monologue::Post.fetch_all_work_in_progress
+    @completed_posts = Monologue::Post.fetch_all_completed
     @authors = Monologue::User.order(:email)
   end
 
@@ -23,6 +24,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   end
 
   def create
+    
     @authors = Monologue::User.order(:email)
     @post = Monologue::Post.new post_params
     @post.user_id = monologue_current_user.id
@@ -38,6 +40,9 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   end
 
   def update
+    
+    find_or_create_tags 
+    
     @authors = Monologue::User.order(:email)
     if @post.update(post_params)
       prepare_flash_and_redirect_to_edit()
@@ -56,6 +61,50 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   end
 
 private
+
+  def find_or_create_tags
+
+    if params[:post][:tags_major_persona]
+      tags_array = params[:post][:tags_major_persona].split(",")
+      tags_array.each do |tag_name|
+        tag = Monologue::Tag.where(name: tag_name).where(tag_category: "major persona").first_or_create
+        if params[:post][:tag_ids]
+          params[:post][:tag_ids].push(tag.id)
+        else
+          params[:post][:tag_ids] = []
+          params[:post][:tag_ids].push(tag.id)
+        end
+      end
+      params[:post].delete "tags_major_persona"
+    end
+    if params[:post][:tags_sub_persona]
+      tags_array = params[:post][:tags_sub_persona].split(",")
+      tags_array.each do |tag_name|
+        tag = Monologue::Tag.where(name: tag_name).where(tag_category: "sub persona").first_or_create
+        if params[:post][:tag_ids]
+          params[:post][:tag_ids].push(tag.id)
+        else
+          params[:post][:tag_ids] = []
+          params[:post][:tag_ids].push(tag.id)
+        end
+      end
+      params[:post].delete "tags_sub_persona"
+    end
+    if params[:post][:tags_theme]
+      tags_array = params[:post][:tags_theme].split(",")
+      tags_array.each do |tag_name|
+        tag = Monologue::Tag.where(name: tag_name).where(tag_category: "theme").first_or_create
+        if params[:post][:tag_ids]
+          params[:post][:tag_ids].push(tag.id)
+        else
+          params[:post][:tag_ids] = []
+          params[:post][:tag_ids].push(tag.id)
+        end
+      end
+      params[:post].delete "tags_theme"
+    end
+  end
+
   def load_post
     @post = Monologue::Post.find(params[:id])
   end
@@ -70,7 +119,7 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :nutrition_review_required, :culinary_review_required, :medical_review_required, :marketing_review_required, :editorial_initial_review_required, :final_sign_off_date, :author_id, :specs, :call_to_action_id, :nutrition_review_completed_at, :medical_review_completed_at, :culinary_review_completed_at, :marketing_review_completed_at, :editorial_initial_review_completed_at, :specs, :specs_completed_at, :marketing_review_complete, :nutrition_review_complete, :culinary_review_complete, :medical_review_complete, :editorial_initial_review_complete, :editorial__final_review_required, :editorial_final_review_complete, :editorial_final_review_completed_at, :editorial_initial_reviewer, :editorial_final_reviewer, :nutrition_reviewer_id, :culinary_reviewer_id, :medical_reviewer_id, :editorial_reviewer_id, :spec_author_id, :call_to_action_activated, :specs_completed, :medical_reviewer_id, :content_type)
+    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :nutrition_review_required, :culinary_review_required, :medical_review_required, :marketing_review_required, :editorial_initial_review_required, :final_sign_off_date, :author_id, :specs, :call_to_action_id, :nutrition_review_completed_at, :medical_review_completed_at, :culinary_review_completed_at, :marketing_review_completed_at, :editorial_initial_review_completed_at, :specs, :specs_completed_at, :marketing_review_complete, :nutrition_review_complete, :culinary_review_complete, :medical_review_complete, :editorial_initial_review_complete, :editorial_final_review_required, :editorial_final_review_complete, :editorial_final_review_completed_at, :editorial_initial_reviewer, :editorial_final_reviewer, :nutrition_reviewer_id, :culinary_reviewer_id, :medical_reviewer_id, :editorial_reviewer_id, :spec_author_id, :call_to_action_activated, :specs_completed, :medical_reviewer_id, :content_type, :public, :author_complete, :tag_ids => [])
   end
 end
  

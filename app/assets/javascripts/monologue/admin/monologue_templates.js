@@ -16,7 +16,7 @@ CKEDITOR.addTemplates("default",
                         '<img src=" " alt="" class="monologue-post-image-center" style="height: 100px; width:100px"/>'+
                     '</div>'+
                     '<div class="row">'+
-                        '<div class="col-xs-6 monologue-post-ingredients">'+
+                        '<div class="col-xs-12 col-md-6 monologue-post-ingredients">'+
                             '<hr>'+
                             '<h4><span class="heading">Makes:</span> 6-8 servings</h4>'+
                             '<h4><span class="heading">Total Time:</span> 45 minutes</h4>'+
@@ -37,7 +37,7 @@ CKEDITOR.addTemplates("default",
                             '<ul>'+
                             '<p>Optional special equipment:  cheesecloth</p>'+
                         '</div>'+
-                        '<div class="col-xs-6 monologue-post-steps">'+
+                        '<div class="col-xs-12 col-md-6 monologue-post-steps">'+
                             '<h2 class="heading">Directions</h2>'+
                             '<p>Combine all the ingredients in a thick bottom pot over high heat. You may want to keep the spice separate, making it easier to extract later.  If so, combine the allspice berries and clove in a small piece of cheesecloth, tie with heat safe string and place in the sauce (the cinnamon stick is easy to remove, no need to add it to the spice satchel). Bring the pot to a boil and quickly reduce heat to low and simmer for approximately 30 minutes.  The relish should be thick and jammy almost gooey.  If your liquid is cooking off too quickly, turn down the heat and add a bit more water, incorporating ¼ cup at a time. Remove the pot from the heat, discard the spices (if you did not use cheesecloth you might have to fish around a bit), and serve at your desired temperature.</p>'+
                             '<hr>'+
@@ -55,7 +55,7 @@ CKEDITOR.addTemplates("default",
                         '<img src=" " alt="" class="monologue-post-image-center" style="height: 100px; width:100px"/>'+
                     '</div>'+
                     '<div class="row">'+
-                        '<div class="col-xs-6 monologue-post-ingredients">'+
+                        '<div class="col-xs-12 col-md-6 monologue-post-ingredients">'+
                             '<hr>'+
                             '<h4><span class="heading">Makes:</span> 6-8 servings</h4>'+
                             '<h4><span class="heading">Total Time:</span> 45 minutes</h4>'+
@@ -80,7 +80,7 @@ CKEDITOR.addTemplates("default",
                             '<ul>'+
                             '<p>Optional special equipment:  cheesecloth</p>'+
                         '</div>'+
-                        '<div class="col-xs-6 monologue-post-steps">'+
+                        '<div class="col-xs-12 col-md-6 monologue-post-steps">'+
                             '<h2 class="heading">Directions</h2>'+
                             '<p>Combine all the ingredients in a thick bottom pot over high heat. You may want to keep the spice separate, making it easier to extract later.  If so, combine the allspice berries and clove in a small piece of cheesecloth, tie with heat safe string and place in the sauce (the cinnamon stick is easy to remove, no need to add it to the spice satchel). Bring the pot to a boil and quickly reduce heat to low and simmer for approximately 30 minutes.  The relish should be thick and jammy almost gooey.  If your liquid is cooking off too quickly, turn down the heat and add a bit more water, incorporating ¼ cup at a time. Remove the pot from the heat, discard the spices (if you did not use cheesecloth you might have to fish around a bit), and serve at your desired temperature.</p>'+
                             '<hr>'+
@@ -98,7 +98,7 @@ CKEDITOR.addTemplates("default",
                         '<img src=" " alt="" class="monologue-post-image-center" style="height: 100px; width:100px"/>'+
                     '</div>'+
                     '<div class="row">'+
-                        '<div class="col-xs-6 monologue-post-ingredients">'+
+                        '<div class="col-xs-12 col-md-6 monologue-post-ingredients">'+
                             '<hr>'+
                             '<h4><span class="heading">Makes:</span> 6-8 servings</h4>'+
                             '<h4><span class="heading">Total Time:</span> 45 minutes</h4>'+
@@ -123,7 +123,7 @@ CKEDITOR.addTemplates("default",
                             '<ul>'+
                             '<p>Optional special equipment:  cheesecloth</p>'+
                         '</div>'+
-                        '<div class="col-xs-6 monologue-post-steps">'+
+                        '<div class="col-xs-12 col-md-6 monologue-post-steps">'+
                             '<h2 class="heading">Directions</h2>'+
                             '<h4 class="monologue-post-subcategory">Sauce</h4>'+
                             '<p>Combine all the ingredients in a thick bottom pot over high heat. You may want to keep the spice separate, making it easier to extract later.  If so, combine the allspice berries and clove in a small piece of cheesecloth, tie with heat safe string and place in the sauce (the cinnamon stick is easy to remove, no need to add it to the spice satchel). Bring the pot to a boil and quickly reduce heat to low and simmer for approximately 30 minutes.  The relish should be thick and jammy almost gooey.  If your liquid is cooking off too quickly, turn down the heat and add a bit more water, incorporating ¼ cup at a time. Remove the pot from the heat, discard the spices (if you did not use cheesecloth you might have to fish around a bit), and serve at your desired temperature.</p>'+

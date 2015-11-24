@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117184902) do
+ActiveRecord::Schema.define(version: 20151124085307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -422,6 +422,7 @@ ActiveRecord::Schema.define(version: 20151117184902) do
     t.boolean  "author_complete"
     t.datetime "author_completed_at"
     t.string   "content_type"
+    t.boolean  "public"
   end
 
   add_index "monologue_posts", ["author_id"], name: "index_monologue_posts_on_author_id", using: :btree

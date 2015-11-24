@@ -26,7 +26,7 @@
 	text-rendering: optimizelegibility;
 }
 
-.monologue-admin	.post_tag_list {
+.monologue-admin	.post_tag_list, .monologue-admin .tags_major_persona_list, .monologue-admin .tags_sub_persona_list, .monologue-admin .tags_theme_list,   {
 		width: 100%;
 }
 

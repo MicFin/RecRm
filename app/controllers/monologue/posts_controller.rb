@@ -14,7 +14,7 @@ class Monologue::PostsController < Monologue::ApplicationController
     if @post.nil?
       not_found
     end
-    @tags = Monologue::Tag.all
+    @tags = Monologue::Tag.last(5)
   end
 
   def feed

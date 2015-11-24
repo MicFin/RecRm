@@ -50,7 +50,7 @@ $(document).ready (function(){
       // close preview
       close: function(e) {
          var el = (e==undefined)? this.el: e.data.el;
-         el.hide();
+         el.toggleClass("hide");
          $("body").attr("style", "overflow:auto;");
          $(document).off("keydown.post-preview");
       }

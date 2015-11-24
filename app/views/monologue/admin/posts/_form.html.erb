@@ -86,13 +86,13 @@
     <h2>Stage 3: Happy Writing</h2> 
     <p>Using the category guidance, specifications, and keywords provided by the editorial team, write the best gosh darn piece of content you can!</p>
     <%= post.text_area :content, label:  t(".happy_writing"), class:  "col-xs-12 ckeditor", id: "post_content" %>
-    <div class="row form-group">
+     <div class="row form-group">
       <div class="col-xs-12 form-group">
         <div class="form-actions">
-          <%= post.button t(".preview"), class: "btn btn-lg btn-default", type: "button", value: "preview"%>
+          <%#= post.button t(".preview"), class: "btn btn-lg btn-default", type: "button", value: "preview"%>
         </div>
       </div>
-    </div>
+    </div> 
     <div class="row form-group">
       <div class="col-xs-12">
         <label>Finished?</label>
@@ -165,7 +165,6 @@
       </table>
   </div>
 </section>
-
 
 <section class="row">
   <div class="col-xs-12">

@@ -1,16 +1,18 @@
 <header class="post-header">
   <h1><%= link_to post.title, post.full_url %></h1>
   <div class="posted">
-    <span data-monologue="time">
+<!--     <span data-monologue="time">
       <time datetime="<%= post.published_at %>">
-        <%= I18n.localize(post.published_at.to_date, format: :long) %>
+        <%#= I18n.localize(post.published_at.to_date, format: :long) %>
       </time>
-    </span>
-    <span data-monologue="user">
-      <%= post.user.name %>
-    </span>
-    <span data-monologue="disqus">
-      <a href="<%= post.full_url + "#disqus_thread" %>"></a>
-    </span>
+    </span> -->
+<!--     <span data-monologue="user">
+      <%#= post.user.name %>
+    </span> -->
+    <p>created by <span><%= post.user.name %></span> on <%= I18n.localize(post.published_at.to_date, format: :long) %></p>
+    <hr>
+<!--     <span data-monologue="disqus">
+      <a href="<%#= post.full_url + "#disqus_thread" %>"></a>
+    </span> -->
   </div>
 </header>

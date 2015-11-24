@@ -39,24 +39,26 @@
       </article>
       
     </section>
-    <section class="articles-side-bar">
+    <section class="articles-side-bar" data-spy="affix" data-offset-top="200">
       <nav class="articles-nav">
-        <h3>Specialty Topics</h3>
+        <h3>Popular Recipes</h3>
         <ul>
           <% @tags.each do |tag| %>
             <li id="tag"><%=link_to "#{tag.name} (#{tag.frequency})", tag_url(tag) %> </li>
-        <!--     <li><a href=""><%#=tag.name%></a></li> -->
           <% end %>
         </ul>
-<!--         <h3>Archives</h3>
+        <h3>Popular Articles</h3>
         <ul>
-          <li><a href="">Link1</a></li>
-          <li><a href="">Link2</a></li>
-        </ul> -->
+          <% @tags.each do |tag| %>
+            <li id="tag"><%=link_to "#{tag.name} (#{tag.frequency})", tag_url(tag) %> </li>
+          <% end %>
+        </ul>
+        <p>Kindrdfood recipes and articles are created by a team of Registered Dietitians and Chefs to meet the needs of each Kindrdfood family.</p>
       </nav>
       <aside class="call-to-action-container">
-        <button class="btn btn-lg btn-primary">SCHEDULE NOW</button>
+        <button class="btn btn-block btn-primary">Get Custom Recipes Now!</button>
       </aside>
     </section>
+    <%= render "monologue/posts/posts_footer" %>
   </div>
 </div>

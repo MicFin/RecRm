@@ -1,10 +1,6 @@
 var AvailabilityCalendar = {
 
   set: function(){
-            // var new_events_array =[],
-            // set_events_array=[], 
-            // live_events_array=[], 
-            // appointment_events_array=[],
     var new_events_hours_total=0,
         set_events_hours_total=0,
         live_events_hours_total=0,

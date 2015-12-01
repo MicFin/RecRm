@@ -15,22 +15,22 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require jquery.turbolinks
-//= require jquery.ui.core
-//= require jquery.ui.widget
-//= require jquery.ui.mouse
-//= require jquery.ui.position
-//= require jquery.ui.slider
-//= require jquery.ui.autocomplete
-//= require jquery.ui.sortable
-//= require jquery.ui.draggable
-//= require jquery.ui.resizable
+// REMOVED NOT USED require jquery.ui.core
+// REMOVED NOT USED require jquery.ui.widget
+// REMOVED NOT USED require jquery.ui.mouse
+// REMOVED NOT USED require jquery.ui.position
+// REMOVED NOT USED require jquery.ui.slider
+// REMOVED NOT USED require jquery.ui.autocomplete
+// REMOVED NOT USED require jquery.ui.sortable
+// REMOVED NOT USED require jquery.ui.draggable
+// REMOVED NOT USED require jquery.ui.resizable
 
 //  JQUERY PLUGINS
 //= require plugins/jquery.Jcrop
-//= require plugins/jquery-toggleText
-//= require plugins/remove_prefix_class
 //= require plugins/jquery-masked-input.min
 //= require plugins/dirty_form_catcher
+// REMOVED NOT USED require plugins/jquery-toggleText
+// REMOVED NOT USED require plugins/remove_prefix_class
 
 //  JAVASCRIPT TIME AND DATES
 //= require moment
@@ -60,7 +60,7 @@
 
 
 // Custom namespaced javascript for cross controller usage
-// // form_validations must come last because it uses datetimepicker and images 
+// form_validations must come last because it uses datetimepicker and images 
 //= require images/new_image
 //= require datetimepickers/date_time_picker
 //= require ajax_specific/ajax_update_url

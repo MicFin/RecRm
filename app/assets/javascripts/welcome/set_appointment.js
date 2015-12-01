@@ -3,7 +3,7 @@ Kindrdfood = Kindrdfood || {};
 
 Kindrdfood.welcome = Kindrdfood.welcome || {};
 
-Kindrdfood.welcome.setAppointment {
+Kindrdfood.welcome.setAppointment = {
 
 	init: function(){
     $("#request-appt-times").on("click", function(e){

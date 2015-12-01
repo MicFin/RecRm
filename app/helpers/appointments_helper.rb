@@ -35,7 +35,7 @@ module AppointmentsHelper
       family.number_of_members = family.family_member_count
       family.family_names = family.all_first_names
       @next_appointment.family_info = family
-      @next_appointment.prepped = @next_appointment.prep_complete?
+      @next_appointment.prepped = @next_appointment.dietitian_prep_complete?
     end
   end
 

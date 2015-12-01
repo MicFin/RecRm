@@ -139,20 +139,19 @@ class AppointmentsController < ApplicationController
    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
 
     @survey = @appointment.surveys.where(survey_group_id: 1).first
-    if @appointment.dietitian == current_dietitian 
-      @client = @appointment.appointment_host
-      # get patient group requires the client as user
+
+    @client = @appointment.appointment_host
+    # get patient group requires the client as user
 
 
-      # Gather user's family data
-      # from AppointmentsHelper
-      get_appointment_family_info!
-      @family
+    # Gather user's family data
+    # from AppointmentsHelper
+    get_appointment_family_info!
+    @family
 
-      @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
+    @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
 
       
-    end
     respond_to do |format|
       format.html
       format.js

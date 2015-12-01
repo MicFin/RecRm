@@ -7,8 +7,8 @@
 // when page has loaded...
 $(document).ready(function() {
 
-	// use smooth scroll
-	SmoothScroll.start();	
+	// // use smooth scroll
+	// SmoothScroll.start();	
 
 	// JS for landing_pages#qoladmin
 	Kindrdfood.landingPages.qolAdmin.validateSignUpForm();

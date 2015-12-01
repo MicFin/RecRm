@@ -10,8 +10,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 
-//  SOME OF THESE COULD BE MOVED TO CONTROLLER SPECIFIC REQUIREMENTS
-
+//  JQUERY
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
@@ -26,36 +25,42 @@
 //= require jquery.ui.draggable
 //= require jquery.ui.resizable
 
+//  JQUERY PLUGINS
 //= require plugins/jquery.Jcrop
 //= require plugins/jquery-toggleText
 //= require plugins/remove_prefix_class
 //= require plugins/jquery-masked-input.min
+//= require plugins/dirty_form_catcher
 
+//  JAVASCRIPT TIME AND DATES
 //= require moment
 
+//  BOOTSTRAP
 //= require bootstrap
 
+//  BOOTSTRAP PLUGINS
 //= require bootstrap-datetimepicker
-
 //= require plugins/bootstrap-tour-min
 
+//  JQUERY CALENDAR
 //= require fullcalendar
 
+//  JQUERY VALIDATION
 //= require plugins/jquery-validate.min.js
 //= require plugins/jquery-validate-extra-methods.min.js
 
-//= require plugins/smooth_scroll
-
-// REMOVED require plugins/skrollr.min.js
-
+//  JAVASCRIPT TIME ZONES
 //= require plugins/time_zones
+
+
+
 
 // Namespace creation for all controller specific javascript
 //= require kindrdfood
 
 
 // Custom namespaced javascript for cross controller usage
-// // form_validations must come last because it uses datetimepicker and images // //
+// // form_validations must come last because it uses datetimepicker and images 
 //= require images/new_image
 //= require datetimepickers/date_time_picker
 //= require ajax_specific/ajax_update_url
@@ -65,34 +70,29 @@
 //= require form_validations/surveys
 //= require bootstrap_overrides/carousel
 
-// Browser Specific JS
+// BROWSER DETAILS FOR RAILS LOG
 //= require browser_details
-
-
-
 
 
 // CLEAN BELOW, MOVE OR IDEALLY REMOVE AS HTML CAN BE REMOVED
 
-//= require new_recipe_bread_crumb
-//= require health_groups_and_categories_preview
-//= require jquery_validator_add_methods
+// Not needed on all controllers
 //= require dietitian_edit_profile
-//= require recipe_step_list
-//= require override_bootstrap
-//= require user_sign_up
-//= require form_validations
+
+// Not needed on all controllers
 //= require availabilities
+
+// Not needed on all controllers
 //= require time_slots
+
+// Not needed at all
 //= require on_page_load
+
+// Not needed on all controllers
 //= require appointment
+
+// Not needed on all controllers
 //= require appointments_index
-//= require tok_box_main.js
+
+// Not needed on all controllers
 //= require google_analytics
-//= require home_page
-
-//= require basic_form_validate
-
-
-
-

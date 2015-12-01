@@ -28,4 +28,7 @@ select,textarea,input,code,pre,kbd,pre,
 .badge,
 .progress,
 .carousel-indicators li,
-.jumbotron {behavior:url($pie-path)}
+.jumbotron {behavior:url("/assets/vendor/bower_components/css3pie/PIE.htc")}
+/*// .jumbotron {behavior:url($pie-path)}*/
+
+

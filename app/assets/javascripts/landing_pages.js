@@ -7,16 +7,16 @@
 // when page has loaded...
 $(document).ready(function() {
 
-	// use smooth scroll
-	SmoothScroll.start();	
+	// // use smooth scroll
+	// SmoothScroll.start();	
 
 	// JS for landing_pages#qoladmin
 	Kindrdfood.landingPages.qolAdmin.validateSignUpForm();
 	Kindrdfood.landingPages.qolAdmin.validateSignInForm();
+	Kindrdfood.landingPages.qolAdmin.validateProviderForm();
 
 	// // JS for landing_pages#index
 	Kindrdfood.landingPages.signUpForm.init();
 
-	// // JS for privider landing page
-	Kindrdfood.landingPages.validateProviderForm();
+
 });

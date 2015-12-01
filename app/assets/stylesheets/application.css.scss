@@ -27,8 +27,8 @@
 @import "vendor/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
 
 
-$pie-path: "vendor/bower_components/css3pie/PIE.htc";
-$box-sizing-path: "partials/browser_specific/box-sizing.htc";
+$pie-path: "/assets/vendor/bower_components/css3pie/PIE.htc";
+$box-sizing-path: "/assets/partials/browser_specific/box-sizing.htc";
 
 // Modules
 // elements used on multiple pages that are loosely tied

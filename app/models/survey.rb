@@ -58,11 +58,11 @@ class Survey < ActiveRecord::Base
   def self.generate_for_session(appointment, client_or_dietitian)
     if client_or_dietitian.class == User
        # survey group ID 1 is pre appointment survey
-      appointment_survey = Survey.where(survey_group_id: 8).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
+      appointment_survey = Survey.where(survey_group_id: 1).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
 
       if appointment_survey.count < 1
         
-        new_survey = Survey.new(survey_group_id: 8)
+        new_survey = Survey.new(survey_group_id: 1)
         new_survey.surveyable_id = appointment.id
         new_survey.surveyable_type = "Appointment"
         new_survey.save
@@ -74,11 +74,11 @@ class Survey < ActiveRecord::Base
       end
     else 
        # survey group ID 1 is pre appointment survey
-      appointment_survey = Survey.where(survey_group_id: 9).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
+      appointment_survey = Survey.where(survey_group_id: 2).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
 
       if appointment_survey.count < 1
         
-        new_survey = Survey.new(survey_group_id: 9)
+        new_survey = Survey.new(survey_group_id: 2)
         new_survey.surveyable_id = appointment.id
         new_survey.surveyable_type = "Appointment"
         new_survey.save

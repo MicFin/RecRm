@@ -222,7 +222,7 @@ class Purchase < ActiveRecord::Base
 
         # Regular price
         if duration == 30
-          self.invoice_cost = 6999
+          self.invoice_cost = 6900
         else
           self.invoice_cost = 10900
         end
@@ -230,9 +230,9 @@ class Purchase < ActiveRecord::Base
         # Tara referral invoice pricing
         if user.tara_referral == true 
           if duration == 30
-            self.invoice_price = 4999
+            self.invoice_price = 4900
           else
-            self.invoice_price = 8999
+            self.invoice_price = 8900
           end
 
         # QOL invoice pricing
@@ -246,7 +246,7 @@ class Purchase < ActiveRecord::Base
         # No Discount invoice pricing
         else
           if duration == 30
-            self.invoice_price = 6999
+            self.invoice_price = 6900
           else
             self.invoice_price = 10900
           end

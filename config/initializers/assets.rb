@@ -13,13 +13,14 @@
   availabilities
   packages
   coupons
-  users/sessions
   survey_groups
   growth_charts
   growth_entries
   food_diaries
   food_diary_entries
   appointments
+  users/sessions
+  dietitians/registrations
   ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.css", "#{controller}.js"]
 end

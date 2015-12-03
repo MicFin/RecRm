@@ -3,7 +3,7 @@
 	// appointments/update.js.erb is called from the appointments#update method with a remote true or JS request that comes from next_session_form.html.erb if status of appointment is "Follow Up Unpaid"
 	$("#next-session-container form").replaceWith("<%= j render(:partial => '/appointments/show_partial', :locals => {:appointment => @appointment}) %>");
 	var dietitian_id = $("#dietitian-session-nav").data("dietitian-id");
-	AvailabilityCalendar.review(dietitian_id);
+	Kindrdfood.availabilities.index.review(dietitian_id);
 
 <% else %>
 

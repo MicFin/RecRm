@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require jquery.turbolinks
+
 // REMOVED NOT USED require jquery.ui.core
 // REMOVED NOT USED require jquery.ui.widget
 // REMOVED NOT USED require jquery.ui.mouse
@@ -29,6 +30,7 @@
 //= require plugins/jquery.Jcrop
 //= require plugins/jquery-masked-input.min
 //= require plugins/dirty_form_catcher
+
 // REMOVED NOT USED require plugins/jquery-toggleText
 // REMOVED NOT USED require plugins/remove_prefix_class
 
@@ -52,47 +54,26 @@
 //  JAVASCRIPT TIME ZONES
 //= require plugins/time_zones
 
+// BROWSER DETAILS FOR RAILS LOG
+//= require browser_details
 
-
-
-// Namespace creation for all controller specific javascript
+// NAMESPACE creation for all controller specific javascript
 //= require kindrdfood
 
-
-// Custom namespaced javascript for cross controller usage
-// form_validations must come last because it uses datetimepicker and images 
+// CUSTOM namespaced javascript for cross controller usage
 //= require images/new_image
 //= require datetimepickers/date_time_picker
 //= require ajax_specific/ajax_update_url
+//= require bootstrap_overrides/carousel
+
+// CUSTOM namespaced form validations (must come after datetimepickers and images)
 //= require form_validations/growth_entries
 //= require form_validations/food_diary_entries
 //= require form_validations/family_member
 //= require form_validations/surveys
-//= require bootstrap_overrides/carousel
 
-// BROWSER DETAILS FOR RAILS LOG
-//= require browser_details
+// STRIPE maybe not needed on all controllers
+//= require payment
 
-
-// CLEAN BELOW, MOVE OR IDEALLY REMOVE AS HTML CAN BE REMOVED
-
-// Not needed on all controllers
-//= require dietitian_edit_profile
-
-// Not needed on all controllers
-//= require availabilities
-
-// Not needed on all controllers
-//= require time_slots
-
-// Not needed at all
-//= require on_page_load
-
-// Not needed on all controllers
-//= require appointment
-
-// Not needed on all controllers
-//= require appointments_index
-
-// Not needed on all controllers
+// GOOGLE ANALYTICS maybe not needed on all controllers
 //= require google_analytics

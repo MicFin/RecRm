@@ -8,7 +8,7 @@ Kindrdfood.rooms = Kindrdfood.rooms || {};
 Kindrdfood.rooms.user_session = {
 
 	init: function(){
-		// Kindrdfood.ajaxSpecific.ajaxUpdateUrl.init();
+
 		$(".user-session-tool-video").on("click", function(e){
 			e.preventDefault();
 			$(".session-tools-container").addClass("hidden");

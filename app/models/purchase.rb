@@ -31,13 +31,11 @@ class Purchase < ActiveRecord::Base
   end
 
   def update_with_payment(credit_card_usage, purchasable)
-    
-    
+        
     # if purchase is valid
     if valid?
 
       # Skip payment for invoices less than or equal to 0
-      
       if invoice_price > 0 
 
         # create new customer or find current customer

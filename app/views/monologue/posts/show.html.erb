@@ -28,7 +28,7 @@
         </div>
 
         <div class="tags" data-monologue="tags">
-          <%= render @post.tags %>
+          <%#= render @post.tags %>
         </div>
 
         <%#= render "monologue/posts/social_sharing" %>
@@ -40,21 +40,21 @@
       
     </section>
     <section class="articles-side-bar hidden-xs hidden-sm" data-spy="affix" data-offset-top="200">
-      <nav class="articles-nav">
+<!--       <nav class="articles-nav">
         <h3>Popular Recipes</h3>
         <ul>
-          <% @tags.each do |tag| %>
-            <li id="tag"><%=link_to "#{tag.name} (#{tag.frequency})", tag_url(tag) %> </li>
-          <% end %>
+          <%# @tags.each do |tag| %>
+            <li id="tag"><%#=link_to "#{tag.name} (#{tag.frequency})", tag_url(tag) %> </li>
+          <%# end %>
         </ul>
         <h3>Popular Articles</h3>
         <ul>
-          <% @tags.each do |tag| %>
-            <li id="tag"><%=link_to "#{tag.name} (#{tag.frequency})", tag_url(tag) %> </li>
-          <% end %>
+          <%# @tags.each do |tag| %>
+            <li id="tag"><%#=link_to "#{tag.name} (#{tag.frequency})", tag_url(tag) %> </li>
+          <%# end %>
         </ul>
         <p>Kindrdfood recipes and articles are created by a team of Registered Dietitians and Chefs to meet the needs of each Kindrdfood family.</p>
-      </nav>
+      </nav> -->
       <aside class="call-to-action-container">
         <button class="btn btn-block btn-primary">Get Custom Recipes Now!</button>
       </aside>

@@ -56,7 +56,8 @@
         <p>Kindrdfood recipes and articles are created by a team of Registered Dietitians and Chefs to meet the needs of each Kindrdfood family.</p>
       </nav> -->
       <aside class="call-to-action-container">
-        <button class="btn btn-block btn-primary">Get Custom Recipes Now!</button>
+        <%= link_to "Get Custom Recipes", main_app.landing_pages_index_path, class: "btn btn-lg btn-primary"%>
+       <!--  <button class="btn btn-block btn-primary">Get Custom Recipes Now!</button> -->
       </aside>
     </section>
     <%= render "monologue/posts/posts_footer" %>

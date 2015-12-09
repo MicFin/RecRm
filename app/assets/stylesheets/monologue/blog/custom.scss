@@ -46,7 +46,7 @@
 		  .content {
 
 
-		  	img {
+		  	img:not(.recipe-image) {
 		  	// coulse us .monologue-post-image-center
 			  	height: auto !important;
 	    		width: 100% !important;

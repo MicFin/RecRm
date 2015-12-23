@@ -42,7 +42,7 @@ module AppointmentsHelper
   def get_upcoming_appointment!
       # client upcoming appointment or clirent unpaid
 
-      @upcoming_appointment = current_user.appointment_hosts.where(status: "Paid").last || current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
+      @upcoming_appointment = current_user.appointment_hosts.where("start_time > ?", DateTime.now).where(status: "Paid").last || current_user.appointment_hosts.where("start_time > ?", DateTime.now).where(status: "Follow Up Unpaid").last
 
       # start date and time 
       if @upcoming_appointment 

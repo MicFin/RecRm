@@ -193,8 +193,10 @@
 	                	<% else %>
 	                		<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-lg btn-danger", remote: true%></td>
 	                	<% end %>
-	                	<td><%#= link_to "Join", in_session_room_path(:id => appointment.first.room_id, appointment: appointment.first.id), class: "btn btn-xs btn-success" %>
+	                	<% if appointment.first.room_id %>
+	                	<td><%= link_to "Join", in_session_room_path(:id => appointment.first.room_id, appointment: appointment.first.id), class: "btn btn-xs btn-success" %>
 										</td>
+										<% end %>
 	                	<td><button class="btn btn-xs btn-default reschedule-appointment">Reschedule</button></td>
 	              	</tr>
 	          

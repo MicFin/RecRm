@@ -108,13 +108,13 @@ gem 'active_link_to', "1.0.3"
 
 # Splits CSS files to avoid limit for IE9 and below 
 # https://github.com/zweilove/css_splitter
-gem 'css_splitter'
+gem 'css_splitter', "0.4.2"
 
 # blogging engine
 # https://github.com/jipiboily/monologue
 gem 'monologue', "0.4.1"
 
-
+gem "airbrake"
 
 group :development do
 # Better error gives you better explanations for errors

@@ -77,6 +77,10 @@ class Purchase < ActiveRecord::Base
             flash[:error] = e.message
             logger.error "Stripe error while creating customer: #{e.message}"
             errors.add :base, "There was a problem with your credit card."
+
+            # if error set stripe card token to nil
+            self.stripe_card_token = nil 
+            self.save!
           end
 
         # charge custoemr
@@ -95,6 +99,10 @@ class Purchase < ActiveRecord::Base
             flash[:error] = e.message
             logger.error "Stripe error while creating customer: #{e.message}"
             errors.add :base, "There was a problem with your credit card."
+
+            # if error set stripe card token to nil
+            self.stripe_card_token = nil 
+            self.save!
           end
         end
       end    

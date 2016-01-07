@@ -63,7 +63,7 @@ class PurchasesController < ApplicationController
     
     token = purchase_params[:stripe_card_token]
     @purchase.stripe_card_token = token
-    @purchase.save
+    # @purchase.save
 
     # check if credit card should be saved to stripe account
     credit_card_usage = params[:credit_card_usage]

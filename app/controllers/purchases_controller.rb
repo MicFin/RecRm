@@ -57,7 +57,7 @@ class PurchasesController < ApplicationController
     # end
   end
 
-  # GET /purchasable_type/purchasable_id/purchase/:id/make_payment
+  # GET /purchasable_type/:purchasable_id/purchase/:id/make_payment
   def make_payment
     
     

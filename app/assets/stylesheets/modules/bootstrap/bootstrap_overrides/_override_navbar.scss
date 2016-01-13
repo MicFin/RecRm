@@ -1,6 +1,12 @@
-.navbar-fixed-top {
+.HB-Bar ~ .landing-page .navbar-fixed-top {
   top: 30px;
+  @media (max-width: $screen-xs-max) {
+  	top: 50px;
+  }
 }
+
+
+
 
 
 

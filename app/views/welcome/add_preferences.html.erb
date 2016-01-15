@@ -7,19 +7,20 @@
 
 	      <div class="modal-body">
 
+	      	<!--  REGISTRATION BREAD CRUMBS -->
 	        <%= render "breadcrumbs" %>
+
+	        <!--  HEADING -->
 	        <h1>Symptoms that apply to <%=@user.first_name%></h1>
 	        <h4>To deselect, simply click on the square again.</h4>
 					
+					<!--  USER FORM -->
 					<%= simple_form_for(@user, :url => {:controller => 'welcome', :action => 'build_preferences'}, html: { method: :patch, class: 'col-xs-12 text-center', role:"form" }) do |f| %>
 
-
-
+						<!--  PREFERENCES FORM FIELDS -->
 						<%= render '/welcome/add_preferences/preferences_form_fields', f: f %>
 
-
-
-
+						<!--  SAVE FORM -->
 					  <div class="actions text-right">
 					    <%= f.button :submit, "Next", class: "btn btn-primary btn-lg" %>
 					  </div>

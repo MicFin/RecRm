@@ -62,21 +62,13 @@
                   <% end %>
                 </div>
 
-
-
-
                 <%= render '/families/family_member_edit_info_form_fields', {f: f, family_member: family_member}%>              
-
-              
-
                 <%= render '/users/registrations/forms/nutrition_form_fields', f: f %>
 
                 <%= render '/users/registrations/forms/preferences_form_fields', f: f %>
 
                 <%= render '/users/registrations/forms/user_family_note', f: f %>
                 
-
-
                 <div class="actions text-right">
                 
                   <%= f.button :submit, "Save", class: "btn btn-primary btn-lg" %>

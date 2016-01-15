@@ -1,17 +1,14 @@
-						<div id="health-group-container" class="row">
+
+<!-- EDIT FAMILY MEMBER FORM -->
+<div id="health-group-container" class="row">
 							<%#= f.collection_check_boxes :patient_group_ids, @diseases, :id, :name, :checked => @user.patient_group_ids %>
 								<h3>Health Groups</h3>
 								<% @diseases.each do |disease| %>
-
-
 									<% if disease.has_triggers? %>
-
 										<% if @user.patient_group_ids.include? disease.id %>
 											<div class="col-xs-12 col-sm-4 form-group">
-									
 												<input id="user_patient_group_ids_<%=disease.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=disease.id%>" data-triggers='true' checked>
 												<label class="checkbox-inline" for="user_patient_group_ids_<%=disease.id%>"><%=disease.name%></label>
-		
 											</div>
 										<% else %>
 											<div class="col-xs-12 col-sm-4 form-group">
@@ -40,15 +37,14 @@
 						 		<div id="add-disease-form" class="add-another-disease-form">
 							 		<input id="new-health-group-field" data-group-type="disease" type="text" placeholder="Autism"/>
 							 		<button id="new-health-group-button" type="button" class="btn btn-sm btn-warning">Add Another</button>
-
 						 		</div>
 						</div>
 
-		<!-- 				<%# if (@user.patient_group_ids & @allergies.map{|allergy| allergy.id }).empty? %>
+						<% if (@user.patient_group_ids & @allergies.map{|allergy| allergy.id }).empty? %>
 							<div class="row triggers-container form-group hidden">
-						<%# else %> -->
+						<% else %> 
 							<div class="row triggers-container form-group">
-						<%# end %>
+						<% end %>
 							<h3>Allergies and Intolerances</h3>
 							<% @allergies.each do |allergy| %>
 								<div class="col-xs-12 col-sm-4 form-group">

@@ -14,7 +14,8 @@
 					<%= simple_form_for(@user, :url => {:controller => 'welcome', :action => 'build_nutrition'}, html: { method: :patch, class: 'col-xs-12 text-center', role:"form" }) do |f| %>
 
 						<%= render '/welcome/add_nutrition/nutrition_form_fields', f: f %>
-
+						
+						<%= render '/users/registrations/forms/user_family_note', f: f %>
 					  <div class="actions text-right">
 					    <%= f.button :submit, "Next", class: "btn btn-primary btn-lg" %>
 					  </div>

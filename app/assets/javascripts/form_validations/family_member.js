@@ -219,39 +219,78 @@ Kindrdfood.formValidations.familyMembers = {
   },
 	addGroupButtons: function(){
 
+    // ADD NEW HEALTH GROUP BUTTON
 		$("#addNutritionModel, #family-page").on("click", "#add-disease-button", function(e){
 			$("#add-disease-form").removeClass("hidden");
 			$(this).addClass("hidden");
 		});
+
+    // ADD NEW HEALTH GROUP FORM SUBMIT
 		$("#addNutritionModel, #family-page").on("click", "#new-health-group-button", function(e){
       e.preventDefault();
+
+      // gets the value of health group entry field
       var group_name = $(this).siblings().first().val();
+
+      // gets the group type (which is currently alwyas set to disease for new health groups)
       var group_type = $(this).siblings().first().attr("data-group-type");
    
-      $(this).siblings().first().val("");
+      // adds the new health group checkbox
       if ( $("#add-disease-button").length >= 1){
+
+        // welcome add nutrition screen
       	$(this).parent().prev().before(
-      	'<span><input name="new_health_groups['+group_type+'][]" type="checkbox" value="' + group_name + '" checked><label class="collection_check_boxes">'+ group_name+'</label></span>');
+      	'<span>'+
+          '<input id="new_health_group_' + group_name + '" name="new_health_groups['+ group_type +'][]" type="checkbox" value="' + group_name + '" checked>'+
+          '<label for="new_health_group_' + group_name + '" class="collection_check_boxes">' + group_name + '</label>' + 
+          '</span>');
       	$("#add-disease-form").addClass("hidden");
       	$("#add-disease-button").removeClass("hidden");
 
+        /// family member edit screen?
       } else {
       	$(this).parent().before(
-      	'<div class="col-xs-6 col-sm-4 form-group"><input name="new_health_groups['+group_type+'][]" type="checkbox" value="' + group_name + '" checked><label class="checkbox-inline">'+ group_name+'</label></div>');
+      	'<div class="col-xs-6 col-sm-4 form-group">' + 
+          '<input id="new_health_group_' + group_name + '" name="new_health_groups[' + group_type + '][]" type="checkbox" value="' + group_name + '" checked>' +
+          '<label class="checkbox-inline">' + group_name + '</label>' +
+        '</div>');
       }
+
+      // set input field to blank
+      $(this).siblings().first().val("");
+
     });
 
+    // when new group is clicked, checkbox was not being checked so using jquery
+    // $("input[name='new_health_groups[disease][]']").each( function(){
+    //   $(this).on("click", function(e){
+    //      e.preventDefault();
+    //      alert(this);
+    //   });
+    // });
+    // ADD NEW ALLERGY BUTTON
 		$("#addNutritionModel, #family-page").on("click", "#new-allergy-group-button", function(e){
       e.preventDefault();
+
+
+      // gets the value of health group entry field
       var group_name = $(this).siblings().first().val();
+
+      // gets the group type (which is currently alwyas set to disease for new health groups)
       var group_type = $(this).siblings().first().data("group-type");
-      $(this).parent().before(
-        '<div class="col-xs-6 col-sm-4 form-group">' +
-					'<input id="user_patient_group_ids_' + group_name+'" name="new_health_groups['+group_type+'][]" type="checkbox" value="' + group_name+'" checked>' +
-					'<label class="checkbox-inline" for="user_patient_group_ids_' + group_name+'">'+group_name +
-					'</label>' +
-				'</div>');
-      $(this).siblings().first().val("");
+
+      if (group_name !== "") {
+        // adds the allergy checkbox
+        $(this).parent().before(
+          '<div class="col-xs-6 col-sm-4 form-group">' +
+  					'<input id="user_patient_group_ids_' + group_name+'" name="new_health_groups['+group_type+'][]" type="checkbox" value="' + group_name+'" checked>' +
+  					'<label class="checkbox-inline" for="user_patient_group_ids_' + group_name+'">'+group_name +
+  					'</label>' +
+  				'</div>');
+
+        // set input field to blank
+        $(this).siblings().first().val("");
+      }
     });
 	},
   validateFamilyMemberForm: function(form_class_name){

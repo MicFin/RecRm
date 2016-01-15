@@ -28,7 +28,7 @@
 								<% if @user.appointment_in_registration.patient_focus == @user %>
 							  	<input type="radio" name="appointment_focus" id="inlineRadio1" value="user-form" checked>You (<%=@user.first_name%>)
 							  	<% else %>
-							  	<input type="radio" name="appointment_focus" id="inlineRadio1" value="user-form">You (<%=@user.first_name%>)
+							  		<input type="radio" name="appointment_focus" id="inlineRadio1" value="user-form">You (<%=@user.first_name%>)
 							  	<% end %>
 							</label>
 

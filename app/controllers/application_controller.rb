@@ -101,6 +101,7 @@ private
   def user_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block) 
   end
+  
   #   # Users that require confirmation, currently from QOL landing page
   # # only QOL admin should be creating these so can redirect to qol
   # def after_inactive_sign_up_path_for(resource)

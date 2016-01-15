@@ -14,7 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# ignore secrets
 /config/secrets.yml
+
+# ignore config
 /config/config.yml
 
 # Ignore DS_Store.
@@ -24,5 +28,9 @@
 # Ignore local file uploads
 /public/uploads
 
+# ignoring public assets
+/public/assets
 
+# Not using .env
 .env 
+

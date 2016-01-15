@@ -8,6 +8,14 @@ Kindrdfood.welcome.getStarted = {
   init: function(){
     $("#get-started-page form").validate({
       rules: {
+        "user[first_name]":{
+          required: true,
+          minlength: 2
+        },
+        "user[last_name]":{
+          required: true,
+          minlength: 2
+        },
 	      "user[date_of_birth(1i)]":{
 	        required: true
 	      },
@@ -49,6 +57,14 @@ Kindrdfood.welcome.getStarted = {
         }
       },
       messages: {
+        "user[first_name]":{
+          required: "Enter first name",
+          minlength: "Must be at least 2 letter"
+        },
+        "user[last_name]":{
+          required: "Enter last name",
+          minlength: "Must be at least 2 letter"
+        },
         "user[date_of_birth(1i)]":{
           required: "Please select a valid date of birth."
         },
@@ -81,5 +97,16 @@ Kindrdfood.welcome.getStarted = {
     var timezone = jstz.determine();
     var rails_timezone = window.RailsTimeZone.to(timezone.name());
     $("#get-started-page form #user_time_zone").val(rails_timezone);
+
+
+    // set popovers    
+    $('span').popover();
+
+
+    // set privacy modal link in popup
+    $("body").on("click", ".privacy-modal-link", function(e){
+      e.preventDefault();
+      $("#privacy-modal").modal();
+    });
   }
 }

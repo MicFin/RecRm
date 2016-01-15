@@ -175,14 +175,14 @@ class WelcomeController < Users::RegistrationsController
     
     # Get appointment
     appointment = @user.appointment_in_registration
-    
+
     # If submitted user has a family role then it means the user created a family member or edited an old family member 
     if params[:user][:family_role]
       
       # If has an ID then they edited an old family member so update
       # Assign to appointment's patient focus
-      if params[:user][:id]
-        @family_member = User.find(params[:user][:id])
+      if params[:id]
+        @family_member = User.find(params[:id])
         @family_member.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
         appointment.patient_focus = @family_member
 

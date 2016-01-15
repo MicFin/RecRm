@@ -28,6 +28,13 @@
 	  }
 }
 
+#get-started-page {
+	form .glyphicon-info-sign {
+	  position: absolute;
+    right: 98%;
+  }
+}
+
 #get-started-page, #set-appointment-page {
 	background-image: url("food/veggies-above.jpg");
 }

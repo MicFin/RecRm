@@ -1,0 +1,110 @@
+<div class="col-xs-12" id="new-article-form">
+  <%= simple_form_for(@article, html: {class: 'form' }) do |f| %>
+    <% if @article.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+        <ul>
+        <% @article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div id="not-main-article-form-container">
+      <div class="col-xs-12">
+        <div class="recipe-form-section row" id="recipe-form-section-4">
+          <div class="recipe-form-steps-container">
+            <div class="col-xs-12 recipe-form-steps form-group">
+              <p><span class="attribute-title orange-font">WHO ARE YOU WRITING FOR?</span> </p>
+              <p>When you write, you want to think about your reader.  Have a plan for how you will appeal to your audience.  Sometimes, plans change (and, that's fine!), you will have the chance to review these categories again after you finish writing. </p> 
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
+              <span class="attribute-title orange-font">Allergies</span>
+              <%= f.association :patient_groups, collection: @allergies, label: false,  as: :check_boxes %>    
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-4">
+              <span class="attribute-title orange-font">Intolerances</span>
+              <%= f.association :patient_groups, collection: @intolerances, label: false,  as: :check_boxes %>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-6">
+              <span class="attribute-title orange-font">Diseases</span>
+              <%= f.association :patient_groups, collection: @diseases, label: false,  as: :check_boxes %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="recipe-form-section row" id="recipe-form-section-3">
+          <div class="recipe-form-steps-container">
+            <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-3">
+              <div class="col-xs-12 form-group">
+                <p>Some articles will be great for all your <span class="attribute-title">readers</span> and some will be much more targeted.  Every reader has a <span class="attribute-title">goal</span>.  Our goal, is to help them reach theirs!</p>
+              </div>
+              <div class="col-xs-12">
+                <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4" id="recipe-form-selector-7">
+                  <span class="attribute-title orange-font">Diagnosis Stages</span>
+                  <%= f.association :characteristics, collection: @diagnosis_stages, label: false,  as: :check_boxes %>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-4" id="recipe-form-selector-2">
+                  <span class="attribute-title orange-font">Age Groups</span>
+                  <%= f.association :characteristics, collection: @age_groups, label: false,  as: :check_boxes %>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-4" id="recipe-form-selector-1">
+                  <span class="attribute-title orange-font">Scenarios</span>
+                  <%= f.association :characteristics, collection: @scenarios, label: false,  as: :check_boxes %> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="recipe-form-section row" id="recipe-form-section-5">
+          <div class="recipe-form-steps-container">
+            <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-5">
+              <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6" id="recipe-form-selector-8">
+                <span class="attribute-title orange-font">How will you appeal to your readers?</span>
+                <%= f.association :characteristics, collection: @appeals, label: false,  as: :check_boxes, :label_method => lambda { |appeal| "#{appeal.name.capitalize}" } %>
+              </div>
+              <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6" id="recipe-form-selector-6">
+                <span class="attribute-title orange-font">Need a little inspiration?  </span><p>Select one of these general topic ideas.</p>
+                <%= f.association :characteristics, collection: @writing_categories, label: false,  as: :check_boxes %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <div class="recipe-form-section row" id="recipe-form-section-6">
+        <div class="recipe-form-steps-container">
+          <div class="col-xs-12 recipe-form-steps text-center">
+            <div class="recipe-form-section-submit actions green-button">
+              <p>Ok, now that we have an idea of who we are writing this article for, let's get to the fun stuff...</p>
+              <button id="start-writing-button" type="button" class="btn large-button">Start Writing</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12" id="main-article-form-container">
+      <div class="row" id="recipe-form-section-5">
+        <div class="recipe-form-steps-container">
+          <div class="col-xs-12 recipe-form-steps" id="recipe-steps-form-section-5">
+            <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="recipe-form-selector-8">
+              <span class="attribute-title orange-font">Your Article's Title</span>
+              <%= f.input :title, label: false, input_html: { maxlength: 55, class: "col-xs-11 text-left" }  %>
+            </div>
+            <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="recipe-form-selector-6">
+              <span class="attribute-title orange-font">Type your article here!</span>
+              <%= f.input :content, label: false, input_html: { :rows=>20, class: "col-xs-11 text-left" } %>
+            </div>
+            <div class="text-center actions green-button">
+              <%= f.button :submit %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= f.input :dietitian_id, :as => :hidden, :input_html => { :value => @dietitian_id } %>
+  <% end %>
+</div>

@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="recipe-form-section row" id="recipe-form-section-0">
+    <h1 id="add-recipe-title-message"><span class="attribute-title"><%=@article.title%></span></h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center recipe-show-message">
+      <h1>This article is saved, please scroll down to review the article one last time!</h1>
+    </div>
+  </div>
+  <div class="row recipe-show-container">
+    <div class="col-xs-12">
+      <h3><%= link_to 'Edit Article Info and Categories', edit_article_path(@article) %></h3>
+    </div>
+    <div class="col-xs-4">
+      <h3>Name:</h3>
+      <p><%= @article.title %></p>
+		</div>
+		<div class="col-xs-4">
+		  <h3>Age Groups:</h3>
+		  <% @age_groups.each do |age_group| %>
+		    <p><%= age_group.name %></p>
+		  <% end %>
+		  <h3>Scenarios:</h3>
+		  <% @scenarios.each do |scenario| %>
+		    <p><%= scenario.name %></p>
+		  <% end %>
+		  <h3>Holidays:</h3>
+		  <% @holidays.each do |holiday| %>
+		    <p><%= holiday.name %></p>
+		  <% end %>
+		  <h3>Cultural:</h3>
+		  <% @cultures.each do |culture| %>
+		    <p><%= culture.name %></p>
+		  <% end %>
+		</div>
+		<div class="col-xs-4">
+		  <h3>Patient Groups:</h3>
+		  <p><strong>Allergies:</strong></p>
+		  <% @allergies.each do |allergy| %>
+		    <p><%=  allergy.name %></p>
+		  <% end %>
+		  <p><strong>Intolerances:</strong></p>
+		  <% @intolerances.each do |intolerance| %>
+		    <p><%=  intolerance.name %></p>
+		  <% end %>
+		  <p><strong>Diseases:</strong></p>
+		  <% @diseases.each do |disease| %>
+		    <p><%=  disease.name %></p>
+		  <% end %>
+		</div>
+		<div class="col-xs-12">
+			<h3>Content:</h3>
+		  <p><%= @article.content %></p>
+		</div>
+	</div>
+	<div class="row recipe-show-container">
+  		<h3>Marketing Items:</h3>
+  		<div id="new-tweet-content" class="col-xs-12"></div>
+  		<% @article.marketing_items.each do |marketing_item| %>  
+		    <div class="col-xs-3" id="marketing-item-<%=marketing_item.id%>">
+		      <strong><%= simple_format marketing_item.category.capitalize %></strong>
+		      <p><%= simple_format marketing_item.content %></p>
+					<%= link_to "Edit", edit_article_marketing_item_path(marketing_item, article_id: @article.id), class: "edit-marketing-item", remote: true %>
+		    </div>
+  		<% end %>
+	</div>
+	<div class="row text-center recipe-show-links recipe-form-section-submit actions">
+	  <div class="col-xs-12 green-button">
+	    <%= link_to 'Add Another Article', new_article_path, class: "btn btn-default btn-lg", id: "save-ingredients-button"%>
+	  </div>
+	  <div class="col-xs-12"><h4>OR</h4></div>
+	  <div class="col-xs-12">
+	    <%= link_to 'See All Your Content', dietitian_recipes_path(current_dietitian), class: "btn btn-default btn-lg" %>
+	  </div> 
+	</div>
+</div>

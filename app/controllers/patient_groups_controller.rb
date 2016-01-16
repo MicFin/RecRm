@@ -28,7 +28,7 @@ class PatientGroupsController < ApplicationController
     @patient_group = PatientGroup.new(patient_group_params)
     respond_to do |format|
       if @patient_group.save
-        format.html { redirect_to @patient_group, notice: 'Recipe step was successfully created.' }
+        format.html { redirect_to @patient_group, notice: 'Health Group was successfully created.' }
         format.json { render :show, status: :created, location: @patient_group }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class PatientGroupsController < ApplicationController
   def update
     respond_to do |format|
       if @patient_group.update(patient_group_params)
-        format.html { redirect_to @patient_group, notice: 'Recipe step was successfully updated.' }
+        format.html { redirect_to @patient_group, notice: 'Health Group was successfully updated.' }
         format.json { render :show, status: :ok, location: @patient_group }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PatientGroupsController < ApplicationController
   def destroy
     @ingredient.destroy
     respond_to do |format|
-      format.html { redirect_to patient_groups_url, notice: 'Recipe step was successfully destroyed.' }
+      format.html { redirect_to patient_groups_url, notice: 'Health Group was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

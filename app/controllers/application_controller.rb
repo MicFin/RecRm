@@ -49,10 +49,10 @@ class ApplicationController < ActionController::Base
 	      # would rather it direct to dietitian_authenticated_root_path but failing
 	      ### dietitian_authenticated_root_path(current_dietitian)
 	      dietitian_authenticated_root_path(resource)
-				# dietitian_recipes_path(resource)
+
 	    else
 	      # if not take them to their home page
-				# dietitian_recipes_path(resource)
+
 				dietitian_authenticated_root_path(resource)
 	    end
 		elsif resource.class == AdminUser

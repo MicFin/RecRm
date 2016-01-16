@@ -11,13 +11,8 @@ class Dietitian < ActiveRecord::Base
   has_many :appointments
   has_many :marketing_items
   has_many :articles
-  has_many :recipes
   has_many :availabilities
   has_many :time_slots, through: :availabilities
-  has_many :first_reviewers, :class_name => "ReviewConflict", :foreign_key => "first_reviewer_id"
-  has_many :second_reviewers, :class_name => "ReviewConflict", :foreign_key => "second_reviewer_id"
-  has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "third_reviewer_id"
-  has_many :third_reviewers, :class_name => "ReviewConflict", :foreign_key => "fourth_reviewer_id"
 
   has_many :images, :as => :imageable, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
@@ -79,16 +74,6 @@ class Dietitian < ActiveRecord::Base
 
   def online?
     updated_at > 10.minutes.ago
-  end
-
-  def incomplete_recipes
-    incomplete_recipes = []
-    self.recipes.each do |recipe|
-      if recipe.completed == false
-        incomplete_recipes << recipe
-      end
-    end
-    return incomplete_recipes
   end
 
 

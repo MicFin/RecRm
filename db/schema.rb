@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116004059) do
+ActiveRecord::Schema.define(version: 20160116013411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -302,14 +302,6 @@ ActiveRecord::Schema.define(version: 20160116004059) do
   add_index "images", ["imageable_id", "imageable_type"], name: "index_images_on_imageable_id_and_imageable_type", using: :btree
   add_index "images", ["position"], name: "index_images_on_position", using: :btree
 
-  create_table "ingredients", force: true do |t|
-    t.string   "name"
-    t.string   "category"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "common_allergen"
-  end
-
   create_table "ingredients_recipes", force: true do |t|
     t.integer  "ingredient_id"
     t.integer  "recipe_id"
@@ -525,27 +517,6 @@ ActiveRecord::Schema.define(version: 20160116004059) do
   end
 
   add_index "recipe_steps", ["recipe_id"], name: "index_recipe_steps_on_recipe_id", using: :btree
-
-  create_table "recipes", force: true do |t|
-    t.string   "name"
-    t.integer  "dietitian_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "description"
-    t.text     "inspiration"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.text     "image_url"
-    t.integer  "serving_size"
-    t.string   "prep_time"
-    t.string   "cook_time"
-    t.string   "difficulty"
-    t.integer  "creation_stage"
-    t.boolean  "completed",           default: false
-    t.boolean  "live_recipe",         default: false, null: false
-  end
 
   create_table "roles", force: true do |t|
     t.string   "name"

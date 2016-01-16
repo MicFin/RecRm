@@ -2,7 +2,6 @@ class HomeController < ApplicationController
 	# before_filter :check_user_logged_in!
 	# include UserHelper
 	# include FamiliesHelper
-	# include RecipesHelper
 
 	def index
 		
@@ -12,19 +11,7 @@ class HomeController < ApplicationController
 			redirect_to dietitian_authenticated_root_path
 		else
 		@new_user  = User.new
-		# #UserHelper
-		# get_user_patient_groups!
-		# get_user_allergens!
-		# get_user_ingredients!
 
-		# #FamilyHelper
-		# get_family!
-		# get_family_patient_groups!
-		# get_family_allergens!
-		# get_family_ingredients!
-
-		# #RecipeHelper
-		# get_recipe_list!("family")
 		end
 	end
 

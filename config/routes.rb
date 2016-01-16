@@ -160,8 +160,6 @@ Rails.application.routes.draw do
       # Time slots paths
       resources :time_slots
 
-      # Recipes paths
-      resources :recipes 
 
     end
 
@@ -235,54 +233,6 @@ Rails.application.routes.draw do
       resources :articles do 
         resources :marketing_items
       end
-      
-      # Recipes paths
-      resources :recipes do
-        resources :marketing_items
-
-        get :autocomplete_ingredient_name, :on => :collection
-      end
-      # Review recipe
-      get 'recipes/:id/review_recipe', to: 'recipes#review_recipe', as: 'review_recipe'
-      get 'recipes/:id/complete_recipe', to: 'recipes#complete_recipe', as: 'complete_recipe'
-      # edit recipe categories
-      get 'recipes/:id/edit_recipe_categories', to: 'recipes#edit_recipe_categories', as: "edit_recipe_categories"
-      patch 'recipes/:id/update_recipe_categories', to: 'recipes#update_recipe_categories', as: "update_recipe_categories"
-      # dietitian recipes index page
-      get '/recipes/dietitian_recipes_index/:id', to: 'recipes#dietitian_recipes_index', as: 'dietitian_recipes'
-      # edit recipe patient groups
-      get 'recipes/:id/edit_patient_groups', to: 'recipes#edit_patient_groups', as: "edit_patient_groups"
-      patch 'recipes/:id/update_patient_groups', to: 'recipes#update_patient_groups', as: "update_patient_groups"
-      # Recipes quick update path
-      get 'recipes/quick_update', to: 'recipes#quick_update', as: "quick_update"
-      # Recipe data path
-      get 'recipes/recipe_data', to: 'recipes#recipe_data', as: "recipe_data"
-     
-      # Recipes steps paths
-      resources :recipe_steps do 
-        collection { post :sort }
-      end
-      # Ingredients recipes paths
-      resources :ingredients_recipes do 
-        collection { post :sort }
-        get :autocomplete_ingredient_name, :on => :collection
-      end
-      # Recipes patient groups paths
-      resources :recipes_patient_groups
-
-      # Ingredient paths
-      resources :ingredients do 
-        get :autocomplete_allergen_name, :on => :collection
-      end
-
-      # Allergen paths
-      # edit ingerdient allergens 
-      get 'ingredients/edit_allergens/:id', to: 'ingredients#edit_allergens', as: "edit_allergens"
-      patch 'ingredients/update_allergens/:id', to: 'ingredients#update_allergens', as: "update_allergens"
-      resources :allergens 
-
-      # Allergen ingredients paths
-      resources :allergens_ingredients
 
       # Rooms paths
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_dietitian_room, :via => :get

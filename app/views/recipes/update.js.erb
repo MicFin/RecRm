@@ -1,9 +1,0 @@
-$('#basic-info-container').replaceWith("<%= j render(:partial => 'basic_info_show') %>");
-$.ajax({
-           type: "GET",
-           datatype: "script",
-           url: "/recipes/<%=@recipe.id%>/edit",
-           data: {recipe_id:"<%=@recipe.id%>"},
-           success: function(response){
-           } 
-       });

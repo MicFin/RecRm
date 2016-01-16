@@ -1,6 +1,5 @@
 class WelcomeController < Users::RegistrationsController
   include AppointmentsHelper
-  include QualityReviewsHelper
   include PatientGroupsHelper
   include FamiliesHelper
 	before_filter :check_user_logged_in!

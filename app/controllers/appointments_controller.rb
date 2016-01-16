@@ -1,17 +1,21 @@
 class AppointmentsController < ApplicationController
+
+  # HELPER METHODS
   include AppointmentsHelper
   include PatientGroupsHelper
   include FamiliesHelper
- # before_filter :check_user_logged_in!, :only
+
   before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :update_duration, :end_appointment, :destroy, :client_appointment_prep]
+
   before_filter :config_opentok, :only => [:update]
 
   # GET /appointments
-  # GET /appointments.json
+  # as: "appointments_path"
   def index
 
     #### user for user appointment nav tab
     if current_user 
+      
       # AppointmentsHelper
       get_previous_appointments!
       @previous_appointments
@@ -52,21 +56,23 @@ class AppointmentsController < ApplicationController
     end
   end
 
-
+  # GET /appointments/:id/select_time
+  # as: 'select_time_path'
   def select_time
     @time_slots = TimeSlot.select_appointment_time_slots 
     @sign_up_stage = @appointment.stage 
     @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
-    
   end
 
+  # GET /appointments/:id/complete_appt_prep_survey
+  # as: 'user_complete_appt_prep_survey_path'
   def complete_appt_prep_survey
-    
     @appointment.status = "Appt-Prep-Survey-Complete"
     @appointment.save
   end
 
-  # get client appointment prep to be completed or edited by client
+  # GET /appointments/:id/client_appointment_prep
+  # as: 'client_appointment_prep_path'
   def client_appointment_prep
     patient_focus = @appointment.patient_focus
     growth_chart = patient_focus.growth_chart || GrowthChart.create(user_id: patient_focus.id)
@@ -81,7 +87,8 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # GET /appointments/new_appointment_request_times
+  # GET: 'appointments/new_appointment_request_times'
+  # as: 'new_appointment_request_times_path'
   def new_appointment_request_times
 
     @new_appointment = Appointment.new
@@ -90,7 +97,8 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # POST /appointments/new_appointment_request_times
+  # POST /appointments/create_appointment_request_times
+  # as: 'create_appointment_request_times'
   def create_appointment_request_times
     @appointment_requests =[]
     patient_focus = current_user.appointment_hosts.last.patient_focus
@@ -132,17 +140,15 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # GET /appointments/1/appointment_prep
-  # currently called from dietitian prep (with modal) 
-  # dietitian insession as well
+  # GET /appointments/:id/appointment_prep
+  # as: 'appointment_prep_path'
+  # currently called from dietitian prep (with modal) and dietitian insession as well
   def appointment_prep
-   # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
-
+   
+    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
     @survey = @appointment.surveys.where(survey_group_id: 1).first
 
     @client = @appointment.appointment_host
-    # get patient group requires the client as user
-
 
     # Gather user's family data
     # from AppointmentsHelper
@@ -151,7 +157,6 @@ class AppointmentsController < ApplicationController
 
     @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
 
-      
     respond_to do |format|
       format.html
       format.js
@@ -159,6 +164,7 @@ class AppointmentsController < ApplicationController
   end
 
   # GET /appointments/1/edit_assessment  
+  # as: 'edit_assessment_path'
   def edit_assessment
    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
     # @survey = @appointment.surveys.where(survey_group_id: 1).first
@@ -233,7 +239,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1
   # GET /appointments/1.json
 
-  # this is where the index modal is coming from to view the prep information before the admin assigns a dietitian
+  # this is where the index modal is coming from to view the prep information before the admin assigns a dietitian to an appointment
   def show
 
     if params[:data] == "Request"

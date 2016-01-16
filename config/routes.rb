@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get 'tara', to: 'landing_pages#tara', as: 'landing_pages_tara'
   get "/join" => redirect("/tara")
   
+  # LANDING PAGES
   get 'our_solution', to: "landing_pages#our_solution", as: "landing_pages_our_solution"
   get 'results', to: "landing_pages#results", as: "landing_pages_results"
   get 'how_it_works', to: "landing_pages#how_it_works", as: "landing_pages_how_it_works"
@@ -48,6 +49,7 @@ Rails.application.routes.draw do
   get 'care', to: "landing_pages#care", as: "landing_pages_care"
   get 'contact_us', to: "landing_pages#contact_us", as: "landing_pages_contact_us"
   get 'refer', to: "landing_pages#refer", as: "landing_pages_refer"
+
   # should change these to not being opened to all users
   post 'packages/:package_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_package_payment'
   resources :packages do 
@@ -64,9 +66,6 @@ Rails.application.routes.draw do
       get :remove_coupon, to: "coupons#remove_coupon", as: 'remove_coupon'
     end
   end
-
-
-
 
   # is it better to do a redirect or another route that goes to the same controller method?
   ### REDIRECTS
@@ -115,9 +114,6 @@ Rails.application.routes.draw do
       get 'welcome/add_preferences', to: "welcome#add_preferences", as: "welcome_add_preferences"
       patch 'welcome/build_preferences', to: "welcome#build_preferences", as: "welcome_build_preferences"
       get 'welcome/set_appointment', to: "welcome#set_appointment", as: "welcome_set_appointment"
-
-      # Dashboard controller paths
-      get 'dashboard/home', to: 'dashboard#home', as: 'user_dashboard'
 
       # Registrations paths
       patch 'registrations/update_time_zone', to: "users/registrations#update_time_zone", as: "users_registrations_update_time_zone"
@@ -203,18 +199,11 @@ Rails.application.routes.draw do
         resources :surveys
       end
 
-
-      # Dashboard paths
-      get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
-      
       # Role assignment paths
       get 'roles/assignments', to: 'roles#assignments', as: 'roles_assignments'
       get 'roles/assignments/edit/:id', to: 'roles#edit_assignments', as: 'edit_assignments'
       patch 'roles/assignments/update/:id', to: 'roles#update_assignments', as: 'update_assignments'
       resources :roles
-
-      # Characteristic paths
-      resources :characteristics
 
       # Member plans paths
       resources :member_plans
@@ -245,10 +234,5 @@ Rails.application.routes.draw do
     end   
   end
   
-
-
-
-
-
 
 end

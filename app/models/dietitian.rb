@@ -13,7 +13,6 @@ class Dietitian < ActiveRecord::Base
   has_many :quality_reviews
   has_many :articles
   has_many :recipes
-  has_many :review_conflicts
   has_many :content_quotas
   has_many :availabilities
   has_many :time_slots, through: :availabilities
@@ -114,25 +113,6 @@ class Dietitian < ActiveRecord::Base
     return complete_quality_reviews
   end
 
-  # def incomplete_review_conflicts
-  #   incomplete_review_conflicts = []
-  #   self.review_conflicts.each do |review_conflict|
-  #     if review_conflict.completed == false 
-  #       incomplete_review_conflicts << review_conflict
-  #     end
-  #   end
-  #   return incomplete_review_conflicts
-  # end
-
-  # def completed_review_conflicts
-  #   complete_review_conflicts = []
-  #   self.review_conflicts.each do |review_conflict|
-  #     if review_conflict.resolved == true 
-  #       complete_review_conflicts << review_conflict
-  #     end
-  #   end
-  #   return complete_review_conflicts
-  # end
 
   # override devise without_password model to remove current_password 
   # def update_without_password(params={})

@@ -208,16 +208,7 @@ Rails.application.routes.draw do
 
       # Dashboard paths
       get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
-      get 'dashboard/recipe_status', to: 'dashboard#recipe_status', as: 'dashboard_recipe_status'
-
-      # Review conflict paths
-      get 'review_conflicts/:id/select_reviewer', to: 'review_conflicts#select_reviewer', as: "select_reviewer"
-      post 'review_conflicts/:id/assign_reviewer', to: 'review_conflicts#assign_reviewer', as: "assign_reviewer"
-      get 'recipes/:recipe_id/review_conflicts/:id/start_review_conflict', to: 'review_conflicts#start_review_conflict', as: "start_review_conflict"
-      patch 'recipes/:recipe_id/review_conflicts/:id/accept_review_conflict', to: 'review_conflicts#accept_review_conflict', as: "accept_review_conflict"
-      patch 'recipes/:recipe_id/review_conflicts/:id/decline_review_conflict', to: 'review_conflicts#decline_review_conflict', as: "decline_review_conflict"
-      patch 'recipes/:recipe_id/review_conflicts/:id/edit_review_conflict', to: 'review_conflicts#edit_review_conflict', as: "edit_review_conflict"
-
+      
       # Role assignment paths
       get 'roles/assignments', to: 'roles#assignments', as: 'roles_assignments'
       get 'roles/assignments/edit/:id', to: 'roles#edit_assignments', as: 'edit_assignments'
@@ -252,10 +243,7 @@ Rails.application.routes.draw do
       
       # Recipes paths
       resources :recipes do
-        resources :quality_reviews do 
-          ### might not want to nest this deep
-          resources :review_conflicts 
-        end
+        resources :quality_reviews
         resources :marketing_items
 
         get :autocomplete_ingredient_name, :on => :collection

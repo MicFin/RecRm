@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124085307) do
+ActiveRecord::Schema.define(version: 20160116000153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -576,37 +576,6 @@ ActiveRecord::Schema.define(version: 20151124085307) do
     t.boolean  "completed",           default: false
     t.boolean  "live_recipe",         default: false, null: false
   end
-
-  create_table "review_conflicts", force: true do |t|
-    t.integer  "risk_level"
-    t.string   "category"
-    t.string   "item"
-    t.text     "first_suggestion"
-    t.text     "issue"
-    t.boolean  "resolved",              default: false
-    t.text     "second_suggestion"
-    t.text     "third_suggestion"
-    t.integer  "review_stage"
-    t.integer  "quality_review_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "first_reviewer_id"
-    t.integer  "second_reviewer_id"
-    t.integer  "third_reviewer_id"
-    t.text     "first_reviewer_notes"
-    t.text     "second_reviewer_notes"
-    t.text     "third_reviewer_notes"
-    t.text     "original_entry"
-    t.datetime "date_resolved_on"
-    t.text     "fourth_suggestion"
-    t.text     "fourth_reviewer_notes"
-    t.integer  "fourth_reviewer_id"
-  end
-
-  add_index "review_conflicts", ["first_reviewer_id"], name: "index_review_conflicts_on_first_reviewer_id", using: :btree
-  add_index "review_conflicts", ["fourth_reviewer_id"], name: "index_review_conflicts_on_fourth_reviewer_id", using: :btree
-  add_index "review_conflicts", ["second_reviewer_id"], name: "index_review_conflicts_on_second_reviewer_id", using: :btree
-  add_index "review_conflicts", ["third_reviewer_id"], name: "index_review_conflicts_on_third_reviewer_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"

@@ -28,7 +28,6 @@ class Recipe < ActiveRecord::Base
   # quality reviews polymoprhic
   has_many :quality_reviews, as: :quality_reviewable
   has_many :marketing_items, as: :marketing_itemable
-  has_many :review_conflicts, through: :quality_reviews
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
@@ -44,33 +43,6 @@ class Recipe < ActiveRecord::Base
       csv << column_names
         csv << recipe.attributes.values_at(*column_names)
     end
-  end
-
-  def number_of_reviewers_hash
-    reviewers_hash = {}
-    total_count = 0
-    unique_array = []
-    unique_count = 0
-    if self.quality_reviews != []
-      self.quality_reviews.each do |quality_review|
-        total_count += 1
-        if unique_array.exclude? quality_review.dietitian_id
-          unique_count += 1
-          unique_array << quality_review.dietitian_id
-        end
-        if quality_review.review_conflicts != []
-          quality_review.review_conflicts.each do |review_conflict|
-            total_count += 1
-            if unique_array.exclude? quality_review.dietitian_id
-              unique_count += 1
-              unique_array << quality_review.dietitian_id
-            end
-          end
-        end
-      end
-    end
-    reviewers_hash = {:total=>total_count, :unique=> unique_count}
-    return reviewers_hash
   end
 
   def ingredient_with_full_name(full_name)
@@ -229,59 +201,6 @@ class Recipe < ActiveRecord::Base
     return full_names
   end
 
-  def fetch_possible_review_conflicts(quality_review)
-    possible_review_conflicts = {}
-    review_items_array = []
-    review_conflicts = quality_review.review_conflicts
-    review_conflicts.each do |review_conflict|
-      possible_review_conflicts[review_conflict.item] = review_conflict
-      review_items_array << review_conflict.item
-    end
-    new_conflict = ReviewConflict.new
-    if ((review_items_array.include? "recipe-name") == false)
-      possible_review_conflicts["recipe-name"] = new_conflict
-    end
-    if ((review_items_array.include? "prep-time") == false)
-      possible_review_conflicts["prep-time"] = new_conflict
-    end
-    if ((review_items_array.include? "cook-time") == false)
-      possible_review_conflicts["cook-time"] = new_conflict
-    end
-    if ((review_items_array.include? "difficulty") == false)
-      possible_review_conflicts["difficulty"] = new_conflict
-    end
-    if ((review_items_array.include? "serving-size") == false)
-      possible_review_conflicts["serving-size"] = new_conflict
-    end
-
-    self.ordered_ingredients.each do |ingredient|
-      if ((review_items_array.include? "ingredient-#{ingredient.id}") == false)
-        possible_review_conflicts["ingredient-#{ingredient.id}"] = new_conflict
-      end
-    end
-    self.steps.each do |step|
-      if ((review_items_array.include? "step-#{step.id}") == false)
-        possible_review_conflicts["step-#{step.id}"] = new_conflict
-      end
-    end
-    self.ingredients.each do |ingredient|
-      if ((review_items_array.include? "allergen-#{ingredient.id}") == false)
-        possible_review_conflicts["allergen-#{ingredient.id}"] = new_conflict
-      end
-    end
-    if ((review_items_array.include? "health-groups") == false)
-      possible_review_conflicts["health-groups"] = new_conflict
-    end
-    if ((review_items_array.include? "recipe-categories") == false)
-      possible_review_conflicts["recipe-categories"] = new_conflict
-    end
-    self.marketing_items.each do |marketing_item|
-      if ((review_items_array.include? "marketing-item-#{marketing_item.id}") == false)
-        possible_review_conflicts["marketing-item-#{marketing_item.id}"] = new_conflict
-      end
-    end
-    return possible_review_conflicts
-  end
 
   def self.all_live_recipes
     live_recipes = []

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116021325) do
+ActiveRecord::Schema.define(version: 20160116024142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,24 +82,6 @@ ActiveRecord::Schema.define(version: 20160116021325) do
 
   add_index "appointments", ["time_slot_id"], name: "index_appointments_on_time_slot_id", using: :btree
 
-  create_table "articles", force: true do |t|
-    t.text     "content"
-    t.integer  "dietitian_id"
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "articles", ["dietitian_id"], name: "index_articles_on_dietitian_id", using: :btree
-
-  create_table "articles_characteristics", id: false, force: true do |t|
-    t.integer "article_id"
-    t.integer "characteristic_id"
-  end
-
-  add_index "articles_characteristics", ["article_id"], name: "index_articles_characteristics_on_article_id", using: :btree
-  add_index "articles_characteristics", ["characteristic_id"], name: "index_articles_characteristics_on_characteristic_id", using: :btree
-
   create_table "articles_patient_groups", id: false, force: true do |t|
     t.integer "article_id"
     t.integer "patient_group_id"
@@ -120,22 +102,6 @@ ActiveRecord::Schema.define(version: 20160116021325) do
   end
 
   add_index "availabilities", ["dietitian_id"], name: "index_availabilities_on_dietitian_id", using: :btree
-
-  create_table "characteristics", force: true do |t|
-    t.string   "category"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "order"
-  end
-
-  create_table "characteristics_recipes", force: true do |t|
-    t.integer "recipe_id"
-    t.integer "characteristic_id"
-  end
-
-  add_index "characteristics_recipes", ["characteristic_id"], name: "index_characteristics_recipes_on_characteristic_id", using: :btree
-  add_index "characteristics_recipes", ["recipe_id"], name: "index_characteristics_recipes_on_recipe_id", using: :btree
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
@@ -402,11 +368,6 @@ ActiveRecord::Schema.define(version: 20160116021325) do
     t.datetime "updated_at"
     t.boolean  "unverified",   default: false
     t.boolean  "has_triggers", default: false, null: false
-  end
-
-  create_table "patient_groups_recipes", id: false, force: true do |t|
-    t.integer "recipe_id"
-    t.integer "patient_group_id"
   end
 
   create_table "patient_groups_users", id: false, force: true do |t|

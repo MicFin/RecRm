@@ -1,4 +1,4 @@
-	
+// Controller specific JS to be executed for families controller	
 
 // Families Controller JS
 

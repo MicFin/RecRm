@@ -1,4 +1,4 @@
-
+// Controller specific JS to be executed for growth charts controller
 
 
 // Grwoth Chart Controller JS

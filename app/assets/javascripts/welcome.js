@@ -1,4 +1,4 @@
-	
+// Controller specific JS to be executed for welcome controller	
 
 // Welcome Controller JS
 //= require welcome/index

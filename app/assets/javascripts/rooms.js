@@ -1,3 +1,4 @@
+// Controller specific JS to be executed for rooms controller
 
 // Rooms Controller JS
 

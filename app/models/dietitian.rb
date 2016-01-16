@@ -9,8 +9,6 @@ class Dietitian < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   has_many :appointments
-  has_many :marketing_items
-  has_many :articles
   has_many :availabilities
   has_many :time_slots, through: :availabilities
 

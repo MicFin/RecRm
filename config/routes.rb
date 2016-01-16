@@ -229,11 +229,6 @@ Rails.application.routes.draw do
       patch 'availabilities/update_schedule', to: 'availabilities#update_schedule', as: "update_schedule"
       resources :availabilities
 
-      # Articles paths
-      resources :articles do 
-        resources :marketing_items
-      end
-
       # Rooms paths
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_dietitian_room, :via => :get
       resources :rooms, only: [:index, :create]

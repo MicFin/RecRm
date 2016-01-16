@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116020459) do
+ActiveRecord::Schema.define(version: 20160116021325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -283,30 +283,6 @@ ActiveRecord::Schema.define(version: 20160116020459) do
 
   add_index "images", ["imageable_id", "imageable_type"], name: "index_images_on_imageable_id_and_imageable_type", using: :btree
   add_index "images", ["position"], name: "index_images_on_position", using: :btree
-
-  create_table "ingredients_recipes_recipe_steps", force: true do |t|
-    t.integer "ingredients_recipe_id"
-    t.integer "recipe_step_id"
-  end
-
-  add_index "ingredients_recipes_recipe_steps", ["ingredients_recipe_id"], name: "index_ingredients_recipes_recipe_steps_on_ingredients_recipe_id", using: :btree
-  add_index "ingredients_recipes_recipe_steps", ["recipe_step_id"], name: "index_ingredients_recipes_recipe_steps_on_recipe_step_id", using: :btree
-
-  create_table "marketing_items", force: true do |t|
-    t.string   "category"
-    t.integer  "order"
-    t.text     "content"
-    t.integer  "dietitian_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "marketing_itemable_id"
-    t.string   "marketing_itemable_type"
-    t.integer  "patient_group_id"
-  end
-
-  add_index "marketing_items", ["dietitian_id"], name: "index_marketing_items_on_dietitian_id", using: :btree
-  add_index "marketing_items", ["marketing_itemable_id", "marketing_itemable_type"], name: "marketing_itemable_id_index", using: :btree
-  add_index "marketing_items", ["patient_group_id"], name: "index_marketing_items_on_patient_group_id", using: :btree
 
   create_table "member_plans", force: true do |t|
     t.string   "name"

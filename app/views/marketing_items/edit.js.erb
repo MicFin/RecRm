@@ -1,6 +1,0 @@
-
-if ("<%=@item_category%>" == "title"){
-	$('#marketing-title-<%=@patient_group_id%>').replaceWith("<%= j render(:partial => 'edit_form') %>");
-} else {
-	$('#marketing-description-<%=@patient_group_id%>').replaceWith("<%= j render(:partial => 'edit_form') %>");
-};

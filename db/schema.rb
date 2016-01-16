@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116024142) do
+ActiveRecord::Schema.define(version: 20160116025404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,14 +49,6 @@ ActiveRecord::Schema.define(version: 20160116024142) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "allergens_patient_groups", id: false, force: true do |t|
-    t.integer "allergen_id",      null: false
-    t.integer "patient_group_id", null: false
-  end
-
-  add_index "allergens_patient_groups", ["allergen_id"], name: "index_allergens_patient_groups_on_allergen_id", using: :btree
-  add_index "allergens_patient_groups", ["patient_group_id"], name: "index_allergens_patient_groups_on_patient_group_id", using: :btree
-
   create_table "appointments", force: true do |t|
     t.integer  "patient_focus_id"
     t.integer  "appointment_host_id"
@@ -81,14 +73,6 @@ ActiveRecord::Schema.define(version: 20160116024142) do
   end
 
   add_index "appointments", ["time_slot_id"], name: "index_appointments_on_time_slot_id", using: :btree
-
-  create_table "articles_patient_groups", id: false, force: true do |t|
-    t.integer "article_id"
-    t.integer "patient_group_id"
-  end
-
-  add_index "articles_patient_groups", ["article_id"], name: "index_articles_patient_groups_on_article_id", using: :btree
-  add_index "articles_patient_groups", ["patient_group_id"], name: "index_articles_patient_groups_on_patient_group_id", using: :btree
 
   create_table "availabilities", force: true do |t|
     t.datetime "start_time"

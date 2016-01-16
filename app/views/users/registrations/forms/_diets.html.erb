@@ -1,8 +1,0 @@
-		  <div role="tabpanel" class="tab-pane fade" id="diets">
-       	<div class="col-xs-12 text-left">
-       	<p>Select all that apply or add your own:</p>
-		        <%= f.association :patient_groups, as: :check_boxes, collection: @diets, label_method: :name, value_method: :id, label: false, :include_hidden => false, item_wrapper_tag: :div, item_wrapper_class: "col-xs-4 select-allergen-box" %>
-
-      	</div>
-				<p><button id="new-user-more-button" class="btn btn-link">Next nutrition category</button></p>
-		  </div>

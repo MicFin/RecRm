@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116013411) do
+ActiveRecord::Schema.define(version: 20160116020459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,24 +48,6 @@ ActiveRecord::Schema.define(version: 20160116013411) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "allergens", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "description",     default: "No Description"
-    t.boolean  "manual_enter"
-    t.boolean  "top_allergen"
-    t.boolean  "common_allergen"
-  end
-
-  create_table "allergens_ingredients", id: false, force: true do |t|
-    t.integer "allergen_id",   null: false
-    t.integer "ingredient_id", null: false
-  end
-
-  add_index "allergens_ingredients", ["allergen_id"], name: "index_allergens_ingredients_on_allergen_id", using: :btree
-  add_index "allergens_ingredients", ["ingredient_id"], name: "index_allergens_ingredients_on_ingredient_id", using: :btree
 
   create_table "allergens_patient_groups", id: false, force: true do |t|
     t.integer "allergen_id",      null: false
@@ -302,22 +284,6 @@ ActiveRecord::Schema.define(version: 20160116013411) do
   add_index "images", ["imageable_id", "imageable_type"], name: "index_images_on_imageable_id_and_imageable_type", using: :btree
   add_index "images", ["position"], name: "index_images_on_position", using: :btree
 
-  create_table "ingredients_recipes", force: true do |t|
-    t.integer  "ingredient_id"
-    t.integer  "recipe_id"
-    t.string   "amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "amount_unit"
-    t.boolean  "main_ingredient"
-    t.boolean  "optional_ingredient"
-    t.string   "display_name"
-    t.integer  "position"
-  end
-
-  add_index "ingredients_recipes", ["ingredient_id"], name: "index_ingredients_recipes_on_ingredient_id", using: :btree
-  add_index "ingredients_recipes", ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id", using: :btree
-
   create_table "ingredients_recipes_recipe_steps", force: true do |t|
     t.integer "ingredients_recipe_id"
     t.integer "recipe_step_id"
@@ -506,17 +472,6 @@ ActiveRecord::Schema.define(version: 20160116013411) do
   end
 
   add_index "questions", ["survey_group_id"], name: "index_questions_on_survey_group_id", using: :btree
-
-  create_table "recipe_steps", force: true do |t|
-    t.text     "directions"
-    t.integer  "recipe_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "position"
-    t.string   "group_name"
-  end
-
-  add_index "recipe_steps", ["recipe_id"], name: "index_recipe_steps_on_recipe_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"

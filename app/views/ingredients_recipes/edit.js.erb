@@ -1,8 +1,0 @@
-$("#ingredients_recipes_<%=@ingredient_id%>").replaceWith("<%= j render(:partial => 'new_ingredient_form') %>");
-	
-
-	// autofill and validate for form
-	FormValidation.unitAutofill();
-	FormValidation.ingredientAutofill();
-	FormValidation.displayNameAutofill();
-	FormValidation.editIngredientValidations();

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116002807) do
+ActiveRecord::Schema.define(version: 20160116004059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,17 +170,6 @@ ActiveRecord::Schema.define(version: 20160116002807) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
-
-  create_table "content_quotas", force: true do |t|
-    t.integer  "quality_reviews"
-    t.integer  "review_conflicts"
-    t.integer  "recipes"
-    t.integer  "dietitian_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "content_quotas", ["dietitian_id"], name: "index_content_quotas_on_dietitian_id", using: :btree
 
   create_table "coupon_redemptions", force: true do |t|
     t.integer  "coupon_id"

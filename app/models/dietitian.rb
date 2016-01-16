@@ -12,7 +12,6 @@ class Dietitian < ActiveRecord::Base
   has_many :marketing_items
   has_many :articles
   has_many :recipes
-  has_many :content_quotas
   has_many :availabilities
   has_many :time_slots, through: :availabilities
   has_many :first_reviewers, :class_name => "ReviewConflict", :foreign_key => "first_reviewer_id"

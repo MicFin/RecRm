@@ -215,10 +215,6 @@ Rails.application.routes.draw do
       patch 'roles/assignments/update/:id', to: 'roles#update_assignments', as: 'update_assignments'
       resources :roles
 
-      # Content quota paths
-      resources :content_quotas
-      get 'content_quotas/assign_content', to: 'content_quotas#assign_content', as: 'assign_content'  
-
       # Characteristic paths
       resources :characteristics
 

@@ -16,23 +16,10 @@
 //= require jquery.remotipart
 //= require jquery.turbolinks
 
-// REMOVED NOT USED require jquery.ui.core
-// REMOVED NOT USED require jquery.ui.widget
-// REMOVED NOT USED require jquery.ui.mouse
-// REMOVED NOT USED require jquery.ui.position
-// REMOVED NOT USED require jquery.ui.slider
-// REMOVED NOT USED require jquery.ui.autocomplete
-// REMOVED NOT USED require jquery.ui.sortable
-// REMOVED NOT USED require jquery.ui.draggable
-// REMOVED NOT USED require jquery.ui.resizable
-
 //  JQUERY PLUGINS
 //= require plugins/jquery.Jcrop
 //= require plugins/jquery-masked-input.min
 //= require plugins/dirty_form_catcher
-
-// REMOVED NOT USED require plugins/jquery-toggleText
-// REMOVED NOT USED require plugins/remove_prefix_class
 
 //  JAVASCRIPT TIME AND DATES
 //= require moment
@@ -73,7 +60,9 @@
 //= require form_validations/surveys
 
 // STRIPE maybe not needed on all controllers
-//= require payment
+//= require plugins/payment
 
 // GOOGLE ANALYTICS maybe not needed on all controllers
 //= require google_analytics
+
+/// CONTROLLER SPECIFIC JAVASCRIPT IS COMPILED IN ASSETS.RB

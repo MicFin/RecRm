@@ -237,13 +237,11 @@ Rails.application.routes.draw do
 
       # Articles paths
       resources :articles do 
-        resources :quality_reviews
         resources :marketing_items
       end
       
       # Recipes paths
       resources :recipes do
-        resources :quality_reviews
         resources :marketing_items
 
         get :autocomplete_ingredient_name, :on => :collection
@@ -263,10 +261,7 @@ Rails.application.routes.draw do
       get 'recipes/quick_update', to: 'recipes#quick_update', as: "quick_update"
       # Recipe data path
       get 'recipes/recipe_data', to: 'recipes#recipe_data', as: "recipe_data"
-      # Quality review paths
-      get 'recipes/:recipe_id/quality_reviews/:id/start_review', to: 'quality_reviews#start_review', as: "quality_reviews_start_review"
-      # submits review to be completed and redirects to dashboard (should be PATCH?)
-      get 'recipes/:recipe_id/quality_reviews/:id/complete_review', to: 'quality_reviews#complete_review', as: "quality_reviews_complete_review"
+     
       # Recipes steps paths
       resources :recipe_steps do 
         collection { post :sort }
@@ -282,7 +277,6 @@ Rails.application.routes.draw do
       # Ingredient paths
       resources :ingredients do 
         get :autocomplete_allergen_name, :on => :collection
-        resources :quality_reviews
       end
 
       # Allergen paths

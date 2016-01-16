@@ -1,5 +1,5 @@
 class Dietitian < ActiveRecord::Base
-  attr_accessor :current_password, :image_cache, :remove_image, :quality_review_quota_count, :quality_review_quota_completed_count
+  attr_accessor :current_password, :image_cache, :remove_image
 
   rolify :role_cname => 'Role'
   scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
@@ -10,7 +10,6 @@ class Dietitian < ActiveRecord::Base
          
   has_many :appointments
   has_many :marketing_items
-  has_many :quality_reviews
   has_many :articles
   has_many :recipes
   has_many :content_quotas
@@ -91,26 +90,6 @@ class Dietitian < ActiveRecord::Base
       end
     end
     return incomplete_recipes
-  end
-
-  def incomplete_quality_reviews
-    incomplete_quality_reviews = []
-    self.quality_reviews.each do |quality_review|
-      if quality_review.completed == false 
-        incomplete_quality_reviews << quality_review
-      end
-    end
-    return incomplete_quality_reviews
-  end
-
-  def completed_quality_reviews
-    complete_quality_reviews = []
-    self.quality_reviews.each do |quality_review|
-      if quality_review.completed == true 
-        complete_quality_reviews << quality_review
-      end
-    end
-    return complete_quality_reviews
   end
 
 

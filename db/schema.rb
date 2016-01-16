@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116000153) do
+ActiveRecord::Schema.define(version: 20160116002807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -512,25 +512,6 @@ ActiveRecord::Schema.define(version: 20160116000153) do
 
   add_index "purchases", ["purchasable_id", "purchasable_type"], name: "index_purchases_on_purchasable_id_and_purchasable_type", using: :btree
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
-
-  create_table "quality_reviews", force: true do |t|
-    t.integer  "dietitian_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "quality_reviewable_id"
-    t.string   "quality_reviewable_type"
-    t.datetime "date_due_by"
-    t.datetime "date_completed_on"
-    t.boolean  "passed"
-    t.boolean  "completed",               default: false, null: false
-    t.datetime "date_started"
-    t.integer  "tier",                    default: 1
-    t.boolean  "resolved",                default: false
-    t.datetime "date_resolved_on"
-  end
-
-  add_index "quality_reviews", ["dietitian_id"], name: "index_quality_reviews_on_dietitian_id", using: :btree
-  add_index "quality_reviews", ["quality_reviewable_id", "quality_reviewable_type"], name: "quality_reviewable_id_index", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "question_type"

@@ -4,7 +4,6 @@ class Ingredient < ActiveRecord::Base
   has_many :ingredients_recipes
   has_many :recipes, through: :ingredients_recipes
   has_and_belongs_to_many :allergens, :uniq => true
-  has_many :quality_reviews, as: :quality_reviewable 
 
   resourcify
   

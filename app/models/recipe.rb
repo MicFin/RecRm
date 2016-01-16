@@ -26,7 +26,6 @@ class Recipe < ActiveRecord::Base
   # removed until can utlilize AJAX to render nested forms for recipe form or to submit for ingredients_recipes forms
   # accepts_nested_attributes_for :ingredients_recipes
   # quality reviews polymoprhic
-  has_many :quality_reviews, as: :quality_reviewable
   has_many :marketing_items, as: :marketing_itemable
 
   def self.to_csv(options = {})
@@ -54,19 +53,6 @@ class Recipe < ActiveRecord::Base
     return false
   end
 
-  def review_tier
-    quality_reviews = self.quality_reviews
-    if quality_reviews.count > 0
-      if (quality_reviews.order("created_at").last.passed != true)
-        review_tier = 1
-      else
-        review_tier = 2
-      end
-    else
-      review_tier = 1
-    end
-    return review_tier
-  end
 
   # recipe counts byt health group
   def self.data_by_health_group
@@ -208,97 +194,6 @@ class Recipe < ActiveRecord::Base
       live_recipes << recipe
     end
     return live_recipes
-  end
-
-  def self.all_need_original_review
-    recipes_not_reviewed = []
-    self.where(completed: true).where(live_recipe: false).each do |recipe|
-      if recipe.quality_reviews.count < 1
-        recipes_not_reviewed << recipe
-      end
-    end
-    return recipes_not_reviewed
-  end
-
-  def self.all_in_first_tier_review
-    recipes_in_review = []
-    self.where(completed: true).where(live_recipe: false).each do|recipe|
-      if recipe.quality_reviews.count >= 1
-        last_review = recipe.quality_reviews.order("created_at").last
-        if ( (last_review.tier == 1) && (last_review.completed == false) )
-          recipes_in_review << recipe
-        end
-      end
-    end
-    return recipes_in_review
-  end
-
-  def self.first_tier_not_resolved
-    recipes_in_review = []
-    self.where(completed: true).where(live_recipe: false).each do|recipe|
-      if recipe.quality_reviews.count >= 1
-        last_review = recipe.quality_reviews.order("created_at").last
-        if ( (last_review.tier == 1) && (last_review.completed == true) && (last_review.resolved == false ) )
-          recipes_in_review << recipe
-        end
-      end
-    end
-    return recipes_in_review
-  end
-
-  def self.all_in_second_tier_review
-    recipes_in_review = []
-    self.where(completed: true).where(live_recipe: false).each do|recipe|
-      if recipe.quality_reviews.count >= 1
-        last_review = recipe.quality_reviews.order("created_at").last
-        if ( (last_review.tier == 2) && (last_review.completed == false) )
-          recipes_in_review << recipe
-        end
-      end
-    end
-    return recipes_in_review
-  end
-
-  def self.second_tier_not_resolved
-    recipes_in_review = []
-    self.where(completed: true).where(live_recipe: false).each do|recipe|
-      if recipe.quality_reviews.count >= 1
-        last_review = recipe.quality_reviews.order("created_at").last
-        if ( (last_review.tier == 2) && (last_review.completed == true) && (last_review.resolved == false) )
-          recipes_in_review << recipe
-        end
-      end
-    end
-    return recipes_in_review
-  end
-
-
-
-  def self.all_need_first_tier_review
-    recipes_not_reviewed = []
-    self.where(completed: true).where(live_recipe: false).each do|recipe|
-      if recipe.quality_reviews.count >= 1
-        last_review = recipe.quality_reviews.order("created_at").last
-        if ( (last_review.resolved == true) && (last_review.passed != true) )
-          recipes_not_reviewed << recipe
-        end
-      end
-    end
-    return recipes_not_reviewed
-  end
-
-  def self.all_need_second_tier_review
-    recipes_not_reviewed = []
-    self.where(completed: true).where(live_recipe: false).each do|recipe|
-      if recipe.quality_reviews.count >= 1
-        last_review = recipe.quality_reviews.order("created_at").last
-        last_review_passed = last_review.passed
-        if ((last_review_passed == true) && (last_review.resolved == true))
-          recipes_not_reviewed << recipe
-        end
-      end
-    end
-    return recipes_not_reviewed
   end
 
   # returns recipe steps by group

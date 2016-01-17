@@ -38,7 +38,10 @@
             <% if @appointment.stripe_card_token %>
               <h2>This appointment is already set for <%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M")%> - <%=@appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p")%></h2>
             <% else %>
-              <div id="select-appt-cal" class="col-xs-12"></div>
+
+              <div id="select-appt-cal" class="col-xs-12">
+                <%=image_tag "loading_spinners/spin.gif", class: "loading-spinner img-responsive" %>
+              </div>
             <% end %>
             <div class="col-xs-12">
             <h3>Can't find a time that works for you?</h3>

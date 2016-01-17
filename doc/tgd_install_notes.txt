@@ -1,0 +1,114 @@
+# Development xample install for OSX
+# This machine was OSX El Capitan 10.11.1
+
+# Needed to follow this on an older MBP that had lots of OSX upgrades applied
+# and currently has OSX 10.11.x El Capitan.
+# https://ohthehugemanatee.org/blog/2015/10/01/how-i-got-el-capitain-working-with-my-developer-tools/
+# You may not need this. Or you make only need from step 3 on as shown in the comments.
+
+# Install postgres from http://postgresapp.com
+
+# Install homebrew from http://brew.sh
+
+# Install rbenv with homebrew.
+brew install rbenv.
+
+# Optional: Install ruby 2.1.5 on your development system.
+# If using rbenv.
+rbenv install -v 2.1.5
+
+# Optional: Only if you don't have a .ruby-version file!
+# Create a ruby version file in the root directory
+# this will create a .ruby-version file. It will contain
+# 2.1.5.
+# This will be used by rbenv or rvm to determine the correct
+# version of ruby.
+rbenv local 2.1.5
+
+# Tell Rubygems not to install the documentation for each package locally
+echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+
+# Install the bundler gem.
+gem install bundler
+
+# bundle install gems
+bundle install
+
+# pg gem install failed so had to use this to install pg gem.
+# Note: replace 9.5 with whatever version of postgres you've installed
+gem install pg -v '0.17.1' -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/9.5/bin/pg_config
+
+# setup DB
+rake db:create
+rake db:migrate
+
+# Migration are failing because:
+
+# 1) The file config/initializers/database.rb expected
+# there to be a config file, config/config.yml, to have the DB credentials
+# Solution:
+# Get a copy of the config.yml from another developer. DO NOT COMMIT the
+# config.yml file.
+# Workaround:
+# In config/initializers/database.rb don't check for config in dev or test mode.
+if !Rails.env.development? && !Rails.env.test?
+  ENV = YAML.load_file("#{::Rails.root}/config/config.yml")[::Rails.env]
+end
+
+# And in config/database.yml remove the credentials from dev and test DB's.
+...
+development:
+  <<: *default
+  database: myapp_development
+
+test:
+  <<: *default
+  database: myapp_test
+...
+
+# 2) No Stripe API secret key. This is kept in the config/config.yml file.
+
+# 3) No Devise.secret_key.
+# Failure message said to add config.secret_key = '...' to devise initializer
+# Solution:
+# Generate a good secret
+rake secret
+'secret key'
+# In the config/initializers/devise.rb add:
+  if Rails.env.development? ||!Rails.env.test?
+    config.secret_key = '7fc0f4ab54741dad76c0a8d8eab5c7c28698b838c093f45dcb59345035143d7533804ea71e36d8fb2beacf58cdfa8e65e9e7608dd14cf7c861a631047a59804e'
+  else
+    config.secret_key = ENV['DEVISE_SECRET_KEY']
+  end
+
+# 4) LOTS OF MIGRATIONS FAILING!!!!
+# Lots of migrations to create files when removing
+# recipes, allergens, etc ee broken_migrations.txt
+# Solution:
+# Find the where the create migrations for the recipes, etc
+# tables are in git commits.
+# Restore these create migrations. Just took to much time
+# did the workaround below!
+
+# Workaround:
+# Load DDL, Schema for DB using db/schema.rb and rake.
+rake db:schema:load
+
+
+# 5) Seed file was not committed.
+# Solution:
+# i) Generate a good secret for development and test.
+rake secret
+'secret key'
+
+# ii) Create a config/secrets.yml and add this
+development:
+  secret_key_base: 'secret key'
+
+test:
+  secret_key_base: 'secret key'
+
+production:
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
+
+# iii) Remove secrets.yml from .gitignore

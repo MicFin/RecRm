@@ -19,11 +19,11 @@ module Myapp
     #   ENV['PATH'] += File::PATH_SEPARATOR + '/usr/local/bin'
     # end
 
-
+    # NOT SURE THIS IS NECESSARY
     if Rails.env.production?
       config.stripe.publishable_key = 'pk_live_eKJSALzXBAibHjg97Osuzfdm'
     else
-      config.stripe.publishable_key = 'pk_test_ZhUy6XVDQjBUGspdTdbxeyy3'
+      config.stripe.publishable_key = 'pk_test_cZieXcu5WhjQKKDCmOY0PtoA'
     end
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.

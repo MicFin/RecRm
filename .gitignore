@@ -15,9 +15,6 @@
 /log/*.log
 /tmp
 
-# ignore secrets
-/config/secrets.yml
-
 # ignore config
 /config/config.yml
 
@@ -32,5 +29,4 @@
 /public/assets
 
 # Not using .env
-.env 
-
+.env

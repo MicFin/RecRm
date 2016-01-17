@@ -13,12 +13,12 @@ Rails.application.configure do
   #   :s3_credentials => {
   #     :bucket => 'kindrd_pics'
   #   }
-  # }  
+  # }
   # # config.stripe.eager_load = ['user']
-  # # turned serve static assets to false for 
+  # # turned serve static assets to false for
   # # stoping ajax from being cached and caling itself twice
   # config.serve_static_assets = false
-  # turned serve static assets to true for 
+  # turned serve static assets to true for
   # carrierview images not loading from pbulic folder
   config.serve_static_assets = true
   # In the development environment your application's code is reloaded on
@@ -60,4 +60,6 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {:address => "localhost", :port => "1025"}
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.log_level = :debug
 end

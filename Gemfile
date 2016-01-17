@@ -41,7 +41,7 @@ gem 'jquery-turbolinks'
 #   Inside your views, use the 'simple_form_for' with one of the Bootstrap form classes, '.form-horizontal', '.form-inline', '.form-search' or '.form-vertical', as the following: simple_form_for(@user, html: {class: 'form-horizontal' }) do |form|
 gem 'simple_form', "3.0.2"
 
-# Required to use with gem 'rails3-jquery-autocomplete' 
+# Required to use with gem 'rails3-jquery-autocomplete'
 # only requiring widget //= require jquery.ui.autocomplete
 gem 'jquery-ui-rails', "4.2.1"
 
@@ -61,7 +61,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 # manages phone number validation
 gem 'phony_rails', "0.6.1"
 
-# video conferencing 
+# video conferencing
 gem "opentok", "2.2.1"
 
 
@@ -75,11 +75,11 @@ gem 'acts_as_list', "0.3.0"
 # Minimal authorization through OO design and pure Ruby classes
 # https://github.com/elabs/pundit
 gem "pundit", "0.2.2"
- 
+
 # https://github.com/RolifyCommunity/rolify
 gem 'rolify', "3.4.1"
 
-# javascript calendar 
+# javascript calendar
 gem 'fullcalendar-rails', '~> 2.3.1'
 
 # rails stripe payment integration
@@ -90,7 +90,7 @@ gem 'stripe-rails', "0.3.1"
 # rails URL downcaser uses Rack middleware to make URLs case insensitive.
 # all image file names and url's should be all lower case to work consistently
 # customization in config/initializers/route_downcaser.rb
-# https://github.com/carstengehling/route_downcaser 
+# https://github.com/carstengehling/route_downcaser
 gem 'route_downcaser', "1.1.4"
 
 # browser details for server requests
@@ -106,7 +106,7 @@ gem "lograge", "0.3.4"
 # https://github.com/comfy/active_link_to/issues/14
 gem 'active_link_to', "1.0.3"
 
-# Splits CSS files to avoid limit for IE9 and below 
+# Splits CSS files to avoid limit for IE9 and below
 # https://github.com/zweilove/css_splitter
 gem 'css_splitter', "0.4.2"
 
@@ -120,7 +120,7 @@ group :development do
 # Better error gives you better explanations for errors
 # https://github.com/charliesome/better_errors
   gem "better_errors", "1.1.0"
-# binding of caller allows you to do variable inspection with better errors  
+# binding of caller allows you to do variable inspection with better errors
   gem "binding_of_caller", "0.7.2"
 # Pry allows you to debug, place a binding.pry in ruby code and you can debug from that place in the console
   gem 'pry', "0.10.0"
@@ -131,6 +131,5 @@ group :development do
 # https://github.com/schneems/sextant
   gem 'sextant', "0.2.4"
 
+  gem 'quiet_assets'
 end
-
-

@@ -4,20 +4,16 @@ Kindrdfood = Kindrdfood || {};
 Kindrdfood.welcome = Kindrdfood.welcome || {};
 
 Kindrdfood.welcome.setAppointment = {
-
-	init: function(){
-    this.setRequestTimeButton();
-
+  startDate: function(){
     // start date is set to today
     var start_date = new Date(); 
     start_date.setDate( start_date.getDate() + 0 );
-
-    // get number of day, 1-7
-    var start_day = start_date.getDay();
-
-    // full calendar settings
-    var event_start_times_rendered = [];
-    var dates_taken = [];
+    return start_date;
+  },
+  unavailableTimeSlots: [],
+  availableTimeSlots: [],
+	init: function(){
+    this.setRequestTimeButton();
 
     // inititate fullcalendar
     $('#select-appt-cal').fullCalendar({
@@ -83,13 +79,14 @@ Kindrdfood.welcome.setAppointment = {
       viewRender: function (view) {
 
         // reset dates taken when rendering a new calendar range
-        if (dates_taken.length > 0) {
-          $('#select-appt-cal').fullCalendar( 'removeEventSource', dates_taken );
-          dates_taken = [];
+        if (Kindrdfood.welcome.setAppointment.unavailableTimeSlots.length > 0) {
+          $('#select-appt-cal').fullCalendar( 'removeEventSource', Kindrdfood.welcome.setAppointment.unavailableTimeSlots );
+          Kindrdfood.welcome.setAppointment.unavailableTimeSlots = [];
+          Kindrdfood.welcome.setAppointment.availableTimeSlots = [];
         }
 
         // moment of start date which is today
-        var start_moment = moment(start_date);
+        var start_moment = moment(Kindrdfood.welcome.setAppointment.startDate());
         var today_moment = moment(new Date());
 
         // add disabled class to previous, next, or neither depending on range
@@ -167,8 +164,7 @@ Kindrdfood.welcome.setAppointment = {
         if (event.title != "time-slot-taken") {
 
           // add it to event start times rendered because it is an available time slot to choose from
-          event_start_times_rendered.push(eventStart.format());
-      
+          Kindrdfood.welcome.setAppointment.availableTimeSlots.push(eventStart.format());
         } 
 
         // remove fullcalendars default elements for events and add our own
@@ -178,7 +174,7 @@ Kindrdfood.welcome.setAppointment = {
         $(element).children(":first").append(new_html);  
 
         // if the event is before 7 or after 11 then do not show
-        if ( (eventStart.format("H") < 7) || (eventStart.format("H") > 23) ){
+        if ( (eventStart.format("H") < 5) || (eventStart.format("H") > 23) ){
 
           return false;
         }
@@ -197,50 +193,11 @@ Kindrdfood.welcome.setAppointment = {
       eventAfterAllRender: function( view, element){
 
         // check if taken time slots are created and if not then check all of the available time slot start times against all available times during the week to create the taken time slots
-        if (dates_taken.length < 1) {
-
-          // loops through current date to +31 days and 7am to 11pm (23)
-          for (var k = 0; k <= 31; k++){
-            for(var i = 7; i<=23; i++){
-
-              // create first date and time to check 
-              var fullHourEvent = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
-
-              // if date is not an available time slot then create time slot taken and add to dates taken
-   
-              if (event_start_times_rendered.indexOf(fullHourEvent.format()) < 0){
-                var date_object_1 = {
-                  title: 'time-slot-taken',
-                  start: fullHourEvent,
-                  editable: false,
-                  color: "lightgrey",
-                  className: "time-slot-taken",
-                  allDay: false // will make the time show
-                };
-                dates_taken.push(date_object_1);
-              };
-
-              // if date is not an available time slot then create time slot taken and add to dates taken
-              var halfHourEvent = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":30:00");
-              if (event_start_times_rendered.indexOf(halfHourEvent.format()) < 0){
-                var date_object_2 = {
-                  title  : 'time-slot-taken',
-                  start  : halfHourEvent,
-                  editable: false,
-                  color: "lightgrey",
-                  className: "time-slot-taken",
-                  allDay : false // will make the time show
-                };
-                dates_taken.push(date_object_2);
-              };
-            };
-          };
-
-          // if there are dates taken then add events to calendar source
-          if (dates_taken.length >= 1){
-            $('#select-appt-cal').fullCalendar( 'addEventSource', dates_taken );
-          }
+        
+        if (Kindrdfood.welcome.setAppointment.unavailableTimeSlots.length < 1) {
+          Kindrdfood.welcome.setAppointment.createUnavailableTimeSlots();
         }
+      
       },
 
       // When any feeds are loading to calendar
@@ -255,7 +212,6 @@ Kindrdfood.welcome.setAppointment = {
 
         // completed loading, enable next and previous button, hide spinner, and show calendar events
         } else {
-          $(".outside-of-time").parent().remove();
           $(".fc-prev-button, .fc-next-button").attr("disabled", false);
           $(".loading-spinner").hide();
           $(".fc-day-grid-event").show();
@@ -343,6 +299,50 @@ Kindrdfood.welcome.setAppointment = {
         $("#apptRequestModal").modal();
       }
     });
-  }
+  },
+  createUnavailableTimeSlots: function(){
 
+    // loops through current date to +31 days and 7am to 11pm (23)
+    for (var k = 0; k <= 31; k++){
+      for(var i = 5; i<=23; i++){
+
+        // create first date and time to check 
+        var fullHourEvent = moment(moment(Kindrdfood.welcome.setAppointment.startDate()).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
+
+        // if date is not an available time slot then create time slot taken and add to dates taken
+        if (Kindrdfood.welcome.setAppointment.availableTimeSlots.indexOf(fullHourEvent.format()) < 0){
+          var date_object_1 = {
+            title: 'time-slot-taken',
+            start: fullHourEvent,
+            editable: false,
+            color: "lightgrey",
+            className: "time-slot-taken",
+            allDay: false // will make the time show
+          };
+          Kindrdfood.welcome.setAppointment.unavailableTimeSlots.push(date_object_1);
+        };
+
+        // if date is not an available time slot then create time slot taken and add to dates taken
+        var halfHourEvent = moment(moment(Kindrdfood.welcome.setAppointment.startDate()).add(k, "days").format("YYYY-MM-DD")+ " "+i+":30:00");
+
+        if (Kindrdfood.welcome.setAppointment.availableTimeSlots.indexOf(halfHourEvent.format()) < 0){
+          var date_object_2 = {
+            title  : 'time-slot-taken',
+            start  : halfHourEvent,
+            editable: false,
+            color: "lightgrey",
+            className: "time-slot-taken",
+            allDay : false // will make the time show
+          };
+          Kindrdfood.welcome.setAppointment.unavailableTimeSlots.push(date_object_2);
+        };
+      };
+    };
+
+    // if there are dates taken then add events to calendar source
+    if (Kindrdfood.welcome.setAppointment.unavailableTimeSlots.length >= 1){
+      $('#select-appt-cal').fullCalendar( 'addEventSource', Kindrdfood.welcome.setAppointment.unavailableTimeSlots );
+    }
+ 
+  },
 }

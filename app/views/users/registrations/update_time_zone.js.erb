@@ -1,4 +1,10 @@
+
 // same as appointments/update_duration.js.erb
+
+
 $('#select-appt-cal').fullCalendar('removeEvents');
+
 $('#select-appt-cal').fullCalendar( 'refetchEvents' );
 
+Kindrdfood.welcome.setAppointment.unavailableTimeSlots = [];
+Kindrdfood.welcome.setAppointment.createUnavailableTimeSlots();

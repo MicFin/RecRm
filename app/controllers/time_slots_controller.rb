@@ -50,7 +50,7 @@ class TimeSlotsController < ApplicationController
           end
         end
       end
-      
+
       @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
       
     end

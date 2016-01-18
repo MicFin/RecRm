@@ -98,16 +98,15 @@ Kindrdfood.welcome.setAppointment = {
             $(".fc-prev-button").addClass('fc-state-disabled');
             $(".fc-next-button").removeClass('fc-state-disabled');
 
-        // if vew.start
-        
-        } else if (view.start.dayOfYear() <= start_moment.dayOfYear() + 14){
+        // if vew.start is within 2 weeks then remove disabled on both
+        } else if (view.start.dayOfYear() <= start_moment.dayOfYear() + 26){
           
           $(".fc-prev-button").removeClass('fc-state-disabled');
           $(".fc-next-button").removeClass('fc-state-disabled');
 
-
+        // else add disabled to next
         } else{
-            
+        
           $(".fc-prev-button").removeClass('fc-state-disabled');
           $(".fc-next-button").addClass('fc-state-disabled');
         }
@@ -200,19 +199,19 @@ Kindrdfood.welcome.setAppointment = {
         // check if taken time slots are created and if not then check all of the available time slot start times against all available times during the week to create the taken time slots
         if (dates_taken.length < 1) {
 
-          // loops through current date to +21 days and 7am to 11pm (23)
-          for (var k = 0; k <= 21; k++){
+          // loops through current date to +31 days and 7am to 11pm (23)
+          for (var k = 0; k <= 31; k++){
             for(var i = 7; i<=23; i++){
 
               // create first date and time to check 
-              var date = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
+              var fullHourEvent = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
 
               // if date is not an available time slot then create time slot taken and add to dates taken
    
-              if (event_start_times_rendered.indexOf(date.format()) < 0){
+              if (event_start_times_rendered.indexOf(fullHourEvent.format()) < 0){
                 var date_object_1 = {
                   title: 'time-slot-taken',
-                  start: date,
+                  start: fullHourEvent,
                   editable: false,
                   color: "lightgrey",
                   className: "time-slot-taken",
@@ -222,11 +221,11 @@ Kindrdfood.welcome.setAppointment = {
               };
 
               // if date is not an available time slot then create time slot taken and add to dates taken
-              var date_2 = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":30:00");
-              if (event_start_times_rendered.indexOf(date_2.format()) < 0){
+              var halfHourEvent = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":30:00");
+              if (event_start_times_rendered.indexOf(halfHourEvent.format()) < 0){
                 var date_object_2 = {
                   title  : 'time-slot-taken',
-                  start  : date_2,
+                  start  : halfHourEvent,
                   editable: false,
                   color: "lightgrey",
                   className: "time-slot-taken",

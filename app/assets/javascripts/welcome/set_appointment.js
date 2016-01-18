@@ -93,15 +93,23 @@ Kindrdfood.welcome.setAppointment = {
         var today_moment = moment(new Date());
 
         // add disabled class to previous, next, or neither depending on range
+        // if view.start is the same as today the hide previous button
         if (view.start.dayOfYear() === start_moment.dayOfYear() ) {
             $(".fc-prev-button").addClass('fc-state-disabled');
             $(".fc-next-button").removeClass('fc-state-disabled');
-        } else if (view.start.dayOfYear() === start_moment.dayOfYear()+14 ){
-            $(".fc-prev-button").removeClass('fc-state-disabled');
-            $(".fc-next-button").addClass('fc-state-disabled');
-        }  else{
-            $(".fc-prev-button").removeClass('fc-state-disabled');
-            $(".fc-next-button").removeClass('fc-state-disabled');
+
+        // if vew.start
+        
+        } else if (view.start.dayOfYear() <= start_moment.dayOfYear() + 14){
+          
+          $(".fc-prev-button").removeClass('fc-state-disabled');
+          $(".fc-next-button").removeClass('fc-state-disabled');
+
+
+        } else{
+            
+          $(".fc-prev-button").removeClass('fc-state-disabled');
+          $(".fc-next-button").addClass('fc-state-disabled');
         }
         
         // unbind next and prev disbaled button click event to shoew appt request modal
@@ -263,7 +271,7 @@ Kindrdfood.welcome.setAppointment = {
         if (event.title === "time-slot-taken"){
 
         } else {
-          
+
           $($(this).children(":first")).children(":first").text(event.start.format('h:mm')+" - "+event.end.format('h:mm A'));
 
         }

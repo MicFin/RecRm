@@ -19,7 +19,6 @@ Kindrdfood.welcome.setAppointment = {
     var event_start_times_rendered = [];
     var dates_taken = [];
 
-    var clientTimeZone = $("select[name='user[time_zone]'").val();
     // inititate fullcalendar
     $('#select-appt-cal').fullCalendar({
 
@@ -155,16 +154,28 @@ Kindrdfood.welcome.setAppointment = {
       // Docs:  Triggered while an event is being rendered.
       eventRender: function(event, element) {
 
-        // remove fullcalendars default elements for events and add our own
-          element.find(".fc-title").remove();
-          element.find(".fc-time").remove();
-          var new_html = "<div class='event-time'>​"+event.start.format('h:mm A')+"</div>";
-          $(element).children(":first").append(new_html);
+        var eventStart = event.start;
 
-          // if not a time slot taken event then add it to event start times rendered because it is an available time slot
-          if (event.title != "time-slot-taken"){
-            event_start_times_rendered.push(event.start.format());
-          }
+        // if event is an availabel time slot and not a time-slot-taken
+        if (event.title != "time-slot-taken") {
+
+          // add it to event start times rendered because it is an available time slot to choose from
+          event_start_times_rendered.push(eventStart.format());
+      
+        } 
+
+        // remove fullcalendars default elements for events and add our own
+        element.find(".fc-title").remove();
+        element.find(".fc-time").remove();
+        var new_html = "<div class='event-time'>​"+eventStart.format('h:mm A')+"</div>";
+        $(element).children(":first").append(new_html);  
+
+        // if the event is before 7 or after 11 then do not show
+        if ( (eventStart.format("H") < 7) || (eventStart.format("H") > 23) ){
+
+          return false;
+        }
+      
       },
 
 
@@ -178,50 +189,51 @@ Kindrdfood.welcome.setAppointment = {
       // Docs:  After all events have finished rendering but have not been added to screen
       eventAfterAllRender: function( view, element){
 
-          // check if taken time slots are created and if not then check all of the available time slot start times against all available times during the week to create the taken time slots
-          if (dates_taken.length < 1) {
+        // check if taken time slots are created and if not then check all of the available time slot start times against all available times during the week to create the taken time slots
+        if (dates_taken.length < 1) {
 
-            // loops through current date to +21 days and 7am to 11pm (23)
-            for (var k = 0; k <= 21; k++){
-              for(var i = 7; i<=23; i++){
+          // loops through current date to +21 days and 7am to 11pm (23)
+          for (var k = 0; k <= 21; k++){
+            for(var i = 7; i<=23; i++){
 
-                // create first date and time to check 
-                var date = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
+              // create first date and time to check 
+              var date = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
 
-                // if date is not an available time slot then create time slot taken and add to dates taken
-                if (event_start_times_rendered.indexOf(date.format()) < 0 ){
-                  var date_object_1 = {
-                    title: 'time-slot-taken',
-                    start: date,
-                    editable: false,
-                    color: "lightgrey",
-                    className: "time-slot-taken",
-                    allDay: false // will make the time show
-                  };
-                  dates_taken.push(date_object_1);
+              // if date is not an available time slot then create time slot taken and add to dates taken
+   
+              if (event_start_times_rendered.indexOf(date.format()) < 0){
+                var date_object_1 = {
+                  title: 'time-slot-taken',
+                  start: date,
+                  editable: false,
+                  color: "lightgrey",
+                  className: "time-slot-taken",
+                  allDay: false // will make the time show
                 };
+                dates_taken.push(date_object_1);
+              };
 
-                // if date is not an available time slot then create time slot taken and add to dates taken
-                var date_2 = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":30:00");
-                if (event_start_times_rendered.indexOf(date_2.format()) < 0 ){
-                  var date_object_2 = {
-                    title  : 'time-slot-taken',
-                    start  : date_2,
-                    editable: false,
-                    color: "lightgrey",
-                    className: "time-slot-taken",
-                    allDay : false // will make the time show
-                  };
-                  dates_taken.push(date_object_2);
+              // if date is not an available time slot then create time slot taken and add to dates taken
+              var date_2 = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":30:00");
+              if (event_start_times_rendered.indexOf(date_2.format()) < 0){
+                var date_object_2 = {
+                  title  : 'time-slot-taken',
+                  start  : date_2,
+                  editable: false,
+                  color: "lightgrey",
+                  className: "time-slot-taken",
+                  allDay : false // will make the time show
                 };
+                dates_taken.push(date_object_2);
               };
             };
+          };
 
-            // if there are dates taken then add events to calendar source
-            if (dates_taken.length >= 1){
-              $('#select-appt-cal').fullCalendar( 'addEventSource', dates_taken );
-            }
+          // if there are dates taken then add events to calendar source
+          if (dates_taken.length >= 1){
+            $('#select-appt-cal').fullCalendar( 'addEventSource', dates_taken );
           }
+        }
       },
 
       // When any feeds are loading to calendar
@@ -236,6 +248,7 @@ Kindrdfood.welcome.setAppointment = {
 
         // completed loading, enable next and previous button, hide spinner, and show calendar events
         } else {
+          $(".outside-of-time").parent().remove();
           $(".fc-prev-button, .fc-next-button").attr("disabled", false);
           $(".loading-spinner").hide();
           $(".fc-day-grid-event").show();
@@ -250,24 +263,21 @@ Kindrdfood.welcome.setAppointment = {
         if (event.title === "time-slot-taken"){
 
         } else {
+          
           $($(this).children(":first")).children(":first").text(event.start.format('h:mm')+" - "+event.end.format('h:mm A'));
-          // $($(this).children(":first")).children(":first").addClass("hidden");
-          // $($(this).children(":first")).append("<div class='appt-hover-text'>" + event.start.format('h:mm')+" - "+event.end.format('h:mma')+"</div>");
-          // $(this).tooltip({placement: 'bottom', title: '<p>'+event.start.format('h:mm')+" - "+event.end.format('h:mma')+'</p>', html: true});
-          // $(this).tooltip("show");
+
         }
       },
 
       // When mouse exits hovering over an event
       eventMouseout: function( event, jsEvent, view ) { 
         jsEvent.preventDefault();
+
         if (event.title === "time-slot-taken"){
 
         } else {
-          // $(".appt-hover-text").remove();
+
           $($(this).children(":first")).children(":first").text(event.start.format('h:mm A'));
-          // $($(this).children(":first")).children(":first").removeClass("hidden");
-          // $(this).tooltip("hide");
         }
       },
 
@@ -279,14 +289,7 @@ Kindrdfood.welcome.setAppointment = {
         var start = calEvent.start;
         var end = calEvent.end;
         var appt_id = $("#set-appt-time").data("appt-id")
-        // $.ajax({
-        //    type: "GET",
-        //    datatype: "json",
-        //    data: {time_slot_id: calEvent.id},
-        //    url: "/appointments/"+appt_id+"/edit",
-        //    success: function(response){
-        //    } 
-        // });
+
         $.ajax({
            type: "GET",
            datatype: "json",

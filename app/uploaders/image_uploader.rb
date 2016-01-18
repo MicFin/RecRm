@@ -19,6 +19,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   else
     storage :aws
   end
+  
 # We’ve already set ImageUploader to use Fog for storage but it’s recommended that we add another couple of lines to this file to include the MimeTypes module and to process the image through set_content_type. This will set the MIME type for the image in case it’s incorrect.
 
   process :set_content_type

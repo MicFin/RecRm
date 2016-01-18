@@ -19,6 +19,7 @@ Kindrdfood.welcome.setAppointment = {
     var event_start_times_rendered = [];
     var dates_taken = [];
 
+    var clientTimeZone = $("select[name='user[time_zone]'").val();
     // inititate fullcalendar
     $('#select-appt-cal').fullCalendar({
 
@@ -186,7 +187,7 @@ Kindrdfood.welcome.setAppointment = {
 
                 // create first date and time to check 
                 var date = moment(moment(start_date).add(k, "days").format("YYYY-MM-DD")+ " "+i+":00:00");
-                
+
                 // if date is not an available time slot then create time slot taken and add to dates taken
                 if (event_start_times_rendered.indexOf(date.format()) < 0 ){
                   var date_object_1 = {

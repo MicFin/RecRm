@@ -47,7 +47,7 @@ gem 'jquery-ui-rails', "4.2.1"
 
 # http://railscasts.com/episodes/253-carrierwave-file-uploads?view=asciicast
 gem 'carrierwave', "0.10.0"
-gem 'mini_magick'
+gem 'mini_magick', "4.3.5"
 # http://railscasts.com/episodes/383-uploading-to-amazon-s3?view=asciicast
 gem 'carrierwave-aws', "0.4.1"
 

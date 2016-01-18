@@ -303,7 +303,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails (= 4.2.1)
   lograge (= 0.3.4)
-  mini_magick
+  mini_magick (= 4.3.5)
   momentjs-rails (~> 2.8.4)
   monologue (= 0.4.1)
   opentok (= 2.2.1)

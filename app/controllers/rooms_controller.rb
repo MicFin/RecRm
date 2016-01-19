@@ -1,8 +1,8 @@
 class RoomsController < ApplicationController
   include PatientGroupsHelper
-before_filter :config_opentok,:except => [:index]
-# only admin can view rooms index page
-before_filter :authenticate_admin_user!, only: [:index]
+  before_filter :config_opentok,:except => [:index]
+  # only admin can view rooms index page
+  before_filter :authenticate_admin_user!, only: [:index]
 
   def index
     @rooms = Room.where(:public => true).order("created_at DESC")
@@ -62,6 +62,11 @@ before_filter :authenticate_admin_user!, only: [:index]
 
       # Generate tokbox token
       @tok_token =  @opentok.generate_token(@room.sessionId, {role: :moderator, data: "Moderator"}) 
+      # @tok_token =  @opentok.generate_token @room.sessionId({
+      #   :role        => :moderator
+      #   :expire_time => Time.now.to_i+(7 * 24 * 60 * 60) # in one week
+      #   :data        => 'name=Johnny'
+      # });
 
       # # Get dietitian pre appointment survey
       # @dietitian_pre_appt_survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Dietitian").where(completed: true).last.questions.order("position")
@@ -73,12 +78,9 @@ before_filter :authenticate_admin_user!, only: [:index]
       @survey = Survey.generate_for_session(@appointment, @user)
       @pre_appt_survey = Survey.generate_for_appointment(@appointment, @client)
 
-      # @tok_token =  @opentok.generate_token @room.sessionId({
-      #   :role        => :moderator
-      #   :expire_time => Time.now.to_i+(7 * 24 * 60 * 60) # in one week
-      #   :data        => 'name=Johnny'
-      # });
+    # else is a client_in_session
     else
+
       # Set @user to current dietitian
       @user = current_user
 

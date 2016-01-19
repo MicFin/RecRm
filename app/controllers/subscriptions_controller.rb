@@ -56,7 +56,6 @@ class SubscriptionsController < ApplicationController
     respond_to do |format|
       if @subscription.save
         # is subscription is saved then create roles for user 
-        
         member_plan = @subscription.member_plan 
         # subscriber of member_plan
         @user.add_role "Subscriber", member_plan

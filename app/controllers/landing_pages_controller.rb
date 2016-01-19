@@ -1,5 +1,5 @@
 class LandingPagesController < ApplicationController
-  before_action :get_new_user
+  before_action :set_new_user
   # home landing page
   def index
   end
@@ -16,7 +16,8 @@ class LandingPagesController < ApplicationController
   def tara
   end
 
-# /join redirects to /tara referral landing page
+  # /join 
+  # redirects to /tara referral landing page
   # def join
   #   
   # end
@@ -65,7 +66,7 @@ class LandingPagesController < ApplicationController
 
   private
 
-  def get_new_user
+  def set_new_user
     @user = User.new 
   end
 end

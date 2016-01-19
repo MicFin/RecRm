@@ -13,7 +13,6 @@ class AvailabilitiesController < ApplicationController
     ### regular dietitian view only their availabilities
       @availabilities = current_dietitian.availabilities
     end
-
   end
 
   # GET /availabilities/1
@@ -24,10 +23,6 @@ class AvailabilitiesController < ApplicationController
   # GET /availabilities/new
   def new
     @availability = Availability.new
-  end
-
-  # GET /availabilities/1/edit
-  def edit
   end
 
   # POST /availabilities
@@ -43,6 +38,38 @@ class AvailabilitiesController < ApplicationController
         format.html { render :new }
         format.json { render json: @availability.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # GET /availabilities/1/edit
+  def edit
+  end
+
+  # PATCH/PUT /availabilities/1
+  # PATCH/PUT /availabilities/1.json
+  def update
+    
+    respond_to do |format|
+      if @availability.update(availability_params)
+        format.html { redirect_to @availability, notice: 'Availability was successfully updated.' }
+        format.json { render :show, status: :ok, location: @availability }
+      else
+        format.html { render :edit }
+        format.json { render json: @availability.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /availabilities/1
+  # DELETE /availabilities/1.json
+  def destroy
+    
+    @availability.destroy
+    
+    respond_to do |format|
+      format.js
+      format.html { redirect_to availabilities_url, notice: 'Availability was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
@@ -72,21 +99,6 @@ class AvailabilitiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /availabilities/1
-  # PATCH/PUT /availabilities/1.json
-  def update
-    
-    respond_to do |format|
-      if @availability.update(availability_params)
-        format.html { redirect_to @availability, notice: 'Availability was successfully updated.' }
-        format.json { render :show, status: :ok, location: @availability }
-      else
-        format.html { render :edit }
-        format.json { render json: @availability.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /availabilities/update_schedule
   # PATCH/PUT /availabilities/update_schedule.json
   def update_schedule
@@ -102,19 +114,6 @@ class AvailabilitiesController < ApplicationController
     respond_to do |format|
         format.js
         format.html { redirect_to availabilities_path, notice: 'Schedule was successfully updated.' }
-    end
-  end
-
-  # DELETE /availabilities/1
-  # DELETE /availabilities/1.json
-  def destroy
-    
-    @availability.destroy
-    
-    respond_to do |format|
-      format.js
-      format.html { redirect_to availabilities_url, notice: 'Availability was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

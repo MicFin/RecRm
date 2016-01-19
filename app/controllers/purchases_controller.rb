@@ -127,14 +127,3 @@ private
     @purchase = Purchase.find(params[:id])
   end
 end
-
-    # t.integer  "user_id"            // User who made purchase
-    # t.integer  "purchasable_id"     // Appointment or Package ID
-    # t.string   "purchasable_type"   // Appointment or Package
-    # t.datetime "created_at"         // First created
-    # t.datetime "updated_at"         // Last updated
-    # t.string   "stripe_card_token"  // Stripe card token
-    # t.integer  "invoice_price"      // Total price of invoice
-    # t.integer  "invoice_cost"       // Total cost of invoice
-    # t.string   "status"             // Status: Incomplete or Complete
-    # t.datetime "completed_at"       // Date and time purchase completed

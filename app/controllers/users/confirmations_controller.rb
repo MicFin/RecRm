@@ -31,9 +31,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   end
 
   # GET /resource/confirmation?confirmation_token=abcdef
-  def show
-    
-    
+  def show    
     with_unconfirmed_confirmable do
       if @confirmable.has_no_password?
         do_show
@@ -50,9 +48,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   protected
 
-  def with_unconfirmed_confirmable
-    
-    
+  def with_unconfirmed_confirmable    
     original_token = params[:confirmation_token]
     confirmation_token = Devise.token_generator.digest(User, :confirmation_token, original_token)
     @confirmable = User.find_or_initialize_with_error_by(:confirmation_token, confirmation_token)

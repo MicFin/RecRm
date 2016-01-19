@@ -8,9 +8,6 @@ class DashboardController < ApplicationController
   end
 
 
-
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def verify_admin

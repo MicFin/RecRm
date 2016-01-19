@@ -13,7 +13,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
     @post = Monologue::Post.new
   end
 
-  ## Preview a post without saving.
+  # Preview a post without saving.
   def preview
     # mockup our models for preview.
     @post = Monologue::Post.new post_params

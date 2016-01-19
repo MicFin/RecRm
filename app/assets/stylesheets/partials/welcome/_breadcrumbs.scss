@@ -1,5 +1,10 @@
 .breadcrumb-sign-out {
-  float:right;
+  a:first-child{
+    float: left;
+  }
+  a:last-child {
+    float:right;
+  }
 }
 
 .breadcrumb-sign-out + img {

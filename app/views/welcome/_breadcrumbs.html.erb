@@ -1,9 +1,11 @@
     <div class="breadcrumb-sign-out">
+      <% if !current_user.repeat_customer? %>
+        <%= active_link_to welcome_home_path, { :active => :exclusive, :class_active => 'selected'} do %>
+          <i>back to dashboard</i>
+        <% end %>
+      <% end %>
       <%= active_link_to destroy_user_session_path, { :active => :exclusive, :class_active => 'selected', :method => :delete} do %>
         <i>sign out </i>
-      <% end %>
-      <%= active_link_to welcome_home_path, { :active => :exclusive, :class_active => 'selected', class: "btn btn-warning"} do %>
-        <i class="glyphicon glyphicon-home"></i>
       <% end %>
     </div>
      <%= image_tag("/assets/logos/kf-logo-registration.png", class: "img-responsive logo") %>

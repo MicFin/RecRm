@@ -90,38 +90,11 @@ class WelcomeController < Users::RegistrationsController
 
   end
 
-  # Checks where user is in the registration process and directs them to the correct path
+  # 1st stage of registration is for contact information
   # welcome/get_started
   def get_started
     
-    
     @user = current_user
-
-    # Stage 1 - user confirmed but did not complete account set up
-    if @stage_of_registration == 1
-      render :get_started
-
-    # Stage 2 - user did not create family
-    elsif @stage_of_registration == 2
-      redirect_to welcome_add_family_path
-
-    # Stage 3 - user created family but did not save health groups
-    elsif @stage_of_registration == 3
-      redirect_to welcome_add_nutrition_path
-
-    # Stage 4 - user saved health groups but did not save diet
-    elsif @stage_of_registration == 4
-      redirect_to welcome_add_preferences_path
-
-    # Stage 5 - user did not set up appointment
-    elsif @stage_of_registration == 5
-      redirect_to welcome_set_appointment_path
-
-     # Done with registration, return to dashboard
-    else
-      redirect_to welcome_home_path
-    end
-
   end
 
   # 2nd stage of registration

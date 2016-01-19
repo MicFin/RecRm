@@ -21,23 +21,6 @@ gem 'route_downcaser', "1.1.4"                      # https://github.com/carsten
 gem 'browser_details', "0.0.6"                      # https://github.com/gshutler/browser_details
 gem "lograge", "0.3.4"                              # https://github.com/roidrage/lograge
 
-# # Monitoring
-gem "airbrake"
-# gem 'airbrake_user_attributes'                       # see config/initializers/airbrake.rb
-# gem 'rack-timeout', '~> 0.1.0beta3'
-# gem 'newrelic_rpm'
-# # gem 'rack-google-analytics'
-
-# # Assets
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
-gem 'bootstrap-sass', '~> 3.1.1.1'
-gem 'simple_form', "3.0.2"
-gem 'active_link_to', "1.0.3"                       # https://github.com/comfy/active_link_to
-gem 'css_splitter', "0.4.2"                         # https://github.com/zweilove/css_splitter
-# gem 'haml-rails'
-# gem 'headjs-rails'
-
 # # Javascript
 gem 'jquery-rails', '~> 3.1.2'
 gem 'turbolinks', "2.2.2"                             # https://github.com/rails/turbolinks
@@ -45,24 +28,28 @@ gem 'jquery-turbolinks'
 gem 'jquery-ui-rails', "4.2.1"
 # gem 'nprogress-rails'
 
-# #  3rd Party Libraries
+# # Assets
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'bootstrap-sass', '~> 3.1.1.1'
+gem 'simple_form', "3.0.2"
+gem 'active_link_to', "1.0.3"                       # https://github.com/comfy/active_link_to
+gem 'acts_as_list', "0.3.0"                         # https://github.com/swanandp/acts_as_list
+gem 'css_splitter', "0.4.2"                         # https://github.com/zweilove/css_splitter
+# gem 'haml-rails'
+# gem 'headjs-rails'
+
+# # Video Conferencing
+gem "opentok", "2.2.1"
+
+# # Dates, Time and Phone
+gem 'fullcalendar-rails', '~> 2.3.1'
 gem 'momentjs-rails', '~> 2.8.4'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 gem 'phony_rails', "0.6.1"
-gem "opentok", "2.2.1"
-gem 'acts_as_list', "0.3.0"                             # https://github.com/swanandp/acts_as_list
-gem 'fullcalendar-rails', '~> 2.3.1'
 
 # # CoffeeScript
 gem 'coffee-rails', '~> 4.0.0'
-
-# # Design
-# # gem 'bourbon'
-# # gem 'neat'
-# # gem 'country_select'
-
-# # Email
-# gem 'premailer-rails'
 
 # # Authentication
 gem 'devise', "3.2.4"
@@ -94,6 +81,14 @@ gem 'remotipart', '~> 1.2'
 # # Blog
 gem 'monologue', "0.4.1"
 
+# # Monitoring
+gem "airbrake"
+# gem 'airbrake_user_attributes'                       # see config/initializers/airbrake.rb
+# gem 'rack-timeout', '~> 0.1.0beta3'
+# gem 'newrelic_rpm'
+# # gem 'rack-google-analytics'
+
+
 # # API
 # gem 'rabl'
 # gem 'oj'
@@ -101,6 +96,14 @@ gem 'monologue', "0.4.1"
 # # Recurring Events
 # gem "ice_cube"
 # gem "recurring_select"
+
+# # Design
+# # gem 'bourbon'
+# # gem 'neat'
+# # gem 'country_select'
+
+# # Email
+# gem 'premailer-rails'
 
 # # Workers
 # gem 'sidekiq'

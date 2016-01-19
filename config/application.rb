@@ -54,8 +54,8 @@ module Myapp
     
 
     # ENV['PATH'] = "/usr/local/bin:#{ENV['PATH']}"
-    ENV['PATH'] = "/usr/bin:#{ENV['PATH']}"
+    # ENV['PATH'] = "/usr/bin:#{ENV['PATH']}"
     # ENV['PATH'] += File::PATH_SEPARATOR + '/usr/local/bin'
-
+    ENV['PATH'] += File::PATH_SEPARATOR + '/usr/bin'
   end
 end

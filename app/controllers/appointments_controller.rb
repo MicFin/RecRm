@@ -56,186 +56,6 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # GET /appointments/:id/select_time
-  # as: 'select_time_path'
-  def select_time
-    @time_slots = TimeSlot.select_appointment_time_slots 
-    @sign_up_stage = @appointment.stage 
-    @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
-  end
-
-  # GET /appointments/:id/complete_appt_prep_survey
-  # as: 'user_complete_appt_prep_survey_path'
-  def complete_appt_prep_survey
-    @appointment.status = "Appt-Prep-Survey-Complete"
-    @appointment.save
-  end
-
-  # GET /appointments/:id/client_appointment_prep
-  # as: 'client_appointment_prep_path'
-  def client_appointment_prep
-    patient_focus = @appointment.patient_focus
-    growth_chart = patient_focus.growth_chart || GrowthChart.create(user_id: patient_focus.id)
-    food_diary = patient_focus.food_diary || FoodDiary.create(user_id: patient_focus.id)
-    survey = Survey.generate_for_appointment(@appointment, current_user)
-    food_diary_entry = FoodDiaryEntry.new(food_diary_id: food_diary.id)
-    growth_entry = GrowthEntry.new(growth_chart_id: growth_chart.id)
-    @client_prep = {growth_chart: growth_chart, food_diary: food_diary, survey: survey, food_diary_entry: food_diary_entry, growth_entry: growth_entry}
-    
-    respond_to do |format|
-      format.js 
-    end
-  end
-
-  # GET: 'appointments/new_appointment_request_times'
-  # as: 'new_appointment_request_times_path'
-  def new_appointment_request_times
-
-    @new_appointment = Appointment.new
-    respond_to do |format|
-      format.js 
-    end
-  end
-
-  # POST /appointments/create_appointment_request_times
-  # as: 'create_appointment_request_times'
-  def create_appointment_request_times
-    @appointment_requests =[]
-    patient_focus = current_user.appointment_hosts.last.patient_focus
-    current_user.appointment_hosts.last.status = "In Registration"
-    params[:appointment].each do |key, value_hash|
-      if value_hash["start_time"] != "" 
-        
-        # clean_dates_for_database method should be used instead
-        # need to test request actions before replacing
-        ## clean start date for saving
-        temp_start_date = value_hash["start_time"].split("/")
-        temp_start_month = temp_start_date[0]
-        temp_start_day = temp_start_date[1]
-        temp_start_year = temp_start_date[2].split(" ")[0]
-        value_hash["start_time"] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
-        value_hash["start_time"] = value_hash["start_time"].in_time_zone("Eastern Time (US & Canada)")
-
-        ## clean end date for saving
-        temp_end_date = value_hash["end_time"].split("/")
-        temp_end_month = temp_end_date[0]
-        temp_end_day = temp_end_date[1]
-        temp_end_year = temp_end_date[2].split(" ")[0]
-        value_hash["end_time"] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
-        value_hash["end_time"] = value_hash["end_time"].in_time_zone("Eastern Time (US & Canada)")
-
-        # save appointment 
-        appointment = Appointment.new(value_hash)
-        appointment.appointment_host = current_user
-        appointment.patient_focus = patient_focus
-        appointment.status = "Requested"
-        appointment.duration = 60
-        appointment.save
-        @appointment_requests << appointment
-      end
-    end
-    respond_to do |format|
-        format.html { redirect_to user_dashboard_path, notice: 'Appointment requests were successfully sent.' }
-        format.js
-    end
-  end
-
-  # GET /appointments/:id/appointment_prep
-  # as: 'appointment_prep_path'
-  # currently called from dietitian prep (with modal) and dietitian insession as well
-  def appointment_prep
-   
-    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
-    @survey = @appointment.surveys.where(survey_group_id: 1).first
-
-    @client = @appointment.appointment_host
-
-    # Gather user's family data
-    # from AppointmentsHelper
-    get_appointment_family_info!
-    @family
-
-    @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-
-  # GET /appointments/1/edit_assessment  
-  # as: 'edit_assessment_path'
-  def edit_assessment
-   # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
-    # @survey = @appointment.surveys.where(survey_group_id: 1).first
-    if @appointment.dietitian == current_dietitian 
-      @client = @appointment.appointment_host
-
-      # Gather user's family data
-      # from AppointmentsHelper
-      get_appointment_family_info!
-      @family
-
-      @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
-
-      
-    end
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-
-  # GET /appointments/1/appointment_review
-  def appointment_review
-    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
-    
-    if @appointment.dietitian == current_dietitian 
-      @client = @appointment.appointment_host
-      # set @family before get_family_info
-      @family = @client.head_of_families.first
-      # get_family_info!
-      # @family_members
-      # @family
-      # create family should be a helper method on the family model
-      @family_members = []
-      if @appointment.patient_focus 
-        appointment_focus = @appointment.patient_focus
-        @family_members << appointment_focus
-      end
-      family_count = @family.users.count
-      
-      if family_count > 0
-        if @client != appointment_focus
-          @family_members << @client
-          @family.users.each do |family_member| 
-            if family_member != appointment_focus
-              @family_members << family_member 
-            end
-          end
-        else
-          @family.users.each do |family_member|
-              @family_members << family_member
-          end
-        end
-      else
-        @family_members << @client
-      end
-      get_patient_groups!
-      @diseases = @diseases 
-      @intolerances = @intolerances 
-      @allergies = @allergies
-      @diets =  @diets 
-      # @unverified_health_groups = @family_members[0].unverified_health_groups
-      @dietitian_survey = Survey.generate_for_appointment(@appointment, current_dietitian)
-      @survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
-      @surveyable = @appointment
-    end
-    respond_to do |format|
-      format.js
-    end
-  end
-
   # GET /appointments/1
   # GET /appointments/1.json
 
@@ -264,7 +84,28 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
+    binding.pry
     @appointment = Appointment.new
+  end
+
+  # POST /appointments
+  # POST /appointments.json
+  def create
+    
+    clean_dates_for_database
+    
+    @appointment = Appointment.new(appointment_params)
+    
+    respond_to do |format|
+      if @appointment.save
+        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
+        format.json { render :show, status: :created, location: @appointment }
+        format.js
+      else
+        format.html { render :new }
+        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /appointments/1/edit
@@ -287,38 +128,6 @@ class AppointmentsController < ApplicationController
     respond_to do |format|
       format.js
       format.html
-    end
-  end
-
-  # Use this for when an appointment is not paid for and but is assigned to a client
-  def purchase
-    
-    @user = current_user
-    # payment_modal template requires a time_slot for start and end time
-    @time_slot = @appointment 
-    respond_to do |format|
-      format.js
-      format.html
-    end
-  end
-
-  # POST /appointments
-  # POST /appointments.json
-  def create
-    
-    clean_dates_for_database
-    
-    @appointment = Appointment.new(appointment_params)
-    
-    respond_to do |format|
-      if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
-        format.json { render :show, status: :created, location: @appointment }
-        format.js
-      else
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
     end
   end
 
@@ -410,6 +219,214 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  # DELETE /appointments/1
+  # DELETE /appointments/1.json
+  def destroy
+    @new_appointment = Appointment.new(dietitian_id: current_dietitian.id, appointment_host_id: @appointment.appointment_host_id, patient_focus_id: @appointment.patient_focus_id, status: "Follow Up Unpaid")
+    @appointment.destroy
+    respond_to do |format|
+      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
+      format.json { head :no_content }
+
+      format.js
+    end
+  end
+
+  # GET /appointments/:id/select_time
+  # as: 'select_time_path'
+  def select_time
+    @time_slots = TimeSlot.select_appointment_time_slots 
+    @sign_up_stage = @appointment.stage 
+    @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
+  end
+
+  # GET: 'appointments/new_appointment_request_times'
+  # as: 'new_appointment_request_times_path'
+  def new_appointment_request_times
+
+    @new_appointment = Appointment.new
+    respond_to do |format|
+      format.js 
+    end
+  end
+
+  # POST /appointments/create_appointment_request_times
+  # as: 'create_appointment_request_times'
+  def create_appointment_request_times
+    @appointment_requests =[]
+    patient_focus = current_user.appointment_hosts.last.patient_focus
+    current_user.appointment_hosts.last.status = "In Registration"
+    params[:appointment].each do |key, value_hash|
+      if value_hash["start_time"] != "" 
+        
+        # clean_dates_for_database method should be used instead
+        # need to test request actions before replacing
+        ## clean start date for saving
+        temp_start_date = value_hash["start_time"].split("/")
+        temp_start_month = temp_start_date[0]
+        temp_start_day = temp_start_date[1]
+        temp_start_year = temp_start_date[2].split(" ")[0]
+        value_hash["start_time"] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
+        value_hash["start_time"] = value_hash["start_time"].in_time_zone("Eastern Time (US & Canada)")
+
+        ## clean end date for saving
+        temp_end_date = value_hash["end_time"].split("/")
+        temp_end_month = temp_end_date[0]
+        temp_end_day = temp_end_date[1]
+        temp_end_year = temp_end_date[2].split(" ")[0]
+        value_hash["end_time"] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
+        value_hash["end_time"] = value_hash["end_time"].in_time_zone("Eastern Time (US & Canada)")
+
+        # save appointment 
+        appointment = Appointment.new(value_hash)
+        appointment.appointment_host = current_user
+        appointment.patient_focus = patient_focus
+        appointment.status = "Requested"
+        appointment.duration = 60
+        appointment.save
+        @appointment_requests << appointment
+      end
+    end
+    respond_to do |format|
+        format.html { redirect_to user_dashboard_path, notice: 'Appointment requests were successfully sent.' }
+        format.js
+    end
+  end
+
+  # GET /appointments/:id/appointment_prep
+  # as: 'appointment_prep_path'
+  # currently called from dietitian prep and dietitian insession as well
+  def appointment_prep
+   
+    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
+    @survey = @appointment.surveys.where(survey_group_id: 1).first
+
+    @client = @appointment.appointment_host
+
+    # Gather user's family data
+    # from AppointmentsHelper
+    get_appointment_family_info!
+    @family
+
+    @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+
+  # GET /appointments/:id/client_appointment_prep
+  # as: 'client_appointment_prep_path'
+  def client_appointment_prep
+    patient_focus = @appointment.patient_focus
+    growth_chart = patient_focus.growth_chart || GrowthChart.create(user_id: patient_focus.id)
+    food_diary = patient_focus.food_diary || FoodDiary.create(user_id: patient_focus.id)
+    survey = Survey.generate_for_appointment(@appointment, current_user)
+    food_diary_entry = FoodDiaryEntry.new(food_diary_id: food_diary.id)
+    growth_entry = GrowthEntry.new(growth_chart_id: growth_chart.id)
+    @client_prep = {growth_chart: growth_chart, food_diary: food_diary, survey: survey, food_diary_entry: food_diary_entry, growth_entry: growth_entry}
+    
+    respond_to do |format|
+      format.js 
+    end
+  end
+
+  # GET /appointments/1/edit_assessment  
+  # as: 'edit_assessment_path'
+  def edit_assessment
+   # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
+    # @survey = @appointment.surveys.where(survey_group_id: 1).first
+    if @appointment.dietitian == current_dietitian 
+      @client = @appointment.appointment_host
+
+      # Gather user's family data
+      # from AppointmentsHelper
+      get_appointment_family_info!
+      @family
+
+      @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
+
+      
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  # GET /appointments/:id/complete_appt_prep_survey
+  # as: 'user_complete_appt_prep_survey_path'
+  def complete_appt_prep_survey
+    @appointment.status = "Appt-Prep-Survey-Complete"
+    @appointment.save
+  end
+  
+  # GET /appointments/1/appointment_review
+  # Used by admin dietitian to assign dietitian
+  def appointment_review
+    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
+    
+    if @appointment.dietitian == current_dietitian 
+      @client = @appointment.appointment_host
+      # set @family before get_family_info
+      @family = @client.head_of_families.first
+      # get_family_info!
+      # @family_members
+      # @family
+      # create family should be a helper method on the family model
+      @family_members = []
+      if @appointment.patient_focus 
+        appointment_focus = @appointment.patient_focus
+        @family_members << appointment_focus
+      end
+      family_count = @family.users.count
+      
+      if family_count > 0
+        if @client != appointment_focus
+          @family_members << @client
+          @family.users.each do |family_member| 
+            if family_member != appointment_focus
+              @family_members << family_member 
+            end
+          end
+        else
+          @family.users.each do |family_member|
+              @family_members << family_member
+          end
+        end
+      else
+        @family_members << @client
+      end
+      get_patient_groups!
+      @diseases = @diseases 
+      @intolerances = @intolerances 
+      @allergies = @allergies
+      @diets =  @diets 
+      # @unverified_health_groups = @family_members[0].unverified_health_groups
+      @dietitian_survey = Survey.generate_for_appointment(@appointment, current_dietitian)
+      @survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
+      @surveyable = @appointment
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  # Use this for when an appointment is not paid for and but is assigned to a client
+  def purchase
+    
+    @user = current_user
+    # payment_modal template requires a time_slot for start and end time
+    @time_slot = @appointment 
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+
+  # Update duration of appointment, used when client is searching for an appointment
   def update_duration
 
    # update the appointment's duration
@@ -428,7 +445,9 @@ class AppointmentsController < ApplicationController
     end
   end
 
+
   # GET /appointments/1/end_appointment
+  # Should move to another controller, maybe the rooms_controller
   def end_appointment
     respond_to do |format|
       if current_user 
@@ -459,18 +478,7 @@ class AppointmentsController < ApplicationController
 
   end
 
-  # DELETE /appointments/1
-  # DELETE /appointments/1.json
-  def destroy
-    @new_appointment = Appointment.new(dietitian_id: current_dietitian.id, appointment_host_id: @appointment.appointment_host_id, patient_focus_id: @appointment.patient_focus_id, status: "Follow Up Unpaid")
-    @appointment.destroy
-    respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
-      format.json { head :no_content }
 
-      format.js
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

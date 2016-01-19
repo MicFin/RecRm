@@ -15,9 +15,6 @@
             <h2>from <%=@time_slot.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%l:%M") %> - <%=@time_slot.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%l:%M %p") %>
             </h2> 
           </div>
-          <div class="form-group col-xs-12 text-center">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Select a different time and date</button>
-          </div>
           <% if @user.qol_referral == false %>
 
 
@@ -77,6 +74,7 @@
               </ul>
             </div>
           <% end %>
+
           <% if @appointment.stripe_card_token %>
             Session has already been paid for.
           <% elsif @user.qol_referral == false %>

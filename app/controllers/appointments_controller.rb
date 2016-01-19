@@ -45,7 +45,7 @@ class AppointmentsController < ApplicationController
       end
       
       # Appointment.where(status: "Requested").where("start_time > ?", DateTime.now - 1.days).order('start_time ASC, created_at ASC').each do |appointment|
-      #   binding.pry
+      #   
       #   if !@appointment_requests.has_key?(appointment.appointment_host)
       #     @appointment_requests[appointment.appointment_host] = []
       #   end
@@ -85,7 +85,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
-    binding.pry
+    
     @appointment = Appointment.new
   end
 

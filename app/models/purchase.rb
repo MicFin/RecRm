@@ -42,7 +42,7 @@ class Purchase < ActiveRecord::Base
         if user.stripe_id
           customer = Stripe::Customer.retrieve(user.stripe_id)
         else
-          
+   
           # if creating a new customer and wants to save CC
           if credit_card_usage == "remember_me"
             customer = Stripe::Customer.create(:card => stripe_card_token, :description => user.email, :email => user.email)
@@ -51,7 +51,6 @@ class Purchase < ActiveRecord::Base
           else
             customer = Stripe::Customer.create(:description => user.email, :email => user.email)
           end
-
           # add stripe customer id to user
           user.stripe_id = customer.id
           user.save
@@ -62,7 +61,6 @@ class Purchase < ActiveRecord::Base
         # set stripe_id variable now that it is created
         stripe_id = user.stripe_id
 
-        # charge customer
         # if customer wanted to remember card
         if credit_card_usage == "remember_me"
           begin
@@ -81,9 +79,9 @@ class Purchase < ActiveRecord::Base
             # if error set stripe card token to nil
             self.stripe_card_token = nil 
             self.save!
+            
           end
 
-        # charge custoemr
         # if custeomr did not want to remember card need to change to not create stripe customer
         else 
           
@@ -102,15 +100,21 @@ class Purchase < ActiveRecord::Base
 
             # if error set stripe card token to nil
             self.stripe_card_token = nil 
-            self.save!
+            self.save
+            
           end
         end
       end    
 
       
+      if self.stripe_card_token == ""
+        self.stripe_card_token = nil 
+        self.save
+      end
       ### If Stripe fails then these should not be run
       ### But it probably does
       ### Need to test
+      # Mark purchase as paid
       self.status = "Paid"
 
       # Mark Appointment as Paid
@@ -267,15 +271,3 @@ class Purchase < ActiveRecord::Base
     end
 
 end
-
-# SCHEMA
-    # t.integer  "user_id"            // User who made purchase
-    # t.integer  "purchasable_id"     // Appointment or Package ID
-    # t.string   "purchasable_type"   // Appointment or Package
-    # t.datetime "created_at"         // First created
-    # t.datetime "updated_at"         // Last updated
-    # t.string   "stripe_card_token"  // Stripe card token
-    # t.integer  "invoice_price"      // Total price of invoice
-    # t.integer  "invoice_cost"       // Total cost of invoice
-    # t.string   "status"             // Status: Incomplete or Complete
-    # t.datetime "completed_at"       // Date and time purchase completed

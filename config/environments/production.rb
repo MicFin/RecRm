@@ -3,13 +3,7 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-# config.paperclip_defaults = {
-#   :storage => :s3,
-#   # :s3_host_name => 'REMOVE_THIS_LINE_IF_UNNECESSARY',
-#   :s3_credentials => {
-#     :bucket => 'kindrd_pics'
-#   }
-# }
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -87,8 +81,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-    #Mail functions for devise
- config.action_mailer.default_url_options = { :host => 'http://www.kindrdfood.com/'}
+  #Mail functions for devise
+  config.action_mailer.default_url_options = { :host => 'http://www.kindrdfood.com/'}
   config.action_mailer.delivery_method = :smtp
- config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = true
 end

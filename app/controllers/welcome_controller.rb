@@ -294,7 +294,7 @@ class WelcomeController < Users::RegistrationsController
     update_stage(4, current_user)
 
     # Send back to welcome#get_started to continue registration
-    redirect_to welcome_get_started_path 
+    redirect_to welcome_set_appointment_path 
 
   end
 

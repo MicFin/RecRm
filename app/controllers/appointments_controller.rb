@@ -29,29 +29,30 @@ class AppointmentsController < ApplicationController
 
     elsif ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id] == "All") ) 
       @appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+
     elsif ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id]) ) 
       dietitian = Dietitian.find(params[:dietitian_id])
       @appointments = dietitian.appointments.order('start_time ASC, created_at ASC')
+
     else
+
       @appointments_no_dietitian = {}
       @appointment_requests = {}
-      # Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
-      #   dietitians = appointment.available_dietitians
-      #   @appointments_no_dietitian[appointment] = dietitians
-      # end
+
       Appointment.where("start_time > ?", DateTime.now - 1.days).order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
-        if appointment.status == "Requested"
-          if !@appointment_requests.has_key?(appointment.appointment_host)
-            @appointment_requests[appointment.appointment_host] = []
-          end
-          @appointment_requests[appointment.appointment_host] << appointment
-        else
           dietitians = appointment.available_dietitians
           @appointments_no_dietitian[appointment] = dietitians
-        end
       end
-      @upcoming_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+      
+      # Appointment.where(status: "Requested").where("start_time > ?", DateTime.now - 1.days).order('start_time ASC, created_at ASC').each do |appointment|
+      #   binding.pry
+      #   if !@appointment_requests.has_key?(appointment.appointment_host)
+      #     @appointment_requests[appointment.appointment_host] = []
+      #   end
+      #   @appointment_requests[appointment.appointment_host] << appointment
+      # end
 
+      @upcoming_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
       @previous_appointments = Appointment.where("start_time < ?", DateTime.now).order('start_time ASC, created_at ASC')
     end
   end
@@ -238,59 +239,6 @@ class AppointmentsController < ApplicationController
     @time_slots = TimeSlot.select_appointment_time_slots 
     @sign_up_stage = @appointment.stage 
     @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
-  end
-
-  # GET: 'appointments/new_appointment_request_times'
-  # as: 'new_appointment_request_times_path'
-  def new_appointment_request_times
-
-    @new_appointment = Appointment.new
-    respond_to do |format|
-      format.js 
-    end
-  end
-
-  # POST /appointments/create_appointment_request_times
-  # as: 'create_appointment_request_times'
-  def create_appointment_request_times
-    @appointment_requests =[]
-    patient_focus = current_user.appointment_hosts.last.patient_focus
-    current_user.appointment_hosts.last.status = "In Registration"
-    params[:appointment].each do |key, value_hash|
-      if value_hash["start_time"] != "" 
-        
-        # clean_dates_for_database method should be used instead
-        # need to test request actions before replacing
-        ## clean start date for saving
-        temp_start_date = value_hash["start_time"].split("/")
-        temp_start_month = temp_start_date[0]
-        temp_start_day = temp_start_date[1]
-        temp_start_year = temp_start_date[2].split(" ")[0]
-        value_hash["start_time"] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
-        value_hash["start_time"] = value_hash["start_time"].in_time_zone("Eastern Time (US & Canada)")
-
-        ## clean end date for saving
-        temp_end_date = value_hash["end_time"].split("/")
-        temp_end_month = temp_end_date[0]
-        temp_end_day = temp_end_date[1]
-        temp_end_year = temp_end_date[2].split(" ")[0]
-        value_hash["end_time"] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
-        value_hash["end_time"] = value_hash["end_time"].in_time_zone("Eastern Time (US & Canada)")
-
-        # save appointment 
-        appointment = Appointment.new(value_hash)
-        appointment.appointment_host = current_user
-        appointment.patient_focus = patient_focus
-        appointment.status = "Requested"
-        appointment.duration = 60
-        appointment.save
-        @appointment_requests << appointment
-      end
-    end
-    respond_to do |format|
-        format.html { redirect_to user_dashboard_path, notice: 'Appointment requests were successfully sent.' }
-        format.js
-    end
   end
 
   # GET /appointments/:id/appointment_prep

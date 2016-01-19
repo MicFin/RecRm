@@ -1,92 +1,66 @@
+# # Gem Sources
 source 'http://rubygems.org'
+
+# # Ruby
 ruby '2.1.5'
 
-# not sure whether to use gemspec so removed it
+# # not sure
 # gemspec
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# # Rails
 gem 'rails', '4.1.1'
-# Use postgresql as the database for Active Record
+
+# # Data
 gem 'pg', '0.17.1'
-# Use SCSS for stylesheets
+gem 'jbuilder', '~> 2.0'                              # https://github.com/rails/jbuilder
+
+# # LINUX
+# gem 'rb-inotify', :group => [:development, :test]   # monitor file changes without hammering the disk
+
+# # MiddleWare 
+gem 'route_downcaser', "1.1.4"                      # https://github.com/carstengehling/route_downcaser 
+gem 'browser_details', "0.0.6"                      # https://github.com/gshutler/browser_details
+gem "lograge", "0.3.4"                              # https://github.com/roidrage/lograge
+
+# # Monitoring
+gem "airbrake"
+# gem 'airbrake_user_attributes'                       # see config/initializers/airbrake.rb
+# gem 'rack-timeout', '~> 0.1.0beta3'
+# gem 'newrelic_rpm'
+# # gem 'rack-google-analytics'
+
+# # Assets
 gem 'sass-rails', '~> 4.0.3'
-# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-# Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 3.1.2'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', "2.2.2"
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
-
-# responsive design css and javascript
 gem 'bootstrap-sass', '~> 3.1.1.1'
-
-# user authorization
-gem 'devise', "3.2.4"
-
-# Adds support to devise for sending invitations by email (it requires to be authenticated) and accept the invitation setting the password.
-# https://github.com/scambra/devise_invitable
-gem 'devise_invitable', '~> 1.3.4'
-
-gem 'jquery-turbolinks'
-
-# simple form makes forms easier and prettier to write and plays nice with bootstrap
-# https://github.com/plataformatec/simple_form
-#   Inside your views, use the 'simple_form_for' with one of the Bootstrap form classes, '.form-horizontal', '.form-inline', '.form-search' or '.form-vertical', as the following: simple_form_for(@user, html: {class: 'form-horizontal' }) do |form|
 gem 'simple_form', "3.0.2"
+gem 'active_link_to', "1.0.3"                       # https://github.com/comfy/active_link_to
+gem 'css_splitter', "0.4.2"                         # https://github.com/zweilove/css_splitter
+# gem 'haml-rails'
+# gem 'headjs-rails'
 
-# Required to use with gem 'rails3-jquery-autocomplete' 
-# only requiring widget //= require jquery.ui.autocomplete
+# # Javascript
+gem 'jquery-rails', '~> 3.1.2'
+gem 'turbolinks', "2.2.2"                             # https://github.com/rails/turbolinks
+gem 'jquery-turbolinks'
 gem 'jquery-ui-rails', "4.2.1"
+# gem 'nprogress-rails'
 
-# http://railscasts.com/episodes/253-carrierwave-file-uploads?view=asciicast
-gem 'carrierwave', "0.10.0"
-gem 'mini_magick', "4.3.6"
-# gem 'rmagick'
-# http://railscasts.com/episodes/383-uploading-to-amazon-s3?view=asciicast
-gem 'carrierwave-aws', "1.0.0"
-
-# Asynchronous file uploads with JQuery for image uploads
-# https://github.com/JangoSteve/remotipart
-gem 'remotipart', '~> 1.2'
-
+# #  3rd Party Libraries
 gem 'momentjs-rails', '~> 2.8.4'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
-
-# manages phone number validation
 gem 'phony_rails', "0.6.1"
-
-# video conferencing 
 gem "opentok", "2.2.1"
-
-
-# creates AdminUser model, migrations, controllers, routing, views, etc for an administrative user with dashboard.  Very Ruby friendly and customizable.  Will use AdminUser as our tech admin but can register other User models with ActiveAdmin and give certain permissions
-# http://activeadmin.info/
-gem 'activeadmin', github: 'gregbell/active_admin'
-
-# This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list. The class that has this specified needs to have a position column defined as an integer on the mapped database table. https://github.com/swanandp/acts_as_list
-gem 'acts_as_list', "0.3.0"
-
-# Minimal authorization through OO design and pure Ruby classes
-# https://github.com/elabs/pundit
-gem "pundit", "0.2.2"
- 
-# https://github.com/RolifyCommunity/rolify
-gem 'rolify', "3.4.1"
-
-# javascript calendar 
+gem 'acts_as_list', "0.3.0"                             # https://github.com/swanandp/acts_as_list
 gem 'fullcalendar-rails', '~> 2.3.1'
 
-# rails stripe payment integration
-# https://github.com/thefrontside/stripe-rails
-gem 'stripe', "1.16.0"
-gem 'stripe-rails', "0.3.1"
+# # CoffeeScript
+gem 'coffee-rails', '~> 4.0.0'
+
+# # Design
+# # gem 'bourbon'
+# # gem 'neat'
+# # gem 'country_select'
 
 # rails URL downcaser uses Rack middleware to make URLs case insensitive.
 # all image file names and url's should be all lower case to work consistently
@@ -94,44 +68,135 @@ gem 'stripe-rails', "0.3.1"
 # https://github.com/carstengehling/route_downcaser 
 gem 'route_downcaser', "1.1.4"
 
-# browser details for server requests
-# https://github.com/gshutler/browser_details
-gem 'browser_details', "0.0.6"
+# # Email
+# gem 'premailer-rails'
 
-# minimizes rails logs for better reading
-# https://github.com/roidrage/lograge
-gem "lograge", "0.3.4"
+# # Authentication
+gem 'devise', "3.2.4"
+gem 'devise_invitable', '~> 1.3.4'          # https://github.com/scambra/devise_invitable
+gem "pundit", "0.2.2"                       # https://github.com/elabs/pundit
+gem 'rolify', "3.4.1"                       # https://github.com/RolifyCommunity/rolify
+# gem 'omniauth'
+# gem 'omniauth-facebook'
+# gem 'omniauth-twitter'
+# # gem 'omniauth-persona'
+# # gem 'omniauth-google-oauth2'
+# # gem 'omniauth-linkedin'
 
-# active links helper method
-# https://github.com/comfy/active_link_to
-# https://github.com/comfy/active_link_to/issues/14
-gem 'active_link_to', "1.0.3"
+# # Payment
+gem 'stripe', "1.16.0"
+gem 'stripe-rails', "0.3.1"                   # # https://github.com/thefrontside/stripe-rails
 
-# Splits CSS files to avoid limit for IE9 and below 
-# https://github.com/zweilove/css_splitter
-gem 'css_splitter', "0.4.2"
 
-# blogging engine
-# https://github.com/jipiboily/monologue
+# # Admin
+gem 'activeadmin', github: 'gregbell/active_admin'        # http://activeadmin.info/
+
+# # File Uploads
+gem 'carrierwave', "0.10.0"
+gem 'mini_magick', "4.3.6"
+gem 'carrierwave-aws', "1.0.0"
+gem 'remotipart', '~> 1.2'
+# gem 'rmagick'
+# gem "cocoon"
+
+# # Blog
 gem 'monologue', "0.4.1"
 
-gem "airbrake"
+# # API
+# gem 'rabl'
+# gem 'oj'
+
+# # Recurring Events
+# gem "ice_cube"
+# gem "recurring_select"
+
+# # Workers
+# gem 'sidekiq'
+# gem 'devise-async'
+# gem 'sinatra', require: false
+
+# # Utils
+# gem 'addressable'
+# gem 'settingslogic'
 
 group :development do
-# Better error gives you better explanations for errors
-# https://github.com/charliesome/better_errors
-  gem "better_errors", "1.1.0"
-# binding of caller allows you to do variable inspection with better errors  
-  gem "binding_of_caller", "0.7.2"
-# Pry allows you to debug, place a binding.pry in ruby code and you can debug from that place in the console
-  gem 'pry', "0.10.0"
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', "1.1.3"
-# find your route on a long journey over Rails with Sextant
-# go to http://localhost:3000/rails/routes to view routes, faster than rails routes
-# https://github.com/schneems/sextant
-  gem 'sextant', "0.2.4"
+  #   # Docs
+  gem 'sdoc', '~> 0.4.0',          group: :doc
 
+  #   # Errors
+  gem "better_errors", "1.1.0"
+  gem "binding_of_caller", "0.7.2"     # extra features for better_errors
+  gem 'sextant', "0.2.4"               # https://github.com/schneems/sextant
+  #   # gem 'meta_request'          # for rails_panel chrome extension
+
+  #   # Deployment
+  #   # gem 'capistrano'
+
+  #   # Guard
+  #   gem 'guard-rspec'
+  #   # gem 'guard-livereload'
+  #   # gem 'rack-livereload'
 end
+
+group :development, :test do
+
+  gem 'spring', "1.1.3"             # https://github.com/rails/spring
+  #   gem 'spring-commands-rspec'   # keep application running in the background
+  #   # gem 'zeus'                  # required in gemfile for guard
+
+  #   # Debugging
+  gem 'pry', "0.10.0"               # better than irb
+  #   # gem 'byebug'                # ruby 2.0 debugger with built-in pry
+  #   gem 'pry-rails'               # adds rails specific commands to pry
+  #   gem 'pry-byebug'              # add debugging commands to pry
+  #   gem 'pry-stack_explorer'      # navigate call stack
+  #   # gem 'pry-rescue'            # start pry session on uncaught exception
+  #   # gem 'pry-doc'               # browse docs from console
+  #   # gem 'pry-git'               # add git support to console
+  #   # gem 'pry-remote'            # connect remotely to pry console
+  #   # gem 'coolline'              # sytax highlighting as you type
+  #   # gem 'coderay'               # use with coolline
+  #   gem 'awesome_print'           # pretty pring debugging output
+
+  #   # Testing
+  #   gem 'rspec-rails'
+  #   gem 'factory_girl_rails'
+  #   gem 'ffaker'
+  #   gem 'capybara-webkit'
+  #   # gem 'poltergeist'           # alternative to capybara-webkit
+  #   # gem 'capybara-firebug'
+  #   # gem 'launchy'               # save_and_open_page support for rspec
+  #   # gem 'zeus-parallel_tests'   # speed up lengthy tests
+
+  #   # Logging
+  #   gem 'quiet_assets'
+end
+
+# group :test do
+  #   gem 'minitest'                # include minitest to prevent require 'minitest/autorun' warnings
+
+  #   # Helpers
+  #   gem 'shoulda-matchers'
+  #   gem 'database_cleaner'
+  #   # gem 'timecop'               # Mock Time
+
+  #   # Coverage
+  #   gem 'simplecov', require: false
+  #   # gem 'coveralls', :require => false
+
+  #   gem 'rspec-sidekiq'
+# end
+
+# group :production do
+  #   gem 'dalli'                   # memcached
+  #   gem 'memcachier'              # heroku add-on for auto config of dalli
+  #   gem 'unicorn'
+  #   gem 'rails_12factor'          # https://devcenter.heroku.com/articles/rails4
+# end
+
+
+# gem "elasticsearch", git: "git://github.com/elasticsearch/elasticsearch-ruby.git"
+# gem "elasticsearch-model", git: "git://github.com/elasticsearch/elasticsearch-rails.git"
+# gem "elasticsearch-rails", git: "git://github.com/elasticsearch/elasticsearch-rails.git"
 
 

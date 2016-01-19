@@ -14,7 +14,7 @@ Kindrdfood.welcome.setAppointment = {
   availableTimeSlots: [],
 	init: function(){
     this.setRequestTimeButton();
-
+    this.setChangeTimeZone();
     // inititate fullcalendar
     $('#select-appt-cal').fullCalendar({
 
@@ -114,28 +114,7 @@ Kindrdfood.welcome.setAppointment = {
         // set click event for disabled next or previous button to show appt request form
         $(".fc-next-button.fc-state-disabled,  .fc-prev-button.fc-state-disabled").on("click.requestTimeHandler", function(e){
           e.preventDefault();
-          if ($("#apptRequestModal").length < 1){
-              $.ajax({
-                type: "GET",
-                datatype: "script",
-                url: "/appointments/new_appointment_request_times",
-                success: function(response){
-                  $('.datetimepicker-appt-request').datetimepicker({ 
-                      format: "MM/DD/YY h:mm a",
-                      sideBySide: true });
-                  // make start and end calendars dependent upon eachother
-                  for (var count=1; count <= 3; count++){ 
-                    $('input[name="appointment['+count+'][start_time]"]').parent().on("dp.change",function (e) {
-                      var requestNum = $(this).children("input").data("request-num");
-                      $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setMinDate(e.date.add(1, "hours"));
-                      $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setDate(e.date.add(1, "hours"));
-                    });
-                  };
-                }
-              });
-          }else{
             $("#apptRequestModal").modal();
-          }
         });
 
         /// override head of calendar with TODAY or the date
@@ -267,37 +246,7 @@ Kindrdfood.welcome.setAppointment = {
   setRequestTimeButton: function(){
     $("#request-appt-times").on("click", function(e){
       e.preventDefault();
-
-      // if appointmentRequestModal has not already been fetched then fetch
-      if ($("#apptRequestModal").length < 1){
-          $.ajax({
-            type: "GET",
-            datatype: "script",
-            url: "/appointments/new_appointment_request_times",
-
-            // upon success  
-            success: function(response){
-
-              // set datetimepicker
-              $('.datetimepicker-appt-request').datetimepicker({ 
-                  format: "MM/DD/YY h:mm a",
-                  sideBySide: true });
-
-              // make the 3 start and end calendars dependent upon eachother
-              for (var count=1; count <= 3; count++){ 
-                $('input[name="appointment['+count+'][start_time]"]').parent().on("dp.change",function (e) {
-                  var requestNum = $(this).children("input").data("request-num");
-                  $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setMinDate(e.date.add(1, "hours"));
-                  $('input[name="appointment['+requestNum+'][end_time]"]').parent().data("DateTimePicker").setDate(e.date.add(1, "hours"));
-                });
-              };
-            }
-          });
-
-      // if appointmentRequestModal has been fetched already then show modal
-      } else{
         $("#apptRequestModal").modal();
-      }
     });
   },
   createUnavailableTimeSlots: function(){
@@ -345,4 +294,9 @@ Kindrdfood.welcome.setAppointment = {
     }
  
   },
+  setChangeTimeZone: function(){
+       $('#user_time_zone').change(function() {
+        this.form.submit();
+    });
+  }
 }

@@ -52,7 +52,7 @@
 	    		width: 100% !important;
 	    		margin: 20px auto
 			  }
-			  .blog-medium-image{
+			  img:not(.recipe-image).blog-medium-image{
 			  	height: auto !important;
 	    		width: 50% !important;
 			  }

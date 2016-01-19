@@ -75,6 +75,7 @@ gem 'carrierwave', "0.10.0"
 gem 'mini_magick', "4.3.6"
 gem 'carrierwave-aws', "1.0.0"
 gem 'remotipart', '~> 1.2'
+gem 'file_validators'
 # gem 'rmagick'
 # gem "cocoon"
 

@@ -61,12 +61,6 @@ gem 'coffee-rails', '~> 4.0.0'
 # # gem 'neat'
 # # gem 'country_select'
 
-# rails URL downcaser uses Rack middleware to make URLs case insensitive.
-# all image file names and url's should be all lower case to work consistently
-# customization in config/initializers/route_downcaser.rb
-# https://github.com/carstengehling/route_downcaser 
-gem 'route_downcaser', "1.1.4"
-
 # # Email
 # gem 'premailer-rails'
 
@@ -82,10 +76,9 @@ gem 'rolify', "3.4.1"                       # https://github.com/RolifyCommunity
 # # gem 'omniauth-google-oauth2'
 # # gem 'omniauth-linkedin'
 
-# # Payment
+# # Payments
 gem 'stripe', "1.16.0"
 gem 'stripe-rails', "0.3.1"                   # # https://github.com/thefrontside/stripe-rails
-
 
 # # Admin
 gem 'activeadmin', github: 'gregbell/active_admin'        # http://activeadmin.info/

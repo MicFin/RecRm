@@ -13,7 +13,7 @@ CarrierWave.configure do |config|
     config.aws_credentials = {
       access_key_id: ENV['AWS_ACCESS_KEY_ID'],
       secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-      # :region => 'us-east-1',
+      :region => 'us-east-1',
       # :host => 's3.example.com',             # optional, defaults to nil
       # :endpoint => 'kindrd-pics.s3-website-us-east-1.amazonaws.com' # optional, defaults to nil
     }

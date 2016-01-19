@@ -4,7 +4,6 @@ source 'http://rubygems.org'
 # # Ruby
 ruby '2.1.5'
 
-# # not sure
 # gemspec
 
 # # Rails

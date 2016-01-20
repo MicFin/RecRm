@@ -84,9 +84,9 @@ gem 'monologue', "0.4.1"
 
 # # Monitoring
 gem "airbrake"
+gem 'newrelic_rpm'
 # gem 'airbrake_user_attributes'                       # see config/initializers/airbrake.rb
 # gem 'rack-timeout', '~> 0.1.0beta3'
-# gem 'newrelic_rpm'
 # # gem 'rack-google-analytics'
 
 # # API

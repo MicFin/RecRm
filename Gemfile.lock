@@ -173,6 +173,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     netrc (0.8.0)
+    newrelic_rpm (3.14.1.311)
     opentok (2.2.1)
       activesupport (>= 2.0)
       addressable (~> 2.3)
@@ -309,6 +310,7 @@ DEPENDENCIES
   mini_magick (= 4.3.6)
   momentjs-rails (~> 2.8.4)
   monologue (= 0.4.1)
+  newrelic_rpm
   opentok (= 2.2.1)
   pg (= 0.17.1)
   phony_rails (= 0.6.1)

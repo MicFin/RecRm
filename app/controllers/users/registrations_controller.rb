@@ -217,10 +217,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     def after_update_path_for(resource)
           
-        # if they have not finished on boarding
+        # if they have not finished on boarding then the just completed welcome#get_started
         if !resource.finished_on_boarding? 
         
-          redirect_to welcome_get_started_path
+          redirect_to welcome_add_family_path
         end
 
     end

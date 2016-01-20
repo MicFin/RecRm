@@ -1,15 +1,6 @@
  
 <!-- Partial msut recieve user -->
  <%= simple_form_for(user, as: "user", url: user_registration_path, html: {class: 'row text-left new-user-form', role:"form" }) do |f| %>
-
-<!--   <div class="form-row">
-    <label for="first-name">First Name</label>
-    <%#= f.input_field :first_name, autofocus: true, class: "form-control", type: "text", placeholder: "First" %>
-  </div>
-  <div class="form-row">
-    <label for="last-name">Last Name</label>
-    <%#= f.input_field :last_name, autofocus: true, class: "form-control", type: "text", placeholder: "Last" %>
-  </div> -->
   <div class="form-row">
     <label for="email">Email Address</label>
     <%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>

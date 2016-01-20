@@ -122,6 +122,7 @@ group :development do
   gem "better_errors", "1.1.0"
   gem "binding_of_caller", "0.7.2"     # extra features for better_errors
   gem 'sextant', "0.2.4"               # https://github.com/schneems/sextant
+  gem "bullet"                         # https://github.com/flyerhzm/bullet
   #   # gem 'meta_request'          # for rails_panel chrome extension
 
   #   # Deployment

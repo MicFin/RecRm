@@ -206,32 +206,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  # check if we need password to update user data
-  # ie if password or email was changed
-  # extend this as needed
-  def needs_password?(user, params)
-      # params[:user][:email].present? ||
-      params[:user][:password].present? ||
-      params[:user][:password_confirmation].present?
-  end
-
-  def after_update_path_for(resource)
-        
-      # if they have not finished on boarding
-      if !resource.finished_on_boarding? 
-      
-        redirect_to welcome_get_started_path
-      end
-
-  end
-
-  # if no image us saved in cache then delete image params
-  def verify_image_upload
-
-    if (params[:user][:images_attributes]) && ( params[:user][:images_attributes]["0"]["image"] == nil)
-      params[:user].delete(:images_attributes)
+    # check if we need password to update user data
+    # ie if password or email was changed
+    # extend this as needed
+    def needs_password?(user, params)
+        # params[:user][:email].present? ||
+        params[:user][:password].present? ||
+        params[:user][:password_confirmation].present?
     end
-  end
+
+    def after_update_path_for(resource)
+          
+        # if they have not finished on boarding
+        if !resource.finished_on_boarding? 
+        
+          redirect_to welcome_get_started_path
+        end
+
+    end
+
+    # if no image us saved in cache then delete image params
+    def verify_image_upload
+
+      if (params[:user][:images_attributes]) && ( params[:user][:images_attributes]["0"]["image"] == nil)
+        params[:user].delete(:images_attributes)
+      end
+    end
 
     # If a user submits new health groups then check if they are in our database or create them and prepare them to be saved
     def find_or_create_new_health_groups

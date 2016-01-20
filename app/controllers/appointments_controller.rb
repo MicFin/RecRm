@@ -353,7 +353,7 @@ class AppointmentsController < ApplicationController
       @intolerances = @intolerances 
       @allergies = @allergies
       @diets =  @diets 
-      # @unverified_health_groups = @family_members[0].unverified_health_groups
+      @unverified_health_groups = @family_members[0].unverified_health_groups
       @dietitian_survey = Survey.generate_for_appointment(@appointment, current_dietitian)
       @survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
       @surveyable = @appointment

@@ -5,25 +5,38 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <%= render "breadcrumbs" %>
+        
+          <%= render "breadcrumbs", stage_of_registration: @stage_of_registration %>
 
           <div id="set-appt-time" data-appt-id="<%=@appointment.id%>" class="col-xs-12 col-sm-8 col-sm-offset-2">
             <h1>Select Your Appointment</h1>
 
             <% if @appointment.status != "Unused Package Session" %>
-              <h4>All first appointments are for 1 hour</h4>
-
-              <%= simple_form_for(@user, as: "user", url: users_registrations_update_time_zone_path, html: {class: 'col-xs-6 col-xs-offset-2 text-left', role:"form" }, :method => :patch, remote: true) do |f| %>
-
-                <%= f.input :time_zone, priority: /US/, :input_html => { class: "form-control"}, autofocus: true, label: false, :default => @user.time_zone %>
-
-               <div class="actions text-right">
-                  <%= f.button :submit, "change your time zone", class: "btn btn-link" %>
-                </div>
-              <% end %>
 
               <% if @user.repeat_customer? %>
-               <%= simple_form_for(@appointment, as: "appointment", url: appointments_update_duration_path(@appointment.id), html: {class: 'col-xs-2 text-right', role:"form" }, :method => :patch, remote: true) do |appt| %>
+
+                <%= simple_form_for(@user, as: "user", url: users_registrations_update_time_zone_path, html: {class: 'col-xs-12 col-sm-8 text-left', role:"form" }, :method => :patch, remote: true) do |f| %>
+
+                  <%= f.input :time_zone, priority: /US/, :input_html => { class: "form-control"}, autofocus: true, label: false, :default => @user.time_zone %>
+
+                 <div class="actions text-right">
+                    <%= f.button :submit, "change your time zone", class: "btn btn-link" %>
+                  </div>
+                <% end %>
+
+               <%= simple_form_for(@appointment, as: "appointment", url: appointments_update_duration_path(@appointment.id), html: {class: 'col-xs-12 col-sm-4 text-right', role:"form" }, :method => :patch, remote: true) do |appt| %>
+
+                  <%= appt.input :duration, as: :select, priority: @appointment.duration, collection: [ ["30 mins", 30], ["60 mins", 60] ], :input_html => { class: "form-control"}, label: false, include_blank: false %>
+
+                 <div class="actions text-right">
+                    <%= appt.button :submit, "change duration", class: "btn btn-link" %>
+                  </div>
+                <% end %>
+
+              <% else %>
+
+                <h4>All first appointments are for 1 hour</h4>
+                <%= simple_form_for(@appointment, as: "appointment", url: appointments_update_duration_path(@appointment.id), html: {class: 'col-xs-offset-1 col-xs-10 text-right', role:"form" }, :method => :patch, remote: true) do |appt| %>
 
                   <%= appt.input :duration, as: :select, priority: @appointment.duration, collection: [ ["30 mins", 30], ["60 mins", 60] ], :input_html => { class: "form-control"}, label: false, include_blank: false %>
 
@@ -32,17 +45,22 @@
                   </div>
                 <% end %>
               <% end %>
+           
             <% else %>
+
               <h4>You have a <%=@appointment.duration%> minute session from a current package.</h4>
             <% end %>
+           
             <% if @appointment.stripe_card_token %>
               <h2>This appointment is already set for <%=@appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M")%> - <%=@appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p")%></h2>
+            
             <% else %>
 
               <div id="select-appt-cal" class="col-xs-12">
                 <%=image_tag "loading_spinners/spin.gif", class: "loading-spinner img-responsive" %>
               </div>
             <% end %>
+            
             <div class="col-xs-12">
             <h3>Can't find a time that works for you?</h3>
             <button id="request-appt-times" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span>Email Us</button>

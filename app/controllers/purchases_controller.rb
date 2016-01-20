@@ -74,12 +74,14 @@ class PurchasesController < ApplicationController
     # If an appointment
     if @purchasable.class == Appointment
 
-      # Get the time slot and save start and end time to appointment
-      time_slot = TimeSlot.find(params[:time_slot_id])
-      @purchasable.start_time = time_slot.start_time
-      @purchasable.end_time = time_slot.end_time
-      @purchasable.save
-
+      # if no start time, if there is then it was follow up unpaid
+      if !@purchasable.start_time 
+        # Get the time slot and save start and end time to appointment
+        time_slot = TimeSlot.find(params[:time_slot_id])
+        @purchasable.start_time = time_slot.start_time
+        @purchasable.end_time = time_slot.end_time
+        @purchasable.save
+      end
       
       # # Create pre appointment survey
       @pre_appt_survey = Survey.generate_for_appointment(@purchasable, current_user)

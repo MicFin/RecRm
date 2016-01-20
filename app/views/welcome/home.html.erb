@@ -10,6 +10,7 @@
 			<section class="jumbotron">
 				<div id="jumbotron-inner" class="row">
 
+					<!-- 				UPCOMING CONFIRMED APPOINTMENT -->
 					<% if @upcoming_appointment && @upcoming_appointment.status == "Paid"  %>
 						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 							<div class="row">
@@ -24,26 +25,25 @@
 							<div class="row">
 								<div class="col-xs-12 session-action">
 
-									<% if ( (@upcoming_appointment.room_id) && (DateTime.now >= @upcoming_appointment.start_time - 10.minutes) && ( DateTime.now() <= @upcoming_appointment.end_time + 5.minutes) ) %>
+									<!-- 				JOIN APPOINTMENT 10 minutes  -->
+									<% if ( (DateTime.now >= @upcoming_appointment.start_time - 10.minutes) ) %>
 
-										<%# if (@upcoming_appointment.room_id)  %>
+										<!-- 		Start session button -->
 										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-	
 											<%= link_to in_session_room_path(:id => @upcoming_appointment.room_id, appointment: @upcoming_appointment.id), class: "btn btn-primary" do %>
-			
 												<div class="col-xs-3">
 													<p><span class="glyphicon glyphicon-heart"></span></p>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-													<p>START</p>
+													<p>JOIN</p>
 													<p>APPOINTMENT</p>
 												</div>
 											<% end %>
 										</div>
-										
+
+										<!-- 		Prep session button -->
 										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
 												<%= link_to client_appointment_prep_path(@upcoming_appointment.id), class: "btn btn-xs btn-primary", remote: true do %>
-								
 														<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 															<span class="glyphicon glyphicon-edit"></span>
 														</div>
@@ -54,40 +54,32 @@
 	
 												<% end %>
 										</div> 
+
+									<!-- 				PREP APPOINTMENT can not join yet-->
 									<% else %>
 										<h2>We look forward to meeting with you!</h2>
-											<p>Take a moment to prepare for your session</p>
-											<div class="col-xs-12 col-md-6 col-lg-offset-3 col-lg-6">
+										<p>Take a moment to prepare for your session</p>
 
-												<%= link_to client_appointment_prep_path(@upcoming_appointment.id), class: "btn btn-xs btn-primary", remote: true do %>
-								
-														<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-															<span class="glyphicon glyphicon-edit"></span>
-														</div>
-														<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-															<p>PREP FOR</p>
-															<p>APPOINTMENT</p>
-														</div>
-	
-												<% end %>
-											</div>
-					<!-- 	 					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-												<a disabled class="btn btn-primary">
-				
-													<div class="col-xs-3">
-														<p><span class="glyphicon glyphicon-heart"></span></p>
+										<!-- 		Prep session button -->
+										<div class="col-xs-12 col-md-6 col-lg-offset-3 col-lg-6">
+											<%= link_to client_appointment_prep_path(@upcoming_appointment.id), class: "btn btn-xs btn-primary", remote: true do %>
+							
+													<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+														<span class="glyphicon glyphicon-edit"></span>
 													</div>
 													<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-														<p>START</p>
+														<p>PREP FOR</p>
 														<p>APPOINTMENT</p>
 													</div>
-												</a>
-											</div>  -->
+											<% end %>
+										</div>
 									<% end %>
 
 								</div>
 							</div>
 						</div>
+
+					<!-- 				UPCOMING NOT CONFIRMED APPOINTMENT -->
 					<% elsif @upcoming_appointment && @upcoming_appointment.status ==  "Follow Up Unpaid"%>
 						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 							<div class="row">
@@ -101,6 +93,8 @@
 							<div class="row">
 								<div class="col-xs-12 session-action">
 									<p>This appointment has not been confirmed.  Please confirm the appointment below.</p>
+
+									<!-- 		Prep session button -->
 									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-3 col-lg-6">
 										<%=link_to purchase_appointment_path(@unpaid_appointment.id), class: "btn btn-primary", :remote => true do %>
 											<div class="col-xs-3">
@@ -116,38 +110,36 @@
 								</div>
 							</div>
 						</div>
+
+					<!-- 				NO UPCOMING APPOINTMENT-->
 					<% else %>
+
 						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-							<div class="row">
-								<h2> </h2>
-							</div>
-							<hr>
 							<div class="row">
 								<h1>SCHEDULE YOUR NEXT APPOINTMENT</h1>
 							</div>
 							<hr>
 							<div class="row">
 								<div class="col-xs-12 session-action">
+
+									<!-- 		Make appointment button -->
 									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-
-
-									<%= link_to welcome_get_started_path do %>
-										<button class="btn btn-primary">
-											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-												<span class="glyphicon glyphicon-calendar"></span>
-											</div>
-											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-												<p>MAKE</p>
-												<p>APPOINTMENT</p>
-											</div>
-										</button> 
-									<% end %>
-						<!-- 			-->
+										<%= link_to welcome_set_appointment_path do %>
+											<button class="btn btn-primary">
+												<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+													<span class="glyphicon glyphicon-calendar"></span>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+													<p>MAKE</p>
+													<p>APPOINTMENT</p>
+												</div>
+											</button> 
+										<% end %>
 									</div>
+
+									<!-- 		Purchase package button -->
 									<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-									<!-- 										 -->
 										<%= link_to packages_path, class: "btn btn-default " do %>
-					
 											<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 												<span class="glyphicon glyphicon-comment"></span>
 											</div>
@@ -155,7 +147,6 @@
 												<p>PURCHASE</p>
 												<p>PACKAGE</p>
 											</div>
-			
 										<% end %>
 									</div>
 								</div>
@@ -165,9 +156,9 @@
 				</div>
 			</section>
 
+			<!-- UPCOMING APPOINTMENTS TABLE -->
 			<section class="content-container">
 				<h3><span class="glyphicon glyphicon-calendar"></span>Upcoming Appointments</h3>
-
 				<table class="table">
           <thead>
             <tr>
@@ -180,25 +171,23 @@
           <tbody>
 						<% if @upcoming_appointments.count >= 1 %>
 							<% @upcoming_appointments.each do |date_time_array, appointment| %>
+								<tr>	
+									<td>
+										<%=date_time_array[0]%> <%=date_time_array[1]%></td>
 
-								
-									<tr>	
-										<td>
-											<%=date_time_array[0]%> <%=date_time_array[1]%></td>
-
-	              		<td><%= appointment.first.patient_focus.first_name%></td>
-	                	<td><%= appointment.first.show_duration%></td>
-	                	<% if appointment.first.surveys.where(survey_group_id: 1).first.completed %>
-	                		<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-sm btn-primary", remote: true%></td>
-	                	<% else %>
-	                		<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-lg btn-danger", remote: true%></td>
-	                	<% end %>
-	                	<% if appointment.first.room_id %>
-	                	<td><%= link_to "Join", in_session_room_path(:id => appointment.first.room_id, appointment: appointment.first.id), class: "btn btn-xs btn-success" %>
+              		<td><%= appointment.first.patient_focus.first_name%></td>
+                	<td><%= appointment.first.show_duration%></td>
+                	<% if appointment.first.surveys.where(survey_group_id: 1).first.completed %>
+                		<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-sm btn-primary", remote: true%></td>
+                	<% else %>
+                		<td><%= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-lg btn-danger", remote: true%></td>
+                	<% end %>
+              
+	                	<td><%#= link_to "Join", in_session_room_path(:id => appointment.first.room_id, appointment: appointment.first.id), class: "btn btn-xs btn-success" %>
 										</td>
-										<% end %>
-	                	<td><button class="btn btn-xs btn-default reschedule-appointment">Reschedule</button></td>
-	              	</tr>
+						
+                	<td><button class="btn btn-xs btn-default reschedule-appointment">Reschedule</button></td>
+              	</tr>
 	          
               <% end %>
 						<% else %>
@@ -209,22 +198,9 @@
             <% end %>
           </tbody>
         </table>
-
-
 			</section>
 
-
-
-
-
-
-
-
-
-
-
-
-
+			<!-- PREVIOUS APPOINTMENTS TABLE -->
 			<section class="content-container recipes">
 				<h3><span class="glyphicon glyphicon-calendar"></span>Previous Appointments</h3>
 

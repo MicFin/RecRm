@@ -55,6 +55,8 @@ class WelcomeController < Users::RegistrationsController
       @family
       # Shows views/welcome/home.html.erb
     end
+ 
+  
   end
 
   ### This is currently the dietitian's dashboard

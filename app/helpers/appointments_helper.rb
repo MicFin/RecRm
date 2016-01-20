@@ -98,8 +98,9 @@ module AppointmentsHelper
   # Get upcoming appointment for client
   def get_upcoming_appointment!
 
-    # Get last paid appointment or last follow up unpaid appointment
-      @upcoming_appointment = current_user.appointment_hosts.where("start_time > ?", DateTime.now).where(status: "Paid").last || current_user.appointment_hosts.where("start_time > ?", DateTime.now).where(status: "Follow Up Unpaid").last
+    # Get last paid appointment or last follow up unpaid appointment 
+    # - 1 hours to include appointments that are currently on going
+      @upcoming_appointment = current_user.appointment_hosts.where("start_time > ?", DateTime.now - 1.hours).where(status: "Paid").last || current_user.appointment_hosts.where("start_time > ?", DateTime.now - 1.hours).where(status: "Follow Up Unpaid").last
 
       # If there is an upcoming appointment then set date
       if @upcoming_appointment 

@@ -1,3 +1,21 @@
-	$("body").append("<%= j render(:partial => 'payment_modal') %>");
+
+	<% if @purchasable.class == Package %>
+	$("body").append("<%= j render(:partial => '/purchases/purchase_package_modal' ) %>");
 	$('#paymentModal').modal();
 	payment.setupForm();
+
+<% elsif @user.qol_referral == true %>
+	$("body").append("<%= j render(:partial => '/purchases/purchases_modal') %>");
+	$('#paymentModal').modal();
+	// payment.setupForm();
+
+<% elsif @purchasable.status == "Unused Package Session" %>
+	$("body").append("<%= j render(:partial => '/purchases/purchases_modal') %>");
+	$('#paymentModal').modal();
+
+<% else %>
+	$("body").append("<%= j render(:partial => '/purchases/purchases_modal') %>");
+	$('#paymentModal').modal();
+	payment.setupForm();
+
+<% end %>

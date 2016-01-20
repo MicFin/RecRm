@@ -104,7 +104,7 @@
                     </div>
                     <div class="col-xs-12 form-group">
                       <label>Health Groups</label>
-                      <% if family_member.patient_groups.count >= 1 %>
+                      <% if family_member.patient_groups.size >= 1 %>
                         <% family_member.patient_groups.each do |health_group| %>
                           <div class="btn btn-white-orange btn-sm">
                             <%= health_group.name %>
@@ -113,7 +113,7 @@
                       <% else %>
                         <p>No health groups</p>
                       <% end %>
-                      <% if family_member.unverified_health_groups.count >=1%>
+                      <% if family_member.unverified_health_groups.size >=1%>
                         <label>Unverified Health Groups</label>
                         <% family_member.unverified_health_groups.each do |health_group| %>
                           <div class="btn btn-white-orange btn-sm">

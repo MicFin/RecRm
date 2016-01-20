@@ -129,7 +129,7 @@ class WelcomeController < Users::RegistrationsController
 
     # Give user role head of family 
     # Safe to reassign, does not override other roles or duplicate current
-    @user.add_role "Head of Family", @family
+    # @user.add_role "Head of Family", @family
 
     # Height and weight fields come in wrong format, need to clean for database.
     clean_height_and_weight_input
@@ -190,7 +190,7 @@ class WelcomeController < Users::RegistrationsController
     @user = appointment.patient_focus
 
     # set current patient group ids for checkbox form
-    @user.patient_group_ids = @user.get_patient_group_ids
+    # @user.patient_group_ids = @user.patient_group_ids
 
     # Gather all major patient groups
     # Also gets user unverified groups
@@ -219,6 +219,7 @@ class WelcomeController < Users::RegistrationsController
 
     # Check if user has any preferences already
     user_preferences_ids = @user.get_preferences_ids
+    
     if user_preferences_ids.count > 0  
 
       # Add preferences IDs to the params so that they get included when it updates the users health groups 
@@ -250,9 +251,6 @@ class WelcomeController < Users::RegistrationsController
     appointment = @user.appointment_in_registration
     @user = appointment.patient_focus
     
-    # set current disease ids for checkbox form
-    @user.patient_group_ids = @user.get_patient_group_ids
-
     # Gather diets and symptoms from patient groups
     # from PatientGroupsHelper
     get_patient_groups!

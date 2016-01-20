@@ -146,35 +146,27 @@ def health_groups_by_category
   end
   return groups_by_category
 end
-  # returns an array of patient groups for a user 
-  def get_patient_group_ids
-     patient_group_ids = self.patient_groups.map{|disease|disease.id}
-     return patient_group_ids
-  end
 
   # returns an array of patient groups for a user that are type disease, allergy, or intolerance
   def get_nutrition_ids
-    groups = self.patient_groups
-    nutrition_groups = []
-    groups.each do |group|
+    nutrition_ids = []
+    self.patient_groups.each do |group|
       if (group.category == "disease") || (group.category == "allergy") || (group.category == "intolerance")
-        nutrition_groups << group
+        nutrition_ids << group.id
       end
     end
-    nutrition_ids = nutrition_groups.flatten.map{|disease|disease.id}
     return nutrition_ids
   end
 
   # returns an array of patient groups for a user that are diets or symptoms
   def get_preferences_ids
-    groups = self.patient_groups
-    preference_groups = []
-    groups.each do |group|
+
+    preferences_ids =[]
+    self.patient_groups.each do |group|
       if (group.category == "symptom") || (group.category == "diet")
-        preference_groups << group
+        preferences_ids << group.id
       end
     end
-    preferences_ids = preference_groups.flatten.map{|disease|disease.id}
     return preferences_ids
   end
 

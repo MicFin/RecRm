@@ -295,7 +295,10 @@ Kindrdfood.welcome.setAppointment = {
  
   },
   setChangeTimeZone: function(){
-       $('#user_time_zone').change(function() {
+    $('#user_time_zone').change(function() {
+        this.form.submit();
+    });
+    $('#appointment_duration').change(function() {
         this.form.submit();
     });
   }

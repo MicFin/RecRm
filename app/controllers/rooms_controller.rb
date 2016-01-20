@@ -4,6 +4,9 @@ class RoomsController < ApplicationController
   # only admin can view rooms index page
   before_filter :authenticate_admin_user!, only: [:index]
 
+  # Force SSL for rooms, TokBox plugin requires it
+  force_ssl
+  
   def index
     @rooms = Room.where(:public => true).order("created_at DESC")
     @new_room = Room.new

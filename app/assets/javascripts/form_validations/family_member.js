@@ -231,55 +231,52 @@ Kindrdfood.formValidations.familyMembers = {
 
       // gets the value of health group entry field
       var group_name = $(this).siblings().first().val();
+      
+      // if the form has a value
+      if (group_name.length > 0) {
 
-      // gets the group type (which is currently alwyas set to disease for new health groups)
-      var group_type = $(this).siblings().first().attr("data-group-type");
-   
-      // adds the new health group checkbox
-      if ( $("#add-disease-button").length >= 1){
+        // gets the group type (which is currently alwyas set to disease for new health groups)
+        var group_type = $(this).siblings().first().attr("data-group-type");
+     
+        // if on registration page
+        // remove the add disease button then adds the new health group checkbox
+        if ( $("#add-disease-button").length >= 1){
 
-        // welcome add nutrition screen
-      	$(this).parent().prev().before(
-      	'<span>'+
-          '<input id="new_health_group_' + group_name + '" name="new_health_groups['+ group_type +'][]" type="checkbox" value="' + group_name + '" checked>'+
-          '<label for="new_health_group_' + group_name + '" class="collection_check_boxes">' + group_name + '</label>' + 
-          '</span>');
-      	$("#add-disease-form").addClass("hidden");
-      	$("#add-disease-button").removeClass("hidden");
+          // welcome add nutrition screen
+        	$(this).parent().prev().before(
+        	'<span>'+
+            '<input id="new_health_group_' + group_name + '" name="new_health_groups['+ group_type +'][]" type="checkbox" value="' + group_name + '" checked>'+
+            '<label for="new_health_group_' + group_name + '" class="collection_check_boxes">' + group_name + '</label>' + 
+            '</span>');
+        	$("#add-disease-form").addClass("hidden");
+        	$("#add-disease-button").removeClass("hidden");
+        
+        // else on family edit family member form
+        } else {
+        	$(this).parent().before(
+        	  '<div class="col-xs-6 col-sm-4 form-group">' + 
+              '<input id="new_health_group_' + group_name + '" name="new_health_groups[' + group_type + '][]" type="checkbox" value="' + group_name + '" checked>' +
+              '<label class="checkbox-inline">' + group_name + '</label>' +
+            '</div>');
+        }
 
-        /// family member edit screen?
-      } else {
-      	$(this).parent().before(
-      	'<div class="col-xs-6 col-sm-4 form-group">' + 
-          '<input id="new_health_group_' + group_name + '" name="new_health_groups[' + group_type + '][]" type="checkbox" value="' + group_name + '" checked>' +
-          '<label class="checkbox-inline">' + group_name + '</label>' +
-        '</div>');
+        // set input field to blank
+        $(this).siblings().first().val("");
       }
-
-      // set input field to blank
-      $(this).siblings().first().val("");
-
     });
 
-    // when new group is clicked, checkbox was not being checked so using jquery
-    // $("input[name='new_health_groups[disease][]']").each( function(){
-    //   $(this).on("click", function(e){
-    //      e.preventDefault();
-    //      alert(this);
-    //   });
-    // });
     // ADD NEW ALLERGY BUTTON
 		$("#addNutritionModel, #family-page").on("click", "#new-allergy-group-button", function(e){
       e.preventDefault();
 
-
       // gets the value of health group entry field
       var group_name = $(this).siblings().first().val();
 
-      // gets the group type (which is currently alwyas set to disease for new health groups)
-      var group_type = $(this).siblings().first().data("group-type");
+      // if the form has a value
+      if (group_name.length > 0) {
+        // gets the group type (which is currently alwyas set to disease for new health groups)
+        var group_type = $(this).siblings().first().data("group-type");
 
-      if (group_name !== "") {
         // adds the allergy checkbox
         $(this).parent().before(
           '<div class="col-xs-6 col-sm-4 form-group">' +
@@ -288,8 +285,8 @@ Kindrdfood.formValidations.familyMembers = {
   					'</label>' +
   				'</div>');
 
-        // set input field to blank
-        $(this).siblings().first().val("");
+          // set input field to blank
+          $(this).siblings().first().val("");
       }
     });
 	},

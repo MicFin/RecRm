@@ -64,7 +64,7 @@ class Family < ActiveRecord::Base
 
   def health_groups
     family_health_groups = []
-    self.users.each do |family_member|
+    self.users.includes(:patient_groups).each do |family_member|
       if family_member.patient_groups.count >= 1 
         family_member.patient_groups.each do |health_group|
           family_health_groups << health_group

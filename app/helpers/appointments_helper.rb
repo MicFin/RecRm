@@ -62,7 +62,7 @@ module AppointmentsHelper
 
     # if dietitian then get all previous appointments and add family
     if current_dietitian
-      current_dietitian.appointments.map do |appointment| 
+      current_dietitian.appointments.includes(:appointment_host).includes(:patient_focus).map do |appointment| 
         if appointment.status == "Complete"
           family = appointment.appointment_host.head_of_families.last 
           family.health_groups_names = family.health_groups.map(&:name)

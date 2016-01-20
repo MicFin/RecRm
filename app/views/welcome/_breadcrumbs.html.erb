@@ -1,5 +1,5 @@
     <div class="breadcrumb-sign-out">
-      <% if !current_user.repeat_customer? %>
+      <% if current_user.repeat_customer? %>
         <%= active_link_to welcome_home_path, { :active => :exclusive, :class_active => 'selected'} do %>
           <i>back to dashboard</i>
         <% end %>
@@ -13,7 +13,7 @@
 
         <div class="btn-group btn-breadcrumb">
         
-        <% if current_user.appointment_registration_stage <= 1 %>
+        <% if stage_of_registration <= 1 %>
     
           <%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
  					<%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
@@ -21,7 +21,7 @@
           <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
           <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
 
-        <% elsif current_user.appointment_registration_stage <= 2 %>
+        <% elsif stage_of_registration <= 2 %>
 
         	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
@@ -29,7 +29,7 @@
           <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
           <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
 
-				<% elsif current_user.appointment_registration_stage <= 3 %>
+				<% elsif stage_of_registration <= 3 %>
 
         	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Your Table", welcome_add_family_path, :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
@@ -37,7 +37,7 @@
           <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
           <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
 				
-				<% elsif current_user.appointment_registration_stage <= 4 %>
+				<% elsif stage_of_registration <= 4 %>
 
         	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
@@ -45,7 +45,7 @@
           <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
 
-				<% elsif current_user.appointment_registration_stage <= 5 %>
+				<% elsif stage_of_registration <= 5 %>
 
         	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
           <%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>

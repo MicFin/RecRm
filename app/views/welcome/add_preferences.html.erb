@@ -8,7 +8,7 @@
 	      <div class="modal-body">
 
 	      	<!--  REGISTRATION BREAD CRUMBS -->
-	        <%= render "breadcrumbs" %>
+	        <%= render "breadcrumbs", stage_of_registration: @stage_of_registration %>
 
 	        <!--  HEADING -->
 	        <h1>Symptoms that apply to <%=@user.first_name%></h1>

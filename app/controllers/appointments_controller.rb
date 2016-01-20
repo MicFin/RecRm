@@ -55,11 +55,11 @@ class AppointmentsController < ApplicationController
       @upcoming_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
       @previous_appointments = Appointment.where("start_time < ?", DateTime.now).order('start_time ASC, created_at ASC')
     end
+    
   end
 
   # GET /appointments/1
   # GET /appointments/1.json
-
   # this is where the index modal is coming from to view the prep information before the admin assigns a dietitian to an appointment
   def show
 
@@ -68,13 +68,15 @@ class AppointmentsController < ApplicationController
     else 
       ### this is being used to prep assign the dietitian 
       @dietitians = @appointment.available_dietitians
+      
       @dietitians_data = {}
       @dietitians.each do |dietitian|
         @dietitians_data[dietitian] = {}
-        @dietitians_data[dietitian]["half_hour_time_slots_available"] = dietitian.half_hour_time_slots_available
-        @dietitians_data[dietitian]["loss_time_slots"] = dietitian.loss_time_slots(@appointment) 
-        @dietitians_data[dietitian]["loss_cal_slots"] = dietitian.loss_calendar_slots(@appointment)      
+        # @dietitians_data[dietitian]["half_hour_time_slots_available"] = dietitian.half_hour_time_slots_available
+        # @dietitians_data[dietitian]["loss_time_slots"] = dietitian.loss_time_slots(@appointment) 
+        # @dietitians_data[dietitian]["loss_cal_slots"] = dietitian.loss_calendar_slots(@appointment)      
       end
+
       #@survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
     end
 
@@ -312,7 +314,6 @@ class AppointmentsController < ApplicationController
   end
   
   # GET /appointments/1/appointment_review
-  # Used by admin dietitian to assign dietitian
   def appointment_review
     # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
     
@@ -368,9 +369,14 @@ class AppointmentsController < ApplicationController
     @user = current_user
     # payment_modal template requires a time_slot for start and end time
     @time_slot = @appointment 
+    @purchasable = @appointment
+
+    @purchase = @purchasable.purchase || Purchase.new(user_id: @user.id, status: "Incomplete", purchasable_type: "Appointment", purchasable_id: @purchasable.id )  
+    @purchase.save
+
     respond_to do |format|
       format.js
-      format.html
+      # format.html
     end
   end
 

@@ -114,6 +114,8 @@ gem 'monologue', "0.4.1"
 # gem 'addressable'
 # gem 'settingslogic'
 
+# Rack Mini Profiler runs in development but is installed out of the group
+gem 'rack-mini-profiler'          # https://github.com/MiniProfiler/rack-mini-profiler
 group :development do
   #   # Docs
   gem 'sdoc', '~> 0.4.0',          group: :doc

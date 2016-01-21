@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: time_slots
+#
+#  id              :integer          not null, primary key
+#  title           :string(255)
+#  start_time      :datetime
+#  end_time        :datetime
+#  created_at      :datetime
+#  updated_at      :datetime
+#  minutes         :integer
+#  status          :string(255)
+#  availability_id :integer
+#  vacancy         :boolean          default(TRUE)
+#
+
 class TimeSlotsController < ApplicationController
   before_action :set_time_slot, only: [:show, :edit, :update, :create_from_existing, :destroy]
   # before_action :set_time_slot, except: [:index, :new, :create, :create_from_availability]

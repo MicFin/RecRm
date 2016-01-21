@@ -119,7 +119,7 @@ gem 'rack-mini-profiler'          # https://github.com/MiniProfiler/rack-mini-pr
 group :development do
   #   # Docs
   gem 'sdoc', '~> 0.4.0',          group: :doc
-
+  gem 'annotate'                        # https://github.com/ctran/annotate_models
   #   # Errors
   gem "better_errors", "1.1.0"
   gem "binding_of_caller", "0.7.2"     # extra features for better_errors

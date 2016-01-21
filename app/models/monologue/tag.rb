@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: monologue_tags
+#
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  tag_category :string(255)
+#
+
 class Monologue::Tag < ActiveRecord::Base
   validates :name, uniqueness: true,presence: true
   has_many :taggings

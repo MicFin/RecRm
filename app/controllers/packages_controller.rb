@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: packages
+#
+#  id                    :integer          not null, primary key
+#  category              :string(255)
+#  name                  :string(255)
+#  full_price            :integer
+#  description           :text
+#  num_half_appointments :integer
+#  num_full_appointments :integer
+#  expiration_in_months  :integer
+#  created_at            :datetime
+#  updated_at            :datetime
+#
+
 class PackagesController < ApplicationController
   before_action :set_package, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_admin, only: [:new, :show, :new, :edit, :create, :destroy, :update]

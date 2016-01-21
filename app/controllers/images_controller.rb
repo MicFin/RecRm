@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: images
+#
+#  id             :integer          not null, primary key
+#  image_type     :string(255)
+#  imageable_id   :integer
+#  imageable_type :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  title          :string(255)
+#  image          :string(255)
+#  position       :integer          default(0)
+#
+
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :crop, :destroy]
   before_filter :load_imageable, only: [:index, :new, :create]

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: user_packages
+#
+#  id              :integer          not null, primary key
+#  user_id         :integer
+#  package_id      :integer
+#  purchase_date   :date
+#  expiration_date :date
+#
+
 class UserPackage < ActiveRecord::Base
   belongs_to :user
   belongs_to :package

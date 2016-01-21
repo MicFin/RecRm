@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: patient_groups
+#
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  category     :string(255)
+#  description  :text
+#  order        :integer
+#  input_option :boolean
+#  created_at   :datetime
+#  updated_at   :datetime
+#  unverified   :boolean          default(FALSE)
+#  has_triggers :boolean          default(FALSE), not null
+#
+
 class PatientGroup < ActiveRecord::Base
 	has_and_belongs_to_many :users
 

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: survey_groups
+#
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  version_number :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

@@ -117,15 +117,21 @@ gem 'monologue', "0.4.1"
 # Rack Mini Profiler runs in development but is installed out of the group
 gem 'rack-mini-profiler'          # https://github.com/MiniProfiler/rack-mini-profiler
 group :development do
+
   #   # Docs
   gem 'sdoc', '~> 0.4.0',          group: :doc
   gem 'annotate'                        # https://github.com/ctran/annotate_models
+
   #   # Errors
   gem "better_errors", "1.1.0"
   gem "binding_of_caller", "0.7.2"     # extra features for better_errors
   gem 'sextant', "0.2.4"               # https://github.com/schneems/sextant
   gem "bullet"                         # https://github.com/flyerhzm/bullet
   gem 'meta_request'                   # https://github.com/dejan/rails_panel
+  #    gem 'traceroute'        # https://github.com/amatsuda/traceroute
+
+  #   # Security
+  # gem 'brakeman', :require => false     # https://github.com/presidentbeef/brakeman
 
   #   # Deployment
   #   # gem 'capistrano'

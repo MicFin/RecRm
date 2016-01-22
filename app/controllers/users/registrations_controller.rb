@@ -73,6 +73,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
   end
+
   # Signs in a user on sign up. You can overwrite this method in your own
   # RegistrationsController.
   def sign_up(resource_name, resource)
@@ -85,16 +86,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     after_sign_in_path_for(resource)
   end
 
-  # Users that require confirmation, currently from QOL landing page
-  # only QOL admin should be creating these so can redirect to qol
+  # Users that require confirmation, currently from QOL landing page or Physician referral
   def after_inactive_sign_up_path_for(resource)
     
-    # if physician or qol admin paths
+
     # override confirmation sent flash notice for QOLadmin
     flash[:notice] = 'Kindrdfood invitation was successfully sent.'
 
+    # If QOL referral
     if resource.qol_referral == true 
       landing_pages_qol_admin_path
+
+    # Else is physician referral
     else
       landing_pages_refer_path
     end

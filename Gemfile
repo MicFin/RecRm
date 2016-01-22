@@ -114,14 +114,23 @@ gem 'newrelic_rpm'
 # gem 'addressable'
 # gem 'settingslogic'
 
+# # Caching 
+# # might be able to move into group :production
+gem 'dalli'                                     # https://github.com/petergoldstein/dalli
+gem 'identity_cache'                            # https://github.com/Shopify/identity_cache
+gem 'cityhash'
+
+# Rack Mini Profiler 
+# runs in development but is installed out of the group, can be adjusted to run in production too
+gem 'rack-mini-profiler'                        # https://github.com/MiniProfiler/rack-mini-profiler
+
 group :production do
-    gem 'dalli'                   # https://github.com/petergoldstein/dalli
+    # gem 'dalli'                               # https://github.com/petergoldstein/dalli
+    # gem 'identity_cache'                      # https://github.com/Shopify/identity_cache
     # gem 'unicorn'
-    # gem 'rails_12factor'          # https://devcenter.heroku.com/articles/rails4
+    # gem 'rails_12factor'                      # https://devcenter.heroku.com/articles/rails4
 end
 
-# Rack Mini Profiler runs in development but is installed out of the group, can be adjusted to run in production too
-gem 'rack-mini-profiler'          # https://github.com/MiniProfiler/rack-mini-profiler
 group :development do
 
   #   # Docs

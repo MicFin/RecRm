@@ -114,6 +114,12 @@ gem 'newrelic_rpm'
 # gem 'addressable'
 # gem 'settingslogic'
 
+group :production do
+    gem 'dalli'                   # https://github.com/petergoldstein/dalli
+    # gem 'unicorn'
+    # gem 'rails_12factor'          # https://devcenter.heroku.com/articles/rails4
+end
+
 # Rack Mini Profiler runs in development but is installed out of the group, can be adjusted to run in production too
 gem 'rack-mini-profiler'          # https://github.com/MiniProfiler/rack-mini-profiler
 group :development do
@@ -189,13 +195,6 @@ end
   #   # gem 'coveralls', :require => false
 
   #   gem 'rspec-sidekiq'
-# end
-
-# group :production do
-  #   gem 'dalli'                   # memcached
-  #   gem 'memcachier'              # heroku add-on for auto config of dalli
-  #   gem 'unicorn'
-  #   gem 'rails_12factor'          # https://devcenter.heroku.com/articles/rails4
 # end
 
 

@@ -1,7 +1,7 @@
 # http://stackoverflow.com/questions/16379554/strong-parameters-with-rails-4-0-and-devise
 class Users::RegistrationsController < Devise::RegistrationsController
   include PatientGroupsHelper
-  before_filter :configure_permitted_parameters, :except => [:new_user_intro, :new_user_family] 
+  before_filter :configure_permitted_parameters
 
   # GET /resource/sign_up
   def new

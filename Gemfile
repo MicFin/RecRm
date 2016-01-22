@@ -114,7 +114,7 @@ gem 'newrelic_rpm'
 # gem 'addressable'
 # gem 'settingslogic'
 
-# Rack Mini Profiler runs in development but is installed out of the group
+# Rack Mini Profiler runs in development but is installed out of the group, can be adjusted to run in production too
 gem 'rack-mini-profiler'          # https://github.com/MiniProfiler/rack-mini-profiler
 group :development do
 

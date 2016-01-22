@@ -32,7 +32,7 @@ gem 'jquery-ui-rails', "4.2.1"
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-sass', '~> 3.1.1.1'
-gem 'simple_form', "3.0.2"
+gem 'simple_form', "3.2.0"
 gem 'active_link_to', "1.0.3"                       # https://github.com/comfy/active_link_to
 gem 'acts_as_list', "0.3.0"                         # https://github.com/swanandp/acts_as_list
 gem 'css_splitter', "0.4.2"                         # https://github.com/zweilove/css_splitter

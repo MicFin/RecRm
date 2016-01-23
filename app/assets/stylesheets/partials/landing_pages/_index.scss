@@ -38,7 +38,7 @@
 
 		.splash-image-section {
 			@include make-row( );
-			background-image: url("food/veggies-landing.jpg");
+			background-image: image-url("food/veggies-landing.jpg");
 		  background-size: cover;
 		  background-repeat: no-repeat;
 		  background-position: center;
@@ -186,7 +186,7 @@
 					@include make-xs-column( 12 );
 				  @include make-sm-column( 6 );
 				  // @include make-sm-column-offset( 1 );
-					// background-image: url("temp/cooking.png");
+					// background-image: image-url("temp/cooking.png");
 				  background-size: cover;
 				  background-repeat: no-repeat;
 				  min-height: 400px;
@@ -344,7 +344,7 @@
 
 			// divider template
 			&.divider {
-				background-image: url("people/home-virtual-band.jpg");
+				background-image: image-url("people/home-virtual-band.jpg");
 			  background-size: cover;
 			  background-repeat: no-repeat;
 			  position: relative;
@@ -370,7 +370,7 @@
     		border-top: 1px solid $gray-light;
     		border-bottom: 1px solid $gray-light;
 				.img-quote-left{
-					background-image: url("icons/open-quote.svg");
+					background-image: image-url("icons/open-quote.svg");
 			    height: 75%;
 			    position: absolute;
 			    left: 0;
@@ -381,7 +381,7 @@
 				}
 
 				.img-quote-right{
-			    background-image: url("icons/closed-quote.svg");
+			    background-image: image-url("icons/closed-quote.svg");
 			    height: 75%;
 			    position: absolute;
 			    right: 0;
@@ -433,125 +433,125 @@
 
 				// image backgrounds
 			.img-happy-family{
-				background-image: url("people/happy-family.jpg");
+				background-image: image-url("people/happy-family.jpg");
 			}
 			.img-ipad-kitchen{
-				background-image: url("people/happy-woman-tablet-kitchen.jpg");
+				background-image: image-url("people/happy-woman-tablet-kitchen.jpg");
 			}
 			.img-rdns-discussing{
-				background-image: url("team/rdns-discussing-at-table.jpg");
+				background-image: image-url("team/rdns-discussing-at-table.jpg");
 			}
 			.img-confused-kid{
-				background-image: url("people/confused-kid.jpg");
+				background-image: image-url("people/confused-kid.jpg");
 			}
 			.img-mom-and-child-on-laptop{
-				background-image: url("people/mom-and-child-on-laptop.jpg");
+				background-image: image-url("people/mom-and-child-on-laptop.jpg");
 			}
 			.two-column-one img {
 				max-height: 150px;
 			}
 			.img-mom-daughter-prep-dinner{
-				background-image: url("people/mom-daughter-prep-dinner.jpg");
+				background-image: image-url("people/mom-daughter-prep-dinner.jpg");
 			}
 			.img-growing-family{
-				background-image: url("people/growing-family.jpg");
+				background-image: image-url("people/growing-family.jpg");
 			}
 			.img-growing-family2{
-				background-image: url("people/growing-family2.jpg");
+				background-image: image-url("people/growing-family2.jpg");
 			}
 			.img-woman-tablet-rdn-charts{
-				background-image: url("people/woman-tablet-rdn-charts.jpg");
+				background-image: image-url("people/woman-tablet-rdn-charts.jpg");
 			}
 			.img-father-son-prep{
-				background-image: url("people/father-son-prep.jpg");
+				background-image: image-url("people/father-son-prep.jpg");
 			}
 
 			.img-bday-boy{
-				background-image: url("people/bday-boy.jpg");
+				background-image: image-url("people/bday-boy.jpg");
 			}
 
 			.img-girl-school-lunch{
-				background-image: url("people/healthy-lunch2.jpg");
+				background-image: image-url("people/healthy-lunch2.jpg");
 			}
 
 			// .img-success-faster{
-			// 	background-image: url("people/success-faster.jpg");
+			// 	background-image: image-url("people/success-faster.jpg");
 			// }
 			
 			.img-provider{
-				background-image: url("people/doctor-typing.jpg");
+				background-image: image-url("people/doctor-typing.jpg");
 			}
 			
 			.img-apple-on-desk{
-				background-image: url("food/apple-on-desk.jpg");
+				background-image: image-url("food/apple-on-desk.jpg");
 			}
 			.img-growing-family{
-				background-image: url("people/growing-family.jpg");
+				background-image: image-url("people/growing-family.jpg");
 			}
 			.img-baking{
-				background-image: url("food/baking.jpg");
+				background-image: image-url("food/baking.jpg");
 			}
 			.img-kids-playing-game{
-				background-image: url("team/kids-playing-game.jpg");
+				background-image: image-url("team/kids-playing-game.jpg");
 			}
 
 			.img-success-hands{
-				background-image: url("people/navigate-change-success.jpg");
+				background-image: image-url("people/navigate-change-success.jpg");
 			}
 			
 			.img-birthday-girl{
-				background-image: url("people/birthday-girl.jpg");
+				background-image: image-url("people/birthday-girl.jpg");
 			}
 
 			.img-girl-with-fruit{
-				background-image: url("people/girl-with-fruit.jpg");
+				background-image: image-url("people/girl-with-fruit.jpg");
 			}
 
 			.img-recipe-cards{
-				background-image: url("food/recipe-cards.jpg");
+				background-image: image-url("food/recipe-cards.jpg");
 			}
 
 			.img-dietitians-and-family{
-				background-image: url("people/doctor-patient-stay-focused.jpg");
+				background-image: image-url("people/doctor-patient-stay-focused.jpg");
 			}
 
 			.img-child-eating{
-				background-image: url("people/who-we-help-navigate-allergies.jpg");
+				background-image: image-url("people/who-we-help-navigate-allergies.jpg");
 			}
 
 			.img-mother-daughter-eating{
-				background-image: url("people/who-we-help-conditions.jpg");
+				background-image: image-url("people/who-we-help-conditions.jpg");
 			}
 
 			.img-mother-relieved{
-				background-image: url("people/navigate-change-kindrd-better.jpg");
+				background-image: image-url("people/navigate-change-kindrd-better.jpg");
 			}
 
 			.img-relieved-child{
-				background-image: url("people/benefit-for-practice-splash.jpg");
+				background-image: image-url("people/benefit-for-practice-splash.jpg");
 			}
 
 			.img-hospital-connections{
-				background-image: url("landing_page/for-hospitals-splash-kf.jpg");
+				background-image: image-url("landing_page/for-hospitals-splash-kf.jpg");
 			}
 
 			.img-rd-on-phone{
-				background-image: url("people/rd-on-phone.jpg");
+				background-image: image-url("people/rd-on-phone.jpg");
 			}
 
 			.img-doctor-and-child{
-				background-image: url("people/doctor-patient-stay-focused2.jpg");
+				background-image: image-url("people/doctor-patient-stay-focused2.jpg");
 			}
 
 			.img-doctor-patient{
-				background-image: url("people/doctor-patient.jpg");
+				background-image: image-url("people/doctor-patient.jpg");
 			}
 
 			.img-food-prep-guidance{
-				background-image: url("people/food-prep-guidance.jpg");
+				background-image: image-url("people/food-prep-guidance.jpg");
 			}
 			// .img-man-spices{
-			// 	background-image: url("people/man-spices.jpg");
+			// 	background-image: image-url("people/man-spices.jpg");
 			// 	    min-height: 200px;
    //  width: 100%;
    //  max-width:300px;

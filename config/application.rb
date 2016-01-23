@@ -14,10 +14,6 @@ module Myapp
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # # NOT USING
-    # config.before_initialize do
-    #   ENV['PATH'] += File::PATH_SEPARATOR + '/usr/local/bin'
-    # end
 
     # NOT SURE THIS IS NECESSARY
     if Rails.env.production?
@@ -35,6 +31,7 @@ module Myapp
     # config.time_zone = 'Eastern Time (US & Canada)'
 
     config.action_view.embed_authenticity_token_in_remote_forms = true
+
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
@@ -52,7 +49,7 @@ module Myapp
       end)
     end
     
-
+    # This was all from having issues with ImageMagick
     # ENV['PATH'] = "/usr/local/bin:#{ENV['PATH']}"
     # ENV['PATH'] = "/usr/bin:#{ENV['PATH']}"
     # ENV['PATH'] += File::PATH_SEPARATOR + '/usr/local/bin'

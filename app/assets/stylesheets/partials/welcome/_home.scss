@@ -33,7 +33,7 @@
 	}
 
 	main .jumbotron {
-		background-image: url("food/tomatoes-dashboard.jpg");
+		background-image: image-url("food/tomatoes-dashboard.jpg");
 	  background-size: cover;
 	  background-repeat: no-repeat;
 	  position: relative;
@@ -95,41 +95,6 @@
 
 	}
 
-	.content-item{
-		height: 150px;
-		border: 1px solid black;
-		margin: 20px;
-		padding: 0px;
-		background-image: url("../images/dinner.jpeg");
-	  background-size: cover;
-	  background-repeat: no-repeat;
-	  position: relative;
-	}
-
-	.content-item:after{
-	  content: "Shrimp Scampi Soup";
-	  position: absolute;
-	  bottom: -30px;
-	  left: 25%;
-	}
-
-	.popover-title{
-		color: $brand-carrot-green;
-		font-size: 20px;
-	}
-
-	.popover span{
-		color: orange;
-	}
-	.content-item p.new {
-		background-color: $brand-carrot-green;
-		padding: 5px;
-		font-size: 15px;
-		color: white;
-		text-align: center;
-		width: 100%;
-		margin: 0;
-	}
 
 	.session {
 		margin:20px;

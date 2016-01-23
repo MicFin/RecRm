@@ -6,8 +6,7 @@ Rails.application.configure do
   # # turned serve static assets to false for 
   # # stoping ajax from being cached and caling itself twice
   # config.serve_static_assets = false
-  # turned serve static assets to true for 
-  # carrierview images not loading from pbulic folder
+  # turned serve static assets to true for carrierview images not loading from pbulic folder
   config.serve_static_assets = true
   
   # In the development environment your application's code is reloaded on
@@ -17,14 +16,19 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
+
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
 
   # Change to true when working on cache in developement
-  # config.action_controller.perform_caching = true
+  # config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = false
   # config.perform_caching = true
-  
+
+    # config.cache_store = :mem_cache_store
+  # config.cache_store = :dalli_store
+  # config.identity_cache_store = :mem_cache_store, Dalli::Client.new(:servers => ["mem1.server.com"])
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

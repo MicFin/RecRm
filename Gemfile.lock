@@ -49,6 +49,9 @@ GEM
     acts_as_list (0.3.0)
       activerecord (>= 3.0)
     addressable (2.3.6)
+    airbrake (5.0.2)
+      airbrake-ruby (~> 1.0)
+    airbrake-ruby (1.0.2)
     annotate (2.7.0)
       activerecord (>= 3.2, < 6.0)
       rake (~> 10.4)
@@ -304,6 +307,7 @@ DEPENDENCIES
   active_link_to (= 1.0.3)
   activeadmin!
   acts_as_list (= 0.3.0)
+  airbrake
   annotate
   better_errors (= 1.1.0)
   binding_of_caller (= 0.7.2)

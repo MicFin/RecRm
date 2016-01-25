@@ -7,6 +7,7 @@
 //= require welcome/add_nutrition
 //= require welcome/set_appointment
 //= require welcome/payment_modal
+//= require welcome/home
 
 $(document).ready(function() {
 
@@ -24,5 +25,8 @@ $(document).ready(function() {
 
 	// JS for welcome#set_appointment
 	Kindrdfood.welcome.setAppointment.init();
+
+	// JS for welcome#home
+	Kindrdfood.welcome.home.init();
 
 });

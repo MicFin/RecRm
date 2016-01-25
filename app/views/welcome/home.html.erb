@@ -1,12 +1,20 @@
+
+<!-- USER DASHBOARD aka WELCOME PAGE -->
+
 <div id="welcome-page" class="container-fluid">
 	<div class="row">
 
+		<!-- USER NAV-->
 		<%= render "/layouts/navbars/user_nav" %>
 
 		<main class="col-xs-10 col-xs-offset-2">
+
+			<!-- ALERTS-->
 		  <section class="alerts-container">
           <%= render "/layouts/alerts" %>
       </section>
+
+      <!-- JUMBOTRON -->
 			<section class="jumbotron">
 				<div id="jumbotron-inner" class="row">
 
@@ -245,4 +253,8 @@
 	</div>
 </div>
 
+<!-- RESCHEDULE MODAL -->
 <%=render "legal/disclaimers/reschedule_cancellation" %>
+
+<!-- CONTACT US MODAL -->
+<%=render "welcome/home/contact_us_modal" %>

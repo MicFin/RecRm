@@ -435,8 +435,6 @@
 Rails.application.routes.draw do
 
 
-  
-
   resources :food_diaries do 
     resources :food_diary_entries
   end

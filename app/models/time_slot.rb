@@ -14,8 +14,6 @@
 #  vacancy         :boolean          default(TRUE)
 #
 
-
-
 class TimeSlot < ActiveRecord::Base
   #   t.string   "title"
   #   t.datetime "start_time"

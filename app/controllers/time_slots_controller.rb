@@ -135,6 +135,18 @@ class TimeSlotsController < ApplicationController
     end
   end
 
+  # DELETE /time_slots/1
+  # DELETE /time_slots/1.json
+  def destroy
+    @time_slot_id = @time_slot.id
+    @time_slot.destroy
+    respond_to do |format|
+      format.html { redirect_to time_slots_url, notice: 'Time slot was successfully destroyed.' }
+      format.json { head :no_content }
+      format.js
+    end
+  end
+
   # get /time_slots/:id/create_from_existing
   def create_from_existing
 
@@ -161,18 +173,6 @@ class TimeSlotsController < ApplicationController
       respond_to do |format|
         format.js
       end
-  end
-
-  # DELETE /time_slots/1
-  # DELETE /time_slots/1.json
-  def destroy
-    @time_slot_id = @time_slot.id
-    @time_slot.destroy
-    respond_to do |format|
-      format.html { redirect_to time_slots_url, notice: 'Time slot was successfully destroyed.' }
-      format.json { head :no_content }
-      format.js
-    end
   end
 
   private

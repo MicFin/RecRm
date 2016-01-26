@@ -27,13 +27,13 @@
 
 class AppointmentsController < ApplicationController
 
-  # HELPER METHODS
+  # # HELPER METHODS
   include AppointmentsHelper
   include PatientGroupsHelper
   include FamiliesHelper
 
+  # # CALL BACKS
   before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :update_duration, :end_appointment, :destroy, :client_appointment_prep]
-
   before_filter :config_opentok, :only => [:update]
 
   # GET /appointments

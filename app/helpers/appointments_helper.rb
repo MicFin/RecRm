@@ -38,15 +38,15 @@ module AppointmentsHelper
 
     # If user is an Admin Dietitian then get all upcoming appointments
     if user.has_role? "Admin Dietitian"
-      list_of_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+      list_of_appointments = Appointment.upcoming.by_start_time
 
     # If user is a client then get all of their upcoming appointments
     elsif user.is_a? User 
-      list_of_appointments = user.appointment_hosts.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+      list_of_appointments = user.appointment_hosts.upcoming.by_start_time
 
     # If user is neither a client or Admin Dietitian then is a dietitian so get all of their upcoming appointments
     else
-      list_of_appointments = user.appointments.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+      list_of_appointments = user.appointments.upcoming.by_start_time
     end
 
     # Build family and add to appointments
@@ -70,7 +70,7 @@ module AppointmentsHelper
 
     # If user is a dietitian then set next appointment, add family and mark if prepped
     if user.is_a? Dietitian 
-      @next_appointment = user.appointments.where(status: "Paid").where(start_time: 30.minutes.ago..5.hours.from_now).last
+      @next_appointment = user.appointments.paid.where(start_time: 30.minutes.ago..5.hours.from_now).last
       if @next_appointment != nil  
         family = @next_appointment.appointment_host.head_of_families.last 
         family.health_groups_names = family.health_groups.map(&:name)
@@ -89,8 +89,7 @@ module AppointmentsHelper
 
     # if dietitian then get all previous appointments and add family
     if current_dietitian
-      current_dietitian.appointments.includes(:appointment_host).includes(:patient_focus).map do |appointment| 
-        if appointment.status == "Complete"
+      current_dietitian.appointments.complete.includes(:appointment_host).includes(:patient_focus).map do |appointment| 
           family = appointment.appointment_host.head_of_families.last 
           family.health_groups_names = family.health_groups.map(&:name)
           family.age_groups = family.ages
@@ -99,13 +98,11 @@ module AppointmentsHelper
           appointment.family_info = family
           # appointment.follow_up = appointment.surveys.where(survey_type: "Follow-Up").last
           @previous_appointments << appointment
-        end
       end
 
     # if not dietitian then user so get all previous appointment hosts and add family
     else
-      current_user.appointment_hosts.includes(:appointment_host).includes(:patient_focus).map do |appointment| 
-        if appointment.status == "Complete"
+      current_user.appointment_hosts.complete.includes(:appointment_host).includes(:patient_focus).map do |appointment| 
           family = appointment.appointment_host.head_of_families.last 
           family.health_groups_names = family.health_groups.map(&:name)
           family.age_groups = family.ages
@@ -114,7 +111,6 @@ module AppointmentsHelper
           appointment.family_info = family
           # appointment.follow_up = appointment.surveys.where(survey_type: "Follow-Up").last
           @previous_appointments << appointment
-        end
       end
     end
 
@@ -127,7 +123,7 @@ module AppointmentsHelper
 
     # Get last paid appointment or last follow up unpaid appointment 
     # - 1 hours to include appointments that are currently on going
-      @upcoming_appointment = current_user.appointment_hosts.where("start_time > ?", DateTime.now - 1.hours).where(status: "Paid").last || current_user.appointment_hosts.where("start_time > ?", DateTime.now - 1.hours).where(status: "Follow Up Unpaid").last
+      @upcoming_appointment = current_user.appointment_hosts.upcoming_and_current.scheduled.last 
 
       # If there is an upcoming appointment then set date
       if @upcoming_appointment 

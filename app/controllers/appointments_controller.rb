@@ -55,32 +55,24 @@ class AppointmentsController < ApplicationController
       @family_members = @family.family_members
 
     elsif ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id] == "All") ) 
-      @appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
+      @appointments = Appointment.upcoming.by_start_time
 
     elsif ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id]) ) 
       dietitian = Dietitian.find(params[:dietitian_id])
-      @appointments = dietitian.appointments.order('start_time ASC, created_at ASC')
+      @appointments = dietitian.appointments.by_start_time
 
     else
 
       @appointments_no_dietitian = {}
       @appointment_requests = {}
 
-      Appointment.where("start_time > ?", DateTime.now - 1.days).order('start_time ASC, created_at ASC').where(dietitian_id: nil).each do |appointment|
+      Appointment.upcoming_and_current.unassigned.by_start_time.each do |appointment|
           dietitians = appointment.available_dietitians
           @appointments_no_dietitian[appointment] = dietitians
       end
-      
-      # Appointment.where(status: "Requested").where("start_time > ?", DateTime.now - 1.days).order('start_time ASC, created_at ASC').each do |appointment|
-      #   
-      #   if !@appointment_requests.has_key?(appointment.appointment_host)
-      #     @appointment_requests[appointment.appointment_host] = []
-      #   end
-      #   @appointment_requests[appointment.appointment_host] << appointment
-      # end
 
-      @upcoming_appointments = Appointment.where("start_time > ?", DateTime.now).order('start_time ASC, created_at ASC')
-      @previous_appointments = Appointment.where("start_time < ?", DateTime.now).order('start_time ASC, created_at ASC')
+      @upcoming_appointments = Appointment.upcoming.by_start_time
+      @previous_appointments = Appointment.previous.by_start_time
     end
     
   end

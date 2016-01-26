@@ -20,45 +20,28 @@ class TimeSlotsController < ApplicationController
   before_action :set_time_slot, only: [:show, :edit, :update, :create_from_existing, :destroy]
 
   # GET /time_slots
-  # GET /time_slots.json
-  # .json is created specifically for calendar usage
+  # GET /time_slots.json, created for calendar usage
   def index
-    
-    if current_dietitian 
+
+    # If it is a dietitian, currently used for Admin Dietitian to review available time slots across company
+    # Not currently using 
+    if current_dietitian
+      
       @time_slots = TimeSlot.current.vacant.half_hour.by_start_time
 
-    #  Review all current 30 minute time slots
-    elsif params[:minutes] == "30" && params[:type] == "Review"
-      @cal_time_slots = TimeSlot.current.half_hour.by_start_time
-
-    #  review all current 60 minute, current time slots
-    elsif params[:minutes] == "60" && params[:type] == "Review"
-      @cal_time_slots = TimeSlot.current.full_hour.by_start_time
-
-    # Else it is a request for a user to select a time slot  
-    # Also could do, if type is vacant-appts then for user to select an appointment time
-    # elsif params[:type] = "vacant-appts"
+    # Else it is current_user scheduling an appointment to select a time slot  
     else
       
-      # Set appointment to user's appointment in registration
-      appointment = current_user.appointment_in_registration
-
       # Set duration to the duration of the appointment or default to 60
-      duration = appointment.duration || 60
+      duration = current_user.appointment_in_registration.duration || 60
 
-      # Get all time slots that fit criteria
-      # Must be "Current", vacant, correct duration
-      # and not start within 2 day buffer unless nitko for now
+      # Get all time slots that are "Current", vacant, correct duration and not start within 2 day buffer
+      @time_slots = TimeSlot.current.vacant.has_length(duration).upcoming_with_buffer(2)
 
-      @time_slots = TimeSlot.current.vacant.has_length(duration).upcoming_with_buffer(2) 
-      
       @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
-      
     end
-    
-    # Why do I need the dietitians?
-    @dietitians = Dietitian.all
   end
+
 
   # GET /time_slots/1
   # GET /time_slots/1.json

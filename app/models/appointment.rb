@@ -37,12 +37,12 @@ class Appointment < ActiveRecord::Base
 
   # # SCOPES
 
-  # Upcoming and previous appointments
+  # SCOPES: Upcoming and previous appointments
   scope :upcoming, -> { where("start_time > ?", DateTime.now) }
   scope :previous, -> { where("start_time < ?", DateTime.now) }
   scope :upcoming_and_current, -> { where("start_time > ?", DateTime.now - 1.hours) }
 
-  # Appointment status
+  # SCOPES: Appointment statuses
   scope :in_registration, -> { where(status: 'In Registration') } 
   scope :scheduled, -> { where(status: ['Paid', "Follow Up Unpaid"]) } 
   scope :follow_up_unpaid, -> { where(status: 'Follow Up Unpaid') } 
@@ -50,10 +50,10 @@ class Appointment < ActiveRecord::Base
   scope :complete, -> { where(status: 'Complete') } 
   scope :has_status, ->(status_string) { where status: status_string }
 
-  # Appointment owners
+  # SCOPES: Appointment owners
   scope :unassigned, -> { where(dietitian_id: nil) }
 
-  # Appointment order by start time
+  # SCOPES: Appointment order
   scope :by_start_time, -> { order(start_time: :asc, created_at: :asc) }
 
   # # CALL BACKS

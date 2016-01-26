@@ -15,26 +15,25 @@
 #
 
 class TimeSlotsController < ApplicationController
+
+  # # CALL BACKS
   before_action :set_time_slot, only: [:show, :edit, :update, :create_from_existing, :destroy]
-  # before_action :set_time_slot, except: [:index, :new, :create, :create_from_availability]
 
-
-  #### UNDER CONSTRUCTION
   # GET /time_slots
   # GET /time_slots.json
   # .json is created specifically for calendar usage
   def index
     
     if current_dietitian 
-      @time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(vacancy: true).where(minutes: 30)
+      @time_slots = TimeSlot.current.vacant.half_hour.by_start_time
 
     #  Review all current 30 minute time slots
     elsif params[:minutes] == "30" && params[:type] == "Review"
-      @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 30)
+      @cal_time_slots = TimeSlot.current.half_hour.by_start_time
 
     #  review all current 60 minute, current time slots
     elsif params[:minutes] == "60" && params[:type] == "Review"
-      @cal_time_slots = TimeSlot.order('start_time DESC').where(status: "Current").where(minutes: 60)
+      @cal_time_slots = TimeSlot.current.full_hour.by_start_time
 
     # Else it is a request for a user to select a time slot  
     # Also could do, if type is vacant-appts then for user to select an appointment time
@@ -50,23 +49,9 @@ class TimeSlotsController < ApplicationController
       # Get all time slots that fit criteria
       # Must be "Current", vacant, correct duration
       # and not start within 2 day buffer unless nitko for now
-      if current_user.email == "d.nitko@comcast.net"
-        day_buffer = 0
-      else
-        day_buffer = 2 
-      end
 
-      @time_slots = TimeSlot.where(status: "Current").where(vacancy: true).where(minutes: duration).where(['start_time > ?', DateTime.now + day_buffer.days]) 
+      @time_slots = TimeSlot.current.vacant.has_length(duration).upcoming_with_buffer(2) 
       
-      # Temporary fix for only sending back Tara's schedule to clients she gives a link to and are marked as having tara_rerral as true
-      if current_user.tara_referral == true
-        @time_slots.to_a.delete_if do |time_slot|
-          if time_slot.dietitian.email != "tara@kindrdfood.com"
-            true # Make sure the if statement returns true, so it gets marked for deletion
-          end
-        end
-      end
-
       @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
       
     end
@@ -155,7 +140,7 @@ class TimeSlotsController < ApplicationController
     @time_slot.save
 
     if @time_slot.save
-      @time_slots = TimeSlot.order('start_time DESC').all
+      @time_slots = TimeSlot.by_start_time
       respond_to do |format|
         format.js
       end
@@ -163,7 +148,7 @@ class TimeSlotsController < ApplicationController
   end
 
   # get /time_slots/create_from_availability
-  # method not working
+  # method not working?
   # method name coming in as parameter and before action set time slot being claled
   def create_from_availability
     open_availabilities = Availability.where(status: "Set")

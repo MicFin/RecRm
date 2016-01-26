@@ -56,20 +56,17 @@
 
 class User < ActiveRecord::Base
 
+  # # ATTRIBUTE ACCESSORS
   attr_accessor :health_group_ids, :health_groups, :image_cache, :remove_image
 
-
+  # # ROLIFY
   rolify :role_cname => 'UserRole'
 
+  # # CALL BACKS
   before_save :uppercase_name
-
   before_save :delete_images, :if => Proc.new {|user| remove_image == "1"}  
-
   after_save :create_original_growth_entry, :if => Proc.new {|user| user.height_inches_changed? }
-
   before_save :create_original_food_diary, :if => Proc.new {|user| user.food_diary == nil }
-
-
   before_destroy :check_for_appointments
 
   # A callback event is fired before and after an invitation is accepted (User#accept_invitation!)
@@ -77,20 +74,17 @@ class User < ActiveRecord::Base
   # before_invitation_accepted :email_invited_by
 
 	# Include default devise modules. Others available are:
-	# :lockable, :timeoutable and :omniauthable, :invitable
+	# :lockable, :timeoutable and :omniauthable
 	devise :invitable, :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  # # RELATIONSHIPS
   has_many :invitations, :class_name => self.to_s, :as => :invited_by
-
   # If a user is deleted then so should their family connection
   has_many :user_families, :dependent => :destroy
   has_many :families, through: :user_families
-
   has_many :head_of_families, :class_name => "Family", :foreign_key => "head_of_family_id"
-
   belongs_to :monologue_user, :class_name => "Monologue::User", :foreign_key => "monologue_user_id"
-
   # If a user is deleted then so should their patient group connections
 	has_and_belongs_to_many :patient_groups
   before_destroy { patient_groups.clear }
@@ -168,12 +162,12 @@ class User < ActiveRecord::Base
 
   # return the user's appointment currently in registration or returns nil
   def appointment_in_registration
-    return self.appointment_hosts.where(status: "In Registration").last || self.appointment_hosts.where(status: "Unused Package Session").last || nil
+    return self.appointment_hosts.unscheduled.last || nil
   end
 
   # returns true if user is a repeat customer
   def repeat_customer?
-    if self.appointment_hosts.where(status: "Complete").count >= 1 || self.appointment_hosts.where(status: "Paid").count >= 1 || self.registration_stage >= 6
+    if self.appointment_hosts.complete.size >= 1 || self.appointment_hosts.paid.size >= 1 || self.registration_stage >= 6
       return true
     else
       return false
@@ -236,7 +230,7 @@ end
   def update_registration_stage
     
     # if the user has a paid or follow up unpaid appointment then mark as regsitration stage of 6 
-    if (self.appointment_hosts.where(status: "Paid").count >= 1 || self.appointment_hosts.where(status: "Follow Up Unpaid").count >= 1) 
+    if (self.appointment_hosts.scheduled.count >= 1) 
       self.registration_stage = 6
 
     else

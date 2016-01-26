@@ -15,173 +15,61 @@
 #
 
 class PatientGroup < ActiveRecord::Base
+
+  # # SCOPES
+  # Patient group verification
+  scope :unverified, -> { where(unverified: true) } 
+  scope :verified, -> { where(unverified: false) } 
+  # Patient group category
+  scope :allergy, -> { where(category: "Allergy") } 
+  scope :intolerance, -> { where(category: "Intolerance") } 
+  scope :disease, -> { where(category: "Disease") } 
+  scope :symptom, -> { where(category: "Symptom") } 
+  scope :diet, -> { where(category: "Diet") } 
+  # Input option for adding your own
+  scope :exclude_add_another, -> { where(include_option: false) } 
+  # Order
+  scope :in_order, -> { order(order: :asc) }
+
 	has_and_belongs_to_many :users
 
 
   # returns all Patient Groups with the category allergy and a Patient Group named "Other Allergy" with an input field true boolean
   def self.allergies_with_other
-    allergies=[]
-    self.where(unverified: false).each do |allergy|
-      if allergy.category.downcase == "allergy"
-        allergies << allergy
-      end
-    end
-    return allergies.sort_by{|word| word.order}
+    return self.verified.allergy.in_order
   end
 
   # returns all Patient Groups with the category allergy 
   def self.allergies
-    allergies=[]
-    self.where(unverified: false).each do |allergy|
-      if allergy.category.downcase == "allergy"
-        unless allergy.input_option == true
-          allergies << allergy
-        end
-      end
-    end
-    return allergies.sort_by{|word| word.order}
+    return self.verified.allergy.exclude_add_another.in_order
   end
 
   # returns all Patient Groups with the category intolerance and a Patient Group named "Other Intolerance" with an input field true boolean
   def self.intolerances_with_other
-    intolerances=[]
-    self.where(unverified: false).each do |allergy|
-      if allergy.category.downcase == "intolerance"
-        intolerances << allergy
-      end
-    end
-    return intolerances
+    self.verified.intolerance.in_order
   end
 
   # returns all Patient Groups with the category intolerance 
   def self.intolerances
-    intolerances=[]
-    self.where(unverified: false).each do |allergy|
-      if allergy.category.downcase == "intolerance"
-        unless allergy.input_option == true
-          intolerances << allergy
-        end
-      end
-    end
-    return intolerances.sort_by{|word| word.order}
+    self.verified.intolerance.exclude_add_another.in_order
   end
 
   # returns array of all Patient Groups with the category disease and an Patient Group named "Other Disease" with an input field true boolean
   def self.diseases_with_other
-    diseases=[]
-    self.where(unverified: false).each do |allergy|
-      if allergy.category.downcase == "disease"
-        diseases << allergy
-      end
-    end
-    return diseases
+    self.verified.disease.in_order
   end
 
   # returns all Patient Groups with the category intolerance except other field
   def self.diseases
-    diseases=[]
-    self.where(unverified: false).each do |allergy|
-      if allergy.category.downcase == "disease"
-        unless allergy.input_option == true
-          diseases << allergy
-        end
-      end
-    end
-    return diseases.sort_by{|word| word.name}
+    self.verified.disease.exclude_add_another.in_order
   end
 
   def self.symptoms
-    symptoms=[]
-    self.where(unverified: false).each do |symptom|
-      if symptom.category.downcase == "symptom"
-        unless symptom.input_option == true
-          symptoms << symptom
-        end
-      end
-    end
-    return symptoms.sort_by{|word| word.name}
+    self.verified.symptom.exclude_add_another.in_order
   end
 
   def self.diets
-    diets=[]
-    self.where(unverified: false).each do |diet|
-      if diet.category.downcase == "diet"
-        unless diet.input_option == true
-          diets << diet
-        end
-      end
-    end
-    return diets.sort_by{|word| word.name}
-  end
-
-  # Returns an array of Patient Groups with the category "allergy" that are safe for the input array of allergens
-  def self.safe_allergy_groups(array_of_recipes_allergens)
-    safe_patient_groups = []
-    safe_allergy_groups = []
-    self.where(unverified: false).each do |patient_group|
-      if patient_group.allergens.count < 1
-        safe_patient_groups << patient_group  
-      end 
-      patient_group.allergens.each do |allergen|
-        if array_of_recipes_allergens.include?(allergen)
-        else
-          safe_patient_groups << patient_group 
-        end
-      end    
-    end  
-    safe_patient_groups.each do |patient_group|
-      if patient_group.category.downcase == "allergy"
-          safe_allergy_groups << patient_group
-      end
-    end
-    safe_allergy_groups.delete(PatientGroup.where(name: "Other Allergy").first)
-    return safe_allergy_groups
-  end
-
-  # Returns an array of Patient Groups with the category "intolerances" that are safe for the input array of allergens
-  def self.safe_intolerance_groups(array_of_recipes_allergens)
-    safe_patient_groups = []
-    safe_intolerance_groups = []
-    self.where(unverified: false).each do |patient_group|
-      if patient_group.allergens.count < 1
-        safe_patient_groups << patient_group  
-      end 
-      patient_group.allergens.each do |allergen|
-        unless array_of_recipes_allergens.include?(allergen)
-          safe_patient_groups << patient_group 
-        end
-      end
-    end 
-    safe_patient_groups.each do |patient_group|
-      if patient_group.category.downcase == "intolerance"
-          safe_intolerance_groups << patient_group
-       end
-    end
-    safe_intolerance_groups.delete(PatientGroup.where(name: "Other Intolerance").first)
-    return safe_intolerance_groups
-  end
-
-  # Returns an array of Patient Groups with the category "disease" that are safe for the input array of allergens
-  def self.safe_disease_groups(array_of_recipes_allergens)
-    safe_patient_groups = []
-    safe_disease_groups = []
-    self.where(unverified: false).each do |patient_group|
-      if patient_group.allergens.count < 1
-        safe_patient_groups << patient_group  
-      end 
-      patient_group.allergens.each do |allergen|
-        unless array_of_recipes_allergens.include?(allergen)
-          safe_patient_groups << patient_group 
-        end
-      end
-    end  
-    safe_patient_groups.each do |patient_group|
-      if patient_group.category.downcase == "disease"
-          safe_disease_groups << patient_group
-       end
-    end
-    safe_disease_groups.delete(PatientGroup.where(name: "Other Disease").first)
-    return safe_disease_groups
+    self.verified.diet.exclude_add_another.in_order
   end
 
 end

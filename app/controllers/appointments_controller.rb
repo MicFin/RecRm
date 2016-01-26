@@ -38,42 +38,22 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   # as: "appointments_path"
+  # Admin Dietitian Appointments Dashboard
   def index
 
-    #### user for user appointment nav tab
-    if current_user 
-      
-      # AppointmentsHelper
-      get_previous_appointments!
-      @previous_appointments
-      get_upcoming_appointment!
-      @upcoming_appointment
+    @appointments_no_dietitian = {}
 
-      # FamiliessHelper
-      get_family!
-      @family
-      @family_members = @family.family_members
-
-    elsif ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id] == "All") ) 
-      @appointments = Appointment.upcoming.by_start_time
-
-    elsif ( (current_dietitian.has_role? "Admin Dietitian") && (params[:dietitian_id]) ) 
-      dietitian = Dietitian.find(params[:dietitian_id])
-      @appointments = dietitian.appointments.by_start_time
-
-    else
-
-      @appointments_no_dietitian = {}
-      @appointment_requests = {}
-
-      Appointment.upcoming_and_current.unassigned.by_start_time.each do |appointment|
-          dietitians = appointment.available_dietitians
-          @appointments_no_dietitian[appointment] = dietitians
-      end
-
-      @upcoming_appointments = Appointment.upcoming.by_start_time
-      @previous_appointments = Appointment.previous.by_start_time
+    # Get current unassigned appointments and the dietitians available to see them
+    Appointment.upcoming_and_current.unassigned.by_start_time.each do |appointment|
+        dietitians = appointment.available_dietitians
+        @appointments_no_dietitian[appointment] = dietitians
     end
+
+    # Get all upcoming and scheduled appointments
+    @upcoming_appointments = Appointment.upcoming.scheduled.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time
+
+    # Get all previous and completed appointments
+    @previous_appointments = Appointment.previous.complete.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time
     
   end
 
@@ -417,6 +397,26 @@ class AppointmentsController < ApplicationController
       format.html { redirect_to session.delete(:return_to) }
     end
   end
+
+  # Update dietitian of appointment, used when client is searching for an appointment
+  def update_dietitian
+
+   # update the appointment's dietitian
+    @appointment.update_attribute(:dietitian_id, params[:appointment][:dietitian_id])
+
+    # get original page where appointment was updated from
+    session[:return_to] ||= request.referer
+
+    respond_to do |format|
+
+      # update_time_zone.js replace calendar with new events based on updated time zone
+      format.js
+
+      # redirect back to original page where time zone was updated
+      format.html { redirect_to session.delete(:return_to) }
+    end
+  end
+
 
 
   # GET /appointments/1/end_appointment

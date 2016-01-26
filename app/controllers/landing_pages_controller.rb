@@ -66,7 +66,7 @@ class LandingPagesController < ApplicationController
 
   private
 
-  def set_new_user
-    @user = User.new 
-  end
+    def set_new_user
+      @user = User.new 
+    end
 end

@@ -26,8 +26,8 @@
 #
 
 class Appointment < ActiveRecord::Base
-  after_save :update_purchase_price, :if => Proc.new {|model| model.duration_changed? }
 
+  # # ATTRIBUTE ACCESSORS
   attr_accessor :family_info
   attr_accessor :prepped 
   attr_accessor :follow_up 
@@ -35,26 +35,41 @@ class Appointment < ActiveRecord::Base
   attr_accessor :date 
   attr_accessor :price
 
+  # # SCOPES
+
+  # Upcoming and previous appointments
+  scope :upcoming, -> { where("start_time > ?", DateTime.now) }
+  scope :previous, -> { where("start_time < ?", DateTime.now) }
+  scope :upcoming_and_current, -> { where("start_time > ?", DateTime.now - 1.hours) }
+
+  # Appointment status
+  scope :in_registration, -> { where(status: 'In Registration') } 
+  scope :scheduled, -> { where(status: ['Paid', "Follow Up Unpaid"]) } 
+  scope :follow_up_unpaid, -> { where(status: 'Follow Up Unpaid') } 
+  scope :paid, -> { where(status: 'Paid') } 
+  scope :complete, -> { where(status: 'Complete') } 
+  scope :has_status, ->(status_string) { where status: status_string }
+
+  # Appointment owners
+  scope :unassigned, -> { where(dietitian_id: nil) }
+
+  # Appointment order by start time
+  scope :by_start_time, -> { order(start_time: :asc, created_at: :asc) }
+
+  # # CALL BACKS
+  after_save :update_purchase_price, :if => Proc.new {|model| model.duration_changed? }
+
+  # # RELATIONSHIPS
   belongs_to :appointment_host, :class_name => "User", :foreign_key => "appointment_host_id"
   belongs_to :patient_focus, :class_name => "User", :foreign_key => "patient_focus_id"
   belongs_to :dietitian
   belongs_to :room
   belongs_to :time_slot
   has_many :surveys, :as => :surveyable
-  
   has_one :purchase, as: :purchasable
 
 
-  # # Remove coupon from appointment
-  # def remove_coupon
-
-  #   # Destroy coupon redemption
-  #   self.coupon_redemption.destroy unless self.coupon_redemption.nil?
-
-  #   # Reset the appointment price
-  #   reset_appointment_price
-  #   self.save
-  # end
+  # # METHODS
 
   def dietitian_prep_complete?
     if self.surveys.where(survey_group_id: 3).where(completed: true).count > 0
@@ -108,24 +123,3 @@ class Appointment < ActiveRecord::Base
       end
     end
 end
-
-# APPOINTMENT SCHEMA     
-    # t.integer  "patient_focus_id"
-    # t.integer  "appointment_host_id"
-    # t.integer  "dietitian_id"
-    # t.integer  "room_id"
-    # t.text     "note"
-    # t.text     "client_note"
-    # t.datetime "created_at"
-    # t.datetime "updated_at"
-    # t.datetime "start_time"
-    # t.datetime "end_time"
-    # t.string   "stripe_card_token"
-    # t.integer  "regular_price"
-    # t.integer  "invoice_price"
-    # t.string   "type"
-    # t.integer  "duration"
-    # t.text     "other_note"
-    # t.integer  "time_slot_id"
-    # t.string   "status"
-    

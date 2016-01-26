@@ -23,9 +23,9 @@ class TimeSlot < ActiveRecord::Base
 
   # # SCOPES
   # SCOPES: Upcoming and previous time slots
-  scope :upcoming, -> { where("start_time > ?", DateTime.now) }
-  scope :previous, -> { where("start_time < ?", DateTime.now) }
-  scope :upcoming_with_buffer, -> (day_buffer){ where("start_time > ?", DateTime.now + day_buffer.days) }
+  scope :upcoming, -> { where("time_slots.start_time > ?", DateTime.now) }
+  scope :previous, -> { where("time_slots.start_time < ?", DateTime.now) }
+  scope :upcoming_with_buffer, -> (day_buffer){ where("time_slots.start_time > ?", DateTime.now + day_buffer.days) }
   # SCOPES: Time slot statuses
   scope :current, -> { where(status: 'Current') }
   scope :cancelled, -> { where(status: 'Cancelled') } 
@@ -36,6 +36,8 @@ class TimeSlot < ActiveRecord::Base
   scope :half_hour, -> { where(minutes: 30) } 
   scope :full_hour, -> { where(minutes: 60) } 
   scope :has_length, -> (minutes) { where(minutes: minutes) } 
+  # SCOPES: Time slot for specific dietitian
+  scope :for_dietitian, -> (dietitian_id) { joins(:availability).where("availabilities.dietitian_id=?", dietitian_id) if dietitian_id.present? }
   # SCOPES: Time slot order
   scope :by_start_time, -> { order(start_time: :desc) }
 

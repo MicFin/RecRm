@@ -39,7 +39,7 @@ Kindrdfood.welcome.setAppointment = {
         url: '/time_slots.json',
         type: 'GET',
         data: {
-          // minutes: '60',
+          // dietitian_id: 11, // send dietitian id to get specific dietitian schedule
           type: 'vacant-appts'
         },
         error: function() {

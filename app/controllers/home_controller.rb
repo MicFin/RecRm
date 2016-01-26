@@ -16,29 +16,24 @@ class HomeController < ApplicationController
 	end
 
 	def discount_landing_page
-		
 		@new_user  = User.new
 	end
 
 	def home_page
-		
 		@thanks = params[:thanks]
 		@new_user  = User.new
 
 	end
 
 	def join
-		
 		@new_user  = User.new
 	end
 
 	def provider3126
-		
 		@user  = User.new
 	end
 
 	def provider9172
-		
 		@user  = User.new
 	end
 

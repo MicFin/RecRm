@@ -36,23 +36,21 @@ class Appointment < ActiveRecord::Base
   attr_accessor :price
 
   # # SCOPES
-
   # SCOPES: Upcoming and previous appointments
   scope :upcoming, -> { where("start_time > ?", DateTime.now) }
   scope :previous, -> { where("start_time < ?", DateTime.now) }
   scope :upcoming_and_current, -> { where("start_time > ?", DateTime.now - 1.hours) }
-
   # SCOPES: Appointment statuses
   scope :in_registration, -> { where(status: 'In Registration') } 
+  scope :unused_package_session, -> { where(status: "Unused Package Session")}
+  scope :unscheduled, -> { where(status: ['In Registration', "Unused Package Session"]) } 
   scope :scheduled, -> { where(status: ['Paid', "Follow Up Unpaid"]) } 
   scope :follow_up_unpaid, -> { where(status: 'Follow Up Unpaid') } 
   scope :paid, -> { where(status: 'Paid') } 
-  scope :complete, -> { where(status: 'Complete') } 
+  scope :complete, -> { where(status: 'Complete') }
   scope :has_status, ->(status_string) { where status: status_string }
-
   # SCOPES: Appointment owners
   scope :unassigned, -> { where(dietitian_id: nil) }
-
   # SCOPES: Appointment order
   scope :by_start_time, -> { order(start_time: :asc, created_at: :asc) }
 

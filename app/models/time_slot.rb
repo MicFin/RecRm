@@ -20,26 +20,22 @@ class TimeSlot < ActiveRecord::Base
   belongs_to :availability
   has_one :dietitian, through: :availability
   has_one :appointment
-  # scope :between, lambda {|start_time, end_time| {:conditions => ["? < starts_at and starts_at < ?", Event.format_date(start_time), Event.format_date(end_time)] }}
 
   # # SCOPES
-
   # SCOPES: Upcoming and previous time slots
   scope :upcoming, -> { where("start_time > ?", DateTime.now) }
   scope :previous, -> { where("start_time < ?", DateTime.now) }
   scope :upcoming_with_buffer, -> (day_buffer){ where("start_time > ?", DateTime.now + day_buffer.days) }
-  
   # SCOPES: Time slot statuses
-  scope :current, -> { where(status: 'Current') } 
-
+  scope :current, -> { where(status: 'Current') }
+  scope :cancelled, -> { where(status: 'Cancelled') } 
+  scope :has_status, -> (status) { where(status: status) }
   # SCOPES: Time slot vacancy
   scope :vacant, -> { where(vacancy: true) }   
-
   # SCOPES: Time slot length
   scope :half_hour, -> { where(minutes: 30) } 
   scope :full_hour, -> { where(minutes: 60) } 
   scope :has_length, -> (minutes) { where(minutes: minutes) } 
-
   # SCOPES: Time slot order
   scope :by_start_time, -> { order(start_time: :desc) }
 
@@ -68,7 +64,7 @@ class TimeSlot < ActiveRecord::Base
     taken_slot_start_time = time_slot.start_time
     taken_slot_end_time = time_slot.end_time
     
-    time_slot.availability.time_slots.where(vacancy: true).each do |time_slot|
+    time_slot.availability.time_slots.vacant.each do |time_slot|
       ## if it is a 30 minute slot
       if time_slot.minutes == 30
         ## if it starts between 30mins before taken slots start
@@ -217,7 +213,7 @@ class TimeSlot < ActiveRecord::Base
     self_start_time = self.start_time
     self_end_time = self.end_time
     time_slots_array = []
-    self.availability.time_slots.where(vacancy: true).each do | time_slot|
+    self.availability.time_slots.vacant.each do | time_slot|
        ## if it is a 30 minute slot
       if ((time_slot.minutes == 30) && (time_slot != self) )
         ## if it starts between 30mins before taken slots start

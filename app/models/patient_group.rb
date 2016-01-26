@@ -27,7 +27,7 @@ class PatientGroup < ActiveRecord::Base
   scope :symptom, -> { where(category: "symptom") } 
   scope :diet, -> { where(category: "diet") } 
   # Input option for adding your own
-  scope :exclude_add_another, -> { where(input_option: nil) } 
+  scope :exclude_add_another, -> { where(input_option: false) } 
   # Order
   scope :in_order, -> { order(order: :asc) }
 

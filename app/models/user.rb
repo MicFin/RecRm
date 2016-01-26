@@ -287,9 +287,7 @@ end
       "symptom"=> [],
       "diet"=> [],
     }
-    self.patient_groups.each do |group|
-      if group.unverified == true 
-        
+    self.patient_groups.unverified.each do |group|
         if group.category.downcase == "disease"
           unverified_groups["disease"] << group
         elsif group.category.downcase == "intolerance"
@@ -303,7 +301,6 @@ end
         else
           # nothing
         end
-      end
     end
     return unverified_groups
   end

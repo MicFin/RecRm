@@ -1,5 +1,18 @@
 						<div id="health-group-container" class="row">
-							<%= f.collection_check_boxes :patient_group_ids, @symptoms, :id, :name, :checked => @user.health_group_ids %>
+							<%#= f.collection_check_boxes :patient_group_ids, @symptoms, :id, :name, :checked => @user.health_group_ids %>
+
+							<% @symptoms.each do |symptom| %>
+								<% if @user.patient_group_ids.include? symptom.id %>
+									<span><input id="user_patient_group_ids_<%=symptom.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=symptom.id%>" data-triggers='true' checked><label class="collection_check_boxes" for="user_patient_group_ids_<%=symptom.id%>"><%=symptom.name%></label></span>
+								<% else %>
+									<span><input id="user_patient_group_ids_<%=symptom.id%>" name="user[patient_group_ids][]" type="checkbox" value="<%=symptom.id%>" data-triggers='true'><label class="collection_check_boxes" for="user_patient_group_ids_<%=symptom.id%>"><%=symptom.name%></label></span>
+								<% end %>
+							<% end %>
+
+
+
+
+
 
 						 		<div id="add-disease-button" class="add-another-disease">Add Another</div>
 						 		<div id="add-disease-form" class="add-another-disease-form hidden">

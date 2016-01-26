@@ -21,27 +21,30 @@ class PatientGroup < ActiveRecord::Base
   scope :unverified, -> { where(unverified: true) } 
   scope :verified, -> { where(unverified: false) } 
   # Patient group category
-  scope :allergy, -> { where(category: "Allergy") } 
-  scope :intolerance, -> { where(category: "Intolerance") } 
-  scope :disease, -> { where(category: "Disease") } 
-  scope :symptom, -> { where(category: "Symptom") } 
-  scope :diet, -> { where(category: "Diet") } 
+  scope :allergy, -> { where(category: "allergy") } 
+  scope :intolerance, -> { where(category: "intolerance") } 
+  scope :disease, -> { where(category: "disease") } 
+  scope :symptom, -> { where(category: "symptom") } 
+  scope :diet, -> { where(category: "diet") } 
   # Input option for adding your own
-  scope :exclude_add_another, -> { where(include_option: false) } 
+  scope :exclude_add_another, -> { where(input_option: nil) } 
   # Order
   scope :in_order, -> { order(order: :asc) }
 
+  # # RELATIONSHIPS
 	has_and_belongs_to_many :users
 
 
+  # # CLASS METHODS
+  
   # returns all Patient Groups with the category allergy and a Patient Group named "Other Allergy" with an input field true boolean
   def self.allergies_with_other
-    return self.verified.allergy.in_order
+    self.verified.allergy.in_order
   end
 
   # returns all Patient Groups with the category allergy 
   def self.allergies
-    return self.verified.allergy.exclude_add_another.in_order
+    self.verified.allergy.exclude_add_another.in_order
   end
 
   # returns all Patient Groups with the category intolerance and a Patient Group named "Other Intolerance" with an input field true boolean

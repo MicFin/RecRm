@@ -15,21 +15,35 @@
 #
 
 class TimeSlot < ActiveRecord::Base
-  #   t.string   "title"
-  #   t.datetime "start_time"
-  #   t.datetime "end_time"
-  #   t.datetime "created_at"
-  #   t.datetime "updated_at"
-  #   t.integer  "minutes"
-  #   t.string   "status" 
-  #       - Current 
-  #   t.integer  "availability_id"
-  #   t.boolean  "vacancy", default: true
 
+  # # RELATIONSHIPS
   belongs_to :availability
   has_one :dietitian, through: :availability
   has_one :appointment
   # scope :between, lambda {|start_time, end_time| {:conditions => ["? < starts_at and starts_at < ?", Event.format_date(start_time), Event.format_date(end_time)] }}
+
+  # # SCOPES
+
+  # SCOPES: Upcoming and previous time slots
+  scope :upcoming, -> { where("start_time > ?", DateTime.now) }
+  scope :previous, -> { where("start_time < ?", DateTime.now) }
+  scope :upcoming_with_buffer, -> (day_buffer){ where("start_time > ?", DateTime.now + day_buffer.days) }
+  
+  # SCOPES: Time slot statuses
+  scope :current, -> { where(status: 'Current') } 
+
+  # SCOPES: Time slot vacancy
+  scope :vacant, -> { where(vacancy: true) }   
+
+  # SCOPES: Time slot length
+  scope :half_hour, -> { where(minutes: 30) } 
+  scope :full_hour, -> { where(minutes: 60) } 
+  scope :has_length, -> (minutes) { where(minutes: minutes) } 
+
+  # SCOPES: Time slot order
+  scope :by_start_time, -> { order(start_time: :desc) }
+
+  # # CLASS METHODS
 
   ## check if time slot is between two times
   def self.between(start_time, end_time)
@@ -50,20 +64,31 @@ class TimeSlot < ActiveRecord::Base
    Time.at(date_time.to_i).to_formatted_s(:db)
   end
 
-  ## json response
-  def as_json(options = {})
-    { 
-      :id => self.id,
-      :title => self.title,
-      :start => start_at.rfc822,
-      :end => end_at.rfc822,
-      :allDay => allDay,
-      :user_name => self.user_name,
-      :url => Rails.application.routes.url_helpers.time_slots_path(id),
-      :color => "green"
-    }
+  def self.cancel_related_time_slots(time_slot) 
+    taken_slot_start_time = time_slot.start_time
+    taken_slot_end_time = time_slot.end_time
+    
+    time_slot.availability.time_slots.where(vacancy: true).each do |time_slot|
+      ## if it is a 30 minute slot
+      if time_slot.minutes == 30
+        ## if it starts between 30mins before taken slots start
+        if ( ( (time_slot.start_time >= (taken_slot_start_time - 30.minutes) ) ) && ( (time_slot.start_time < (taken_slot_end_time + 30.minutes) ) ) )
+          time_slot.status = "Cancelled"
+          time_slot.vacancy = false
+          time_slot.save
+        end
+      # one hour time slots
+      else
+        ## if it starts between 30mins before taken slots start
+        if ( ( (time_slot.start_time >= (taken_slot_start_time - 1.hours) ) ) && ( (time_slot.start_time < (taken_slot_end_time + 30.minutes) ) )) 
+          time_slot.status = "Cancelled"
+          time_slot.vacancy = false
+          time_slot.save
+        end
+      end
+    end
   end
-  
+
   def self.create_from_availability(availability_object)
     
     one_hour_time_slots = []
@@ -118,6 +143,7 @@ class TimeSlot < ActiveRecord::Base
     
     return new_time_slots_hash
   end
+
   # returns a hash of the new time slots created based on the availabilities that were sent to it
   # returns {"half_hour_time_slots"=>[TimeSlotObject, TimeSlotObject], "one_hour_time_slots"=>[TimeSlotObject, TimeSlotObject] }
   def self.create_from_availabilities(array_of_availability_objects)
@@ -171,6 +197,22 @@ class TimeSlot < ActiveRecord::Base
     return new_time_slots_hash
   end
 
+  # # INSTANCE METHODS
+
+  ## json response
+  def as_json(options = {})
+    { 
+      :id => self.id,
+      :title => self.title,
+      :start => start_at.rfc822,
+      :end => end_at.rfc822,
+      :allDay => allDay,
+      :user_name => self.user_name,
+      :url => Rails.application.routes.url_helpers.time_slots_path(id),
+      :color => "green"
+    }
+  end
+
   def related_time_slots
     self_start_time = self.start_time
     self_end_time = self.end_time
@@ -199,31 +241,7 @@ class TimeSlot < ActiveRecord::Base
     return self.related_time_slots.count
   end
 
-  def self.cancel_related_time_slots(time_slot) 
-    taken_slot_start_time = time_slot.start_time
-    taken_slot_end_time = time_slot.end_time
-    
-    time_slot.availability.time_slots.where(vacancy: true).each do |time_slot|
-      ## if it is a 30 minute slot
-      if time_slot.minutes == 30
-        ## if it starts between 30mins before taken slots start
-        if ( ( (time_slot.start_time >= (taken_slot_start_time - 30.minutes) ) ) && ( (time_slot.start_time < (taken_slot_end_time + 30.minutes) ) ) )
-          time_slot.status = "Cancelled"
-          time_slot.vacancy = false
-          time_slot.save
-        end
-      # one hour time slots
-      else
-        ## if it starts between 30mins before taken slots start
-        if ( ( (time_slot.start_time >= (taken_slot_start_time - 1.hours) ) ) && ( (time_slot.start_time < (taken_slot_end_time + 30.minutes) ) )) 
-          time_slot.status = "Cancelled"
-          time_slot.vacancy = false
-          time_slot.save
-        end
-      end
-    end
-    
-  end
+
 
   def is_last_vacant_time_slot?
     if (TimeSlot.where(start_time: self.start_time, end_time: self.end_time, vacancy: true).count > 1)

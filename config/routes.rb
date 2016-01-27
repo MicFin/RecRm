@@ -560,7 +560,6 @@ Rails.application.routes.draw do
       # Appointments paths
       get '/appointments/begin_registration/:duration', to: "appointments#begin_registration", as: "appointments_begin_registration" 
       get 'appointments/:id/purchase', to: "appointments#purchase", as: "purchase_appointment"
-      get 'appointments/:id/select_time', to: 'appointments#select_time', as: 'select_time'
       get 'appointments/:id/complete_appt_prep_survey', to: 'appointments#complete_appt_prep_survey', as: 'user_complete_appt_prep_survey'
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_user_appointment'
       get 'appointments/new_appointment_request_times', to: 'appointments#new_appointment_request_times', as: 'new_appointment_request_times'

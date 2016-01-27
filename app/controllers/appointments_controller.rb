@@ -33,7 +33,7 @@ class AppointmentsController < ApplicationController
   include FamiliesHelper
 
   # # CALL BACKS
-  before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :select_time, :appointment_prep, :appointment_review, :update_duration, :end_appointment, :destroy, :client_appointment_prep]
+  before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :appointment_prep, :appointment_review, :update_duration, :end_appointment, :destroy, :client_appointment_prep]
   before_filter :config_opentok, :only => [:update]
 
   # GET /appointments
@@ -136,6 +136,7 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
+
     ## if the appointment status is follow up unpaid and does not have a stripe card token then the appointment is being created without payment and the dates need to be cleaned
     if @appointment.status == "Follow Up Unpaid" && params[:appointment][:stripe_card_token] == nil
       clean_dates_for_database
@@ -232,14 +233,6 @@ class AppointmentsController < ApplicationController
 
       format.js
     end
-  end
-
-  # GET /appointments/:id/select_time
-  # as: 'select_time_path'
-  def select_time
-    @time_slots = TimeSlot.select_appointment_time_slots 
-    @sign_up_stage = @appointment.stage 
-    @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
   end
 
   # GET /appointments/:id/appointment_prep
@@ -397,27 +390,6 @@ class AppointmentsController < ApplicationController
       format.html { redirect_to session.delete(:return_to) }
     end
   end
-
-  # Update dietitian of appointment, used when client is searching for an appointment
-  def update_dietitian
-
-   # update the appointment's dietitian
-    @appointment.update_attribute(:dietitian_id, params[:appointment][:dietitian_id])
-
-    # get original page where appointment was updated from
-    session[:return_to] ||= request.referer
-
-    respond_to do |format|
-
-      # update_time_zone.js replace calendar with new events based on updated time zone
-      format.js
-
-      # redirect back to original page where time zone was updated
-      format.html { redirect_to session.delete(:return_to) }
-    end
-  end
-
-
 
   # GET /appointments/1/end_appointment
   # Should move to another controller, maybe the rooms_controller

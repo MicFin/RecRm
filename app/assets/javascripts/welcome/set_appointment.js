@@ -15,6 +15,7 @@ Kindrdfood.welcome.setAppointment = {
 	init: function(){
     this.setRequestTimeButton();
     this.setChangeTimeZone();
+    this.setAppointmentDietitian();
     // inititate fullcalendar
     $('#select-appt-cal').fullCalendar({
 
@@ -39,8 +40,6 @@ Kindrdfood.welcome.setAppointment = {
         url: '/time_slots.json',
         type: 'GET',
         data: {
-          // dietitian_id: 11, // send dietitian id to get specific dietitian schedule
-          type: 'vacant-appts'
         },
         error: function() {
           alert('There was an error while fetching times.');
@@ -301,5 +300,30 @@ Kindrdfood.welcome.setAppointment = {
     $('#appointment_duration').change(function() {
         this.form.submit();
     });
+  },
+  setAppointmentDietitian: function(){
+    // when radio button is changed
+    $("input[name='appointment_dietitian']").on("change", function(){ 
+      // get value of radio which is either the dietitian or blank string
+      var dietitian_id = $(this).val();
+      // fetch time slots with dietitian id as parameter
+      $.ajax({
+        url: '/time_slots.json',
+        type: 'GET',
+        data: {
+          dietitian_id: dietitian_id, // send dietitian id to get specific dietitian schedule
+        },
+        // on success
+        success: function(data){
+          // remove current source, add new source and fetch events from updated source
+          $('#select-appt-cal').fullCalendar('removeEventSource', '/time_slots.json' );
+          $('#select-appt-cal').fullCalendar( 'addEventSource', data );
+          $('#select-appt-cal').fullCalendar( 'refetchEvents' );
+        },
+        error: function() {
+          alert('There was an error while fetching times.');
+        },
+      });
+    })
   }
 }

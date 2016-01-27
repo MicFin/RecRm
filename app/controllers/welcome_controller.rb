@@ -308,11 +308,12 @@ class WelcomeController < Users::RegistrationsController
 
     # get appointment
     @appointment = @user.appointment_in_registration
+
+    # if repeat customer then set previous dietitian 
+    if @user.repeat_customer?
+      @previous_dietitian = @user.appointment_hosts.last.dietitian
+    end
     
-    # Get any appointment requests the user has made
-    @appointment_requests = Appointment.where(appointment_host_id: current_user.id).where(status: "Requested").order('start_time ASC, created_at ASC')
-    
-    # Shows /welcome/set_appointment
   end
 
 

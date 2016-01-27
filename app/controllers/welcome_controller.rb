@@ -41,19 +41,10 @@ class WelcomeController < Users::RegistrationsController
       get_unpaid_appointment!
       @unpaid_appointment
 
-      # Gather user's recipe data 
-      # To be continued...
-      @recipes 
-
-      # Gather user's articles data
-      # To be continued...
-      @articles 
-
       # Gather user's family data
       # from FamiliessHelper
       get_family!
       @family
-      # Shows views/welcome/home.html.erb
     end
  
   
@@ -311,7 +302,7 @@ class WelcomeController < Users::RegistrationsController
 
     # if repeat customer then set previous dietitian 
     if @user.repeat_customer?
-      @previous_dietitian = @user.appointment_hosts.last.dietitian
+      @previous_dietitian = @user.appointment_hosts.scheduled.last.dietitian
     end
     
   end

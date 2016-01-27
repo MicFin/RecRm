@@ -1,4 +1,4 @@
-// Controller specific JS to be executed for coupons controller
+// Controller specific JS to be executed for dashboard controller
 
 
 

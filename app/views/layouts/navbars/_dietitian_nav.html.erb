@@ -15,50 +15,79 @@
 				</div>
 				<nav>	
 					<ul>
-						<%= active_link_to welcome_path, :wrap_tag => :li  do %>
-						  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
-						<% end %>
-						<%= active_link_to edit_dietitian_registration_path, :wrap_tag => :li  do %>
-						  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Profile</span>
-						<% end %>
-		
-						<%= active_link_to availabilities_path, :wrap_tag => :li do %>
-						  <span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Schedule</span>
-						<% end %>
-
-<!-- 						<%#= active_link_to dietitian_recipes_path(current_dietitian), :wrap_tag => :li do %>
-						  <span class="glyphicon glyphicon-cutlery"></span><span class="hidden-xs hidden-sm nav-item">Recipes</span>
-						<%# end %> -->
-						<%= active_link_to welcome_home_path, :wrap_tag => :li do %>
-						  <span class="glyphicon glyphicon-list-alt"></span><span class="hidden-xs hidden-sm nav-item">Articles</span>
-						<% end %>
-<!-- 						<%#= active_link_to @family, :wrap_tag => :li do %>
-						  <span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
-						<%# end %> -->
-
-<!-- 						<%#= active_link_to @family, :wrap_tag => :li do %>
-						  <span class="glyphicon glyphicon-comment"></span><span class="hidden-xs hidden-sm nav-item">Messages</span><span class="badge">4</span>
-						<%# end %> -->
-
-<!-- 						<%#= active_link_to @family, :wrap_tag => :li do %>
-						 	<span class="glyphicon glyphicon-cog"></span><span class="hidden-xs hidden-sm nav-item">Settings</span>
-						<%# end %> -->
-
-						<li><a href=""><span class="glyphicon glyphicon-envelope"></span><span class="hidden-xs hidden-sm nav-item">Contact Us</span></a></li>	
-
-
 						<% if current_dietitian.has_role? "Admin Dietitian" %>
 
-							<%= active_link_to dashboard_path, :wrap_tag => :li do %>
-							  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">ADMIN DASH</span>
+							<%= active_link_to welcome_path, :wrap_tag => :li  do %>
+							  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
 							<% end %>
 
-							<%= active_link_to in_session_room_path(17), :data => { :room_id => 53, :id=>17}, :wrap_tag => :li do %>
-							  <span class="glyphicon glyphicon-camera"></span><span class="hidden-xs hidden-sm nav-item">DEMO ROOM</span>
-							  <button data-appt-id="53" class="btn btn-sm btn-success prep-appointment-button">Prep</button>
+							<%= active_link_to edit_dietitian_registration_path, :wrap_tag => :li  do %>
+							  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">My Profile</span>
 							<% end %>
-						<% end %>
+							<%= active_link_to availabilities_path, :wrap_tag => :li do %>
+							  <span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">My Schedule</span>
+							<% end %>
+							<li><a href="#" id="krdn-admin-nav-button" data-toggle="collapse" data-target="#krdn-admin-nav-list" aria-expanded="false">KRDN Admin</a>
+								<ul class="nav collapse" id="krdn-admin-nav-list" role="menu" aria-labelledby="btn-1">
+									<%= active_link_to dashboard_path, :wrap_tag => :li do %>
+									  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Who's Online</span>
+									<% end %>
+
+
+									<%= active_link_to appointments_path, :wrap_tag => :li  do %>
+									  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
+									<% end %>			
+
+
+									<%= active_link_to "/education/monologue", :wrap_tag => :li do %>
+									  <span class="glyphicon glyphicon-list-alt"></span><span class="hidden-xs hidden-sm nav-item">Content</span>
+									<% end %>
+									<%= active_link_to survey_groups_path, :wrap_tag => :li do %>
+									  <span class="glyphicon glyphicon-list-alt"></span><span class="hidden-xs hidden-sm nav-item">Surveys</span>
+									<% end %>
+								</ul>
+							</li>
+							<li><a href="#" id="system-admin-nav-button" data-toggle="collapse" data-target="#system-admin-nav-list" aria-expanded="false">System Admin</a>
+								<ul class="nav collapse" id="system-admin-nav-list" role="menu" aria-labelledby="btn-1">
+									<%= active_link_to users_invitations_path, :wrap_tag => :li  do %>
+									  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Referrals</span>
+									<% end %>		
+									<%= active_link_to new_package_path, :wrap_tag => :li do %>
+									  <span class="glyphicon glyphicon-cutlery"></span><span class="hidden-xs hidden-sm nav-item">Packages</span>
+									<% end %>
+
+									<%= active_link_to coupons_path, :wrap_tag => :li do %>
+									  <span class="glyphicon glyphicon-list-alt"></span><span class="hidden-xs hidden-sm nav-item">Coupons</span>
+									<% end %>
+									<%= active_link_to roles_path, :wrap_tag => :li do %>
+									  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Permissions</span>
+									<% end %>
+								</ul>
+							</li>
+<!-- 							<%#= active_link_to time_slots_path, :wrap_tag => :li do %>
+							  <span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Dietitian Schedules</span>
+							<%# end %> -->
+						<% else %>
+
+							<%= active_link_to welcome_path, :wrap_tag => :li  do %>
+							  <span class="glyphicon glyphicon-dashboard"></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
+							<% end %>
+							<%= active_link_to edit_dietitian_registration_path, :wrap_tag => :li  do %>
+							  <span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Profile</span>
+							<% end %>
 			
+							<%= active_link_to availabilities_path, :wrap_tag => :li do %>
+							  <span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Schedule</span>
+							<% end %>
+
+				<!-- 			<%#= active_link_to welcome_home_path, :wrap_tag => :li do %>
+							  <span class="glyphicon glyphicon-list-alt"></span><span class="hidden-xs hidden-sm nav-item">Articles</span>
+							<%# end %> -->
+
+							<li><a href=""><span class="glyphicon glyphicon-envelope"></span><span class="hidden-xs hidden-sm nav-item">Contact Us</span></a></li>	
+						<% end %>
+
+
 					</ul>
 				</nav>
 			</header>

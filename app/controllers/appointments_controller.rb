@@ -139,7 +139,7 @@ class AppointmentsController < ApplicationController
 
     ## if the appointment status is follow up unpaid and does not have a stripe card token then the appointment is being created without payment and the dates need to be cleaned
     if @appointment.status == "Follow Up Unpaid" && params[:appointment][:stripe_card_token] == nil
-      clean_dates_for_database
+      # clean_dates_for_database
       # @appointment.update(appointment_params) # used this to update dietitian when being assigned
       
       # create room shoudl remove

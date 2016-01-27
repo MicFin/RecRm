@@ -35,11 +35,11 @@ class TimeSlotsController < ApplicationController
       # Set duration to the duration of the appointment or default to 60
       duration = current_user.appointment_in_registration.duration || 60
 
-      # Set dietitian from params or to blank for all dietitians
-      dietitian = params[:dietitian_id] || ""
+      # Set dietitian or to blank for all dietitians
+      dietitian_id = params[:dietitian_id] || ""
 
       # Get all time slots that are "Current", vacant, correct duration and not start within 2 day buffer
-      @time_slots = TimeSlot.current.vacant.has_length(duration).upcoming_with_buffer(2).for_dietitian(dietitian)
+      @time_slots = TimeSlot.current.vacant.has_length(duration).upcoming_with_buffer(2).for_dietitian(dietitian_id)
 
       @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
     end

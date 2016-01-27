@@ -304,6 +304,12 @@ Kindrdfood.welcome.setAppointment = {
   setAppointmentDietitian: function(){
     // when radio button is changed
     $("input[name='appointment_dietitian']").on("change", function(){ 
+
+      // hide calendar events, disable next and previous button, and show spinner
+      $(".fc-day-grid-event").hide();
+      $(".fc-prev-button, .fc-next-button").attr("disabled", true);
+      $(".loading-spinner").show();
+
       // get value of radio which is either the dietitian or blank string
       var dietitian_id = $(this).val();
       // fetch time slots with dietitian id as parameter
@@ -316,9 +322,16 @@ Kindrdfood.welcome.setAppointment = {
         // on success
         success: function(data){
           // remove current source, add new source and fetch events from updated source
-          $('#select-appt-cal').fullCalendar('removeEventSource', '/time_slots.json' );
+          $('#select-appt-cal').fullCalendar( 'removeEventSource', '/time_slots.json' );
+          $('#select-appt-cal').fullCalendar( 'removeEvents' );
           $('#select-appt-cal').fullCalendar( 'addEventSource', data );
           $('#select-appt-cal').fullCalendar( 'refetchEvents' );
+          Kindrdfood.welcome.setAppointment.createUnavailableTimeSlots();
+
+          // enable next and previous button, hide spinner, and show calendar events
+          $(".fc-prev-button, .fc-next-button").attr("disabled", false);
+          $(".loading-spinner").hide();
+          $(".fc-day-grid-event").show();
         },
         error: function() {
           alert('There was an error while fetching times.');

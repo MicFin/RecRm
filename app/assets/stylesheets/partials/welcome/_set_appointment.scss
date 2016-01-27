@@ -3,6 +3,12 @@
 	.modal-dialog{
 	  width: 80%;
 	}
+  @media (max-width: $screen-xs-max)  {
+	  .modal-dialog {
+	    width: 94%;
+	    margin: 3% auto;
+  	}
+  }
 
 	.loading-spinner{
 	  position: absolute;
@@ -11,4 +17,7 @@
     z-index: 1000;
     display:none;
   }
+
+
+
 }

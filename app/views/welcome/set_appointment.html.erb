@@ -15,7 +15,7 @@
 
               <% if @previous_dietitian != nil %>
 
-                <div class="col-xs-12">
+                <div class="col-xs-12 form-group">
                   <label class="radio-inline">
                     <input type="radio" name="appointment_dietitian" id="radio-appointment-dietitian-1" value='<%=@previous_dietitian.id %>'> <%=@previous_dietitian.signature%>
                   </label>
@@ -24,7 +24,7 @@
                   </label>
                 </div>
 
-                <%= simple_form_for(@user, as: "user", url: users_registrations_update_time_zone_path, html: {class: 'col-xs-12 col-sm-8 text-left', role:"form" }, :method => :patch, remote: true) do |f| %>
+                <%= simple_form_for(@user, as: "user", url: users_registrations_update_time_zone_path, html: {class: 'col-xs-12 col-sm-offset-1 col-sm-7 text-left', role:"form" }, :method => :patch, remote: true) do |f| %>
 
                   <%= f.input :time_zone, priority: /US/, :input_html => { class: "form-control"}, autofocus: true, label: false, :default => @user.time_zone %>
 

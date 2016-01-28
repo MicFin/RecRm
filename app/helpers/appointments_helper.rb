@@ -50,7 +50,7 @@ module AppointmentsHelper
     end
 
     # Build family and add to appointments
-    list_of_appointments.map do |appointment| 
+    list_of_appointments.includes(:appointment_host).map do |appointment| 
       family = appointment.appointment_host.head_of_families.last 
       family.health_groups_names = family.health_groups.map(&:name)
       family.age_groups = family.ages

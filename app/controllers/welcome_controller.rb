@@ -64,21 +64,12 @@ class WelcomeController < Users::RegistrationsController
     # Check if user is a dietitian
     # Should not check if user is dietitian here
     # Add a before filter for welcome#index that makes sure the user is a dietian  
-    # Under construction
     if @user == current_dietitian
 
       # AppointmentsHelper
-      # shouldnt need all 3
       get_upcoming_appointments!
       @upcoming_appointments
       @next_appointment
-      # get_upcoming_appointments!
-      # @upcoming_appointment
-      get_previous_appointments!
-      @previous_appointments
-      
-
-      # Shows views/welcome/index.html.erb
     end
 
   end

@@ -33,26 +33,24 @@
 									<%= active_link_to dashboard_clients_onboarding_path, :wrap_tag => :li do %>
 									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Client Leads</span>
 									<% end %>
-
+									<%= active_link_to users_invitations_path, :wrap_tag => :li  do %>
+									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Physician Referrals</span>
+									<% end %>		
 
 									<%= active_link_to appointments_path, :wrap_tag => :li  do %>
 									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
 									<% end %>			
 
-
 									<%= active_link_to "/education/monologue", :wrap_tag => :li do %>
 									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Content</span>
 									<% end %>
 									<%= active_link_to survey_groups_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Surveys</span>
+									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Questionnaires</span>
 									<% end %>
 								</ul>
 							</li>
 							<li><a href="#" id="system-admin-nav-button" data-toggle="collapse" data-target="#system-admin-nav-list" aria-expanded="false">System Admin</a>
 								<ul class="nav collapse" id="system-admin-nav-list" role="menu" aria-labelledby="btn-1">
-									<%= active_link_to users_invitations_path, :wrap_tag => :li  do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Referrals</span>
-									<% end %>		
 									<%= active_link_to new_package_path, :wrap_tag => :li do %>
 									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Packages</span>
 									<% end %>

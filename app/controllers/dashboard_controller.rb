@@ -9,7 +9,9 @@ class DashboardController < ApplicationController
 
   # GET /admin_dashboard
   def clients_onboarding
+    
     # should fetch all at once and user incomplete_onboarding scope 
+    # could use User.incomplete_onboarding.group_by { |u| u.registration_stage }
     @clients_stage1 = User.client_accounts.at_stage(1).order_by_last_sign_in
     @clients_stage2 = User.client_accounts.at_stage(2).order_by_last_sign_in
     @clients_stage3 = User.client_accounts.at_stage(3).order_by_last_sign_in

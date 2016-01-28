@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   # SCOPES: Users by Appointment order
   # scope :order_by_most_current_appointment, -> {includes(:appointment_hosts).order('appoinment_hosts.start_time DESC')}
   scope :order_by_last_sign_in, -> {where("last_sign_in_at IS NOT NULL").order('last_sign_in_at DESC')}
-
+  scope :order_by_created_at, -> {order('created_at DESC')}
 
   # # ROLIFY
   rolify :role_cname => 'UserRole'

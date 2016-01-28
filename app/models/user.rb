@@ -60,11 +60,9 @@ class User < ActiveRecord::Base
   attr_accessor :health_group_ids, :health_groups, :image_cache, :remove_image
 
   # # SCOPES
-  # Not using User scopes yet
   # SCOPES: User Type
   scope :client_accounts, -> { where("encrypted_password <> ''") }  
-  scope :unconfirmed_accounts, -> { where("confirmation_sent_at IS NOT NULL", "confirmed_at IS NULL") } # QOL referral
-  scope :unaccepted_accounts, -> { where("invitation_sent_at IS NOT NULL", "invitation_accepted_at IS NULL") } # Physician referral
+  scope :invited_accounts, -> { where("confirmation_sent_at IS NOT NULL") } # QOL referral
   scope :family_member_accounts, -> { where("family_role <> ''") }   
   # SCOPES: User Registration Stage
   scope :at_stage, -> (stage){ where(registration_stage: stage) } 

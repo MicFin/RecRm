@@ -22,12 +22,14 @@ class Survey < ActiveRecord::Base
   has_many :surveys_questions, :dependent => :destroy
   has_many :questions, through: :surveys_questions
 
+  # Generates questions for survey based on survey group
   def generate_survey_questions
     self.survey_group.questions.each do |question|
       SurveysQuestion.create(question_id: question.id, survey_id: self.id)
     end
   end
 
+  # Generates or fetches the survey used as Pre Appointment Survey for client and dietitian
   def self.generate_for_appointment(appointment, client_or_dietitian)
     # for client
     if client_or_dietitian.class == User
@@ -69,7 +71,7 @@ class Survey < ActiveRecord::Base
     return new_survey
   end
 
-
+  # Generates or fetches the survey used as Notes for In Session for client or dietitian
   def self.generate_for_session(appointment, client_or_dietitian)
     if client_or_dietitian.class == User
        # survey group ID 4 is in session notes survey for user
@@ -110,7 +112,7 @@ class Survey < ActiveRecord::Base
     return new_survey
   end
 
-  
+  # should consider removing
   def self.generate_for_post_appointment(appointment, client_or_dietitian)
     
     if client_or_dietitian.class ==  User

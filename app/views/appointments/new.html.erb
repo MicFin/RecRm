@@ -1,5 +1,39 @@
-<h1>New appointment</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', appointments_path %>
+<div id="welcome-page" class="container-fluid">
+    <div class="row">
+
+      <%= render "/layouts/navbars/dietitian_nav" %>
+
+      <main class="col-xs-10 col-xs-offset-2">
+        <section class="jumbotron">
+          <div id="jumbotron-inner" class="row">
+            <div class="col-xs-12 form-group">
+              <h1>Create a New Appointment</h1>
+            </div>
+					</div>
+				</section>
+				<section>
+					<%= render 'form' %>
+				</section>
+ 
+      </main>
+      <div class="col-xs-10 col-xs-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

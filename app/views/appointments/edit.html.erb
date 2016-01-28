@@ -1,6 +1,31 @@
-<h1>Editing appointment</h1>
 
-<%= render 'form' %>
+<div id="welcome-page" class="container-fluid">
+    <div class="row">
 
-<%= link_to 'Show', @appointment %> |
-<%= link_to 'Back', appointments_path %>
+      <%= render "/layouts/navbars/dietitian_nav" %>
+
+      <main class="col-xs-10 col-xs-offset-2">
+
+      	<%= render "/appointments/appointment_information", appointment: @appointment %>
+
+        <%= render 'form' %>
+      </main>
+      <div class="col-xs-10 col-xs-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

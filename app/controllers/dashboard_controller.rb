@@ -9,7 +9,6 @@ class DashboardController < ApplicationController
 
   # GET /admin_dashboard
   def clients_onboarding
-
     # should fetch all at once and user incomplete_onboarding scope 
     @clients_stage1 = User.client_accounts.at_stage(1).order_by_last_sign_in
     @clients_stage2 = User.client_accounts.at_stage(2).order_by_last_sign_in
@@ -17,20 +16,7 @@ class DashboardController < ApplicationController
     @clients_stage4 = User.client_accounts.at_stage(4).order_by_last_sign_in
     @clients_stage5 = User.client_accounts.at_stage(5).order_by_last_sign_in
 
-    @clients_unconfirmed = User.unconfirmed_accounts.order_by_created_at
-    @clients_unaccepted = User.unaccepted_accounts.order_by_created_at
-  end
-
-  # GET /admin_dashboard
-  def clients_upcoming
-    @clients_first = Dietitian.online
-    @clients_follow_up = Dietitian.online
-  end
-
-  # GET /admin_dashboard
-  def clients_idle
-    @clients_with_ = Dietitian.online
-    @clients_follow_up = Dietitian.online
+    @clients_invited = User.invited_accounts.order_by_created_at
   end
 
   private

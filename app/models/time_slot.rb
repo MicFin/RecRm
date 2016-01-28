@@ -26,6 +26,8 @@ class TimeSlot < ActiveRecord::Base
   scope :upcoming, -> { where("time_slots.start_time > ?", DateTime.now) }
   scope :previous, -> { where("time_slots.start_time < ?", DateTime.now) }
   scope :upcoming_with_buffer, -> (day_buffer){ where("time_slots.start_time > ?", DateTime.now + day_buffer.days) }
+  scope :starts_at, -> (start_time) { where(start_time: start_time) }
+  scope :ends_at, -> (end_time) { where(end_time: end_time) }
   # SCOPES: Time slot statuses
   scope :current, -> { where(status: 'Current') }
   scope :cancelled, -> { where(status: 'Cancelled') } 

@@ -83,12 +83,8 @@
 
                   <td><%= appointment.show_duration%></td>
 
-                  <td><%= appointment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-
-           
-                  <td><a class="show-family-button" href="">Review</a></td>
-              
-                  <td><%= link_to 'Re-Assign', edit_appointment_path(appointment) %></td>
+                  <td><%= appointment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>            
+                  <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
                   <td><%= link_to 'Delete', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 </tr>
               <% end %>
@@ -126,8 +122,6 @@
                   <% end %>
                   <td><%= appointment.show_duration%></td>
                   <td><%= appointment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-
-                  <td><a class="show-family-button" href="">Review</a></td>
                   <td></td>
                 </tr>
               <% end %>

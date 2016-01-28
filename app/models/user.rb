@@ -59,6 +59,22 @@ class User < ActiveRecord::Base
   # # ATTRIBUTE ACCESSORS
   attr_accessor :health_group_ids, :health_groups, :image_cache, :remove_image
 
+  # # SCOPES
+  # Not using User scopes yet
+  # SCOPES: User Type
+  scope :client_accounts, -> { where("encrypted_password <> ''") }  
+  scope :unconfirmed_accounts, -> { where("confirmation_sent_at IS NOT NULL", "confirmed_at IS NULL") } # QOL referral
+  scope :unaccepted_accounts, -> { where("invitation_sent_at IS NOT NULL", "invitation_accepted_at IS NULL") } # Physician referral
+  scope :family_member_accounts, -> { where("family_role <> ''") }   
+  # SCOPES: User Registration Stage
+  scope :at_stage, -> (stage){ where(registration_stage: stage) } 
+  scope :incomplete_onboarding, -> { where(registration_stage: [1, 2, 3, 4, 5]) } 
+  # SCOPES: Time slot for specific dietitian
+  # scope :repeat_customers, -> { includes(:appointment_hosts).where("appointment_hosts.status=?", "Complete").references(:appointment_hosts) }
+  # SCOPES: Users by Appointment order
+  # scope :order_by_most_current_appointment, -> {includes(:appointment_hosts).order('appoinment_hosts.start_time DESC')}
+
+
   # # ROLIFY
   rolify :role_cname => 'UserRole'
 

@@ -47,7 +47,6 @@ class WelcomeController < Users::RegistrationsController
       @family
     end
  
-  
   end
 
   ### This is currently the dietitian's dashboard

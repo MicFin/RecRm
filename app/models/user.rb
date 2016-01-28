@@ -68,11 +68,12 @@ class User < ActiveRecord::Base
   scope :family_member_accounts, -> { where("family_role <> ''") }   
   # SCOPES: User Registration Stage
   scope :at_stage, -> (stage){ where(registration_stage: stage) } 
-  scope :incomplete_onboarding, -> { where(registration_stage: [1, 2, 3, 4, 5]) } 
+  scope :incomplete_onboarding, -> { where(registration_stage: [1, 2, 3, 4, 5])}
   # SCOPES: Time slot for specific dietitian
   # scope :repeat_customers, -> { includes(:appointment_hosts).where("appointment_hosts.status=?", "Complete").references(:appointment_hosts) }
   # SCOPES: Users by Appointment order
   # scope :order_by_most_current_appointment, -> {includes(:appointment_hosts).order('appoinment_hosts.start_time DESC')}
+  scope :order_by_last_sign_in, -> {where("last_sign_in_at IS NOT NULL").order('last_sign_in_at DESC')}
 
 
   # # ROLIFY

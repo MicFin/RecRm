@@ -661,7 +661,7 @@ Rails.application.routes.draw do
     
       # Invitation paths
       get 'users/invitations', to: 'users/invitations#index', as: 'users_invitations'
-      
+
     # ROUTES FOR UNAUTHENTICATED DIETITIAN
     unauthenticated :dietitian do
       

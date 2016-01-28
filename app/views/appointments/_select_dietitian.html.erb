@@ -1,0 +1,64 @@
+
+<div class="modal fade" id="apptDetailModal" tabindex="-1" role="dialog" aria-labelledby="apptDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="apptDetailModalLabel"><%=image_tag "logos/kf-logo-registration.png", class: "img-responsive" %></h4>
+      </div>
+      <%= simple_form_for(appointment, url: appointments_assign_dietitian_path(appointment) ) do |f| %>  
+        <div class="modal-body col-xs-12">
+          <%= render "/appointments/appointment_information", appointment: appointment %>
+          
+            <!--         <div class="col-xs-12 text-centerdi form-group">
+            <h4>Time Slots This Week</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Dietitian</th>
+                  <th>Vacant Times</th>
+                  <th>All Times</th>
+                  <th>Dietitian Slot Loss</th>
+                  <th>Client Slot Loss</th>
+                </tr>
+              </thead>
+              <tbody>
+   
+                <%# dietitians_data.each do | dietitian, data_object| %>
+
+                  <tr>
+                    <td><%#=dietitian.email%></td>
+                    <td><%#=data_object["half_hour_time_slots_available"][0]%></td>
+                    <td><%#=data_object["half_hour_time_slots_available"][1]%></td>
+                    <td><%#=data_object["loss_time_slots"] %></td>
+                    <td><%#=data_object["loss_cal_slots"] %></td>
+                  </tr>
+                <%# end %>
+              </tbody>
+            </table>
+            
+          </div> -->
+          </div>
+          <% if appointment.dietitian_id != nil %>
+            <div class="modal-footer">
+              <div class="actions">
+               <h3>KRDN: <%= appointment.dietitian.signature %> </h3>
+              </div>
+            </div>
+            
+          <% else %>
+            <div class="modal-footer">
+              <h3>Select Dietitian</h3>
+              <div class="col-xs-12">
+                <%=f.input :dietitian_id, collection: dietitians, :label_method => :email, label: false, :input_html => { :class => "form-control"}   %>
+              </div>
+              <div class="actions">
+                <%= f.button :submit, "Assign KRDN", class: "btn btn-success btn-block", id: "btn-purchase-appt" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

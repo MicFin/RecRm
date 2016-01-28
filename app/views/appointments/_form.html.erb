@@ -12,10 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.input :patient_focus_id %>
+    <%#= f.input :patient_focus_id %>
   </div>
   <div class="field">
-    <%= f.input :appointment_host_id %>
+    <%#= f.input :appointment_host_id %>
   </div>
   <div class="field">
     <%= f.input :dietitian_id, collection: @dietitians, prompt: "Choose a Dietitian", label_method: :email, value_method: :id, :include_hidden => false, input_html: { class: "form-control-3"} %>

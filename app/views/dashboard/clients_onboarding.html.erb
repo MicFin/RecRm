@@ -21,7 +21,7 @@
 				  </thead>
 
 				  <tbody>
-				    <% @clients_stage5.each do |client| %>
+				    <% @clients_stage5 && @clients_stage5.each do |client| %>
 				      <tr>
 				        <td><%= client.first_name if client.first_name? %></td>
 				        <td><%= client.last_name if client.first_name? %></td>
@@ -52,7 +52,7 @@
 				  </thead>
 
 				  <tbody>
-				    <% @clients_stage4.each do |client| %>
+				    <% @clients_stage4 && @clients_stage4.each do |client| %>
 				      <tr>
 				        <td><%= client.first_name if client.first_name? %></td>
 				        <td><%= client.last_name if client.first_name? %></td>
@@ -83,7 +83,7 @@
 				  </thead>
 
 				  <tbody>
-				    <% @clients_stage3.each do |client| %>
+				    <% @clients_stage3 && @clients_stage3.each do |client| %>
 				      <tr>
 				        <td><%= client.first_name if client.first_name? %></td>
 				        <td><%= client.last_name if client.first_name? %></td>
@@ -114,7 +114,7 @@
 				  </thead>
 
 				  <tbody>
-				    <% @clients_stage2.each do |client| %>
+				    <% @clients_stage2 && @clients_stage2.each do |client| %>
 				      <tr>
 				        <td><%= client.first_name if client.first_name? %></td>
 				        <td><%= client.last_name if client.first_name? %></td>
@@ -145,7 +145,7 @@
 				  </thead>
 
 				  <tbody>
-				    <% @clients_stage1.each do |client| %>
+				    <% @clients_stage1 && @clients_stage1.each do |client| %>
 				      <tr>
 				        <td><%= client.first_name if client.first_name? %></td>
 				        <td><%= client.last_name if client.first_name? %></td>
@@ -159,32 +159,7 @@
 				    <% end %>
 				  </tbody>
 				</table>
-				<h1>Physician Referral Unaccepted</h1>	
-				<table class="table">
-				  <thead>
-				    <tr>
-				      <th>First</th>
-				      <th>Last</th>
-				      <th>Email</th>
-				      <th>Referral Sent</th>
-				      <th>Referral Accepted</th>
-				      <th colspan="3"></th>
-				    </tr>
-				  </thead>
-
-				  <tbody>
-				    <% @clients_unaccepted.each do |client| %>
-				      <tr>
-				        <td><%= client.first_name if client.first_name? %></td>
-				        <td><%= client.last_name if client.first_name? %></td>
-				        <td><%= client.email %></td>
-				        <td><%= client.invitation_sent_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%= client.invitation_accepted_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.invitation_accepted_at?%></td>
-				      </tr>
-				    <% end %>
-				  </tbody>
-				</table>
-				<h1>QOL Invitation Unaccepted</h1>	
+				<h1>QOL Invitation</h1>	
 				<table class="table">
 				  <thead>
 				    <tr>
@@ -198,7 +173,7 @@
 				  </thead>
 
 				  <tbody>
-				    <% @clients_unconfirmed.each do |client| %>
+				    <% @clients_invited && @clients_invited.each do |client| %>
 				      <tr>
 				        <td><%= client.first_name if client.first_name? %></td>
 				        <td><%= client.last_name if client.first_name? %></td>

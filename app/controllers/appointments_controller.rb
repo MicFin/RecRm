@@ -33,8 +33,8 @@ class AppointmentsController < ApplicationController
   include FamiliesHelper
 
   # # CALL BACKS
-  before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :appointment_prep, :appointment_review, :update_duration, :end_appointment, :destroy, :client_appointment_prep]
-  before_filter :config_opentok, :only => [:update]
+  before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :appointment_prep, :appointment_review, :update_duration, :end_appointment, :destroy, :client_appointment_prep, :assign_dietitian]
+  before_filter :config_opentok, :only => [:update, :assign_dietitian]
 
   # GET /appointments
   # as: "appointments_path"
@@ -136,80 +136,13 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-
-    ## if the appointment status is follow up unpaid and does not have a stripe card token then the appointment is being created without payment and the dates need to be cleaned
-    if @appointment.status == "Follow Up Unpaid" && params[:appointment][:stripe_card_token] == nil
-      # clean_dates_for_database
-      @appointment.update(appointment_params) # used this to update dietitian when being assigned
-      
-      # create room shoudl remove
-      @new_session = @opentok.create_session 
-      @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
-      ## creating a new room each time, should either purge old rooms or assign rooms to dietitians 
-      @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Early Access Session")
-      @new_room.save
-      dietitian = @appointment.dietitian
-      dietitian.add_role "Session Host", @new_room
-      user = @appointment.appointment_host
-      user.add_role "Session Guest", @new_room
-      user.save
-      # set appointment to room (1st and only for now)
-      if @appointment.room_id == nil
-        @appointment.room_id = @new_room.id
-        @appointment.save
-      end
-
-    elsif @appointment.update(appointment_params)
-      
-
-      # or when admin dietitian assigns dietitian
-      if (@appointment.dietitian_id != nil)
-        ## assumes that appointment has been paid for and assigned a dietitian by admin dietitian
-        
-        @new_session = @opentok.create_session 
-        @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
-        ## creating a new room each time, should either purge old rooms or assign rooms to dietitians 
-        @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Appointment")
-        @new_room.save
-        dietitian = @appointment.dietitian
-        dietitian.add_role "Session Host", @new_room
-        user = @appointment.appointment_host
-        user.add_role "Session Guest", @new_room
-        user.save
-
-        # set appointment to room (1st and only for now)
-        if @appointment.room_id == nil
-          @appointment.room_id = @new_room.id
-          @appointment.save
-        end
-
-
-        # mark time slot as having an appointment and cancel related time slots
-        TimeSlot.where(start_time: @appointment.start_time).where(end_time: @appointment.end_time).each do |ts|
-          if ts.dietitian == @appointment.dietitian
-            time_slot = ts 
-            time_slot.vacancy = false
-            time_slot.status = "Appointment"
-            time_slot.appointment = @appointment
-            time_slot.save
-            TimeSlot.cancel_related_time_slots(time_slot)
-          end
-        end
- 
-
-      # other updates that could happen
-      else
-
-         
-      end
-    end
-    
     respond_to do |format|
-      if @appointment.save
+      if @appointment.update(appointment_params)
         if current_dietitian 
           format.html { redirect_to appointments_path(current_dietitian), notice: 'Appointment was successfully created.' }
           format.json { render :show, status: :ok, location: @appointment }
           format.js
+        # not sure when non-dietitian user is updating appointment yet
         else
           format.html { redirect_to welcome_home_path, notice: 'Appointment was successfully created.' }
           format.json { render :show, status: :ok, location: @appointment }
@@ -234,6 +167,54 @@ class AppointmentsController < ApplicationController
       format.js
     end
   end
+
+  # PATCH/PUT /appointments/1/assign_dietitian
+  # Assign dietitian and create room
+  def assign_dietitian
+
+    # if can save with dietitian
+    if @appointment.update(appointment_params)
+    
+      # create a tokbox session and room
+      @new_session = @opentok.create_session 
+      @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
+      # creating a new room each time, should either purge old rooms or assign rooms to dietitians 
+      @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Appointment")
+      @new_room.save
+      # assign roles to room
+      dietitian = @appointment.dietitian
+      dietitian.add_role "Session Host", @new_room
+      user = @appointment.appointment_host
+      user.add_role "Session Guest", @new_room
+      user.save
+
+      # set appointment to room (1st and only for now)
+      if @appointment.room_id == nil
+        @appointment.room_id = @new_room.id
+        @appointment.save
+      end
+
+       # mark time slot as having an appointment and cancel related time slots
+      time_slot = TimeSlot.starts_at(@appointment.start_time).ends_at(@appointment.end_time).for_dietitian(@appointment.dietitian_id).first
+      time_slot.vacancy = false
+      time_slot.status = "Appointment"
+      time_slot.appointment = @appointment
+      time_slot.save
+      TimeSlot.cancel_related_time_slots(time_slot)
+    end
+
+    # return to appointments path
+    respond_to do |format|
+      if @appointment.save
+          format.html { redirect_to appointments_path(current_dietitian), notice: 'KRDN was successfully assigned.' }
+          format.json { render :show, status: :ok, location: @appointment }
+      else
+        format.html { render :edit }
+        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   # GET /appointments/:id/appointment_prep
   # as: 'appointment_prep_path'

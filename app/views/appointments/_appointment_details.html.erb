@@ -6,7 +6,8 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="apptDetailModalLabel"><%=image_tag "/assets/nav_images/logo.png", class: "img-responsive" %></h4>
       </div>
-      <%= simple_form_for(appointment) do |f| %>      
+      <%= simple_form_for(appointment, url: appointments_assign_dietitian_path(appointment) ) do |f| %>
+      <%#= simple_form_for(appointment) do |f| %>      
       <div class="modal-body col-xs-12">
         <h2>Client: <%=appointment.appointment_host.first_name%> <%=appointment.appointment_host.last_name%></h2>
         <h2>Patient: <%=appointment.patient_focus.first_name%> <%=appointment.patient_focus.last_name%></h2>

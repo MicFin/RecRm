@@ -5,6 +5,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   skip_before_filter :require_no_authentication
   skip_before_filter :authenticate_user!
 
+
   # PUT /resource/confirmation
   def update
     

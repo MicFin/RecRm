@@ -1,0 +1,219 @@
+<div id="welcome-page" class="container-fluid">
+		<div class="row">
+
+			<%= render "/layouts/navbars/dietitian_nav" %>
+
+			<main class="col-xs-10 col-xs-offset-2">
+				<h1>Stage 5</h1>	
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th>First</th>
+				      <th>Last</th>
+				      <th>Email</th>
+				      <th>Phone</th>
+				      <th>Zip</th>
+				      <th>Sign Up Date</th>
+				      <th>Last Sign In</th>
+				      <th>Sign In Count</th>
+				      <th colspan="3"></th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+				    <% @clients_stage5.each do |client| %>
+				      <tr>
+				        <td><%= client.first_name if client.first_name? %></td>
+				        <td><%= client.last_name if client.first_name? %></td>
+				        <td><%= client.email %></td>
+				        <td><%= client.phone_number if client.phone_number? %></td>
+				        <td><%= client.zip_code if client.zip_code? %></td>
+				        <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.sign_in_count%></td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+				<h1>Stage 4</h1>	
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th>First</th>
+				      <th>Last</th>
+				      <th>Email</th>
+				      <th>Phone</th>
+				      <th>Zip</th>
+				      <th>Sign Up Date</th>
+				      <th>Last Sign In</th>
+				      <th>Sign In Count</th>
+				      <th colspan="3"></th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+				    <% @clients_stage4.each do |client| %>
+				      <tr>
+				        <td><%= client.first_name if client.first_name? %></td>
+				        <td><%= client.last_name if client.first_name? %></td>
+				        <td><%= client.email %></td>
+				        <td><%= client.phone_number if client.phone_number? %></td>
+				        <td><%= client.zip_code if client.zip_code? %></td>
+				        <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.sign_in_count%></td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+				<h1>Stage 3</h1>	
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th>First</th>
+				      <th>Last</th>
+				      <th>Email</th>
+				      <th>Phone</th>
+				      <th>Zip</th>
+				      <th>Sign Up Date</th>
+				      <th>Last Sign In</th>
+				      <th>Sign In Count</th>
+				      <th colspan="3"></th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+				    <% @clients_stage3.each do |client| %>
+				      <tr>
+				        <td><%= client.first_name if client.first_name? %></td>
+				        <td><%= client.last_name if client.first_name? %></td>
+				        <td><%= client.email %></td>
+				        <td><%= client.phone_number if client.phone_number? %></td>
+				        <td><%= client.zip_code if client.zip_code? %></td>
+				        <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.sign_in_count%></td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+				<h1>Stage 2</h1>	
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th>First</th>
+				      <th>Last</th>
+				      <th>Email</th>
+				      <th>Phone</th>
+				      <th>Zip</th>
+				      <th>Sign Up Date</th>
+				      <th>Last Sign In</th>
+				      <th>Sign In Count</th>
+				      <th colspan="3"></th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+				    <% @clients_stage2.each do |client| %>
+				      <tr>
+				        <td><%= client.first_name if client.first_name? %></td>
+				        <td><%= client.last_name if client.first_name? %></td>
+				        <td><%= client.email %></td>
+				        <td><%= client.phone_number if client.phone_number? %></td>
+				        <td><%= client.zip_code if client.zip_code? %></td>
+				        <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.sign_in_count%></td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+				<h1>Stage 1</h1>	
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th>First</th>
+				      <th>Last</th>
+				      <th>Email</th>
+				      <th>Phone</th>
+				      <th>Zip</th>
+				      <th>Sign Up Date</th>
+				      <th>Last Sign In</th>
+				      <th>Sign In Count</th>
+				      <th colspan="3"></th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+				    <% @clients_stage1.each do |client| %>
+				      <tr>
+				        <td><%= client.first_name if client.first_name? %></td>
+				        <td><%= client.last_name if client.first_name? %></td>
+				        <td><%= client.email %></td>
+				        <td><%= client.phone_number if client.phone_number? %></td>
+				        <td><%= client.zip_code if client.zip_code? %></td>
+				        <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.sign_in_count%></td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+				<h1>Physician Referral Unaccepted</h1>	
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th>First</th>
+				      <th>Last</th>
+				      <th>Email</th>
+				      <th>Referral Sent</th>
+				      <th>Referral Accepted</th>
+				      <th colspan="3"></th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+				    <% @clients_unaccepted.each do |client| %>
+				      <tr>
+				        <td><%= client.first_name if client.first_name? %></td>
+				        <td><%= client.last_name if client.first_name? %></td>
+				        <td><%= client.email %></td>
+				        <td><%= client.invitation_sent_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.invitation_accepted_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.invitation_accepted_at?%></td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+				<h1>QOL Invitation Unaccepted</h1>	
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th>First</th>
+				      <th>Last</th>
+				      <th>Email</th>
+				      <th>Invitation Sent</th>
+				      <th>Invitation Accepted</th>
+				      <th colspan="3"></th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+				    <% @clients_unconfirmed.each do |client| %>
+				      <tr>
+				        <td><%= client.first_name if client.first_name? %></td>
+				        <td><%= client.last_name if client.first_name? %></td>
+				        <td><%= client.email %></td>
+				        <td><%= client.confirmation_sent_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.confirmed_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.confirmed_at?%></td>
+				      </tr>
+				    <% end %>
+				  </tbody>
+				</table>
+			</main>
+
+			</main>
+			<div class="col-xs-10 col-xs-offset-2">
+				<%=render "/layouts/footers/main_footer" %>
+			</div>
+		</div>
+	</div>

@@ -633,7 +633,8 @@ Rails.application.routes.draw do
 
       # Dashboard paths
       get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
-
+      get 'dashboard/clients_onboarding', to: 'dashboard#clients_onboarding', as: 'dashboard_clients_onboarding'
+      
       # Role assignment paths
       get 'roles/assignments', to: 'roles#assignments', as: 'roles_assignments'
       get 'roles/assignments/edit/:id', to: 'roles#edit_assignments', as: 'edit_assignments'

@@ -32,7 +32,7 @@ class Survey < ActiveRecord::Base
     # for client
     if client_or_dietitian.class == User
 
-      # survey group ID 1 is pre appointment survey
+      # survey group ID 3 is pre appointment survey
       appointment_survey = Survey.where(survey_group_id: 3).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
 
       if appointment_survey.count < 1
@@ -72,12 +72,12 @@ class Survey < ActiveRecord::Base
 
   def self.generate_for_session(appointment, client_or_dietitian)
     if client_or_dietitian.class == User
-       # survey group ID 1 is pre appointment survey
-      appointment_survey = Survey.where(survey_group_id: 3).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
+       # survey group ID 4 is in session notes survey for user
+      appointment_survey = Survey.where(survey_group_id: 4).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
 
       if appointment_survey.count < 1
         
-        new_survey = Survey.new(survey_group_id: 3)
+        new_survey = Survey.new(survey_group_id: 4)
         new_survey.surveyable_id = appointment.id
         new_survey.surveyable_type = "Appointment"
         new_survey.save
@@ -87,13 +87,15 @@ class Survey < ActiveRecord::Base
       else
         new_survey = appointment_survey.last
       end
+
+    # else for dietitian
     else 
-       # survey group ID 1 is pre appointment survey
-      appointment_survey = Survey.where(survey_group_id: 2).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
+      # survey group ID 5 is in session notes survey for dietitian
+      appointment_survey = Survey.where(survey_group_id: 5).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
 
       if appointment_survey.count < 1
         
-        new_survey = Survey.new(survey_group_id: 2)
+        new_survey = Survey.new(survey_group_id: 5)
         new_survey.surveyable_id = appointment.id
         new_survey.surveyable_type = "Appointment"
         new_survey.save

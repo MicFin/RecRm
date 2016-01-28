@@ -97,7 +97,7 @@ class RoomsController < ApplicationController
     # else is a client_in_session
     else
 
-      # Set @user to current dietitian
+      # Set @user to current user
       @user = current_user
 
       # Generate tokbox token

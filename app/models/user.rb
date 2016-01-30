@@ -98,35 +98,37 @@ class User < ActiveRecord::Base
   # If a user is deleted then so should their family connection
   has_many :user_families, :dependent => :destroy
   has_many :families, through: :user_families
-  has_many :head_of_families, :class_name => "Family", :foreign_key => "head_of_family_id"
+  # If a head of family User is deleted then so should the family
+  has_many :head_of_families, :class_name => "Family", :foreign_key => "head_of_family_id", dependent: :destroy
   belongs_to :monologue_user, :class_name => "Monologue::User", :foreign_key => "monologue_user_id"
   # If a user is deleted then so should their patient group connections
 	has_and_belongs_to_many :patient_groups
   before_destroy { patient_groups.clear }
 
-  has_many :coupon_redemptions 
+  has_many :coupon_redemptions, dependent: :destroy
   has_many :coupons, through: :coupon_redemptions
   
-  has_many :user_packages
+  has_many :user_packages, dependent: :destroy
   has_many :packages, through: :user_packages
 
 	has_many :appointments
   has_many :patient_focus, :class_name => "Appointment", :foreign_key => "patient_focus_id"
   has_many :appointment_hosts, :class_name => "Appointment", :foreign_key => "appointment_host_id"
   has_many :rooms
-  has_many :subscriptions
+  has_many :subscriptions, dependent: :destroy
   has_many :member_plans, through: :subscriptions
-  has_many :surveys
 
-  has_one :growth_chart
-  has_one :food_diary
+
+  has_one :growth_chart, dependent: :destroy # user is deleted then delete their growth chart 
+  has_one :food_diary, dependent: :destroy # user is deleted then delete their food diary 
 
   has_many :images, :as => :imageable, dependent: :destroy
 
   accepts_nested_attributes_for :images, allow_destroy: true
 
     ### wanted to have a user have many surveys but then also haev a user be surveyable but it looks strange and may act weird so didnt implement yet
-  has_many :surveys, :as => :surveyable
+  has_many :surveys, dependent: :destroy # user is deleted then delete their surveys 
+  has_many :surveys, :as => :surveyable, dependent: :destroy # user is deleted then delete their surveys 
   
   # saves phone number in normalized US format
   phony_normalize :phone_number, :default_country_code => 'US'

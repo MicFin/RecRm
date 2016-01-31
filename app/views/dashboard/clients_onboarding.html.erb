@@ -31,7 +31,7 @@
 				        <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
 				        <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
 				        <td><%= client.sign_in_count%></td>
-				        <td> <%= button_to "Delete", registration_path(client), class: "btn btn-xs btn-danger", data: { confirm: "Are you sure?  This will delete the User, their family, and any appointments or questionnaires related to their account." }, method: :delete %></td>
+				        <td> <%#= button_to "Delete", registration_path(client), class: "btn btn-xs btn-danger", data: { confirm: "Are you sure?  This will delete the User, their family, and any appointments or questionnaires related to their account." }, method: :delete %></td>
 				      </tr>
 				    <% end %>
 				  </tbody>

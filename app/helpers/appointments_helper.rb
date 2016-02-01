@@ -110,7 +110,7 @@ module AppointmentsHelper
   def get_upcoming_appointment!
 
     # Get last paid appointment or last follow up unpaid appointment 
-      @upcoming_appointment = current_user.appointment_hosts.upcoming_and_current.scheduled.last 
+      @upcoming_appointment = current_user.appointment_hosts.upcoming_and_current.scheduled.first 
 
       # If there is an upcoming appointment then set date
       if @upcoming_appointment 

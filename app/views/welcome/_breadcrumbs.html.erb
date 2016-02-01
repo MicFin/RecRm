@@ -9,13 +9,13 @@
   <% end %>
 </div>
 
- <%= image_tag("/assets/logos/kf-logo-registration.png", class: "img-responsive logo") %>
+<%= image_tag("/assets/logos/kf-logo-registration.png", class: "img-responsive logo") %>
 
 <div id="welcome-breadcrumb" class="row">
   <div class="btn-group btn-breadcrumb">
     <%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
 
-			<%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => stage_of_registration <= 1 %>
+		<%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => stage_of_registration <= 1 %>
 
     <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => stage_of_registration <= 2 %>
 

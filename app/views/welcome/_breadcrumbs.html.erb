@@ -1,59 +1,26 @@
-    <div class="breadcrumb-sign-out">
-      <% if current_user.repeat_customer? %>
-        <%= active_link_to welcome_home_path, { :active => :exclusive, :class_active => 'selected'} do %>
-          <i>back to dashboard</i>
-        <% end %>
-      <% end %>
-      <%= active_link_to destroy_user_session_path, { :active => :exclusive, :class_active => 'selected', :method => :delete} do %>
-        <i>sign out </i>
-      <% end %>
-    </div>
-     <%= image_tag("/assets/logos/kf-logo-registration.png", class: "img-responsive logo") %>
-    <div id="welcome-breadcrumb" class="row">
+<div class="breadcrumb-sign-out">
 
-        <div class="btn-group btn-breadcrumb">
-        
-        <% if stage_of_registration <= 1 %>
-    
-          <%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
- 					<%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
-          <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
-          <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
-          <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
+  <%= active_link_to welcome_home_path, { :active => :exclusive, :class_active => 'selected'} do %>
+    <i>back to dashboard</i>
+  <% end unless !current_user.repeat_customer?%>
 
-        <% elsif stage_of_registration <= 2 %>
+  <%= active_link_to destroy_user_session_path, { :active => :exclusive, :class_active => 'selected', :method => :delete} do %>
+    <i>sign out </i>
+  <% end %>
+</div>
 
-        	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
-          <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
-          <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
+ <%= image_tag("/assets/logos/kf-logo-registration.png", class: "img-responsive logo") %>
 
-				<% elsif stage_of_registration <= 3 %>
+<div id="welcome-breadcrumb" class="row">
+  <div class="btn-group btn-breadcrumb">
+    <%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
 
-        	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Your Table", welcome_add_family_path, :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
-          <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
-				
-				<% elsif stage_of_registration <= 4 %>
+			<%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => stage_of_registration <= 1 %>
 
-        	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => true %>
+    <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => stage_of_registration <= 2 %>
 
-				<% elsif stage_of_registration <= 5 %>
+    <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => stage_of_registration <= 3 %>
 
-        	<%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-          <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
-
-        <% end %>
-   
-        </div>
-	</div>
+    <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => stage_of_registration <= 4 %>
+  </div>
+</div>

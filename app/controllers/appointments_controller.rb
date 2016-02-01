@@ -286,55 +286,6 @@ class AppointmentsController < ApplicationController
     @appointment.save
   end
   
-  # GET /appointments/1/appointment_review
-  def appointment_review
-    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
-    
-    if @appointment.dietitian == current_dietitian 
-      @client = @appointment.appointment_host
-      # set @family before get_family_info
-      @family = @client.head_of_families.first
-      # get_family_info!
-      # @family_members
-      # @family
-      # create family should be a helper method on the family model
-      @family_members = []
-      if @appointment.patient_focus 
-        appointment_focus = @appointment.patient_focus
-        @family_members << appointment_focus
-      end
-      family_count = @family.users.count
-      
-      if family_count > 0
-        if @client != appointment_focus
-          @family_members << @client
-          @family.users.each do |family_member| 
-            if family_member != appointment_focus
-              @family_members << family_member 
-            end
-          end
-        else
-          @family.users.each do |family_member|
-              @family_members << family_member
-          end
-        end
-      else
-        @family_members << @client
-      end
-      get_patient_groups!
-      @diseases = @diseases 
-      @intolerances = @intolerances 
-      @allergies = @allergies
-      @diets =  @diets 
-      @unverified_health_groups = @family_members[0].unverified_health_groups
-      @dietitian_survey = Survey.generate_for_appointment(@appointment, current_dietitian)
-      @survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
-      @surveyable = @appointment
-    end
-    respond_to do |format|
-      format.js
-    end
-  end
 
   # Use this for when an appointment is not paid for and but is assigned to a client
   def purchase

@@ -57,6 +57,7 @@
 # 31. user with QOL invitation, accepted, at registration stage 5
 # 31. user with QOL invitation, accepted, scheduled appointment
 
+# # Create Survey Groups and Questions
 
 # PatientGroup.create(name: "Wheat", category: "allergy", order: 9).allergens << Allergen.create(name: "wheat", description: "The grain of the wheat plant.")
 

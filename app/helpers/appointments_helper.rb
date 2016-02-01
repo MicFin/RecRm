@@ -69,19 +69,6 @@ module AppointmentsHelper
     # Group upcoming appoinments by data and time
     @upcoming_appointments = @upcoming_appointments.group_by{|appointment|  [appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y"), appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p")] }
 
-    # If user is a dietitian then set next appointment, add family and mark if prepped
-    if user.is_a? Dietitian 
-      @next_appointment = user.appointments.paid.where(start_time: 30.minutes.ago..5.hours.from_now).last
-      if @next_appointment != nil  
-        family = @next_appointment.appointment_host.head_of_families.last 
-        family.health_groups_names = family.health_groups.map(&:name)
-        family.age_groups = family.ages
-        family.number_of_members = family.family_member_count
-        family.family_names = family.all_first_names
-        @next_appointment.family_info = family
-        @next_appointment.prepped = @next_appointment.dietitian_prep_complete?
-      end
-    end
   end
 
   # Get previous appointments (marked as Complete) for a dietitian or client

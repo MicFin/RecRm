@@ -68,7 +68,6 @@ class WelcomeController < Users::RegistrationsController
       # AppointmentsHelper
       get_upcoming_appointments!
       @upcoming_appointments
-      @next_appointment
     end
 
   end

@@ -1,0 +1,21 @@
+<div class="col-xs-10 col-xs-offset-1">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date/Time</th>
+        <th>Client</th>
+        <th>Dietitian</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% appointments_no_dietitian.each do |appointment, dietititans| %>
+        <tr class="appt-id" data-appt-id="<%=appointment.id%>">
+          <td><%= appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+          <td><%= appointment.appointment_host.first_name%> <%= appointment.appointment_host.last_name%></td>
+          <td><%=link_to "Review & Assign", appointment_path(appointment.id), class: "show-family-button", remote: true %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

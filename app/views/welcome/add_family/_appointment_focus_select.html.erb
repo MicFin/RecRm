@@ -1,0 +1,32 @@
+<!-- 	APPT FOCUS SELECTION -->
+<div class="row">
+  <div class="form-group">
+
+  	<!-- 	APPT FOCUS NEW FAMILY MEMBER -->
+		<label class="radio-inline">
+		  <input type="radio" name="appointment_focus" id="inlineRadio2" value="new-user-form">New Family Member
+		</label>
+
+		<!-- 	APPT FOCUS SELF -->
+		<label class="radio-inline">
+			<% if user.appointment_in_registration.patient_focus == user %>
+		  	<input type="radio" name="appointment_focus" id="inlineRadio1" value="user-form" checked>You (<%=user.first_name%>)
+		  	<% else %>
+		  		<input type="radio" name="appointment_focus" id="inlineRadio1" value="user-form">You (<%=user.first_name%>)
+		  	<% end %>
+		</label>
+
+		<!-- 	APPT FOCUS OTHER FAMILY MEMBER -->
+		<% if family && family.children %>
+			<% family.children.each.with_index(1) do |family_member, index| %>
+				<label class="radio-inline" id="family-member-select-<%=family_member.id%>">
+					<% if user.appointment_in_registration.patient_focus == family_member %>
+				  	<input type="radio" name="appointment_focus" id="inlineRadio<%=index+2%>" value="family-member-form-<%=index%>" checked><%=family_member.full_name%>
+				  <% else %>
+				  	<input type="radio" name="appointment_focus" id="inlineRadio<%=index+2%>" value="family-member-form-<%=index%>"><%=family_member.full_name%>
+				  <% end %>
+				</label>
+			<% end %>
+		<% end %>
+	</div>
+</div>

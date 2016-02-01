@@ -1,0 +1,8 @@
+<%= simple_form_for(appointment, as: "appointment", url: appointments_update_duration_path(appointment.id), html: {class: 'col-xs-12 col-sm-4 text-right', role:"form" }, :method => :patch, remote: true) do |appt| %>
+
+  <%= appt.input :duration, as: :select, priority: appointment.duration, collection: [ ["30 mins", 30], ["60 mins", 60] ], :input_html => { class: "form-control"}, label: false, include_blank: false %>
+
+ <div class="actions text-right">
+    <%= appt.button :submit, "change duration", class: "btn btn-link" %>
+  </div>
+<% end %>

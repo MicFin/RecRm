@@ -1,0 +1,1 @@
+  <h2>This appointment is already set for <%=appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M")%> - <%=appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p")%></h2>

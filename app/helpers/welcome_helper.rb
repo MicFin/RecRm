@@ -42,4 +42,28 @@ module WelcomeHelper
       render "welcome/index/add_dietitian_avatar_button"
     end 
   end
+
+  # Show dietitian select or time and dietitian select
+  def set_appointment_options(appointment, user, previous_dietitian)
+
+    if appointment.status == "Unused Package Session" 
+      render "welcome/set_appointment/unused_package_options", previous_dietitian: previous_dietitian, appointment: appointment 
+   
+    elsif previous_dietitian != nil 
+      render "welcome/set_appointment/repeat_customer_options", previous_dietitian: previous_dietitian, appointment: appointment, user: user 
+    else 
+      render "welcome/set_appointment/time_zone_select_first_appt", user: user 
+ 
+    end 
+  end
+
+  # Show calendar unless stripe token is present
+  def set_appointment_calendar(appointment)
+    if appointment.stripe_card_token 
+      render "welcome/set_appointment/appointment_set",appointment: appointment        
+    else 
+      render "welcome/set_appointment/appointment_not_set",appointment: appointment      
+    end 
+  end
+
 end

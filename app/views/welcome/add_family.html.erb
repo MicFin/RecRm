@@ -15,78 +15,16 @@
 	        <h4>Select one person as the focus of the appointment.</h4>
 
 	        <!-- 	APPT FOCUS SELECTION -->
-					<div class="row">
-		        <div class="form-group">
-
-		        	<!-- 	APPT FOCUS NEW FAMILY MEMBER -->
-							<label class="radio-inline">
-							  <input type="radio" name="appointment_focus" id="inlineRadio2" value="new-user-form">New Family Member
-							</label>
-
-							<!-- 	APPT FOCUS SELF -->
-							<label class="radio-inline">
-								<% if @user.appointment_in_registration.patient_focus == @user %>
-							  	<input type="radio" name="appointment_focus" id="inlineRadio1" value="user-form" checked>You (<%=@user.first_name%>)
-							  	<% else %>
-							  		<input type="radio" name="appointment_focus" id="inlineRadio1" value="user-form">You (<%=@user.first_name%>)
-							  	<% end %>
-							</label>
-
-							<!-- 	APPT FOCUS OTHER FAMILY MEMBER -->
-							<% if @family && @family.children %>
-								<% @family.children.each.with_index(1) do |family_member, index| %>
-									<label class="radio-inline" id="family-member-select-<%=family_member.id%>">
-										<% if @user.appointment_in_registration.patient_focus == family_member %>
-									  	<input type="radio" name="appointment_focus" id="inlineRadio<%=index+2%>" value="family-member-form-<%=index%>" checked><%=family_member.full_name%>
-									  <% else %>
-									  	<input type="radio" name="appointment_focus" id="inlineRadio<%=index+2%>" value="family-member-form-<%=index%>"><%=family_member.full_name%>
-									  <% end %>
-									</label>
-								<% end %>
-							<% end %>
-						</div>
-					</div>
+	        <%= render "welcome/add_family/appointment_focus_select", user: @user, family: @family %>
 
 					<!-- 	FORM FOR SELF-->
-					<%= simple_form_for(@user, :url => {:controller => 'welcome', :action => 'build_family', :id => @user.id}, html: { method: :patch, class: 'col-xs-12 col-sm-10 col-sm-offset-1 text-left hidden user-form', role:"form" }) do |f| %>
-
-						<!-- 	FORM FIELDS -->
-						<%= render '/welcome/add_family/family_member_form_fields', f: f, family_member: @user %>
-
-						<!-- 	FORM SAVE -->
-					  <div class="actions text-right">
-					    <%= f.button :submit, "Next", class: "btn btn-primary btn-lg" %>
-					  </div>
-					<% end %>
+					 <%= render "welcome/add_family/form_for_self", user: @user %>
 
 					<!-- 	FORMS FOR OTHER FAMILY MEMBERS -->
-					<% if @family && @family.children %>
-						<% @family.children.each.with_index(1) do |family_member, index| %>
-							<%= simple_form_for(family_member, :url => {:controller => 'welcome', :action => 'build_family', :id => family_member.id}, html: { method: :patch, class: "col-xs-12 col-sm-10 col-sm-offset-1 text-left hidden family-member-form-#{index}" , role:"form" }) do |f| %>
-
-								<!-- 	FORM FIELDS -->
-								<%= render '/welcome/add_family/family_member_form_fields', {f: f, family_member: family_member, index: index}%>
-
-								<!-- 	FORM SAVE AND DELETE -->
-							  <div class="actions text-right">
-							  <%= link_to "delete family member", remove_family_member_path(@family, family_member), :confirm => "Are you sure you want to delete #{family_member.full_name}?", :method => :delete, remote: true %>
-							    <%= f.button :submit, "Next", class: "btn btn-primary btn-lg" %>
-							  </div>
-							<% end %>
-						<% end %>
-					<% end %>
+					<%= render "welcome/add_family/form_for_others", family: @family %>
 
 					<!-- 	FORMS FOR NEW FAMILY MEMBER -->
-					<%= simple_form_for(@new_user, :url => {:controller => 'welcome', :action => 'build_family', :id => @new_user.id}, html: { method: :patch, class: 'col-xs-12 col-sm-10 col-sm-offset-1 text-left hidden new-user-form', role:"form" }) do |f| %>
-
-						<!-- 	FORM FIELDS -->
-						<%= render '/welcome/add_family/new_user_edit_info_form_fields', f: f %>
-
-						<!-- 	FORM SAVE -->
-					  <div class="actions text-right">
-					    <%= f.button :submit, "Next", class: "btn btn-primary btn-lg" %>
-					  </div>
-					<% end %>
+					<%= render "welcome/add_family/form_for_new", new_user: @new_user %>
 	      </div>
 	      <div class="modal-footer">
 	      </div>

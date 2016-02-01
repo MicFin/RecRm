@@ -1,0 +1,8 @@
+<%= simple_form_for(user, as: "user", url: users_registrations_update_time_zone_path, html: {class: 'col-xs-12 col-sm-offset-1 col-sm-7 text-left', role:"form" }, :method => :patch, remote: true) do |f| %>
+
+  <%= f.input :time_zone, priority: /US/, :input_html => { class: "form-control"}, autofocus: true, label: false, :default => user.time_zone %>
+
+ <div class="actions text-right">
+    <%= f.button :submit, "change your time zone", class: "btn btn-link" %>
+  </div>
+<% end %>

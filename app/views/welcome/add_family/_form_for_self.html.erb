@@ -1,0 +1,11 @@
+
+<%= simple_form_for(user, :url => {:controller => 'welcome', :action => 'build_family', :id => user.id}, html: { method: :patch, class: 'col-xs-12 col-sm-10 col-sm-offset-1 text-left hidden user-form', role:"form" }) do |f| %>
+
+	<!-- 	FORM FIELDS -->
+	<%= render '/welcome/add_family/family_member_form_fields', f: f, family_member: user %>
+
+	<!-- 	FORM SAVE -->
+  <div class="actions text-right">
+    <%= f.button :submit, "Next", class: "btn btn-primary btn-lg" %>
+  </div>
+<% end %>

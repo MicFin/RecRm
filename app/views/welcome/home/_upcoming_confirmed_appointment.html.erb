@@ -1,14 +1,14 @@
-						<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-		
-							<%= render "welcome/home/next_session_title", upcoming_appointment: upcoming_appointment %>
+<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 
-							<hr>
-							<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
-							<div class="row">
-								<div class="col-xs-12 session-action">
+	<%= render "welcome/home/next_session_title", upcoming_appointment: upcoming_appointment %>
 
-									<%= upcoming_appointment_section(upcoming_appointment) %>
+	<hr>
+	<p>You may login 10 minutes <span class="glyphicon glyphicon-time"></span> before your appointment.</p>
+	<div class="row">
+		<div class="col-xs-12 session-action">
 
-								</div>
-							</div>
-						</div>
+			<%= upcoming_appointment_section(upcoming_appointment) %>
+
+		</div>
+	</div>
+</div>

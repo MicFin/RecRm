@@ -7,26 +7,7 @@
 							<div class="row">
 								<div class="col-xs-12 session-action">
 
-									<!-- 				JOIN APPOINTMENT 10 minutes  -->
-									<% if ( (DateTime.now >= upcoming_appointment.start_time - 10.minutes) ) %>
-										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-											<%= render "welcome/home/join_session_button", upcoming_appointment: upcoming_appointment %>
-										</div>
-
-										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-offset-1 col-lg-5">
-											<%= render "welcome/home/prep_session_button", upcoming_appointment: upcoming_appointment %>
-										</div> 
-
-									<!-- 				PREP APPOINTMENT can not join yet-->
-									<% else %>
-										<h2>We look forward to meeting with you!</h2>
-										<p>Take a moment to prepare for your session</p>
-
-										<!-- 		Prep session button -->
-										<div class="col-xs-12 col-md-6 col-lg-offset-3 col-lg-6">
-											<%= render "welcome/home/prep_session_button", upcoming_appointment: upcoming_appointment %>
-										</div>
-									<% end %>
+									<%= upcoming_appointment_section(upcoming_appointment) %>
 
 								</div>
 							</div>

@@ -18,7 +18,7 @@
 						<% if current_dietitian.has_role? "Admin Dietitian" %>
 
 							<%= active_link_to welcome_path, :wrap_tag => :li  do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
+							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">My Dashboard</span>
 							<% end %>
 
 							<%= active_link_to edit_dietitian_registration_path, :wrap_tag => :li  do %>
@@ -30,17 +30,24 @@
 							<li><a href="#" id="krdn-admin-nav-button" data-toggle="collapse" data-target="#krdn-admin-nav-list" aria-expanded="false">KRDN Admin</a>
 								<ul class="nav collapse" id="krdn-admin-nav-list" role="menu" aria-labelledby="btn-1">
 
-									<%= active_link_to dashboard_clients_onboarding_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Client Leads</span>
-									<% end %>
-									<%= active_link_to users_invitations_path, :wrap_tag => :li  do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Physician Referrals</span>
-									<% end %>		
-
 									<%= active_link_to appointments_path, :wrap_tag => :li  do %>
 									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
-									<% end %>			
+									<% end %>		
 
+									<%= active_link_to dashboard_clients_onboarding_path, :wrap_tag => :li do %>
+									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Clients(t)</span>
+									<% end %>
+
+									<%= active_link_to users_invitations_path, :wrap_tag => :li  do %>
+									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Referrals</span>
+									<% end %>		
+
+									<%= active_link_to dashboard_clients_onboarding_path, :wrap_tag => :li do %>
+									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Leads</span>
+									<% end %>
+									<%= active_link_to survey_groups_path, :wrap_tag => :li do %>
+									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">KRDN Scheduling(t)</span>
+									<% end %>
 									<%= active_link_to "/education/monologue", :wrap_tag => :li do %>
 									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Content</span>
 									<% end %>
@@ -52,11 +59,18 @@
 							<li><a href="#" id="system-admin-nav-button" data-toggle="collapse" data-target="#system-admin-nav-list" aria-expanded="false">System Admin</a>
 								<ul class="nav collapse" id="system-admin-nav-list" role="menu" aria-labelledby="btn-1">
 									<%= active_link_to new_package_path, :wrap_tag => :li do %>
+									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
+									<% end %>
+
+									<%= active_link_to new_package_path, :wrap_tag => :li do %>
 									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Packages</span>
 									<% end %>
 
 									<%= active_link_to coupons_path, :wrap_tag => :li do %>
 									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Coupons</span>
+									<% end %>
+									<%= active_link_to roles_path, :wrap_tag => :li do %>
+									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Emails(t)</span>
 									<% end %>
 									<%= active_link_to roles_path, :wrap_tag => :li do %>
 									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Permissions</span>
@@ -78,10 +92,17 @@
 							<%= active_link_to availabilities_path, :wrap_tag => :li do %>
 							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Schedule</span>
 							<% end %>
+					<!-- 		<%#= active_link_to appointments_path, :wrap_tag => :li  do %>
+							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
+							<%# end %>		
 
-				<!-- 			<%#= active_link_to welcome_home_path, :wrap_tag => :li do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Articles</span>
+							<%#= active_link_to dashboard_clients_onboarding_path, :wrap_tag => :li do %>
+							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Clients(t)</span>
+							<%# end %>
+							<%#= active_link_to "/education/monologue", :wrap_tag => :li do %>
+							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Content</span>
 							<%# end %> -->
+	
 
 							<li><a href=""><span class=""></span><span class="hidden-xs hidden-sm nav-item">Contact Us</span></a></li>	
 						<% end %>

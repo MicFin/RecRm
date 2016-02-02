@@ -91,20 +91,6 @@ class Appointment < ActiveRecord::Base
     return dietitians
   end
 
-  # find where this is used, shoudl now be using registration_stage model table column
-  def stage
-
-    if self.start_time != nil 
-      return 4
-    elsif self.patient_focus.sex != nil && self.start_time == nil
-      return 3
-    elsif self.patient_focus != nil && self.patient_focus.sex ==nil
-      return 2
-    else
-      return 1
-    end
-  end
-  
   def show_duration
     if self.duration == 30
       return "1/2 hour"

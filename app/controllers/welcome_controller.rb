@@ -291,7 +291,7 @@ class WelcomeController < Users::RegistrationsController
 
     # if repeat customer then set previous dietitian 
     if @user.repeat_customer?
-      @previous_dietitian = @user.appointment_hosts.scheduled.last.dietitian
+      @previous_dietitian = @user.appointment_hosts.scheduled.where.not(dietitian_id: nil).last.dietitian
     end
     
   end

@@ -5,7 +5,7 @@ module RoomsHelper
     if user.class == Dietitian 
       render "/rooms/dietitians/dietitian_session", survey: survey, appointment: appointment, pre_appt_survey: pre_appt_survey
     else
-      render "/rooms/users/user_session", :survey: survey, appointment: appointment, pre_appt_survey: pre_appt_survey 
+      render "/rooms/users/user_session", survey: survey, appointment: appointment, pre_appt_survey: pre_appt_survey 
     end 
   end
 end

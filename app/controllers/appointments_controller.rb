@@ -33,7 +33,7 @@ class AppointmentsController < ApplicationController
   include FamiliesHelper
 
   # # CALL BACKS
-  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :update_duration, :purchase, :assign_dietitian, :appointment_prep, :client_appointment_prep, , :end_appointment]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :update_duration, :purchase, :assign_dietitian, :appointment_prep, :client_appointment_prep, :end_appointment]
   before_filter :config_opentok, :only => [:assign_dietitian]
 
   # GET /appointments

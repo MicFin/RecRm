@@ -78,13 +78,22 @@ class Purchase < ActiveRecord::Base
         # set stripe_id variable now that it is created
         stripe_id = user.stripe_id
 
+        # set purchase description
+        if purchasable.class != Appointment
+          purchase_description = "Kindrdfood Session Package - nutrition guidance services"
+        elsif duration == 30
+          purchase_description = "Kindrdfood 1/2 hour - nutrition guidance services"
+        else
+          purchase_description = "Kindrdfood 1 hour - nutrition guidance services"
+        end
+
         # if customer wanted to remember card
         if credit_card_usage == "remember_me"
           begin
             charge = Stripe::Charge.create(
             :customer    => stripe_id,
             :amount      => invoice_price,
-            :description => 'Kindrdfood 1 Hour',
+            :description => purchase_description,
             :currency    => 'usd'
           )
           rescue Stripe::CardError => e
@@ -106,7 +115,7 @@ class Purchase < ActiveRecord::Base
             charge = Stripe::Charge.create(
             :card        => stripe_card_token,
             :amount      => invoice_price,
-            :description => 'Kindrdfood 1 Hour',
+            :description => purchase_description,
             :currency    => 'usd'
           )
           rescue Stripe::CardError => e

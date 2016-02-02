@@ -1,8 +1,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-# # Create patient groups with triggers and patient groups without triggers
-
 # # Create admin user
 # 1. admin user
 
@@ -20,7 +18,11 @@
 # 1. physician with no referrals
 # 2. physician with multiple referrals
 
-# # Create Users
+# # Create survey groups and questions
+
+# # Create patient groups with triggers and patient groups without triggers
+
+# # Create users (and necessary family members, appointments, surveys, growth charts, food diaries, and rooms)
 # Create users without referrals
 # 1. user at registration stage 1
 # 2. user at registration stage 2
@@ -57,7 +59,6 @@
 # 31. user with QOL invitation, accepted, at registration stage 5
 # 31. user with QOL invitation, accepted, scheduled appointment
 
-# # Create Survey Groups and Questions
 
 # PatientGroup.create(name: "Wheat", category: "allergy", order: 9).allergens << Allergen.create(name: "wheat", description: "The grain of the wheat plant.")
 

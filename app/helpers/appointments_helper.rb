@@ -38,15 +38,15 @@ module AppointmentsHelper
 
     # If user is an Admin Dietitian then get all upcoming appointments
     if user.has_role? "Admin Dietitian"
-      list_of_appointments = Appointment.upcoming.by_start_time
+      list_of_appointments = Appointment.upcoming_and_current.by_start_time
 
     # If user is a client then get all of their upcoming appointments
     elsif user.is_a? User 
-      list_of_appointments = user.appointment_hosts.upcoming.by_start_time
+      list_of_appointments = user.appointment_hosts.upcoming_and_current.by_start_time
 
     # If user is neither a client or Admin Dietitian then is a dietitian so get all of their upcoming appointments
     else
-      list_of_appointments = user.appointments.upcoming.by_start_time
+      list_of_appointments = user.appointments.upcoming_and_current.by_start_time
     end
 
     # Build family and add to appointments

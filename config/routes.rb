@@ -558,11 +558,8 @@ Rails.application.routes.draw do
       resources :families
 
       # Appointments paths
-      get '/appointments/begin_registration/:duration', to: "appointments#begin_registration", as: "appointments_begin_registration" 
       get 'appointments/:id/purchase', to: "appointments#purchase", as: "purchase_appointment"
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_user_appointment'
-      get 'appointments/new_appointment_request_times', to: 'appointments#new_appointment_request_times', as: 'new_appointment_request_times'
-      post 'appointments/create_appointment_request_times', to: 'appointments#create_appointment_request_times', as: 'create_appointment_request_times'
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_user_survey_update'
       patch 'appointments/:id/update_duration', to: "appointments#update_duration", as: "appointments_update_duration"
       post 'appointments/:appointment_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_payment'

@@ -16,6 +16,12 @@
 
 	}
 
+	// KRDN Admin subnav
+	nav ul li ul li{
+		padding:0px;
+		border-top: none;
+	}
+
 	nav ul li.active{
 		background-color: green;
 		border-color: green;

@@ -35,7 +35,7 @@
 
 										<% if (current_dietitian.has_role? "Admin Dietitian") && (appointment.first.room_id) %>
 											<td>
-												<%= link_to "Join", {:controller => "rooms", :action => "in_session", :id => appointment.first.room_id, appointment: appointment.first.id }%>
+												<%= link_to "Join", in_session_room_path(appointment.first.room_id, :appointment => appointment.first.id)%>
 												</td>
 										<% end %>
 

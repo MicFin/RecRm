@@ -33,8 +33,8 @@ class AppointmentsController < ApplicationController
   include FamiliesHelper
 
   # # CALL BACKS
-  before_action :set_appointment, only: [:show, :edit, :update, :purchase, :complete_appt_prep_survey, :appointment_prep, :appointment_review, :update_duration, :end_appointment, :destroy, :client_appointment_prep, :assign_dietitian]
-  before_filter :config_opentok, :only => [:update, :assign_dietitian]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :update_duration, :purchase, :assign_dietitian, :appointment_prep, :client_appointment_prep, , :end_appointment]
+  before_filter :config_opentok, :only => [:assign_dietitian]
 
   # GET /appointments
   # as: "appointments_path"
@@ -256,54 +256,7 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  # GET /appointments/1/edit_assessment  
-  # as: 'edit_assessment_path'
-  def edit_assessment
-   # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
-    # @survey = @appointment.surveys.where(survey_group_id: 1).first
-    if @appointment.dietitian == current_dietitian 
-      @client = @appointment.appointment_host
-
-      # Gather user's family data
-      # from AppointmentsHelper
-      get_appointment_family_info!
-      @family
-
-      @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
-
-      
-    end
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-
-  # GET /appointments/:id/complete_appt_prep_survey
-  # as: 'user_complete_appt_prep_survey_path'
-  def complete_appt_prep_survey
-    @appointment.status = "Appt-Prep-Survey-Complete"
-    @appointment.save
-  end
   
-
-  # Use this for when an appointment is not paid for and but is assigned to a client
-  def purchase
-    
-    @user = current_user
-    # payment_modal template requires a time_slot for start and end time
-    @time_slot = @appointment 
-    @purchasable = @appointment
-
-    @purchase = @purchasable.purchase || Purchase.new(user_id: @user.id, status: "Incomplete", purchasable_type: "Appointment", purchasable_id: @purchasable.id )  
-    @purchase.save
-
-    respond_to do |format|
-      format.js
-      # format.html
-    end
-  end
-
   # Update duration of appointment, used when client is searching for an appointment
   def update_duration
 
@@ -320,6 +273,24 @@ class AppointmentsController < ApplicationController
 
       # redirect back to original page where time zone was updated
       format.html { redirect_to session.delete(:return_to) }
+    end
+  end
+
+
+  # Use this for when an appointment is not paid for and but is assigned to a client
+  def purchase
+    
+    @user = current_user
+    # payment_modal template requires a time_slot for start and end time
+    @time_slot = @appointment 
+    @purchasable = @appointment
+
+    @purchase = @purchasable.purchase || Purchase.new(user_id: @user.id, status: "Incomplete", purchasable_type: "Appointment", purchasable_id: @purchasable.id )  
+    @purchase.save
+
+    respond_to do |format|
+      format.js
+      # format.html
     end
   end
 

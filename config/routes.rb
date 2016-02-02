@@ -560,7 +560,6 @@ Rails.application.routes.draw do
       # Appointments paths
       get '/appointments/begin_registration/:duration', to: "appointments#begin_registration", as: "appointments_begin_registration" 
       get 'appointments/:id/purchase', to: "appointments#purchase", as: "purchase_appointment"
-      get 'appointments/:id/complete_appt_prep_survey', to: 'appointments#complete_appt_prep_survey', as: 'user_complete_appt_prep_survey'
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_user_appointment'
       get 'appointments/new_appointment_request_times', to: 'appointments#new_appointment_request_times', as: 'new_appointment_request_times'
       post 'appointments/create_appointment_request_times', to: 'appointments#create_appointment_request_times', as: 'create_appointment_request_times'
@@ -625,7 +624,6 @@ Rails.application.routes.draw do
       get 'appointments/:appointment_id/surveys/:id', to: 'surveys#show', as: 'dietitian_appointment_survey'
       get 'appointments/:id/appointment_prep', to: 'appointments#appointment_prep', as: 'appointment_prep'
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_dietitian_appointment'
-      get '/appointments/:id/edit_assessment', to: 'appointments#edit_assessment', as: 'edit_assessment' 
       resources :appointments do 
         resources :surveys
       end

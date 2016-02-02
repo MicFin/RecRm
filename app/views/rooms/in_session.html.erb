@@ -1,21 +1,8 @@
 
 
-    <% if @user.class == User %>
+<%= show_room_for(@user, @survey, @appointment, @pre_appt_survey)) %>
 
-      <%= render "/rooms/users/user_session"%>
-      <%= render "/rooms/user_rooms/intro_session" %>
-
-    <% elsif @user.class == Dietitian %>
-    
-      <%= render "/rooms/dietitians/dietitian_session"%>
-      <%= render "/rooms/user_rooms/intro_session" %> 
-
-    <% elsif @user.class == AdminUser %>
-
-      <%= render "admin_in_room"%>
-    
-    <% end %>
-
+<%= render "/rooms/user_rooms/intro_session" %>
 
 <script src="//static.opentok.com/webrtc/v2.2/js/opentok.min.js"></script>
 <!-- <script src="http://static.opentok.com/v0.91/js/TB.min.js" type="text/javascript"></script> -->
@@ -214,7 +201,7 @@
           $chat_box.append("<h4><span class='font-light-green'>Other: </span>"+event.data+"</h4>");
         };
         $chat_box.scrollTop($chat_box.prop("scrollHeight"));
-    // Process the event.data property, if there is any data.
+      // Process the event.data property, if there is any data.
       };
       function receiveStartAlertHandler(event){
         // alert that a StartAlert was received

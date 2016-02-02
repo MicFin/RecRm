@@ -1,110 +1,40 @@
 <div id="in-session" class="container-fluid">
   <div class="row">
 
-        <%= render "rooms/users/user_session_nav", survey: @survey, appointment: @appointment, pre_appt_survey: @pre_appt_survey%>
-        <main class="col-xs-10 col-xs-offset-2">
-          <p>You are meeting with:</p>
-          <h1><%=@appointment.dietitian.signature%></h1>
-          <section class="row form-group">
-            <div class="col-xs-10 session-tools-container hidden">
-              <%#= render "/appointments/appointment_prep/survey_form", survey: @survey, surveyable: @surveyable %>
+    <%= render "rooms/users/user_session_nav", survey: survey, appointment: appointment, pre_appt_survey: pre_appt_survey%>
+    <main class="col-xs-10 col-xs-offset-2">
+      <p>You are meeting with:</p>
+      <h1><%=appointment.dietitian.signature%></h1>
+      <section class="row form-group">
+        <div class="col-xs-10 session-tools-container hidden">
+          <%#= render "/appointments/appointment_prep/survey_form", survey: @survey, surveyable: @surveyable %>
+        </div>
+        <div id="layoutContainer" class="col-xs-12">
+          <div class="video-center" id="videobox2">
+            <div id="videobox">
             </div>
-            <div id="layoutContainer" class="col-xs-12">
-              <div class="video-center" id="videobox2">
-                <div id="videobox">
-                </div>
+          </div>
+        </div>
+      </section>
+<!--       <div id="right-session-column" class="col-xs-3">
+        <div id="chat-container" class="row">
+          <div id="chat-box" class="col-xs-12 form-group">
+            <h4>Start a conversation!</h4>
+          </div>
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="family-member-name form-control" id="user-message" placeholder="   Write Message Here">
               </div>
             </div>
-          </section>
-    <!--       <div id="right-session-column" class="col-xs-3">
-            <div id="chat-container" class="row">
-              <div id="chat-box" class="col-xs-12 form-group">
-                <h4>Start a conversation!</h4>
-              </div>
-              <form class="form-inline" role="form">
-                <div class="form-group">
-                  <div class="input-group">
-                    <input class="family-member-name form-control" id="user-message" placeholder="   Write Message Here">
-                  </div>
-                </div>
-                <button id="send-message-button" type="button" class="btn btn-default">Send</button>
-              </form>
-            </div>
-          </div> -->
-          <section class="row">
-            <div class="col-xs-4 col-xs-offset-4">
-              <p>Having trouble? <a href="tel:6175752203;ext=1">Call 617-575-2203</a></p>
-            </div>
-          </section>
-        </main>
+            <button id="send-message-button" type="button" class="btn btn-default">Send</button>
+          </form>
+        </div>
+      </div> -->
+      <section class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+          <p>Having trouble? <a href="tel:6175752203;ext=1">Call 617-575-2203</a></p>
+        </div>
+      </section>
+    </main>
 </div>
-
-<script type="text/javascript">
-$(document).ready(function() {
-    
-
-
-
-    // MOVE TO ANOTHER FILE, CREATE BUILDER WITH DIFFERENT TEMPLATES and STEPS
-  var tour = new Tour({
-    storage: false,
-    template: "<div class='popover tour'>" +
-    "<div class='arrow'></div>" +
-    "<h3 class='popover-title'></h3>" +
-    "<div class='popover-content'></div>" +
-    "<div class='popover-navigation'>" +
-        "<button class='btn btn-lg btn-default' data-role='prev'>« Prev</button>" +
-        "<span data-role='separator'></span>" +
-        "<button class='btn btn-lg btn-success' data-role='next'>Next »</button>" +
-        "<a class='col-xs-12' data-role='end'>End tour</button>" +
-    "</div>" +
-    "</nav>" +
-  "</div>",
-    steps: [
-      {
-        element: "#left-user-tabs",
-        title: "Your Goals are Our Mission",
-        content: "Follow this quick guide to familiarize yourself with the room before your session starts!",
-        placement: "right"
-      },
-      {
-        element: "#nav-label",
-        title: "Your Family",
-        content: "Use this menu tab to access your health information and to take notes during your appointment.",
-        placement: "right",
-        backdropPadding: {left: 10, top: 10},
-
-      },
-      {
-        element: "#phone-button-container",
-        title: "Having Trouble Connecting?",
-        content: "Sometimes things go wrong so we like to be prepared.  If we lose video connection, use this number to call us.",
-        placement: "left",
-        backdropPadding: {left: -50, top: 20, right: -50, bottom: -75},
-      },
-      {
-        element: "#message-button-container",
-        title: "We Text Too",
-        content: "Need to share a link or clarify something?  We can send messages but we prefer to talk 1 on 1.",
-        placement: "left",
-        backdropPadding: {left: -50, top: 20, right: -50, bottom: -75},
-      },
-      {
-        title: "Ready To Start?",
-        content: "We are excited to speak with you.  Just click End Tour to connect your video and begin your session!",
-        orphan: true
-      }
-    ],
-    backdrop: true,
-    // backdropPadding: 10,
-    onEnd: function(tour){
-      TokBox.initialize();
-    }
-  });
-  // // Initialize the tour
-  // tour.init();
-  // // Start the tour
-  // tour.start(true);
-  TokBox.initialize();
-});
-</script>

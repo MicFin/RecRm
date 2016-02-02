@@ -43,7 +43,7 @@ class RoomsController < ApplicationController
   end
 
   def in_session
-
+    
     # Set room
     @room = Room.find(params[:id])
 

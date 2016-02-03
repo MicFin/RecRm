@@ -41,6 +41,9 @@
 //  JAVASCRIPT TIME ZONES
 //= require plugins/time_zones
 
+//  JAVASCRIPT COUNT DOWN
+//= require plugins/count-down-clock.js
+
 // BROWSER DETAILS FOR RAILS LOG
 //= require browser_details
 

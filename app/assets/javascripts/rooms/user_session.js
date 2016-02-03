@@ -10,7 +10,12 @@ Kindrdfood.rooms.user_session = {
 	init: function(){
 
 		// Kindrdfood.rooms.user_session.setUpTour();
-		
+		TokBox.initialize();
+
+		var deadline = $("#clockdiv").data("end-time");
+
+		CountDownClock.initializeClock('clockdiv', deadline);
+
 		$(".user-session-tool-video").on("click", function(e){
 			e.preventDefault();
 			$(".session-tools-container").addClass("hidden");
@@ -93,7 +98,6 @@ Kindrdfood.rooms.user_session = {
 	  // tour.init();
 	  // // Start the tour
 	  // tour.start(true);
- 	 TokBox.initialize();
 	}
 
 		

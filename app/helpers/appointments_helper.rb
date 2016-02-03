@@ -36,15 +36,11 @@ module AppointmentsHelper
     # Set user to current dietitian or current user
     user = current_dietitian || current_user
 
-    # If user is an Admin Dietitian then get all upcoming appointments
-    if user.has_role? "Admin Dietitian"
-      list_of_appointments = Appointment.upcoming_and_current.by_start_time
-
     # If user is a client then get all of their upcoming appointments
-    elsif user.is_a? User 
+    if user.is_a? User 
       list_of_appointments = user.appointment_hosts.upcoming_and_current.by_start_time
 
-    # If user is neither a client or Admin Dietitian then is a dietitian so get all of their upcoming appointments
+    # If user is a dietitian so get all of their upcoming appointments
     else
       list_of_appointments = user.appointments.upcoming_and_current.by_start_time
     end

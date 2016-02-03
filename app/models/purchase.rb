@@ -81,7 +81,7 @@ class Purchase < ActiveRecord::Base
         # set purchase description
         if purchasable.class != Appointment
           purchase_description = "Kindrdfood Session Package - nutrition guidance services"
-        elsif duration == 30
+        elsif purchasable.duration == 30
           purchase_description = "Kindrdfood 1/2 hour - nutrition guidance services"
         else
           purchase_description = "Kindrdfood 1 hour - nutrition guidance services"

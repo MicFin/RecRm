@@ -221,17 +221,17 @@ class AppointmentsController < ApplicationController
   # currently called from dietitian prep and dietitian insession as well
   def appointment_prep
    
-    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
-    @survey = @appointment.surveys.where(survey_group_id: 1).first
-
     @client = @appointment.appointment_host
+
+    # should add the .has_role? to "Current Dietitian" in here so the dietitian doesnt haveunlimited access
+    @survey = Survey.generate_for_appointment(@appointment, @client)
+
+    @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
 
     # Gather user's family data
     # from AppointmentsHelper
     get_appointment_family_info!
     @family
-
-    @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
 
     respond_to do |format|
       format.html

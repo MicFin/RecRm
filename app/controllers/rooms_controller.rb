@@ -18,7 +18,7 @@ class RoomsController < ApplicationController
   before_filter :authenticate_admin_user!, only: [:index]
 
   # Force SSL for rooms, TokBox plugin requires it
-  force_ssl
+  force_ssl unless Rails.env.development?
   
   def index
     @rooms = Room.where(:public => true).order("created_at DESC")

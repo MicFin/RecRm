@@ -12,30 +12,30 @@
 
             <tbody>
 							<% if upcoming_appointments.count >= 1%>
-								<% upcoming_appointments.each do |date_time_array, appointment| %>
+								<% upcoming_appointments.each do |appointment| %>
 									<tr>	
 										<td>
-											<%=date_time_array[0]%> <%=date_time_array[1]%></td>
-										<td><%= appointment.first.appointment_host.first_name%></td>
-                  	<td><%= appointment.first.show_duration%></td>
+											<%=appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></td>
+										<td><%= appointment.appointment_host.full_name%></td>
+                  	<td><%= appointment.show_duration%></td>
 
-                  	<td><%= appointment.first.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+                  	<td><%= appointment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
 
 
 
-										<% if appointment.first.prepped == true %>
+										<% if appointment.prepped == true %>
 											<td>
-												<%= link_to "Prep", appointment_prep_path(appointment.first.id), class: "btn btn-small btn-success" %>
+												<%= link_to "Prep", appointment_prep_path(appointment.id), class: "btn btn-small btn-success" %>
 											</td>
 										<% else %>
 											<td>
-												<%= link_to "Prep", appointment_prep_path(appointment.first.id), class: "btn btn-small btn-danger" %>
+												<%= link_to "Prep", appointment_prep_path(appointment.id), class: "btn btn-small btn-danger" %>
 											</td>
 										<% end %>
 
-										<% if (current_dietitian.has_role? "Admin Dietitian") && (appointment.first.room_id) %>
+										<% if (current_dietitian.has_role? "Admin Dietitian") && (appointment.room_id) %>
 											<td>
-												<%= link_to "Join", in_session_room_path(appointment.first.room_id, :appointment => appointment.first.id)%>
+												<%= link_to "Join", in_session_room_path(appointment.room_id, :appointment => appointment.id)%>
 												</td>
 										<% end %>
 

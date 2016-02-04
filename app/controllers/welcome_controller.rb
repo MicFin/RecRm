@@ -22,24 +22,21 @@ class WelcomeController < Users::RegistrationsController
 
       # if user isnt finished onboarding 
       if !current_user.finished_on_boarding?
-
         # then send them to get started
         redirect_to welcome_get_started_path and return
       end
 
-      # Gather user's appointment data
-      # from AppointmentsHelper
-      get_previous_appointments!
-      @previous_appointments
+      # Gather user's previous appointments
+      @previous_appointments = current_user.appointment_hosts.complete_or_scheduled.includes(:appointment_host).includes(:patient_focus).by_start_time
 
-      get_upcoming_appointment!
-      @upcoming_appointment
+      # Gather user's upcoming appointment
+      @upcoming_appointment = current_user.appointment_hosts.upcoming_and_current.scheduled.first
 
-      get_upcoming_appointments!
-      @upcoming_appointments
-      
-      get_unpaid_appointment!
-      @unpaid_appointment
+      # Gather user's upcoming appointments
+      @upcoming_appointments = current_user.appointment_hosts.upcoming_and_current.includes(:appointment_host).includes(:patient_focus).by_start_time
+      binding.pry
+      # Gather user's umpaid appointment
+      @unpaid_appointment = current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
 
       # Gather user's family data
       # from FamiliessHelper
@@ -50,25 +47,10 @@ class WelcomeController < Users::RegistrationsController
   end
 
   ### This is currently the dietitian's dashboard
-  ### Under construction
   ### /welcome/index
   def index
 
-    # Get today's date
-    @today = Date.today
-
-    # Our content week starts on Thursday so set the beginning of the week to Thursday
-    @beginning_of_week = @today.at_beginning_of_week(:thursday)
-
-    # Check if user is a dietitian
-    # Should not check if user is dietitian here
-    # Add a before filter for welcome#index that makes sure the user is a dietian  
-    if @user == current_dietitian
-
-      # AppointmentsHelper
-      get_upcoming_appointments!
-      @upcoming_appointments
-    end
+    @upcoming_appointments = current_dietitian.appointments.upcoming_and_current.includes(:appointment_host).includes(:patient_focus).by_start_time
 
   end
 

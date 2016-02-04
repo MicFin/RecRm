@@ -67,59 +67,6 @@ module AppointmentsHelper
 
   end
 
-  # Get previous appointments (marked as Complete) for a dietitian or client
-  def get_previous_appointments!
-    @previous_appointments = []
-
-    # if dietitian then get all previous appointments and add family
-    if current_dietitian
-      current_dietitian.appointments.complete.includes(:appointment_host).includes(:patient_focus).map do |appointment| 
-          family = appointment.appointment_host.head_of_families.last 
-          family.health_groups_names = family.health_groups.map(&:name)
-          family.age_groups = family.ages
-          family.number_of_members = family.family_member_count
-          family.family_names = family.all_first_names
-          appointment.family_info = family
-          # appointment.follow_up = appointment.surveys.where(survey_type: "Follow-Up").last
-          @previous_appointments << appointment
-      end
-
-    # if not dietitian then user so get all previous appointment hosts and add family
-    else
-      current_user.appointment_hosts.complete.includes(:appointment_host).includes(:patient_focus).map do |appointment| 
-          family = appointment.appointment_host.head_of_families.last 
-          family.health_groups_names = family.health_groups.map(&:name)
-          family.age_groups = family.ages
-          family.number_of_members = family.family_member_count
-          family.family_names = family.all_first_names
-          appointment.family_info = family
-          # appointment.follow_up = appointment.surveys.where(survey_type: "Follow-Up").last
-          @previous_appointments << appointment
-      end
-    end
-
-    # group previous appointments by date and time
-    @previous_appointments = @previous_appointments.group_by{|appointment|  [appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y"), appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p")] }
-  end
-
-  # Get upcoming appointment for client
-  def get_upcoming_appointment!
-
-    # Get last paid appointment or last follow up unpaid appointment 
-      @upcoming_appointment = current_user.appointment_hosts.upcoming_and_current.scheduled.first 
-
-      # If there is an upcoming appointment then set date
-      if @upcoming_appointment 
-        @upcoming_appointment.date = @upcoming_appointment.start_time.strftime("%A, %b %d") unless @upcoming_appointment.nil?
-        @upcoming_appointment.time = @upcoming_appointment.start_time.strftime("%I:%M%p") unless @upcoming_appointment.nil?
-      end
-  end
-
-  # Get last unpaid appointmnet for client
-  def get_unpaid_appointment!
-    # Set unpaid appointment if there is one
-    @unpaid_appointment = current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
-  end
 
   # Get appointment family info
   def get_appointment_family_info!

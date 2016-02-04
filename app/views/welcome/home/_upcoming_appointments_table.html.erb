@@ -10,20 +10,19 @@
   </thead>
   <tbody>
 		<% if upcoming_appointments.count >= 1 %>
-			<% upcoming_appointments.each do |date_time_array, appointment| %>
+			<% upcoming_appointments.each do |appointment| %>
 				<tr>	
-					<td>
-						<%=date_time_array[0]%> <%=date_time_array[1]%></td>
+					<td><%=appointment.start_time.strftime("%B %d, %Y %I:%M %p") %></td>
 
-      		<td><%= appointment.first.patient_focus.first_name%></td>
-        	<td><%= appointment.first.show_duration%></td>
-        	<%# if appointment.first.surveys.where(survey_group_id: 1).first.completed %>
-        		<td><%#= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-sm btn-primary", remote: true%></td>
+      		<td><%= appointment.patient_focus.first_name%></td>
+        	<td><%= appointment.show_duration%></td>
+        	<%# if appointment.surveys.where(survey_group_id: 1).completed %>
+        		<td><%#= link_to "Prep", client_appointment_prep_path(appointment.id), class: "btn btn-sm btn-primary", remote: true%></td>
         	<%# else %>
-        		<td><%#= link_to "Prep", client_appointment_prep_path(appointment.first.id), class: "btn btn-lg btn-danger", remote: true%></td>
+        		<td><%#= link_to "Prep", client_appointment_prep_path(appointment.id), class: "btn btn-lg btn-danger", remote: true%></td>
         	<%# end %>
       
-          	<td><%#= link_to "Join", in_session_room_path(:id => appointment.first.room_id, appointment: appointment.first.id), class: "btn btn-xs btn-success" %>
+          	<td><%#= link_to "Join", in_session_room_path(:id => appointment.room_id, appointment: appointment.id), class: "btn btn-xs btn-success" %>
 						</td>
 		
         	<td><button class="btn btn-xs btn-default reschedule-appointment">Reschedule</button></td>

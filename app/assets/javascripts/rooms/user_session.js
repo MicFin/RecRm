@@ -12,25 +12,10 @@ Kindrdfood.rooms.user_session = {
 		// Kindrdfood.rooms.user_session.setUpTour();
 		TokBox.initialize();
 
-		// set user video button
-		$(".user-session-tool-video").on("click", function(e){
-			e.preventDefault();
+		Kindrdfood.rooms.user_session.videoNavigationButton();
 
-			// hide tool area
-
-			$(".session-tools-container").addClass("hidden");
-
-			// maximize video
-			Kindrdfood.rooms.user_session.maximizeVideo();
-
-			// update nav
-			$("header nav li").removeClass("active");
-			$(".session-nav-video").addClass("active");
-		})
-
-		// run last because currently breaks for user (not dietitian) since they dont have a countdown
-		var deadline = $("#clockdiv").data("end-time");
-		CountDownClock.initializeClock('clockdiv', deadline);
+		// start session timer
+		Kindrdfood.rooms.user_session.startSessionTimer();
 	},
 	minimizeVideo: function(){
 			$("#layoutContainer").removeClass();
@@ -107,10 +92,33 @@ Kindrdfood.rooms.user_session = {
 		$("."+class_to_activate).addClass("active");
 
 	},
-
 	showToolPartial: function(partial){
 	 $(".session-tools-container").removeClass("hidden");
    $(".session-tools-container").html(partial);
+	},
+	videoNavigationButton: function(){
+		
+		// set user video button
+		$(".user-session-tool-video").on("click", function(e){
+			e.preventDefault();
+
+			// hide tool area
+			$(".session-tools-container").addClass("hidden");
+
+			// maximize video
+			Kindrdfood.rooms.user_session.maximizeVideo();
+
+			// update navigation
+		  Kindrdfood.rooms.user_session.updateNavigation("session-nav-video");
+
+		})
+	},
+	startSessionTimer: function(){
+		// if clock is present then get end time from clock and start countdown
+		if ( $("#clockdiv").length >= 1 ){
+			var deadline = $("#clockdiv").data("end-time");
+			CountDownClock.initializeClock('clockdiv', deadline);
+		}
 	}
 
 		

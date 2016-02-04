@@ -12,8 +12,6 @@ Kindrdfood.rooms.user_session = {
 		// Kindrdfood.rooms.user_session.setUpTour();
 		TokBox.initialize();
 
-		var deadline = $("#clockdiv").data("end-time");
-
 		// set user video button
 		$(".user-session-tool-video").on("click", function(e){
 			e.preventDefault();
@@ -31,6 +29,7 @@ Kindrdfood.rooms.user_session = {
 		})
 
 		// run last because currently breaks for user (not dietitian) since they dont have a countdown
+		var deadline = $("#clockdiv").data("end-time");
 		CountDownClock.initializeClock('clockdiv', deadline);
 	},
 	minimizeVideo: function(){
@@ -102,6 +101,16 @@ Kindrdfood.rooms.user_session = {
 	  // tour.init();
 	  // // Start the tour
 	  // tour.start(true);
+	},
+	updateNavigation: function(class_to_activate){
+		$("header nav li").removeClass("active");
+		$("."+class_to_activate).addClass("active");
+
+	},
+
+	showToolPartial: function(partial){
+	 $(".session-tools-container").removeClass("hidden");
+   $(".session-tools-container").html(partial);
 	}
 
 		

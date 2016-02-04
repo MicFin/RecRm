@@ -2,9 +2,12 @@
 // if showing family in session room then minimize video
 if (Kindrdfood.rooms){
 
+	// minimize video
 	Kindrdfood.rooms.user_session.minimizeVideo();
 
-}
+   // update navigation
+  Kindrdfood.rooms.user_session.updateNavigation("session-nav-family");
 
-	$(".session-tools-container").removeClass("hidden");
-	$(".session-tools-container").html("<%= j render(:partial => '/families/list_family_members', :locals => { :family=> @family, :user => @user}) %>");
+	// show container and load partial
+	Kindrdfood.rooms.user_session.showToolPartial("<%= j render(:partial => '/families/list_family_members', :locals => { :family=> @family, :user => @user}) %>");
+}

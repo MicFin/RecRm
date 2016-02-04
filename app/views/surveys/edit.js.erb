@@ -1,15 +1,14 @@
+
 // if showing family in session room then minimize video
 if (Kindrdfood.rooms){
 
+	// minimize video
 	Kindrdfood.rooms.user_session.minimizeVideo();
-	$(".session-tools-container").removeClass("hidden");
-	$(".session-tools-container").html("<%= j render(:partial => '/appointments/appointment_prep/survey_form', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
-	
-} else {
 
-	$("#edit-survey-modal").remove();
+	// update navigation
+  Kindrdfood.rooms.user_session.updateNavigation("session-nav-notes");
 
-	// $("body").append("<%#= j render(:partial => '/surveys/modals/edit_modal', :locals => {:appointment => @appointment}) %>");
+	// show container and load partial
+	Kindrdfood.rooms.user_session.showToolPartial("<%= j render(:partial => '/appointments/appointment_prep/survey_form', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
 
-	$("#edit-survey-modal").modal();
-}
+} 

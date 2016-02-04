@@ -2,10 +2,14 @@
     // if showing family in session room then return that save was made
     if (Kindrdfood.rooms){
 
+    	// minimize video
       Kindrdfood.rooms.user_session.minimizeVideo();
-      $(".session-tools-container").removeClass("hidden");
-      $(".session-tools-container").html("<%= j render(:partial => '/surveys/survey_answers', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
-      
 
-    // else hide modal and adjust button
+			// update navigation
+		  Kindrdfood.rooms.user_session.updateNavigation("session-nav-goals");
+
+		  // show container and load partial
+			Kindrdfood.rooms.user_session.showToolPartial("<%= j render(:partial => '/surveys/survey_answers', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
+
+
     } 

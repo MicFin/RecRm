@@ -17,6 +17,13 @@
 	position:relative;
 }
 
+// override tokbox JS added height with important
+#layoutContainer.short-video {
+	height: 200px !important;
+	position: fixed;
+	right: 25px;
+	top: 35px;
+}
 
 // MESSAGING STYLING
 #user-message{

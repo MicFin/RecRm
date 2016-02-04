@@ -1,4 +1,4 @@
-			<header class="col-xs-2 text-center">
+			<header class="col-xs-2">
 				<div class="row">
 					<div class="col-xs-12">
 					
@@ -12,27 +12,27 @@
 				</div>
 				<nav>	
 					<ul>
-						<li class="active">
-							<a class="user-session-tool-video" href=""><p><span class="glyphicon glyphicon-facetime-video"></span></p><p><span class="hidden-xs hidden-sm nav-item">Video</span></p></a>
+						<li class="session-nav-video active">
+							<a class="user-session-tool-video" href=""><span class="glyphicon glyphicon-facetime-video"></span><span class="hidden-xs hidden-sm nav-item">Video</span></a>
 						</li>
-						<li>
+						<li class="session-nav-family">
 							<%=link_to family_path(current_user.head_of_families.first.id), remote: true do %>
-								<p><span class="glyphicon glyphicon-user"></span></p><p><span class="hidden-xs hidden-sm nav-item">Family</span></p>
+								<span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Family</span>
 							<% end %>	
 			
 						</li>
-						<li>
+						<li class="session-nav-goals">
 							<%=link_to appointment_survey_path(appointment, pre_appt_survey), remote: true do %>
-								<p><span class="glyphicon glyphicon-calendar"></span></p><p><span class="hidden-xs hidden-sm nav-item">Goals</span></p>
+								<span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Goals</span>
 							<% end %>	
 						</li>
-						<li>
+						<li class="session-nav-notes">
 							<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
-								<p><span class="glyphicon glyphicon-calendar"></span></p><p><span class="hidden-xs hidden-sm nav-item">Notes</span></p>
+								<span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Notes</span>
 							<% end %>	
 						</li>
 			<!-- 			<li>
-							<a href=""><p><span class="glyphicon glyphicon-cog"></span></p><p><span class="hidden-xs hidden-sm nav-item">Settings</span></p></a>
+							<a href=""><span class="glyphicon glyphicon-cog"></span><p><span class="hidden-xs hidden-sm nav-item">Settings</span></p></a>
 						</li>
 						<li>
 							<a href=""><p><span class="glyphicon glyphicon-envelope"></span></p><p><span class="hidden-xs hidden-sm nav-item">Contact Us</span></p></a>

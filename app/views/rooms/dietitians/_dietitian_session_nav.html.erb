@@ -13,23 +13,23 @@
 				<nav>	
 					<ul>
 
-						<li class="active">
+						<li class="session-nav-video active">
 							<a class="user-session-tool-video" href=""><span class="glyphicon glyphicon-facetime-video"></span> <span class="hidden-xs hidden-sm nav-item">Video</span></a>
 						</li>
-						<li>
+						<li class="session-nav-appointment-prep">
 							<%=link_to appointment_prep_path(appointment), remote: true do %>
-								<p><span class="glyphicon glyphicon-user"></span></p><p><span class="hidden-xs hidden-sm nav-item">Client Family</span></p>
+								<span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Client Family</span>
 							<% end %>	
 			
 						</li>
-						<li>
+						<li class="session-nav-goals">
 							<%=link_to dietitian_appointment_survey_path(appointment.id, pre_appt_survey.id), remote: true do %>
-								<p><span class="glyphicon glyphicon-calendar"></span></p><p><span class="hidden-xs hidden-sm nav-item">Client Goals</span></p>
+								<span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Client Goals</span>
 							<% end %>	
 						</li>
-						<li>
+						<li class="session-nav-notes">
 							<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
-								<p><span class="glyphicon glyphicon-calendar"></span></p><p><span class="hidden-xs hidden-sm nav-item">My Notes</span></p>
+								<span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">My Notes</span>
 							<% end %>	
 						</li>
 	<!-- 					<li>

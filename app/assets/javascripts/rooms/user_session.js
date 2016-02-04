@@ -14,24 +14,28 @@ Kindrdfood.rooms.user_session = {
 
 		var deadline = $("#clockdiv").data("end-time");
 
-		CountDownClock.initializeClock('clockdiv', deadline);
-
+		// set user video button
 		$(".user-session-tool-video").on("click", function(e){
 			e.preventDefault();
+
+			// hide tool area
+
 			$(".session-tools-container").addClass("hidden");
+
+			// maximize video
 			Kindrdfood.rooms.user_session.maximizeVideo();
+
+			// update nav
+			$("header nav li").removeClass("active");
+			$(".session-nav-video").addClass("active");
 		})
 
-		$(".user-session-tool-notes").on("click", function(e){
-			e.preventDefault();
-			$(".session-tools-container").removeClass("hidden");
-
-			//$(".session-tools-container").html("<%= j render(:partial => '/families/list_family_members', :locals => { :family=> @family, :user => @user}) %>");
-		})
+		// run last because currently breaks for user (not dietitian) since they dont have a countdown
+		CountDownClock.initializeClock('clockdiv', deadline);
 	},
 	minimizeVideo: function(){
 			$("#layoutContainer").removeClass();
-			$("#layoutContainer").addClass("col-xs-2");
+			$("#layoutContainer").addClass("col-xs-2 short-video");
 	},
 	maximizeVideo: function(){
 			$("#layoutContainer").removeClass();

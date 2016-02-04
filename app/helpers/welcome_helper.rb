@@ -14,10 +14,10 @@ module WelcomeHelper
     end 
   end
 
-  # Show join partial if appointment is starting within 10 minutes
+  # Show join partial if appointment is starting within 10 minutes and has been assigned a room
   def upcoming_appointment_section(upcoming_appointment)
          
-    if ( (DateTime.now >= upcoming_appointment.start_time - 10.minutes) ) 
+    if ( (DateTime.now >= upcoming_appointment.start_time - 10.minutes) && (upcoming_appointment.room_id != nil ) )
       render "welcome/home/join_session_section", upcoming_appointment: upcoming_appointment 
 
     else 

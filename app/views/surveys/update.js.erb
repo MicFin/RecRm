@@ -1,30 +1,14 @@
 
-/// UGLY CODE
 
-$("#new-user-options form").remove();
+// if showing family in session room then return that save was made
+if (Kindrdfood.rooms){
 
-<% if @survey_type == "Post-Appointment-Dietitian" %>
+  alert("Saved");
 
+// else hide modal and adjust button
+} else {
 
-<% else %> // Prep or post Appointment
+  $(".modal").modal("hide");
 
+}
 
-    // if showing family in session room then return that save was made
-    if (Kindrdfood.rooms){
-
-      alert("Saved");
-
-    // else hide modal and adjust button
-    } else {
-
-      $(".modal").modal("hide");
-
-      <% if @survey.completed %>
-        $("a[href='/appointments/<%=@surveyable.id%>/client_appointment_prep']").removeClass("btn-md btn-danger").addClass("btn btn-sm btn-primary");
-      <% else %>
-        $("a[href='/appointments/<%=@surveyable.id%>/client_appointment_prep']").removeClass("btn-sm btn-primary").addClass("btn btn-md btn-danger");
-      <% end %>
-    }
-
-
-<% end %>

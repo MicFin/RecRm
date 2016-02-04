@@ -1,15 +1,15 @@
-    
-    // if showing family in session room then return that save was made
-    if (Kindrdfood.rooms){
 
-    	// minimize video
-      Kindrdfood.rooms.user_session.minimizeVideo();
+// if showing family in session room then return that save was made
+if (Kindrdfood.rooms){
 
-			// update navigation
-		  Kindrdfood.rooms.user_session.updateNavigation("session-nav-goals");
+	// minimize video
+  Kindrdfood.rooms.user_session.minimizeVideo();
 
-		  // show container and load partial
-			Kindrdfood.rooms.user_session.showToolPartial("<%= j render(:partial => '/surveys/survey_answers', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
+	// update navigation
+  Kindrdfood.rooms.user_session.updateNavigation("session-nav-goals");
+
+  // show container and load partial
+	Kindrdfood.rooms.user_session.showToolPartial("<%= j render(:partial => '/surveys/survey_answers', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
 
 
-    } 
+} 

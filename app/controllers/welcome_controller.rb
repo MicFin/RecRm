@@ -34,7 +34,7 @@ class WelcomeController < Users::RegistrationsController
 
       # Gather user's upcoming appointments
       @upcoming_appointments = current_user.appointment_hosts.upcoming_and_current.includes(:appointment_host).includes(:patient_focus).by_start_time
-      binding.pry
+
       # Gather user's umpaid appointment
       @unpaid_appointment = current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
 

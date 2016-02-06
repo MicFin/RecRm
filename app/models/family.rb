@@ -37,7 +37,6 @@ class Family < ActiveRecord::Base
     attributes[:first_name].blank?
   end
 
-
   def family_member_count
     # family members plus head of family
     return self.users.count + 1

@@ -4,10 +4,10 @@ module WelcomeHelper
   def user_appointment_prompt(upcoming_appointment, unpaid_appointment)
     
     if upcoming_appointment && upcoming_appointment.status == "Paid"  
-      render "welcome/home/upcoming_confirmed_appointment", upcoming_appointment: upcoming_appointment 
+      render "welcome/home/upcoming_confirmed_appointment", appointment: upcoming_appointment 
 
     elsif upcoming_appointment && upcoming_appointment.status ==  "Follow Up Unpaid"
-      render "welcome/home/upcoming_unconfirmed_appointment", upcoming_appointment: unpaid_appointment 
+      render "welcome/home/upcoming_unconfirmed_appointment", appointment: unpaid_appointment 
 
     else 
       render "welcome/home/no_upcoming_appointment" 
@@ -15,13 +15,13 @@ module WelcomeHelper
   end
 
   # Show join partial if appointment is starting within 10 minutes and has been assigned a room
-  def upcoming_appointment_section(upcoming_appointment)
+  def upcoming_appointment_section(appointment)
          
-    if ( (DateTime.now >= upcoming_appointment.start_time - 10.minutes) && (upcoming_appointment.room_id != nil ) )
-      render "welcome/home/join_session_section", upcoming_appointment: upcoming_appointment 
+    if ( (DateTime.now >= appointment.start_time - 10.minutes) && (appointment.room_id != nil ) )
+      render "welcome/home/join_session_section", appointment: appointment 
 
     else 
-     render "welcome/home/prep_session_section", upcoming_appointment: upcoming_appointment 
+     render "welcome/home/prep_session_section", appointment: appointment 
     end 
   end
 
@@ -60,9 +60,9 @@ module WelcomeHelper
   # Show calendar unless stripe token is present
   def set_appointment_calendar(appointment)
     if appointment.stripe_card_token 
-      render "welcome/set_appointment/appointment_set",appointment: appointment        
+      render "welcome/set_appointment/appointment_set", appointment: appointment        
     else 
-      render "welcome/set_appointment/appointment_not_set",appointment: appointment      
+      render "welcome/set_appointment/appointment_not_set", appointment: appointment      
     end 
   end
 

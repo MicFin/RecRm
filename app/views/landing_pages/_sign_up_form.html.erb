@@ -1,6 +1,8 @@
  
 <!-- Partial msut recieve user -->
  <%= simple_form_for(user, as: "user", url: user_registration_path, html: {class: 'row text-left new-user-form', role:"form" }) do |f| %>
+   <%#= devise_error_messages! %>
+   <%= render "/layouts/alerts" %>
   <div class="form-row">
     <label for="email">Email Address</label>
     <%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>

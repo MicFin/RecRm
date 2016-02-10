@@ -12,7 +12,7 @@
 <%= image_tag("/assets/logos/kf-logo-registration.png", class: "img-responsive logo") %>
 
 <div id="welcome-breadcrumb" class="row">
-  <div class="btn-group btn-breadcrumb">
+  <div class="btn-group btn-breadcrumb hidden-xs">
     <%= active_link_to "Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning" %>
 
 		<%= active_link_to "Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => stage_of_registration <= 1 %>
@@ -22,5 +22,28 @@
     <%= active_link_to "Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => stage_of_registration <= 3 %>
 
     <%= active_link_to "Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', class: "btn btn-warning", :disabled => stage_of_registration <= 4 %>
+  </div>
+</div>
+<div id="welcome-breadcrumb-small" class="hidden-sm hidden-md hidden-lg" class="row">
+  <div class="col-xs-12">
+    <div class="row form-group">
+      <div class="col-xs-4">
+            <%= active_link_to "1. Basic Info", welcome_get_started_path,  :active => :exclusive, :class_active => 'selected'%>
+      </div>
+      <div class="col-xs-4">
+          <%= active_link_to "2. Your Table", welcome_add_family_path,  :active => :exclusive, :class_active => 'selected',  :disabled => stage_of_registration <= 1 %>
+      </div>
+      <div class="col-xs-4">
+        <%= active_link_to "3. Health History", welcome_add_nutrition_path,  :active => :exclusive, :class_active => 'selected',  :disabled => stage_of_registration <= 2 %>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-xs-4 col-xs-offset-2">
+        <%= active_link_to "4. Food Preferences", welcome_add_preferences_path,  :active => :exclusive, :class_active => 'selected', :disabled => stage_of_registration <= 3 %>
+      </div>
+      <div class="col-xs-4">
+            <%= active_link_to "5. Schedule Appointment", welcome_set_appointment_path,  :active => :exclusive, :class_active => 'selected', :disabled => stage_of_registration <= 4 %>
+      </div>
+    </div>
   </div>
 </div>

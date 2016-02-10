@@ -19,5 +19,24 @@
   }
 
 
+}
 
+#paymentModalLabel .img-responsive {
+  max-height: 50px;
+}
+
+#paymentModal div.alert-warning p {
+  line-height: 2;
+  font-size: 18px;
+}
+
+input#card_number {
+  background: url("icons/credit_card_default.png") 98% 50% no-repeat;
+  background-size: 25px 19px;
+}
+
+.credit-card-images {
+  height: 21px;
+  margin-bottom: 2%;
+  margin-left: 3%;
 }

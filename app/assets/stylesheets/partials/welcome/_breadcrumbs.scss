@@ -76,7 +76,6 @@
   .btn-breadcrumb .btn.btn-warning.selected{
     color: $brand-light-green;
     font-weight: bold;
-    font-family: cursive;
   }
 
   // Arrows on hover
@@ -88,4 +87,8 @@
   }
 
 
+}
+
+#welcome-breadcrumb-small{
+  font-size: 10px;
 }

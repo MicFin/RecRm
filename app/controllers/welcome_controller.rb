@@ -27,13 +27,13 @@ class WelcomeController < Users::RegistrationsController
       end
 
       # Gather user's previous appointments
-      @previous_appointments = current_user.appointment_hosts.complete_or_scheduled.includes(:appointment_host).includes(:patient_focus).by_start_time
+      @previous_appointments = current_user.appointment_hosts.previous.complete_or_scheduled.includes(:appointment_host).includes(:patient_focus).by_start_time
 
       # Gather user's upcoming appointment
       @upcoming_appointment = current_user.appointment_hosts.upcoming_and_current.scheduled.first
 
       # Gather user's upcoming appointments
-      @upcoming_appointments = current_user.appointment_hosts.upcoming_and_current.includes(:appointment_host).includes(:patient_focus).by_start_time
+      @upcoming_appointments = current_user.appointment_hosts.upcoming_and_current.scheduled.includes(:appointment_host).includes(:patient_focus).by_start_time
 
       # Gather user's umpaid appointment
       @unpaid_appointment = current_user.appointment_hosts.where(status: "Follow Up Unpaid").last
@@ -273,7 +273,15 @@ class WelcomeController < Users::RegistrationsController
 
     # if repeat customer then set previous dietitian 
     if @user.repeat_customer?
-      @previous_dietitian = @user.appointment_hosts.scheduled.where.not(dietitian_id: nil).last.dietitian
+
+      previous_assigned_appt = @user.appointment_hosts.scheduled.where.not(dietitian_id: nil).last
+
+      if previous_assigned_appt 
+        @previous_dietitian = previous_assigned_appt.dietitian
+      else
+        @previous_dietitian = Dietitian.where(email: "mrfinneran+rd@gmail.com").first
+        # @previous_dietitian = Dietitian.where(email: "tara@kindrdfood.com")
+      end
     end
     
   end

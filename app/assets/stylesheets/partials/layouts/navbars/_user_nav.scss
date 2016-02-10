@@ -16,6 +16,22 @@
 
 	}
 
+	header.mobile-menu-open{
+		right: 0;
+    left: inherit;
+  }
+
+  header.left-nav-small {
+
+  	.navbar-default {
+	    background-color: transparent;
+	    border-color: transparent;
+
+	    .navbar-toggle {
+		    border-color: transparent;
+			}
+	  }
+  }
 	// KRDN Admin subnav
 	nav ul li ul li{
 		padding:0px;

@@ -12,4 +12,6 @@ $(document).ready(function() {
 
 	Kindrdfood.families.editFamilyMember.init();
 
+	// mobile nav
+	Kindrdfood.layouts.navbars.init();
 });

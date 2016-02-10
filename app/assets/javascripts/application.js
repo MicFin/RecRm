@@ -62,6 +62,9 @@
 //= require form_validations/family_member
 //= require form_validations/surveys
 
+// CUSTOM namespced javascript for layouts 
+//= require layouts/navbars/user_nav
+
 // STRIPE maybe not needed on all controllers
 //= require plugins/payment
 

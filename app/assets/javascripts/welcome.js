@@ -29,4 +29,6 @@ $(document).ready(function() {
 	// JS for welcome#home
 	Kindrdfood.welcome.home.init();
 
+	// mobile nav
+	Kindrdfood.layouts.navbars.init();
 });

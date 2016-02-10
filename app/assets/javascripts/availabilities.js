@@ -9,6 +9,9 @@ $(document).ready(function() {
 
   // JS for availabilities#index
   Kindrdfood.availabilities.index.init();
+  
+  	// mobile nav
+	Kindrdfood.layouts.navbars.init();
 });
 
 

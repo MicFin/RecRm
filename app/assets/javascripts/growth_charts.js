@@ -8,4 +8,6 @@ $(document).ready(function() {
 
 	Kindrdfood.growthCharts.show.init();
 
+	// mobile nav
+	Kindrdfood.layouts.navbars.init();
 });

@@ -11,4 +11,7 @@ $(document).ready(function() {
 	Kindrdfood.foodDiaries.show.init();
 
 	Kindrdfood.foodDiaries.new.init();
+
+		// mobile nav
+	Kindrdfood.layouts.navbars.init();
 });

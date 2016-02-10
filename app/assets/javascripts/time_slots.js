@@ -8,6 +8,8 @@ $(document).ready(function() {
 
   Kindrdfood.time_slots.index.init();
   
+  	// mobile nav
+	Kindrdfood.layouts.navbars.init();
 });
 
 

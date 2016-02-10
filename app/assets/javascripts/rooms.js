@@ -13,5 +13,7 @@ $(document).ready(function() {
 	// JS for rooms#user_session
 	Kindrdfood.rooms.user_session.init();
 
+	// mobile nav
+	Kindrdfood.layouts.navbars.init();
 
 });

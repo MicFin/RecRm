@@ -3,7 +3,7 @@
 		<%= simple_form_for(family_member, :url => {:controller => 'welcome', :action => 'build_family', :id => family_member.id}, html: { method: :patch, class: "col-xs-12 col-sm-10 col-sm-offset-1 text-left hidden family-member-form-#{index}" , role:"form" }) do |f| %>
 
 			<!-- 	FORM FIELDS -->
-			<%= render '/welcome/add_family/family_member_form_fields', {f: f, family_member: family_member, index: index}%>
+			<%= render '/welcome/add_family/family_member_form_fields', {f: f, family_member: family_member}%>
 
 			<!-- 	FORM SAVE AND DELETE -->
 		  <div class="actions text-right">

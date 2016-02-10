@@ -1,7 +1,7 @@
 <%= simple_form_for(new_user, :url => {:controller => 'welcome', :action => 'build_family', :id => new_user.id}, html: { method: :patch, class: 'col-xs-12 col-sm-10 col-sm-offset-1 text-left hidden new-user-form', role:"form" }) do |f| %>
 
 	<!-- 	FORM FIELDS -->
-	<%= render '/welcome/add_family/new_user_edit_info_form_fields', f: f %>
+	<%= render '/welcome/add_family/family_member_form_fields', {f: f, family_member: new_user}%>
 
 	<!-- 	FORM SAVE -->
   <div class="actions text-right">

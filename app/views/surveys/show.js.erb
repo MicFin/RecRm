@@ -9,7 +9,7 @@ if (Kindrdfood.rooms){
   Kindrdfood.rooms.user_session.updateNavigation("session-nav-goals");
 
   // show container and load partial
-	Kindrdfood.rooms.user_session.showToolPartial("<%= j render(:partial => '/surveys/survey_answers', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
+	Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/surveys/survey_answers', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
 
 
 } 

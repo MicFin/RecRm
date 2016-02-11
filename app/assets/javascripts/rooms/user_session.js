@@ -92,10 +92,6 @@ Kindrdfood.rooms.user_session = {
 		$("."+class_to_activate).addClass("active");
 
 	},
-	showToolPartial: function(partial){
-	 $(".session-tools-container").removeClass("hidden");
-   $(".session-tools-container").html(partial);
-	},
 	videoNavigationButton: function(){
 		
 		// set user video button
@@ -103,7 +99,7 @@ Kindrdfood.rooms.user_session = {
 			e.preventDefault();
 
 			// hide tool area
-			$(".session-tools-container").addClass("hidden");
+			$(".dynamic-page-container").addClass("hidden");
 
 			// maximize video
 			Kindrdfood.rooms.user_session.maximizeVideo();

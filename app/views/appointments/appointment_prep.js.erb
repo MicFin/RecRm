@@ -12,7 +12,7 @@ if (Kindrdfood.rooms){ // checks if Kindrdfood.rooms controller specific JS is l
   Kindrdfood.rooms.user_session.updateNavigation("session-nav-appointment-prep");
 
 	// show container and load partial
-	Kindrdfood.rooms.user_session.showToolPartial("<%= j render(:partial => '/appointments/appointment_prep/show_family', :locals => { :family=> @family }) %>");
+	Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/appointments/appointment_prep/show_family', :locals => { :family=> @family }) %>");
 
 
 } 

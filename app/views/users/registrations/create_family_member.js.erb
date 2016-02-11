@@ -6,5 +6,5 @@ if (Kindrdfood.rooms){
 
 }
 
-	$(".session-tools-container").removeClass("hidden");
-	$(".session-tools-container").html("<%= j render(:partial => '/families/list_family_members', :locals => { :family=> @family, :user => @user}) %>");
+// show container and load partial
+Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/families/list_family_members', :locals => { :family=> @family, :user => @user}) %>");

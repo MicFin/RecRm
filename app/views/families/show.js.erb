@@ -1,5 +1,5 @@
 
-// if showing family in session room then minimize video
+// if rooms controller remote true request
 if (Kindrdfood.rooms){
 
 	// minimize video
@@ -7,7 +7,8 @@ if (Kindrdfood.rooms){
 
    // update navigation
   Kindrdfood.rooms.user_session.updateNavigation("session-nav-family");
+} 
 
-	// show container and load partial
-	Kindrdfood.rooms.user_session.showToolPartial("<%= j render(:partial => '/families/list_family_members', :locals => { :family=> @family, :user => @user}) %>");
-}
+// show container and load partial
+Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/families/list_family_members', :locals => { :family=> @family, :user => @user}) %>");
+

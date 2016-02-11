@@ -23,7 +23,9 @@
 		$("#family-member-select-<%=@removed_member_id%>").remove();
 		
 	// FROM EDIT FMAILY MEMBER SCREEN
-		$(".session-tools-container").html("<%= j render(:partial => '/families/list_family_members', :locals => { :family=> @family, :user => @user}) %>");
+	// show container and load partial
+	Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/families/list_family_members', :locals => { :family=> @family, :user => @user}) %>");
+
 		// adds error to screen
 		$(".alerts-container").html("<%= escape_javascript(render :partial=>'layouts/alerts') %>");
 

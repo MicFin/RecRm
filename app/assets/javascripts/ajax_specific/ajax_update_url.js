@@ -13,5 +13,9 @@ Kindrdfood.ajaxSpecific.ajaxUpdateUrl = {
 	  $(window).on('popstate', function () {
 	    $.get(document.location.href)
 	  });
+	},
+	showPagePartial: function(partial){
+	 $(".dynamic-page-container").removeClass("hidden");
+   $(".dynamic-page-container").html(partial);
 	}
 };

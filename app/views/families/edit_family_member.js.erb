@@ -1,4 +1,6 @@
 
-$(".session-tools-container").html("<%= j render(:partial => '/families/edit_family_member_form', :locals => { :family=> @family, :family_member => @family_member}) %>");
+// show container and load partial
+Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/families/edit_family_member_form', :locals => { :family=> @family, :family_member => @family_member}) %>");
+
 
 Kindrdfood.formValidations.familyMembers.validateFamilyMemberForm("family-member-form");

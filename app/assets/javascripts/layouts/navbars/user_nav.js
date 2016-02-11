@@ -15,7 +15,7 @@ Kindrdfood.layouts.navbars = {
         $(".left-nav-mini").addClass("hidden-xs col-xs-2").removeClass("left-nav-mini").addClass("left-nav-large");
         $(this).removeClass("collapsed");
   		} else {
-        var $nav = $(".left-nav-large").removeClass("left-nav-large").addClass("left-nav-mini").removeClass("hidden-xs col-xs-2");
+        $(".left-nav-large").removeClass("left-nav-large").addClass("left-nav-mini").removeClass("hidden-xs col-xs-2");
         $(this).addClass("collapsed");
   		}
 		})

@@ -13,12 +13,10 @@ Kindrdfood.layouts.navbars = {
   		var $button = $(this);
   		if ( $button.hasClass("collapsed") ) { 
   			$(".left-nav-mini").addClass("hidden-xs").removeClass("col-xs-12");
-  			$(".left-nav-small").removeClass("mobile-menu-open");
   			$(this).removeClass("collapsed");
 
   		} else {
   			$(".left-nav-mini").removeClass("hidden-xs").addClass("col-xs-12");
-				$(".left-nav-small").addClass("mobile-menu-open");
 				$(this).addClass("collapsed");
 
   		}

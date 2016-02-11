@@ -9,10 +9,10 @@ Kindrdfood.bootstrapOverrides.popOver = {
   	
   	// close pop pup marker from anywhere
 		$('html').click(function(e) {
-		    $('span').popover('hide');
+		    $('span.auto-close-popover').popover('hide');
 		});
 
-		$('span').popover({
+		$('span.auto-close-popover').popover({
 		    html: true,
 		    trigger: 'manual'
 		}).click(function(e) {

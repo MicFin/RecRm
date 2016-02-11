@@ -252,7 +252,9 @@ class AppointmentsController < ApplicationController
     @client_prep = {growth_chart: growth_chart, food_diary: food_diary, survey: survey, food_diary_entry: food_diary_entry, growth_entry: growth_entry}
     
     respond_to do |format|
+      format.html
       format.js 
+
     end
   end
 

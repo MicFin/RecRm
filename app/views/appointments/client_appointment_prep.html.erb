@@ -1,0 +1,88 @@
+
+<!-- USER DASHBOARD aka WELCOME PAGE -->
+
+<div id="welcome-page" class="container-fluid">
+	<div class="row">
+
+		<!-- USER NAV-->
+		<%= render "/layouts/navbars/user_nav" %>
+
+		<main class="col-xs-12 col-sm-10 col-sm-offset-2">
+
+			<!-- ALERTS-->
+		  <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+      </section>
+
+			<!-- APPOUINTMENT PREP  -->
+			<section class="content-container">
+        <h2 class="modal-title">Appointment Prep</p></h2>
+
+      	<!--   CAROUSEL  -->
+	      <div class="row form-group">
+	        
+	        <div class="col-xs-12 form-group">
+	          
+	          <div id="carousel-client-prep" class="carousel slide" data-wrap="false" data-interval="false" data-ride="carousel">
+
+	            <!-- Wrapper for slides -->
+	            <div class="carousel-inner" role="listbox">
+
+	              <div data-prep-position="growth-chart" class="item active">
+	                <div class="carousel-content">
+	                  <h3>Please add <%= @appointment.patient_focus.first_name%>'s most recent height and weight to the growth log.</h3>
+
+	                  <%= render "/growth_entries/form", growth_chart: @client_prep[:growth_chart], growth_entry: @client_prep[:growth_entry] %>
+
+	                  <%= render "/growth_entries/list", growth_chart: @client_prep[:growth_chart], growth_entry: @client_prep[:growth_entry] %>
+	                </div>
+	               
+	              </div>
+	              <div data-prep-position="food-diary" class="item">
+	                <div class="carousel-content">
+	                  <h3>Please add what <%= @appointment.patient_focus.first_name%> ate yesterday to the food diary.</h3>
+	                  <%= render "/food_diary_entries/form", food_diary: @client_prep[:food_diary], food_diary_entry: @client_prep[:food_diary_entry] %>
+	                  <%= render "/food_diary_entries/list", food_diary: @client_prep[:food_diary], food_diary_entry: @client_prep[:food_diary_entry] %>
+	                </div>
+	                
+	              </div>
+	              <div data-prep-position="survey" class="item">
+	                <div class="carousel-content container-fluid">
+	                  <%= render "/appointments/appointment_prep/survey_form", surveyable: @appointment, survey: @client_prep[:survey] %>
+	                </div>
+
+	              </div>
+	            </div>
+
+
+
+	          </div>
+
+	        </div>
+	      </div>
+
+        <!-- Controls -->
+	      <div class="row">
+	        <div class="col-xs-6 col-sm-3 col-sm-offset-6 ">
+	        <a href="#carousel-client-prep" class="btn btn-block btn-primary hidden" role="button" data-slide="prev">Previous</a>
+	        </div>
+	        <div class="col-xs-6 col-sm-3">
+	        <a href="#carousel-client-prep" class="btn btn-block btn-primary" role="button" data-slide="next">Next</a>
+	        </div>
+	      </div>
+
+			</section>
+
+
+		</main>
+		<div class="col-xs-10 col-xs-offset-2">
+			<%=render "/layouts/footers/main_footer" %>
+		</div>
+	</div>
+</div>
+
+<!-- RESCHEDULE MODAL -->
+<%=render "legal/disclaimers/reschedule_cancellation" %>
+
+<!-- CONTACT US MODAL -->
+<%=render "welcome/home/contact_us_modal" %>

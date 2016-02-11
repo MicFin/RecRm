@@ -23,29 +23,29 @@
 			 	</div>
 			 	<div class="col-xs-6">
 			 		<div id="main-avatar-container" class="col-xs-12 form-group">
-					  <% if @main_avatar %>
-				   		<%= image_tag @main_avatar.icon.url %>
-				   		<%= f.fields_for :images, resource.images.build do |builder| %>
-				  			  <div><%= builder.input :remove_image, as: :boolean %></div>
-				  		<% end %>
-					  <% else %>
-						  <%= f.fields_for :images, resource.images.build do |builder| %>
+					  <%# if @main_avatar %>
+				   		<%#= image_tag @main_avatar.icon.url %>
+				   		<%#= f.fields_for :images, resource.images.build do |builder| %>
+				  			  <div><%#= builder.input :remove_image, as: :boolean %></div>
+				  		<%# end %>
+					  <%# else %>
+						  <%#= f.fields_for :images, resource.images.build do |builder| %>
 						  <label>Add a profile picture!</label>
 						  <p>(you can crop the picture after you save)</p>
 						  <img id="image-preview" class="hidden" src="#" alt="your image" />
 							  <fieldset>
 							  <div class="fileUpload btn btn-primary">
 							  <span>Upload</span>
-					 				<%= builder.file_field :image, class: "upload" %>
+					 				<%#= builder.file_field :image, class: "upload" %>
 					 				</div>
-					 				<%= builder.hidden_field :image_cache %>
-					 				<%= builder.hidden_field :position, value: 1  %>
-					 				<%= builder.hidden_field :imageable_type, value: resource.class %>
-					 				<%= builder.hidden_field :imageable_id, value: resource.id %>
-					 				<%= builder.hidden_field :image_type, value: "Avatar" %>
+					 				<%#= builder.hidden_field :image_cache %>
+					 				<%#= builder.hidden_field :position, value: 1  %>
+					 				<%#= builder.hidden_field :imageable_type, value: resource.class %>
+					 				<%#= builder.hidden_field :imageable_id, value: resource.id %>
+					 				<%#= builder.hidden_field :image_type, value: "Avatar" %>
 							  </fieldset>
-							<% end %>
-						<% end %>
+							<%# end %>
+						<%# end %>
 					</div>
 				</div>
 			</div>

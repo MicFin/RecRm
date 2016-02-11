@@ -224,7 +224,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
         if !resource.finished_on_boarding? 
         
           redirect_to welcome_add_family_path
+
+        # if they have finished onboarding then updated get_started page after already saving, return to the page they were on
+        else
+          respond_to do |format|
+            # get original page where time zone was updated from
+            session[:return_to] ||= request.referer
+            format.html { redirect_to session.delete(:return_to) }
+          end
         end
+
 
     end
 

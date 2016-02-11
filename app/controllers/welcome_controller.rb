@@ -65,7 +65,6 @@ class WelcomeController < Users::RegistrationsController
   # Select who the appointment is for and build other family member if necessary
   # /welcome/add_family
   def add_family
-
     if @stage_of_registration < 2
       redirect_to welcome_get_started_path
     end

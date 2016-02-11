@@ -1,7 +1,8 @@
         <section class="row">
-          <p>Who eats at your table?  Create a profile for yourself and your entire family.  Help your dietitian understand what makes your family's table unique!</p>
-          <%= link_to "Add family member", families_new_family_member_path(family.id), class: "btn btn-md btn-default", remote: true %>
-       
+          <div class="col-xs-12">
+            <p>Who eats at your table?  Create a profile for yourself and your entire family.  Help your dietitian understand what makes your family's table unique!</p>
+            <%= link_to "Add family member", families_new_family_member_path(family.id), class: "btn btn-md btn-default", remote: true %>
+          </div>
         </section>       
 
         <section id="family-members-container" class="row">

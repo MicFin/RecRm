@@ -3,7 +3,7 @@
 
       <%= render "/layouts/navbars/user_nav" %>
 
-      <main class="col-xs-10 col-xs-offset-2">
+      <main class="col-xs-12 col-sm-10 col-sm-offset-2">
         <section class="alerts-container">
           <%= render "/layouts/alerts" %>
         </section>
@@ -11,7 +11,7 @@
           <h1>The <%=current_user.last_name%> Family</h1>
         </section>
         <hr>
-        <div class="session-tools-container">
+        <div class="dynamic-page-container">
           
           <%= render "/families/edit_family_member_form", family: @family, family_member: @family_member %>
 

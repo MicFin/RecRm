@@ -1,27 +1,12 @@
           <section class="row">
-            <div class="col-xs-10">
+            <div class="col-xs-12">
               <%= link_to "back to family", family_path(family), remote: true %>
             </div>
-            <div class="col-xs-1">
+            <div class="col-xs-12">
+              <h1><%=family_member.full_name%> </h1>
               <% if family_member.id != current_user.id %>
                 <%= link_to "delete family member", remove_family_member_path(family, family_member), :confirm => "Are you sure you want to delete #{family_member.full_name}?", class: "btn btn-xs btn-default", :method => :delete %>
               <% end %>
-            </div>
-            <div class="col-xs-12">
-              <h1><%=family_member.full_name%> 
-                    <%# if family_member.growth_chart %>
-                      <%#= link_to "Growth Chart", growth_chart_path(family_member.growth_chart), class: "btn btn-sm btn-primary", remote: true %>
-                    <%# else %>
-                      <%#= render "/growth_charts/form", family_member: family_member %>
-                    <%# end %>
-      
-             
-                    <%# if family_member.food_diary %>
-                      <%#= link_to "Food Diary", food_diary_path(family_member.food_diary), class: "btn btn-sm btn-primary", remote: true %>
-                    <%# else %>
-                      <%#= render "/food_diaries/form", family_member: family_member %>
-                    <%# end %>
-                  </h1>
             </div>
 
           </section>

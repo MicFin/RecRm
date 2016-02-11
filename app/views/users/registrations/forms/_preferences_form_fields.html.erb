@@ -1,23 +1,23 @@
 						<div id="health-group-container" class="row">
 							<h3>Symptoms</h3>
-							<%= f.collection_check_boxes :patient_group_ids, @symptoms, :id, :name, :checked => @user.health_group_ids, :item_wrapper_class => 'col-xs-12 col-sm-4 form-group' do |b| 
+							<%= f.collection_check_boxes :patient_group_ids, @symptoms, :id, :name, :checked => @user.health_group_ids, :item_wrapper_class => 'col-xs-6 col-sm-4 form-group' do |b| 
 								b.label(class: 'checkbox-inline') {b.check_box + b.text}
 							end %>
 
 						 		<div id="add-disease-form" class="add-another-disease-form col-xs-12 form-group">
-							 		<input id="new-health-group-field" type="text" data-group-type="symptom" placeholder="Stress"/>
+							 		<input class="form-control-4" id="new-health-group-field" type="text" data-group-type="symptom" placeholder="Stress"/>
 							 		<button id="new-health-group-button" type="button" class="btn btn-sm btn-warning">Add Another</button>
 
 						 		</div>
 						</div>
 						<div class="row triggers-container form-group">
 							<h3>Food Preferences</h3>
-							<%= f.collection_check_boxes :patient_group_ids, @diets, :id, :name, :checked => @user.health_group_ids, :item_wrapper_class => 'col-xs-12 col-sm-4 form-group' do |b|
+							<%= f.collection_check_boxes :patient_group_ids, @diets, :id, :name, :checked => @user.health_group_ids, :item_wrapper_class => 'col-xs-6 col-sm-4 form-group' do |b|
 							 	b.label(class: 'checkbox-inline') {b.check_box + b.text}
 							end %>
 	
 						  <div id="add-allergy-container" class="col-xs-12 form-group">
-							  <input id="add-allergy-field" type="text", data-group-type="diet" placeholder="Low Sodium">
+							  <input class="form-control-4" id="add-allergy-field" type="text", data-group-type="diet" placeholder="Low Sodium">
 								<button id="new-allergy-group-button" class="btn btn-sm btn-warning">Add Another</button>
 						  </div>	
 							

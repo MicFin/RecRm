@@ -1,6 +1,9 @@
 
 <div class="row">
 	<div class="col-xs-12 col-sm-3">
+		<% if @appointment.patient_focus == family_member %>
+			<h4 class="alert alert-success">TODAY'S CLIENT FOCUS</h4>
+		<% end %>
 		<h4><%=family_member.full_name%></h4>	
 		<h4><%=family_member.family_role%> of client</h4>
 		<h4><%=family_member.age %></h4>

@@ -1,37 +1,37 @@
-			<div class="row">
-					<div class="col-xs-12">
-					
-						<%=image_tag "/assets/logos/kindrdfood-web.png", class: "img-responsive img-logo" %>
+<div class="row">
+	<div class="col-xs-12">
+	
+		<%=image_tag "/assets/logos/kindrdfood-web.png", class: "img-responsive img-logo" %>
 
-					</div>
-					<div class="col-xs-12 col-md-6">
-						<p>Welcome, <%=current_user.first_name%>!</p>
-						<p><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
-					</div>
-				</div>
-				<nav>	
-					<ul>
-						
-						<%= active_link_to welcome_home_path, :wrap_tag => :li  do %>
-						  <span class="glyphicon glyphicon-dashboard"></span><span class=" nav-item">Dashboard</span>
-						<% end %>
-						
-						<% if current_user.head_of_families.last %>
-							<%= active_link_to family_path(current_user.head_of_families.last.id), { :active => [['families', 'growth_charts', 'food_diaries'], []], :wrap_tag => :li } do %>
+	</div>
+	<div class="col-xs-12 col-md-6">
+		<p>Welcome, <%=current_user.first_name%>!</p>
+		<p><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
+	</div>
+</div>
+<nav>	
+	<ul>
+		
+		<%= active_link_to welcome_home_path, { :active => [['welcome'], ['home']], :wrap_tag => :li }   do %>
+		  <span class="glyphicon glyphicon-dashboard"></span><span class=" nav-item">Dashboard</span>
+		<% end %>
+		
+		<% if current_user.head_of_families.last %>
+			<%= active_link_to family_path(current_user.head_of_families.last.id), { :active => [['families', 'growth_charts', 'food_diaries'], []], :wrap_tag => :li } do %>
 
-							  <span class="glyphicon glyphicon-user"></span><span class=" nav-item">Family</span>
-							<% end %>
-						<% end %>
+			  <span class="glyphicon glyphicon-user"></span><span class=" nav-item">Family</span>
+			<% end %>
+		<% end %>
 
-						<%= active_link_to welcome_set_appointment_path, { :active => [['appointments'], []], :wrap_tag => :li} do %>
-						  <span class="glyphicon glyphicon-user"></span><span class=" nav-item">Schedule Appointment</span>
-						<% end %>
+		<%= active_link_to welcome_set_appointment_path, { :active => [['appointments'], []], :wrap_tag => :li} do %>
+		  <span class="glyphicon glyphicon-user"></span><span class=" nav-item">Schedule Appointment</span>
+		<% end %>
 
-						<%= active_link_to packages_path, :wrap_tag => :li do %>
-						  <span class="glyphicon glyphicon-user"></span><span class=" nav-item">Purchase Package</span>
-						<% end %>
+		<%= active_link_to packages_path, :wrap_tag => :li do %>
+		  <span class="glyphicon glyphicon-user"></span><span class=" nav-item">Purchase Package</span>
+		<% end %>
 
 
-						<li><a href="" class="contact-us-link"><span class="glyphicon glyphicon-envelope"></span><span class=" nav-item">Contact Us</span></a></li>	
-					</ul>
-				</nav>
+		<li><a href="" class="contact-us-link"><span class="glyphicon glyphicon-envelope"></span><span class=" nav-item">Contact Us</span></a></li>	
+	</ul>
+</nav>

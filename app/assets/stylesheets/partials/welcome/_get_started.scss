@@ -1,31 +1,40 @@
 #get-started-page, #welcome-add-family, #set-appointment-page {
-	  background-size: cover;
-	  background-repeat: no-repeat;
-	  position: relative;
-	  height: 102%;
-	  min-width: 100%;
-	  text-align: center;
-	  background-color: $brand-white;
-	  margin: -10px;
-	  overflow: auto;
-	  .modal-footer{
-	  	border-top: none;
-	  }
-	  .modal{
-	  	position: relative;
-	  }
-	  .modal-content{
-	  	  border-radius: 15px;
-	  	  behavior: url($pie-path);
-	  }
-	  h1 {
-	  	color: $brand-carrot-green;
-	  }
-	  .modal-body{
-	  	img.logo{
-	  		margin: 0 auto;
-	  	}
-	  }
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 102%;
+  min-width: 100%;
+  text-align: center;
+  background-color: $brand-white;
+  margin: -10px;
+  overflow: auto;
+  .modal-footer{
+  	border-top: none;
+  }
+  .modal{
+  	position: relative;
+  }
+  .modal-content{
+  	  border-radius: 15px;
+  	  behavior: url($pie-path);
+  }
+  h1 {
+  	color: $brand-carrot-green;
+  }
+  .modal-body{
+  	img.logo{
+  		margin: 0 auto;
+  	}
+  }
+ //  .modal-dialog{
+ //  	width: 60%;
+	// }
+  @media (max-width: $screen-xs-max)  {
+	  .modal-dialog {
+	    width: 94%;
+	    margin: 3% auto;
+  	}
+  }
 }
 
 #get-started-page {

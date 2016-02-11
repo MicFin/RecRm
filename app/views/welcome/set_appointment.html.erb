@@ -1,14 +1,14 @@
 
 <div id="set-appointment-page" class="fork-background" >
 
-  <div id="addNutritionModel" class="modal fade in" style="display: block;">
+  <div id="addNutritionModel" style="display: block;">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
         
           <%= render "breadcrumbs", stage_of_registration: @stage_of_registration %>
 
-          <div id="set-appt-time" data-appt-id="<%=@appointment.id%>" class="col-xs-12 col-sm-8 col-sm-offset-2">
+          <div id="set-appt-time" data-appt-id="<%=@appointment.id%>" class="col-xs-12">
             <h1>Select Your Appointment</h1>
 
             <%= set_appointment_options(@appointment, @user, @previous_dietitian) %>

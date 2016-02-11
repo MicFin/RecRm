@@ -206,7 +206,7 @@ class AppointmentsController < ApplicationController
     # return to appointments path
     respond_to do |format|
       if @appointment.save
-          format.html { redirect_to appointments_path(current_dietitian), notice: 'KRDN was successfully assigned.' }
+          format.html { redirect_to appointments_path, notice: 'KRDN was successfully assigned.' }
           format.json { render :show, status: :ok, location: @appointment }
       else
         format.html { render :edit }

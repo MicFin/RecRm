@@ -1,110 +1,18 @@
-			<header class="col-xs-2">
-				<div class="row">
-					<div class="col-xs-12">
-					
-						<%=image_tag "/assets/logos/kindrdfood-web.png", class: "img-responsive img-logo" %>
+<header class="left-nav-large col-xs-2 hidden-xs col-sm-2 ">
+	<%= render "layouts/navbars/dietitian_nav_options" %>
+</header>
 
-					</div>
-<!-- 					<div class="col-md-6">
-						<img class="img-responsive" src="images/face.jpg"> 	
-					</div> -->
-					<div class="col-xs-12 col-md-6">
-						<p>Welcome, <%=current_dietitian.first_name%>!</p>
-						<p><%= link_to "Log Out", destroy_dietitian_session_path, :method => :delete %></p>
-					</div>
-				</div>
-				<nav>	
-					<ul>
-						<% if current_dietitian.has_role? "Admin Dietitian" %>
+<header class="left-nav-mini hidden-xs hidden-sm hidden-md hidden-lg ">
+	<%= render "layouts/navbars/dietitian_nav_options" %>
+</header>
 
-							<%= active_link_to welcome_path, :wrap_tag => :li  do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">My Dashboard</span>
-							<% end %>
-
-							<%= active_link_to edit_dietitian_registration_path, :wrap_tag => :li  do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">My Profile</span>
-							<% end %>
-							<%= active_link_to availabilities_path, :wrap_tag => :li do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">My Schedule</span>
-							<% end %>
-							<li><a href="#" id="krdn-admin-nav-button" data-toggle="collapse" data-target="#krdn-admin-nav-list" aria-expanded="false">KRDN Admin</a>
-								<ul class="nav collapse" id="krdn-admin-nav-list" role="menu" aria-labelledby="btn-1">
-
-									<%= active_link_to appointments_path, :wrap_tag => :li  do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
-									<% end %>		
-
-									<%= active_link_to dashboard_clients_onboarding_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Clients(t)</span>
-									<% end %>
-
-									<%= active_link_to users_invitations_path, :wrap_tag => :li  do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Referrals</span>
-									<% end %>		
-
-									<%= active_link_to dashboard_clients_onboarding_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Leads</span>
-									<% end %>
-									<%= active_link_to survey_groups_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">KRDN Scheduling(t)</span>
-									<% end %>
-									<%= active_link_to "/education/monologue", :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Content</span>
-									<% end %>
-									<%= active_link_to survey_groups_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Questionnaires</span>
-									<% end %>
-								</ul>
-							</li>
-							<li><a href="#" id="system-admin-nav-button" data-toggle="collapse" data-target="#system-admin-nav-list" aria-expanded="false">System Admin</a>
-								<ul class="nav collapse" id="system-admin-nav-list" role="menu" aria-labelledby="btn-1">
-									<%= active_link_to new_package_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
-									<% end %>
-
-									<%= active_link_to new_package_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Packages</span>
-									<% end %>
-
-									<%= active_link_to coupons_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Coupons</span>
-									<% end %>
-									<%= active_link_to roles_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Emails(t)</span>
-									<% end %>
-									<%= active_link_to roles_path, :wrap_tag => :li do %>
-									  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Permissions</span>
-									<% end %>
-								</ul>
-							</li>
-						<% else %>
-
-							<%= active_link_to welcome_path, :wrap_tag => :li  do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Dashboard</span>
-							<% end %>
-							<%= active_link_to edit_dietitian_registration_path, :wrap_tag => :li  do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Profile</span>
-							<% end %>
-			
-							<%= active_link_to availabilities_path, :wrap_tag => :li do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Schedule</span>
-							<% end %>
-					<!-- 		<%#= active_link_to appointments_path, :wrap_tag => :li  do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Appointments</span>
-							<%# end %>		
-
-							<%#= active_link_to dashboard_clients_onboarding_path, :wrap_tag => :li do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Clients(t)</span>
-							<%# end %>
-							<%#= active_link_to "/education/monologue", :wrap_tag => :li do %>
-							  <span class=""></span><span class="hidden-xs hidden-sm nav-item">Content</span>
-							<%# end %> -->
-	
-
-							<li><a href=""><span class=""></span><span class="hidden-xs hidden-sm nav-item">Contact Us</span></a></li>	
-						<% end %>
-
-
-					</ul>
-				</nav>
-			</header>
+<header class="col-xs-2 hidden-sm hidden-md hidden-lg left-nav-small">
+	<div class="row navbar-default">
+		<button type="button" class="navbar-toggle" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+</header>

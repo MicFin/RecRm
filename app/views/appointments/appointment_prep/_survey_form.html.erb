@@ -1,4 +1,5 @@
-<%= simple_form_for [surveyable, survey], remote: params[:action] != "appointment_prep" do |f| %>
+<%= simple_form_for [surveyable, survey], remote: ( params[:action] != "appointment_prep" && params[:action] != "client_appointment_prep") do |f| %>
+
   <% if survey.errors.any? %>
     <div class="error_messages">
       <h2>Please correct the following errors.</h2>

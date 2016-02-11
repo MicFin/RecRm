@@ -156,22 +156,33 @@ class User < ActiveRecord::Base
   end
 
   # Gets a users appointment registration stage or self registration stage if first time
+  # creates an apointment for registration
+  # bloated method and shoudlnt be on the user
+  # important method for now
   def appointment_registration_stage
 
+
+    repeat_customer_boolean = self.repeat_customer?
+
+    # if a repeat customer then default the patient focus to their last appointment's patient focus
+    if repeat_customer_boolean 
+      previous_patient_focus_id = self.appointment_hosts.complete_or_scheduled.last.patient_focus.id 
+    else
+      previous_patient_focus_id = nil
+    end
+
     # set appointment or create a new one
-    # appointment registration stage should start at 2 for appointments
-    appointment = self.appointment_in_registration || Appointment.create(appointment_host_id: self.id, status: "In Registration", registration_stage: 5, duration: 60)
+    # appointment registration stage should start at 5 for appointments
+    appointment = self.appointment_in_registration || Appointment.create(appointment_host_id: self.id, status: "In Registration", registration_stage: 5, duration: 60, patient_focus_id: previous_patient_focus_id)
 
     # If user is a repeat customer then
-    # change stage of registration to the appointment registration stage
-    if self.repeat_customer? 
+    if repeat_customer_boolean
+      # change stage of registration to the appointment registration stage
       stage_of_registration = appointment.registration_stage
-
     # If not a repeat customer then 
-    # Set stage of registration to user's registration stage
     else
+      # Set stage of registration to user's registration stage
       stage_of_registration = self.registration_stage
-
     end 
 
     return stage_of_registration

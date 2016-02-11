@@ -1,3 +1,10 @@
 // Place all the styles related to the Invitations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container-fluid {
+	height: 100%;
+	div:first-child{
+		height: 100%;
+	}
+}

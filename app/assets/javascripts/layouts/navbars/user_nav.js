@@ -8,17 +8,15 @@ Kindrdfood.layouts = Kindrdfood.layouts || {};
 Kindrdfood.layouts.navbars = {
   init: function(){
 
-  	$(".left-nav-small button").on("click", function(e){
+  	$(".mobile-menu-button button").on("click", function(e){
   		e.preventDefault();
   		var $button = $(this);
   		if ( $button.hasClass("collapsed") ) { 
-  			$(".left-nav-mini").addClass("hidden-xs").removeClass("col-xs-12");
-  			$(this).removeClass("collapsed");
-
+        $(".left-nav-mini").addClass("hidden-xs").removeClass("left-nav-mini").addClass("left-nav-large");
+        $(this).removeClass("collapsed");
   		} else {
-  			$(".left-nav-mini").removeClass("hidden-xs").addClass("col-xs-12");
-				$(this).addClass("collapsed");
-
+        var $nav = $(".left-nav-large").removeClass("left-nav-large").addClass("left-nav-mini").removeClass("hidden-xs");
+        $(this).addClass("collapsed");
   		}
 		})
   }

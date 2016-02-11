@@ -18,7 +18,8 @@
 						<% end %>
 						
 						<% if current_user.head_of_families.last %>
-							<%= active_link_to family_path(current_user.head_of_families.last.id), :wrap_tag => :li do %>
+							<%= active_link_to family_path(current_user.head_of_families.last.id), { :active => [['families', 'growth_charts', 'food_diaries'], []], :wrap_tag => :li } do %>
+
 							  <span class="glyphicon glyphicon-user"></span><span class=" nav-item">Family</span>
 							<% end %>
 						<% end %>

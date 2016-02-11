@@ -37,6 +37,7 @@
 //  JQUERY VALIDATION
 //= require plugins/jquery-validate.min.js
 //= require plugins/jquery-validate-extra-methods.min.js
+//= require plugins/jqueryValidateAddedMethods/minimum_age
 
 //  JAVASCRIPT TIME ZONES
 //= require plugins/time_zones
@@ -55,6 +56,7 @@
 //= require datetimepickers/date_time_picker
 //= require ajax_specific/ajax_update_url
 //= require bootstrap_overrides/carousel
+//= require bootstrap_overrides/popover
 
 // CUSTOM namespaced form validations (must come after datetimepickers and images)
 //= require form_validations/growth_entries

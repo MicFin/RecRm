@@ -6,6 +6,8 @@ Kindrdfood.welcome = Kindrdfood.welcome || {};
 Kindrdfood.welcome.getStarted = {
 
   init: function(){
+
+    // set form validation
     $("#get-started-page form").validate({
       rules: {
         "user[first_name]":{
@@ -17,7 +19,8 @@ Kindrdfood.welcome.getStarted = {
           minlength: 2
         },
 	      "user[date_of_birth(1i)]":{
-	        required: true
+	        required: true,
+          check_date_of_birth: true
 	      },
 	      "user[date_of_birth(2i)]":{
 	        required: true
@@ -100,8 +103,7 @@ Kindrdfood.welcome.getStarted = {
 
 
     // set popovers    
-    $('span').popover();
-
+    Kindrdfood.bootstrapOverrides.popOver.init();
 
     // set privacy modal link in popup
     $("body").on("click", ".privacy-modal-link", function(e){

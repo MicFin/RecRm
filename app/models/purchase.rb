@@ -146,6 +146,7 @@ class Purchase < ActiveRecord::Base
       # Mark Appointment as Paid
       if purchasable.class == Appointment
         purchasable.status = "Paid"
+
         purchasable.save
       end
 

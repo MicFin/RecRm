@@ -558,7 +558,6 @@ Rails.application.routes.draw do
       resources :families
 
       # Appointments paths
-      get 'appointments/:id/purchase', to: "appointments#purchase", as: "purchase_appointment"
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_user_appointment'
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_user_survey_update'
       patch 'appointments/:id/update_duration', to: "appointments#update_duration", as: "appointments_update_duration"

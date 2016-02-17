@@ -279,23 +279,6 @@ class AppointmentsController < ApplicationController
   end
 
 
-  # Use this for when an appointment is not paid for and but is assigned to a client
-  def purchase
-    
-    @user = current_user
-    # payment_modal template requires a time_slot for start and end time
-    @time_slot = @appointment 
-    @purchasable = @appointment
-
-    @purchase = @purchasable.purchase || Purchase.new(user_id: @user.id, status: "Incomplete", purchasable_type: "Appointment", purchasable_id: @purchasable.id )  
-    @purchase.save
-
-    respond_to do |format|
-      format.js
-      # format.html
-    end
-  end
-
   # GET /appointments/1/end_appointment
   # Should move to another controller, maybe the rooms_controller
   def end_appointment

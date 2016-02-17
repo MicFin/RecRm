@@ -565,7 +565,8 @@ end
   end
 
   def check_for_appointments
-    if (self.patient_focus.count >= 1) || (self.appointment_hosts.count >= 1)
+    # do no delete if user is a patient focus of at stage 5 of an appointment
+    if ( (self.patient_focus.count >= 1) || ( ( self.appointment_hosts.count >= 1) && (self.registration_stage >= 5) ) )
       errors[:messages] << "Can not delete family member's that have appointments assigned to them."
       return false
     end

@@ -1,0 +1,4 @@
+
+<h1><%=purchasable.show_duration%>: <del class="regular-price"><%=purchase.show_invoice_cost%></del> <span class="invoice-price"> <%=purchase.show_invoice_price%></span></h1>
+
+<h2 id="coupon-description"><%=purchase.coupon_redemption.coupon.description if purchase.coupon_redemption%></h2>

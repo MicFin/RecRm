@@ -48,7 +48,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def update_with_payment(credit_card_usage, purchasable)
-        
+
     # if purchase is valid
     if valid?
 

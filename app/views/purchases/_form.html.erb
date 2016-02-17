@@ -1,0 +1,26 @@
+<%= simple_form_for purchase, 
+  :url => make_payment_path(purchasable, purchase),
+  :method => 'patch' do |f| %>
+
+  <% if purchase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(purchase.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% purchase.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= show_payment_option(user, purchase, purchasable, time_slot, f) %>
+
+  <div id="stripe_error">
+    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+  </div>
+  <div class="actions">
+    <input type="hidden" name="time_slot_id" id: "time-slot-id" value="<%=time_slot.id%>">
+    <%= f.button :submit, "Submit", class: "btn btn-success btn-block", id: "btn-purchase-appt" %>
+  </div>
+<% end %>

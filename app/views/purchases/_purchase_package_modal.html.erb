@@ -10,19 +10,19 @@
         <div class="row form-group">
           <div class="col-xs-12 text-center">
             <div class="col-xs-8 col-xs-offset-2 text-center">
-              <h1><%=@purchasable.name%></h1>
+              <h1><%=purchasable.name%></h1>
               <ul class="text-left">
-                <h3><li><%=@purchasable.num_full_appointments%> - One hour sessions </li></h3>
-                <h3><li><%=@purchasable.num_half_appointments%> - Half hour sessions</li></h3>
+                <h3><li><%=purchasable.num_full_appointments%> - One hour sessions </li></h3>
+                <h3><li><%=purchasable.num_half_appointments%> - Half hour sessions</li></h3>
               </ul>
-              <% if @purchase.invoice_cost != @purchase.invoice_price %>
+              <% if purchase.invoice_cost != purchase.invoice_price %>
              
                 <div class="col-xs-12 form-group">
                   <h1>
-                    <del class="regular-price"><%=@purchase.show_invoice_cost%></del> 
-                    <span class="invoice-price"><%= @purchase.show_invoice_price%></span>
+                    <del class="regular-price"><%=purchase.show_invoice_cost%></del> 
+                    <span class="invoice-price"><%= purchase.show_invoice_price%></span>
                   </h1>
-                  <h2 id="coupon-description"><%=@purchase.coupon_redemption.coupon.description%></h2>
+                  <h2 id="coupon-description"><%=purchase.coupon_redemption.coupon.description%></h2>
                 </div>
                 <div class="col-xs-12 form-group">
                   <div class="col-xs-8">
@@ -39,7 +39,7 @@
 
                 <div class="col-xs-12 form-group">
                   <h1>
-                    <span class="invoice-price"><%= @purchase.show_invoice_price%></span>
+                    <span class="invoice-price"><%= purchase.show_invoice_price%></span>
                   </h1>
                   <h2 id='coupon-description'></h2>
                 </div>
@@ -60,23 +60,23 @@
           <div class="col-xs-8 col-xs-offset-2 discount-response">
           </div>
         </div>
-        <%= simple_form_for @purchase, 
-          :url => make_package_payment_path(@purchasable, @purchase),
+        <%= simple_form_for purchase, 
+          :url => make_package_payment_path(purchasable, purchase),
        
-          :method => 'post' do |f| %>
+          :method => 'patch' do |f| %>
     
-          <% if @purchase.errors.any? %>
+          <% if purchase.errors.any? %>
             <div id="error_explanation">
-              <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+              <h2><%= pluralize(purchase.errors.count, "error") %> prohibited this appointment from being saved:</h2>
 
               <ul>
-              <% @purchase.errors.full_messages.each do |message| %>
+              <% purchase.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
               <% end %>
               </ul>
             </div>
           <% end %>
-          <% if @purchase.stripe_card_token %>
+          <% if purchase.stripe_card_token %>
             Session has already been paid for.
 
           <% else %>

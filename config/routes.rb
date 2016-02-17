@@ -483,7 +483,7 @@ Rails.application.routes.draw do
   get 'refer', to: "landing_pages#refer", as: "landing_pages_refer"
 
   # should change these to not being opened to all users
-  post 'packages/:package_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_package_payment'
+  patch 'packages/:package_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_package_payment'
   resources :packages do 
     resources :purchases 
   end
@@ -561,7 +561,7 @@ Rails.application.routes.draw do
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_user_appointment'
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_user_survey_update'
       patch 'appointments/:id/update_duration', to: "appointments#update_duration", as: "appointments_update_duration"
-      post 'appointments/:appointment_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_payment'
+      patch 'appointments/:appointment_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_payment'
       get 'appointments/:id/client_appointment_prep', to: 'appointments#client_appointment_prep', as: 'client_appointment_prep'
       resources :appointments do 
         resources :purchases 

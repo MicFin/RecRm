@@ -41,10 +41,19 @@ class PurchasesController < ApplicationController
     
     if @purchasable.class == Appointment
       
-      @time_slot = TimeSlot.find(params[:time_slot_id])
+      # if time slot param then find time slot (for new appts)
+      if params[:time_slot_id] 
+        @time_slot = TimeSlot.find(params[:time_slot_id])  
 
+      # otherwise use appointment as time slot (for Follow Up Unpaid Appts)
+      else
+        @time_slot = @purchasable
+      end
+
+      # set appointment's purchase or create a new one
       @purchase = @purchasable.purchase || Purchase.new(user_id: @user.id, status: "Incomplete", purchasable_type: "Appointment", purchasable_id: @purchasable.id )
       
+      # save
       @purchase.save
       
     else
@@ -76,7 +85,6 @@ class PurchasesController < ApplicationController
 
   # GET /purchasable_type/:purchasable_id/purchase/:id/make_payment
   def make_payment
-    
     
     token = purchase_params[:stripe_card_token]
     @purchase.stripe_card_token = token

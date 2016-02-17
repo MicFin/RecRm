@@ -224,9 +224,9 @@ Kindrdfood.welcome.setAppointment = {
 
       // When clicking on an event
       eventClick: function(calEvent, jsEvent, view) {
-        // on event click set up appointment by making AJAX call to edit_appointments_path
+        // on event click set up appointment by making AJAX call to make new purchase
         jsEvent.preventDefault();
-        $("#surveyApptModal").remove();
+        $("#paymentModal").remove();
         var start = calEvent.start;
         var end = calEvent.end;
         var appt_id = $("#set-appt-time").data("appt-id")

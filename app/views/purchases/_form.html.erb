@@ -20,7 +20,7 @@
     <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
   </div>
   <div class="actions">
-    <input type="hidden" name="time_slot_id" id: "time-slot-id" value="<%=time_slot.id%>">
+    <input type="hidden" name="time_slot_id" id: "time-slot-id" value="<%=time_slot.id if time_slot%>">
     <%= f.button :submit, "Submit", class: "btn btn-success btn-block", id: "btn-purchase-appt" %>
   </div>
 <% end %>

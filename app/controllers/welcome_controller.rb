@@ -61,6 +61,14 @@ class WelcomeController < Users::RegistrationsController
     @user = current_user
   end
 
+  # # Would like to use another method than update
+  # # Accepts form from welcome/get_started
+  # # /welcome/update_client_info
+  # # PATCH
+  # def update_client_info
+  # end
+
+
   # 2nd stage of registration
   # Select who the appointment is for and build other family member if necessary
   # /welcome/add_family

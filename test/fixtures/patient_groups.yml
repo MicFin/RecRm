@@ -24,6 +24,9 @@ one:
   input_option: false
   created_at: 2014-06-24 06:51:29
   updated_at: 2014-06-24 06:51:29
+  id: 1
+  unverified: false
+  has_triggers: false
 
 two:
   name: MyString
@@ -33,3 +36,6 @@ two:
   input_option: false
   created_at: 2014-06-24 06:51:29
   updated_at: 2014-06-24 06:51:29
+  id: 1
+  unverified: false 
+  has_triggers: false

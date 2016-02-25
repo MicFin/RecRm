@@ -51,7 +51,7 @@ class PatientGroupsControllerTest < ActionController::TestCase
   end
 
   test "should update patient_group" do
-    patch :update, id: @patient_group, patient_group: { step_number: @patient_group.step_number, directions: @patient_group.directions, recipe_id: @patient_group.recipe_id )
+    patch :update, id: @patient_group, patient_group: { step_number: @patient_group.step_number, directions: @patient_group.directions, recipe_id: @patient_group.recipe_id }
   end
 
   test "should destroy patient_group" do

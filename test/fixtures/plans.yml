@@ -11,9 +11,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  def: MyString
-  appointment_params: MyString
-
+	id: 1        
+	name: "Name"
+	created_at:"December 31, 2015"
+	updated_at:"December 31, 2015"
+	
 two:
-  def: MyString
-  appointment_params: MyString
+ id: 1
+ name: "Name"
+ created_at: "December 31, 2015"
+ updated_at: "December 31, 2015"

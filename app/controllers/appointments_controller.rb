@@ -45,8 +45,7 @@ class AppointmentsController < ApplicationController
 
     # Get current unassigned appointments and the dietitians available to see them
     Appointment.upcoming_and_current.unassigned.includes(:appointment_host).by_start_time.each do |appointment|
-        dietitians = appointment.available_dietitians
-        @appointments_no_dietitian[Appointments::AppointmentPresenter.new(appointment)] = dietitians
+        @appointments_no_dietitian[Appointments::AppointmentPresenter.new(appointment)] = appointment.available_dietitians
     end
 
     # Get all upcoming and scheduled appointments

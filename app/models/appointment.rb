@@ -68,6 +68,7 @@ class Appointment < ActiveRecord::Base
   has_one :purchase, as: :purchasable
 
 
+
   # # METHODS
 
   def dietitian_prep_complete?

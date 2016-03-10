@@ -42,24 +42,6 @@ class Family < ActiveRecord::Base
     return self.users.count + 1
   end
 
-  def ages
-    ages_array = []
-    if self.head_of_family.age != nil
-      ages_array << self.head_of_family.age
-    end
-    if self.users.count >= 1
-      self.users.each do | family_member|
-        if family_member.age != nil 
-          ages_array << family_member.age
-        end
-      end
-    end
-    if ages_array == []
-      ages_array = nil 
-    end 
-    return ages_array 
-  end
-
   def all_first_names
     first_names = []
     self.users.each do |user|

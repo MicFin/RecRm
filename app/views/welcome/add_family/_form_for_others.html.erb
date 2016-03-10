@@ -1,5 +1,6 @@
 <% if family && family.children %>
 	<% family.children.each.with_index(1) do |family_member, index| %>
+		<% family_member = Users::UserPresenter.new(family_member) %>
 		<%= simple_form_for(family_member, :url => {:controller => 'welcome', :action => 'build_family', :id => family_member.id}, html: { method: :patch, class: "col-xs-12 col-sm-10 col-sm-offset-1 text-left hidden family-member-form-#{index}" , role:"form" }) do |f| %>
 
 			<!-- 	FORM FIELDS -->

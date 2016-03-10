@@ -126,7 +126,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :images, allow_destroy: true
 
-    ### wanted to have a user have many surveys but then also haev a user be surveyable but it looks strange and may act weird so didnt implement yet
+  ### wanted to have a user have many surveys but then also haev a user be surveyable but it looks strange and may act weird so didnt implement yet
   has_many :surveys, dependent: :destroy # user is deleted then delete their surveys 
   has_many :surveys, :as => :surveyable, dependent: :destroy # user is deleted then delete their surveys 
   
@@ -365,15 +365,6 @@ end
     return weight_hash
   end
 
-
-  def singular_possessive
-    if self.sex == "Male"
-      return "his"
-    elsif self.sex == "Female"
-      return "her"
-    end
-  end
-
   # Checks whether a password is needed or not. For validations only.
   def password_required?
     
@@ -408,100 +399,6 @@ end
 
     else
       return true
-    end
-  end
-
-  def full_name
-    return "#{first_name} #{last_name}" 
-  end
-
-  def age
-    ### shown in months up to 2 years + 11 months
-    dob = self.date_of_birth
-
-    # if a date of birth is on file
-    if dob != nil 
-
-      now = Date.current
-      
-      # get the number of full years from now since birth 
-      # years = (now - dob).to_i / 365
-      years = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
-
-      # for under 3 year olds return in terms of months
-      if years < 3
-        months = now.month - dob.month
-        if years == 0
-          if months > 1
-            final_age = months.to_s + " months old"
-          else 
-            final_age = months.to_s + " month old"
-          end
-        elsif years == 1
-          if months > 1
-            final_age = years.to_s + " year and " + months.to_s + " months old"
-          else 
-            final_age = years.to_s + " year and " + months.to_s + " month old"
-          end
-        else
-          if months > 1
-            final_age = years.to_s + " years and " + months.to_s + " months old"
-          else 
-            final_age = years.to_s + " years and " + months.to_s + " month old"
-          end  
-        end
-
-      # for older than 3 return in terms of years and months
-      else
-        months = now.month - dob.month
-        if months == 1
-          final_age = years.to_s + " years and 1 month old"
-        elsif months > 1
-          final_age = years.to_s + " years and " + months.to_s + " months old"
-        else
-          final_age = years.to_s + " years old"
-        end
-      end
-      return final_age
-    else
-      # change nil to "No Date of Birth"
-      return nil
-    end
-  end
-  
-  def height
-    if (height_inches != nil )
-      feet = self.height_inches / 12
-      inches = self.height_inches % 12
-      if feet <= 0
-        centimeters = (inches * 2.54).round(2)
-        return "#{inches} inches (#{centimeters} cm)"
-      elsif inches > 0
-        centimeters = (((feet * 12) + inches) * 2.54).round(2)
-        return "#{feet} feet #{inches} inches (#{centimeters} cm)"
-      else
-        centimeters = ((feet * 12) * 2.54).round(2)
-        return "#{feet} feet (#{centimeters} cm)"
-      end
-    else
-      return "Not entered"
-    end
-  end
-
-  def weight
-    if (weight_ounces != nil )
-      kilograms = (weight_ounces * 0.0283495).round(2)
-      pounds = self.weight_ounces / 16
-      ounces = self.weight_ounces % 16
-      if pounds <= 0
-        return "#{ounces} ounces (#{kilograms} kg)"
-      elsif ounces > 0
-        return "#{pounds} pounds #{ounces} ounces (#{kilograms} kg)"
-      else
-        return "#{pounds} pounds (#{kilograms} kg)"
-      end
-    else
-      return "Not entered"
     end
   end
 

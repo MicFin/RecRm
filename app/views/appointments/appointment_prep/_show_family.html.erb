@@ -3,11 +3,8 @@
           <div class="row">
             <% if @family && @family.family_members %>
               <% @family.family_members.each.with_index(1) do |family_member, index| %>
-
-              <%# if family_member == @appointment.patient_focus%>
+                <% family_member = Users::UserPresenter.new(family_member) %>
                 <div class="col-xs-12">
-       
- 
                   <div class="row">
                     <div class="col-xs-12 col-sm-2">
                       

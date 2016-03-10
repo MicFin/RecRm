@@ -100,45 +100,8 @@ class GrowthEntry < ActiveRecord::Base
   private
 
   def update_age
-    dob = self.growth_chart.user.date_of_birth
     date_measured = self.measured_at.to_date
-    years = date_measured.year - dob.year - ((date_measured.month > dob.month || (date_measured.month == dob.month && date_measured.day >= dob.day)) ? 0 : 1)
-
-    # for under 3 year olds return in terms of months
-    if years < 3
-      months = date_measured.month - dob.month
-      if years == 0
-        if months > 1
-          final_age = months.to_s + " months old"
-        else 
-          final_age = months.to_s + " month old"
-        end
-      elsif years == 1
-        if months > 1
-          final_age = years.to_s + " year and " + months.to_s + " months old"
-        else 
-          final_age = years.to_s + " year and " + months.to_s + " month old"
-        end
-      else
-        if months > 1
-          final_age = years.to_s + " years and " + months.to_s + " months old"
-        else 
-          final_age = years.to_s + " years and " + months.to_s + " month old"
-        end  
-      end
-
-    # for older than 3 return in terms of years and months
-    else
-      months = date_measured.month - dob.month
-      if months == 1
-        final_age = years.to_s + " years and 1 month old"
-      elsif months > 1
-        final_age = years.to_s + " years and " + months.to_s + " months old"
-      else
-        final_age = years.to_s + " years old"
-      end
-    end
-    self.age = final_age
+    self.age = Users::UserPresenter.new(growth_chart.user).age(date_measured)
   end
 
   def check_for_appointment_review

@@ -46,14 +46,14 @@ class AppointmentsController < ApplicationController
     # Get current unassigned appointments and the dietitians available to see them
     Appointment.upcoming_and_current.unassigned.includes(:appointment_host).by_start_time.each do |appointment|
         dietitians = appointment.available_dietitians
-        @appointments_no_dietitian[appointment] = dietitians
+        @appointments_no_dietitian[Appointments::AppointmentPresenter.new(appointment)] = dietitians
     end
 
     # Get all upcoming and scheduled appointments
-    @upcoming_appointments = Appointment.upcoming.scheduled.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time
+    @upcoming_appointments = Appointments::AppointmentPresenter.present(Appointment.upcoming.scheduled.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time)
 
     # Get all previous and completed appointments
-    @previous_appointments = Appointment.previous.complete.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time
+    @previous_appointments = Appointments::AppointmentPresenter.present(Appointment.previous.complete.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time)
     
   end
 
@@ -78,7 +78,7 @@ class AppointmentsController < ApplicationController
 
       #@survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
     end
-
+    @appointment = Appointments::AppointmentPresenter.new(@appointment)
     respond_to do |format|
       format.js
     end
@@ -113,6 +113,8 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/edit
   def edit
 
+    # should have both variables
+    @appointment = Appointments::AppointmentPresenter.new(@appointment)
    
     if @appointment.status == "Follow Up Unpaid"
       # unpaid appointment that is edited after a dietitian creates the follow up unpaid appointment
@@ -227,7 +229,7 @@ class AppointmentsController < ApplicationController
     @survey = Survey.generate_for_appointment(@appointment, @client)
 
     @dietitian_survey = Survey.generate_for_appointment(@appointment, @appointment.dietitian)
-
+    @appointment = Appointments::AppointmentPresenter.new(@appointment)
     # Gather user's family data
     # from AppointmentsHelper
     get_appointment_family_info!

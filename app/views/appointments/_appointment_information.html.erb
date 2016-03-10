@@ -2,9 +2,9 @@
 <h2>Patient: <%=appointment.patient_focus.first_name%> <%=appointment.patient_focus.last_name%></h2>
 <ul>
   <li><h3>Relation: <%=appointment.patient_focus.family_role%></h3></li>
-  <li><h3>Age: <%=appointment.patient_focus.age%></h3></li>
-  <li><h3>Height: <%=appointment.patient_focus.height%></h3></li>
-  <li><h3>Weight: <%=appointment.patient_focus.weight%></h3></li>
+  <li><h3>Age: <%=appointment.patient_focus_age%></h3></li>
+  <li><h3>Height: <%=appointment.patient_focus_height%></h3></li>
+  <li><h3>Weight: <%=appointment.patient_focus_weight%></h3></li>
   <li><h3>Health Groups:</h3>
     <% if appointment.patient_focus.patient_groups.count > 0 %>
     <ul>
@@ -18,11 +18,12 @@
     <p><%=appointment.patient_focus.family_note%></p>
   </li>
 </ul>
-<h3>Family:</h3>
+<h3>Entire Family:</h3>
 <ul>
   <li><%=appointment.appointment_host.first_name%></li>
   <% appointment.appointment_host.head_of_families.first.users.each do |family_member| %>
-    <li> <%=family_member.first_name%>: <%=family_member.age%> <%=family_member.family_role%></li>
+    <% family_member = Users::UserPresenter.new(family_member) %>
+    <li> <%=family_member.first_name%>(<%=family_member.family_role%>): <%= family_member.age%></li>
   <% end %>
 </ul>
 

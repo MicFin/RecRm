@@ -55,16 +55,12 @@ class Monologue::Post < ActiveRecord::Base
   before_validation :generate_url
 
   belongs_to :user
-
   belongs_to :author, :class_name => "User", :foreign_key => "author_id"
 
   scope :default,  -> {order("published_at DESC, monologue_posts.created_at DESC, monologue_posts.updated_at DESC") }
   scope :published, -> { default.where(published: true).where("published_at <= ?", DateTime.now) }
   scope :public_blog, -> { default.where(public: true).where("published_at <= ?", DateTime.now) }
-
   default_scope{includes(:tags)}
-
-  before_save :update_completed_reviews
 
   validates :user_id, presence: true
   validates :title, :content, :url, :published_at, presence: true
@@ -73,87 +69,7 @@ class Monologue::Post < ActiveRecord::Base
 
   attr_accessor :tags_major_persona, :tags_sub_persona, :tags_theme
 
-  def self.fetch_all_work_in_progress
-    all_content = {
-      "need_specs"=> [],
-      "need_authorship"=> [],
-      "need_editorial_initial_review"=> [],
-      "need_nutrition_review"=> [],
-      "need_culinary_review"=> [],
-      "need_medical_review"=> [],
-      "need_marketing_review"=> [],
-      "need_editorial_final_review"=> [],
-      "need_publishing"=> [],
-    }
-    default.where(published: false).each do |post|
-      
-      if post.specs_completed != true 
-        all_content["need_specs"] << post
-      elsif post.author_complete != true
-        all_content["need_authorship"] << post
-      elsif post.editorial_initial_review_complete != true 
-        all_content["need_editorial_initial_review"] << post
-      elsif post.nutrition_review_required && post.nutrition_review_complete != true
-        all_content["need_nutrition_review"] << post
-      elsif post.culinary_review_required && post.culinary_review_complete != true
-        all_content["need_culinary_review"] << post
-      elsif post.medical_review_required && post.medical_review_complete != true
-        all_content["need_medical_review"] << post
-      elsif post.marketing_review_required && post.marketing_review_complete != true
-        all_content["need_marketing_review"] << post
-      elsif post.editorial_final_review_complete != true
-        all_content["need_editorial_final_review"] << post
-      elsif post.published != true
-        all_content["need_publishing"] << post
-      else
-      end
-    end
-    return all_content
-  end
 
-  def self.fetch_all_completed
-    all_content = {
-      "not_published"=> [],
-      "published"=> [],
-      "public"=> [],
-    }
-    default.where(editorial_final_review_complete: true).each do |post|
-      if post.published != true 
-        all_content["not_published"] << post
-      elsif post.public != true
-        all_content["published"] << post
-      else 
-        all_content["public"] << post
-      end
-    end
-    return all_content
-  end
-
-  def current_stage
-    if self.specs_completed == false 
-      return 1
-    elsif self.author_complete == false
-      return 2
-    elsif self.editorial_initial_review_complete == false 
-      return 3
-    elsif self.nutrition_review_complete == false
-      return 4
-    elsif self.culinary_review_complete == false
-      return 5
-    elsif self.medical_review_complete == false
-      return 6
-    elsif self.marketing_review_complete == false
-      return 7
-    elsif self.editorial_final_review_complete == false
-      return 8
-    elsif self.published == false
-      return 9
-    elsif self.public == false
-      return 10
-    else
-      return 0
-    end
-  end
   def tags_major_persona
     self.tags.where(tag_category: "major persona").map { |tag| tag.name }.join(", ") if self.tags
   end
@@ -223,39 +139,6 @@ class Monologue::Post < ActiveRecord::Base
 
   private
 
-
-  def update_completed_reviews
-    array_of_review_types = [
-      "editorial_initial_review_complete", 
-      "nutrition_review_complete",
-      "specs_completed",
-      "author_complete",
-      "editorial_initial_review_complete",
-      "nutrition_review_complete",
-      "culinary_review_complete",
-      "medical_review_complete",
-      "marketing_review_complete",
-      "editorial_final_review_complete",
-      "published",
-    ]
-    array_of_review_types.each do |review_type|
-      if self.changes.has_key?(review_type)
-        if self.changes[review_type][1] == false 
-          if review_type == "specs_completed" || review_type == "published"
-            self.send(review_type+"_at=", nil) 
-          else
-            self.send(review_type+"d_at=", nil) 
-          end
-        else
-          if review_type == "specs_completed" || review_type == "published"
-            self.send(review_type+"_at=", DateTime.now)   
-          else
-            self.send(review_type+"d_at=", DateTime.now)  
-          end
-        end
-      end
-    end
-  end
 
   def self.paged_results(p, per_page, admin)
     set_total_pages(per_page)

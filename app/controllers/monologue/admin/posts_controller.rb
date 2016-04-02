@@ -3,8 +3,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   before_filter :load_post, only: [:edit, :update]
   
   def index
-    @posts = Monologue::Post.fetch_all_work_in_progress
-    @completed_posts = Monologue::Post.fetch_all_completed
+    @posts = Monologue::Post.published
     @authors = Monologue::User.order(:email)
   end
 

@@ -85,5 +85,6 @@ Should try doing .extend
 .monologue-admin .datepicker {
   top: 100% !important;
   left: 6% !important;
+  width: 220px;
 
 }

@@ -15,7 +15,10 @@
         <ul class="nav navbar-nav navbar-right" data-monologue="nav-bar-right">
           <%= activable_li_tag_with_link t(".create_content"), new_admin_post_path %>
           <%#= activable_li_tag_with_link t(".my_inbox"), admin_posts_path, admin_path %>
-          <%= activable_li_tag_with_link t(".view_content"), admin_posts_path, admin_path %>
+          <%= activable_li_tag_with_link t(".all_content"), admin_posts_path, admin_path %>
+          <%= activable_li_tag_with_link t(".recipes"), admin_posts_path, admin_path %>
+          <%= activable_li_tag_with_link t(".articles"), admin_posts_path, admin_path %>
+
           <%#= activable_li_tag_with_link t(".completed_content"), admin_posts_path, admin_path %>
           <%#= activable_li_tag_with_link t(".meal_plans"), admin_posts_path, admin_path %>
           <%#= activable_li_tag_with_link t(".pantries"), admin_posts_path, admin_path %>

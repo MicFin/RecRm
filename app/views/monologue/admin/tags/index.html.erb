@@ -17,7 +17,7 @@
 							<h3><%=tag_category%></h3>	
 							<ul>
 								<%tags_array.each do |tag| %>
-									<li><%=tag.name%></li>
+									<li><%=tag.name%> <%= link_to 'Edit', edit_admin_tag_path(tag) %></td></li>
 								<% end %>
 							</ul>
 						</div>

@@ -101,7 +101,7 @@ class Monologue::Post < ActiveRecord::Base
   end
 
   def published_in_future?
-    self.published && self.published_at > DateTime.now
+    self.published && self.target_published_at > DateTime.now
   end
 
   def self.page p

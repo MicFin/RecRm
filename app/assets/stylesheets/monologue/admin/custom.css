@@ -82,6 +82,7 @@ Should try doing .extend
   border-top: 2px solid grey;
 }
 
+/* Datepicker styling*/
 .monologue-admin .datepicker {
   top: 100% !important;
   left: 6% !important;
@@ -89,6 +90,7 @@ Should try doing .extend
 
 }
 
+/*Word Count Styling*/
 .monologue-admin .cke_wordcount {
   display:block;
   float:right;
@@ -96,11 +98,15 @@ Should try doing .extend
   margin-right:3px;
   color:black;
 }
-
 .monologue-admin .cke_wordcountLimitReached {color:red! important}
 
-
+/*Sticky Menu Bar Styling*/
 .monologue-admin .cke_top.cke_top_nav {
   position: fixed;
   top: 0;
 }
+
+.monologue-admin .datatable tfoot {
+  display: table-row-group;
+}
+

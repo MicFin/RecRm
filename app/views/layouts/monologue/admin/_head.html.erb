@@ -36,17 +36,15 @@
 -->
 <%= stylesheet_link_tag    "monologue/admin/application" %>
 
-
 <!--     
     Loads application wide JS at application.js
-    Loads controller specific JS at EX: welcome.js
 -->
 <%= javascript_include_tag "application", media: 'all' %>
 
-
-<%#= stylesheet_link_tag    "monologue/blog/application" %>
-<%#= javascript_include_tag "monologue/blog/application" %>
-
+<!--     
+    Loads monologue specific js
+-->
+<%= javascript_include_tag "monologue/admin/application" %>
 <!--     
     Loads jstimezonedetect, should add to asset pipeline on controller specific pages
 -->

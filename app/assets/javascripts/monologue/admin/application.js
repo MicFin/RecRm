@@ -6,12 +6,27 @@
 //
 //= require jquery
 //= require jquery_ujs
+
 //= require monologue/bootstrap/bootstrap.min
 //= require monologue/bootstrap/bootstrap-datepicker
 //= require monologue/bootstrap/bootstrap-datepicker-fr
 //= require monologue/bootstrap/bootstrap-datepicker-pt
 //= require monologue/bootstrap/bootstrap-datepicker-es
+
 //= require ckeditor/init
+
 //= require monologue/admin/ckeditor-config
+
+//= require monologue/admin/ckeditor/plugins/notification/plugin
+//= require monologue/admin/ckeditor/plugins/notification/lang/en
+
+//= require monologue/admin/ckeditor/plugins/wordcount/plugin
+//= require monologue/admin/ckeditor/plugins/wordcount/lang/en
+
+//= require monologue/admin/ckeditor/plugins/tableresize/plugin
+
+//= require monologue/admin/ckeditor/plugins/autogrow/plugin
+
 //= require monologue/admin/posts
+
 //= require select2

@@ -38,6 +38,6 @@ $(function() {
     //             }
     //         }
     //     });
-   
+    CKEDITOR.config.extraPlugins = 'notification,wordcount,tableresize,autogrow';
 
 });

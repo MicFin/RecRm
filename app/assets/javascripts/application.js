@@ -21,6 +21,7 @@
 //= require plugins/jquery-masked-input.min
 //= require plugins/dirty_form_catcher
 
+
 //  JAVASCRIPT TIME AND DATES
 //= require moment
 

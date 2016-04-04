@@ -63,55 +63,38 @@ class Monologue::Post < ActiveRecord::Base
   default_scope{includes(:tags)}
 
   validates :user_id, presence: true
-  validates :title, :content, :url, :published_at, presence: true
+  validates :title, :content, :url, :target_published_at, presence: true
   validates :url, uniqueness: true
   validate :url_do_not_start_with_slash
 
-  attr_accessor :tags_major_persona, :tags_sub_persona, :tags_theme
-
-
-  def tags_major_persona
-    self.tags.where(tag_category: "major persona").map { |tag| tag.name }.join(", ") if self.tags
+  #  returns a hash of param names and category names
+  #  used for form presentation
+  def self.tag_key
+    key = {}
+    Monologue::Tag.distinct.pluck(:tag_category).each { |tag_category| key["tag_list_#{tag_category.downcase.split(' ').join('_')}"] = tag_category.downcase.titleize} 
+    return key
   end
 
-  def tags_sub_persona
-    self.tags.where(tag_category: "sub persona").map { |tag| tag.name }.join(", ") if self.tags
+  #  creates methods for each tag_list in in tag_key
+  #  used for form presentation  
+  #  http://railstic.com/2011/06/dynamically-defining-methods-with-define_method/
+  self.tag_key.each do |method_name, category_name|
+    define_method(method_name) { self.tags.where(tag_category: category_name.downcase.titleize).map { |tag| tag.name }.join(", ") if self.tags || nil }
   end
 
-  def tags_theme
-    self.tags.where(tag_category: "theme").map { |tag| tag.name }.join(", ") if self.tags
+  def tag_list= tags_attr
+    self.tag!(tags_attr.split(","))
   end
-  # def tags_major_persona= tags_attr
-  #   tags_array = tags_attr.split(",");
-  #   tags_array.map(&:strip).reject(&:blank?).map do |tag|
-  #     Monologue::Tag.where(name: tag).where(tag_category: "major persona").first_or_create
-  #   end
-  # end
-  # def tags_sub_persona
-  #   self.tags.map { |tag| tag.name }.join(", ") if self.tags
-  # end
-  # def tags_theme
-  #   self.tags.map { |tag| tag.name }.join(", ") if self.tags
-  # end
 
-  # def tag_list= tags_attr
-  #   
-  #   self.tags = tags_attr
-  # end
+  def tag_list
+    self.tags.map { |tag| tag.name }.join(", ") if self.tags
+  end
 
-  # def tag_list= tags_attr
-  #   self.tag!(tags_attr.split(","))
-  # end
-
-  # def tag_list
-  #   self.tags.map { |tag| tag.name }.join(", ") if self.tags
-  # end
-
-  # def tag!(tags_attr)
-  #   self.tags = tags_attr.map(&:strip).reject(&:blank?).map do |tag|
-  #     Monologue::Tag.where(name: tag).first_or_create
-  #   end
-  # end
+  def tag!(tags_attr)
+    self.tags = tags_attr.map(&:strip).reject(&:blank?).map do |tag|
+      Monologue::Tag.where(name: tag).first_or_create
+    end
+  end
 
   def full_url
     "#{Monologue::Engine.routes.url_helpers.root_path}#{self.url}"

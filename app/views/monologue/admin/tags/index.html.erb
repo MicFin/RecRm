@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="col-xs-12">
+
+		<div class="row">
+			<div class="col-xs-12">
+		    <%= render '/monologue/admin/tags/form', tag: @tag %> 	
+		  </div>
+		</div>
+
+		<div class="row">
+			<% @tags_grouped.each do | content_type_hash| %>
+				<% content_type_hash.each do |content_type, tag_category_hash| %>
+					<div class="col-xs-12">
+						<h1><%=content_type%> tags</h1>	
+						<% tag_category_hash.each do |tag_category, tags_array| %>
+						<div class="col-xs-2">
+							<h3><%=tag_category%></h3>	
+							<ul>
+								<%tags_array.each do |tag| %>
+									<li><%=tag.name%></li>
+								<% end %>
+							</ul>
+						</div>
+						<% end %>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,20 @@
+
+<%= monologue_admin_form_for ["admin", tag] do |f| %>
+  <%= f.error_messages %>
+  <div class="row">
+    <div class="col-xs-3">
+      <%= f.select :content_type, [['General', 'General'], ['Recipe', 'Recipe'], ['Article', 'Article']], label:  raw(t(".content_type")), class: "tag_list_health_groups"%>
+    </div>
+
+    <div class="col-xs-3">
+      <%= f.text_field :tag_category, label:  raw(t(".tag_category")), class: "tag_category" %>
+    </div>
+    <div class="col-xs-3">
+      <%= f.text_field :name, label:  raw(t(".name")), class: "tag_list_symptoms" %>
+    </div>
+    <div class="col-xs-3">
+      <%= f.button t(".save"), class:  "btn btn-lg btn-primary"%> 
+    </div>
+  </div>
+
+<% end %>

@@ -1,12 +1,11 @@
 <%= post.error_messages %>
 <section class="row">
   <div class="col-xs-12">
-    <h2>Stage 1: Editorial Guidance</h2>
-    <p>The editorial calendar will drive what content gets created.  Here, the editorial team can select the guidance necessary so that the specs of the article can be created.</p>
-    <div class="row form-group">
+    <div class="row">
       <div class="col-xs-12">
-        <label>What type of content is it?</label>
+          <label>Content Type</label>
       </div>
+
       <div class="col-xs-12">
         <label class="radio-inline">
           <input type="radio" name="post[content_type]" id="inlineRadio1" value="Article: Client Fulfillment" <%=(@post.content_type == 'Article: Client Fulfillment') ? "checked" : false %> > Article: Client Fulfillment
@@ -17,165 +16,19 @@
         <label class="radio-inline">
           <input type="radio" name="post[content_type]" id="inlineRadio3" value="Recipe" <%=(@post.content_type == 'Recipe') ? "checked" : false %> > Recipe
         </label>
-        <label class="radio-inline">
-          <input type="radio" name="post[content_type]" id="inlineRadio4" value="Meal Plan" <%=(@post.content_type == 'Meal Plan') ? "checked" : false %> > Meal Plan
+          <!--         <label class="radio-inline">
+          <input type="radio" name="post[content_type]" id="inlineRadio4" value="Meal Plan" <%#=(@post.content_type == 'Meal Plan') ? "checked" : false %> > Meal Plan
         </label>
         <label class="radio-inline">
-          <input type="radio" name="post[content_type]" id="inlineRadio5" value="Pantry List" <%=(@post.content_type == 'Pantry List') ? "checked" : false %> > Pantry List
-        </label>
-      </div>
-    </div>
-    <div class="row form-group"> 
-      <div class="col-xs-4">
-        <%= post.text_field :tags_major_persona, label:  raw(t(".major_personas")), class: "tags_major_persona_list" %>
-      </div>
-      <div class="col-xs-4">
-        <%= post.text_field :tags_sub_persona, label:  raw(t(".sub_personas")), class: "tags_sub_persona_list" %>
-      </div>
-      <div class="col-xs-4">
-        <%= post.text_field :tags_theme, label:  raw(t(".themes")), class: "tags_theme_list" %>
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-xs-12">
-        <label>Required Reviews</label>
-        <div class="checkbox">
-          <%= post.check_box :nutrition_review_required, label: "Nutrition" %>
-          <%= post.check_box :culinary_review_required, label: "Culinary" %>
-          <%= post.check_box :medical_review_required, label: "Medical" %>
-          <%= post.check_box :marketing_review_required, label: "Marketing" %>
-        </div>
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-xs-3">
-        <%= post.text_field :published_at, label:  t(".target_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d") %>
-      </div>
-      <div class="col-xs-3">
-        <%= post.collection_select :spec_author_id, @authors, :id,:email, include_blank: true, label: "Assign Specs Author"  %>
+          <input type="radio" name="post[content_type]" id="inlineRadio5" value="Pantry List" <%#=(@post.content_type == 'Pantry List') ? "checked" : false %> > Pantry List
+        </label> -->
       </div>
     </div>
   </div>
 </section>
 <section class="row">
   <div class="col-xs-12">
-    <h2>Stage 2: Content Specs</h2>
-    <p>Specifications should be based on the goals set forth by the editorial team.  Specs can be in short form but should help guide the author that will be crafting the content.</p>
-    <div class="row form-group">
-
-      <div class="col-xs-12 form-group">
-        <%= post.text_area :specs, label:  t(".specs"), rows: 10 %>        
-      </div>
-      <div class="col-xs-3 form-group">
-        <%= post.collection_select :author_id, @authors, :id,:email, include_blank: true, label: "Assign Author"  %>
-      </div>
-
-    </div>
-    <div class="row form-group">
-      <div class="col-xs-12">
-      <label>Specs Complete?</label>
-        <div class="checkbox">
-          <%= post.check_box :specs_completed, label: "Send to Author" %>
-        </div>
-      </div>
-    </div>
-</section>
-<section class="row">
-  <div class="col-xs-12">
-    <h2>Stage 3: Happy Writing</h2> 
-    <p>Using the category guidance, specifications, and keywords provided by the editorial team, write the best gosh darn piece of content you can!</p>
-    <%= post.text_area :content, label:  t(".happy_writing"), class:  "col-xs-12 ckeditor", id: "post_content" %>
-     <div class="row form-group">
-      <div class="col-xs-12 form-group">
-        <div class="form-actions">
-          <%#= post.button t(".preview"), class: "btn btn-lg btn-default", type: "button", value: "preview"%>
-        </div>
-      </div>
-    </div> 
-    <div class="row form-group">
-      <div class="col-xs-12">
-        <label>Finished?</label>
-        <div class="checkbox">
-          <%= post.check_box :author_complete, label: "Send to Editor" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="row">
-  <div class="col-xs-12">
-      <h2>Stage 4: Reviews</h2>
-      <table class="table post-review-table">
-        <tr class="active">
-          <th>Review</th>
-          <th>Required?</th>
-          <th>Completed?</th>
-          <th>Completion Date</th>
-          <th>Reviewer</th>
-        </tr>
-        <tr class="primary">
-          <td>Initial Editorial</td>
-          <td><%= post.object.editorial_initial_review_required ? "Yes": "No"%></td>
-          <td><%= post.check_box :editorial_initial_review_complete, label: " "  %></td>
-          <td>
-            <%= post.object.editorial_initial_review_completed_at.strftime("%Y-%m-%d") if post.object.editorial_initial_review_completed_at %>
-          </td>
-          <td> 
-            <%= post.object.editorial_initial_reviewer_id%>
-          </td>
-        </tr>
-        <tr class="warning">
-          <td>Culinary</td>
-          <td><%= post.object.culinary_review_required ? "Yes": "No"%></td>
-          <td><%= post.check_box :culinary_review_complete, label: " " if post.object.culinary_review_required%></td>
-          <td>
-            <%= post.object.culinary_review_completed_at.strftime("%Y-%m-%d") if post.object.culinary_review_completed_at %>
-          </td>
-          <td> 
-            <%= post.object.culinary_reviewer_id%>
-          </td>
-        </tr>
-        <tr class="danger">
-          <td>Nutrition</td>
-          <td><%= post.object.nutrition_review_required ? "Yes": "No"%></td>
-          <td><%= post.check_box :nutrition_review_complete, label: " " if post.object.nutrition_review_required%></td>
-          <td>
-            <%= post.object.nutrition_review_completed_at.strftime("%Y-%m-%d") if post.object.nutrition_review_completed_at %>
-          </td>
-          <td> 
-            <%= post.object.nutrition_reviewer_id%>
-          </td>
-        </tr>
-        <tr class="info">
-          <td>Medical</td>
-          <td><%= post.object.medical_review_required ? "Yes": "No"%></td>
-          <td><%= post.check_box :medical_review_complete, label: " " if post.object.medical_review_required%></td>
-          <td>
-            <%= post.object.medical_review_completed_at.strftime("%Y-%m-%d") if post.object.medical_review_completed_at %>
-          </td>
-          <td> 
-            <%= post.object.medical_reviewer_id%>
-          </td>
-        </tr>
-        <tr class="success">
-          <td>Marketing</td>
-          <td><%= post.object.marketing_review_required ? "Yes": "No"%></td>
-          <td><%= post.check_box :marketing_review_complete, label: " " if post.object.marketing_review_required%></td>
-          <td>
-            <%= post.object.marketing_review_completed_at.strftime("%Y-%m-%d") if post.object.marketing_review_completed_at %>
-          </td>
-          <td> 
-            <%= post.object.marketing_reviewer_id%>
-          </td>
-        </tr>
-      </table>
-  </div>
-</section>
-
-<section class="row">
-  <div class="col-xs-12">
-      <h2>Stage 5: General Site Info</h2>
+    <div class="row">
       <div class="col-xs-3">
         <%= post.text_field :title, label:  t(".content_title") %>
       </div>
@@ -184,22 +37,82 @@
         <%= post.text_field :url, label:  t(".public_url") %>
       </div>
       <div class="col-xs-3">
-        <%= post.collection_select :call_to_action_id, {"Home Page"=> 1, "QOL Landing Page"=> 2, "Provider Landing Page"=>3}, :last, :first, include_blank: true  %>
+        <%= post.text_field :target_published_at, label:  t(".target_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.target_published_at.nil? ? "" : post.object.target_published_at.strftime("%Y-%m-%d") %>
       </div>
+    </div>
   </div>
 </section>
-
-
-
+<section class="row">
+  <div class="col-xs-12">
+    <div class="row form-group"> 
+      <div class="general-tag-container col-xs-12">
+        <div class="row">
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_health_groups, label:  raw(t(".health_groups")), class: "tag_list_health_groups" %>
+          </div>
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_food_triggers, label:  raw(t(".food_triggers")), class: "tag_list_food_triggers" %>
+          </div>
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_symptoms, label:  raw(t(".symptoms")), class: "tag_list_symptoms" %>
+          </div>
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_dietary_preferances, label:  raw(t(".dietary_preferances")), class: "tag_list_dietary_preferances" %>
+          </div>
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_age, label:  raw(t(".age")), class: "tag_list_age" %>
+          </div>
+        </div>
+      </div>
+      <div class="article-tag-container col-xs-12 <%='hidden' unless @post.content_type != 'Recipe'%>">
+        <div class="row">
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_high_level_theme, label:  raw(t(".article_high_level_theme")), class: "tag_list_high_level_theme" %>
+          </div>
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_low_level_theme, label:  raw(t(".article_low_level_theme")), class: "tag_list_low_level_theme" %>
+          </div>
+        </div>
+      </div>
+      <div class="recipe-tag-container col-xs-12 <%='hidden' unless @post.content_type == 'Recipe'%>">
+        <div class="row">
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_meal_type, label:  raw(t(".meal_type")), class: "tag_list_meal_type" %>
+          </div>
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_sub_meal_type, label:  raw(t(".sub_meal_type")), class: "tag_list_sub_meal_type" %>
+          </div>
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_cooking_techniques, label:  raw(t(".cooking_techniques")), class: "tag_list_cooking_techniques" %>
+          </div>
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_eating_style, label:  raw(t(".eating_style")), class: "tag_list_eating_style" %>
+          </div>
+          <div class="col-xs-4">
+            <%= post.text_field :tag_list_main_ingredient, label:  raw(t(".main_ingredient")), class: "tag_list_main_ingredient" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="row">
+  <div class="col-xs-12">
+    <%= post.text_area :content, label:  t(".happy_writing"), class:  "col-xs-12 ckeditor", id: "post_content" %>
+     <div class="row form-group">
+      <div class="col-xs-12 form-group">
+        <div class="form-actions">
+          <%#= post.button t(".preview"), class: "btn btn-lg btn-default", type: "button", value: "preview"%>
+        </div>
+      </div>
+    </div> 
+  </div>
+</section>
 
 <section class="row">
   <div class="col-xs-12">
 
     <h2>Stage 6: Final Review</h2>
-    <div class="col-xs-3 text-center">
-      <%= post.check_box :editorial_final_review_complete, label:  t(".editorial_final_review_complete") %>
-      <p>Content has passed all the neceessary reviews.</p>
-    </div>
     <div class="col-xs-3 text-center">
       <%= post.check_box :published, label:  t(".published") %>
       <p>Content is only available to KRDNs and their clients.</p>
@@ -234,10 +147,73 @@
 </div>
 
 <script>
+
+  // DatePicker
   if($.fn.datepicker.defaults_<%= I18n.locale %>){
     $.fn.datepicker.defaults = $.fn.datepicker.defaults_<%= I18n.locale %>;
   }
-  $(".tags_major_persona_list").select2({tags: <%= Monologue::Tag.where(tag_category: "major persona").map{|t| t.name }.to_json.html_safe %>, width: 'resolve' });
-  $(".tags_sub_persona_list").select2({tags: <%= Monologue::Tag.where(tag_category: "sub persona").map{|t| t.name }.to_json.html_safe %>, width: 'resolve' });
-  $(".tags_theme_list").select2({tags: <%= Monologue::Tag.where(tag_category: "theme").map{|t| t.name }.to_json.html_safe %>, width: 'resolve' });
+
+  // Tag Suggestions
+  <% Monologue::Post.tag_key.each do |category_class, category_name| %>
+    $(".<%=category_class%>").select2({tags: <%= Monologue::Tag.where(tag_category: category_name).map{|t| t.name }.to_json.html_safe %>, width: 'resolve' });
+  <% end %>
+
+  // post title creating URL as typed
+  $( "#post_title" ).keyup(function() {
+    var contentTitle = $(this).val().toLowerCase().split(" ");
+    var output = '';
+    for (var i = 0; i < contentTitle.length; i++) {
+      if (i < contentTitle.length - 1) {
+          output += contentTitle[i] + '-';
+      } else {
+          output += contentTitle[i];
+      }
+    }
+    $("#post_url").val(output);
+  });
+
+  // radio buttons for content type showing and hiding tags
+  $('input[type="radio"][name="post[content_type]"]').change(function() {
+    var $radioButton = $(this);
+    if ( ($radioButton.val() === 'Article: Digital Marketing') || ($radioButton.val() === 'Article: Client Fulfillment') )  {
+
+        $(".article-tag-container").removeClass("hidden");
+        $(".article-tag-container input").prop("disabled", false);
+        $(".recipe-tag-container input").prop("disabled", true);
+        $(".recipe-tag-container").addClass("hidden");
+
+    } else if ($radioButton.val() === 'Recipe') {
+        $(".recipe-tag-container").removeClass("hidden");
+        $(".recipe-tag-container input").prop("disabled", false);
+        $(".article-tag-container input").prop("disabled", true);
+        $(".article-tag-container").addClass("hidden");
+    } else {
+        $(".recipe-tag-container input").prop("disabled", false);
+        $(".recipe-tag-container").addClass("hidden");
+        $(".article-tag-container input").prop("disabled", true);
+        $(".article-tag-container").addClass("hidden");
+    }
+  });
+
+  // CKEDITOR sticky header
+  CKEDITOR.on('instanceReady', function() { 
+
+    function fixDiv() {
+      var $div = $("#cke_1_top");
+      if ($(window).scrollTop() > $div.data("top")) { 
+        $('#cke_1_top').addClass("cke_top_nav"); 
+      } else {
+        $('#cke_1_top').removeClass("cke_top_nav");
+      }
+    };
+    // set original position on load
+    $("#cke_1_top").data("top", $("#cke_1_top").offset().top); 
+    // call fixdiv on scroll 
+    $(window).scroll(fixDiv);
+
+  });
+
+
+
+
 </script>

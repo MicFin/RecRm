@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402193227) do
+ActiveRecord::Schema.define(version: 20160403155413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -289,6 +289,7 @@ ActiveRecord::Schema.define(version: 20160402193227) do
   create_table "monologue_tags", force: true do |t|
     t.string "name"
     t.string "tag_category"
+    t.string "content_type"
   end
 
   add_index "monologue_tags", ["name"], name: "index_monologue_tags_on_name", using: :btree

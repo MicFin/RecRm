@@ -62,3 +62,20 @@
 
 # PatientGroup.create(name: "Wheat", category: "allergy", order: 9).allergens << Allergen.create(name: "wheat", description: "The grain of the wheat plant.")
 
+# Create Tags
+
+Monologue::Tag.create(content_type: "General", tag_category: "Health Groups", name: "Celiac")
+Monologue::Tag.create(content_type: "General", tag_category: "Food Triggers", name: "Peanuts")
+Monologue::Tag.create(content_type: "General", tag_category: "Symptoms", name: "Vomiting")
+Monologue::Tag.create(content_type: "General", tag_category: "Dietary Preferances", name: "Paleo")
+Monologue::Tag.create(content_type: "General", tag_category: "Age", name: "Child")
+Monologue::Tag.create(content_type: "Article", tag_category: "High Level Theme", name: "New Moms")
+Monologue::Tag.create(content_type: "Article", tag_category: "Low Level Theme", name: "Moms")
+Monologue::Tag.create(content_type: "Recipe", tag_category: "Meal Type", name: "Dinner")
+Monologue::Tag.create(content_type: "Recipe", tag_category: "Sub Meal Type", name: "Salad")
+Monologue::Tag.create(content_type: "Recipe", tag_category: "Cooking Techniques", name: "Baked Goods")
+Monologue::Tag.create(content_type: "Recipe", tag_category: "Eating Style", name: "On The Go")
+Monologue::Tag.create(content_type: "Recipe", tag_category: "Main Ingredient", name: "Chicken")
+
+
+

@@ -1,32 +1,33 @@
 class Monologue::Admin::TagsController < Monologue::Admin::BaseController
   respond_to :html
-  before_filter :load_tag, only: [:edit, :update]
-  
+  before_action :set_tag, only: [:edit, :update, :destroy]
+
+  def show
+    @tag = retrieve_tag
+    if @tag
+      @page = nil
+      @posts = @tag.posts_with_tag
+    else
+      redirect_to :root ,notice: "No post found with label \"#{params[:tag]}\""
+    end
+  end
+
   def index
-    @tags = Monologue::Tag.default
+    @tags_grouped = Monologue::Tag.grouped_tags
+    @tag = Monologue::Tag.new
     @authors = Monologue::User.order(:email)
   end
 
   def new
-    @authors = Monologue::User.order(:email)
+    # @authors = Monologue::User.order(:email)
     @tag = Monologue::Tag.new
   end
 
-  ## Preview a tag without saving.
-  def preview
-    # mockup our models for preview.
-    @tag = Monologue::Tag.new tag_params
-    @tag.user_id = monologue_current_user.id
-    @tag.published_at = Time.zone.now
-    # render it exactly as it would display when live.
-    render "/monologue/tags/show", layout: Monologue::Config.layout || "/layouts/monologue/application"
-  end
-
   def create
-    
-    @authors = Monologue::User.order(:email)
+    # find_or_create_tags
+    # @authors = Monologue::User.order(:email)
     @tag = Monologue::Tag.new tag_params
-    @tag.user_id = monologue_current_user.id
+    # @tag.user_id = monologue_current_user.id
     if @tag.save
       prepare_flash_and_redirect_to_edit()
     else
@@ -39,7 +40,6 @@ class Monologue::Admin::TagsController < Monologue::Admin::BaseController
   end
 
   def update
-    
     @authors = Monologue::User.order(:email)
     if @tag.update(tag_params)
       prepare_flash_and_redirect_to_edit()
@@ -49,30 +49,31 @@ class Monologue::Admin::TagsController < Monologue::Admin::BaseController
   end
 
   def destroy
-    tag = Monologue::Tag.find(params[:id])
-    if tag.destroy
+    if @tag.destroy
       redirect_to admin_tags_path, notice:  I18n.t("monologue.admin.tags.delete.removed")
     else
       redirect_to admin_tags_path, alert: I18n.t("monologue.admin.tags.delete.failed")
     end
   end
 
-private
-  def load_tag
+
+
+  private
+  def retrieve_tag
+    Monologue::Tag.where("lower(name) = ?", params[:tag].mb_chars.to_s.downcase).first
+  end
+
+
+  def set_tag
     @tag = Monologue::Tag.find(params[:id])
   end
 
-  # def prepare_flash_and_redirect_to_edit
-  #   if @tag.published_in_future? && ActionController::Base.perform_caching
-  #     flash[:warning] = I18n.t("monologue.admin.tags.#{params[:action]}.saved_with_future_date_and_cache")
-  #   else
-  #     flash[:notice] =  I18n.t("monologue.admin.tags.#{params[:action]}.saved")
-  #   end
-  #   redirect_to edit_admin_tag_path(@tag)
-  # end
+  def prepare_flash_and_redirect_to_edit
+    flash[:notice] =  "Tag saved!"
+    redirect_to edit_admin_tag_path(@tag)
+  end
 
   def tag_params
-    params.require(:tag).permit(:name, :tag_category)
-  end
+    params.require(:tag).permit(:name, :content_type, :tag_category)
+  end  
 end
- 

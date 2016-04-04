@@ -435,28 +435,22 @@
 Rails.application.routes.draw do
 
 
-  resources :food_diaries do 
-    resources :food_diary_entries
-  end
-
-  
-  resources :growth_charts do 
-     resources :growth_entries
-  end
-
-
-  resources :survey_groups do 
-    resources :questions 
-  end
-
+  ### ROUTES FOR MONOLGUE
   mount Ckeditor::Engine => '/ckeditor'
   # or whatever path, be it "/blog" or "/monologue"
   mount Monologue::Engine, at: '/education' 
-  
+  Monologue::Engine.routes.draw do
+
+    namespace :admin, path: "monologue" do
+      
+      resources :tags
+      
+    end
+  end
 
 
+  ### ROUTES FOR ADMIN USERS
   devise_for :admin_users, ActiveAdmin::Devise.config
-  
   ActiveAdmin.routes(self)
 
   ### ROUTES AVAILABLE TO NON USERS 
@@ -497,6 +491,18 @@ Rails.application.routes.draw do
       # /coupons/remove_coupon
       get :remove_coupon, to: "coupons#remove_coupon", as: 'remove_coupon'
     end
+  end
+
+  resources :food_diaries do 
+    resources :food_diary_entries
+  end
+
+  resources :growth_charts do 
+     resources :growth_entries
+  end
+
+  resources :survey_groups do 
+    resources :questions 
   end
 
   # is it better to do a redirect or another route that goes to the same controller method?

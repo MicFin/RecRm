@@ -3,7 +3,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   before_filter :load_post, only: [:edit, :update]
   
   def index
-    @posts = Monologue::Post.published
+    @posts = Monologue::Post.all
     @authors = Monologue::User.order(:email)
   end
 

@@ -26,6 +26,7 @@ gem 'jquery-rails', '~> 3.1.2'
 gem 'turbolinks', "2.2.2"                             # https://github.com/rails/turbolinks
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails', "4.2.1"
+gem 'jquery-datatables-rails', '~> 3.3.0'
 # gem 'nprogress-rails'
 
 # # Assets

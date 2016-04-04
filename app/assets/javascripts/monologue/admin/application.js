@@ -27,6 +27,9 @@
 
 //= require monologue/admin/ckeditor/plugins/autogrow/plugin
 
-//= require monologue/admin/posts
-
 //= require select2
+
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+
+//= require monologue/admin/posts

@@ -1,31 +1,90 @@
 <div class="row">
-	<div class="col-xs-12">
-
-		<div class="row">
 			<div class="col-xs-12">
-		    <%= render '/monologue/admin/tags/form', tag: @tag %> 	
+				<h1>Tags</h1>		
 		  </div>
-		</div>
+			<section class="col-xs-12">
+		    <%= render '/monologue/admin/tags/form', tag: @tag %> 	
+		  </section>
+		  <section class="col-xs-12">
+		      <table class="table table-striped table-bordered datatable">
+		        <thead>
+		          <tr>
+		            <th><%= t(".content_type")%></th>
+ 		            <th><%= t(".tag_category")%></th>
+		            <th><%= t(".tag_name")%></th>
 
-		<div class="row">
-			<% @tags_grouped.each do | content_type_hash| %>
-				<% content_type_hash.each do |content_type, tag_category_hash| %>
-					<div class="col-xs-12">
-						<h1><%=content_type%> tags</h1>	
-						<% tag_category_hash.each do |tag_category, tags_array| %>
-						<div class="col-xs-2">
-							<h3><%=tag_category%></h3>	
-							<ul>
-								<%tags_array.each do |tag| %>
-									<li><%=tag.name%> <%= link_to 'Edit', edit_admin_tag_path(tag) %></td></li>
-								<% end %>
-							</ul>
-						</div>
-						<% end %>
-					</div>
-				<% end %>
-			<% end %>
-		</div>
+		            <th></th>
+		            <th></th>
+		          </tr>
+		        </thead>
+		        <tfoot>
+		          <tr>
+		            <th><%= t(".content_type")%></th>
+		            <th><%= t(".tag_category")%></th>
+		            <th><%= t(".tag_name")%></th>
+		            <th></th>
+		            <th></th>
+		          </tr>
+		        </tfoot>
+		        <tbody>
+		          <% @tags.each do |tag|%>
+		            <tr> 
+		              <td><%= tag.content_type %></td>
+		              <td><%= tag.tag_category %></td>
+		              <td><%= tag.name %></td>
+		              <td><%= link_to t(".edit"), edit_admin_tag_path(tag), class: "btn btn-small" %></td>
+		              <td><%= link_to t(".delete"), [:admin, tag],data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-small btn-danger" %></td>
+		            </tr>
+		          <% end %>
+		        </tbody>
+		      </table>
+		  </section>
 
 	</div>
 </div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $(".datatable").DataTable({
+
+        // select filter on footer
+       initComplete: function () {
+            this.api().columns().every( function () {
+              debugger;
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    });
+  })
+</script>
+
+
+
+
+
+
+<% if @page %>
+  <%= render partial: "pagination" %>
+<% end %>

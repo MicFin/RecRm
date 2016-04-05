@@ -13,7 +13,8 @@ class Monologue::Admin::TagsController < Monologue::Admin::BaseController
   end
 
   def index
-    @tags_grouped = Monologue::Tag.grouped_tags
+    # @tags_grouped = Monologue::Tag.grouped_tags
+    @tags = Monologue::Tag.all
     @tag = Monologue::Tag.new
     @authors = Monologue::User.order(:email)
   end

@@ -57,7 +57,7 @@
         // select filter on footer
        initComplete: function () {
             this.api().columns().every( function () {
-              debugger;
+
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                     .appendTo( $(column.footer()).empty() )

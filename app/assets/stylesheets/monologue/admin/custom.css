@@ -16,7 +16,7 @@
   height:50px;
   font-size: 30px;
 }
-.monologue-admin label:not(.checkbox):not(.radio-inline){
+.monologue-admin label:not(.checkbox):not(.radio-inline):not(.badgebox-label){
 	font-size: 18px;
 	line-height: 20px;
 	margin: 10px 0;
@@ -106,7 +106,48 @@ Should try doing .extend
   top: 0;
 }
 
+/*DATA TABLE FOR POSTS AND TAGS */
 .monologue-admin .datatable tfoot {
   display: table-row-group;
 }
+/*.monologue-admin .datatable td {
+  white-space:nowrap;
+}*/
+.monologue-admin .visible-column {
+  color: #009344;
+}
+
+/* SAVE TAG BUTTON*/
+.monologue-admin .new_tag button, .monologue-admin .edit_tag button {
+  position: absolute;
+  top: 32px;
+}
+
+
+/*STYLED CHECK BOXES*/
+/* Hiding the checkbox, but allowing it to be focused */
+.monologue-admin .badgebox {
+  opacity: 0;
+}
+.monologue-admin .badgebox + .badge{
+  /* Move the check mark away when unchecked */
+  text-indent: -999999px;
+  /* Makes the badge's width stay the same checked and unchecked */
+  width: 27px;
+}
+.monologue-admin .badgebox:focus + .badge{
+  /* Set something to make the badge looks focused */
+  /* Adding a light border */
+  box-shadow: inset 0px 0px 5px;
+  /* Taking the difference out of the padding */
+}
+.monologue-admin .badgebox:checked + .badge{
+  /* Move the check mark back when checked */
+  text-indent: 0;
+}
+.monologue-admin label.badgebox-label{
+  font-size: 18px;
+}
+
+
 

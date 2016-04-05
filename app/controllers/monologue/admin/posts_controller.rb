@@ -5,6 +5,8 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   def index
     @posts = Monologue::Post.all
     @authors = Monologue::User.order(:email)
+    @tags_grouped = Monologue::Tag.grouped_tags
+    @tags = Monologue::Tag.all
   end
 
   def new
@@ -23,7 +25,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   end
 
   def create
-    # find_or_create_tags
+    find_or_create_tags
     @authors = Monologue::User.order(:email)
     @post = Monologue::Post.new post_params
     @post.user_id = monologue_current_user.id
@@ -61,10 +63,9 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
 
 private
 
-  # used for forms
+  # used for form
   def find_or_create_tags
     tag_key = Monologue::Post.tag_key
-    
     tag_key.each do |param_name, category_name|
       if params[:post][param_name]
         tags_array = params[:post][param_name].split(",")
@@ -78,7 +79,6 @@ private
           end
         end
       end
-
       params[:post].delete param_name
     end
   end

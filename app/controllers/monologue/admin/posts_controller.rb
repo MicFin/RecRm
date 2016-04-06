@@ -20,6 +20,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
     @post = Monologue::Post.new post_params
     @post.user_id = monologue_current_user.id
     @post.published_at = Time.zone.now
+    @showcase_tags = Monologue::Tag.showcase_tags
     # render it exactly as it would display when live.
     render "/monologue/posts/show", layout: Monologue::Config.layout || "/layouts/monologue/application"
   end

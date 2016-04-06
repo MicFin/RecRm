@@ -157,6 +157,12 @@
 		    display: table-cell;
 		    vertical-align: middle;
 			}
+			.thumbnail {
+				border:none;
+				img{
+					max-height: 250px;
+				}
+			}
 	  }
 	}
 

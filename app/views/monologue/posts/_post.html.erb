@@ -3,13 +3,16 @@
 		  <%= render partial: 'monologue/posts/post_header', locals: {post: post} %>
 
 		  <div class="content" data-monologue="content">
-		    <%= truncate_html(post.content, length: 1000, omission: '...') %>
+		    <%= truncate_html(post.content, length: 800, omission: '...') %>
 		  </div>
-
-		  <div class="tags" data-monologue="tags">
-		    <%= render post.tags %>
+		  <div class="row">
+			  <div class="col-xs-9 tags" data-monologue="tags">
+			    <%= render post.tags %>
+			  </div>
+			  <div class="col-xs-3 tags">
+				  <%= link_to t(".readmore"), post.full_url, class: "btn btn-block btn-primary" %>
+			  </div>
 		  </div>
-		  <%= link_to t(".readmore"), post.full_url, class: "button" %>
 		</section>
 
  

@@ -120,8 +120,9 @@
         <label>Complete</label>
       </div>
       <div class="col-xs-6 text-center"> 
+            <%= hidden_field_tag "post[published]", 'false' %>
             <label for="published-checkbox" class="btn btn-default btn-block badgebox-label">Publish 
-              <input type="checkbox" name="post[published]" id="published-checkbox" <%=(@post.published == true) ? "checked" : false %>  class="badgebox">
+              <input type="checkbox" name="post[published]" id="published-checkbox" <%="checked" if @post.published == true%>  class="badgebox">
               <span class="badge">&check;</span>
             </label>      
         <%#= post.check_box :published, label:  t(".publish") %>
@@ -129,8 +130,9 @@
       </div>
       <div class="col-xs-6 text-center">
         <%#= post.check_box :public, label:  t(".share") %>
+            <%= hidden_field_tag "post[public]", 'false' %>
             <label for="public-checkbox" class="btn btn-default btn-block badgebox-label">Share 
-              <input type="checkbox" name="post[public]" id="public-checkbox" <%=(@post.public == true) ? "checked" : false %>  class="badgebox">
+              <input type="checkbox" name="post[public]" id="public-checkbox" <%="checked" if @post.public == true%>  class="badgebox">
               <span class="badge">&check;</span>
             </label>   
         <p>Available on blog for public.</p>

@@ -45,7 +45,7 @@
 This mimics the "form-control" class in bootstrap
 Should try doing .extend
 */
-.monologue-admin select, .monologue-admin textarea, .monologue-admin input[type='text'] {
+.monologue-admin select, .monologue-admin textarea, .monologue-admin input[type='text'], .monologue-admin input[type='number']  {
     display: block;
     width: 100%;
     padding: 6px 12px;
@@ -115,12 +115,6 @@ Should try doing .extend
 }*/
 .monologue-admin .visible-column {
   color: #009344;
-}
-
-/* SAVE TAG BUTTON*/
-.monologue-admin .new_tag button, .monologue-admin .edit_tag button {
-  position: absolute;
-  top: 32px;
 }
 
 

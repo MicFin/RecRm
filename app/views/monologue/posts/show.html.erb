@@ -28,7 +28,7 @@
         </div>
 
         <div class="tags" data-monologue="tags">
-          <%#= render @post.tags %>
+          <%= render @post.tags.browseable %>
         </div>
 
         <%#= render "monologue/posts/social_sharing" %>
@@ -37,29 +37,12 @@
         <%#= render 'layouts/monologue/application/disqus_embed' %>
         <noscript>Please enable JavaScript to view the comments.</noscript> -->
       </article>
-      
     </section>
-    <section class="articles-side-bar hidden-xs hidden-sm" data-spy="affix" data-offset-top="200">
-<!--       <nav class="articles-nav">
-        <h3>Popular Recipes</h3>
-        <ul>
-          <%# @tags.each do |tag| %>
-            <li id="tag"><%#=link_to "#{tag.name} (#{tag.frequency})", tag_url(tag) %> </li>
-          <%# end %>
-        </ul>
-        <h3>Popular Articles</h3>
-        <ul>
-          <%# @tags.each do |tag| %>
-            <li id="tag"><%#=link_to "#{tag.name} (#{tag.frequency})", tag_url(tag) %> </li>
-          <%# end %>
-        </ul>
-        <p>Kindrdfood recipes and articles are created by a team of Registered Dietitians and Chefs to meet the needs of each Kindrdfood family.</p>
-      </nav> -->
-      <aside class="call-to-action-container">
-        <%= link_to "Get Custom Recipes", main_app.landing_pages_index_path, class: "btn btn-lg btn-primary"%>
-       <!--  <button class="btn btn-block btn-primary">Get Custom Recipes Now!</button> -->
-      </aside>
-    </section>
+
+
+    <%= render "monologue/posts/posts_showcase_tags", showcase_tags: @showcase_tags %>
+    <%= render "monologue/posts/posts_suggestions_title" %>
+    <%= render "monologue/posts/posts_suggestions", recent_posts: @recent_posts %>
     <%= render "monologue/posts/posts_footer" %>
   </div>
 </div>

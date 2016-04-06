@@ -9,7 +9,7 @@
 <!--     <span data-monologue="user">
       <%#= post.user.name %>
     </span> -->
-    <p>created by <span>Kindrdfood<%#= post.user.name %></span> on <%= I18n.localize(post.published_at.to_date, format: :long) %></p>
+    <p>created by <span>Kindrdfood<%#= post.user.name %></span> on <%= I18n.localize(post.published_at.to_date, format: :long) if post.published_at%></p>
     <hr>
 <!--     <span data-monologue="disqus">
       <a href="<%#= post.full_url + "#disqus_thread" %>"></a>

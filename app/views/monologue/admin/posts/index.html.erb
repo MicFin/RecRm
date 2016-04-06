@@ -56,9 +56,9 @@
             <td><%= link_to "/#{post.url}", post.full_url, target: "_blank" %></td>
             <td><%= post.content_type %></td>
             <td><span><%= post.user.email %></span> </td>
-            <td><%= post.user.created_at %> </td>
-            <td><%= post.target_published_at %> </td>
-            <td><%= post.published_at %> </td>
+            <td><%= post.created_at.strftime("%B %d, %Y")%> </td>
+            <td><%= post.target_published_at.strftime("%B %d, %Y") if post.target_published_at%> </td>
+            <td><%= post.published_at.strftime("%B %d, %Y") if post.published_at%> </td>
             <td><%= post.published %> </td>
             <td><%= post.public %> </td>
             <td><%= link_to t(".edit"), edit_admin_post_path(post), class: "btn btn-small" %></td>

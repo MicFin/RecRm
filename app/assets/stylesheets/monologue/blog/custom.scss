@@ -1,15 +1,12 @@
 
 .monologue-application {
 
-.test-class{
-	color: red;
-	background-color: red;
-}
 	label {
 		font-size: 18px;
 	  line-height: 20px;
 	}
 
+	// POST SHOW PAGE
 	.landing-page.education-page .landing-page-body {
 		.splash-image-section {
 
@@ -20,8 +17,6 @@
 
 			.left-splash-column{
 				width: 100%;
-
-
 				h1{
 					margin: 0;
 				}
@@ -41,6 +36,7 @@
 		  width:75%;
 		  float: left;
 		  padding: 0 5% 5% 5%;
+      border-bottom: 1px solid grey;
 		  @extend .text-left;
 
 		  .content {
@@ -89,6 +85,10 @@
 			    font-weight: bold;
 				}
 		  }
+		  .tags .tag {
+		  	float: left;
+  	    // zoom: 1;
+		  }
 		}
 
 		.articles-side-bar{
@@ -105,6 +105,7 @@
 		    position: absolute;
 			}
 		  .articles-nav {
+		  	text-align: center;
 	   	  // border: 10px solid $gray-divider;
 	   	  // border: 10px solid rgba(217, 218, 219, 1.0);
 	   	  // border-radius: 5px;
@@ -112,7 +113,8 @@
 	    	padding: 0;
 	    	ul {
 	    		list-style: none;
-	    		padding: 0 20px;
+			    margin-left: 0px;
+			    padding: 0px;
 	    	}
 	    	h3 {
 	    		// color: $brand-light-green;
@@ -126,9 +128,6 @@
 		  // .call-to-action-container{
 		  // 	a{
 		  // 		height: 100px;
-    // 			font-size: 20px;
-		  // 	}
-		  // }
 		}
 
 		.post-header {
@@ -144,6 +143,51 @@
 				color: #F68D3C;
 			}
 		}
+		.read-more-header-container{
+			h2{
+				text-decoration: underline;
+			}
+		}
+		.content-suggestions-container{
+	    width: 75%;
+	    text-align: center;
+      display: table;
+			[class*="col-"].thumbnail-container {
+		    float: none;
+		    display: table-cell;
+		    vertical-align: middle;
+			}
+	  }
+	}
 
+	// TAGS SHOW PAGE
+	.landing-page.education-page.index-of-posts .landing-page-body {
+		.well p {
+			margin: 0;
+		}
+		.tag {
+			font-size: 15px;
+			margin: 5px;
+			padding: 5px;
+		}
+		.articles-container {
+		  width:75%;
+		  float: left;
+		  padding: 5%;
+			border-bottom: 1px solid lighten(rgb(0, 0, 0), 46.7%);
+			.content {
+				img:not(.recipe-image) {
+	  	  	// coulse us .monologue-post-image-center
+		  		height: auto !important;
+	  			width: 50% !important;
+	  			margin: 20px auto
+				}
+			}
+			.content, .post-header {
+				hr {
+					display: none;
+				}
+			}
+		}
 	}
 }

@@ -1,7 +1,7 @@
     <div class="content-suggestions-container row">
       <% recent_posts.each do |post| %>
         <div class="thumbnail-container col-sm-6 col-md-4">
-          <%= link_to(post) do  %>
+          <%= link_to post.full_url do  %>
             <div class="thumbnail">
               <img src="<%=post.content[/src=\"(.*)\"\sstyle=\"/,1]%>" alt="<%=post.title%>">
               <div class="caption">

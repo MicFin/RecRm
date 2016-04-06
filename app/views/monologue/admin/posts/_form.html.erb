@@ -35,13 +35,13 @@
   <div class="col-xs-12">
     <div class="row">
       <div class="col-xs-4">
-        <%= post.text_field :title, label:  t(".title") %>
+        <%= post.text_field :title, label:  t(".title"), placeholder: "Enter a title" %>
       </div>
       <div class="col-xs-4">
-        <%= post.text_field :url, label:  t(".url") %>
+        <%= post.text_field :url, label:  t(".url"), placeholder: "Customize Url" %>
       </div>
       <div class="col-xs-4">
-        <%= post.text_field :target_published_at, label:  t(".target_publishing_date"), data: {datepicker: "datepicker"}, value: post.object.target_published_at.nil? ? "" : post.object.target_published_at.strftime("%A %B %d, %Y") %>
+        <%= post.text_field :target_published_at, label:  t(".target_publishing_date"), placeholder: "Select date", data: {datepicker: "datepicker"}, value: post.object.target_published_at.nil? ? "" : post.object.target_published_at.strftime("%A %B %d, %Y") %>
       </div>
     </div>
   </div>
@@ -52,48 +52,48 @@
       <div class="general-tag-container col-xs-12">
         <div class="row">
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_health_groups, label:  raw(t(".health_groups")), class: "tag_list_health_groups" %>
+            <%= post.text_field :tag_list_health_groups, label:  raw(t(".health_groups")), class: "tag_list_health_groups", placeholder: "Select or create" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_food_triggers, label:  raw(t(".food_triggers")), class: "tag_list_food_triggers" %>
+            <%= post.text_field :tag_list_food_triggers, label:  raw(t(".food_triggers")), class: "tag_list_food_triggers", placeholder: "Select or create" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_symptoms, label:  raw(t(".symptoms")), class: "tag_list_symptoms" %>
+            <%= post.text_field :tag_list_symptoms, label:  raw(t(".symptoms")), class: "tag_list_symptoms", placeholder: "Select or create" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_dietary_preferences, label:  raw(t(".dietary_preferences")), class: "tag_list_dietary_preferences" %>
+            <%= post.text_field :tag_list_dietary_preferences, label:  raw(t(".dietary_preferences")), class: "tag_list_dietary_preferences", placeholder: "Select or create" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_age, label:  raw(t(".age")), class: "tag_list_age" %>
+            <%= post.text_field :tag_list_age, label:  raw(t(".age")), class: "tag_list_age", placeholder: "Select or create" %>
           </div>
         </div>
       </div>
       <div class="article-tag-container col-xs-12 <%='hidden' unless @post.content_type != 'Recipe'%>">
         <div class="row">
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_article_high_level, label:  raw(t(".high_level_theme")), class: "tag_list_article_high_level" %>
+            <%= post.text_field :tag_list_article_high_level, label:  raw(t(".high_level_theme")), class: "tag_list_article_high_level", placeholder: "Select or create" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_article_low_level, label:  raw(t(".low_level_theme")), class: "tag_list_article_low_level" %>
+            <%= post.text_field :tag_list_article_low_level, label:  raw(t(".low_level_theme")), class: "tag_list_article_low_level", placeholder: "Select or create" %>
           </div>
         </div>
       </div>
       <div class="recipe-tag-container col-xs-12 <%='hidden' unless @post.content_type == 'Recipe'%>">
         <div class="row">
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_meal_type, label:  raw(t(".meal_type")), class: "tag_list_meal_type" %>
+            <%= post.text_field :tag_list_meal_type, label:  raw(t(".meal_type")), class: "tag_list_meal_type", placeholder: "Select or create" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_sub_meal_type, label:  raw(t(".sub_meal_type")), class: "tag_list_sub_meal_type" %>
+            <%= post.text_field :tag_list_sub_meal_type, label:  raw(t(".sub_meal_type")), class: "tag_list_sub_meal_type", placeholder: "Select or create" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_cooking_technique, label:  raw(t(".cooking_technique")), class: "tag_list_cooking_technique" %>
+            <%= post.text_field :tag_list_cooking_technique, label:  raw(t(".cooking_technique")), class: "tag_list_cooking_technique", placeholder: "Select or create" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_eating_style, label:  raw(t(".eating_style")), class: "tag_list_eating_style" %>
+            <%= post.text_field :tag_list_eating_style, label:  raw(t(".eating_style")), class: "tag_list_eating_style", placeholder: "Select or create" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_main_ingredient, label:  raw(t(".main_ingredient")), class: "tag_list_main_ingredient" %>
+            <%= post.text_field :tag_list_main_ingredient, label:  raw(t(".main_ingredient")), class: "tag_list_main_ingredient", placeholder: "Select or create" %>
           </div>
         </div>
       </div>

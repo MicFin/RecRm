@@ -52,8 +52,9 @@
 class Monologue::PostsController < Monologue::ApplicationController
   def index
     @page = params[:page].nil? ? 1 : params[:page]
-    @posts = Monologue::Post.page(@page).includes(:user).published
+    @posts = Monologue::Post.page(@page).published
     @post = Monologue::Post.published.last
+    @showcase_tags = Monologue::Tag.showcase_tags
   end
 
   def show
@@ -65,7 +66,11 @@ class Monologue::PostsController < Monologue::ApplicationController
     if @post.nil?
       not_found
     end
-    @tags = Monologue::Tag.last(5)
+
+    @showcase_tags = Monologue::Tag.showcase_tags
+    @tags = Monologue::Tag.last(10)
+    # monologue application controller
+    @recent_posts
   end
 
   def feed

@@ -59,7 +59,8 @@ class Monologue::Post < ActiveRecord::Base
 
   scope :default,  -> {order("published_at DESC, monologue_posts.created_at DESC, monologue_posts.updated_at DESC") }
   scope :published, -> { default.where(published: true).where("published_at <= ?", DateTime.now) }
-  scope :public_blog, -> { default.where(public: true).where("published_at <= ?", DateTime.now) }
+  scope :shared, -> { default.where(public: true) }
+  scope :includes_users, -> { default.includes(:user) }
   default_scope{includes(:tags)}
 
   validates :user_id, presence: true
@@ -67,6 +68,7 @@ class Monologue::Post < ActiveRecord::Base
   validates :url, uniqueness: true
   validate :url_do_not_start_with_slash
 
+  before_save :save_published_date
   #  returns a hash of param names and category names
   #  used for form presentation
   def self.tag_key
@@ -122,6 +124,12 @@ class Monologue::Post < ActiveRecord::Base
 
   private
 
+
+  def save_published_date
+    if self.published_changed? && self.published == true
+      self.published_at = DateTime.now
+    end
+  end
 
   def self.paged_results(p, per_page, admin)
     set_total_pages(per_page)

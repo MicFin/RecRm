@@ -3,7 +3,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   before_filter :load_post, only: [:edit, :update]
   
   def index
-    @posts = Monologue::Post.all
+    @posts = Monologue::Post.all.includes_users
     @authors = Monologue::User.order(:email)
     @tags_grouped = Monologue::Tag.grouped_tags
     @tags = Monologue::Tag.all
@@ -43,9 +43,10 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   def update
     
     find_or_create_tags 
-    
+
     @authors = Monologue::User.order(:email)
     if @post.update(post_params)
+  
       prepare_flash_and_redirect_to_edit()
     else
       render :edit

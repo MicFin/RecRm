@@ -6,6 +6,9 @@
 
  *= require monologue/bootstrap/bootstrap-datepicker
  *= require select2
+ 
  *= require monologue/admin/posts
+ *= require monologue/admin/datatable
  *= require monologue/admin/custom
+
 */

@@ -73,7 +73,7 @@ class Monologue::Post < ActiveRecord::Base
   #  used for form presentation
   def self.tag_key
     key = {}
-    Monologue::Tag.distinct.pluck(:tag_category).each { |tag_category| key["tag_list_#{tag_category.downcase.split(' ').join('_')}"] = tag_category.downcase.titleize} 
+    Monologue::Tag.distinct.pluck(:tag_category).each { |tag_category| key["tag_list_#{tag_category.downcase.split(' ').join('_')}"] = tag_category.downcase.titleize if tag_category != nil} 
     return key
   end
 

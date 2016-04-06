@@ -109,19 +109,16 @@
         }
     });
 
-    // Set num of columns
+    // Get dynamic num of columns
     var numColumns = table.columns()[0].length;
     var hideColumnLink, columnTitle;
 
-    // Create Links to hide columns
+    // Loop through all columns
     for (var i = 0, l = numColumns; i < l; i++ ) {
-
+      // Create Links to hide columns
       columnTitle = $(table.columns( i ).header()).text();
-
       hideColumnLink = i === l - 1 || i === 9 ? '<a class="toggle-vis" data-column="'+i+'">'+columnTitle+'</a>' : '<a class="toggle-vis" data-column="'+i+'">'+columnTitle+'</a> - ';
-
-
-      // append and hide tag columns to start
+      // append links to hide columns and hide tag columns to start
       if ( i > 10) {
         if (columnTitle !== "") {
           $('.hide-tag-columns').append(hideColumnLink);
@@ -159,13 +156,10 @@
     // When links are clicked then toggle column
     $('a.toggle-vis').on( 'click', function (e) {
         e.preventDefault();
- 
         // Get the column API object
         var column = table.column( $(this).attr('data-column') );
- 
         // Toggle the visibility
         column.visible( ! column.visible() );
-
         // Toggle link color
         $(this).toggleClass("visible-column");
     } );

@@ -75,6 +75,6 @@ class Monologue::Admin::TagsController < Monologue::Admin::BaseController
   end
 
   def tag_params
-    params.require(:tag).permit(:name, :content_type, :tag_category)
+    params.require(:tag).permit(:name, :content_type, :tag_category, :showcase, :showcase_position, :browseable)
   end  
 end

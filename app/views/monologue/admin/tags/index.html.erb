@@ -12,7 +12,9 @@
 		            <th><%= t(".content_type")%></th>
  		            <th><%= t(".tag_category")%></th>
 		            <th><%= t(".tag_name")%></th>
-
+ 		            <th><%= t(".browseable")%></th>
+		            <th><%= t(".showcase")%></th>
+		            <th><%= t(".showcase_position")%></th>
 		            <th></th>
 		            <th></th>
 		          </tr>
@@ -22,7 +24,10 @@
 		            <th><%= t(".content_type")%></th>
 		            <th><%= t(".tag_category")%></th>
 		            <th><%= t(".tag_name")%></th>
-		            <th></th>
+		            <th><%= t(".browseable")%></th>
+		            <th><%= t(".showcase")%></th>
+		            <th><%= t(".showcase_position")%></th>
+								<th></th>
 		            <th></th>
 		          </tr>
 		        </tfoot>
@@ -32,6 +37,9 @@
 		              <td><%= tag.content_type %></td>
 		              <td><%= tag.tag_category %></td>
 		              <td><%= tag.name %></td>
+		              <td><%= tag.browseable %></td>
+		              <td><%= tag.showcase %></td>
+		              <td><%= tag.showcase_position %></td>
 		              <td><%= link_to t(".edit"), edit_admin_tag_path(tag), class: "btn btn-small" %></td>
 		              <td><%= link_to t(".delete"), [:admin, tag],data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-small btn-danger" %></td>
 		            </tr>

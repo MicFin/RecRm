@@ -9,6 +9,8 @@
 
 class Monologue::TagsController < Monologue::ApplicationController
   def show
+
+    @showcase_tags = Monologue::Tag.showcase_tags
     @tag = retrieve_tag
     if @tag
       @page = nil
@@ -16,6 +18,7 @@ class Monologue::TagsController < Monologue::ApplicationController
     else
       redirect_to :root ,notice: "No post found with label \"#{params[:tag]}\""
     end
+
   end
 
   private

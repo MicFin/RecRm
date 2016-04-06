@@ -11,7 +11,10 @@ class Monologue::Tag < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true
   has_many :taggings
   has_many :posts,through: :taggings
+  scope :showcase_tags,  -> { where(showcase: true).order(showcase_position: :asc) } 
+  scope :browseable,  -> { where(browseable: true) } 
 
+  # used for form for post?
   def self.grouped_tags 
     # grouped ={}
     # groups = self.all.group_by{|e| [e.content_type, e.tag_category] }
@@ -27,7 +30,7 @@ class Monologue::Tag < ActiveRecord::Base
   
 
   def posts_with_tag
-    self.posts.published
+    self.posts.published.shared
   end
 
   def frequency

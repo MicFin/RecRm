@@ -61,7 +61,7 @@
             <%= post.text_field :tag_list_symptoms, label:  raw(t(".symptoms")), class: "tag_list_symptoms" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_dietary_preferances, label:  raw(t(".dietary_preferances")), class: "tag_list_dietary_preferances" %>
+            <%= post.text_field :tag_list_dietary_preferences, label:  raw(t(".dietary_preferences")), class: "tag_list_dietary_preferences" %>
           </div>
           <div class="col-xs-4">
             <%= post.text_field :tag_list_age, label:  raw(t(".age")), class: "tag_list_age" %>
@@ -71,10 +71,10 @@
       <div class="article-tag-container col-xs-12 <%='hidden' unless @post.content_type != 'Recipe'%>">
         <div class="row">
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_high_level_theme, label:  raw(t(".article_high_level_theme")), class: "tag_list_high_level_theme" %>
+            <%= post.text_field :tag_list_article_high_level, label:  raw(t(".high_level_theme")), class: "tag_list_article_high_level" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_low_level_theme, label:  raw(t(".article_low_level_theme")), class: "tag_list_low_level_theme" %>
+            <%= post.text_field :tag_list_article_low_level, label:  raw(t(".low_level_theme")), class: "tag_list_article_low_level" %>
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@
             <%= post.text_field :tag_list_sub_meal_type, label:  raw(t(".sub_meal_type")), class: "tag_list_sub_meal_type" %>
           </div>
           <div class="col-xs-4">
-            <%= post.text_field :tag_list_cooking_techniques, label:  raw(t(".cooking_techniques")), class: "tag_list_cooking_techniques" %>
+            <%= post.text_field :tag_list_cooking_technique, label:  raw(t(".cooking_technique")), class: "tag_list_cooking_technique" %>
           </div>
           <div class="col-xs-4">
             <%= post.text_field :tag_list_eating_style, label:  raw(t(".eating_style")), class: "tag_list_eating_style" %>

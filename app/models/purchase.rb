@@ -152,10 +152,36 @@ class Purchase < ActiveRecord::Base
 
       # Complete any coupon redemptions used
       if self.coupon_redemption
-        CouponRedeemer.complete_redemption(self.coupon_redemption)
+        Coupon.complete_redemption(self.coupon_redemption)
       end
 
       save!
+    end
+  end
+
+  def update_pricing
+
+    # If purchasable is Appointment
+    if purchasable_type == "Appointment" 
+      appointment = Appointment.find(purchasable_id)
+      
+      # Reset invoice price
+      reset_invoice_price(appointment)
+      self.save
+
+      # Redeem any discounts applied to purchase
+      redeem_coupon(appointment)
+
+    # If purchasable is Package
+    else
+      package = Package.find(purchasable_id)
+
+      # Reset invoice price
+      reset_invoice_price(package)
+      self.save
+
+      # Redeem any discounts applied to purchase
+      redeem_coupon(package)
     end
   end
 
@@ -205,32 +231,6 @@ class Purchase < ActiveRecord::Base
       
       # save purchase
       self.save
-    end
-  end
-
-  def update_pricing
-
-    # If purchasable is Appointment
-    if purchasable_type == "Appointment" 
-      appointment = Appointment.find(purchasable_id)
-      
-      # Reset invoice price
-      reset_invoice_price(appointment)
-      self.save
-
-      # Redeem any discounts applied to purchase
-      redeem_coupon(appointment)
-
-    # If purchasable is Package
-    else
-      package = Package.find(purchasable_id)
-
-      # Reset invoice price
-      reset_invoice_price(package)
-      self.save
-
-      # Redeem any discounts applied to purchase
-      redeem_coupon(package)
     end
   end
 

@@ -12,3 +12,14 @@ html, body {
 		height: 100%;
 	}
 }
+
+// extend bootstrap table-responsive class for all screens sizes
+.coupons-table-section .table-responsive {
+  width: 100%;
+  margin-bottom: 15px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  // border: 1px solid #dddddd;
+  -webkit-overflow-scrolling: touch;
+}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406041058) do
+ActiveRecord::Schema.define(version: 20160411143600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,13 +129,14 @@ ActiveRecord::Schema.define(version: 20160406041058) do
     t.string   "description"
     t.datetime "valid_from"
     t.datetime "valid_until"
-    t.integer  "redemption_limit",  default: 1
-    t.integer  "redemptions_count", default: 0
+    t.integer  "redemption_limit",          default: 1
+    t.integer  "redemptions_count",         default: 0
     t.integer  "amount"
     t.string   "amount_type"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "redemption_limit_per_user", default: 1
   end
 
   create_table "dietitians", force: true do |t|

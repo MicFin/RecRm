@@ -76,7 +76,7 @@ class CouponsController < ApplicationController
     coupon_code = params[:coupon_code]
     
     # If coupon is redeemable
-    if CouponRedeemer.redeem_coupon(coupon_code, current_user)
+    if Coupon.redeem_coupon(coupon_code, current_user)
 
       # Get appointment in registration
       purchase = current_user.appointment_in_registration.purchase
@@ -139,7 +139,7 @@ class CouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params.require(:coupon).permit(:code, :description, :valid_from, :valid_until, :redemption_limit, :redemptions_count, :amount, :amount_type, :status)
+      params.require(:coupon).permit(:code, :description, :valid_from, :valid_until, :redemption_limit, :redemptions_count, :redemption_limit_per_user, :amount, :amount_type, :status)
     end
 
     # Only admin users can access coupon controller

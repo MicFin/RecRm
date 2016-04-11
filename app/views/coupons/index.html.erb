@@ -1,5 +1,5 @@
 <div id="welcome-page" class="container-fluid">
-  <div class="row-fluid">
+  <div class="row">
 
     <%= render "/layouts/navbars/dietitian_nav" %>
 
@@ -11,46 +11,54 @@
       </section>
         
 
-      <section>
-        <h1>Coupons</h1>
-        <%= link_to 'New Coupon', new_coupon_path %>
+      <section class="row">
+        <div class="col-xs-12">
+          <h1>Coupons</h1>
+          <%= link_to 'New Coupon', new_coupon_path %>
+        </div>
       </section>
-      <section>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Code</th>
-              <th>Description</th>
-              <th>Valid from</th>
-              <th>Valid until</th>
-              <th>Redemption limit</th>
-              <th>Redemptions count</th>
-              <th>Amount Type</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th colspan="3"></th>
-            </tr>
-          </thead>
+      <section class="row coupons-table-section">
+        <div class="col-xs-12 ">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Description</th>
+                  <th>Valid from</th>
+                  <th>Valid until</th>
+                  <th>Redemption limit per user</th>
+                  <th>Redemption limit total</th>
+                  <th>Redemptions total count</th>
+                  <th>Amount Type</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
 
-          <tbody>
-            <% @coupons.each do |coupon| %>
-              <tr>
-                <td><%= coupon.code %></td>
-                <td><%= coupon.description %></td>
-                <td><%= coupon.valid_from.strftime("%B %d, %Y %I:%M %p") %></td>
-                <td><%= coupon.valid_until.strftime("%B %d, %Y %I:%M %p") %></td>
-                <td><%= coupon.redemption_limit %></td>
-                <td><%= coupon.redemptions_count %></td>
-                <td><%= coupon.amount_type %></td>
-                <td><%= coupon.amount %></td>
-                <td><%= coupon.status %></td>
-                <td><%= link_to 'Show', coupon %></td>
-                <td><%= link_to 'Edit', edit_coupon_path(coupon) %></td>
-                <td><%= link_to 'Delete', coupon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+              <tbody>
+                <% @coupons.each do |coupon| %>
+                  <tr>
+                    <td><%= coupon.code %></td>
+                    <td><%= coupon.description %></td>
+                    <td><%= coupon.valid_from.strftime("%B %d, %Y %I:%M %p") %></td>
+                    <td><%= coupon.valid_until.strftime("%B %d, %Y %I:%M %p") %></td>
+                    <td><%= coupon.redemption_limit_per_user %></td>
+                    <td><%= coupon.redemption_limit %></td>
+                    <td><%= coupon.redemptions_count %></td>
+                    <td><%= coupon.amount_type %></td>
+                    <td><%= coupon.amount %></td>
+                    <td><%= coupon.status %></td>
+                    <td><%= link_to 'Show', coupon %></td>
+                    <td><%= link_to 'Edit', edit_coupon_path(coupon) %></td>
+                    <td><%= link_to 'Delete', coupon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </section>
 
       

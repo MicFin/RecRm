@@ -658,8 +658,8 @@ Rails.application.routes.draw do
       resources :rooms, only: [:index, :create]
     end
     
-      # Invitation paths
-      get 'users/invitations', to: 'users/invitations#index', as: 'users_invitations'
+    # Invitation paths
+    get 'users/invitations', to: 'users/invitations#index', as: 'users_invitations'
 
     # ROUTES FOR UNAUTHENTICATED DIETITIAN
     unauthenticated :dietitian do

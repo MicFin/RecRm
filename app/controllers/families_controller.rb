@@ -24,7 +24,7 @@ class FamiliesController < ApplicationController
   # GET /families/1
   # GET /families/1.json
   def show
-    @user = current_user
+    @user = Users::UserPresenter.new(current_user)
 
     # Gather user's family data
     # from FamiliessHelper

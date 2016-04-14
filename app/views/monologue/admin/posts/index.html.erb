@@ -6,10 +6,9 @@
     <p>Toggle column: </p>
     <p class="hide-general-columns">
     </p>
-    <p class="hide-tag-columns">
-      <a class="hide-all-tags hidden">Hide All Tags - </a> 
-      <a class="show-all-tags">Show All Tags - </a> 
-
+    <p class="hide-article-columns">
+    </p>
+    <p class="hide-recipe-columns">
     </p>
     <!--     in line style width:100% necessary for datatable plugin -->
     <table class="table table-striped table-bordered table-hover table-condensed datatable hidden" style="width:100%">
@@ -33,19 +32,19 @@
       </thead>
       <tfoot>
         <tr>
-          <th><%= t(".title")%></th>
-          <th><%= t(".url")%></th>
-          <th><%= t(".type")%></th>
-          <th><%= t(".author")%></th>
-          <th>Created At</th>
-          <th>Target Publish Date</th>
-          <th>Date Published</th>
-          <th>Published?</th>
-          <th>Shared?</th>
+          <th data-content-type="general" data-tag-category="basic_info"><%= t(".title")%></th>
+          <th data-content-type="general" data-tag-category="basic_info"><%= t(".url")%></th>
+          <th data-content-type="general" data-tag-category="basic_info"><%= t(".type")%></th>
+          <th data-content-type="general" data-tag-category="basic_info"><%= t(".author")%></th>
+          <th data-content-type="general" data-tag-category="publishing_status">Created At</th>
+          <th data-content-type="general" data-tag-category="publishing_status">Target Publish Date</th>
+          <th data-content-type="general" data-tag-category="publishing_status">Date Published</th>
+          <th data-content-type="general" data-tag-category="publishing_status">Published?</th>
+          <th data-content-type="general" data-tag-category="publishing_status">Shared?</th>
           <th></th>
           <th></th>
           <%@tags.each do |tag| %>
-            <th><%=tag.name%></th>
+            <th class="tag-category-header" data-content-type="<%=tag.content_type.downcase()%>" data-tag-category="<%=tag.tag_category.downcase().tr(" ", "_")%>"><%=tag.name%></th>
           <% end %>
         </tr>
       </tfoot>

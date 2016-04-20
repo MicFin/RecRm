@@ -32,7 +32,9 @@ module Myapp
     config.action_view.embed_authenticity_token_in_remote_forms = true
 
     # http://stackoverflow.com/questions/18934115/rails-4-organize-rails-models-in-sub-path-without-namespacing-models
-    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
+    # https://stackoverflow.com/questions/7750769/recursively-including-all-model-subdirectories
+    # config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '**/')]
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]

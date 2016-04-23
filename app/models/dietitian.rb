@@ -34,6 +34,7 @@ class Dietitian < ActiveRecord::Base
   has_many :appointments
   has_many :availabilities
   has_many :time_slots, through: :availabilities
+  has_many :post_recommendations
 
   has_many :images, :as => :imageable, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true

@@ -66,7 +66,7 @@ class Appointment < ActiveRecord::Base
   belongs_to :time_slot
   has_many :surveys, :as => :surveyable
   has_one :purchase, as: :purchasable
-
+  has_many :post_recommendations
 
 
   # # METHODS

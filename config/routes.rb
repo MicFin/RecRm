@@ -441,6 +441,9 @@ Rails.application.routes.draw do
   mount Monologue::Engine, at: '/education' 
   Monologue::Engine.routes.draw do
 
+    # # Not sure if need post_rec resources in engine as well as in main rails app
+    # resources :post_recommendations
+
     namespace :admin, path: "monologue" do
       
       resources :tags
@@ -588,7 +591,8 @@ Rails.application.routes.draw do
       # Time slots paths
       resources :time_slots
 
-
+      # # Post Recommendations, not sure what routes ill need
+      # resources :post_recommendations
     end
 
     # ROUTES FOR UNCONFIRMED USERS
@@ -660,6 +664,9 @@ Rails.application.routes.draw do
     
     # Invitation paths
     get 'users/invitations', to: 'users/invitations#index', as: 'users_invitations'
+
+    # # Post Recommendations, not sure which routes ill need
+    # resources :post_recommendations
 
     # ROUTES FOR UNAUTHENTICATED DIETITIAN
     unauthenticated :dietitian do

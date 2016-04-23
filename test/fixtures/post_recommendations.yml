@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dietitian_id: 
+  user_id: 
+  message: MyText
+  monologue_post_id: 
+  appointment_id: 
+
+two:
+  dietitian_id: 
+  user_id: 
+  message: MyText
+  monologue_post_id: 
+  appointment_id: 

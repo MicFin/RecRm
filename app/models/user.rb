@@ -122,6 +122,8 @@ class User < ActiveRecord::Base
   has_one :growth_chart, dependent: :destroy # user is deleted then delete their growth chart 
   has_one :food_diary, dependent: :destroy # user is deleted then delete their food diary 
 
+  has_many :post_recommendations
+  
   has_many :images, :as => :imageable, dependent: :destroy
 
   accepts_nested_attributes_for :images, allow_destroy: true

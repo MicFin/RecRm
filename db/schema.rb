@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411143600) do
+ActiveRecord::Schema.define(version: 20160420193656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -340,6 +340,21 @@ ActiveRecord::Schema.define(version: 20160411143600) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "post_recommendations", force: true do |t|
+    t.integer  "dietitian_id"
+    t.integer  "user_id"
+    t.text     "message"
+    t.integer  "monologue_post_id"
+    t.integer  "appointment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "post_recommendations", ["appointment_id"], name: "index_post_recommendations_on_appointment_id", using: :btree
+  add_index "post_recommendations", ["dietitian_id"], name: "index_post_recommendations_on_dietitian_id", using: :btree
+  add_index "post_recommendations", ["monologue_post_id"], name: "index_post_recommendations_on_monologue_post_id", using: :btree
+  add_index "post_recommendations", ["user_id"], name: "index_post_recommendations_on_user_id", using: :btree
 
   create_table "purchases", force: true do |t|
     t.integer  "user_id"

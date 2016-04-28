@@ -76,6 +76,11 @@ module Users
       end
     end
 
+    # # CLASS METHODS
+    def self.present(users)
+      users.map { |user| Users::UserPresenter.new(user) }
+    end
+
     # def head_of_families
     #   Families::FamilyPresenter.present(head_of_families)
     # end

@@ -43,14 +43,12 @@ class WelcomeController < Users::RegistrationsController
       get_family!
       @family
     end
- 
   end
 
   ### This is currently the dietitian's dashboard
   ### /welcome/index
   def index
-
-    @upcoming_appointments = current_dietitian.appointments.upcoming_and_current.includes(:appointment_host).includes(:patient_focus).by_start_time
+    @upcoming_appointments = Appointments::AppointmentPresenter.present(current_dietitian.appointments.upcoming_and_current.includes(:appointment_host).includes(:patient_focus).by_start_time)
 
   end
 

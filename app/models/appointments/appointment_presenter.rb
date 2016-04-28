@@ -1,6 +1,18 @@
 module Appointments
   class AppointmentPresenter < SimpleDelegator
 
+    def start_time_time
+       start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p") 
+    end
+
+    def start_time_date
+       start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%A %B %d, %Y")
+    end
+
+    def appointment_host_time_zone
+      start_time.in_time_zone(self.appointment_host.time_zone).strftime("%I:%M %p") + " " + self.appointment_host.time_zone 
+    end
+
     # # INSTANCE METHODS
     def appointment_host_full_name
       Users::UserPresenter.new(appointment_host).full_name
@@ -21,6 +33,27 @@ module Appointments
     def patient_focus_age
       Users::UserPresenter.new(patient_focus).age
     end
+
+    def client_prep_survey_id
+      Survey.joins(:survey_group).where(survey_groups: {name: "Client - Pre Appointment"}).where(surveyable_id: id).first.id
+    end
+
+    def krdn_prep_survey_id
+      Survey.joins(:survey_group).where(survey_groups: {name: "Dietitian - Pre Appointment"}).where(surveyable_id: id).first.id
+    end
+
+    def family
+      family = appointment_host.head_of_families.first
+      if !family.nil?
+        family.children = family.users
+        family.family_members = []
+        family.family_members << family.children << appointment_host
+        family.family_members.flatten!
+      end
+      family.family_members = Users::UserPresenter.present(family.family_members)
+      family 
+    end
+
 
     # # CLASS METHODS
     def self.present(appointments)

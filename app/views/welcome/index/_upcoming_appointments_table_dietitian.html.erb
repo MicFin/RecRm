@@ -22,7 +22,7 @@
 
           	<td><%= appointment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
 
-						<td><%= link_to "Prep", appointment_prep_path(appointment.id), class: "btn btn-small btn-primary" %></td>
+						<td><%= link_to "Prep", edit_appointment_survey_path(appointment, appointment.krdn_prep_survey_id), class: "btn btn-small btn-primary" %></td>
 
 						<% if appointment.room_id %>
 							<td><%= link_to "Join", in_session_room_path(appointment.room_id, :appointment => appointment.id), class: "btn btn-small btn-default"%></td>

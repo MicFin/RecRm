@@ -27,20 +27,6 @@
 
 module AppointmentsHelper
 
-
-  # Get appointment family info
-  def get_appointment_family_info!
-
-    @family = @appointment.appointment_host.head_of_families.first
-    if !@family.nil?
-      @family.children = @family.users
-      @family.family_members = []
-      @family.family_members << @family.children << @appointment.appointment_host
-      @family.family_members.flatten!
-    end
-
-  end
-
   def assign_appointments_prompt(appointments_no_dietitian)
 
     if appointments_no_dietitian.count > 0 

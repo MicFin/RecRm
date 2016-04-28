@@ -12,43 +12,43 @@
           <div class="row">
             <div class="col-xs-4">
               <h4>Date:</h4>
-              <p><%= @appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%A %B %d, %Y") %></p>
+              <p><%= surveyable.start_time_date %></p>
             </div>
             <div class="col-xs-4">
               <h4>Time:</h4>
-              <p><%= @appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p") %></p>
+              <p><%= surveyable.start_time_time%></p>
             </div>
             <div class="col-xs-4">
               <h4>Client Time Zone:</h4>
-              <p><%= @appointment.appointment_host.time_zone %></p>
+              <p><%= surveyable.appointment_host_time_zone %></p>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-4">
               <h4>Client:</h4>
-              <p><%= @appointment.appointment_host_full_name%></p>
+              <p><%= surveyable.appointment_host_full_name%></p>
             </div>
             <div class="col-xs-4">
               <h4>Appointment Focus:</h4>
-              <p><%= @appointment.patient_focus_full_name%></p>
+              <p><%= surveyable.patient_focus_full_name%></p>
             </div>
             <div class="col-xs-4">
               <h4>KRDN:</h4>
-              <p><%= @appointment.dietitian.first_name%> <%= @appointment.dietitian.last_name%></p>
+              <p><%= surveyable.dietitian.first_name%> <%= surveyable.dietitian.last_name%></p>
             </div>
           </div>
         </section>
         <hr>
         <section>
           <h3 class="header">Pre Appointment Questionnaire</h3>
-          <%= render "surveys/survey_answers", survey: @survey%>
+          <%= render "surveys/survey_answers", survey: survey%>
         </section>
         <hr>
-          <%= render "/appointments/appointment_prep/show_family", family: @family %>
+          <%= render "/families/show", family: surveyable.family %>
         <hr>
         <section>
           <h3 class="header">Appointment Prep Notes</h3>
-          <%= render "/appointments/appointment_prep/survey_form", surveyable: @appointment, survey: @dietitian_survey %>
+          <%= render "/surveys/form", surveyable: surveyable, survey: dietitian_survey, remote_boolean: false %>
 
         </section>
 

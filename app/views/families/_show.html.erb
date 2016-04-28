@@ -1,9 +1,9 @@
     <section id="family-members-container">
-          <h3 class="header">The <%=@family.head_of_family.last_name%> Family</h3>
+          <h3 class="header">The <%=family.head_of_family.last_name%> Family</h3>
           <div class="row">
-            <% if @family && @family.family_members %>
-              <% @family.family_members.each.with_index(1) do |family_member, index| %>
-                <% family_member = Users::UserPresenter.new(family_member) %>
+            <% if family && family.family_members %>
+              <% family.family_members.each.with_index(1) do |family_member, index| %>
+                <%# family_member = Users::UserPresenter.new(family_member) %>
                 <div class="col-xs-12">
                   <div class="row">
                     <div class="col-xs-12 col-sm-2">
@@ -15,12 +15,10 @@
                       <% end %>
                     </div>
                     <div class="col-xs-10">
-                      <%= render "/families/show_family_member", family_member: family_member%>
+                      <%= render "/families/show_family_member", family_member: family_member %>
                     </div>
-                    
                   </div>
             
-
                 <% if family_member.growth_chart && family_member.growth_chart.growth_entries.length > 0 && family_member.growth_chart.growth_entries.first.energy_requirement == nil%>
                   <div id="update-growth-container-<%=family_member.growth_chart.growth_entries.first.id%>" class="row update-growth-container alert alert-danger">
                     <div class="col-xs-12">
@@ -32,9 +30,6 @@
                   </div>
                       
                 <% end %>
-
-
-
 
                   <div class="panel-group" id="accordion-<%=family_member.id%>" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-default">

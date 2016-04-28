@@ -1,53 +1,99 @@
-<!-- Set variables for end_appointment.js.erb call -->
+<%= simple_form_for [surveyable, survey], remote: remote_boolean do |f| %>
 
-<% if (defined?(surveyable)).nil? %>
-<% else %>
-  <% @surveyable = surveyable %>
-<% end %>
-
-<% if @dietitian_survey %>
-  <% @survey = @dietitian_survey %>
-<% end %>
-
-<% if (defined?(survey)).nil? %>
-<% else %>
-  <% @survey = survey %>
-<% end %>
-
-<%= form_for [@surveyable, @survey], remote: true do |f| %>
-  <% if @survey.errors.any? %>
+  <% if survey.errors.any? %>
     <div class="error_messages">
       <h2>Please correct the following errors.</h2>
       <ul>
-      <% @survey.errors.full_messages.each do |msg| %>
+      <% survey.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
   <div id="survey-questions-container" class="row">
-    <%@survey.questions.order("position").each do |question| %>
-      <div id="survey-question-container-<%=question.id%>"class="col-xs-12">
-        <% if question.question_type == "Response" %>
-          <%= render "/surveys/question_types/question_type_response", question: question %>
-        <% elsif question.question_type == "Short Response"%>
-          <%= render "/surveys/question_types/question_type_short_response", question: question %>
-        <% elsif question.question_type == "Check Box" %>
-          <%= render "/surveys/question_types/question_type_check_box", question: question %>
-        <% elsif question.question_type == "Drop Down"%>
-          <%= render "/surveys/question_types/question_type_drop_down", question: question  %>
-        <% elsif question.question_type == "Radio"%>
-          <%= render "/surveys/question_types/question_type_radio", question: question %>
+    <%survey.surveys_questions.each do |survey_question| %>
+      <div id="survey-question-container-<%=survey_question.id%>"class="col-xs-12">
+        <% if survey_question.question.question_type == "Response" %>
+          <%= render "/surveys/question_types/question_type_response", survey_question: survey_question %>
+        <% elsif survey_question.question.question_type == "Short Response"%>
+          <%= render "/surveys/question_types/question_type_short_response", survey_question: survey_question %>
+        <% elsif survey_question.question.question_type == "Check Box" %>
+          <%= render "/surveys/question_types/question_type_check_box", survey_question: survey_question %>
+        <% elsif survey_question.question.question_type == "Drop Down"%>
+          <%= render "/surveys/question_types/question_type_drop_down", survey_question: survey_question  %>
+        <% elsif survey_question.question.question_type == "Radio"%>
+          <%= render "/surveys/question_types/question_type_radio", survey_question: survey_question %>
         <% else #number %>
-          <%= render "/surveys/question_types/question_type_number", question: question %>
+          <%= render "/surveys/question_types/question_type_number", survey_question: survey_question %>
         <% end %>
-        <%=f.hidden_field :completed, value: true %>
+       
       </div>
     <% end %>
+    <div class="col-xs-4 col-xs-offset-4">
+     <%= f.input :completed, :as => :radio_buttons, autofocus: true, label: "Mark as Completed?", input_html: {class: "checkbox-inline"}%>
+
+    </div>
   </div>
   <div class="row">
     <div class="actions col-xs-4 col-xs-offset-4 text-center">
-      <%= f.submit "Save", class: "btn btn-success btn-lg" %>
+      <%= f.submit "Save Responses", class: "btn btn-success btn-block" %>
     </div>
   </div>
 <% end %>
+
+
+
+<!--  OLD FORM
+
+
+<%# if (defined?(surveyable)).nil? %>
+<%# else %>
+  <%# @surveyable = surveyable %>
+<%# end %>
+
+<%# if @dietitian_survey %>
+  <%# @survey = @dietitian_survey %>
+<%# end %>
+
+<%# if (defined?(survey)).nil? %>
+<%# else %>
+  <%# @survey = survey %>
+<%# end %>
+
+<%#= form_for [@surveyable, @survey], remote: true do |f| %>
+  <%# if @survey.errors.any? %>
+    <div class="error_messages">
+      <h2>Please correct the following errors.</h2>
+      <ul>
+      <%# @survey.errors.full_messages.each do |msg| %>
+        <li><%#= msg %></li>
+      <%# end %>
+      </ul>
+    </div>
+  <%# end %>
+  <div id="survey-questions-container" class="row">
+    <%#@survey.questions.order("position").each do |question| %>
+      <div id="survey-question-container-<%#=question.id%>"class="col-xs-12">
+        <%# if question.question_type == "Response" %>
+          <%#= render "/surveys/question_types/question_type_response", question: question %>
+        <%# elsif question.question_type == "Short Response"%>
+          <%#= render "/surveys/question_types/question_type_short_response", question: question %>
+        <%# elsif question.question_type == "Check Box" %>
+          <%#= render "/surveys/question_types/question_type_check_box", question: question %>
+        <%# elsif question.question_type == "Drop Down"%>
+          <%#= render "/surveys/question_types/question_type_drop_down", question: question  %>
+        <%# elsif question.question_type == "Radio"%>
+          <%#= render "/surveys/question_types/question_type_radio", question: question %>
+        <%# else #number %>
+          <%#= render "/surveys/question_types/question_type_number", question: question %>
+        <%# end %>
+        <%#=f.hidden_field :completed, value: true %>
+      </div>
+    <%# end %>
+  </div>
+  <div class="row">
+    <div class="actions col-xs-4 col-xs-offset-4 text-center">
+      <%#= f.submit "Save", class: "btn btn-success btn-lg" %>
+    </div>
+  </div>
+<%# end %> -->

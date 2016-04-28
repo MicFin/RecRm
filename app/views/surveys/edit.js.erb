@@ -9,6 +9,41 @@ if (Kindrdfood.rooms){
   Kindrdfood.rooms.user_session.updateNavigation("session-nav-notes");
 
 	// show container and load partial
-	Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/appointments/appointment_prep/survey_form', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
+	Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/surveys/form', :locals => { :survey=> @survey, :surveyable => @surveyable, remote_boolean: true}) %>");
 
-} 
+
+ // // KRDN prep JS
+ //  // minimize video
+ //  Kindrdfood.rooms.user_session.minimizeVideo();
+
+ //   // update navigation
+ //  Kindrdfood.rooms.user_session.updateNavigation("session-nav-appointment-prep");
+
+	// // show container and load partial
+	// Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/families//show', :locals => { :family=> @family }) %>");
+
+
+
+// not sure how to handle the js yet
+// } else if ( <%#= @survey.survey_group.name == "Client Pre-Appointment" %>) {
+
+// 	// remove current modal
+// 	$("#client-prep-modal").remove();
+
+// 	// add new modal with updated data
+// 	$("body").append("<%#= j render(:partial => '/appointments/appointment_prep/prep_modal', :locals => {:appointment => @appointment, :client_prep => @client_prep}) %>");
+
+// 	// initiate modal
+// 	$("#client-prep-modal").modal();
+
+
+// 	// validate form
+// 	Kindrdfood.formValidations.growthEntries.clientForm();
+// 	Kindrdfood.formValidations.foodDiaryEntries.init();
+// 	Kindrdfood.formValidations.surveys.openResponse();
+
+// 	// initiate carousel
+// 	Kindrdfood.bootstrapOverrides.carousel.init();
+// 	// initiate datetimepicker
+// 	Kindrdfood.dateTimePickers.dateTimePicker.init();
+}

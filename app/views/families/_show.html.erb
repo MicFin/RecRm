@@ -13,7 +13,12 @@
     <% if family && family.family_members %>
       <% family.family_members.each.with_index(1) do |family_member, index| %>
         <%# family_member = Users::UserPresenter.new(family_member) %>
-        <div class="col-xs-6 col-md-4 text-center">
+        <% if (defined? surveyable) && (surveyable.patient_focus.id == family_member.id) %>
+          <div class="col-xs-6 col-md-4 text-center alert-success">
+            <span>Focus of Appointment</span>
+        <% else %>
+          <div class="col-xs-6 col-md-4 text-center">
+        <% end %>
               
           <% if family_member.main_avatar && family_member.main_avatar.icon.url %>
             <%= image_tag family_member.main_avatar.icon.url %>

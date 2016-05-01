@@ -24,7 +24,7 @@ class FamiliesController < ApplicationController
   # GET /families/1
   # GET /families/1.json
   def show
-    @user = Users::UserPresenter.new(current_user)
+    @user = Users::UserPresenter.new(@family.head_of_family)
 
     @family = Families::FamilyPresenter.new(@family)
 

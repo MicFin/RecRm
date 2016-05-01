@@ -26,11 +26,6 @@ class PurchasesController < ApplicationController
     # @appointment = Appointment.new(appointment_host_id: @user.id, status: "In Registration")
     # @package = Package.last
 
-    # # Gather user's family data
-    # # from FamiliessHelper
-    # get_family!
-    # @family
-
     # # @purchases = @purchasable.purchases
   end
 

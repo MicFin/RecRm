@@ -1,47 +1,117 @@
 
-<div class="row">
-	<div class="col-xs-12 col-sm-3">
-		<% if @surveyable && @surveyable.patient_focus == family_member %>
-			<h4 class="alert alert-success">TODAY'S CLIENT FOCUS</h4>
-		<% end %>
-		<h4><%=family_member.full_name%></h4>	
-		<h4><%=family_member.family_role%> of client</h4>
-		<h4><%=family_member.age %></h4>
-		<h4><%=family_member.sex %></h4> 
-		<% if family_member.due_date != nil %>
-			<h4>Due Date:  <%=family_member.due_date %></h4>
-		<% end %>
-	</div>
-	<div class="col-xs-12 col-sm-3">
-		<h4>Health Groups</h4>
-		<div class="row">
-			<% family_member.health_groups_by_category[:diseases].each do | disease| %>
-				<button class="alert-danger">
-					<%= disease.name %>
-				</button>
-			<% end %>
 
-			<% family_member.health_groups_by_category[:allergies].each do | allergy| %>
-				<button class="alert-danger">
-					<%= allergy.name %>
-				</button>
-			<% end %>
-		</div>
-	</div>
-	<div class="col-xs-12 col-sm-3">
-		<h4>Symptoms</h4>
-		<% family_member.health_groups_by_category[:symptoms].each do | symptom| %>
-				<button class="alert-warning">
-					<%= symptom.name %>
-				</button>
-		<% end %>
-	</div>
-	<div class="col-xs-12 col-sm-3">
-		<h4>Diet Preferences</h4>
-		<% family_member.health_groups_by_category[:preferences].each do | preference| %>
-				<button class="alert-warning">
-					<%= preference.name %>
-				</button>
-		<% end %>
-	</div>
-</div>
+                <div class="row"> 
+                  <div class="col-xs-12">
+                    <div class="row">
+                      <div class="col-xs-3 text-center">
+                        <% if family_member.main_avatar && family_member.main_avatar.icon.url %>
+                          <%= image_tag family_member.main_avatar.icon.url %>
+                        <% else %>
+                          <%= image_tag "icons/add_user_photo.png" %>
+                        <% end %>
+                        <p><%= link_to "Edit Profile", families_edit_family_member_path(family, family_member) if current_user %></p>
+                      </div>
+                      <div class="col-xs-9">
+												<div class="row">
+													<div class="col-xs-12 col-sm-3">
+														<p><%=family_member.full_name%></p>	
+														<p><%= "#{family_member.family_role} of client" if current_dietitian %></p>
+														<p><%=family_member.age %></p>
+														<p><%=family_member.sex %></p> 
+														<% if family_member.due_date != nil %>
+															<p>Due Date:  <%=family_member.due_date %></p>
+														<% end %>
+													</div>
+													<div class="col-xs-12 col-sm-3">
+														<h4>Health Groups</h4>
+														<div class="row">
+															<% family_member.health_groups_by_category[:diseases].each do | disease| %>
+																<button class="alert-danger">
+																	<%= disease.name %>
+																</button>
+															<% end %>
+
+															<% family_member.health_groups_by_category[:allergies].each do | allergy| %>
+																<button class="alert-danger">
+																	<%= allergy.name %>
+																</button>
+															<% end %>
+														</div>
+													</div>
+													<div class="col-xs-12 col-sm-3">
+														<h4>Symptoms</h4>
+														<% family_member.health_groups_by_category[:symptoms].each do | symptom| %>
+																<button class="alert-warning">
+																	<%= symptom.name %>
+																</button>
+														<% end %>
+													</div>
+													<div class="col-xs-12 col-sm-3">
+														<h4>Diet Preferences</h4>
+														<% family_member.health_groups_by_category[:preferences].each do | preference| %>
+																<button class="alert-warning">
+																	<%= preference.name %>
+																</button>
+														<% end %>
+													</div>
+												</div>
+                      </div>
+                    </div>
+                    <% if family_member.growth_chart && family_member.growth_chart.growth_entries.length > 0 && family_member.growth_chart.growth_entries.first.energy_requirement == nil%>
+                      <div id="update-growth-container-<%=family_member.growth_chart.growth_entries.first.id%>" class="row update-growth-container alert alert-danger">
+                        <div class="col-xs-12">
+                          <h3>Please update growth and estimated needs</h3>
+                       
+                          <%= render "/growth_entries/form", growth_chart: family_member.growth_chart, growth_entry: family_member.growth_chart.growth_entries.first %>
+
+                        </div>
+                      </div>
+                    <% end %>
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                          <h4 class="panel-title text-center">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Growth Chart
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                              <%= render "/growth_entries/form", growth_chart: family_member.growth_chart, growth_entry: growth_entry if current_user %>
+                                <%= render "/growth_entries/list", growth_chart: family_member.growth_chart %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                          <h4 class="panel-title text-center">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Food Diary
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                            <%= render "/food_diary_entries/form", food_diary: family_member.food_diary, food_diary_entry: food_diary_entry if current_user %>
+                            <%= render "/food_diary_entries/list", food_diary: family_member.food_diary %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                          <h4 class="panel-title text-center">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Previous Appointments
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                          <div class="panel-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>

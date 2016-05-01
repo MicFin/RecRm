@@ -11,4 +11,5 @@
 class GrowthChart < ActiveRecord::Base
   belongs_to :user
   has_many :growth_entries
+  # default_scope{includes(:growth_entries)}
 end

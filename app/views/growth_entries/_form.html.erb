@@ -1,4 +1,4 @@
-<%= simple_form_for [growth_chart, growth_entry], html: { role:"form", class: "col-xs-12" }, remote: true do |f| %>
+<%= simple_form_for [growth_chart, growth_entry], html: { role:"form", class: "row" }, remote: true do |f| %>
   <%= f.error_notification %>
   <%= f.hidden_field :growth_chart_id, value: growth_chart.id %>
 
@@ -41,7 +41,7 @@
   <% else %>
 
 
-    <div class="col-xs-12 col-lg-4 form-group">
+    <div class="col-xs-12 col-lg-5 form-group">
       <p><b>Date Measured</b></p> 
       <%= f.date_select :measured_at, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: 1910, order: [:month, :day, :year]}, {:class => "form-control-4", label: false} %>
     </div>
@@ -64,9 +64,10 @@
 
       <input type="number" name="growth_entry[weight][ounces]" placeholder="4" class="form-control-3" value="<%=growth_entry.height_hash['feet']%>"/> 
       <%= label_tag :ounces, "ounces"%> 
+
     </div>
-    <div class="col-xs-12 col-lg-1 form-group">
-      <%= f.button :submit, "Save", class: "btn btn-md btn-primary" %>
-    </div>  
+    <div class="col-xs-1 ol-xs-offset-8 col-sm-offset-10 form-group">
+      <%= f.button :submit, "Add", class: "btn btn-md btn-primary" %>
+    </div>
   <% end %>
 <% end %>

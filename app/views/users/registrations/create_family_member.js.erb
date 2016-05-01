@@ -7,4 +7,4 @@ if (Kindrdfood.rooms){
 }
 
 // show container and load partial
-Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/families/list_family_members', :locals => { :family=> @family, :user => @user}) %>");
+Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/families/show', :locals => { :family=> @family}) %>");

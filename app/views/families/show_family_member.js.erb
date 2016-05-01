@@ -1,0 +1,4 @@
+// show container and load partial
+$("#showFamilyMemberModal").remove();
+$("body").append("<%= j render(:partial => '/families/show_family_member_modal', :locals => { :family_member=> @family_member, family: @family, growth_entry: @growth_entry, food_diary_entry: @food_diary_entry }) %>");
+$("#showFamilyMemberModal").modal();

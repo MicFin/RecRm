@@ -2,7 +2,7 @@
   <%= f.error_notification %>
     <%= f.hidden_field :food_diary_id, value: food_diary.id %>
 
-    <div class="col-xs-12 col-md-4 form-group">
+    <div class="col-xs-12 col-md-3 form-group">
       <p><b>Date</b></p> 
        <div class='input-group date' id='datetimepicker'>
         <input type="datetime" data-request-num="1" name="food_diary_entry[consumed_at]" class="form-control" placeholder="Select" />
@@ -16,11 +16,11 @@
       <p><b>Location</b></p> 
       <%= f.input :location, label: false, placeholder: "Home", input_html: { class: 'form-control'} %>
     </div>
-    <div class="col-xs-12 col-md-4 form-group">
+    <div class="col-xs-12 col-md-6 form-group">
       <p><b>Meal, Formula, Breast Milk, or Beverage</b></p>
       <%= f.input :food_item, label: false, placeholder: "1 cup of food", input_html: { class: 'form-control'} %> 
     </div>
-    <div class="col-xs-12 col-lg-1  form-group">
+    <div class="col-xs-1 ol-xs-offset-8 col-sm-offset-10 form-group">
       <%= f.button :submit, "Save", class: "btn btn-md btn-primary" %>
     </div>
 

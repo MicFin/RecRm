@@ -1,5 +1,5 @@
 // show container and load partial
-Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/growth_charts/growth_chart_partial', :locals => { :growth_chart=> @growth_chart, :growth_entry => @growth_entry}) %>");
+Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/growth_charts/show', :locals => { :growth_chart=> @growth_chart, :growth_entry => @growth_entry}) %>");
 
 
 Kindrdfood.formValidations.growthEntries.clientForm();

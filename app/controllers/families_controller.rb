@@ -13,7 +13,7 @@
 class FamiliesController < ApplicationController
   include PatientGroupsHelper
   include FamiliesHelper
-  before_action :set_family, only: [:show, :edit, :edit_family_member, :new_family_member, :update, :destroy, :remove_member]
+  before_action :set_family, only: [:show, :edit, :edit_family_member, :new_family_member, :show_family_member, :update, :destroy, :remove_member]
 
   # GET /families
   # GET /families.json
@@ -26,10 +26,7 @@ class FamiliesController < ApplicationController
   def show
     @user = Users::UserPresenter.new(current_user)
 
-    # Gather user's family data
-    # from FamiliessHelper
-    get_family_members!
-    @family.family_members
+    @family = Families::FamilyPresenter.new(@family)
 
     # New user for form
     @new_user = User.new(last_name: @user.last_name)
@@ -163,6 +160,19 @@ class FamiliesController < ApplicationController
         format.json { render json: @family.errors, status: :unprocessable_entity }     
         format.js    
       end
+    end
+  end
+
+  # GET /families/1/show_family_member/2
+  def show_family_member
+    @user = current_user
+    @family_member = Users::UserPresenter.new(User.find(params[:member_id]))
+    @family_member.health_groups = @family_member.patient_groups 
+    @food_diary_entry = FoodDiaryEntry.new
+    @growth_entry = GrowthEntry.new
+    respond_to do |format|
+      format.html 
+      format.js
     end
   end
 

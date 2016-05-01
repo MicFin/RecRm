@@ -564,6 +564,7 @@ Rails.application.routes.draw do
       delete 'families/:id/remove_member/:member_id', to: "families#remove_member", as: 'remove_family_member'
       get 'families/:id/edit_family_member/:member_id', to: "families#edit_family_member", as: 'families_edit_family_member'
       get 'families/:id/new_family_member', to: "families#new_family_member", as: 'families_new_family_member'
+      get 'families/:id/show_family_member/:member_id', to: "families#show_family_member", as: 'families_show_family_member'
       resources :families
 
       # Appointments paths
@@ -623,6 +624,9 @@ Rails.application.routes.draw do
       patch 'dietitans/:dietitian_id/images/:id/update', to: 'images#update', as: 'dietitian_image'
       get 'dietitans/:dietitian_id/images/:id/crop', to: 'images#crop', as: 'crop_dietitian_image'
       
+      # Families paths
+      get 'families/:id/show_family_member/:member_id', to: "families#show_family_member", as: 'dietitian_show_family_member'
+
       # Appointment paths
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_dietitian_survey_update'
       patch 'appointments/:id/assign_dietitian', to: 'appointments#assign_dietitian', as: 'appointments_assign_dietitian'

@@ -4,7 +4,7 @@
       <%= render "/layouts/navbars/user_nav" %>
 
       <main class="col-xs-12 col-sm-10 col-sm-offset-2">
-       <section class="alerts-container">
+        <section class="alerts-container">
           <%= render "/layouts/alerts" %>
         </section>
         <section>
@@ -12,13 +12,10 @@
         </section>
         <hr>
         <div class="dynamic-page-container">
- 
-          <%= render "/families/show", family: @family%>
+          
+        <%= render "/families/show_family_member", family_member: @family_member, family: @family, growth_entry: @growth_entry, food_diary_entry: @food_diary_entry %>
+
         </div>
-  
-
-
-
       </main>
       <div class="col-xs-12 col-sm-10 col-sm-offset-2">
         <%=render "/layouts/footers/main_footer" %>

@@ -62,6 +62,7 @@ class SurveysController < ApplicationController
   end
 
   def update
+    
     update_questions_with_answers(params[:questions])
     
     respond_to do |format|
@@ -114,13 +115,13 @@ class SurveysController < ApplicationController
         #   @diets =  @diets 
         # end
         if current_user 
-          format.html { redirect_to welcome_home_path, notice: 'Questionnaire was successfully saved.' }
+          format.html { redirect_to welcome_home_path, notice: 'Updated!' }
           format.json { render :show, status: :ok, location: @survey }
-          format.js
+          format.js  {flash.now[:notice] = "Updated!"}
         else
-          format.html { redirect_to dietitian_authenticated_root_path, notice: 'Questionnaire was successfully updated.' }
+          format.html { redirect_to dietitian_authenticated_root_path, notice: 'Updated!' }
           format.json { render :show, status: :ok, location: @survey }
-          format.js
+          format.js {flash.now[:notice] = "Updated!"}
         end
         
       else
@@ -152,8 +153,9 @@ class SurveysController < ApplicationController
   end
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
+      
       params.require(:survey).permit(:completed)
-            # params.require(:survey).permit(:completed, :survey_type, :surveyable_id, :surveyable_type )
+      # params.require(:survey).permit(:completed, :survey_type, :surveyable_id, :surveyable_type )
     end
 
 end

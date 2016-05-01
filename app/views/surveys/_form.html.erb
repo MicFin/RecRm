@@ -29,11 +29,11 @@
        
       </div>
     <% end %>
-
+    <%= f.input :completed, as: :hidden, :input_html => { :value => true } %>
   </div>
   <div class="row">
     <div class="actions col-xs-4 col-xs-offset-4 text-center">
-      <%= f.submit "Save Responses", class: "btn btn-success btn-block" %>
+      <%= f.submit "Save", class: "btn btn-primary btn-lg" %>
     </div>
   </div>
 <% end %>

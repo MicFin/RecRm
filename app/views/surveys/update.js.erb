@@ -2,9 +2,7 @@
 
 // if showing family in session room then return that save was made
 if (Kindrdfood.rooms){
-
-  alert("Saved");
-
+	$(".alerts-container").html("<%= j render(:partial => '/layouts/alerts', :locals => {:flash => flash}) %>");
 // else hide modal and adjust button
 } else {
 

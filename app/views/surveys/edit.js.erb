@@ -9,7 +9,7 @@ if (Kindrdfood.rooms){
   Kindrdfood.rooms.user_session.updateNavigation("session-nav-notes");
 
 	// show container and load partial
-	Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/surveys/form', :locals => { :survey=> @survey, :surveyable => @surveyable, remote_boolean: true}) %>");
+	Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/surveys/form', :locals => { :survey=> @survey, :surveyable => @surveyable, remote_boolean: true, survey_group: @survey_group}) %>");
 
 
  // // KRDN prep in session JS
@@ -20,7 +20,7 @@ if (Kindrdfood.rooms){
  //  Kindrdfood.rooms.user_session.updateNavigation("session-nav-appointment-prep");
 
 	// // show container and load partial
-	// Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/families//show', :locals => { :family=> @family }) %>");
+	// Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%#= j render(:partial => '/families/show', :locals => { :family=> @family }) %>");
 
 
 

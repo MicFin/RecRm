@@ -1,0 +1,30 @@
+
+<h3 class="header">Overview</h3> 
+<div class="appt-overview-container">
+  <div class="appt-overview-item">
+    <h4>Date:</h4>
+    <p><%= current_user ? surveyable.appointment_host_start_time_date : surveyable.start_time_date %></p>
+    <p><%= current_user ? surveyable.appointment_host_start_time_time :  surveyable.start_time_time %></p>
+  </div>
+  <div class="appt-overview-item">
+    <h4>Appointment Focus:</h4>
+    <p><%= surveyable.patient_focus_full_name%></p>
+  </div>
+  <div class="appt-overview-item">
+    <h4>KRDN:</h4>
+    <p><%= surveyable.dietitian.signature%></p>
+  </div>
+
+  <% if current_dietitian %>
+    <div class="appt-overview-item">
+      <h4>Client Time Zone:</h4>
+      <p><%= surveyable.appointment_host_start_time_date %></p>
+      <p><%= surveyable.appointment_host_start_time_time %></p>
+    </div>
+    <div class="appt-overview-item">
+      <h4>Client:</h4>
+      <p><%= surveyable.appointment_host_full_name%></p>
+    </div>
+  <% end %>
+
+</div>

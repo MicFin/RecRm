@@ -24,61 +24,79 @@ class Survey < ActiveRecord::Base
 
   # Generates questions for survey based on survey group
   def generate_survey_questions
-    self.survey_group.questions.each do |question|
-      SurveysQuestion.create(question_id: question.id, survey_id: self.id)
+
+    # For Dietitian Session Notes, create answers for questinos index 0 and 3 with pre appt survey answer 0 and 1
+    if survey_group.name == "Dietitian - Session Notes"
+
+      # Get most recent pre appt survey group
+      pre_appt_survey_group_id = SurveyGroup.with_group_name("Dietitian - Pre Appointment").most_recent.id
+
+      # Get dietititna pre appt survey
+      dietitian_pre_appt_survey = Survey.where(surveyable_type: "Appointment").where(surveyable_id: surveyable.id).where(survey_group_id: pre_appt_survey_group_id).first
+
+      # Add answers to 0 and 3
+      survey_group.questions.each_with_index do |question, index|
+        if index == 0
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id, answer: dietitian_pre_appt_survey.surveys_questions[0].answer)
+        elsif index == 3
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id, answer: dietitian_pre_appt_survey.surveys_questions[1].answer)
+        else
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id)
+        end
+      end
     end
   end
 
   # Generates or fetches the survey used as Pre Appointment Survey for client or dietitian
   def self.generate_for_appointment(appointment, client_or_dietitian)
     # for client
-    if client_or_dietitian.class == User
+    if client_or_dietitian.class == User || client_or_dietitian.class == Users::UserPresenter
 
-      client_pre_appt_survey_group_id = SurveyGroup.client_pre_appt.most_recent.id
+      survey_id = SurveyGroup.with_group_name("Client - Pre Appointment").most_recent.id
 
-      appointment_survey = Survey.where(survey_group_id: client_pre_appt_survey_group_id).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
+      appointment_survey = Survey.where(surveyable_type: "Appointment").where(surveyable_id: appointment.id).where(survey_group_id: survey_id)
 
       if appointment_survey.count < 1
         
-        new_survey = Survey.new(survey_group_id: client_pre_appt_survey_group_id)
-        new_survey.surveyable_id = appointment.id
-        new_survey.surveyable_type = "Appointment"
-        new_survey.save
-        new_survey.generate_survey_questions
+        appointment_survey = Survey.new(survey_group_id: survey_id)
+        appointment_survey.surveyable_id = appointment.id
+        appointment_survey.surveyable_type = "Appointment"
+        appointment_survey.save
+        appointment_survey.generate_survey_questions
         
-        new_survey.save
+        appointment_survey.save
       else
-        new_survey = appointment_survey.last
+        appointment_survey = appointment_survey.last
       end
 
       # for dietitian
     else 
 
-      dietitian_pre_appt_survey_group_id = SurveyGroup.dietitian_pre_appt.most_recent.id
+      survey_id = SurveyGroup.with_group_name("Dietitian - Pre Appointment").most_recent.id
       
-      appointment_survey = Survey.where(survey_group_id: dietitian_pre_appt_survey_group_id).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
+      appointment_survey = Survey.where(surveyable_type: "Appointment").where(surveyable_id: appointment.id).where(survey_group_id: survey_id)
 
       if appointment_survey.count < 1
         
-        new_survey = Survey.new(survey_group_id: dietitian_pre_appt_survey_group_id)
-        new_survey.surveyable_id = appointment.id
-        new_survey.surveyable_type = "Appointment"
-        new_survey.save
-        new_survey.generate_survey_questions
+        appointment_survey = Survey.new(survey_group_id: survey_id)
+        appointment_survey.surveyable_id = appointment.id
+        appointment_survey.surveyable_type = "Appointment"
+        appointment_survey.save
+        appointment_survey.generate_survey_questions
         
-        new_survey.save
+        appointment_survey.save
       else
-        new_survey = appointment_survey.last
+        appointment_survey = appointment_survey.last
       end
     end
-    return new_survey
+    return appointment_survey
   end
 
   # Generates or fetches the survey used as Notes for In Session for client or dietitian
   def self.generate_for_session(appointment, client_or_dietitian)
     if client_or_dietitian.class == User
 
-      client_session_notes_survey_group_id = SurveyGroup.client_session_notes.most_recent.id
+      client_session_notes_survey_group_id = SurveyGroup.with_group_name("Client - Session Notes").most_recent.id
 
       appointment_survey = Survey.where(survey_group_id: client_session_notes_survey_group_id).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
 
@@ -98,7 +116,7 @@ class Survey < ActiveRecord::Base
     # else for dietitian
     else 
 
-      dietitian_session_notes_survey_group_id = SurveyGroup.dietitian_session_notes.most_recent.id
+      dietitian_session_notes_survey_group_id = SurveyGroup.with_group_name("Dietitian - Session Notes").most_recent.id
 
       appointment_survey = Survey.where(survey_group_id: dietitian_session_notes_survey_group_id).where(surveyable_type: "Appointment").where(surveyable_id: appointment.id)
 

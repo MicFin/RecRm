@@ -1,0 +1,35 @@
+<div id="welcome-page" class="container-fluid">
+		<div class="row-fluid">
+
+			<%= render "/layouts/navbars/dietitian_nav" %>
+
+      <main class="col-xs-12 col-sm-10 col-sm-offset-2">
+       <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+        </section>
+        <section>
+          <%= render "/surveys/survey_templates/appt_overview", surveyable: surveyable %>
+        </section>
+        <hr>
+          <h3 class="header">The <%= surveyable.appointment_host.last_name %> Family</h3>
+          <%= render "/families/show", family: family, surveyable: surveyable %>
+        <hr>
+        <section>
+          <h3 class="header">Pre Appointment Questionnaire</h3>
+          <%= render "/surveys/survey_answers", survey: client_survey%>
+        </section>
+        <hr>
+        <section>
+          <h3 class="header">Appointment Prep Notes</h3>
+          <%= render "/surveys/form", surveyable: surveyable, survey: survey, survey_group: survey_group, remote_boolean: false %>
+
+        </section>
+
+      </main>
+			<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<%=render "/layouts/footers/main_footer" %>
+			</div>
+		</div>
+	</div>
+
+

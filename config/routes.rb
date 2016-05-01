@@ -626,6 +626,7 @@ Rails.application.routes.draw do
       
       # Families paths
       get 'families/:id/show_family_member/:member_id', to: "families#show_family_member", as: 'dietitian_show_family_member'
+      get 'families/:id/', to: "families#show"
 
       # Appointment paths
       patch 'appointments/:appointment_id/surveys/:id', to: 'surveys#update', as: 'appointment_dietitian_survey_update'

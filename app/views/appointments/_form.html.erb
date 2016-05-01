@@ -20,12 +20,16 @@
   <div class="field">
     <%= f.input :dietitian_id, collection: @dietitians, prompt: "Choose a Dietitian", label_method: :email, value_method: :id, :include_hidden => false, input_html: { class: "form-control-3"} %>
   </div>
-  <div class="field">
-    <%= f.input :start_time %>
-  </div>
-  <div class="field">
-    <%= f.input :end_time %>
-  </div>
+
+    <div class="col-xs-12 col-md-3 form-group">
+      <p><b>Start Time</b></p> 
+      <%= f.datetime_select :start_time %>
+    </div>
+    <div class="col-xs-12 col-md-3 form-group">
+      <p><b>End Time</b></p> 
+      <%= f.datetime_select :end_time %>
+    </div>
+
   <div class="actions">
     <%= f.button :submit %>
   </div>

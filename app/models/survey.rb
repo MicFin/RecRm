@@ -19,7 +19,7 @@ class Survey < ActiveRecord::Base
 
   belongs_to :survey_group
   belongs_to :surveyable, :polymorphic => true
-  has_many :surveys_questions, :dependent => :destroy
+  has_many :surveys_questions, -> { includes :question }, :dependent => :destroy
   has_many :questions, through: :surveys_questions
 
   # Generates questions for survey based on survey group

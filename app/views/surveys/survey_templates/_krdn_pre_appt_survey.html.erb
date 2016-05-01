@@ -41,14 +41,15 @@
         <hr>
         <section>
           <h3 class="header">Pre Appointment Questionnaire</h3>
-          <%= render "surveys/survey_answers", survey: survey%>
+          <%= render "/surveys/survey_answers", survey: survey%>
         </section>
         <hr>
-          <%= render "/families/show", family: surveyable.family %>
+          <h3 class="header">The <%= surveyable.appointment_host.last_name %> Family</h3>
+          <%= render "/families/show", family: family %>
         <hr>
         <section>
           <h3 class="header">Appointment Prep Notes</h3>
-          <%= render "/surveys/form", surveyable: surveyable, survey: dietitian_survey, remote_boolean: false %>
+          <%= render "/surveys/form", surveyable: surveyable, survey: dietitian_survey, survey_group: survey_group, remote_boolean: false %>
 
         </section>
 

@@ -53,8 +53,7 @@ class SurveysController < ApplicationController
   end
 
   def edit
-    # @surveyable = @survey.surveyable
-    # @survey_type = @survey.survey_group.name
+    @survey_group = @survey.survey_group.name
 
     respond_to do |format|
       format.js 

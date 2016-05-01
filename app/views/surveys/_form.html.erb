@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <div id="survey-questions-container" class="row">
+  <div id="survey-questions-container" class="row" data-survey-group="<%=survey_group%>">
     <%survey.surveys_questions.each do |survey_question| %>
       <div id="survey-question-container-<%=survey_question.id%>"class="col-xs-12">
         <% if survey_question.question.question_type == "Response" %>
@@ -29,10 +29,7 @@
        
       </div>
     <% end %>
-    <div class="col-xs-4 col-xs-offset-4">
-     <%= f.input :completed, :as => :radio_buttons, autofocus: true, label: "Mark as Completed?", input_html: {class: "checkbox-inline"}%>
 
-    </div>
   </div>
   <div class="row">
     <div class="actions col-xs-4 col-xs-offset-4 text-center">

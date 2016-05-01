@@ -17,57 +17,20 @@
 			<!-- APPOUINTMENT PREP  -->
 			<section class="content-container">
         <h2 class="modal-title">Appointment Prep</p></h2>
-
-      	<!--   CAROUSEL  -->
 	      <div class="row form-group">
-	        
-	        <div class="col-xs-12 form-group">
-	          
-	          <div id="carousel-client-prep" class="carousel slide" data-wrap="false" data-interval="false" data-ride="carousel">
+	        <div class="col-xs-12 form-group">   
 
-	            <!-- Wrapper for slides -->
-	            <div class="carousel-inner" role="listbox">
+              <h3>Update <%= surveyable.patient_focus.first_name%>'s most recent height and weight</h3>
+              <%= render "/growth_entries/form", growth_chart: growth_chart, growth_entry: growth_entry %>
+							<table class="table growth-entries-table table-condensed"></table>
 
-	              <div data-prep-position="growth-chart" class="item active">
-	                <div class="carousel-content">
-	                  <h3>Please add <%= surveyable.patient_focus.first_name%>'s most recent height and weight to the growth log.</h3>
+              <h3>Add what <%= surveyable.patient_focus.first_name%> ate yesterday</h3>
+              <%= render "/food_diary_entries/form", food_diary: food_diary, food_diary_entry: food_diary_entry %>
+              <table class="table food-diary-table"></table>
 
-	                  <%= render "/growth_entries/form", growth_chart: growth_chart, growth_entry: growth_entry %>
-
-	                  <%= render "/growth_entries/list", growth_chart: growth_chart, growth_entry: growth_entry %>
-	                </div>
-	               
-	              </div>
-	              <div data-prep-position="food-diary" class="item">
-	                <div class="carousel-content">
-	                  <h3>Please add what <%= surveyable.patient_focus.first_name%> ate yesterday to the food diary.</h3>
-	                  <%= render "/food_diary_entries/form", food_diary: food_diary, food_diary_entry: food_diary_entry %>
-	                  <%= render "/food_diary_entries/list", food_diary: food_diary, food_diary_entry: food_diary_entry %>
-	                </div>
-	                
-	              </div>
-	              <div data-prep-position="survey" class="item">
-	                <div class="carousel-content container-fluid">
-	                  <%= render "/surveys/form", surveyable: surveyable, survey: survey, remote_boolean: false  %>
-	                </div>
-
-	              </div>
-	            </div>
-
-
-
+              <h3>Help your Kindrd Nutritionist prepare.</h3>
+              <%= render "/surveys/form", surveyable: surveyable, survey: survey, survey_group: survey_group, remote_boolean: false  %>
 	          </div>
-
-	        </div>
-	      </div>
-
-        <!-- Controls -->
-	      <div class="row">
-	        <div class="col-xs-6 col-sm-3 col-sm-offset-6 ">
-	        <a href="#carousel-client-prep" class="btn btn-block btn-primary hidden" role="button" data-slide="prev">Previous</a>
-	        </div>
-	        <div class="col-xs-6 col-sm-3">
-	        <a href="#carousel-client-prep" class="btn btn-block btn-primary" role="button" data-slide="next">Next</a>
 	        </div>
 	      </div>
 

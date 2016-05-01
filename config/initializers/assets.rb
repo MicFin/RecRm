@@ -20,6 +20,7 @@
   food_diary_entries
   appointments
   dashboard
+  surveys
   users/sessions
   dietitians/registrations
   devise/sessions

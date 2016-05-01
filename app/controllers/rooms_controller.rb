@@ -91,9 +91,10 @@ class RoomsController < ApplicationController
       ## should probably use AJAX to call appointment controller for this info
       @new_appointment = Appointment.new(dietitian_id: current_dietitian.id, appointment_host_id: @client.id, patient_focus_id: @appointment.patient_focus_id, status: "Follow Up Unpaid")
 
+      # These might not be necessary since called via ajax
       @survey = Survey.generate_for_session(@appointment, @user)
       @pre_appt_survey = Survey.generate_for_appointment(@appointment, @client)
-
+      @family = Families::FamilyPresenter.new(@client.head_of_families.first)
     # else is a client_in_session
     else
 
@@ -106,9 +107,11 @@ class RoomsController < ApplicationController
       # Get dietitian for appointment
       @dietitian = @appointment.dietitian
 
+      # These might not be necessary since called via ajax
       @survey = Survey.generate_for_session(@appointment, @user)
       @pre_appt_survey = Survey.generate_for_appointment(@appointment, @user)
       @surveyable = @appointment
+      @family = Families::FamilyPresenter.new(@user.head_of_families.first)
     end
     
   end

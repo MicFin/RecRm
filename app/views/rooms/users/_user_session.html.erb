@@ -3,8 +3,15 @@
 
     <%= render "rooms/users/user_session_nav", survey: survey, appointment: appointment, pre_appt_survey: pre_appt_survey%>
     <main class="col-xs-10 col-xs-offset-2">
-      <p>You are meeting with:</p>
-      <h1><%=appointment.dietitian.signature%></h1>
+
+      <!-- ALERTS-->
+      <%= render "/rooms/rooms_alert" %>
+
+      <div class="row">
+        <p>You are meeting with:</p>
+        <h1><%=appointment.dietitian.signature%></h1>        
+      </div>
+
       <section class="row form-group">
         <div class="col-xs-10 dynamic-page-container hidden">
           <%#= render "/sureys/form", survey: @survey, surveyable: @surveyable, rmeote_boolean: false %>

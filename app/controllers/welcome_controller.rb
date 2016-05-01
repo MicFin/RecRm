@@ -38,10 +38,7 @@ class WelcomeController < Users::RegistrationsController
       # Gather user's umpaid appointment
       @unpaid_appointment = Appointments::AppointmentPresenter.new(current_user.appointment_hosts.where(status: "Follow Up Unpaid").last)
 
-      # Gather user's family data
-      # from FamiliessHelper
-      get_family!
-      @family
+      @family = Families::FamilyPresenter.new(current_user.head_of_families.where(name: "Main").first)
     end
   end
 
@@ -75,10 +72,7 @@ class WelcomeController < Users::RegistrationsController
       redirect_to welcome_get_started_path
     end
 
-    # Gather user's family data
-    # from FamiliesHelper
-    get_family!
-    @family
+    @family = Families::FamilyPresenter.new(current_user.head_of_families.where(name: "Main").first)
 
     # New user for form
     @new_user = User.new(last_name: @user.last_name)

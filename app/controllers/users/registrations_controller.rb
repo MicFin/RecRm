@@ -45,7 +45,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  # should move to families controller
+  # should move to families controller but using devise sanitizer
   def create_family_member
     @user = current_user 
     @family = current_user.head_of_families.first
@@ -64,6 +64,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @growth_chart = GrowthChart.new
     @food_diary = FoodDiary.new
 
+    @family = Families::FamilyPresenter.new(@family)
+    @user = Users::UserPresenter.new(@user)
     respond_to do |format|
       if @family_member.save
         format.html { redirect_to family_path(@family) }
@@ -138,7 +140,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
           else 
             @family = @family_member.head_of_families.last 
           end
-          @user = current_user
+          @family = Families::FamilyPresenter.new(@family)
+          @user = Users::UserPresenter.new(current_user)
           format.js
           format.html { redirect_to family_path(@family) }
           
@@ -163,7 +166,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         # update_without_password doesn't know how to ignore it
         @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
       end
-      
+      @family = Families::FamilyPresenter.new(@family)
+      @user = Users::UserPresenter.new(@user)
       respond_to do |format|  
         if successfully_updated
 

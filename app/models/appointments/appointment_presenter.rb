@@ -44,14 +44,7 @@ module Appointments
 
     def family
       family = appointment_host.head_of_families.first
-      if !family.nil?
-        family.children = family.users
-        family.family_members = []
-        family.family_members << family.children << appointment_host
-        family.family_members.flatten!
-      end
-      family.family_members = Users::UserPresenter.present(family.family_members)
-      family 
+      family = Families::FamilyPresenter.new(family)
     end
 
 

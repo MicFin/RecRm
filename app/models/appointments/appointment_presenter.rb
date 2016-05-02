@@ -57,7 +57,6 @@ module Appointments
       family = Families::FamilyPresenter.new(family)
     end
 
-
     # # CLASS METHODS
     def self.present(appointments)
       appointments.map { |appt| Appointments::AppointmentPresenter.new(appt) }

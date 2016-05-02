@@ -29,6 +29,12 @@ module SurveyHelper
 
       # Render survey template with data
       render "surveys/survey_templates/dietitian_pre_appt_survey", survey: survey, survey_group: survey_group, surveyable: surveyable, client_survey: client_survey, family: family
+      
+    elsif survey_group == "Client - Assessment"
+
+      # Render survey template with data
+      render "surveys/survey_templates/client_assessment_form", survey: survey, survey_group: survey_group, surveyable: surveyable, client_survey: client_survey 
+
     else 
       # render "purchases/purchases_modal/coupon_not_applied", purchase: purchase, purchasable: purchasable
     end

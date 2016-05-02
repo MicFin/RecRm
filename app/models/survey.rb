@@ -44,7 +44,35 @@ class Survey < ActiveRecord::Base
           SurveysQuestion.create(question_id: question.id, survey_id: self.id)
         end
       end
-    
+
+    elsif survey_group.name == "Client - Assessment"
+      # Get most recent pre appt survey group
+      notes_survey_group_id = SurveyGroup.with_group_name("Dietitian - Session Notes").most_recent.id
+      pre_appt_survey_group_id = SurveyGroup.with_group_name("Client - Pre Appointment").most_recent.id
+
+      # Get dietititna pre appt survey
+      dietitian_notes = Survey.where(surveyable_type: "Appointment").where(surveyable_id: surveyable.id).where(survey_group_id: notes_survey_group_id).first
+
+      pre_appt_survey =  Survey.where(surveyable_type: "Appointment").where(surveyable_id: surveyable.id).where(survey_group_id: pre_appt_survey_group_id).first
+
+      # Add answers to 0 and 3
+      survey_group.questions.each_with_index do |question, index|
+        if index == 0
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id, answer: dietitian_notes.surveys_questions[1].answer)
+        elsif index == 1
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id, answer: pre_appt_survey.surveys_questions[1].answer)
+        elsif index == 2
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id, answer: pre_appt_survey.surveys_questions[2].answer)
+        elsif index == 3
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id, answer: dietitian_notes.surveys_questions[3].answer)
+        elsif index == 5
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id, answer: dietitian_notes.surveys_questions[4].answer)
+        else
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id)
+        end
+      end
+
+
     # For all others surveys leave answer blank
     else
       survey_group.questions.each_with_index do |question, index|
@@ -185,16 +213,47 @@ class Survey < ActiveRecord::Base
     return new_survey
   end
 
-  def self.generate_for_follow_up(appointment)
-    new_survey = Survey.new(survey_type: "Follow-Up")
-    new_survey.surveyable_id = appointment.id
-    new_survey.surveyable_type = "Appointment"
-    client = appointment.appointment_host
-    new_survey.user = client
-    new_survey.save
-    Question.new(position: 1, tier: 1, content: "Write the assessment that will be sent to #{client.first_name} #{client.last_name}:", question_type: "Response", survey_group: "Follow-Up", survey_group_question_id: 1, choices: "", survey_id: new_survey.id).save
-    Question.new(position: 2, tier: 1, content: "Prepare an assessment to send to your client's physician:", question_type: "Response", survey_group: "Follow-Up", survey_group_question_id: 2, choices: "", survey_id: new_survey.id).save
-    new_survey.save 
-    return new_survey
+  def self.generate_for_assessment(appointment, client_or_dietitian)
+   # for client
+    if client_or_dietitian.class == User || client_or_dietitian.class == Users::UserPresenter
+
+      survey_id = SurveyGroup.with_group_name("Client - Pre Appointment").most_recent.id
+
+      appointment_survey = Survey.where(surveyable_type: "Appointment").where(surveyable_id: appointment.id).where(survey_group_id: survey_id)
+
+      if appointment_survey.count < 1
+        
+        appointment_survey = Survey.new(survey_group_id: survey_id)
+        appointment_survey.surveyable_id = appointment.id
+        appointment_survey.surveyable_type = "Appointment"
+        appointment_survey.save
+        appointment_survey.generate_survey_questions
+        
+        appointment_survey.save
+      else
+        appointment_survey = appointment_survey.last
+      end
+
+      # for dietitian
+    else 
+
+      survey_id = SurveyGroup.with_group_name("Client - Assessment").most_recent.id
+      
+      appointment_survey = Survey.where(surveyable_type: "Appointment").where(surveyable_id: appointment.id).where(survey_group_id: survey_id)
+
+      if appointment_survey.count < 1
+        
+        appointment_survey = Survey.new(survey_group_id: survey_id)
+        appointment_survey.surveyable_id = appointment.id
+        appointment_survey.surveyable_type = "Appointment"
+        appointment_survey.save
+        appointment_survey.generate_survey_questions
+        
+        appointment_survey.save
+      else
+        appointment_survey = appointment_survey.last
+      end
+    end
+    return appointment_survey
   end
 end

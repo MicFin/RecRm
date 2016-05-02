@@ -14,18 +14,27 @@
       <% if previous_appointments.count >= 1%>
         <% previous_appointments.each do |appointment| %>
           <tr>  
-            <td><%=appointment.start_time.strftime("%B %d, %Y %I:%M %p")%></td>
+          <% if current_user %>
+            <td><%=appointment.appointment_host_start_time %></td>
+          <% else %>
+            <td><%= appointment.appointment_start_time %></td>
+          <% end %>
+          
 
             <td><%= appointment.patient_focus.first_name%></td>
 
             <td><%= appointment.show_duration%></td>
+            <% if current_user %>
+              <td><%= link_to "View", appointment_summary_client_path(appointment) %></td>
+            <% else %>
+                <td><%= link_to "View", appointment_summary_dietitian_path(appointment) %></td>
+            <% end %>
           </tr>
         <% end %>
       <% else %>
         <tr>
           <td>No previous appointments.</td>
         </tr>
-
       <% end %>
     </tbody>
   </table>

@@ -9,6 +9,10 @@ module Appointments
        start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%A %B %d, %Y")
     end
 
+    def appointment_start_time
+      start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
+    end
+
     def appointment_host_start_time_time
       start = start_time.in_time_zone(appointment_host.time_zone)
       time = start.strftime("%I:%M %p") + " " + appointment_host.time_zone 

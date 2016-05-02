@@ -40,11 +40,18 @@
 //= require plugins/jquery-validate-extra-methods.min.js
 //= require plugins/jqueryValidateAddedMethods/minimum_age
 
+//   JQUERY DATATABLE
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+
 //  JAVASCRIPT TIME ZONES
 //= require plugins/time_zones
 
 //  JAVASCRIPT COUNT DOWN
 //= require plugins/count-down-clock.js
+
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 
 // BROWSER DETAILS FOR RAILS LOG
 //= require browser_details

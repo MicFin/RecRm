@@ -1,0 +1,183 @@
+<div id="family-page" class="container-fluid">
+    <div class="row-fluid">
+
+      <%= render "/layouts/navbars/user_nav" if current_user %>
+      <%= render "/layouts/navbars/dietitian_nav" if current_dietitian %>
+
+      <main class="col-xs-12 col-sm-10 col-sm-offset-2">
+       <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+        </section>
+        <section>
+          <h1>Appointment</h1>
+        </section>
+        <hr>
+        <div class="dynamic-page-container">
+          <section>
+            <%= render "/surveys/survey_templates/appt_overview", surveyable: @surveyable %>
+          </section>
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title text-center">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Pre Appointment Questionnaire
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <%= render "/surveys/survey_answers", survey: @client_prep_survey%>
+                </div>
+              </div>
+            </div>
+            <% if current_dietitian %>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title text-center">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Appointment Prep
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                     <%= render "/surveys/survey_answers", survey: @dietitian_prep_survey%>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                  <h4 class="panel-title text-center">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Notes
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="panel-body">
+                   <%= render "/surveys/survey_answers", survey: @dietitian_notes%>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFour">
+                  <h4 class="panel-title text-center">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      Notes
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                  <div class="panel-body">
+                    <%= render "/surveys/survey_answers", survey: @client_notes %>
+                  </div>
+                </div>
+              </div>
+
+            <% end %>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFive">
+                  <h4 class="panel-title text-center">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      Assessment
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                  <div class="panel-body">
+                    <% if current_dietitian%>
+
+                      <%#= link_to "Complete Assessment", edit_appointment_survey_path(, ), class: "btn btn-small btn-primary" %>
+                      <%= render "/surveys/form", surveyable: @surveyable, survey: @assessment, survey_group: @assessment.survey_group.name, remote_boolean: false  %>                    
+                    <% else %>
+                      <%= render "/surveys/survey_answers", survey: @assessment %>
+
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingSix">
+                  <h4 class="panel-title text-center">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                      Recommendations
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                  <div class="panel-body">
+                    <% if current_dietitian%>
+
+                      <section class="col-xs-12">
+                        <p>Toggle column: </p>
+                        <p class="hide-general-columns">
+                        </p>
+                        <p class="hide-article-columns">
+                        </p>
+                        <p class="hide-recipe-columns">
+                        </p>
+                        <table class="table table-striped table-bordered table-hover table-condensed datatable hidden" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th></th>
+                              <th><%= t(".title")%></th>
+                              <th><%= t(".url")%></th>
+                              <th><%= t(".type")%></th>
+                              <th>Date Published</th>
+                              <%@tags.each do |tag| %>
+                                <th><%=tag.name%></th>
+                              <% end %>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr>
+                              <th></th>
+                               <th></th> 
+                              <th data-content-type="general" data-tag-category="basic_info"><%= t(".title")%></th>
+                              <th data-content-type="general" data-tag-category="basic_info"><%= t(".url")%></th>
+                              <th data-content-type="general" data-tag-category="basic_info"><%= t(".type")%></th>
+                              <th data-content-type="general" data-tag-category="publishing_status">Date Published</th>
+                              <%@tags.each do |tag| %>
+                                <th class="tag-category-header" data-content-type="<%=tag.content_type.downcase()%>" data-tag-category="<%=tag.tag_category.downcase().tr(" ", "_")%>"><%=tag.name%></th>
+                              <% end %>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            <% @posts.each do |post|%>
+                              <tr> 
+                                <td><button class="btn btn-sm btn-default">Add</button></td>
+                                <td></td>
+                                <td><%= post.title %></td>
+                                <td><%= link_to "/#{post.url}", post.full_url, target: "_blank" %></td>
+                                <td><%= post.content_type %></td>
+                                <td><%= post.published_at.strftime("%B %d, %Y") if post.published_at%> </td>
+                                <%@tags.each do |tag| %>
+                                  <th><%=post.tags.include?(tag)%></th>
+                                <% end %>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                      </section>
+            
+                    <% else %>
+
+
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+
+              
+          </div>
+        </div>
+      </main>
+      <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>

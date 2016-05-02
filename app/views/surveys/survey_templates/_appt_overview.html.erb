@@ -12,7 +12,7 @@
   </div>
   <div class="appt-overview-item">
     <h4>KRDN:</h4>
-    <p><%= surveyable.dietitian.signature%></p>
+    <p><%= surveyable.dietitian.signature if surveyable.dietitian%></p>
   </div>
 
   <% if current_dietitian %>

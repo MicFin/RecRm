@@ -33,7 +33,7 @@ class AppointmentsController < ApplicationController
   include FamiliesHelper
 
   # # CALL BACKS
-  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :update_duration, :purchase, :assign_dietitian, :appointment_prep, :client_appointment_prep, :end_appointment]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :update_duration, :purchase, :assign_dietitian, :appointment_prep, :client_appointment_prep, :end_appointment, :summary]
   before_filter :config_opentok, :only => [:assign_dietitian]
 
   # GET /appointments
@@ -54,6 +54,33 @@ class AppointmentsController < ApplicationController
     # Get all previous and completed appointments
     @previous_appointments = Appointments::AppointmentPresenter.present(Appointment.previous.complete.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time)
     
+  end
+
+  # GET /appointments/1/summary
+  def summary
+    # @user = Users::UserPresenter.new(@family.head_of_family)
+
+    # @family = Families::FamilyPresenter.new(@family)
+
+    @surveyable = Appointments::AppointmentPresenter.new(@appointment)
+    @client_prep_survey = Survey.generate_for_appointment(@surveyable, @surveyable.appointment_host)
+    @dietitian_prep_survey = Survey.generate_for_appointment(@surveyable, @surveyable.dietitian)
+    @client_notes = Survey.generate_for_session(@surveyable, @surveyable.appointment_host)
+    @dietitian_notes = Survey.generate_for_session(@surveyable, @surveyable.dietitian)
+
+    @assessment = Survey.generate_for_assessment(@surveyable, @surveyable.dietitian)
+
+    @posts = Monologue::Post.all.includes_users
+    @tags_grouped = Monologue::Tag.grouped_tags
+    @tags = Monologue::Tag.all
+    # New user for form
+    # @new_user = User.new(last_name: @user.last_name)
+    # @growth_chart = GrowthChart.new
+    # @food_diary = FoodDiary.new
+    respond_to do |format|
+
+       format.html
+    end
   end
 
   # GET /appointments/1

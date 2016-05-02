@@ -23,6 +23,8 @@
           <%= render "/surveys/question_types/question_type_drop_down", survey_question: survey_question  %>
         <% elsif survey_question.question.question_type == "Radio"%>
           <%= render "/surveys/question_types/question_type_radio", survey_question: survey_question %>
+        <% elsif survey_question.question.question_type == "NPS"%>
+          <%= render "/surveys/question_types/question_type_nps", survey_question: survey_question, f: f %>
         <% else #number %>
           <%= render "/surveys/question_types/question_type_number", survey_question: survey_question %>
         <% end %>

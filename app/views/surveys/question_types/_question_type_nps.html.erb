@@ -1,0 +1,41 @@
+
+<% if survey_question.question.tier == 1 %>
+<div class="question-container question-container-nps">
+<% else %>
+<div class="question-container question-container-nps tier-2">
+<% end %>
+	<h4><%=survey_question.question.content%></h4>
+		
+		<label class="radio-inline">
+		  <input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio1" value="1" <%= "checked" if survey_question.answer == 1%> > 1
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio2" value="2" <%= "checked" if survey_question.answer == 2%> > 2
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio3" value="3" <%= "checked" if survey_question.answer == 3%> > 3
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio4" value="4" <%= "checked" if survey_question.answer == 4%> > 4
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio5" value="5" <%= "checked" if survey_question.answer == 5%> > 5
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio6" value="6" <%= "checked" if survey_question.answer == 6%> > 6
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio7" value="7" <%= "checked" if survey_question.answer == 7%> > 7
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio8" value="8" <%= "checked" if survey_question.answer == 8%> > 8
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio9" value="9" <%= "checked" if survey_question.answer == 9%> > 9
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio10" value="10" <%= "checked" if survey_question.answer == 10%> > 10
+		</label>
+
+</div>
+	

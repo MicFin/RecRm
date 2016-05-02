@@ -49,7 +49,7 @@ class AppointmentsController < ApplicationController
     end
 
     # Get all upcoming and scheduled appointments
-    @upcoming_appointments = Appointments::AppointmentPresenter.present(Appointment.upcoming.scheduled.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time)
+    @upcoming_appointments = Appointments::AppointmentPresenter.present(Appointment.upcoming_and_current.scheduled.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time)
 
     # Get all previous and completed appointments
     @previous_appointments = Appointments::AppointmentPresenter.present(Appointment.previous.complete.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time)
@@ -249,25 +249,27 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/end_appointment
   # Should move to another controller, maybe the rooms_controller
   def end_appointment
+
     respond_to do |format|
       if current_user 
 
         # if a user
-        # @survey = Survey.generate_for_post_appointment(@appointment, current_user)
+        @survey = Survey.generate_for_post_appointment(@appointment, current_user)
+        @survey_group = @survey.survey_group.name
         # return user end of apt survey
         
           format.html { redirect_to user_authenticated_root_path, notice: 'Appointment was successfully completed.' }
           format.js
         
       else
-        # else a dietitian
-        #  dietitian end of appointment survey
-        # @survey = Survey.generate_for_post_appointment(@appointment, current_dietitian)
-        # @follow_up = Survey.generate_for_follow_up(@appointment)
 
-        # mark appointment as complete, timestamp ending time, save length
-        @appointment.status = "Complete"
-        @appointment.save
+        @survey = Survey.generate_for_post_appointment(@appointment, current_dietitian)
+        @survey_group = @survey.survey_group.name
+        # mark appointment as complete
+        if params[:data] && params[:data][:end_session] === "true"
+          @appointment.status = "Complete"
+          @appointment.save
+        end
         # @user_pre_appt_survey = Survey.generate_for_appointment(@appointment, @appointment.appointment_host)
         # # 
           format.html { redirect_to dietitian_authenticated_root_path, notice: 'Appointment was successfully completed.' }

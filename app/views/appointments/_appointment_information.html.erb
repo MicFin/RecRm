@@ -18,7 +18,7 @@
     <p><%=appointment.patient_focus.family_note%></p>
   </li>
 </ul>
-<h3>Entire Family:</h3>
+<h3>Family Members:</h3>
 <ul>
   <li><%=appointment.appointment_host.first_name%></li>
   <% appointment.appointment_host.head_of_families.first.users.each do |family_member| %>

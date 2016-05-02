@@ -1,12 +1,12 @@
 <%= simple_form_for [@survey_group, question], html: {class: "form-horizontal"} do |f| %>
   <%= f.error_notification %>
 	<%= f.hidden_field :survey_group_id, value: @survey_group.id %>
-	<%= f.hidden_field :question_type, value: "Response" %>
   <table class="table">
     <thead>
       <tr>
         <th>Position</th>
         <th>Question</th>
+        <th>Question Type</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -16,7 +16,7 @@
         <tr>
           <td><%= f.input :position, label: false %></td>
           <td><%= f.input :content, label: false %></td>
-
+          <td>  <%= f.input :question_type, label: false, collection: ["Response", "NPS"], prompt: "Select", :include_hidden => false, input_html: { class: "form-control-12"} %></td>
           <td><%= f.button :submit, label: false %></td>
         </tr>
     </tbody>

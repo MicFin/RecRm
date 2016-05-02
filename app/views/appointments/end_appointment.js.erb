@@ -1,1 +1,8 @@
-$("#videobox2").replaceWith("<div class='col-xs-8 col-xs-offset-2'><h1><a href='/'>CLICK HERE TO EXIT APPOINTMENT</a></h1></div>");
+
+<% if @appointment.status === 'Complete'%>
+
+		Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/surveys/form', :locals => { :survey=> @survey, :surveyable => @appointment, remote_boolean: false, survey_group: @survey_group}) %>");
+
+<% else %>
+	$("#videobox2").append("<h3 class='text-center' id='video-placeholder'>Oops, be right back!</h3>");
+<% end %>

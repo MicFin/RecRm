@@ -39,8 +39,8 @@
 							<a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Flag Session</span></a>
 						</li> 
 
-        			<%= link_to "End Session", end_dietitian_appointment_path(appointment), class: "btn btn-danger btn-block text-left", data: { confirm: 'Are you sure?' }, remote: true %>
-
+        			<%#= link_to "End Session", end_dietitian_appointment_path(appointment), class: "btn btn-danger btn-block text-left", data: { confirm: 'Are you sure?' }, remote: true %>
+        			<button id="end-session-button" class="btn btn-danger btn-block text-left">End Session</button>
 					</ul>
 				</nav>
 			</header>

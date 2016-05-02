@@ -8,7 +8,7 @@ class WelcomeController < Users::RegistrationsController
   # User dashboard
   # /welcome/home
   def home
-    
+
     # if user is a provider then go to new user invitation page
     if current_user.provider?
 

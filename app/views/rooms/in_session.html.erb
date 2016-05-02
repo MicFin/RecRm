@@ -153,6 +153,7 @@
           // if the moderator disconnected on purpose then disconnect all sessions because the session is over
           // this is also the reason for if the dietitian accidentalyl closes window though
           // Need to differentiate between the two
+
           if (event.reason === "clientDisconnected") {
             session.disconnect();
             $.ajax({
@@ -210,9 +211,7 @@
           startTime = moment();
           var startTimeFormatted = moment().format('h:mm a');
           var endTime = startTime.add(1, "hours");
-          var endTimeFormatted = endTime.format('h:mm a');
-   
-          $("#end-session-button").before("<p class='session-timer-text'>The session began at "+startTimeFormatted+" and is scheduled to end at "+endTimeFormatted+".  Time remaining: <span id='session-count-down'></span>");
+          var endTimeFormatted = endTime.format('h:mm a')
 
           var diffTime = 3600000;
           var duration = moment.duration(diffTime, 'milliseconds');
@@ -273,25 +272,6 @@
 
         }
       };
-
-      $("#end-session-button").on("click", function(e){
-        e.preventDefault();
-        var end_session_boolean = confirm("Are you sure you would like to end this session?");
-        if (end_session_boolean === true) {
-        // confirm to close session
-          sessionDestroy();
-
-          $.ajax({
-            type: "GET",
-            datatype: "script",
-            data: {},
-            url: "/appointments/"+appointment_id+"/end_appointment",
-            success: function(response){
-              $("#videobox2").append("<div class='col-xs-8 col-xs-offset-2'><h1><a href='/'>CLICK HERE TO EXIT APPOINTMENT</a></h1></div>");
-            } 
-          })
-        }
-      });
 
       $("#chat-container").on("click", "#send-message-button", function(e){
         e.preventDefault();

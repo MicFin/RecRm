@@ -29,15 +29,18 @@
 						</li>
 						<li class="session-nav-notes">
 							<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
-								<span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">My Notes</span>
+								<span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Notes</span>
 							<% end %>	
 						</li>
-	<!-- 					<li>
+						<li>
 							<a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Schedule a Follow Up</span></a>
 						</li>
 						<li>
 							<a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Flag Session</span></a>
-						</li> -->
+						</li> 
+
+        			<%= link_to "End Session", end_dietitian_appointment_path(appointment), class: "btn btn-danger btn-block text-left", data: { confirm: 'Are you sure?' }, remote: true %>
+
 					</ul>
 				</nav>
 			</header>

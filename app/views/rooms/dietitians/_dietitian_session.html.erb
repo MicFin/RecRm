@@ -3,10 +3,7 @@
   <div class="row-fluid">
     <%= render "rooms/dietitians/dietitian_session_nav", survey: survey, appointment: appointment, pre_appt_survey: pre_appt_survey, family: family%>
     <main class="col-xs-10 col-xs-offset-2">
-<!--       <div class="col-xs-12 alert alert-danger">
-        <%#= link_to "End Session", end_dietitian_appointment_path(appointment), class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %>
-         <button id="end-session-button" type="button" class="btn btn-danger btn-xs">End Session</button>
-      </div> -->
+
       <!-- ALERTS-->
       <%= render "/rooms/rooms_alert" %>
       <div id="clockdiv" data-end-time="<%=appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%>">
@@ -35,7 +32,7 @@
         <h4>From:</h4>
         <h2 class="heading"><%= appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%l:%M") %> - <%=appointment.end_time.in_time_zone("Eastern Time (US & Canada)").strftime("%l:%M %p") %></h2>
       </div>
-      <div class="row">
+      <div class="row main-container">
         <div class="col-xs-10 dynamic-page-container hidden">
 
         </div>

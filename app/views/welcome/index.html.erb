@@ -22,7 +22,10 @@
 				<section class="content-container">
 					<%= render "welcome/index/upcoming_appointments_table_dietitian", upcoming_appointments: @upcoming_appointments %>
 				</section>
-
+			<!-- PREVIOUS APPOINTMENTS TABLE -->
+			<section class="content-container recipes">
+				<%= render "welcome/home/previous_appointments_table", previous_appointments: @previous_appointments %>
+			</section>
 				
 			</main>
 			<div class="col-xs-12 col-sm-10 col-sm-offset-2">

@@ -46,7 +46,7 @@ class WelcomeController < Users::RegistrationsController
   ### /welcome/index
   def index
     @upcoming_appointments = Appointments::AppointmentPresenter.present(current_dietitian.appointments.upcoming_and_current.includes(:appointment_host).includes(:patient_focus).by_start_time)
-
+    @previous_appointments = Appointments::AppointmentPresenter.present(current_dietitian.appointments.previous.complete_or_scheduled.includes(:appointment_host).includes(:patient_focus).by_start_time)
   end
 
   # 1st stage of registration is for contact information

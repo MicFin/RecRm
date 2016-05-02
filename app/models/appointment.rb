@@ -53,7 +53,7 @@ class Appointment < ActiveRecord::Base
   # SCOPES: Appointment owners
   scope :unassigned, -> { where(dietitian_id: nil) }
   # SCOPES: Appointment order
-  scope :by_start_time, -> { order(start_time: :asc, created_at: :asc) }
+  scope :by_start_time, -> { order(start_time: :desc) }
 
   # # CALL BACKS
   after_save :update_purchase_price, :if => Proc.new {|model| model.duration_changed? }

@@ -53,6 +53,7 @@ class SurveysController < ApplicationController
   end
 
   def edit
+
     @survey_group = @survey.survey_group.name
 
     respond_to do |format|

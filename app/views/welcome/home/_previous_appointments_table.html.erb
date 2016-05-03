@@ -24,11 +24,9 @@
             <td><%= appointment.patient_focus.first_name%></td>
 
             <td><%= appointment.show_duration%></td>
-            <% if current_user %>
-              <td><%= link_to "View", appointment_summary_client_path(appointment) %></td>
-            <% else %>
-                <td><%= link_to "View", appointment_summary_dietitian_path(appointment) %></td>
-            <% end %>
+
+              <td><%= link_to "View", appointment_path(appointment) %></td>
+
           </tr>
         <% end %>
       <% else %>

@@ -56,58 +56,47 @@ class AppointmentsController < ApplicationController
     
   end
 
-  # GET /appointments/1/summary
-  def summary
-    # @user = Users::UserPresenter.new(@family.head_of_family)
-
-    # @family = Families::FamilyPresenter.new(@family)
-
-    @surveyable = Appointments::AppointmentPresenter.new(@appointment)
-    @client_prep_survey = Survey.generate_for_appointment(@surveyable, @surveyable.appointment_host)
-    @dietitian_prep_survey = Survey.generate_for_appointment(@surveyable, @surveyable.dietitian)
-    @client_notes = Survey.generate_for_session(@surveyable, @surveyable.appointment_host)
-    @dietitian_notes = Survey.generate_for_session(@surveyable, @surveyable.dietitian)
-
-    @assessment = Survey.generate_for_assessment(@surveyable, @surveyable.dietitian)
-
-    @posts = Monologue::Post.all.includes_users
-    @tags_grouped = Monologue::Tag.grouped_tags
-    @tags = Monologue::Tag.all
-    # New user for form
-    # @new_user = User.new(last_name: @user.last_name)
-    # @growth_chart = GrowthChart.new
-    # @food_diary = FoodDiary.new
-    respond_to do |format|
-
-       format.html
-    end
-  end
 
   # GET /appointments/1
   # GET /appointments/1.json
   # this is where the index modal is coming from to view the prep information before the admin assigns a dietitian to an appointment
   def show
 
-    if params[:data] == "Request"
-      
-    else 
-      ### this is being used to prep assign the dietitian 
-      @dietitians = @appointment.available_dietitians
-      
-      @dietitians_data = {}
-      @dietitians.each do |dietitian|
-        @dietitians_data[dietitian] = {}
-        # @dietitians_data[dietitian]["half_hour_time_slots_available"] = dietitian.half_hour_time_slots_available
-        # @dietitians_data[dietitian]["loss_time_slots"] = dietitian.loss_time_slots(@appointment) 
-        # @dietitians_data[dietitian]["loss_cal_slots"] = dietitian.loss_calendar_slots(@appointment)      
-      end
+    @surveyable = Appointments::AppointmentPresenter.new(@appointment)
 
-      #@survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
-    end
-    @appointment = Appointments::AppointmentPresenter.new(@appointment)
-    respond_to do |format|
-      format.js
-    end
+    @client_prep_survey = Survey.generate_for_appointment(@surveyable, @surveyable.appointment_host)
+    @client_notes = Survey.generate_for_session(@surveyable, @surveyable.appointment_host)
+    @client_nps_survey = Survey.generate_for_post_appointment(@surveyable, @surveyable.appointment_host)
+
+    @dietitian_prep_survey = Survey.generate_for_appointment(@surveyable, @surveyable.dietitian)
+    @dietitian_notes = Survey.generate_for_session(@surveyable, @surveyable.dietitian)
+    @dietitian_nps_survey = Survey.generate_for_post_appointment(@surveyable, @surveyable.dietitian)
+    @assessment = Survey.generate_for_assessment(@surveyable, @surveyable.appointment_host)
+    @provider_assessment = Survey.generate_for_assessment(@surveyable, @surveyable.dietitian)
+
+    @family = Families::FamilyPresenter.new(@surveyable.appointment_host.head_of_families.first)
+    
+
+    # if params[:data] == "Request"
+      
+    # else 
+    #   ### this is being used to prep assign the dietitian 
+    #   @dietitians = @appointment.available_dietitians
+      
+    #   @dietitians_data = {}
+    #   @dietitians.each do |dietitian|
+    #     @dietitians_data[dietitian] = {}
+    #     # @dietitians_data[dietitian]["half_hour_time_slots_available"] = dietitian.half_hour_time_slots_available
+    #     # @dietitians_data[dietitian]["loss_time_slots"] = dietitian.loss_time_slots(@appointment) 
+    #     # @dietitians_data[dietitian]["loss_cal_slots"] = dietitian.loss_calendar_slots(@appointment)      
+    #   end
+
+    #   #@survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
+    # end
+    # @appointment = Appointments::AppointmentPresenter.new(@appointment)
+    # respond_to do |format|
+    #   format.js
+    # end
   end
 
   # GET /appointments/new

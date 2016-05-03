@@ -2,7 +2,7 @@ module Appointments
   class AppointmentPresenter < SimpleDelegator
 
     def start_time_time
-       start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p") 
+       start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M %p") + " " + "Eastern Time (US & Canada)" 
     end
 
     def start_time_date
@@ -10,7 +10,7 @@ module Appointments
     end
 
     def appointment_start_time
-      start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")
+      start_time_date + " at " + appointment_host_start_time_time
     end
 
     def appointment_host_start_time_time

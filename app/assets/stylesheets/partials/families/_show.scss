@@ -31,7 +31,8 @@ img.add-family-member{
 }
 
 
-#family-members-container > div {
+.family-members-container > div {
+  padding: 20px 0;
   > div:first-of-type {
   	position: relative;
   }

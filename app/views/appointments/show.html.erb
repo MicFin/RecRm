@@ -1,53 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div id="family-page" class="container-fluid">
+    <div class="row-fluid">
 
-<p>
-  <strong>Patient focus:</strong>
-  <%= @appointment.patient_focus_id %>
-</p>
+      <%= render "/layouts/navbars/main_navigation_column" %>
 
-<p>
-  <strong>Appointment host:</strong>
-  <%= @appointment.appointment_host_id %>
-</p>
+      <main class="col-xs-12 col-sm-10 col-sm-offset-2">
+       <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+        </section>
+        <section>
+          <h1>Appointment</h1>
+        </section>
+        <hr>
+        <div class="dynamic-page-container">
+          <section>
+            <%= render "/surveys/survey_templates/appt_overview", surveyable: @surveyable %>
+          </section>
+          <section>
+            <%= render "/families/show", family: @family%>
+          </section>
+          <section class="surveys-container">
+              <%= render "surveys/survey_templates/client_pre_appt_survey_item", surveyable: @surveyable, survey: @client_prep_survey %>
+      
+              <%= render("surveys/survey_templates/client_appt_notes_item", surveyable: @surveyable, survey: @client_notes) if current_user %>
 
-<p>
-  <strong>Dietitian:</strong>
-  <%= @appointment.dietitian_id %>
-</p>
+              <%= render("surveys/survey_templates/dietitian_pre_appt_survey_item", surveyable: @surveyable, survey: @dietitian_prep_survey) if current_dietitian %>
 
-<p>
-  <strong>Date:</strong>
-  <%= @appointment.date %>
-</p>
+              <%= render("surveys/survey_templates/dietitian_appt_notes_item", surveyable: @surveyable, survey: @dietitian_notes) if current_dietitian %>
 
-<p>
-  <strong>Room:</strong>
-  <%= @appointment.room_id %>
-</p>
+              <%= render("surveys/survey_templates/client_assessment_item", surveyable: @surveyable, survey: @assessment) %>            
+              <%= render("surveys/survey_templates/provider_assessment_item", surveyable: @surveyable, survey: @provider_assessment) if current_dietitian %>            
 
-<p>
-  <strong>Note:</strong>
-  <%= @appointment.note %>
-</p>
+              <%= render("surveys/survey_templates/client_nps_item", surveyable: @surveyable, survey: @client_nps_survey) if current_dietitian && (current_dietitian.has_role? "Admin Dietitian")%>  
 
-<p>
-  <strong>Client note:</strong>
-  <%= @appointment.client_note %>
-</p>
+              <%= render("surveys/survey_templates/dietitian_nps_item", surveyable: @surveyable, survey: @dietitian_nps_survey) if current_dietitian && (current_dietitian.has_role? "Admin Dietitian") %>  
 
-<p>
-  <strong>Created at:</strong>
-  <%= @appointment.created_at %>
-</p>
-
-<p>
-  <strong>Updated at:</strong>
-  <%= @appointment.updated_at %>
-</p>
-
-<%= render "surveys/surveys" %>
-<%= render "surveys/form" %>
-
-
-<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
-<%= link_to 'Back', appointments_path %>
+          </section>
+        </div>
+      </main>
+      <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>

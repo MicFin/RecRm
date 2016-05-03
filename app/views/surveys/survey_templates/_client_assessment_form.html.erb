@@ -1,51 +1,84 @@
+<div id="family-page" class="container-fluid">
+    <div class="row-fluid">
 
-<!-- USER DASHBOARD aka WELCOME PAGE -->
+      <%= render "/layouts/navbars/main_navigation_column" %>
 
-<div id="welcome-page" class="container-fluid">
-	<div class="row-fluid">
-
-		<!-- USER NAV-->
-		<%= render "/layouts/navbars/dietitian_nav" %>
-
-		<main class="col-xs-12 col-sm-10 col-sm-offset-2">
-
-			<!-- ALERTS-->
-		  <section class="alerts-container">
+      <main class="col-xs-12 col-sm-10 col-sm-offset-2">
+       <section class="alerts-container">
           <%= render "/layouts/alerts" %>
-      </section>
-
-			<!-- APPOUINTMENT PREP  -->
-			<section class="content-container">
-        <h2 class="modal-title">Appointment Prep</h2>
-	      <div class="row form-group">
-	        <div class="col-xs-12 form-group">   
-	          <%= render "/surveys/survey_templates/appt_overview", surveyable: surveyable %>
-
-
-            <h3>Update <%= surveyable.patient_focus.first_name%>'s most recent height and weight</h3>
-            <%= render "/growth_entries/form", growth_chart: growth_chart, growth_entry: growth_entry %>
-						<table class="table growth-entries-table table-condensed"></table>
-
-            <h3>Add what <%= surveyable.patient_focus.first_name%> ate yesterday</h3>
-            <%= render "/food_diary_entries/form", food_diary: food_diary, food_diary_entry: food_diary_entry %>
-            <table class="table food-diary-table"></table>
-
-            <h3>Client Assessment</h3>
-            <%= render "/surveys/form", surveyable: surveyable, survey: survey, survey_group: survey_group, remote_boolean: false  %>
-	        </div>
-	      </div>
-			</section>
-
-
-		</main>
-		<div class="col-xs-12 col-sm-10 col-sm-offset-2">
-			<%=render "/layouts/footers/main_footer" %>
-		</div>
-	</div>
-</div>
-
-<!-- RESCHEDULE MODAL -->
-<%=render "legal/disclaimers/reschedule_cancellation" %>
-
-<!-- CONTACT US MODAL -->
-<%=render "welcome/home/contact_us_modal" %>
+        </section>
+        <section>
+          <h1>Appointment</h1>
+        </section>
+        <hr>
+        <div class="dynamic-page-container">
+          <section>
+            <%= render "/surveys/survey_templates/appt_overview", surveyable: surveyable %>
+          </section>
+          <section class="surveys-container">
+              <%= render "surveys/survey_templates/client_pre_appt_survey_item", surveyable: surveyable, survey: client_prep_survey %>
+              <%= render("surveys/survey_templates/dietitian_pre_appt_survey_item", surveyable: surveyable, survey: dietitian_prep_survey) %> 
+              <%= render("surveys/survey_templates/dietitian_appt_notes_item", surveyable: surveyable, survey: dietitian_notes) %>
+          </section>
+          <section>
+            <%= render "/surveys/form", surveyable: surveyable, survey: survey, survey_group: survey_group, remote_boolean: false  %>                    
+          </section>
+          <section class="col-xs-12">
+            <p>Toggle column: </p>
+            <p class="hide-general-columns">
+            </p>
+            <p class="hide-article-columns">
+            </p>
+            <p class="hide-recipe-columns">
+            </p>
+            <table class="table table-striped table-bordered table-hover table-condensed datatable hidden" style="width:100%">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th><%= t(".title")%></th>
+                  <th><%= t(".url")%></th>
+                  <th><%= t(".type")%></th>
+                  <th>Date Published</th>
+                  <%tags.each do |tag| %>
+                    <th><%=tag.name%></th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th></th>
+                   <th></th> 
+                  <th data-content-type="general" data-tag-category="basic_info"><%= t(".title")%></th>
+                  <th data-content-type="general" data-tag-category="basic_info"><%= t(".url")%></th>
+                  <th data-content-type="general" data-tag-category="basic_info"><%= t(".type")%></th>
+                  <th data-content-type="general" data-tag-category="publishing_status">Date Published</th>
+                  <%tags.each do |tag| %>
+                    <th class="tag-category-header" data-content-type="<%=tag.content_type.downcase()%>" data-tag-category="<%=tag.tag_category.downcase().tr(" ", "_")%>"><%=tag.name%></th>
+                  <% end %>
+                </tr>
+              </tfoot>
+              <tbody>
+                <% posts.each do |post|%>
+                  <tr> 
+                    <td><button class="btn btn-sm btn-default">Add</button></td>
+                    <td></td>
+                    <td><%= post.title %></td>
+                    <td><%= link_to "/#{post.url}", post.full_url, target: "_blank" %></td>
+                    <td><%= post.content_type %></td>
+                    <td><%= post.published_at.strftime("%B %d, %Y") if post.published_at%> </td>
+                    <%tags.each do |tag| %>
+                      <th><%=post.tags.include?(tag)%></th>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </section>            
+        </div>
+      </main>
+      <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>

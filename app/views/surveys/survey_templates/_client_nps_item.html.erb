@@ -1,0 +1,10 @@
+              <div class="survey-item">
+               <ul class="list">
+                <li><%= link_to "Client NPS", appointment_survey_path(surveyable, survey), remote: true %></li>
+                <li>Surveyed after appointment.</li>
+                <li>Scale of 1-10.</li>
+                <li>1 being least favorable</li>
+                <li>&nbsp;</li>
+                <li class="text-right"><%= link_to "View", appointment_survey_path(surveyable, survey), remote: true, class: "btn btn-xs btn-default" %></li>
+              </ul>
+              </div>

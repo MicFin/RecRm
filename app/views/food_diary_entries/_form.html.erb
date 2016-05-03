@@ -1,3 +1,4 @@
+
 <%= simple_form_for [food_diary, food_diary_entry],  html: {class: 'row', role:"form" }, remote: true do |f| %>
   <%= f.error_notification %>
     <%= f.hidden_field :food_diary_id, value: food_diary.id %>

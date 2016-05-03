@@ -14,6 +14,8 @@
         <%= render "/surveys/answer_types/answer_type_drop_down", question: question  %>
       <% elsif question.question.question_type == "Radio"%>
         <%= render "/surveys/answer_types/answer_type_radio", question: question %>
+      <% elsif question.question.question_type == "NPS"%>
+        <%= render "/surveys/answer_types/answer_type_nps", question: question %>
       <% else #number %>
         <%= render "/surveys/answer_types/answer_type_number", question: question %>
       <% end %>

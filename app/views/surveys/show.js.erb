@@ -1,5 +1,6 @@
 
 // if showing family in session room then return that save was made
+
 if (Kindrdfood.rooms){
 
 	// minimize video
@@ -11,5 +12,15 @@ if (Kindrdfood.rooms){
   // show container and load partial
 	Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/surveys/survey_answers', :locals => { :survey=> @survey, :surveyable => @surveyable}) %>");
 
+// if showing family in appointment show 
+// or showing from survey page
+// maybe could juse use 'else' if no other scenarios besides room need above
+// then show as survey modal
+} else if ( Kindrdfood.appointments || Kindrdfood.surveys ){
 
-} 
+	// show container and load partial
+	$("#showSurveyModal").remove();
+	$("body").append("<%= j render(:partial => '/surveys/show_modal', :locals => { :survey=> @survey, family: @family }) %>");
+	$("#showSurveyModal").modal();	
+
+}

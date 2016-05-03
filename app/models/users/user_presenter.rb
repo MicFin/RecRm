@@ -76,6 +76,10 @@ module Users
       end
     end
 
+    def previous_appointments_patient_focus
+      # user.patient_focus gets all appointments where user is patient_Focus
+      Appointments::AppointmentPresenter.present(patient_focus.complete)
+    end
     # # CLASS METHODS
     def self.present(users)
       users.map { |user| Users::UserPresenter.new(user) }

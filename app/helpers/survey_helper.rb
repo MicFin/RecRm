@@ -14,7 +14,7 @@ module SurveyHelper
       surveyable = Appointments::AppointmentPresenter.new(surveyable)
 
       # Render survey template with data
-      render "surveys/survey_templates/client_pre_appt_survey", survey: survey, survey_group: survey_group, surveyable: surveyable, patient_focus: patient_focus, growth_chart: growth_chart, growth_entry: growth_entry, food_diary: food_diary, food_diary_entry: food_diary_entry, remote_boolean: false 
+      render "surveys/survey_templates/client_pre_appt_survey_form", survey: survey, survey_group: survey_group, surveyable: surveyable, patient_focus: patient_focus, growth_chart: growth_chart, growth_entry: growth_entry, food_diary: food_diary, food_diary_entry: food_diary_entry, remote_boolean: false 
 
     # If a diettiian pre appointment survey 
     elsif survey_group == "Dietitian - Pre Appointment" 
@@ -28,12 +28,24 @@ module SurveyHelper
       family = Families::FamilyPresenter.new(surveyable.family)
 
       # Render survey template with data
-      render "surveys/survey_templates/dietitian_pre_appt_survey", survey: survey, survey_group: survey_group, surveyable: surveyable, client_survey: client_survey, family: family
-      
+      render "surveys/survey_templates/dietitian_pre_appt_survey_form", survey: survey, survey_group: survey_group, surveyable: surveyable, client_survey: client_survey, family: family
+
     elsif survey_group == "Client - Assessment"
 
+      surveyable = Appointments::AppointmentPresenter.new(surveyable)
+
+      client_prep_survey = Survey.generate_for_appointment(surveyable, surveyable.appointment_host)
+      dietitian_prep_survey = Survey.generate_for_appointment(surveyable, surveyable.dietitian)
+      dietitian_notes = Survey.generate_for_session(surveyable, surveyable.dietitian)
+      assessment = Survey.generate_for_assessment(surveyable, surveyable.appointment_host)
+
+      posts = Monologue::Post.all.includes_users
+      # tags_grouped = Monologue::Tag.grouped_tags
+      tags = Monologue::Tag.all
+
+      family = Families::FamilyPresenter.new(surveyable.appointment_host.head_of_families.first)
       # Render survey template with data
-      render "surveys/survey_templates/client_assessment_form", survey: survey, survey_group: survey_group, surveyable: surveyable, client_survey: client_survey 
+      render "surveys/survey_templates/client_assessment_form", survey: survey, survey_group: survey_group, surveyable: surveyable, client_prep_survey: client_prep_survey, dietitian_prep_survey: dietitian_prep_survey, dietitian_notes: dietitian_notes, tags: tags, posts: posts
 
     else 
       # render "purchases/purchases_modal/coupon_not_applied", purchase: purchase, purchasable: purchasable

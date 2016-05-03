@@ -1,0 +1,10 @@
+              <div class="survey-item">                
+                <ul class="list">
+                  <li><%= link_to "KRDN Prep", appointment_survey_path(surveyable, survey), remote: true %></li>
+                  <li>Review patient information.</li>
+                  <li>See client goals.</li>
+                  <li>Begin your plan.</li>
+                  <li>&nbsp;</li>
+                  <li class="text-right"><%= link_to("Edit", edit_appointment_survey_path(surveyable, survey), class: "btn btn-xs btn-primary") %> <%= link_to "View", appointment_survey_path(surveyable, survey), remote: true, class: "btn btn-xs btn-default" %></li>
+                </ul>
+              </div>

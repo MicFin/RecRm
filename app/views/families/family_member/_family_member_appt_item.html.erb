@@ -1,0 +1,16 @@
+<div class="survey-item">                
+  <ul class="list">
+
+    <% if current_user %>
+      <li><%= link_to appointment.appointment_host_start_time, appointment_path(appointment)%></li>
+    <% else %>
+      <li><%= link_to appointment.appointment_start_time, appointment_path(appointment) %></li>
+    <% end %>
+
+    <li>with <%=appointment.dietitian.signature%></li>
+    <li>for <%=appointment.patient_focus.first_name%></li>
+    <li><%=appointment.duration%> minutes</li>
+    <li>&nbsp;</li>
+    <li class="text-right"><%= link_to "View", appointment_path(appointment), remote: true, class: "btn btn-xs btn-default" %></li>
+  </ul>
+</div>

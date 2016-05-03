@@ -93,6 +93,7 @@
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                           <div class="panel-body">
+
                             <%= render "/food_diary_entries/form", food_diary: family_member.food_diary, food_diary_entry: food_diary_entry if current_user %>
                             <%= render "/food_diary_entries/list", food_diary: family_member.food_diary %>
                           </div>
@@ -108,7 +109,11 @@
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                           <div class="panel-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            <div class="surveys-container">
+                              <% family_member.previous_appointments_patient_focus.each do |appointment|%>
+                                <%= render "/families/family_member/family_member_appt_item", appointment: appointment%>
+                              <% end %>
+                            </div>
                           </div>
                         </div>
                       </div>

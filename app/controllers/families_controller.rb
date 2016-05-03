@@ -168,6 +168,12 @@ class FamiliesController < ApplicationController
     @user = current_user
     @family_member = Users::UserPresenter.new(User.find(params[:member_id]))
     @family_member.health_groups = @family_member.patient_groups 
+
+    # Create growth chart or food diary if not already created
+    # should only need this for old users, could run script to create a growth and diary for all old users
+    @family_member.growth_chart || GrowthChart.create(user_id: @family_member.id)
+    @family_member.food_diary || FoodDiary.create(user_id: @family_member.id)
+
     @food_diary_entry = FoodDiaryEntry.new
     @growth_entry = GrowthEntry.new
     respond_to do |format|

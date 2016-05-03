@@ -1,0 +1,19 @@
+<div id="family-page" class="container-fluid">
+  <div class="row-fluid">
+
+    <%= render "/layouts/navbars/main_navigation_column" %>
+
+    <main class="col-xs-12 col-sm-10 col-sm-offset-2">
+     <section class="alerts-container">
+        <%= render "/layouts/alerts" %>
+      </section>
+      <section>
+        <h1><%=@survey.survey_group.name%></h1>
+      </section>
+      <hr>
+      <div class="dynamic-page-container">
+				<%= render "/surveys/survey_answers", survey: @survey%>	
+			</div>
+		</main>
+	</div>
+</div>

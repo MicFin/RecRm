@@ -23,9 +23,11 @@ class SurveysController < ApplicationController
   end
 
   def show
-    
+
+    @survey_group = @survey.survey_group.name
     respond_to do |format|
       format.js 
+      format.html
     end
 
   end

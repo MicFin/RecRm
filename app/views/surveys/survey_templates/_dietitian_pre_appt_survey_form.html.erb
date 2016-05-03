@@ -15,8 +15,8 @@
           <%= render "/families/show", family: family, surveyable: surveyable %>
         <hr>
         <section>
-          <h3 class="header">Pre Appointment Questionnaire</h3>
-          <%= render "/surveys/survey_answers", survey: client_survey%>
+        <section class="surveys-container">
+              <%= render "surveys/survey_templates/client_pre_appt_survey_item", surveyable: surveyable, survey: client_survey %>
         </section>
         <hr>
         <section>

@@ -46,11 +46,11 @@ class Survey < ActiveRecord::Base
       end
 
     elsif survey_group.name == "Client - Assessment"
-      # Get most recent pre appt survey group
+      # Get most recent  session notes and client pre appoinemnt
       notes_survey_group_id = SurveyGroup.with_group_name("Dietitian - Session Notes").most_recent.id
       pre_appt_survey_group_id = SurveyGroup.with_group_name("Client - Pre Appointment").most_recent.id
 
-      # Get dietititna pre appt survey
+      # Get surveys
       dietitian_notes = Survey.where(surveyable_type: "Appointment").where(surveyable_id: surveyable.id).where(survey_group_id: notes_survey_group_id).first
 
       pre_appt_survey =  Survey.where(surveyable_type: "Appointment").where(surveyable_id: surveyable.id).where(survey_group_id: pre_appt_survey_group_id).first
@@ -71,7 +71,27 @@ class Survey < ActiveRecord::Base
           SurveysQuestion.create(question_id: question.id, survey_id: self.id)
         end
       end
+    elsif survey_group.name == "Provider - Assessment"
+      # Get most recent Client - Assessment
+      client_assessment_group_id = SurveyGroup.with_group_name("Client - Assessment").most_recent.id
 
+      # Get dietititna pre appt survey
+      dietitian_notes = Survey.where(surveyable_type: "Appointment").where(surveyable_id: surveyable.id).where(survey_group_id: notes_survey_group_id).first
+
+      client_assessment =  Survey.where(surveyable_type: "Appointment").where(surveyable_id: surveyable.id).where(survey_group_id: client_assessment_group_id).first
+
+      # Add answers to 0 and 3
+      survey_group.questions.each_with_index do |question, index|
+        if index == 0
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id, answer: client_assessment.surveys_questions[0].answer)
+        elsif index == 2
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id, answer: client_assessment.surveys_questions[4].answer)
+        elsif index == 3
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id, answer: client_assessment.surveys_questions[5].answer)
+        else
+          SurveysQuestion.create(question_id: question.id, survey_id: self.id)
+        end
+      end
 
     # For all others surveys leave answer blank
     else
@@ -217,8 +237,9 @@ class Survey < ActiveRecord::Base
    # for client
     if client_or_dietitian.class == User || client_or_dietitian.class == Users::UserPresenter
 
-      survey_id = SurveyGroup.with_group_name("Client - Pre Appointment").most_recent.id
 
+      survey_id = SurveyGroup.with_group_name("Client - Assessment").most_recent.id
+      
       appointment_survey = Survey.where(surveyable_type: "Appointment").where(surveyable_id: appointment.id).where(survey_group_id: survey_id)
 
       if appointment_survey.count < 1
@@ -234,11 +255,12 @@ class Survey < ActiveRecord::Base
         appointment_survey = appointment_survey.last
       end
 
+
       # for dietitian
     else 
 
-      survey_id = SurveyGroup.with_group_name("Client - Assessment").most_recent.id
-      
+      survey_id = SurveyGroup.with_group_name("Provider - Assessment").most_recent.id
+
       appointment_survey = Survey.where(surveyable_type: "Appointment").where(surveyable_id: appointment.id).where(survey_group_id: survey_id)
 
       if appointment_survey.count < 1

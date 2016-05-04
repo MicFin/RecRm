@@ -90,6 +90,9 @@ gem 'newrelic_rpm'
 # gem 'rack-timeout', '~> 0.1.0beta3'
 # # gem 'rack-google-analytics'
 
+# # Web Scraping
+gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
+
 # # API
 # gem 'rabl'
 # gem 'oj'

@@ -1,0 +1,5 @@
+          <div class="content-recommendations-container">
+            <% post_recommendations.each do |post_recommendation| %>
+              <%= render "/post_recommendations/show", post_recommendation: post_recommendation %>
+            <% end %>
+          </div>

@@ -50,6 +50,8 @@
 #
 
 class Monologue::Post < ActiveRecord::Base
+  require 'nokogiri'
+  # require 'open-uri'
   has_many :post_recommendations
   has_many :taggings
   has_many :tags, -> { order "id ASC" }, through: :taggings, dependent: :destroy
@@ -69,7 +71,7 @@ class Monologue::Post < ActiveRecord::Base
   validates :url, uniqueness: true
   validate :url_do_not_start_with_slash
 
-  before_save :save_published_date
+  before_save :save_published_date, :save_main_image_url
   #  returns a hash of param names and category names
   #  used for form presentation
   def self.tag_key
@@ -125,6 +127,13 @@ class Monologue::Post < ActiveRecord::Base
 
   private
 
+  # was previously parsing content in view using regex post.content[/src=\"(.*)\"\sstyle=\"/,1]
+  # still using in view for posts not updated after change, could run script to check and update
+  def save_main_image_url
+    # if self.content_changed? 
+      self.main_image_url = Nokogiri::HTML(content).css('img').first.attr('src')
+    # end
+  end
 
   def save_published_date
     if self.published_changed? && self.published == true

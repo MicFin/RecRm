@@ -1,0 +1,9 @@
+  <figure>
+    <%= link_to post_recommendation.monologue_post.full_url, target: "_blank" do  %>
+      <img src="<%=post_recommendation.monologue_post.main_image_url || post_recommendation.monologue_post.content[/src=\"(.*)\"\sstyle=\"/,1]%>" alt="<%=post_recommendation.monologue_post.title%>">
+      <figurecaption class="caption">
+        <h4><%= post_recommendation.monologue_post.title %></h4>
+        <p><%=post_recommendation.message %></p>
+      </figurecaption>
+    <% end %>
+  </figure>

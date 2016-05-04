@@ -1,0 +1,8 @@
+<%= simple_form_for(post_recommendation, html: {class: 'form', role:"form" }) do |f| %>
+  <%= f.input :dietitian_id, as: :hidden  %>
+  <%= f.input :user_id, as: :hidden  %>
+  <%= f.input :monologue_post_id, as: :hidden %>
+  <%= f.input :appointment_id, as: :hidden  %>
+  <%= f.input :message %>
+  <%= f.button :submit %>
+<% end %>

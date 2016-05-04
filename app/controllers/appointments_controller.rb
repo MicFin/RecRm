@@ -76,6 +76,7 @@ class AppointmentsController < ApplicationController
 
     @family = Families::FamilyPresenter.new(@surveyable.appointment_host.head_of_families.first)
     
+    @recommendations = @surveyable.monologue_posts
 
     # if params[:data] == "Request"
       

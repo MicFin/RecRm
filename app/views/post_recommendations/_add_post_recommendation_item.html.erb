@@ -1,0 +1,10 @@
+            <div class="survey-item">
+              <ul class="list">
+                <li><%= link_to("Add Recommendation", new_post_recommendation_path(user_id: appointment.appointment_host, dietitian_id: current_dietitian.id, appointment_id: appointment.id)) %></li>
+                <li>Browse recipes and articles.</li>
+                <li>Share with your client.</li>
+                <li>Recommended plan.</li>
+                <li>&nbsp;</li>
+                <li class="text-right"> <%= link_to("Add", new_post_recommendation_path(user_id: appointment.appointment_host.id, dietitian_id: current_dietitian.id, appointment_id: appointment.id), class: "btn btn-xs btn-default") %></li>
+              </ul>
+            </div>

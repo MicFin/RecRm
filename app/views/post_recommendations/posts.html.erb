@@ -1,0 +1,22 @@
+<div id="family-page" class="container-fluid">
+    <div class="row-fluid">
+
+      <%= render "/layouts/navbars/main_navigation_column" %>
+
+      <main class="col-xs-12 col-sm-10 col-sm-offset-2">
+       <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+        </section>
+        <section>
+          <h1>Make a Recommendation</h1>
+        </section>
+        <hr>
+        <div class="dynamic-page-container">
+          <%= render "post_recommendations/posts", tags: @tags, posts: @posts, appointment: @appointment %>           
+        </div>
+      </main>
+      <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>

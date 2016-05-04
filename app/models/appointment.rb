@@ -67,7 +67,7 @@ class Appointment < ActiveRecord::Base
   has_many :surveys, :as => :surveyable
   has_one :purchase, as: :purchasable
   has_many :post_recommendations
-
+  has_many :monologue_posts, through: :post_recommendations
 
   # # METHODS
 

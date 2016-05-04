@@ -39,10 +39,6 @@ module SurveyHelper
       dietitian_notes = Survey.generate_for_session(surveyable, surveyable.dietitian)
       assessment = Survey.generate_for_assessment(surveyable, surveyable.appointment_host)
 
-      posts = Monologue::Post.all.includes_users
-      # tags_grouped = Monologue::Tag.grouped_tags
-      tags = Monologue::Tag.all
-
       family = Families::FamilyPresenter.new(surveyable.appointment_host.head_of_families.first)
       # Render survey template with data
       render "surveys/survey_templates/client_assessment_form", survey: survey, survey_group: survey_group, surveyable: surveyable, client_prep_survey: client_prep_survey, dietitian_prep_survey: dietitian_prep_survey, dietitian_notes: dietitian_notes, tags: tags, posts: posts

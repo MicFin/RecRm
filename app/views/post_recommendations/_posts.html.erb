@@ -1,0 +1,54 @@
+          <section class="col-xs-12">
+            <p>Toggle column: </p>
+            <p class="hide-general-columns">
+            </p>
+            <p class="hide-article-columns">
+            </p>
+            <p class="hide-recipe-columns">
+            </p>
+            <table class="table table-striped table-bordered table-hover table-condensed datatable hidden" style="width:100%">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th><%= t(".title")%></th>
+                  <th><%= t(".url")%></th>
+                  <th><%= t(".type")%></th>
+                  <th>Date Published</th>
+                  <%tags.each do |tag| %>
+                    <th><%=tag.name%></th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th></th>
+                   <th></th> 
+                  <th data-content-type="general" data-tag-category="basic_info"><%= t(".title")%></th>
+                  <th data-content-type="general" data-tag-category="basic_info"><%= t(".url")%></th>
+                  <th data-content-type="general" data-tag-category="basic_info"><%= t(".type")%></th>
+                  <th data-content-type="general" data-tag-category="publishing_status">Date Published</th>
+                  <%tags.each do |tag| %>
+                    <th class="tag-category-header" data-content-type="<%=tag.content_type.downcase()%>" data-tag-category="<%=tag.tag_category.downcase().tr(" ", "_")%>"><%=tag.name%></th>
+                  <% end %>
+                </tr>
+              </tfoot>
+              <tbody>
+                <% posts.each do |post|%>
+                  <tr> 
+                    <td colspan="2">
+                    <%= link_to("Add", new_post_recommendation_path(user_id: appointment.appointment_host.id, appointment_id: appointment.id, monologue_post_id: post.id), remote: true) %>
+                    </td>
+               <!--      <td></td> -->
+                    <td><%= post.title %></td>
+                    <td><%= link_to "/#{post.url}", post.full_url, target: "_blank" %></td>
+                    <td><%= post.content_type %></td>
+                    <td><%= post.published_at.strftime("%B %d, %Y") if post.published_at%> </td>
+                    <%tags.each do |tag| %>
+                      <th><%=post.tags.include?(tag)%></th>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </section>   

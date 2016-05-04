@@ -29,12 +29,23 @@
 
               <%= render("surveys/survey_templates/client_assessment_item", surveyable: @surveyable, survey: @assessment) %>            
               <%= render("surveys/survey_templates/provider_assessment_item", surveyable: @surveyable, survey: @provider_assessment) if current_dietitian %>            
+              <%#= render("post_recommendations/add_post_recommendation_item", appointment: @surveyable) if current_dietitian %>    
 
               <%= render("surveys/survey_templates/client_nps_item", surveyable: @surveyable, survey: @client_nps_survey) if current_dietitian && (current_dietitian.has_role? "Admin Dietitian")%>  
 
               <%= render("surveys/survey_templates/dietitian_nps_item", surveyable: @surveyable, survey: @dietitian_nps_survey) if current_dietitian && (current_dietitian.has_role? "Admin Dietitian") %>  
 
+              <% @recommendations.each do |recommendation| %>
+                <%#= render("surveys/survey_templates/dietitian_nps_item", surveyable: @surveyable, survey: @dietitian_nps_survey)  %>
+                <%= recommendation.title %>
+              <% end %>
+
           </section>
+          <% if current_dietitian %>
+            <div>
+              <h3 class="add-recommendations-title"><%= link_to "Add Recommendations", post_recommendations_posts_path(appointment_id: @surveyable.id), remote: true %></h3> 
+            </div>
+          <% end %>
         </div>
       </main>
       <div class="col-xs-12 col-sm-10 col-sm-offset-2">

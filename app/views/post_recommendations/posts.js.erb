@@ -1,0 +1,4 @@
+
+	$(".add-recommendations-title").replaceWith("<%= j render(:partial => '/post_recommendations/posts', :locals => { :tags=> @tags, posts: @posts, appointment: @appointment }) %>");
+
+	Kindrdfood.post_recommendations.posts.init();

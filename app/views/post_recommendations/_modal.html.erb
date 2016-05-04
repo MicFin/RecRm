@@ -1,12 +1,15 @@
         <!-- Modal -->
-        <div class="modal fade" id="newPostRecommendationModal" tabindex="-1" role="dialog" aria-labelledby="newPostRecommendationModalLabel">
+        <div class="modal fade" id="postRecommendationModal" tabindex="-1" role="dialog" aria-labelledby="postRecommendationModalLabel">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="newPostRecommendationModalLabel">  <%= post_recommendation.monologue_post.title %></h4>
+
+                
+                <h4 class="modal-title" id="postRecommendationModalLabel">  <%= post_recommendation.monologue_post.title %></h4>
               </div>
               <div class="modal-body">
+              
                 <%= render "/post_recommendations/form", post_recommendation: post_recommendation %>
               </div>
               <div class="modal-footer">

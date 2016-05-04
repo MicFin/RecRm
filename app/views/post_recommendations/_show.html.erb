@@ -5,5 +5,6 @@
         <h4><%= post_recommendation.monologue_post.title %></h4>
         <p><%=post_recommendation.message %></p>
       </figurecaption>
+        	<%= link_to "Edit", edit_post_recommendation_path(post_recommendation), class: "btn btn-block btn-default", remote: true %>
     <% end %>
   </figure>

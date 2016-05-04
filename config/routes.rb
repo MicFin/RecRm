@@ -638,10 +638,10 @@ Rails.application.routes.draw do
       end
 
       # Post Recommendation
-      get "/post_recommendations/new", to: "post_recommendations#new", as: "new_post_recommendation"
-      post "/post_recommendations", to: "post_recommendations#create"
+
       get "/post_recommendations/posts", to: "post_recommendations#posts", as: "post_recommendations_posts"
-      
+      resources :post_recommendations
+
       # Dashboard paths
       get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
       get 'dashboard/clients_onboarding', to: 'dashboard#clients_onboarding', as: 'dashboard_clients_onboarding'

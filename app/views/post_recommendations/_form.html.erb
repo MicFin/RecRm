@@ -1,8 +1,12 @@
+
 <%= simple_form_for(post_recommendation, html: {class: 'form', role:"form" }) do |f| %>
+  <p>Recommended by <%=post_recommendation.dietitian.signature%></p>
   <%= f.input :dietitian_id, as: :hidden  %>
+  <p>Recommended for <%=post_recommendation.user.first_name + " " + post_recommendation.user.last_name%></p>
   <%= f.input :user_id, as: :hidden  %>
   <%= f.input :monologue_post_id, as: :hidden %>
   <%= f.input :appointment_id, as: :hidden  %>
-  <%= f.input :message %>
-  <%= f.button :submit %>
+  <%= f.input :message, input_html: { class: 'form-control form-group' } %>
+  <%= f.button :submit, "Save Recommendation", class: "btn btn-primary btn-lg" %>
 <% end %>
+ <%= link_to("Delete Recommendation", post_recommendation, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link") if post_recommendation.id %>

@@ -1,0 +1,4 @@
+	// show container and load partial
+	$("#postRecommendationModal").remove();
+	$("body").append("<%= j render(:partial => '/post_recommendations/modal', :locals => { :post_recommendation => @post_recommendation }) %>");
+	$("#postRecommendationModal").modal();	

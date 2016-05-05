@@ -27,10 +27,10 @@
 
 module AppointmentsHelper
 
-  def assign_appointments_prompt(appointments_no_dietitian)
+  def assign_appointments_prompt(appointments)
 
-    if appointments_no_dietitian.count > 0 
-      render "appointments/index/appointments_no_dietitian_table", appointments_no_dietitian: appointments_no_dietitian
+    if appointments.count > 0 
+      render "appointments/index/appointments_no_dietitian_table", appointments: appointments
     else 
       render "appointments/index/appointments_no_dietitians_to_assign"  
     end   

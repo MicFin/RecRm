@@ -633,6 +633,7 @@ Rails.application.routes.draw do
       patch 'appointments/:id/assign_dietitian', to: 'appointments#assign_dietitian', as: 'appointments_assign_dietitian'
       get 'appointments/:appointment_id/surveys/:id', to: 'surveys#show', as: 'dietitian_appointment_survey'
       get 'appointments/:id/end_appointment', to: 'appointments#end_appointment', as: 'end_dietitian_appointment'
+      patch "appointments/:id/send_assessment", to: "appointments#send_assessment", as: "appointment_send_assessment"
       resources :appointments do 
         resources :surveys
       end

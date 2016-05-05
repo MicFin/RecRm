@@ -4,9 +4,18 @@
     <thead>
       <tr>
         <th>Date</th>
-        <th>Appointment Focus</th>
         <th>Duration</th>
-        <th colspan="3"></th>
+        <th>Kindrd Nutritionist</th>
+        <th>Client</th>
+        <th>Focus</th>
+        <% if current_dietitian %>
+          <th>Client Prep</th>
+          <th>KRDN Prep</th>
+          <th>Assessment</th>
+          <th>Provider Assessment</th>
+        <% else %>
+          <th>Assessment</th>
+        <% end %>
       </tr>
     </thead>
 
@@ -15,17 +24,46 @@
         <% previous_appointments.each do |appointment| %>
           <tr>  
           <% if current_user %>
-            <td><%=appointment.appointment_host_start_time %></td>
+            <td><%= link_to appointment.appointment_host_start_time, appointment_path(appointment) %></td>
           <% else %>
-            <td><%= appointment.appointment_start_time %></td>
+            <td><%= link_to appointment.appointment_start_time, appointment_path(appointment) %> </td>
           <% end %>
           
-
-            <td><%= appointment.patient_focus.first_name%></td>
-
             <td><%= appointment.show_duration%></td>
+            <td><%= appointment.dietitian.signature if appointment.dietitian%></td>
+            <td><%= appointment.appointment_host_full_name%></td>
+            <td><%= appointment.patient_focus_full_name%></td>
 
-              <td><%= link_to "View", appointment_path(appointment) %></td>
+            <% if current_dietitian %>
+              <th><%= link_to("View", appointment_survey_path(appointment, appointment.client_prep_survey_id), remote: true, class: "btn btn-xs btn-default") if appointment.client_prep_survey? %></th>
+
+              <th><%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.krdn_prep_survey_id), class: "btn btn-xs btn-primary") if appointment.krdn_prep_survey? %></th>
+
+              <th>
+                <%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.client_assessment_id), class: "btn btn-xs btn-primary") if appointment.client_assessment? %> 
+
+                <% if appointment.client_assessment? && appointment.client_assessment_sent %>
+                  <button class="btn btn-xs btn-success" >Shared</button>
+
+                <% elsif appointment.client_assessment? %>
+                  <%= link_to("Share", appointment_send_assessment_path(appointment, assessment_sent: "client_assessment_sent", assessment_sent_at: "client_assessment_sent_at"), class: "btn btn-xs btn-danger", :method => :patch) if appointment.client_assessment? %> 
+                <% end %>
+              </th>
+              <th>
+                <%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.provider_assessment_id), class: "btn btn-xs btn-primary") if appointment.provider_assessment? %> 
+                <% if appointment.provider_assessment? && appointment.provider_assessment_sent %>
+                  <button class="btn btn-xs btn-success" >Shared</button>
+                <% elsif appointment.provider_assessment? %>
+                  <%= link_to("Share", appointment_send_assessment_path(appointment, assessment_sent: "provider_assessment_sent", assessment_sent_at: "provider_assessment_sent_at"), class: "btn btn-xs btn-danger", :method => :patch) if appointment.provider_assessment? %> </th>
+                <% end %>
+            <% else %>
+              <th>
+                <% if appointment.client_assessment? && appointment.client_assessment_sent %>
+                  <%#= link_to("View", appointment_survey_path(appointment, appointment.client_assessment_id), remote: true, class: "btn btn-xs btn-success") %>
+                  <%= link_to "View", appointment_path(appointment), class: "btn btn-xs btn-success" %> 
+                <% end %>
+              </th>
+            <% end %>
 
           </tr>
         <% end %>

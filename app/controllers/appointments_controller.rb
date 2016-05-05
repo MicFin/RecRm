@@ -33,7 +33,7 @@ class AppointmentsController < ApplicationController
   include FamiliesHelper
 
   # # CALL BACKS
-  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :update_duration, :purchase, :assign_dietitian, :appointment_prep, :client_appointment_prep, :end_appointment, :summary]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :update_duration, :purchase, :assign_dietitian, :appointment_prep, :client_appointment_prep, :end_appointment, :send_assessment]
   before_filter :config_opentok, :only => [:assign_dietitian]
 
   # GET /appointments
@@ -293,8 +293,23 @@ class AppointmentsController < ApplicationController
         
       end
     end
-
   end
+
+  # PATCH /appointments/1/send_assessment
+  def send_assessment
+
+    respond_to do |format|
+      if  @appointment.update_attribute(params[:assessment_sent], true) && @appointment.update_attribute(params[:assessment_sent_at], DateTime.now) 
+
+          format.html { redirect_to welcome_path, notice: 'Appointment assessment was successfully sent.' }
+          format.json { render :show, status: :ok, location: @appointment }
+      else
+        format.html { render :edit }
+        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
 
 

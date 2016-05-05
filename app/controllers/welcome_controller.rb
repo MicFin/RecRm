@@ -27,7 +27,7 @@ class WelcomeController < Users::RegistrationsController
       end
 
       # Gather user's previous appointments
-      @previous_appointments = Appointments::AppointmentPresenter.present(current_user.appointment_hosts.previous.complete_or_scheduled.includes(:appointment_host).includes(:patient_focus).by_start_time)
+      @previous_appointments = Appointments::AppointmentPresenter.present(current_user.appointment_hosts.previous.complete_or_scheduled.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time)
 
       # Gather user's upcoming appointment
       @upcoming_appointment = Appointments::AppointmentPresenter.new(current_user.appointment_hosts.upcoming_and_current.scheduled.first)

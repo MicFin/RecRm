@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504223656) do
+ActiveRecord::Schema.define(version: 20160505034633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,9 +67,11 @@ ActiveRecord::Schema.define(version: 20160504223656) do
     t.text     "other_note"
     t.integer  "time_slot_id"
     t.string   "status"
-    t.integer  "registration_stage",  default: 0
-    t.boolean  "client_prepped"
-    t.boolean  "dietitian_prepped"
+    t.integer  "registration_stage",          default: 0
+    t.boolean  "client_assessment_sent"
+    t.datetime "client_assessment_sent_at"
+    t.boolean  "provider_assessment_sent"
+    t.datetime "provider_assessment_sent_at"
   end
 
   add_index "appointments", ["time_slot_id"], name: "index_appointments_on_time_slot_id", using: :btree

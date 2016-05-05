@@ -49,12 +49,36 @@ module Appointments
       Users::UserPresenter.new(patient_focus).age
     end
 
+    def client_prep_survey?
+      Survey.joins(:survey_group).where(survey_groups: {name: "Client - Pre Appointment"}).where(surveyable_id: id).count > 0 ? true : false
+    end
+
     def client_prep_survey_id
       Survey.joins(:survey_group).where(survey_groups: {name: "Client - Pre Appointment"}).where(surveyable_id: id).first.id
     end
 
+    def krdn_prep_survey?
+      Survey.joins(:survey_group).where(survey_groups: {name: "Dietitian - Pre Appointment"}).where(surveyable_id: id).count > 0 ? true : false  
+    end
+
     def krdn_prep_survey_id
       Survey.joins(:survey_group).where(survey_groups: {name: "Dietitian - Pre Appointment"}).where(surveyable_id: id).first.id
+    end
+
+    def client_assessment?
+      Survey.joins(:survey_group).where(survey_groups: {name: "Client - Assessment"}).where(surveyable_id: id).count > 0 ? true : false  
+    end
+
+    def client_assessment_id
+      Survey.joins(:survey_group).where(survey_groups: {name: "Client - Assessment"}).where(surveyable_id: id).first.id
+    end
+
+    def provider_assessment?
+      Survey.joins(:survey_group).where(survey_groups: {name: "Provider - Assessment"}).where(surveyable_id: id).count > 0 ? true : false  
+    end
+
+    def provider_assessment_id
+      Survey.joins(:survey_group).where(survey_groups: {name: "Provider - Assessment"}).where(surveyable_id: id).first.id
     end
 
     def family

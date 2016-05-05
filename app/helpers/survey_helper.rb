@@ -41,7 +41,7 @@ module SurveyHelper
 
       family = Families::FamilyPresenter.new(surveyable.appointment_host.head_of_families.first)
       # Render survey template with data
-      render "surveys/survey_templates/client_assessment_form", survey: survey, survey_group: survey_group, surveyable: surveyable, client_prep_survey: client_prep_survey, dietitian_prep_survey: dietitian_prep_survey, dietitian_notes: dietitian_notes, tags: tags, posts: posts
+      render "surveys/survey_templates/client_assessment_form", survey: survey, survey_group: survey_group, surveyable: surveyable, client_prep_survey: client_prep_survey, dietitian_prep_survey: dietitian_prep_survey, dietitian_notes: dietitian_notes
 
     else 
       # render "purchases/purchases_modal/coupon_not_applied", purchase: purchase, purchasable: purchasable

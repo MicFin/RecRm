@@ -32,7 +32,6 @@ class SurveysController < ApplicationController
 
   end
 
-
   def new
     
     if params[:survey_type] == "Pre-Appointment-Dietitian"

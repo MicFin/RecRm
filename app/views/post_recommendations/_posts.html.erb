@@ -10,7 +10,6 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th></th>
                   <th><%= t(".title")%></th>
                   <th><%= t(".url")%></th>
                   <th><%= t(".type")%></th>
@@ -23,7 +22,6 @@
               <tfoot>
                 <tr>
                   <th></th>
-                   <th></th> 
                   <th data-content-type="general" data-tag-category="basic_info"><%= t(".title")%></th>
                   <th data-content-type="general" data-tag-category="basic_info"><%= t(".url")%></th>
                   <th data-content-type="general" data-tag-category="basic_info"><%= t(".type")%></th>
@@ -36,7 +34,7 @@
               <tbody>
                 <% posts.each do |post|%>
                   <tr> 
-                    <td colspan="2">
+                    <td>
                     <%= link_to("Add", new_post_recommendation_path(user_id: appointment.appointment_host.id, appointment_id: appointment.id, monologue_post_id: post.id), remote: true) %>
                     </td>
                <!--      <td></td> -->

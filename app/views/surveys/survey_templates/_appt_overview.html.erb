@@ -14,7 +14,7 @@
     <h4>KRDN:</h4>
     <% if surveyable.dietitian %>
       <p><%= surveyable.dietitian.signature %></p>
-    <% elsif current_dietitian.has_role? "Admin Dietitian" %>
+    <% elsif current_dietitian && (current_dietitian.has_role? "Admin Dietitian") %>
       <%= simple_form_for(surveyable, url: appointments_assign_dietitian_path(surveyable), html: {class: 'form-horizontal'} ) do |f| %>  
         <%=f.input :dietitian_id, collection: surveyable.available_dietitians, :label_method => :email, label: false, :input_html => { :class => "form-control form-group"}   %>
         <%= f.button :submit, "Assign", class: "btn btn-primary btn-block" %>

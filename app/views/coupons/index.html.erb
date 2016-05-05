@@ -42,8 +42,8 @@
                   <tr>
                     <td><%= coupon.code %></td>
                     <td><%= coupon.description %></td>
-                    <td><%= coupon.valid_from.strftime("%B %d, %Y %I:%M %p") %></td>
-                    <td><%= coupon.valid_until.strftime("%B %d, %Y %I:%M %p") %></td>
+                    <td><%= coupon.valid_from.strftime("%B %d, %Y %I:%M %p") if coupon.valid_from %></td>
+                    <td><%= coupon.valid_until.strftime("%B %d, %Y %I:%M %p") if coupon.valid_until%></td>
                     <td><%= coupon.redemption_limit_per_user %></td>
                     <td><%= coupon.redemption_limit %></td>
                     <td><%= coupon.redemptions_count %></td>

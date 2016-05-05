@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504190429) do
+ActiveRecord::Schema.define(version: 20160504223656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -377,7 +377,6 @@ ActiveRecord::Schema.define(version: 20160504190429) do
     t.string   "question_type"
     t.text     "content"
     t.integer  "position"
-    t.text     "choices"
     t.integer  "tier",            default: 1
     t.datetime "created_at"
     t.datetime "updated_at"

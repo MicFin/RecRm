@@ -72,7 +72,7 @@ class WelcomeController < Users::RegistrationsController
       redirect_to welcome_get_started_path
     end
 
-    @family = Families::FamilyPresenter.new(current_user.head_of_families.where(name: "Main").first)
+    @family = Families::FamilyPresenter.new(current_user.head_of_families.find_or_create_by(name: "Main"))
 
     # New user for form
     @new_user = User.new(last_name: @user.last_name)

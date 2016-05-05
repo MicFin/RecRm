@@ -176,6 +176,7 @@ class FamiliesController < ApplicationController
 
     @food_diary_entry = FoodDiaryEntry.new
     @growth_entry = GrowthEntry.new
+
     respond_to do |format|
       format.html 
       format.js

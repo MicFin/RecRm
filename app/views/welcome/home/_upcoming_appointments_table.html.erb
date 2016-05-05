@@ -30,11 +30,13 @@
             <td><%= appointment.patient_focus_full_name%></td>
 
             <% if current_user %>
-              <th><%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.client_prep_survey_id), class: "btn btn-xs btn-default") if appointment.client_prep_survey? %></th>
+              <td><%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.client_prep_survey_id), class: "btn btn-xs btn-default") if appointment.client_prep_survey? %></td>
             <% else %>
-              <th><%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.krdn_prep_survey_id), class: "btn btn-xs btn-primary") if appointment.krdn_prep_survey? %></th>
+              <td>
+                <%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.krdn_prep_survey_id), class: "btn btn-xs btn-primary") if appointment.krdn_prep_survey? %> 
+                <%= link_to("Join", in_session_room_path(appointment.room_id, :appointment => appointment.id), class: "btn btn-small btn-default") if current_dietitian && appointment.room_id %>
+              </td>
             <% end %>
-
           </tr>
         <% end %>
       <% else %>

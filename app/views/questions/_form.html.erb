@@ -16,7 +16,7 @@
         <tr>
           <td><%= f.input :position, label: false %></td>
           <td><%= f.input :content, label: false %></td>
-          <td>  <%= f.input :question_type, label: false, collection: ["Response", "NPS"], prompt: "Select", :include_hidden => false, input_html: { class: "form-control-12"} %></td>
+          <td>  <%= f.input :question_type, label: false, collection: ["Response", "True/False", "Date", "NPS"], prompt: "Select", :include_hidden => false, input_html: { class: "form-control-12"} %></td>
           <td><%= f.button :submit, label: false %></td>
         </tr>
     </tbody>

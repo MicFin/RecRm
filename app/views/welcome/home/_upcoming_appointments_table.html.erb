@@ -1,40 +1,46 @@
+
+
 <h3><span class="glyphicon glyphicon-calendar"></span>Upcoming Appointments</h3>
 <div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
         <th>Date</th>
-        <th>Appointment Focus</th>
         <th>Duration</th>
-        <th colspan="3"></th>
+        <th>Kindrd Nutritionist</th>
+        <th>Client</th>
+        <th>Focus</th>
+        <th>Prep</th>
       </tr>
     </thead>
+
     <tbody>
-  		<% if upcoming_appointments.count >= 1 %>
-  			<% upcoming_appointments.each do |appointment| %>
-  				<tr>	
-  					<td><%=appointment.start_time.strftime("%B %d, %Y %I:%M %p") %></td>
+      <% if upcoming_appointments.count >= 1%>
+        <% upcoming_appointments.each do |appointment| %>
+          <tr>  
+          <% if current_user %>
+            <td><%= link_to appointment.appointment_host_start_time, appointment_path(appointment) %></td>
+          <% else %>
+            <td><%= link_to appointment.appointment_start_time, appointment_path(appointment) %> </td>
+          <% end %>
+          
+            <td><%= appointment.show_duration%></td>
+            <td><%= appointment.dietitian.signature if appointment.dietitian%></td>
+            <td><%= appointment.appointment_host_full_name%></td>
+            <td><%= appointment.patient_focus_full_name%></td>
 
-        		<td><%= appointment.patient_focus.first_name%></td>
-          	<td><%= appointment.show_duration%></td>
-          	<%# if appointment.surveys.where(survey_group_id: 1).completed %>
-          		<td><%#= link_to "Prep", client_appointment_prep_path(appointment.id), class: "btn btn-sm btn-primary", remote: true%></td>
-          	<%# else %>
-          		<td><%#= link_to "Prep", client_appointment_prep_path(appointment.id), class: "btn btn-lg btn-danger", remote: true%></td>
-          	<%# end %>
-        
-            	<td><%#= link_to "Join", in_session_room_path(:id => appointment.room_id, appointment: appointment.id), class: "btn btn-xs btn-success" %>
-  						</td>
-  		
-          	<td><button class="btn btn-xs btn-default reschedule-appointment">Reschedule</button></td>
-        	</tr>
-      
+            <% if current_user %>
+              <th><%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.client_prep_survey_id), class: "btn btn-xs btn-default") if appointment.client_prep_survey? %></th>
+            <% else %>
+              <th><%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.krdn_prep_survey_id), class: "btn btn-xs btn-primary") if appointment.krdn_prep_survey? %></th>
+            <% end %>
+
+          </tr>
         <% end %>
-  		<% else %>
-  			<tr>
-  				<td>No upcoming appointments.</td>
-  			</tr>
-
+      <% else %>
+        <tr>
+          <td>No previous appointments.</td>
+        </tr>
       <% end %>
     </tbody>
   </table>

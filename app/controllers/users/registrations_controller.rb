@@ -167,7 +167,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
       end
       @family = Families::FamilyPresenter.new(@family)
-      @user = Users::UserPresenter.new(@user)
+      # @user = Users::UserPresenter.new(@user)
       respond_to do |format|  
         if successfully_updated
 

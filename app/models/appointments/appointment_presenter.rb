@@ -10,12 +10,13 @@ module Appointments
     end
 
     def appointment_start_time
-      start_time_date + " at " + appointment_host_start_time_time
+      start_time_date + " at " + start_time_time
     end
 
     def appointment_host_start_time_time
-      start = start_time.in_time_zone(appointment_host.time_zone)
-      time = start.strftime("%I:%M %p") + " " + appointment_host.time_zone 
+      time_zone = appointment_host.time_zone || "Eastern Time (US & Canada)"
+      start = start_time.in_time_zone(time_zone)
+      time = start.strftime("%I:%M %p") + " " + time_zone 
     end
 
     def appointment_host_start_time_date

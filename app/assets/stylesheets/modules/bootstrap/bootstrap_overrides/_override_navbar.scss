@@ -1,3 +1,6 @@
+
+
+// HELLO BAR 
 .HB-Bar ~ .landing-page .navbar-fixed-top {
   top: 30px;
   @media (max-width: $screen-xs-max) {
@@ -5,106 +8,4 @@
   }
 }
 
-
-
-
-
-
-
-////////////////////////////////////////////
-
-//    OLD BELOW HERE
-
-//////////////////////////////////////////
-.navbar-inverse {
-	background-color: $brand-light-orange;
-	border-color: #090909;
-}
-
-.navbar-inverse .navbar-nav > #feedback-button > a {
-	background-color: $lightgreen;
-	-webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-}
-
-.navbar-inverse .navbar-nav > #feedback-button > a:hover {
-	background-color: lighten($lightgreen, 20%);
-	color: $darkgreen;
-}
-
-.navbar-inverse{
-	border-color: transparent;
-}
-
-.navbar-inverse .navbar-nav > li > a {
-	color: $white;
-}
-
-
-
-// .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
-
-
-.navbar-inverse .navbar-nav > li:hover, .navbar-inverse .navbar-nav > li:hover {
-	background-color: $white;
-	a {
-		color: $carrotorange;
-		background-color: $white;
-	}
-}
-
-.navbar-inverse .navbar-brand {
-	color: $white;
-	-webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-.navbar-inverse .navbar-brand:hover {
-	color: $lightgreen;
-}
-
-.navbar-inverse .navbar-nav > li.active, .navbar-inverse .navbar-nav > li.active:hover, .navbar-inverse .navbar-nav > li.active:focus {
-	background-color: $white;
-	a {
-		color: $carrotorange;
-		background-color: $white;
-	}
-}
-
-.navbar-default .navbar-nav > .active > li, .navbar-default .navbar-nav > li.active:hover, .navbar-default .navbar-nav > li.active:focus {
-	text-decoration: underline;
-	background-color: transparent;
-}
-
-.panel-default > .panel-heading {
-	color: #333333;
-	background-color: white;
-	border-color: #dddddd;
-} 
-
-.panel-default {
-	border-color: white;
-}
-
-.form-inline .form-group{
-	margin-bottom: 15px;
-}
-
-.navbar-inverse .navbar-toggle {
-border-color: $white;
-}
-
-.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
-	background-color: $white;
-	.icon-bar {
-		background-color: $carrotorange;
-	}
-}
-
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-	border-color: $white;
-}
 

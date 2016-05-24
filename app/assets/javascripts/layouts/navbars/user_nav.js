@@ -12,10 +12,13 @@ Kindrdfood.layouts.navbars = {
   		e.preventDefault();
   		var $button = $(this);
   		if ( $button.hasClass("collapsed") ) { 
-        $(".left-nav-mini").addClass("hidden-xs col-xs-2").removeClass("left-nav-mini").addClass("left-nav-large");
+        $("#sidebar-nav").addClass("sidebar-offcanvas").removeClass("sidebar-offcanvas-mini");
+        // $(".main-content-container").addClass("col-xs-11 col-sm-10 col-xs-offset-1 col-sm-offset-2").removeClass("col-xs-6 col-xs-offset-6");
         $(this).removeClass("collapsed");
   		} else {
-        $(".left-nav-large").removeClass("left-nav-large").addClass("left-nav-mini").removeClass("hidden-xs col-xs-2");
+        $("#sidebar-nav").removeClass("sidebar-offcanvas").addClass("sidebar-offcanvas-mini");
+        // $(".sidebar-offcanvas").removeClass("hidden-xs col-sm-2").addClass("col-xs-6");
+        // $(".main-content-container").removeClass("col-xs-11 col-sm-10 col-xs-offset-1 col-sm-offset-2").addClass("col-xs-6 col-xs-offset-6");
         $(this).addClass("collapsed");
   		}
 		})

@@ -3,25 +3,40 @@
     height: 50px;
 }
 
-// REMOVE ENTIRE STYLE SHEET IF NOT NEEDED ON WELCOME PAGE
+// LOGGED IN NAVIGATION STYLE
 
 #welcome-page, #family-page, #session-page, #in-session {
-	header.col-xs-2{
-		position: absolute;
-	  top: 0;
-	  left: 0;
-	  z-index: 1000;
-	}
 
+	// left navigation
+	.sidebar-offcanvas{
+		@extend .hidden-xs;
+		@include make-sm-column( 2 );
+		padding: 0px;
+	}
+	.sidebar-offcanvas-mini{
+		@include make-xs-column( 12 );
+		@include make-sm-column( 2 );
+		padding: 0px;
+	}
+	// navigation logo
 	header img.img-logo {
 		min-height: 50px;
 	  min-width: 60px;
-	  margin-bottom: 20px;
-	  margin-top: 20px;
+	  margin: 0 auto;
 
-	  margin-left: 15px;
 	}
 
+	// float button left
+	.mobile-menu-button button {
+		float: left;
+	}
+	// override bootstrap hover effect
+	.mobile-menu-button:hover button{
+		background-color: transparent;
+	}
+	.mobile-menu-button:hover .navbar-default .navbar-toggle .icon-bar{
+		background-color: $brand-carrot-green;
+	}
 	main {
 		-webkit-box-shadow: 0px 0px 8px 2px #999999;
 		-moz-box-shadow: 0px 0px 8px 2px #999999;

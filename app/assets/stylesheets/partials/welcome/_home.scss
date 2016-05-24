@@ -9,8 +9,8 @@
 
 	#sidebar-nav{
     clear: both;
-    padding: 0px;
     @include make-sm-column( 2 );
+    padding: 0px;
 	}
 	// left navigation
 	.sidebar-offcanvas{
@@ -20,6 +20,7 @@
 	}
 	.sidebar-offcanvas-mini{
 		@include make-sm-column( 2 );
+		padding: 0px;
 	}
 	// navigation logo
 	header img.img-logo {

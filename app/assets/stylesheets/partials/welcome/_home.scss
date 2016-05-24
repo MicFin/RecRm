@@ -7,16 +7,19 @@
 
 #welcome-page, #family-page, #session-page, #in-session {
 
+	#sidebar-nav{
+    clear: both;
+    padding: 0px;
+    @include make-sm-column( 2 );
+	}
 	// left navigation
 	.sidebar-offcanvas{
 		@extend .hidden-xs;
-		@include make-sm-column( 2 );
-		padding: 0px;
+		
+		
 	}
 	.sidebar-offcanvas-mini{
-		@include make-xs-column( 12 );
 		@include make-sm-column( 2 );
-		padding: 0px;
 	}
 	// navigation logo
 	header img.img-logo {

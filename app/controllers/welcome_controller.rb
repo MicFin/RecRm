@@ -39,6 +39,7 @@ class WelcomeController < Users::RegistrationsController
       @unpaid_appointment = Appointments::AppointmentPresenter.new(current_user.appointment_hosts.where(status: "Follow Up Unpaid").last)
 
       @family = Families::FamilyPresenter.new(current_user.head_of_families.where(name: "Main").first)
+
     end
   end
 

@@ -38,7 +38,11 @@ class WelcomeController < Users::RegistrationsController
       # Gather user's umpaid appointment
       @unpaid_appointment = Appointments::AppointmentPresenter.new(current_user.appointment_hosts.where(status: "Follow Up Unpaid").last)
 
+      # User's family
       @family = Families::FamilyPresenter.new(current_user.head_of_families.where(name: "Main").first)
+
+      # User's recommendations 
+      @post_recommendations = current_user.post_recommendations
 
     end
   end

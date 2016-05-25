@@ -1,42 +1,56 @@
-			<header class="col-xs-2">
-				<div class="row">
-					<div class="col-xs-12">
-					
-						<%=image_tag "/assets/logos/kindrdfood-web.png", class: "img-responsive img-logo" %>
+<!-- MOBILE NAV BUTTON -->
+<%= render "layouts/navbars/mobile_nav_button" %>
 
-					</div>
-					<div class="col-xs-12">
-						<p>Welcome, <%=current_user.first_name%>!</p>
-						<p><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
-					</div>
-				</div>
-				<nav>	
-					<ul>
-						<li class="session-nav-video active">
-							<a class="user-session-tool-video" href=""><span class="hidden-xs hidden-sm nav-item">Video</span></a>
-						</li>
-						<li class="session-nav-family">
-							<%=link_to family_path(current_user.head_of_families.first.id), remote: true do %>
-								</span><span class="hidden-xs hidden-sm nav-item">Family</span>
-							<% end %>	
-			
-						</li>
-						<li class="session-nav-goals">
-							<%=link_to appointment_survey_path(appointment, pre_appt_survey), remote: true do %>
-								<span class="hidden-xs hidden-sm nav-item">Goals</span>
-							<% end %>	
-						</li>
-						<li class="session-nav-notes">
-							<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
-								<span class="hidden-xs hidden-sm nav-item">Notes</span>
-							<% end %>	
-						</li>
+<!-- USER NAV OPTIONS -->
+<header id="sidebar-nav" class="sidebar-offcanvas">
+	<!-- NAVIGATION HEADING -->
+	<div class="row text-center">
+
+		<!-- LOGO -->
+		<div class="col-xs-12">
+			<%=image_tag "/assets/logos/kindrdfood-web.png", class: "img-responsive img-logo" %>
+		</div>
+
+		<!-- LOG OUT -->
+		<div class="col-xs-12">
+			<p>Welcome, <%=current_user.first_name%>!</p>
+			<p><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></p>
+		</div>
+	</div>
+
+	<!-- NAVIGATION LINKS -->
+	<nav>	
+		<ul>
+			<li class="session-nav-video active">
+				<a class="user-session-tool-video" href=""><span class=" nav-item">Video</span></a>
+			</li>
+			<li class="session-nav-family">
+				<%=link_to family_path(current_user.head_of_families.first.id), remote: true do %>
+					</span><span class=" nav-item">Family</span>
+				<% end %>	
+
+			</li>
+			<li class="session-nav-goals">
+				<%=link_to appointment_survey_path(appointment, pre_appt_survey), remote: true do %>
+					<span class=" nav-item">Goals</span>
+				<% end %>	
+			</li>
+			<li class="session-nav-notes">
+				<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
+					<span class=" nav-item">Notes</span>
+				<% end %>	
+			</li>
+			<!-- DASHBOARD LINK -->
+			<%= button_to "Exit Session", welcome_home_path, class: "btn btn-danger btn-block text-left" %>
+	
 			<!-- 			<li>
-							<a href=""><span class="glyphicon glyphicon-cog"></span><p><span class="hidden-xs hidden-sm nav-item">Settings</span></p></a>
+							<a href=""><span class="glyphicon glyphicon-cog"></span><p><span class=" nav-item">Settings</span></p></a>
 						</li>
 						<li>
-							<a href=""><p><span class="glyphicon glyphicon-envelope"></span></p><p><span class="hidden-xs hidden-sm nav-item">Contact Us</span></p></a>
+							<a href=""><p><span class="glyphicon glyphicon-envelope"></span></p><p><span class=" nav-item">Contact Us</span></p></a>
 						</li>	 -->
-					</ul>
-				</nav>
-			</header>
+		</ul>
+	</nav>
+</header>
+
+

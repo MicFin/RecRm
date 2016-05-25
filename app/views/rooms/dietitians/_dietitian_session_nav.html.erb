@@ -22,29 +22,29 @@
 	<nav>	
 		<ul>
 			<li class="session-nav-video active">
-				<a class="user-session-tool-video" href=""> <span class="hidden-xs hidden-sm nav-item">Video</span></a>
+				<a class="user-session-tool-video" href=""> <span class=" nav-item">Video</span></a>
 			</li>
 			<li class="session-nav-appointment-prep">
 				<%=link_to family_path(family), remote: true do %>
-					<span class="hidden-xs hidden-sm nav-item">Client Family</span>
+					<span class=" nav-item">Client Family</span>
 				<% end %>	
 
 			</li>
 			<li class="session-nav-goals">
 				<%=link_to appointment_survey_path(appointment, pre_appt_survey), remote: true do %>
-					<span class="hidden-xs hidden-sm nav-item">Client Goals</span>
+					<span class=" nav-item">Client Goals</span>
 				<% end %>	
 			</li>
 			<li class="session-nav-notes">
 				<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
-					<span class="hidden-xs hidden-sm nav-item">Notes</span>
+					<span class=" nav-item">Notes</span>
 				<% end %>	
 			</li>
 			<li>
-				<a href=""><span class="hidden-xs hidden-sm nav-item">Schedule a Follow Up</span></a>
+				<a href=""><span class=" nav-item">Schedule a Follow Up</span></a>
 			</li>
 			<li>
-				<a href=""><span class="hidden-xs hidden-sm nav-item">Flag Session</span></a>
+				<a href=""><span class=" nav-item">Flag Session</span></a>
 			</li> 
 
 				<%#= link_to "End Session", end_dietitian_appointment_path(appointment), class: "btn btn-danger btn-block text-left", data: { confirm: 'Are you sure?' }, remote: true %>

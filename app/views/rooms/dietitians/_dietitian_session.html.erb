@@ -45,7 +45,7 @@
       </div>
       <div class="col-xs-12 text-center">
         <h3>Having trouble connecting?
-        <button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-earphone"></span>Call <%=appointment.appointment_host.phone_number.phony_formatted(format: :international)%></button></h3>
+        <button class="btn btn-primary btn-md">Call <%=appointment.appointment_host.phone_number.phony_formatted(format: :international)%></button></h3>
       </div>
       <div class="col-xs-2 hidden">
         <div id="chat-container" class="row">
@@ -69,9 +69,9 @@
         <div id="availability-cal"></div>
       </div>
     </main>
-      <div class="col-xs-10 col-xs-offset-2">
-        <%=render "/layouts/footers/main_footer" %>
-      </div>
+    <div class="col-xs-10 col-xs-offset-2">
+      <%=render "/layouts/footers/main_footer" %>
+    </div>
   </div>
 </div>
 

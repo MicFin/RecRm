@@ -41,9 +41,16 @@
   <% else %>
 
 
-    <div class="col-xs-12 col-lg-5 form-group">
+    <div class="col-xs-12 col-md-3 form-group">
       <p><b>Date Measured</b></p> 
-      <%= f.date_select :measured_at, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: 1910, order: [:month, :day, :year]}, {:class => "form-control-4", label: false} %>
+      <%#= f.date_select :measured_at, {prompt: { day: 'Day', month: 'Month', year: 'Year' }, start_year: Date.today.year, end_year: 1910, order: [:month, :day, :year]}, {:class => "form-control-4 datepicker", label: false} %>
+       <div class='input-group date' id='datepicker'>
+        <input type="datetime" data-request-num="1" name="growth_entry[measured_at]" class="form-control-12" placeholder="Select" />
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar">
+          </span>
+        </span>
+      </div>
     </div>
     <div class="col-xs-12 col-lg-3 form-group">
       <p><b>Height</b></p> 

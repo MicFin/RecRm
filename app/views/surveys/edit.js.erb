@@ -11,6 +11,11 @@ if (Kindrdfood.rooms){
 	// show container and load partial
 	Kindrdfood.ajaxSpecific.ajaxUpdateUrl.showPagePartial("<%= j render(:partial => '/surveys/form', :locals => { :survey=> @survey, :surveyable => @surveyable, remote_boolean: true, survey_group: @survey_group}) %>");
 
+	// initiate datetimepicker
+	Kindrdfood.dateTimePickers.dateTimePicker.init();
+
+	// initiate datepicker
+	Kindrdfood.dateTimePickers.dateTimePicker.dateOnlyInit();
 
  // // KRDN prep in session JS
  //  // minimize video

@@ -30,7 +30,12 @@ img.add-family-member{
 	fill: black;
 }
 
+.family-members-container .alert-success{
+	  border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
+}
 .family-members-container > div {
   padding: 20px 0;
   > div:first-of-type {

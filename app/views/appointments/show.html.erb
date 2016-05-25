@@ -16,7 +16,7 @@
             <%= render "/surveys/survey_templates/appt_overview", surveyable: @surveyable %>
           </section>
           <section>
-            <%= render "/families/show", family: @family%>
+            <%= render "/families/show", family: @family, surveyable: @surveyable%>
           </section>
           <section class="surveys-container">
               <%= render "surveys/survey_templates/client_pre_appt_survey_item", surveyable: @surveyable, survey: @client_prep_survey %>

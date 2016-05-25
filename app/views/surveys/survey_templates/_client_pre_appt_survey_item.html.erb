@@ -1,11 +1,11 @@
 <div class="survey-item">
 	<ul class="list">
-	  <li><%= link_to "Appointment Prep", appointment_survey_path(surveyable, survey), remote: true %></li>
+	  <li><%= link_to "#{surveyable.appointment_host.first_name}'s Appointment Prep", appointment_survey_path(surveyable, survey), remote: true %></li>
 	  <li>Update nutrition information.</li>
 	  <li>Set appointment goals.</li>
 	  <li>Reviewed by Kindrd Nutritionist.</li>
 	  <li>&nbsp;</li>
-	  <li class="text-right"><%= link_to("Edit", edit_appointment_survey_path(surveyable, survey), class: "btn btn-xs btn-primary") if current_user && surveyable.status != "Complete" %> <%= link_to "View", appointment_survey_path(surveyable, survey), remote: true, class: "btn btn-xs btn-default" %></li>
+	  <li class="text-right"><%= link_to("Edit", edit_appointment_survey_path(surveyable, survey), class: "btn btn-xs btn-primary", remote: true) if current_user && surveyable.status != "Complete" %> <%= link_to "View", appointment_survey_path(surveyable, survey), remote: true, class: "btn btn-xs btn-default" %></li>
 	</ul>
 </div>
 

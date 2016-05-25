@@ -15,7 +15,11 @@
         <%# family_member = Users::UserPresenter.new(family_member) %>
         <% if (defined? surveyable) && (surveyable.patient_focus.id == family_member.id) %>
           <div class="col-xs-6 col-md-4 text-center alert-success">
-            <span>Focus of Appointment</span>
+            <p>Focus of Appointment</p>
+            <% if current_user %>
+
+            <p><%= link_to "Please update growth chart and food diary", families_show_family_member_path(family, family_member), remote: true %></p>
+            <% end %>
         <% else %>
           <div class="col-xs-6 col-md-4 text-center">
         <% end %>

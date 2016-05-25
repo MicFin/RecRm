@@ -42,4 +42,11 @@ if (Kindrdfood.rooms){
 // 	Kindrdfood.bootstrapOverrides.carousel.init();
 // 	// initiate datetimepicker
 // 	Kindrdfood.dateTimePickers.dateTimePicker.init();
-} 
+} else{
+
+
+		// show container and load partial
+	$("#showSurveyModal").remove();
+	$("body").append("<%= j render(:partial => '/surveys/form_modal', :locals => { :survey=> @survey, surveyable: @survey.surveyable }) %>");
+	$("#showSurveyModal").modal();	
+}

@@ -46,7 +46,7 @@
                   <button class="btn btn-xs btn-success" >Shared</button>
 
                 <% elsif appointment.client_assessment? %>
-                  <%= link_to("Share", appointment_send_assessment_path(appointment, assessment_sent: "client_assessment_sent", assessment_sent_at: "client_assessment_sent_at"), class: "btn btn-xs btn-danger", :method => :patch) if appointment.client_assessment? %> 
+                  <%= link_to("Share", appointment_send_assessment_path(appointment, send_to: "Client"), class: "btn btn-xs btn-danger", :method => :patch) if appointment.client_assessment? %> 
                 <% end %>
               </th>
               <th>
@@ -54,7 +54,7 @@
                 <% if appointment.provider_assessment? && appointment.provider_assessment_sent %>
                   <button class="btn btn-xs btn-success" >Shared</button>
                 <% elsif appointment.provider_assessment? %>
-                  <%= link_to("Share", appointment_send_assessment_path(appointment, assessment_sent: "provider_assessment_sent", assessment_sent_at: "provider_assessment_sent_at"), class: "btn btn-xs btn-danger", :method => :patch) if appointment.provider_assessment? %> </th>
+                  <%= link_to("Share", appointment_send_assessment_path(appointment, send_to: "Provider"), class: "btn btn-xs btn-danger", :method => :patch) if appointment.provider_assessment? %> </th>
                 <% end %>
             <% else %>
               <th>

@@ -3,7 +3,7 @@
 
       <%= render "/layouts/navbars/main_navigation_column" %>
 
-      <main class="col-xs-12 col-sm-10 col-sm-offset-2">
+      <main class="main-content-container col-xs-12 col-sm-10">
        <section class="alerts-container">
           <%= render "/layouts/alerts" %>
         </section>
@@ -21,7 +21,7 @@
               <%= render("surveys/survey_templates/dietitian_appt_notes_item", surveyable: surveyable, survey: dietitian_notes) %>
           </section>
           <section>
-            <%= render "/surveys/form", surveyable: surveyable, survey: survey, survey_group: survey_group, remote_boolean: false  %>       make this live for the client             
+            <%= render "/surveys/form", surveyable: surveyable, survey: survey, survey_group: survey_group, remote_boolean: false  %>        
           </section>         
         </div>
       </main>

@@ -13,22 +13,22 @@
 				<nav>	
 					<ul>
 						<li class="session-nav-video active">
-							<a class="user-session-tool-video" href=""><span class="glyphicon glyphicon-facetime-video"></span><span class="hidden-xs hidden-sm nav-item">Video</span></a>
+							<a class="user-session-tool-video" href=""><span class="hidden-xs hidden-sm nav-item">Video</span></a>
 						</li>
 						<li class="session-nav-family">
 							<%=link_to family_path(current_user.head_of_families.first.id), remote: true do %>
-								<span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Family</span>
+								</span><span class="hidden-xs hidden-sm nav-item">Family</span>
 							<% end %>	
 			
 						</li>
 						<li class="session-nav-goals">
 							<%=link_to appointment_survey_path(appointment, pre_appt_survey), remote: true do %>
-								<span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Goals</span>
+								<span class="hidden-xs hidden-sm nav-item">Goals</span>
 							<% end %>	
 						</li>
 						<li class="session-nav-notes">
 							<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
-								<span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Notes</span>
+								<span class="hidden-xs hidden-sm nav-item">Notes</span>
 							<% end %>	
 						</li>
 			<!-- 			<li>

@@ -1,46 +1,54 @@
-			<header class="col-xs-2">
-				<div class="row">
-					<div class="col-xs-12">
-					
-						<%=image_tag "/assets/logos/kindrdfood-web.png", class: "img-responsive img-logo" %>
+<!-- MOBILE NAV BUTTON -->
+<%= render "/layouts/navbars/mobile_nav_button" %>
 
-					</div>
-					<div class="col-xs-12 col-md-6">
-						<p>Welcome, <%=current_dietitian.first_name%>!</p>
-						<p><%= link_to "Log Out", destroy_dietitian_session_path, :method => :delete %></p>
-					</div>
-				</div>
-				<nav>	
-					<ul>
+<!-- USER NAV OPTIONS -->
+<header id="sidebar-nav" class="sidebar-offcanvas">
+	<!-- NAVIGATION HEADING -->
+	<div class="row text-center">
 
-						<li class="session-nav-video active">
-							<a class="user-session-tool-video" href=""><span class="glyphicon glyphicon-facetime-video"></span> <span class="hidden-xs hidden-sm nav-item">Video</span></a>
-						</li>
-						<li class="session-nav-appointment-prep">
-							<%=link_to family_path(family), remote: true do %>
-								<span class="glyphicon glyphicon-user"></span><span class="hidden-xs hidden-sm nav-item">Client Family</span>
-							<% end %>	
-			
-						</li>
-						<li class="session-nav-goals">
-							<%=link_to appointment_survey_path(appointment, pre_appt_survey), remote: true do %>
-								<span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Client Goals</span>
-							<% end %>	
-						</li>
-						<li class="session-nav-notes">
-							<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
-								<span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Notes</span>
-							<% end %>	
-						</li>
-						<li>
-							<a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Schedule a Follow Up</span></a>
-						</li>
-						<li>
-							<a href=""><span class="glyphicon glyphicon-calendar"></span><span class="hidden-xs hidden-sm nav-item">Flag Session</span></a>
-						</li> 
+		<!-- LOGO -->
+		<div class="col-xs-12">
+			<%=image_tag "/assets/logos/kindrdfood-web.png", class: "img-responsive img-logo" %>
+		</div>
 
-        			<%#= link_to "End Session", end_dietitian_appointment_path(appointment), class: "btn btn-danger btn-block text-left", data: { confirm: 'Are you sure?' }, remote: true %>
-        			<button id="end-session-button" class="btn btn-danger btn-block text-left">End Session</button>
-					</ul>
-				</nav>
-			</header>
+		<!-- LOG OUT -->
+		<div class="col-sm-12">
+			<p>Welcome, <%=current_dietitian.first_name%>!</p>
+			<p><%= link_to "Log Out", destroy_dietitian_session_path, :method => :delete %></p>
+		</div>
+	</div>
+
+	<!-- NAVIGATION LINKS -->
+	<nav>	
+		<ul>
+			<li class="session-nav-video active">
+				<a class="user-session-tool-video" href=""> <span class="hidden-xs hidden-sm nav-item">Video</span></a>
+			</li>
+			<li class="session-nav-appointment-prep">
+				<%=link_to family_path(family), remote: true do %>
+					<span class="hidden-xs hidden-sm nav-item">Client Family</span>
+				<% end %>	
+
+			</li>
+			<li class="session-nav-goals">
+				<%=link_to appointment_survey_path(appointment, pre_appt_survey), remote: true do %>
+					<span class="hidden-xs hidden-sm nav-item">Client Goals</span>
+				<% end %>	
+			</li>
+			<li class="session-nav-notes">
+				<%=link_to edit_appointment_survey_path(appointment, survey), remote: true do %>
+					<span class="hidden-xs hidden-sm nav-item">Notes</span>
+				<% end %>	
+			</li>
+			<li>
+				<a href=""><span class="hidden-xs hidden-sm nav-item">Schedule a Follow Up</span></a>
+			</li>
+			<li>
+				<a href=""><span class="hidden-xs hidden-sm nav-item">Flag Session</span></a>
+			</li> 
+
+				<%#= link_to "End Session", end_dietitian_appointment_path(appointment), class: "btn btn-danger btn-block text-left", data: { confirm: 'Are you sure?' }, remote: true %>
+				<button id="end-session-button" class="btn btn-danger btn-block text-left">End Session</button>
+		</ul>
+	</nav>
+</header>

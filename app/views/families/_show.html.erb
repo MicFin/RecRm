@@ -3,7 +3,7 @@
   <% if current_user %>
     <div class="row">
       <div class="col-xs-12">
-        <p>Who eats at your table?  Create a profile for yourself and your entire family.  Help your dietitian understand what makes your family's table unique!</p>
+<!--         <p>Who eats at your table?  Create a profile for yourself and your entire family.  Help your dietitian understand what makes your family's table unique!</p> -->
         <%= link_to "Add family member", families_new_family_member_path(family.id), class: "btn btn-md btn-default", remote: true %>
       </div>
     </div>
@@ -14,14 +14,14 @@
       <% family.family_members.each.with_index(1) do |family_member, index| %>
         <%# family_member = Users::UserPresenter.new(family_member) %>
         <% if (defined? surveyable) && (surveyable.patient_focus.id == family_member.id) %>
-          <div class="col-xs-6 col-md-4 text-center alert-success">
+          <div class="col-xs-12 col-md-4 text-center alert-success">
             <p>Focus of Appointment</p>
             <% if current_user %>
 
             <p><%= link_to "Please update growth chart and food diary", families_show_family_member_path(family, family_member), remote: true %></p>
             <% end %>
         <% else %>
-          <div class="col-xs-6 col-md-4 text-center">
+          <div class="col-xs-12 col-md-4 text-center">
         <% end %>
               
           <% if family_member.main_avatar && family_member.main_avatar.icon.url %>

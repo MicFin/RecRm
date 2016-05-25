@@ -30,7 +30,7 @@ class WelcomeController < Users::RegistrationsController
       @previous_appointments = Appointments::AppointmentPresenter.present(current_user.appointment_hosts.previous.complete_or_scheduled.includes(:appointment_host).includes(:patient_focus).includes(:dietitian).by_start_time)
 
       # Gather user's upcoming appointment
-      @upcoming_appointment = Appointments::AppointmentPresenter.new(current_user.appointment_hosts.upcoming_and_current.scheduled.first)
+      @upcoming_appointment = Appointments::AppointmentPresenter.new(current_user.appointment_hosts.upcoming_and_current.scheduled.by_start_time.last)
 
       # Gather user's upcoming appointments
       @upcoming_appointments = Appointments::AppointmentPresenter.present(current_user.appointment_hosts.upcoming_and_current.scheduled.includes(:appointment_host).includes(:patient_focus).by_start_time)

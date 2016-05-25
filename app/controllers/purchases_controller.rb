@@ -103,16 +103,9 @@ class PurchasesController < ApplicationController
         @purchasable.save
       end
       
-      # # Create pre appointment survey and all others
+      # # Create client pre appointment survey 
       @pre_appt_survey = Survey.generate_for_appointment(@purchasable, current_user)
-      Survey.generate_for_session(@purchasable, @purchasable.appointment_host)
-      Survey.generate_for_post_appointment(@purchasable, @purchasable.appointment_host)
-      Survey.generate_for_assessment(@purchasable, @purchasable.appointment_host)
-      Survey.generate_for_appointment(@purchasable, @purchasable.dietitian)
-      Survey.generate_for_session(@purchasable, @purchasable.dietitian)
-      Survey.generate_for_post_appointment(@purchasable, @purchasable.dietitian)
-      Survey.generate_for_assessment(@purchasable, @purchasable.dietitian) 
-           
+
       # Set flash message
       flash_message = 'Appointment was successfully made.'
 

@@ -44,7 +44,7 @@ module SurveyHelper
       render "surveys/survey_templates/client_assessment_form", survey: survey, survey_group: survey_group, surveyable: surveyable, client_prep_survey: client_prep_survey, dietitian_prep_survey: dietitian_prep_survey, dietitian_notes: dietitian_notes
 
     else 
-      # render "purchases/purchases_modal/coupon_not_applied", purchase: purchase, purchasable: purchasable
+      render "/surveys/form", surveyable: surveyable, survey: survey, survey_group: survey_group, remote_boolean: false 
     end
   end
 

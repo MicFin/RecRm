@@ -63,14 +63,21 @@ class AppointmentsController < ApplicationController
     @surveyable = Appointments::AppointmentPresenter.new(@appointment)
 
     @client_prep_survey = Survey.generate_for_appointment(@surveyable, @surveyable.appointment_host)
-    @client_notes = Survey.generate_for_session(@surveyable, @surveyable.appointment_host)
-    @client_nps_survey = Survey.generate_for_post_appointment(@surveyable, @surveyable.appointment_host)
+
+    if @appointment.status == "Complete"
+      @client_notes = Survey.generate_for_session(@surveyable, @surveyable.appointment_host)
+      @client_nps_survey = Survey.generate_for_post_appointment(@surveyable, @surveyable.appointment_host)
+    end
 
     @dietitian_prep_survey = Survey.generate_for_appointment(@surveyable, @surveyable.dietitian)
-    @dietitian_notes = Survey.generate_for_session(@surveyable, @surveyable.dietitian)
-    @dietitian_nps_survey = Survey.generate_for_post_appointment(@surveyable, @surveyable.dietitian)
-    @assessment = Survey.generate_for_assessment(@surveyable, @surveyable.appointment_host)
-    @provider_assessment = Survey.generate_for_assessment(@surveyable, @surveyable.dietitian)
+
+    if @appointment.status == "Complete"
+      @dietitian_notes = Survey.generate_for_session(@surveyable, @surveyable.dietitian)
+      @dietitian_nps_survey = Survey.generate_for_post_appointment(@surveyable, @surveyable.dietitian)
+      @assessment = Survey.generate_for_assessment(@surveyable, @surveyable.appointment_host)
+      
+      @provider_assessment = Survey.generate_for_assessment(@surveyable, @surveyable.dietitian)
+    end
 
     @family = Families::FamilyPresenter.new(@surveyable.appointment_host.head_of_families.first)
     

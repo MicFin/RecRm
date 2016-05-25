@@ -29,7 +29,7 @@
 
               <%= render("surveys/survey_templates/client_assessment_item", surveyable: @surveyable, survey: @assessment) if ( ( @surveyable.status == "Complete") && ( current_dietitian || ( current_user && @surveyable.client_assessment_sent == true) ) ) %>  
 
-              <%= render("surveys/survey_templates/provider_assessment_item", surveyable: @surveyable, survey: @provider_assessment) if current_dietitian && @surveyable.status == "Complete" %>            
+              <%= render("surveys/survey_templates/provider_assessment_item", surveyable: @surveyable, survey: @provider_assessment) if (current_dietitian) && (@surveyable.status == "Complete") && ( @appointment.client_assessment_sent == true) %>            
               <%#= render("post_recommendations/add_post_recommendation_item", appointment: @surveyable) if current_dietitian %>    
 
               <%#= render("surveys/survey_templates/client_nps_item", surveyable: @surveyable, survey: @client_nps_survey) if current_dietitian && (current_dietitian.has_role? "Admin Dietitian") && @surveyable.status == "Complete"%>  

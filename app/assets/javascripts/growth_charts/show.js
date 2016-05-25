@@ -9,5 +9,6 @@ Kindrdfood.growthCharts.show = {
 
   	Kindrdfood.ajaxSpecific.ajaxUpdateUrl.init();
   	Kindrdfood.formValidations.growthEntries.clientForm();
+		Kindrdfood.dateTimePickers.dateTimePicker.dateOnlyInit();
 	}
 }

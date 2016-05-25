@@ -15,7 +15,8 @@ Kindrdfood.surveys.edit = {
 			Kindrdfood.formValidations.foodDiaryEntries.init();
 			Kindrdfood.formValidations.surveys.openResponse();
 			Kindrdfood.dateTimePickers.dateTimePicker.init();
-
+			Kindrdfood.dateTimePickers.dateTimePicker.dateOnlyInit();
+			
 		} else if (groupName ===  "Dietitian - Pre Appointment" ){ 
 
 			 Kindrdfood.formValidations.growthEntries.dietitianForm();

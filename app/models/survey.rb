@@ -256,7 +256,7 @@ class Survey < ActiveRecord::Base
       end
 
 
-      # for dietitian
+    # for dietitian
     else 
 
       survey_id = SurveyGroup.with_group_name("Provider - Assessment").most_recent.id

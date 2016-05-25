@@ -9,8 +9,7 @@
         <th>Client</th>
         <th>Focus</th>
         <% if current_dietitian %>
-          <th>Client Prep</th>
-          <th>KRDN Prep</th>
+          <th></th>
           <th>Assessment</th>
           <th>Provider Assessment</th>
         <% else %>
@@ -35,27 +34,26 @@
             <td><%= appointment.patient_focus_full_name%></td>
 
             <% if current_dietitian %>
-              <th><%= link_to("View", appointment_survey_path(appointment, appointment.client_prep_survey_id), remote: true, class: "btn btn-xs btn-default") if appointment.client_prep_survey? %></th>
-
-              <th><%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.krdn_prep_survey_id), class: "btn btn-xs btn-primary") if appointment.krdn_prep_survey? %></th>
-
+              <td>
+                <%= link_to("View", appointment_path(appointment), class: "btn btn-xs btn-primary") %> 
+              </td>
               <th>
-                <%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.client_assessment_id), class: "btn btn-xs btn-primary") if appointment.client_assessment? %> 
 
                 <% if appointment.client_assessment? && appointment.client_assessment_sent %>
-                  <button class="btn btn-xs btn-success" >Shared</button>
+                  <button class="btn btn-xs btn-success" >Sent</button>
 
                 <% elsif appointment.client_assessment? %>
-                  <%= link_to("Share", appointment_send_assessment_path(appointment, send_to: "Client"), class: "btn btn-xs btn-danger", :method => :patch) if appointment.client_assessment? %> 
+                  <%= link_to("Send", appointment_send_assessment_path(appointment, send_to: "Client"), class: "btn btn-xs btn-danger", :method => :patch) if appointment.client_assessment? %> 
                 <% end %>
               </th>
               <th>
-                <%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.provider_assessment_id), class: "btn btn-xs btn-primary") if appointment.provider_assessment? %> 
+
                 <% if appointment.provider_assessment? && appointment.provider_assessment_sent %>
-                  <button class="btn btn-xs btn-success" >Shared</button>
+                  <button class="btn btn-xs btn-success" >Sent</button>
                 <% elsif appointment.provider_assessment? %>
-                  <%= link_to("Share", appointment_send_assessment_path(appointment, send_to: "Provider"), class: "btn btn-xs btn-danger", :method => :patch) if appointment.provider_assessment? %> </th>
+                  <%= link_to("Send", appointment_send_assessment_path(appointment, send_to: "Provider"), class: "btn btn-xs btn-danger", :method => :patch) if appointment.provider_assessment? %> 
                 <% end %>
+              </th>
             <% else %>
               <th>
                 <% if appointment.client_assessment? && appointment.client_assessment_sent %>

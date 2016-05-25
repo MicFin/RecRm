@@ -75,7 +75,9 @@ class AppointmentsController < ApplicationController
       @dietitian_notes = Survey.generate_for_session(@surveyable, @surveyable.dietitian)
       @dietitian_nps_survey = Survey.generate_for_post_appointment(@surveyable, @surveyable.dietitian)
       @assessment = Survey.generate_for_assessment(@surveyable, @surveyable.appointment_host)
-      
+    end
+
+    if @appointment.client_assessment_sent == true 
       @provider_assessment = Survey.generate_for_assessment(@surveyable, @surveyable.dietitian)
     end
 
@@ -270,7 +272,6 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1/end_appointment
   # Should move to another controller, maybe the rooms_controller
   def end_appointment
-
     respond_to do |format|
       if current_user 
 
@@ -287,7 +288,8 @@ class AppointmentsController < ApplicationController
         @survey = Survey.generate_for_post_appointment(@appointment, current_dietitian)
         @survey_group = @survey.survey_group.name
         # mark appointment as complete
-        if params[:data] && params[:data][:end_session] === "true"
+
+        if params[:data] && ( params[:data][:end_session] === "true" )
           @appointment.status = "Complete"
           @appointment.save
         end
@@ -302,16 +304,29 @@ class AppointmentsController < ApplicationController
 
   # PATCH /appointments/1/send_assessment
   def send_assessment
+    if params[:send_to] == "Client"
+      respond_to do |format|
+        if  @appointment.update_attribute("client_assessment_sent", true) && @appointment.update_attribute("client_assessment_sent_at", DateTime.now) 
+            Survey.generate_for_assessment(@appointment, @appointment.dietitian)
 
-    respond_to do |format|
-      if  @appointment.update_attribute(params[:assessment_sent], true) && @appointment.update_attribute(params[:assessment_sent_at], DateTime.now) 
-
-          format.html { redirect_to welcome_path, notice: 'Appointment assessment was successfully sent.' }
-          format.json { render :show, status: :ok, location: @appointment }
-      else
-        format.html { render :edit }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+            format.html { redirect_to welcome_path, notice: 'Appointment assessment was successfully sent.' }
+            format.json { render :show, status: :ok, location: @appointment }
+        else
+          format.html { render :edit }
+          format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        end
       end
+    else 
+      respond_to do |format|
+        if  @appointment.update_attribute("provider_assessment_sent", true) && @appointment.update_attribute("provider_assessment_sent_at", DateTime.now) 
+
+            format.html { redirect_to welcome_path, notice: 'Appointment assessment was successfully sent.' }
+            format.json { render :show, status: :ok, location: @appointment }
+        else
+          format.html { render :edit }
+          format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        end
+      end 
     end
   end
 

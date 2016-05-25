@@ -87,7 +87,7 @@ class FoodDiaryEntriesController < ApplicationController
 
     # datetimepicker format comes back incorrect, should fix on front end and not clean data here
     def clean_date_form
-      params[:food_diary_entry][:consumed_at] = params[:food_diary_entry][:consumed_at].gsub(%r{(.*)/(.*)/(.*)}, '\2/\1/\3') + " EST"
+      params[:food_diary_entry][:consumed_at] = params[:food_diary_entry][:consumed_at].gsub(%r{(.*)/(.*)/(.*)}, '\2/\1/\3') + " " + current_user.time_zone
     end
 
     # Use callbacks to share common setup or constraints between actions.

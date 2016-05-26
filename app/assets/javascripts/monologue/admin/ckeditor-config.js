@@ -24,7 +24,7 @@ $(function() {
         // { name: 'tools', items : [ 'Maximize', 'ShowBlocks' ] }
     ];
 
-    CKEDITOR.config.extraAllowedContent = 'div(*); p(monologue-post-intro-paragraph,heading,monologue-post-note,monologue-post-storage); img(monologue-post-image-center); h2(heading); h4(monologue-post-subcategory); span(heading)';
+    CKEDITOR.config.extraAllowedContent = 'div(*); p(monologue-post-intro-paragraph,heading,monologue-post-note,monologue-post-storage); img(monologue-post-image-center); h2(heading); h4(monologue-post-subcategory); span(heading); ul(list-item)';
    // CKEDITOR.config.extraAllowedContent = 'div(*)';
 
     CKEDITOR.config.templates_files = [ '/assets/monologue/admin/monologue_templates.js' ];

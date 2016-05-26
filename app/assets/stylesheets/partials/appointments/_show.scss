@@ -68,6 +68,11 @@ ul.list:after {
 	    // border-radius: 5px;		
    	}
   }
+  &.survey-item-lg{
+    @include make-sm-column( 12 );
+  	@include make-md-column( 12 );
+   	@include make-lg-column( 12 );
+  }
 }
 
 .content-recommendations-container{

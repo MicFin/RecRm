@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505034633) do
+ActiveRecord::Schema.define(version: 20160611232318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,12 +142,12 @@ ActiveRecord::Schema.define(version: 20160505034633) do
   end
 
   create_table "dietitians", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                          default: "", null: false
+    t.string   "encrypted_password",             default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                  default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -158,6 +158,17 @@ ActiveRecord::Schema.define(version: 20160505034633) do
     t.string   "last_name"
     t.string   "signature"
     t.string   "time_zone"
+    t.string   "location"
+    t.integer  "experience_level"
+    t.integer  "age_level"
+    t.string   "undergraduate_education"
+    t.string   "graduate_education"
+    t.string   "professional_experience_first"
+    t.string   "professional_experience_second"
+    t.string   "professional_experience_third"
+    t.string   "professional_experience_fourth"
+    t.string   "professional_experience_fifth"
+    t.text     "introduction"
   end
 
   add_index "dietitians", ["email"], name: "index_dietitians_on_email", unique: true, using: :btree
@@ -169,6 +180,18 @@ ActiveRecord::Schema.define(version: 20160505034633) do
   end
 
   add_index "dietitians_roles", ["dietitian_id", "role_id"], name: "index_dietitians_roles_on_dietitian_id_and_role_id", using: :btree
+
+  create_table "expertises", force: true do |t|
+    t.integer  "dietitian_preference"
+    t.integer  "dietitian_qualification"
+    t.integer  "dietitian_id"
+    t.integer  "patient_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "expertises", ["dietitian_id"], name: "index_expertises_on_dietitian_id", using: :btree
+  add_index "expertises", ["patient_group_id"], name: "index_expertises_on_patient_group_id", using: :btree
 
   create_table "families", force: true do |t|
     t.string   "name"
@@ -408,6 +431,18 @@ ActiveRecord::Schema.define(version: 20160505034633) do
   end
 
   add_index "rooms", ["dietitian_id"], name: "index_rooms_on_dietitian_id", using: :btree
+
+  create_table "settings", force: true do |t|
+    t.string   "var",                     null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type",   limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "display_name"
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
   create_table "subscriptions", force: true do |t|
     t.integer  "member_plan_id"

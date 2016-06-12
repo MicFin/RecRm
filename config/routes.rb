@@ -434,6 +434,8 @@
 
 Rails.application.routes.draw do
 
+  ### ROUTES FOR EMAIL PREVIEW 
+  mount RailsEmailPreview::Engine, at: 'emails'
 
   ### ROUTES FOR MONOLGUE
   mount Ckeditor::Engine => '/ckeditor'
@@ -441,6 +443,8 @@ Rails.application.routes.draw do
   mount Monologue::Engine, at: '/education' 
   Monologue::Engine.routes.draw do
 
+
+  mount RailsEmailPreview::Engine, at: 'emails'
     # # Not sure if need post_rec resources in engine as well as in main rails app
     # resources :post_recommendations
 
@@ -614,6 +618,13 @@ Rails.application.routes.draw do
       # Authenticated dietitian root path
       root :to => 'welcome#index', as: :dietitian_authenticated_root
 
+      # Settings
+      resources :kf_config, :constraints => { :id => /.*/ } # allow period in route param
+
+      # Registration paths
+      get 'dietitians/:id' => 'dietitians/registrations#show', as: "dietitian"
+      get 'dietitians' => 'dietitians/registrations#index', as: "dietitians"
+
       # Survey paths
       get 'users/:user_id/surveys/show', to: 'surveys#show', as: 'show_user_survey'
       
@@ -644,7 +655,6 @@ Rails.application.routes.draw do
       resources :post_recommendations
 
       # Dashboard paths
-      get 'dashboard/index', to: 'dashboard#index', as: 'dashboard'
       get 'dashboard/clients_onboarding', to: 'dashboard#clients_onboarding', as: 'dashboard_clients_onboarding'
       
       # Role assignment paths
@@ -684,6 +694,6 @@ Rails.application.routes.draw do
       root :to => "landing_pages#index", as: :dietitian_unauthenticated_root
     end   
   end
-  
+
 
 end

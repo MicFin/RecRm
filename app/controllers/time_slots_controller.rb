@@ -38,10 +38,42 @@ class TimeSlotsController < ApplicationController
       # Set dietitian or to blank for all dietitians
       dietitian_id = params[:dietitian_id] || ""
 
-      # Get all time slots that are "Current", vacant, correct duration and not start within 2 day buffer
-      @time_slots = TimeSlot.current.vacant.has_length(duration).upcoming_with_buffer(2).for_dietitian(dietitian_id)
+      # If empty string then show all dietitians
+      if dietitian_id != ""
+        # filter for Current 
+        # filter for Vacant
+        # filter for Duration 
+        # filter for 2 day buffer
+        # filter for specific deititian
+        @time_slots = TimeSlot.current.vacant.has_length(duration).upcoming_with_buffer(2).for_dietitian(dietitian_id)
 
-      @cal_time_slots = @time_slots.to_a.uniq{|time_slot| time_slot.start_time}
+      # Else if filter dietitian by expertise is turned on
+      elsif KfConfig["general.matching.filter_expertises"] == "on"
+        @time_slots =[]
+        # filter for expertise with dietitian qualification above 0
+        # filter for expertise in patient group of 
+        qualified_dietitians = Dietitian.includes(:expertises => :patient_group).where(["expertises.dietitian_qualification > ?", 0]).where(patient_groups: {id: current_user.appointment_in_registration.patient_focus.patient_groups.map(&:id)})
+
+        qualified_dietitians.each do |dietitian|
+          # filter for Current 
+          # filter for Vacant
+          # filter for Duration 
+          # filter for 2 day buffer
+          # filter for qualified deititian
+          @time_slots << TimeSlot.current.vacant.has_length(duration).upcoming_with_buffer(2).for_dietitian(dietitian.id)
+        end
+
+      # Else any dietitian
+      else
+        # filter for Current 
+        # filter for Vacant
+        # filter for Duration 
+        # filter for 2 day buffer
+        # filter for dietitian emptry string ""
+        @time_slots = TimeSlot.current.vacant.has_length(duration).upcoming_with_buffer(2).for_dietitian(dietitian_id)
+      end
+
+      @cal_time_slots = @time_slots.to_a.flatten.uniq{|time_slot| time_slot.start_time}
     end
   end
 

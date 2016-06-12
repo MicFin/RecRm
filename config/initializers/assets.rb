@@ -21,6 +21,7 @@
   appointments
   dashboard
   surveys
+  images
   post_recommendations
   users/sessions
   dietitians/registrations

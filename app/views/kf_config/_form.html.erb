@@ -1,0 +1,8 @@
+
+
+<%= simple_form_for(kf_config, url: kf_config_path(kf_config.var), method: 'patch') do |f| %>
+  <label><%= kf_config.display_name %></label>
+  <label><%= kf_config.var %></label>
+  <%= f.input :value, input_html: {value: kf_config.value} %>
+  <%= f.submit %>
+<% end %>

@@ -1,51 +1,81 @@
-<div class="row">
-  <div id="weekly-data-container" class="col-xs-8 col-xs-offset-1">
-   <h1>Week Summary</h1>
-<!--     <div id="live-event-hours" class="col-xs-5 col-xs-offset-2"> 
-      <p>Total Live Hours: <span></span></p>
-    </div>
-    <div id="appointment-event-hours" class="col-xs-5"> 
-      <p>Total Appointment Hours: <span></span></p>
-    </div>
-    <div id="set-event-hours" class="col-xs-5 col-xs-offset-2"> 
-      <p>Saved Availability Hours: <span></span></p>
-    </div>
-    <div id="new-event-hours" class="col-xs-5"> 
-      <p>New Availability Hours: <span></span></p>
-    </div> -->
-  </div>
-  <div class="col-xs-8" id="availability-cal">
-  </div>
-  <div id="calendar-key-container" class="col-xs-3">
+<!-- KRDN DASHBOARD  -->
+<div id="welcome-page" class="container-fluid">
     <div class="row">
-      <div class="col-xs-3 col-xs-offset-2">
-        <div id="new-event-example" class="calendar-key-example"> 
+
+    <!-- KRDN NAV-->
+      <%= render "/layouts/navbars/dietitian_nav" %>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content-container col-xs-12 col-sm-10">
+
+        <!-- ALERTS-->
+        <section class="alerts-container">
+            <%= render "/layouts/alerts" %>
+        </section>
+        <div class="row">
+          <div id="weekly-data-container" class="col-xs-12">
+           <h1>Week Summary</h1>
+            <!--     <div id="live-event-hours" class="col-xs-5 col-xs-offset-2"> 
+              <p>Total Live Hours: <span></span></p>
+            </div>
+            <div id="appointment-event-hours" class="col-xs-5"> 
+              <p>Total Appointment Hours: <span></span></p>
+            </div>
+            <div id="set-event-hours" class="col-xs-5 col-xs-offset-2"> 
+              <p>Saved Availability Hours: <span></span></p>
+            </div>
+            <div id="new-event-hours" class="col-xs-5"> 
+              <p>New Availability Hours: <span></span></p>
+            </div> -->
+          </div>
+          <div class="col-xs-8" id="availability-cal">
+          </div>
+          <div id="calendar-key-container" class="col-xs-3">
+            <div class="row">
+              <div class="col-xs-3 col-xs-offset-2">
+                <div id="new-event-example" class="calendar-key-example"> 
+                </div>
+              </div>
+              <div class="col-xs-6 key-description">
+                <p><b>New</b> available time slot, not saved</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3 col-xs-offset-2">
+                <div id="saved-event-example" class="calendar-key-example">
+                </div>
+              </div>
+              <div class="col-xs-6 key-description">
+                <p><b>Saved</b> availability but not live</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-3 col-xs-offset-2">
+                <div id="live-event-example" class="calendar-key-example">
+                </div>
+              </div>
+              <div class="col-xs-6 key-description">
+                <p><b>Live</b> availability for clients</p>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <button id="save-schedule-button" class="btn btn-success btn-block">Save Schedule</button>
+            </div>
+          </div>
         </div>
+      </main>
+
+      <!-- FOOTER -->
+      <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
       </div>
-      <div class="col-xs-6 key-description">
-        <p><b>New</b> available time slot, not saved</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3 col-xs-offset-2">
-        <div id="saved-event-example" class="calendar-key-example">
-        </div>
-      </div>
-      <div class="col-xs-6 key-description">
-        <p><b>Saved</b> availability but not live</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3 col-xs-offset-2">
-        <div id="live-event-example" class="calendar-key-example">
-        </div>
-      </div>
-      <div class="col-xs-6 key-description">
-        <p><b>Live</b> availability for clients</p>
-      </div>
-    </div>
-    <div class="col-xs-12">
-      <button id="save-schedule-button" class="btn btn-success btn-block">Save Schedule</button>
     </div>
   </div>
-</div>
+
+
+
+
+
+
+
+

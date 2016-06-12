@@ -1,0 +1,101 @@
+<%
+  list = @list
+  previews = @previews
+%>
+
+
+<!-- KRDN DASHBOARD  -->
+<div id="welcome-page" class="container-fluid">
+    <div class="row">
+
+    <!-- KRDN NAV-->
+      <%= render "/layouts/navbars/dietitian_nav" %>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content-container col-xs-12 col-sm-10">
+
+        <!-- ALERTS-->
+        <section class="alerts-container">
+            <%= render "/layouts/alerts" %>
+        </section>
+
+        <section>
+          
+          <div class="rep--main-container">
+            <h1><%= t '.list_title' %></h1>
+
+            <%= with_index_hook :list do %>
+              <div class="<%= rep_style[:row_class] %>">
+                <div class="rep--email-list-half">
+                  <h2>Stripe</h2>
+                  <div class="rep--list-group">
+                    <a class="rep--list-group__item" href="#">
+                      Payment Receipt
+                    </a>
+                    <a class="rep--list-group__item" href="#">
+                      Refund Receipt
+                    </a>
+                  </div>
+                </div>
+                <% list.columns do |groups| %>
+                  <div class="rep--email-list-half">
+                    <% groups.each do |title, group_previews| %>
+                      <h2><%= title %></h2>
+                      <div class="<%= rep_style[:list_group_class] %>">
+                        <% group_previews.each do |p| %>
+                          <a class="<%= rep_style[:list_group_item_class] %>"
+                             href="<%= rails_email_preview.rep_email_path(preview_id: p.id, email_locale: @email_locale) %>">
+                            <%= p.method_name %>
+                          </a>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+                <div class="rep--email-list-half">
+                  <h2>Appointments</h2>
+                  <div class="rep--list-group">
+                    <a class="rep--list-group__item" href="#">
+                      KRDN New Appointment Scheduled
+                    </a>
+                    <a class="rep--list-group__item" href="#">
+                      Client New Appointment Scheduled
+                    </a>
+                    <a class="rep--list-group__item" href="#">
+                      Client 1 Week Reminder
+                    </a>
+                    <a class="rep--list-group__item" href="#">
+                      Client 1 Day Reminder
+                    </a>
+                    <a class="rep--list-group__item" href="#">
+                      Client 5 Minutes Late 
+                    </a>
+                    <a class="rep--list-group__item" href="#">
+                      Client Appointment Missed
+                    </a>
+                    <a class="rep--list-group__item" href="#">
+                      Client Appointment Assessment Available
+                    </a>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <hr/>
+            <p class="rep--footer">
+              <%#= t 'rep.base.email', count: previews.length %> <%#= t 'rep.base.in' %> <%#= t 'rep.base.mailer', count: list.groups.length %>
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+

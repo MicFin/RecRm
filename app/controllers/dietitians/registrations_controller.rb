@@ -6,6 +6,14 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, only: [ :new, :create, :cancel ]
   prepend_before_filter :authenticate_scope!, only: [:edit, :update, :destroy]
 
+  before_action :set_dietitian, only: [:show]
+
+
+  def index
+    @online_dietitians = Dietitians::DietitianPresenter.present(Dietitian.online)
+    @dietitians = Dietitians::DietitianPresenter.present(Dietitian.all)
+  end
+
   # GET /resource/sign_up
   def new
     build_resource({})
@@ -43,6 +51,10 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  # GET /resource/1
+  def show
+  end
+
   # GET /resource/edit
   def edit
     # build images
@@ -53,6 +65,9 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
     else
       current_dietitian.images.build
     end
+
+    # if expertises or reset expertises
+    current_dietitian.expertises.count >= 1 ? current_dietitian.expertises : Expertise.reset_dietitian_expertise(current_dietitian)
     
     render :edit
   end
@@ -150,7 +165,9 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
   # this method in your own RegistrationsController.
   def after_update_path_for(resource)
     
-    if  params[:dietitian][:images_attributes].present?
+    # if images_attribuets and not remove_image
+    # then send to crop image
+    if params[:dietitian][:images_attributes].present? && !params[:dietitian][:images_attributes]["0"]["remove_image"].present?
       
         image = current_dietitian.images.last
         crop_dietitian_image_path(resource, image)
@@ -171,18 +188,20 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
 
   def account_update_params
     
+    # if remove image attribute is present the destroy image
     if params 
-      if ( (params[:dietitian][:images_attributes]) && (params[:dietitian][:images_attributes]['0'][:remove_image] == "1") )
-        
-        params[:dietitian].delete(:images_attributes)
-        image = current_dietitian.images.last 
-        image.remove_image!
-        # image.update_attribute(:image, nil)
-        image.remove_image = true
-        image.save
-        image.reload
-        image.destroy
-        
+      if params[:dietitian][:images_attributes]
+        if params[:dietitian][:images_attributes]['0'][:remove_image] == "1"
+          params[:dietitian].delete(:images_attributes)
+          image = current_dietitian.images.last 
+          image.remove_image!
+          # image.update_attribute(:image, nil)
+          image.remove_image = true
+          image.save
+          # image.reload
+          image.destroy
+          
+        end
       end
     end
     
@@ -194,18 +213,23 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  #
-  def configure_permitted_parameters
-    
-    devise_parameter_sanitizer.for(:sign_up) do |u| 
-      u.permit(:first_name, :last_name, :email, :signature, :password, :password_confirmation, :current_password)
-     end
-    devise_parameter_sanitizer.for(:account_update) do |u|  
+    # Use callbacks to share common setup or constraints between actions.
+    def set_dietitian
 
-      u.permit(:first_name, :last_name, :email, :signature, :password, :password_confirmation, :current_password, :remove_image, :images_attributes => [:image_type, :imageable_id, :imageable_type, :position, :image_cache, :crop_x, :crop_y, :crop_w, :crop_h, :crop_image, :remove_image, :image])
-     end
-     
-  end
+        @dietitian = Dietitian.find(params[:id])
+    end
+
+    def configure_permitted_parameters
+      
+      devise_parameter_sanitizer.for(:sign_up) do |u| 
+        u.permit(:first_name, :last_name, :email, :signature, :password, :password_confirmation, :current_password)
+       end
+      devise_parameter_sanitizer.for(:account_update) do |u|  
+
+        u.permit(:first_name, :last_name, :email, :signature, :location, :password, :password_confirmation, :current_password, :remove_image, :undergraduate_education, :graduate_education, :professional_experience_first, :professional_experience_second, :professional_experience_third, :professional_experience_fourth, :professional_experience_fifth, :introduction, :experience_level, :age_level, :expertises_attributes => [:dietitian_preference, :dietitian_qualification, :dietitian_id, :patient_group_id, :id], :images_attributes => [:image_type, :imageable_id, :imageable_type, :position, :image_cache, :crop_x, :crop_y, :crop_w, :crop_h, :crop_image, :remove_image, :image])
+       end
+       
+    end
 
 
 end

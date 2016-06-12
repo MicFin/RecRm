@@ -35,9 +35,12 @@ class Dietitian < ActiveRecord::Base
   has_many :availabilities
   has_many :time_slots, through: :availabilities
   has_many :post_recommendations
-
   has_many :images, :as => :imageable, dependent: :destroy
+  has_many :expertises 
+  has_many :patient_groups, through: :expertises
+
   accepts_nested_attributes_for :images, allow_destroy: true
+  accepts_nested_attributes_for :expertises
 
   # [13, 17] // 13 vacant out of 17 time slots
   def half_hour_time_slots_available
@@ -98,6 +101,7 @@ class Dietitian < ActiveRecord::Base
     updated_at > 10.minutes.ago
   end
 
+  private
 
   # override devise without_password model to remove current_password 
   # def update_without_password(params={})

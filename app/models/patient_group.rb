@@ -33,7 +33,8 @@ class PatientGroup < ActiveRecord::Base
 
   # # RELATIONSHIPS
 	has_and_belongs_to_many :users
-
+  has_many :expertises 
+  has_many :dietitians, through: :expertises
 
   # # CLASS METHODS
   

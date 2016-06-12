@@ -1,0 +1,33 @@
+
+
+<!-- KRDN DASHBOARD  -->
+<div id="welcome-page" class="container-fluid">
+		<div class="row">
+
+		<!-- KRDN NAV-->
+			<%= render "/layouts/navbars/dietitian_nav" %>
+
+			<!-- MAIN CONTENT -->
+			<main class="main-content-container col-xs-12 col-sm-10">
+
+				<!-- ALERTS-->
+			  <section class="alerts-container">
+	          <%= render "/layouts/alerts" %>
+	      </section>
+
+	      <!-- FORM -->
+	      <section>
+	      <h2>Edit Setting</h2>
+	      	<%= render "/kf_config/form", kf_config: @kf_config %>
+	      </section>
+	
+			</main>
+
+			<!-- FOOTER -->
+			<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<%=render "/layouts/footers/main_footer" %>
+			</div>
+		</div>
+	</div>
+
+

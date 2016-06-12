@@ -1,0 +1,53 @@
+
+
+
+<!-- KRDN DASHBOARD  -->
+<div id="welcome-page" class="container-fluid">
+    <div class="row">
+
+    <!-- KRDN NAV-->
+      <%= render "/layouts/navbars/dietitian_nav" %>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content-container col-xs-12 col-sm-10">
+
+        <!-- ALERTS-->
+        <section class="alerts-container">
+            <%= render "/layouts/alerts" %>
+        </section>
+
+        <!-- SETTINGS -->
+        <section>
+          <h2>Settings</h2>
+
+           <!-- NEW SETTING -->
+           <% if current_dietitian.email == "mrfinneran+rd@gmail.com" %>
+            <div>
+              <%= render "/kf_config/new", kf_config: @kf_config %>
+            </div>
+          <% end %>
+          <!-- SETTINGS LIST -->
+          <div>
+            <table class="table">
+              <% @kf_configs.each do |config| %>
+              <tr>
+                <td><%= config.display_name %></td>
+                <td><%= "(#{config.var})" if current_dietitian.email == "mrfinneran+rd@gmail.com" %></td>
+                <td><%= config.value %></td>
+                <td><%= link_to 'edit', edit_kf_config_path(config.var) %></td>
+                <td><%= link_to 'delete', kf_config_path(config.var), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>
+
+

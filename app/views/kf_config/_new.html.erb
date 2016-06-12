@@ -1,0 +1,12 @@
+
+<!-- FORM -->
+<%= simple_form_for kf_config, url: "/kf_config", method: 'post' do |f| %>
+  <table class="table">
+    <tr>
+      <td><%= f.input :display_name, class: "form-control" %></td>
+      <td><%= f.input :var, class: "form-control" %></td>
+      <td><%= f.input :value, class: "form-control" %></td>
+      <td><%= f.button :submit, "Save", class: "btn btn-primary btn-sm" %></td>
+    </tr>
+	</table>
+<% end %>

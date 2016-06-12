@@ -1,0 +1,70 @@
+	
+
+					 	<!-- KRDN DASHBOARD  -->
+<div id="welcome-page" class="container-fluid">
+		<div class="row">
+
+		<!-- KRDN NAV-->
+			<%= render "/layouts/navbars/dietitian_nav" %>
+
+			<!-- MAIN CONTENT -->
+			<main class="main-content-container col-xs-12 col-sm-10">
+
+				<!-- ALERTS-->
+			  <section class="alerts-container">
+	          <%= render "/layouts/alerts" %>
+	      </section>
+
+	      <!-- DIETITIANS ONLINE -->
+				<section >
+					<h3>Dietitians Online</h3>
+				 	<%@online_dietitians.each do |dietitian| %>
+				 		<h4 class="white-font"><%=dietitian.email%></h4>
+				 	<% end %>
+				</section>
+
+				<section>
+				  <table class="table">
+	          <thead>
+	            <tr>
+	              <th>Signature</th>
+	              <th>First </th>
+	              <th>Last</th>
+	              <th>Email</th>
+	              <th>Location</th>
+	              <th>Time Zone</th>
+	              <th>Experience Level</th>
+	              <th>Last Sign In At</th>
+	              <th>Created At</th>
+	            </tr>
+	          </thead>
+	          <tbody>
+
+	            <% @dietitians.each do | dietitian | %>
+
+	              <tr>
+	                <td><%=link_to dietitian.signature, dietitian_path(dietitian)%></td>
+	                <td><%=dietitian.first_name%></td>
+	                <td><%=dietitian.last_name%></td>
+	                <td><%=dietitian.email %></td>
+	                <td><%=dietitian.location%></td>
+	                <td><%=dietitian.time_zone%></td>
+	                <td><%=dietitian.experience_level %></td>
+	                <td><%=dietitian.last_sign_in%></td>
+	                <td><%=dietitian.created %></td>
+	              </tr>
+	            <% end %>
+	          </tbody>
+	        </table>					
+
+				</section>
+			</main>
+
+			<!-- FOOTER -->
+			<div class="col-xs-12 col-sm-10 col-sm-offset-2">
+				<%=render "/layouts/footers/main_footer" %>
+			</div>
+		</div>
+	</div>
+
+

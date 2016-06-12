@@ -9,7 +9,7 @@
 	<!-- LOG OUT -->
 	<div class="col-sm-12">
 		<p>Welcome, <%=current_dietitian.first_name%>!</p>
-		<p><%= link_to "Log Out", destroy_dietitian_session_path, :method => :delete %></p>
+		<p><%= link_to "Log Out", main_app.destroy_dietitian_session_path, :method => :delete %></p>
 	</div>
 </div>
 
@@ -17,111 +17,81 @@
 <nav>	
 	<ul>
 
-		<!-- ADMIN LINKS -->
+		<!-- DASHBOARD LINK -->
+		<%= active_link_to main_app.welcome_path, { :active => [['welcome'], ['index']], :wrap_tag => :li } do %>
+		  <span class=""></span><span class=" nav-item">Dashboard</span>
+		<% end %>
+
+		<!-- PROFILE LINK -->
+		<%= active_link_to main_app.edit_dietitian_registration_path, :wrap_tag => :li  do %>
+		  <span class=""></span><span class=" nav-item">Profile</span>
+		<% end %>
+
+		<!-- SCHEDULE LINK -->
+		<%= active_link_to main_app.availabilities_path, :wrap_tag => :li do %>
+		  <span class=""></span><span class=" nav-item">Schedule</span>
+		<% end %>
+
+		<!-- ClIENTS LINK -->
+		<%= active_link_to main_app.appointments_path, :wrap_tag => :li  do %>
+		  <span class=""></span><span class=" nav-item">Clients</span>
+		<% end %>		
+
+		<!-- CONTENT LINK -->
+		<%= active_link_to "/education/monologue", :wrap_tag => :li do %>
+		  <span class=""></span><span class=" nav-item">Content</span>
+		<% end %>
+
+		<!-- ADMIN LINK -->
 		<% if current_dietitian.has_role? "Admin Dietitian" %>
-
-			<!-- DASHBOARD LINK -->
-			<%= active_link_to welcome_path, { :active => [['welcome'], ['index']], :wrap_tag => :li } do %>
-			  <span class=""></span><span class=" nav-item">Dashboard</span>
-			<% end %>
-
-			<!-- PROFILE LINK -->
-			<%= active_link_to edit_dietitian_registration_path, :wrap_tag => :li  do %>
-			  <span class=""></span><span class=" nav-item">Profile</span>
-			<% end %>
-
-			<!-- SCHEDULE LINK -->
-			<%= active_link_to availabilities_path, :wrap_tag => :li do %>
-			  <span class=""></span><span class=" nav-item">Schedule</span>
-			<% end %>
-
-			<!-- ADMIN LINK -->
-			<li><a href="#" id="krdn-admin-nav-button" data-toggle="collapse" data-target="#krdn-admin-nav-list" aria-expanded="false">KRDN Admin</a>
+			<li><a href="#" id="krdn-admin-nav-button" data-toggle="collapse" data-target="#krdn-admin-nav-list" aria-expanded="false">Admin</a>
 				<ul class="nav collapse" id="krdn-admin-nav-list" role="menu" aria-labelledby="btn-1">
 
-					<%= active_link_to appointments_path, :wrap_tag => :li  do %>
-					  <span class=""></span><span class=" nav-item">Appointments</span>
-					<% end %>		
-
-					<%= active_link_to dashboard_clients_onboarding_path, :wrap_tag => :li do %>
-					  <span class=""></span><span class=" nav-item">Clients(t)</span>
-					<% end %>
-
-					<%= active_link_to users_invitations_path, :wrap_tag => :li  do %>
-					  <span class=""></span><span class=" nav-item">Referrals</span>
-					<% end %>		
-
-					<%= active_link_to dashboard_clients_onboarding_path, :wrap_tag => :li do %>
+					<!-- LEADS LINK -->
+					<%= active_link_to main_app.dashboard_clients_onboarding_path, :wrap_tag => :li do %>
 					  <span class=""></span><span class=" nav-item">Leads</span>
 					<% end %>
-					<%= active_link_to survey_groups_path, :wrap_tag => :li do %>
-					  <span class=""></span><span class=" nav-item">KRDN Scheduling(t)</span>
-					<% end %>
-					<%= active_link_to "/education/monologue", :wrap_tag => :li do %>
-					  <span class=""></span><span class=" nav-item">Content</span>
-					<% end %>
-					<%= active_link_to survey_groups_path, :wrap_tag => :li do %>
-					  <span class=""></span><span class=" nav-item">Questionnaires</span>
-					<% end %>
-				</ul>
-			</li>
 
-			<!-- SYSTEM ADMIN LINK -->
-			<li><a href="#" id="system-admin-nav-button" data-toggle="collapse" data-target="#system-admin-nav-list" aria-expanded="false">System Admin</a>
-				<ul class="nav collapse" id="system-admin-nav-list" role="menu" aria-labelledby="btn-1">
-					<%= active_link_to new_package_path, :wrap_tag => :li do %>
-					  <span class=""></span><span class=" nav-item">Appointments</span>
+					<!-- DIETITIANS LINK -->
+					<%= active_link_to main_app.dietitians_path, :wrap_tag => :li do %>
+					  <span class=""></span><span class=" nav-item">KRDNs</span>
 					<% end %>
 
-					<%= active_link_to new_package_path, :wrap_tag => :li do %>
+					<!-- COUPONS LINK -->
+					<%= active_link_to main_app.coupons_path, :wrap_tag => :li do %>
+					  <span class=""></span><span class=" nav-item">Coupons</span>
+					<% end %>
+
+					<!-- PACKAGES LINK -->
+					<%= active_link_to main_app.new_package_path, :wrap_tag => :li do %>
 					  <span class=""></span><span class=" nav-item">Packages</span>
 					<% end %>
 
-					<%= active_link_to coupons_path, :wrap_tag => :li do %>
-					  <span class=""></span><span class=" nav-item">Coupons</span>
+					<!-- EMAIL TEMPLATES LINK -->
+					<%= active_link_to rails_email_preview.rep_emails_url, :wrap_tag => :li do %>
+					  <span class=""></span><span class=" nav-item">Email Templates</span>
 					<% end %>
-					<%= active_link_to roles_path, :wrap_tag => :li do %>
-					  <span class=""></span><span class=" nav-item">Emails(t)</span>
+
+					<%= active_link_to main_app.survey_groups_path, :wrap_tag => :li do %>
+					  <span class=""></span><span class=" nav-item">Questionnaire Templates</span>
 					<% end %>
-					<%= active_link_to roles_path, :wrap_tag => :li do %>
+
+					<!-- PERMISSIONS LINK -->
+					<%= active_link_to main_app.roles_path, :wrap_tag => :li do %>
 					  <span class=""></span><span class=" nav-item">Permissions</span>
 					<% end %>
+
+					<!-- SETTINGS LINK -->
+					<%= active_link_to main_app.kf_config_index_path, :wrap_tag => :li  do %>
+					  <span class=""></span><span class=" nav-item">Settings</span>
+					<% end %>	 	
+
+		
 				</ul>
 			</li>
-		<% else %>
-
-			<!-- DASHBOARD LINK -->
-			<%= active_link_to welcome_path, :wrap_tag => :li  do %>
-			  <span class=""></span><span class=" nav-item">Dashboard</span>
-			<% end %>
-
-			<!-- PROFILE LINK -->
-			<%= active_link_to edit_dietitian_registration_path, :wrap_tag => :li  do %>
-			  <span class=""></span><span class=" nav-item">Profile</span>
-			<% end %>
-
-			<!-- SCHEDULE LINK -->
-			<%= active_link_to availabilities_path, :wrap_tag => :li do %>
-			  <span class=""></span><span class=" nav-item">Schedule</span>
-			<% end %>
-			<!-- <%#= active_link_to appointments_path, :wrap_tag => :li  do %>
-			  <span class=""></span><span class=" nav-item">Appointments</span>
-			<%# end %>	 -->	
-
-			<!-- CLIENTS LINK -->
-			<%= active_link_to availabilities_path, :wrap_tag => :li do %>
-			  <span class=""></span><span class=" nav-item">Clients</span>
-			<% end %>
-
-			<!-- CONTENT LINK -->
-			<%= active_link_to "/education/monologue", :wrap_tag => :li do %>
-			  <span class=""></span><span class=" nav-item">Content</span>
-			<% end %>
-
-			<!-- CONTACT US -->
-			<li><a href=""><span class=""></span><span class=" nav-item">Contact Us</span></a></li>	
 		<% end %>
 
-
+		<!-- CONTACT US -->
+		<li><a href=""><span class=""></span><span class=" nav-item">Contact Us</span></a></li>	
 	</ul>
 </nav>

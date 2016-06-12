@@ -18,7 +18,7 @@ Kindrdfood.images.newImage = {
    	$('#image_crop_y').val(coords.y);
    	$('#image_crop_w').val(coords.w);
    	$('#image_crop_h').val(coords.h);
-   	Images.updatePreview(coords)
+   	Kindrdfood.images.newImage.updatePreview(coords)
 	},
   updatePreview: function(coords) {
     $('#preview').css({

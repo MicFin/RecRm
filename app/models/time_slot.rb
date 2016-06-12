@@ -40,10 +40,30 @@ class TimeSlot < ActiveRecord::Base
   scope :has_length, -> (minutes) { where(minutes: minutes) } 
   # SCOPES: Time slot for specific dietitian
   scope :for_dietitian, -> (dietitian_id) { joins(:availability).where("availabilities.dietitian_id=?", dietitian_id) if dietitian_id.present? }
+
   # SCOPES: Time slot order
   scope :by_start_time, -> { order(start_time: :desc) }
 
   # # CLASS METHODS
+
+  # def self.filter_for(filter_type, time_slots, patient_focus)
+  #   filtered_time_slots = []
+  #   if filter_type == "dietitian_qualification"
+  #     patient_group_ids = patient_focus.patient_groups.map(&:id)
+
+      
+  #     time_slots.each do |time_slot|
+  #       patient_group_ids.each do |patient_group_id|
+  #         expertise = time_slot.dietitian.expertises.where(patient_group_id: patient_group_id).last
+  #         if expertise && expertise.dietitian_qualification > 0
+  #           filtered_time_slots << time_slot
+  #         end
+  #       end
+  #     end
+  #   else # else age level
+  #   end
+  #   return filtered_time_slots
+  # end
 
   ## check if time slot is between two times
   def self.between(start_time, end_time)

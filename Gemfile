@@ -70,6 +70,7 @@ gem 'stripe-rails', "0.3.1"                   # # https://github.com/thefrontsid
 
 # # Admin
 gem 'activeadmin', github: 'gregbell/active_admin'        # http://activeadmin.info/
+gem "rails-settings-cached", '0.4.1'          # https://github.com/huacnlee/rails-settings-cached
 
 # # File Uploads
 gem 'carrierwave', "0.10.0"
@@ -82,6 +83,7 @@ gem 'file_validators'
 
 # # Blog
 gem 'monologue', "0.4.1"
+# gem 'comfortable_mexican_sofa', '~> 1.12.0'
 
 # # Monitoring
 gem "airbrake"
@@ -107,6 +109,8 @@ gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
 # # gem 'country_select'
 
 # # Email
+gem 'rails_email_preview', '~> 1.0.3'
+# gem 'roadie-rails', '~> 1.0'
 # gem 'premailer-rails'
 
 # # Workers

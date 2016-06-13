@@ -53,6 +53,13 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/1
   def show
+    if current_dietitian
+      @user = current_dietitian 
+    elsif current_user 
+      @user = current_user 
+    else
+      @user = nil
+    end
   end
 
   # GET /resource/edit

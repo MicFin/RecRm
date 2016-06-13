@@ -550,7 +550,8 @@ Rails.application.routes.draw do
 
       # Authenticated user root path
       root :to => 'welcome#home', as: :user_authenticated_root
-
+      get 'dietitians/:id' => 'dietitians/registrations#show'
+      
       # Welcome controller paths
       get 'welcome/add_family', to: "welcome#add_family", as: "welcome_add_family"
       patch 'welcome/build_family(/:id)', to: "welcome#build_family", as: "welcome_build_family"
@@ -650,7 +651,6 @@ Rails.application.routes.draw do
       end
 
       # Post Recommendation
-
       get "/post_recommendations/posts", to: "post_recommendations#posts", as: "post_recommendations_posts"
       resources :post_recommendations
 
@@ -679,19 +679,18 @@ Rails.application.routes.draw do
       # Rooms paths
       match '/rooms/:id/in_session', :to => "rooms#in_session", :as => :in_session_dietitian_room, :via => :get
       resources :rooms, only: [:index, :create]
+
+      # Invitation paths
+      get 'users/invitations', to: 'users/invitations#index', as: 'users_invitations'
+
     end
-    
-    # Invitation paths
-    get 'users/invitations', to: 'users/invitations#index', as: 'users_invitations'
 
-    # # Post Recommendations, not sure which routes ill need
-    # resources :post_recommendations
-
-    # ROUTES FOR UNAUTHENTICATED DIETITIAN
+    # ROUTES FOR UNAUTHENTICATED DIETITIAN (and all unathenticated users )
     unauthenticated :dietitian do
       
       # THIS IS THE MAIN ROOT FOR ALL NON REGISTERED USERS
       root :to => "landing_pages#index", as: :dietitian_unauthenticated_root
+      get 'dietitians/:id' => 'dietitians/registrations#show' # for unauthenticated users to be able to dietitian page
     end   
   end
 

@@ -17,4 +17,12 @@ module DeviseHelper
 
     html.html_safe
   end
+
+  def show_dietitian_profile_to(current_user)
+    if current_user.nil?
+      render "devise/registrations/show_logged_out"       
+    else
+      render "devise/registrations/show_logged_in"
+    end
+  end
 end

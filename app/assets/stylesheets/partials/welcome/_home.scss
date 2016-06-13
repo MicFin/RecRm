@@ -50,9 +50,11 @@
 		min-height: 100%;
 	}
 
-
-	main.col-xs-10 {
+	main.main-content-container {
+		@include make-xs-column( 12 );
+		@include make-sm-column( 10 );
 		padding: 40px;
+
 	}
 
 	main .jumbotron {

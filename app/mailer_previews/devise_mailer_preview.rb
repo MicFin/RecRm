@@ -10,7 +10,7 @@ class DeviseMailerPreview
 
   end
 
-  def reset_password_instructions
+  def reset_password
     mock_user = mock_user("Alice")
     Devise::Mailer.reset_password_instructions(mock_user,"fdsafdsafsd")
   end
@@ -20,8 +20,25 @@ class DeviseMailerPreview
   #   mock_user = mock_user("Alice")
   #   Devise::Mailer.unlock_instructions(mock_user,"fdsafdsafsd")
   # end
+  def invitation_from_provider
+    # devise_mail(record, :invitation_instructions, opts)
+    mock_user = mock_user("Alice")
+    Devise::Mailer.invitation_instructions(mock_user,"fdsafdsafsd")
+  end
 
-  def invitation_instructions
+  def invitation_from_qol
+    # devise_mail(record, :invitation_instructions, opts)
+    mock_user = mock_user("Alice")
+    Devise::Mailer.invitation_instructions(mock_user,"fdsafdsafsd")
+  end
+
+  def invitation_from_krdn
+    # devise_mail(record, :invitation_instructions, opts)
+    mock_user = mock_user("Alice")
+    Devise::Mailer.invitation_instructions(mock_user,"fdsafdsafsd")
+  end
+
+  def invitation_from_client
     # devise_mail(record, :invitation_instructions, opts)
     mock_user = mock_user("Alice")
     Devise::Mailer.invitation_instructions(mock_user,"fdsafdsafsd")

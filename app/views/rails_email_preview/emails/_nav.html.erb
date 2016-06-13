@@ -6,9 +6,9 @@
         <%#= render 'rails_email_preview/emails/i18n_nav' %>
       <%# end %>
     <%# end %>
-    <%= with_show_hook :nav_format do %>
-      <%= render 'rails_email_preview/emails/format_nav' %>
-    <% end %>
+    <%#= with_show_hook :nav_format do %>
+      <%#= render 'rails_email_preview/emails/format_nav' %>
+    <%# end %>
     <% if RailsEmailPreview.enable_send_email %>
       <%= with_show_hook :nav_send do %>
         <%= render 'rails_email_preview/emails/send_form' %>

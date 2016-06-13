@@ -1,0 +1,43 @@
+.profile-heading {
+	@include make-row( );
+	.profile-heading-logo {
+		@include make-xs-column( 3 );
+	  @include make-xs-column-offset( 2 );
+	}
+	.profile-heading-signature {
+		@include make-xs-column( 5 );
+	  margin-top: 3%;
+	}
+}
+
+.profile-content {
+	margin-top: 50px;
+  margin-bottom: 50px;
+	@include make-row( );
+	.profile-content-left-column {
+		@include make-xs-column( 8 );
+	}
+	.profile-content-right-column {
+		@include make-xs-column( 4 )
+	}
+	.profile-content-career-education {
+		@include make-xs-column( 12 );
+		h3 {
+			margin-top: 0;
+		}
+	}
+}
+
+.profile-specialties-item {
+	@include make-xs-column( 6 );
+	@include make-sm-column( 4 );
+	@include make-md-column( 3 );
+	@include make-lg-column( 2 );
+	padding: 10px;
+	background-color: $brand-carrot-orange;
+	margin: 10px;
+	border-radius: 5px;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}

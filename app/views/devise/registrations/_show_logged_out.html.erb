@@ -4,169 +4,87 @@
 		<div class="row">
 
 		<!-- KRDN NAV-->
-
+			<%= render "/layouts/navbars/main_navigation_column" %>
 
 			<!-- MAIN CONTENT -->
-			<main class="main-content-container col-xs-12 col-sm-10">
+			<main class="main-content-container">
 
 				<!-- ALERTS-->
 			  <section class="alerts-container">
 	          <%= render "/layouts/alerts" %>
 	      </section>
-					<div id="edit-profile-container" class="row">
-						<div class="col-xs-12">
-							<h2><%=@dietitian.first_name%>'s' Kindrd Nutritionist Profile</h2>
+				<section class="profile-heading">
+		  		<div class="profile-heading-logo">
+			 			<!-- If user has avatar -->
+					  <% if @dietitian.main_avatar %>
+				   		<%= image_tag @dietitian.main_avatar.large.url, class: "img-circle img-responsive" %>
 
+				  	<!-- Else user no avatar -->
+					  <% else %>
 
-						  <div class="row form-group">
-						 		<div id="main-avatar-container" class="col-xs-12 form-group">
-
-						 			<!-- If user has avatar -->
-								  <% if @dietitian.main_avatar %>
-							   		<%= image_tag @dietitian.main_avatar.icon.url %>
-
-							  	<!-- Else user no avatar -->
-								  <% else %>
-
-									<% end %>
-								</div>
-							</div>
-							<div class="row form-group">
-						  	<div class="col-xs-12 col-sm-6">
-						  		<div class="row">
-									  <div class="col-xs-12">
-										  <%= @dietitian.first_name %>
-										</div>
-									  <div class="col-xs-12">
-									  	<%= @dietitian.last_name %>
-									  </div>
-								  	<div class="col-xs-12">
-								  		<%= @dietitian.signature %>
-								  	</div>
-								  </div>
-								</div>
-								<div class="col-xs-12 col-sm-6">
-								  <div class="row"> 
-								  	<div class="col-xs-12">
-								  		<%= @dietitian.location %>
-								  	</div>
-								 		<div class="col-xs-12">
-								 			<%= @dietitian.email%>
-								 		</div>
-				
-									</div>
-								</div>
-							</div>
-							<div class="row form-group">
-								<div class="col-xs-12 col-sm-6">
-							  	<div class="row">
-									  <div class="col-xs-12">
-										  <%= @dietitian.undergraduate_education%>
-										</div>
-									  <div class="col-xs-12">
-									  	<%= @dietitian.graduate_education %>
-									  </div>
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-6">
-							  	<div class="row">
-								  	<div class="col-xs-12">
-								  		<label>Clinical Training and Roles</label>
-								  		<%= @dietitian.professional_experience_first %>
-								  	</div>
-								  	<div class="col-xs-12">
-								  		<%= @dietitian.professional_experience_second %>
-								  	</div>
-								 		<div class="col-xs-12">
-								  		<%= @dietitian.professional_experience_third %>
-								 		</div>
-								 	</div>
-							 	</div>
-							</div>
-							<div class="row form-group">
-					 			<div class="col-xs-12">
-								  <%= @dietitian.introduction %>
-								 </div>
-							</div>
-							<div class="row form-group">
-						  	<div class="col-xs-3 col-xs-offset-3">
-						  		<label>Exerience Level</label>
-						  		<%= @dietitian.experience_level%>
-						  	</div>
-						 		<div class="col-xs-3">
-						 			<label>Age Group</label>
-						  		<%= @dietitian.age_level%>
-						 		</div>
-							</div>
-							<div class="row form-group">
-							   		
-  							<table class="table" style="border-collapse:collapse;">
-  							  <colgroup>
-  							  	<col  >
-								    <col style="border-left:1px solid black;">
-								    <col span="2" >
-								    <col style="border-left:1px solid black;">
-								    <col span="2" >
-							
-  							  </colgroup>
-
-				          <thead>
-					            <tr>
-					              <th rowspan="2">Health Group</th>
-
-					              <th class="text-center" colspan="3">Preference</th>
-					              <th class="text-center" colspan="3">Expertise</th>
-											</tr>
-					            <tr>
-					            	<th class="text-center">Dislike</th>
-					              <th class="text-center">Neutral</th>
-										    <th class="text-center">Like</th>
-												<% if @dietitian.has_role? "Admin Dietitian"  %>
-						   						<th class="text-center">Unqualified</th>
-						   						<th class="text-center">Qualified</th>
-						   						<th class="text-center">Expert</th>
-						   					<% end %>
-					            </tr>
-					          </thead>
-
-				          	<tbody>
-		  								<% @dietitian.expertises.each do | expertise| %>
-					              <tr>
-					                <td><%=expertise.patient_group.name%></td>
-					                <td class="text-center">
-					                		<input disabled <%= "checked" if expertise.dietitian_preference == 0%> class="radio_buttons optional" type="radio" value="0">
-					                </td>
-					                <td class="text-center">
-					                	<input disabled <%= "checked" if expertise.dietitian_preference == 1%> class="radio_buttons optional" type="radio" value="1">
-					                </td>
-					                <td class="text-center">
-					            			<input disabled <%= "checked" if expertise.dietitian_preference == 2%> class="radio_buttons optional" type="radio" value="2">
-					                </td>
-													<% if @dietitian.has_role? "Admin Dietitian" %>
-						
-						                <td class="text-center">
-						                		<input disabled <%= "checked" if expertise.dietitian_qualification == 0%> class="radio_buttons optional" type="radio" value="0">
-						                </td>
-						                <td class="text-center">
-						                	<input disabled <%= "checked" if expertise.dietitian_qualification == 1%> class="radio_buttons optional" type="radio" value="1">
-						                </td>
-						                <td class="text-center">
-						            			<input disabled <%= "checked" if expertise.dietitian_qualification == 2%> class="radio_buttons optional" type="radio" value="2">
-						                </td>
-							   					<% end %>
-					              </tr>
-						          <% end %> 
-				          	</tbody>
-				  
-				        </table>  
-									
-							</div> 
-							<div class="row form-group">
-								<%= render "/post_recommendations/index", post_recommendations: @dietitian.post_recommendations %>
-
-							</div>
-						</div>
+						<% end %>
 					</div>
+					<div class="profile-heading-signature">	
+						<h1><%=@dietitian.signature%></h1>
+						<p><em><%= @dietitian.location %></em></p>
+					</div>
+				</section>
+				<section class="profile-content">
+ 					<div class="profile-content-left-column">	
+ 						<div class"row">
+ 							<div class="col-xs-12">
+ 								<p><%= @dietitian.introduction %></p>
+ 							</div>
+ 							<div class="col-xs-12">
+								<h3>Specialties</h3>
+								<div class="row">
+									<p class="profile-specialties-item">item 1</p>
+									<p class="profile-specialties-item">item 1</p>
+									<p class="profile-specialties-item">item 1</p>
+									<p class="profile-specialties-item">item 1</p>
+									<p class="profile-specialties-item">item 1</p>
+									<p class="profile-specialties-item">item 1</p>
+								</div>
+ 							</div>
+ 						</div>
+					</div>
+					<div class="profile-content-right-column">
+				  	<div class="row">
+				  		<div class="profile-content-career-education">
+				  			<h3>Education</h3>
+							  <p><%= @dietitian.undergraduate_education%></p>
+						  	<p><%= @dietitian.graduate_education %></p>
+						  </div>
+						</div>
+				  	<div class="row">
+					  	<div class="col-xs-12">
+					  		<h3>Clinical Training and Roles</h3>
+					  	</div>
+					  	<div class="col-xs-12">
+					  		<p><%= @dietitian.professional_experience_first %></p>
+					  		<p><%= @dietitian.professional_experience_second %></p>
+					  		<p><%= @dietitian.professional_experience_third %></p>
+					 		</div>
+					 	</div>
+				 	</div>
+				</section>
+<!-- 				<section class="row form-group">
+			  	<div class="col-xs-3 col-xs-offset-3">
+			  		<label>Exerience Level</label>
+			  		<%#= @dietitian.experience_level%>
+			  	</div>
+			 		<div class="col-xs-3">
+			 			<label>Age Group</label>
+			  		<%#= @dietitian.age_level%>
+			 		</div>
+				</section>
+				<section class="row form-group">
+					<%# @dietitian.expertises%>
+				</section>  -->
+				<section class="row form-group">
+					<%= render "/post_recommendations/index", post_recommendations: @dietitian.post_recommendations %>
+
+				</section>
 			</main>
 
 			<!-- FOOTER -->

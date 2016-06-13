@@ -3,8 +3,12 @@
       <img src="<%=post_recommendation.monologue_post.main_image_url || post_recommendation.monologue_post.content[/src=\"(.*)\"\sstyle=\"/,1]%>" alt="<%=post_recommendation.monologue_post.title%>">
       <figurecaption class="caption">
         <h4><%= post_recommendation.monologue_post.title %></h4>
-        <p><%=post_recommendation.message %></p>
+        <% if ( (current_dietitian && (post_recommendation.dietitian == current_dietitian) ) || ( current_user && (post_recommendation.user == current_user) ) ) %>
+          <p><%=post_recommendation.message %></p>
+        <% end %>
       </figurecaption>
-        	<%= link_to("Edit", edit_post_recommendation_path(post_recommendation), class: "btn btn-block btn-default", remote: true) if current_dietitian%>
+      <% if current_dietitian == post_recommendation.dietitian %>
+      	<%= link_to("Edit", edit_post_recommendation_path(post_recommendation), class: "btn btn-block btn-default", remote: true) %>
+      <% end %>
     <% end %>
   </figure>

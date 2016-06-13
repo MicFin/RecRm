@@ -99,6 +99,9 @@ $box-sizing-path: "/assets/partials/browser_specific/box-sizing.htc";
 	// Appointments controller
 @import "partials/appointments/show/";
 
+	// Dietitians controller
+@import "partials/dietitians/registrations";
+
 // Old Partials
 
 @import "partials/fonts";

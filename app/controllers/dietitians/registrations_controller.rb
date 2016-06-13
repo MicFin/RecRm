@@ -195,7 +195,8 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
 
   def account_update_params
     
-    # if remove image attribute is present the destroy image
+    # if remove image attribute is present then destroy image
+    
     if params 
       if params[:dietitian][:images_attributes]
         if params[:dietitian][:images_attributes]['0'][:remove_image] == "1"

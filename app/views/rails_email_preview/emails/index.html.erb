@@ -40,12 +40,12 @@
                 <% list.columns do |groups| %>
                   <div class="rep--email-list-half">
                     <% groups.each do |title, group_previews| %>
-                      <h2><%= title %></h2>
+                      <h2><%= title == "Devise" ? "Registration" : title %></h2>
                       <div class="<%= rep_style[:list_group_class] %>">
                         <% group_previews.each do |p| %>
                           <a class="<%= rep_style[:list_group_item_class] %>"
                              href="<%= rails_email_preview.rep_email_path(preview_id: p.id, email_locale: @email_locale) %>">
-                            <%= p.method_name %>
+                            <%= p.method_name.titleize  %>
                           </a>
                         <% end %>
                       </div>

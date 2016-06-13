@@ -112,30 +112,32 @@
 									  <%= f.input :introduction, autofocus: true, type: "text", input_html: {class: "form-control", rows: 5, placeholder: "Tara McCarthy has been in nutritoin since day 1."} %>
 									 </div>
 								</div>
-								<div class="row form-group">
-							  	<div class="col-xs-3 col-xs-offset-3">
-							  		<label>Exerience Level</label>
-							  		<%= f.input :experience_level, 
-							  			collection: [[0, 'Tier 1'], [1, 'Tier 2'], [2, 'Tier 3'], [3, 'Tier 4']],
-											label_method: :last,
-											value_method: :first,
-											as: :radio_buttons,
-											label: false,
-											checked: f.object.experience_level, 
-											required: true%>
-							  	</div>
-							 		<div class="col-xs-3">
-							 			<label>Age Group</label>
-							  		<%= f.input :age_level, 
-							  			collection: [[0, 'Infant'], [1, 'Baby'], [2, 'Kid'], [3, 'Adult']],
-											label_method: :last,
-											value_method: :first,
-											as: :radio_buttons,
-											label: false,
-											checked: f.object.age_level, 
-											required: true%>
-							 		</div>
-								</div>
+								<% if current_dietitian.has_role? "Admin Dietitian" %>
+									<div class="row form-group">
+								  	<div class="col-xs-3 col-xs-offset-3">
+								  		<label>Exerience Level</label>
+								  		<%= f.input :experience_level, 
+								  			collection: [[0, 'Tier 1'], [1, 'Tier 2'], [2, 'Tier 3'], [3, 'Tier 4']],
+												label_method: :last,
+												value_method: :first,
+												as: :radio_buttons,
+												label: false,
+												checked: f.object.experience_level, 
+												required: true%>
+								  	</div>
+								 		<div class="col-xs-3">
+								 			<label>Age Group</label>
+								  		<%= f.input :age_level, 
+								  			collection: [[0, 'Infant'], [1, 'Baby'], [2, 'Kid'], [3, 'Adult']],
+												label_method: :last,
+												value_method: :first,
+												as: :radio_buttons,
+												label: false,
+												checked: f.object.age_level, 
+												required: true%>
+								 		</div>
+									</div>
+								<% end %>
 								<div class="row form-group">
 								   		
 	  							<table class="table" style="border-collapse:collapse;">
@@ -152,18 +154,23 @@
 						            <tr>
 						              <th rowspan="2">Health Group</th>
 
+						              
+						              <% if current_dietitian.has_role? "Admin Dietitian" %>
+							              <th class="text-center" colspan="3">Expertise</th>
+						              <% end %>
 						              <th class="text-center" colspan="3">Preference</th>
-						              <th class="text-center" colspan="3">Expertise</th>
+
 												</tr>
 						            <tr>
-						            	<th class="text-center">Dislike</th>
-						              <th class="text-center">Neutral</th>
-											    <th class="text-center">Like</th>
+						         
 													<% if current_dietitian.has_role? "Admin Dietitian"  %>
 							   						<th class="text-center">Unqualified</th>
 							   						<th class="text-center">Qualified</th>
 							   						<th class="text-center">Expert</th>
 							   					<% end %>
+							   					<th class="text-center">Dislike</th>
+						              <th class="text-center">Neutral</th>
+											    <th class="text-center">Like</th>
 						            </tr>
 						          </thead>
 
@@ -171,15 +178,6 @@
 			  								<%= f.simple_fields_for :expertises do |e| %>
 						              <tr>
 						                <td><%=e.object.patient_group.name%></td>
-						                <td class="text-center">
-						                		<input <%= "checked" if e.object.dietitian_preference == 0%> class="radio_buttons optional" id="dietitian_expertises_attributes_<%=e.index%>_dietitian_preference_<%=e.index%>" name="dietitian[expertises_attributes][<%=e.index%>][dietitian_preference]" type="radio" value="0">
-						                </td>
-						                <td class="text-center">
-						                	<input <%= "checked" if e.object.dietitian_preference == 1%> class="radio_buttons optional" id="dietitian_expertises_attributes_<%=e.index%>_dietitian_preference_1" name="dietitian[expertises_attributes][<%=e.index%>][dietitian_preference]" type="radio" value="1">
-						                </td>
-						                <td class="text-center">
-						            			<input <%= "checked" if e.object.dietitian_preference == 2%> class="radio_buttons optional" id="dietitian_expertises_attributes_<%=e.index%>_dietitian_preference_2" name="dietitian[expertises_attributes][<%=e.index%>][dietitian_preference]" type="radio" value="2">
-						                </td>
 														<% if current_dietitian.has_role? "Admin Dietitian" %>
 							
 							                <td class="text-center">
@@ -192,13 +190,22 @@
 							            			<input <%= "checked" if e.object.dietitian_qualification == 2%> class="radio_buttons optional" id="dietitian_expertises_attributes_<%=e.index%>_dietitian_qualification_2" name="dietitian[expertises_attributes][<%=e.index%>][dietitian_qualification]" type="radio" value="2">
 							                </td>
 								   					<% end %>
+						                <td class="text-center">
+						                		<input <%= "checked" if e.object.dietitian_preference == 0%> class="radio_buttons optional" id="dietitian_expertises_attributes_<%=e.index%>_dietitian_preference_<%=e.index%>" name="dietitian[expertises_attributes][<%=e.index%>][dietitian_preference]" type="radio" value="0">
+						                </td>
+						                <td class="text-center">
+						                	<input <%= "checked" if e.object.dietitian_preference == 1%> class="radio_buttons optional" id="dietitian_expertises_attributes_<%=e.index%>_dietitian_preference_1" name="dietitian[expertises_attributes][<%=e.index%>][dietitian_preference]" type="radio" value="1">
+						                </td>
+						                <td class="text-center">
+						            			<input <%= "checked" if e.object.dietitian_preference == 2%> class="radio_buttons optional" id="dietitian_expertises_attributes_<%=e.index%>_dietitian_preference_2" name="dietitian[expertises_attributes][<%=e.index%>][dietitian_preference]" type="radio" value="2">
+						                </td>
 						              </tr>
 							          <% end %> 
 					          	</tbody>
 					  
 					        </table>  
-										
 								</div> 
+
 								<div class="row form-group">
 									<div class="col-xs-4 col-xs-offset-4">
 										<div id="change-password-container" class="hidden row">

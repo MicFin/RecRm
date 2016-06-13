@@ -60,6 +60,7 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   config.action_controller.asset_host = "dh5bguyrh098f.cloudfront.net"
 
+
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += %w( search.js )
@@ -88,4 +89,5 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'http://www.kindrdfood.com/'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.asset_host = "dh5bguyrh098f.cloudfront.net"
 end

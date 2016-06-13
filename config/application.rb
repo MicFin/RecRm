@@ -31,6 +31,10 @@ module Myapp
 
     config.action_view.embed_authenticity_token_in_remote_forms = true
 
+    config.to_prepare do
+      Devise::Mailer.layout "email/application" # email/application.haml or email/application.erb
+    end
+
     # http://stackoverflow.com/questions/18934115/rails-4-organize-rails-models-in-sub-path-without-namespacing-models
     # https://stackoverflow.com/questions/7750769/recursively-including-all-model-subdirectories
     # config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]

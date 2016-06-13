@@ -110,6 +110,7 @@ gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
 
 # # Email
 gem 'rails_email_preview', '~> 1.0.3'
+gem 'premailer-rails'
 # gem 'roadie-rails', '~> 1.0'
 # gem 'premailer-rails'
 

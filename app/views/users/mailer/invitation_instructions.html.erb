@@ -1,7 +1,150 @@
-<p><%= I18n.t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></p>
 
-<p><%= I18n.t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url) %></p>
+    <!-- <style> -->
+    <table class="body" data-made-with-foundation="">
+      <tr>
+        <td class="float-center" align="center" valign="top">
+          <center data-parsed="">
+            <style type="text/css" align="center" class="float-center">
+              body,
+              html,
+              .body {
+                background: #f3f3f3 !important;
+              }
+              
+              .container.header {
+                background: #f3f3f3;
+              }
+              
+              .body-border {
+                border-top: 8px solid #663399;
+              }
+            </style>
+            <table class="container header float-center">
+              <tbody>
+                <tr>
+                  <td>
+                    <table class="row">
+                      <tbody>
+                        <tr>
+                          <th class="small-12 large-12 columns first last">
+                            <table>
+                              <tr>
+                                <th>
+                                  <h1 class="text-center">Welcome to Kindrdfood</h1>
+                                  <center data-parsed="">
+                                    <table class="menu text-center float-center" align="center">
+                                      <tr>
+                                        <td>
+                                          <table>
+                                            <tr>
+                                              <th class="menu-item float-center"><a href="#">About</a></th>
+                                              <th class="menu-item float-center"><a href="#">Team</a></th>
+                                              <th class="menu-item float-center"><a href="#">Recipes</a></th>
+                                              <th class="menu-item float-center"><a href="#">Articles</a></th>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </center>
+                                </th>
+                                <th class="expander"></th>
+                              </tr>
+                            </table>
+                          </th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="container body-border float-center">
+              <tbody>
+                <tr>
+                  <td>
+                    <table class="row">
+                      <tbody>
+                        <tr>
+                          <th class="small-12 large-12 columns first last">
+                            <table>
+                              <tr>
+                                <th>
+                                  <table class="spacer">
+                                    <tbody>
+                                      <tr>
+                                        <td height="32px" style="font-size:32px;line-height:32px;">&#xA0;</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <center data-parsed=""> <%= image_tag("/assets/logos/logo-vertical.jpg", class: "float-center") %> </center>
+                                  <table class="spacer">
+                                    <tbody>
+                                      <tr>
+                                        <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <h4><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></h4>
 
-<p><%= link_to I18n.t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token) %></p>
+																	<p></p>
 
-<p><%= I18n.t("devise.mailer.invitation_instructions.ignore").html_safe %></p>
+																	<p><%= t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url) %></p>
+																	<table class="button large expand">
+                                    <tr>
+                                      <td>
+                                        <table>
+                                          <tr>
+                                            <td>
+                                              <center data-parsed=""><%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token) %></center>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </td>
+                                      <td class="expander"></td>
+                                    </tr>
+                                  </table>
+
+																	<p><%#= t("devise.mailer.invitation_instructions.accept_until", due_date: l(@resource.invitation_due_at, format: :'devise.mailer.invitation_instructions.accept_until_format')) %></p>
+
+																	<p><%= t("devise.mailer.invitation_instructions.ignore").html_safe %></p>
+
+                                  <center data-parsed="">
+                                    <table class="menu float-center" align="center">
+                                      <tr>
+                                        <td>
+                                          <table>
+                                            <tr>
+                                              <th class="menu-item float-center"><a href="#">krakenacademy.com</a></th>
+                                              <th class="menu-item float-center"><a href="#">Facebook</a></th>
+                                              <th class="menu-item float-center"><a href="#">Twitter</a></th>
+                                              <th class="menu-item float-center"><a href="#">(408)-555-0123</a></th>
+                                            </tr>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </center>
+                                </th>
+                                <th class="expander"></th>
+                              </tr>
+                            </table>
+                          </th>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table class="spacer">
+                      <tbody>
+                        <tr>
+                          <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </center>
+        </td>
+      </tr>
+    </table>

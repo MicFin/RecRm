@@ -13,12 +13,6 @@ class DeviseMailerPreview
   def reset_password_instructions
     mock_user = mock_user("Alice")
     Devise::Mailer.reset_password_instructions(mock_user,"fdsafdsafsd")
-          mail subject: cms_email_subject(user: mock_user)
-  end
-
-  def unlock_instructions
-    mock_user = mock_user("Alice")
-    Devise::Mailer.unlock_instructions(mock_user,"fdsafdsafsd")
   end
 
   # # Not using unlock

@@ -1,2 +1,10 @@
-<%= render "/layouts/navbars/user_nav" if current_user %>
-<%= render "/layouts/navbars/dietitian_nav" if current_dietitian %>
+<% if current_user %>
+	<%= render "/layouts/navbars/user_nav" %>
+
+<% elsif current_dietitian %>
+	<%= render "/layouts/navbars/dietitian_nav" %>
+
+<% else %>
+	<%= render "/landing_pages/landing_page_nav" %>
+
+<% end %>

@@ -24,7 +24,7 @@
 
 							 			<!-- If user has avatar -->
 									  <% if @main_avatar %>
-								   		<%= image_tag @main_avatar.icon.url %>
+								   		<%= image_tag @dietitian.main_avatar.large.url, class: "img-circle img-responsive" %>
 								   		<%= f.fields_for :images, resource.images.build do |builder| %>
 									   		  <p>
 												    <label>

@@ -37,7 +37,7 @@ module WelcomeHelper
   # Show dietitian avatar or partial
   def dietitian_avatar_prompt
     if current_dietitian.main_avatar != false 
-      image_tag current_dietitian.main_avatar.thumb.url
+      image_tag current_dietitian.main_avatar.large.url, class: "img-circle"
     else 
       render "welcome/index/add_dietitian_avatar_button"
     end 

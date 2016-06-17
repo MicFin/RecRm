@@ -37,13 +37,15 @@
 		  <span class=""></span><span class=" nav-item">Clients</span>
 		<% end %>		
 
-		<!-- CONTENT LINK -->
-		<%= active_link_to "/education/monologue", :wrap_tag => :li do %>
-		  <span class=""></span><span class=" nav-item">Content</span>
-		<% end %>
 
 		<!-- ADMIN LINK -->
 		<% if current_dietitian.has_role? "Admin Dietitian" %>
+
+			<!-- CONTENT LINK -->
+			<%= active_link_to "/education/monologue", :wrap_tag => :li do %>
+			  <span class=""></span><span class=" nav-item">Content</span>
+			<% end %>
+		
 			<li><a href="#" id="krdn-admin-nav-button" data-toggle="collapse" data-target="#krdn-admin-nav-list" aria-expanded="false">Admin</a>
 				<ul class="nav collapse" id="krdn-admin-nav-list" role="menu" aria-labelledby="btn-1">
 

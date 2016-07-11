@@ -16,15 +16,16 @@ module PurchasesHelper
     end
   end
 
-  def show_payment_option(user, purchase, purchasable, time_slot, f)
+  def show_payment_option(user, purchase, purchasable, f)
 
-    if purchase.status == "Paid"
+    if purchasable.class == "Appointment" && purchasable.status == "Paid"
       render "purchases/purchases_modal/already_paid"
 
-    elsif purchasable.status == "Unused Package Session"
+    elsif purchasable.class == "Appointment" && purchasable.status == "Unused Package Session"
       render "purchases/purchases_modal/pay_with_package", purchasable: purchasable, f: f
 
     elsif user.qol_referral == false
+
       render "purchases/purchases_modal/credit_card_form", user: user, purchase: purchase, purchasable: purchasable, f: f
 
     else

@@ -33,7 +33,6 @@ class PurchasesController < ApplicationController
   def new
     
     @user = current_user 
-    
     if @purchasable.class == Appointment
       
       # if time slot param then find time slot (for new appts)

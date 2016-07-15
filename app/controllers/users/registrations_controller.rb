@@ -225,7 +225,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def after_update_path_for(resource)
           
         # if they have finished on boarding then add family path
-        if ( !resource.finished_on_boarding? ) || ( request.referer == "http://localhost:3000/welcome/get_started")
+        if ( !resource.finished_on_boarding? ) || ( URI(request.referer).path == "/welcome/get_started")
     
           redirect_to welcome_add_family_path
 

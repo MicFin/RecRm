@@ -170,6 +170,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # @user = Users::UserPresenter.new(@user)
       respond_to do |format|  
         if successfully_updated
+          binding.pry
 
           # update user registration stage
           @user.update_registration_stage
@@ -224,14 +225,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     def after_update_path_for(resource)
           
-        # if they have not finished on boarding then the just completed welcome#get_started
-        if !resource.finished_on_boarding? 
-        
+        # if they have finished on boarding then add family path
+        if ( !resource.finished_on_boarding? ) || ( request.referer == "http://localhost:3000/welcome/get_started")
+    
           redirect_to welcome_add_family_path
 
         # if they have finished onboarding then updated get_started page after already saving, return to the page they were on
         else
           respond_to do |format|
+  
             # get original page where time zone was updated from
             session[:return_to] ||= request.referer
             format.html { redirect_to session.delete(:return_to) }

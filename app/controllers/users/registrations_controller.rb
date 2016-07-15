@@ -170,7 +170,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # @user = Users::UserPresenter.new(@user)
       respond_to do |format|  
         if successfully_updated
-          binding.pry
 
           # update user registration stage
           @user.update_registration_stage

@@ -57,7 +57,7 @@ class PurchasesController < ApplicationController
       @purchase.save
 
     end
-  
+    
     # Only js response
     respond_to do |format|
       format.js

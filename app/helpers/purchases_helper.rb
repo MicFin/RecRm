@@ -3,12 +3,14 @@
 module PurchasesHelper
 
   def show_purchase_cost(user, purchase, purchasable) 
+    
     if (user.qol_referral == false) && (purchasable.status != "Unused Package Session")
         render "purchases/purchases_modal/purchase_cost", user: user, purchase: purchase, purchasable: purchasable
     end 
   end
 
   def show_purchase_coupon_response(purchase, purchasable)
+    
     if purchase.invoice_cost != purchase.invoice_price 
       render "purchases/purchases_modal/coupon_applied", purchase: purchase, purchasable: purchasable
     else
@@ -17,6 +19,7 @@ module PurchasesHelper
   end
 
   def show_payment_option(user, purchase, purchasable, f)
+    
     if purchasable.class == Appointment && purchasable.status == "Paid"
       render "purchases/purchases_modal/already_paid"
 

@@ -9,11 +9,11 @@
 // If purchase is an Appointment
 <% if @purchasable.class == Appointment %>
 	<% if ( ( @user.qol_referral == true ) || ( @purchasable.status == "Unused Package Session" ) ) %>
-		$("#set-appointment-page").after("<%= j render(:partial => 'purchases_modal', :locals => {:user => @user, :time_slot => @time_slot, :purchase => @purchase, :purchasable => @purchasable}) %>");
+		$("body").append("<%= j render(:partial => 'purchases_modal', :locals => {:user => @user, :time_slot => @time_slot, :purchase => @purchase, :purchasable => @purchasable}) %>");
 		$('#paymentModal').modal();
 
 	<% else %>
-		$("#set-appointment-page").after("<%= j render(:partial => 'purchases_modal', :locals => {:user => @user, :time_slot => @time_slot, :purchase => @purchase, :purchasable => @purchasable}) %>");
+		$("body").append("<%= j render(:partial => 'purchases_modal', :locals => {:user => @user, :time_slot => @time_slot, :purchase => @purchase, :purchasable => @purchasable}) %>");
 		$('#paymentModal').modal();
 		payment.setupForm();
 	<% end %>

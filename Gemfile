@@ -7,7 +7,7 @@ ruby '2.1.5'
 # gemspec
 
 # # Rails
-gem 'rails', '4.1.1'
+gem 'rails', '4.2.4'
 
 # # Data
 gem 'pg', '0.17.1'
@@ -22,7 +22,7 @@ gem 'browser_details', "0.0.6"                      # https://github.com/gshutle
 gem "lograge", "0.3.4"                              # https://github.com/roidrage/lograge
 
 # # Javascript
-gem 'jquery-rails', '~> 3.1.2'
+gem 'jquery-rails', '~> 4.0.0'
 gem 'turbolinks', "2.2.2"                             # https://github.com/rails/turbolinks
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails', "4.2.1"
@@ -30,13 +30,13 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 # gem 'nprogress-rails'
 
 # # Assets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-sass', '~> 3.1.1.1'
 gem 'simple_form', "3.2.0"
 gem 'active_link_to', "1.0.3"                       # https://github.com/comfy/active_link_to
 gem 'acts_as_list', "0.3.0"                         # https://github.com/swanandp/acts_as_list
-gem 'css_splitter', "0.4.2"                         # https://github.com/zweilove/css_splitter
+gem 'css_splitter', "0.4.5"                         # https://github.com/zweilove/css_splitter
 # gem 'haml-rails'
 # gem 'headjs-rails'
 
@@ -47,13 +47,13 @@ gem "opentok", "2.2.1"                              # https://github.com/opentok
 gem 'fullcalendar-rails', '~> 2.3.1'
 gem 'momentjs-rails', '~> 2.8.4'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
-gem 'phony_rails', "0.6.1"
+gem 'phony_rails', "0.14.2"
 
 # # CoffeeScript
 gem 'coffee-rails', '~> 4.0.0'
 
 # # Authentication
-gem 'devise', "3.2.4"
+gem 'devise', "3.4.1"
 gem 'devise_invitable', '~> 1.3.4'          # https://github.com/scambra/devise_invitable
 gem "pundit", "0.2.2"                       # https://github.com/elabs/pundit
 gem 'rolify', "3.4.1"                       # https://github.com/RolifyCommunity/rolify
@@ -70,6 +70,8 @@ gem 'stripe-rails', "0.3.1"                   # # https://github.com/thefrontsid
 
 # # Admin
 # gem 'activeadmin', github: 'gregbell/active_admin'        # http://activeadmin.info/
+gem "administrate", "~> 0.2.2"
+gem 'bourbon', '~> 4.2.7'
 gem "rails-settings-cached", '0.4.1'          # https://github.com/huacnlee/rails-settings-cached
 
 # # File Uploads
@@ -82,7 +84,7 @@ gem 'file_validators'
 # gem "cocoon"
 
 # # Blog
-gem 'monologue', "0.4.1"
+gem 'monologue', "0.5.0"
 # gem 'comfortable_mexican_sofa', '~> 1.12.0'
 
 # # Monitoring

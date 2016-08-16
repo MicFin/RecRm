@@ -456,8 +456,7 @@ Rails.application.routes.draw do
   end
 
 
-  ### ROUTES FOR ADMIN USERS
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  ### ROUTES FOR ADMIN USERS, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   ### ROUTES AVAILABLE TO NON USERS 
@@ -518,14 +517,6 @@ Rails.application.routes.draw do
   get 'provider9172' => redirect("/")
   get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
   get "/krdn" => redirect("/dietitians/sign_in")
-
-
-  ### ROUTES AVAILABLE TO ADMIN USERS 
-  devise_scope :admin_user do
-    authenticated :admin_user do 
-      root to: "admin/dashboard#index"
-    end
-  end
 
   ### ROUTES AVAILABLE TO USERS 
   devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'users/sessions', :confirmations => "users/confirmations", :invitations => 'users/invitations' }

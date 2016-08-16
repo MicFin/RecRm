@@ -69,7 +69,7 @@ gem 'stripe', "1.16.0"
 gem 'stripe-rails', "0.3.1"                   # # https://github.com/thefrontside/stripe-rails
 
 # # Admin
-gem 'activeadmin', github: 'gregbell/active_admin'        # http://activeadmin.info/
+# gem 'activeadmin', github: 'gregbell/active_admin'        # http://activeadmin.info/
 gem "rails-settings-cached", '0.4.1'          # https://github.com/huacnlee/rails-settings-cached
 
 # # File Uploads

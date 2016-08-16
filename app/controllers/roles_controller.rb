@@ -23,7 +23,6 @@ class RolesController < ApplicationController
   def assignments
     @dietitians = Dietitian.all
     @users = User.all
-    @admin_users = AdminUser.all
     @roles = Role.where(resource_type: nil).map(&:name).uniq
   end
 

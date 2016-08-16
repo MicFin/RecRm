@@ -61,12 +61,7 @@ class RoomsController < ApplicationController
 
     # Different user types require specific variables for a room
     # Check user type and create variables
-    if current_admin_user
-
-      # Set @user to current admin
-      @user = current_admin_user
-
-    elsif current_dietitian
+    if current_dietitian
 
       # Set @user to current dietitian
       @user = current_dietitian

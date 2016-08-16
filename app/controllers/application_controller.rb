@@ -16,16 +16,8 @@ class ApplicationController < ActionController::Base
     
     #note: request.referrer can be used to return user to the page they were on
 
-
-    # If the resource is an AdminUser
-    if resource.class == AdminUser
-          # would rather it direct to admin_user_authenticated_root_path but failing
-          ### admin_user_authenticated_root_path(current_admin_user)
-          ### admin_user_authenticated_root_path
-          admin_dashboard_path
-
     # If the resource is a dietitian
-    elsif resource.class == Dietitian
+    if resource.class == Dietitian
         dietitian_authenticated_root_path(resource)
 
     # Else resource is a user

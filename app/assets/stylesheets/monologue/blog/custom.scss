@@ -37,7 +37,6 @@
 		  float: left;
 		  padding: 0 5% 5% 5%;
       border-bottom: 1px solid grey;
-		  @extend .text-left;
 
 		  .content {
 
@@ -97,7 +96,7 @@
 	    width: 21%;
 	    float: left;
 	    margin-left: 75%;
-		  @extend .text-left;
+
 			&.affix {
 			    position: fixed;
 			    top: 100px;

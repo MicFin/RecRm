@@ -434,6 +434,14 @@
 
 Rails.application.routes.draw do
 
+  namespace :admin do
+    DashboardManifest.new.dashboards.each do |dashboard_resource|
+      resources dashboard_resource
+    end
+
+    root controller: DashboardManifest.new.root_dashboard, action: :index
+  end
+
   ### ROUTES FOR EMAIL PREVIEW 
   mount RailsEmailPreview::Engine, at: 'emails'
 
@@ -442,22 +450,21 @@ Rails.application.routes.draw do
   # or whatever path, be it "/blog" or "/monologue"
   mount Monologue::Engine, at: '/education' 
   Monologue::Engine.routes.draw do
+    
+  namespace :admin do
+    DashboardManifest.new.dashboards.each do |dashboard_resource|
+      resources dashboard_resource
+    end
 
+    root controller: DashboardManifest.new.root_dashboard, action: :index
+  end
 
-  mount RailsEmailPreview::Engine, at: 'emails'
-    # # Not sure if need post_rec resources in engine as well as in main rails app
-    # resources :post_recommendations
-
+    mount RailsEmailPreview::Engine, at: 'emails'
     namespace :admin, path: "monologue" do
-      
       resources :tags
-      
     end
   end
 
-
-  ### ROUTES FOR ADMIN USERS, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
 
   ### ROUTES AVAILABLE TO NON USERS 
   get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"

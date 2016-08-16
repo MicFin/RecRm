@@ -8,6 +8,6 @@ class Admin::ApplicationController < Administrate::ApplicationController
   before_filter :authenticate_admin
 
   def authenticate_admin
-    # TODO Add authentication logic here.
+    redirect_to '/', alert: 'Not authorized.' unless current_dietitian && (current_dietitian.has_role? "Admin Dietitian")
   end
 end

@@ -37,8 +37,8 @@ class SurveyDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :survey_group,
     :surveyable,
-    :surveys_questions,
-    :questions,
+    # :surveys_questions,
+    # :questions,
     :id,
     :completed,
     :created_at,

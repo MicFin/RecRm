@@ -93,7 +93,10 @@ class UserDashboard < Administrate::BaseDashboard
     :email,
     :phone_number,
     :zip_code,
-    :time_zone
+    :time_zone,
+    :registration_stage,
+    :created_at,
+    :last_sign_in_at,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -111,10 +114,10 @@ class UserDashboard < Administrate::BaseDashboard
     :coupons,
     :user_packages,
     :packages,
-    :appointments,
+    # :appointments,
     :patient_focus,
     :appointment_hosts,
-    :rooms,
+    # :rooms,
     :subscriptions,
     :member_plans,
     :growth_chart,

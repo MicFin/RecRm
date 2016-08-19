@@ -152,7 +152,7 @@ GEM
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jmespath (1.3.1)
-    jquery-datatables-rails (3.3.0)
+    jquery-datatables-rails (3.4.0)
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
@@ -367,8 +367,8 @@ DEPENDENCIES
   file_validators
   fullcalendar-rails (~> 2.3.1)
   jbuilder (~> 2.0)
-  jquery-datatables-rails (~> 3.3.0)
-  jquery-rails (~> 4.0.0)
+  jquery-datatables-rails (~> 3.4.0)
+  jquery-rails (~> 4.0.3)
   jquery-turbolinks
   jquery-ui-rails (= 4.2.1)
   lograge (= 0.3.4)

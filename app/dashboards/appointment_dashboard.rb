@@ -58,7 +58,7 @@ class AppointmentDashboard < Administrate::BaseDashboard
     :patient_focus,
     :dietitian,
     :room,
-    # :time_slot,
+    :time_slot,
     :surveys,
     :purchase,
     :post_recommendations,

@@ -39,7 +39,7 @@ class PackageDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :purchases,
-    # :user_packages,
+    :user_packages,
     :users,
     :id,
     :category,

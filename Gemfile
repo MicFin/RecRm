@@ -23,7 +23,7 @@ gem "lograge", "0.3.4"                              # https://github.com/roidrag
 
 # # Javascript
 gem 'jquery-rails', '~> 4.0.0'
-gem 'turbolinks', "2.5.3"                             # https://github.com/rails/turbolinks
+gem 'turbolinks', "2.2.2"                             # https://github.com/rails/turbolinks
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails', "4.2.1"
 gem 'jquery-datatables-rails', '~> 3.3.0'

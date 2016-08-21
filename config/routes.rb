@@ -451,13 +451,13 @@ Rails.application.routes.draw do
   mount Monologue::Engine, at: '/education' 
   Monologue::Engine.routes.draw do
     
-    # namespace :admin do
-    #   DashboardManifest.new.dashboards.each do |dashboard_resource|
-    #     resources dashboard_resource
-    #   end
+  namespace :admin do
+    DashboardManifest.new.dashboards.each do |dashboard_resource|
+      resources dashboard_resource
+    end
 
-    #   root controller: DashboardManifest.new.root_dashboard, action: :index
-    # end
+    root controller: DashboardManifest.new.root_dashboard, action: :index
+  end
 
     mount RailsEmailPreview::Engine, at: 'emails'
     namespace :admin, path: "monologue" do

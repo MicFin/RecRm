@@ -22,11 +22,11 @@ gem 'browser_details', "0.0.6"                      # https://github.com/gshutle
 gem "lograge", "0.3.4"                              # https://github.com/roidrage/lograge
 
 # # Javascript
-gem 'jquery-rails', '~> 4.0.3'
+gem 'jquery-rails', '~> 4.0.0'
 gem 'turbolinks', "2.5.3"                             # https://github.com/rails/turbolinks
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails', "4.2.1"
-gem 'jquery-datatables-rails', '~> 3.4.0'
+gem 'jquery-datatables-rails', '~> 3.3.0'
 # gem 'nprogress-rails'
 
 # # Assets

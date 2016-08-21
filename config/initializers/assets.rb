@@ -63,5 +63,5 @@ Rails.application.config.assets.precompile += ["application_split2.css", "applic
 
 # compile ckeditor
 Rails.application.config.assets.precompile += %w( ckeditor/* )
-
 Rails.application.config.assets.precompile += %w( monologue/admin/ckeditor/* )
+Rails.application.config.assets.precompile += %w( icons/closed-quote.svg icons/open-quote.svg icons/price-sunburst.svg)

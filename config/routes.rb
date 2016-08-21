@@ -455,10 +455,6 @@ Rails.application.routes.draw do
     end
   end
 
-
-  ### ROUTES FOR ADMIN USERS, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-
   ### ROUTES AVAILABLE TO NON USERS 
   get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
   get 'qoladmin', to: "landing_pages#qol_admin", as: "landing_pages_qol_admin"

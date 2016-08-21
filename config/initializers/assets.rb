@@ -66,4 +66,4 @@ Rails.application.config.assets.precompile += %w( ckeditor/* )
 Rails.application.config.assets.precompile += %w( monologue/admin/ckeditor/* )
 
 # Administrate
-Rails.application.config.assets.precompile += %w( administrate/search.svg administrate/sort_arrow.svg administrate/dropdown.svg)
+Rails.application.config.assets.precompile += %w( administrate/search.svg )

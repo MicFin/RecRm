@@ -83,6 +83,8 @@ gem 'file_validators'
 
 # # Blog
 gem 'monologue', "0.4.1"
+gem 'ckeditor', "=4.0.11"
+
 # gem 'comfortable_mexican_sofa', '~> 1.12.0'
 
 # # Monitoring

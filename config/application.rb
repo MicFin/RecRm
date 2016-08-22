@@ -46,7 +46,8 @@ module Myapp
     # config.assets.precompile += Ckeditor.assets
     # config.assets.precompile += %w( ckeditor/* )
     # config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
-
+    # Did not use above solution because rake task described below fixed problem
+    # https://github.com/galetahub/ckeditor/issues/307#issuecomment-22186377
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]

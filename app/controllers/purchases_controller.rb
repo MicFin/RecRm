@@ -45,16 +45,12 @@ class PurchasesController < ApplicationController
       end
 
       # set appointment's purchase or create a new one
-      @purchase = @purchasable.purchase || Purchase.new(user_id: @user.id, status: "Incomplete", purchasable_type: "Appointment", purchasable_id: @purchasable.id )
-      
-      # save
-      @purchase.save
+      @purchase = @purchasable.purchase || Purchase.create(user_id: @user.id, status: "Incomplete", purchasable_type: "Appointment", purchasable_id: @purchasable.id )
       
     else
-
-      @purchase = Purchase.create(user_id: @user.id, status: "Incomplete", purchasable_type: "Package", purchasable_id: @purchasable.id )
+  
+      @purchase = Purchase.create(user_id: @user.id, status: "Incomplete", purchasable_type: "Package", purchasable_id: @purchasable.id)
       
-      @purchase.save
 
     end
     

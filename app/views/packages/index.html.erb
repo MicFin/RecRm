@@ -15,13 +15,15 @@
             <hr>
             <div class="row">
               <div class="col-xs-12 session-action">
-                <% if current_user.packages.length >=1 %>
+                <% if @user_package %>
                   <div class="col-xs-10 col-xs-offset-1">
                     <h2>YOUR CURRENT PACKAGE</h2>
-                    <h3><%= current_user.packages.last.name %></h3>
-                    <p><%= current_user.packages.last.description %></p>
-                    <p><%= current_user.packages.last.num_full_appointments %> - One hour appointments left</p>
-                    <p><%= current_user.packages.last.num_half_appointments %> - Half hour appointments left</p>
+                    <h3><%= @package.name %></h3>
+                    <p><%= @package.description %></p>
+                    <small><%= @package.num_full_appointments %> - One hour appointments</small>
+                    <p><%=@full_sessions%> - One hour appointments remaining</p>
+                    <small><%= @package.num_half_appointments %> - Half hour appointments </small>
+                    <p><%=@half_sessions%> - Half hour appointments remaining</p>
                   </div>
 
                 <% else %>

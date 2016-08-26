@@ -279,12 +279,10 @@ class AppointmentsController < ApplicationController
         @survey = Survey.generate_for_post_appointment(@appointment, current_user)
         @survey_group = @survey.survey_group.name
         # return user end of apt survey
-        
           format.html { redirect_to user_authenticated_root_path, notice: 'Appointment was successfully completed.' }
           format.js
         
       else
-
         @survey = Survey.generate_for_post_appointment(@appointment, current_dietitian)
         @survey_group = @survey.survey_group.name
         # mark appointment as complete

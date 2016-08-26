@@ -137,12 +137,11 @@ class Purchase < ActiveRecord::Base
         self.stripe_card_token = nil 
         self.save
       end
-      ### If Stripe fails then these should not be run
+      ### If Stripe or other things fails then these should not be run
       ### But it probably does
       ### Need to test
       # Mark purchase as paid
       self.status = "Paid"
-
       # Mark Appointment as Paid
       if purchasable.class == Appointment
         purchasable.status = "Paid"
@@ -264,20 +263,12 @@ class Purchase < ActiveRecord::Base
           self.invoice_cost = 10900
         end
 
-        # Tara referral invoice pricing
-        if user.tara_referral == true 
-          if duration == 30
-            self.invoice_price = 4900
-          else
-            self.invoice_price = 8900
-          end
+        # Unused package session pricing
+        if purchasable.status == "Unused Package Session"
+          self.invoice_price = 0
 
         # QOL invoice pricing
         elsif user.qol_referral == true 
-          self.invoice_price = 0
-
-        # Unused package session pricing
-        elsif purchasable.status == "Unused Package Session"
           self.invoice_price = 0
 
         # No Discount invoice pricing

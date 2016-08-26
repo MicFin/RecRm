@@ -64,4 +64,6 @@ Rails.application.config.assets.precompile += ["application_split2.css", "applic
 # compile ckeditor
 Rails.application.config.assets.precompile += %w( ckeditor/* )
 Rails.application.config.assets.precompile += %w( monologue/admin/ckeditor/* )
+
+# compile icons, not exactly sure why this folder of images needs to be called specifically to precompile
 Rails.application.config.assets.precompile += %w( icons/* )

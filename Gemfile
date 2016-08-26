@@ -41,7 +41,7 @@ gem 'css_splitter', "0.4.2"                         # https://github.com/zweilov
 # gem 'headjs-rails'
 
 # # Video Conferencing
-gem "opentok", "2.2.1"                              # https://github.com/opentok/Opentok-Ruby-SDK
+gem "opentok", "2.3.4"                              # https://github.com/opentok/Opentok-Ruby-SDK
 
 # # Dates, Time and Phone
 gem 'fullcalendar-rails', '~> 2.3.1'

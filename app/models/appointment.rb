@@ -64,6 +64,7 @@ class Appointment < ActiveRecord::Base
   belongs_to :dietitian
   belongs_to :room
   belongs_to :time_slot
+  has_one :user_package
   has_many :surveys, :as => :surveyable
   has_one :purchase, as: :purchasable
   has_many :post_recommendations

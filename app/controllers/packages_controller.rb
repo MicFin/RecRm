@@ -23,6 +23,13 @@ class PackagesController < ApplicationController
     @packages = Package.all
     if current_user 
       @family = current_user.head_of_families.last
+      @user_package = current_user.user_packages.last
+      if @user_package
+
+        @package = @user_package.package
+        @half_sessions = @user_package.appointments.unused_package_session.where(duration: 30).length
+        @full_sessions = @user_package.appointments.unused_package_session.where(duration: 60).length
+      end
     end
   end
 

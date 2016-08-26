@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
   has_many :coupons, through: :coupon_redemptions
   
   has_many :user_packages, dependent: :destroy
-  has_many :packages, through: :user_packages
+  # has_many :packages, through: :user_packages
 
   has_many :purchases
 

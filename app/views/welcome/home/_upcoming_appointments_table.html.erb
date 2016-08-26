@@ -7,9 +7,8 @@
       <tr>
         <th>Date</th>
         <th>Duration</th>
-        <th>Kindrd Nutritionist</th>
-        <th>Client</th>
         <th>Focus</th>
+        <th></th>
         <th></th>
         <th></th>
       </tr>
@@ -25,8 +24,6 @@
             <td><%= link_to appointment.appointment_start_time, appointment_path(appointment) %> </td>
           <% end %>
             <td><%= appointment.show_duration%></td>
-            <td><%= appointment.dietitian.signature if appointment.dietitian%></td>
-            <td><%= appointment.appointment_host_full_name%></td>
             <td><%= appointment.patient_focus_full_name%></td>
             <td>
               <%= link_to("View", appointment_path(appointment), class: "btn btn-xs btn-primary") %> 
@@ -34,6 +31,7 @@
             <td>
               <%= link_to("Join", in_session_room_path(appointment.room_id, :appointment => appointment.id), class: "btn btn-small btn-default") if current_dietitian && appointment.room_id %>
             </td>
+            <td><a class="reschedule-appointment btn btn-xs btn-alert" href="#">Reschedule</a></td>
           </tr>
         <% end %>
       <% else %>

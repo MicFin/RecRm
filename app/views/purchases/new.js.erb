@@ -8,13 +8,11 @@
 
 // If purchase is an Appointment
 <% if @purchasable.class == Appointment %>
-	<% if ( ( @user.qol_referral == true ) || ( @purchasable.status == "Unused Package Session" ) ) %>
-		$("body").append("<%= j render(:partial => 'purchases_modal', :locals => {:user => @user, :time_slot => @time_slot, :purchase => @purchase, :purchasable => @purchasable}) %>");
-		$('#paymentModal').modal();
 
-	<% else %>
-		$("body").append("<%= j render(:partial => 'purchases_modal', :locals => {:user => @user, :time_slot => @time_slot, :purchase => @purchase, :purchasable => @purchasable}) %>");
-		$('#paymentModal').modal();
+	$("body").append("<%= j render(:partial => 'purchases_modal', :locals => {:user => @user, :time_slot => @time_slot, :purchase => @purchase, :purchasable => @purchasable}) %>");
+	$('#paymentModal').modal();
+
+	<% if ( ( @user.qol_referral != true ) && ( @purchasable.status != "Unused Package Session" ) ) %>
 		payment.setupForm();
 	<% end %>
 <% end %>

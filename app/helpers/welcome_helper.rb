@@ -46,10 +46,7 @@ module WelcomeHelper
   # Show dietitian select or time and dietitian select
   def set_appointment_options(appointment, user, previous_dietitian)
 
-    if appointment.status == "Unused Package Session" 
-      render "welcome/set_appointment/unused_package_options", previous_dietitian: previous_dietitian, appointment: appointment 
-   
-    elsif previous_dietitian != nil 
+    if previous_dietitian != nil 
       render "welcome/set_appointment/repeat_customer_options", previous_dietitian: previous_dietitian, appointment: appointment, user: user 
     else 
       render "welcome/set_appointment/time_zone_select_first_appt", user: user 

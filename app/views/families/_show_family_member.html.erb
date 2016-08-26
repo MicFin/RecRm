@@ -57,18 +57,16 @@
 												</div>
                       </div>
                     </div>
-                    <% if family_member.growth_chart && family_member.growth_chart.growth_entries.length > 0 && family_member.growth_chart.growth_entries.first.energy_requirement == nil%>
+               <!--      <%# if family_member.growth_chart && family_member.growth_chart.growth_entries.length > 0 && family_member.growth_chart.growth_entries.first.energy_requirement == nil%>
                       <div id="update-growth-container-<%=family_member.growth_chart.growth_entries.first.id%>" class="row update-growth-container alert alert-danger">
                         <div class="col-xs-12">
                           <h3>Update</h3>
-                       
-                          <%= render "/growth_entries/form", growth_chart: family_member.growth_chart, growth_entry: family_member.growth_chart.growth_entries.first %>
-
+                          <%#= render "/growth_entries/form", growth_chart: family_member.growth_chart, growth_entry: family_member.growth_chart.growth_entries.first %>
                         </div>
-                      </div>
-                    <% end %>
+                      </div> 
+                    <%# end %> --> 
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                      <div class="panel panel-default">
+                     <!--  <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingOne">
                           <h4 class="panel-title text-center">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -78,8 +76,8 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                           <div class="panel-body">
-                              <%= render "/growth_entries/form", growth_chart: family_member.growth_chart, growth_entry: growth_entry if current_user %>
-                                <%= render "/growth_entries/list", growth_chart: family_member.growth_chart %>
+                              <%#= render "/growth_entries/form", growth_chart: family_member.growth_chart, growth_entry: growth_entry if current_user %>
+                                <%#= render "/growth_entries/list", growth_chart: family_member.growth_chart %>
                           </div>
                         </div>
                       </div>
@@ -93,12 +91,11 @@
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                           <div class="panel-body">
-
-                            <%= render "/food_diary_entries/form", food_diary: family_member.food_diary, food_diary_entry: food_diary_entry if current_user %>
-                            <%= render "/food_diary_entries/list", food_diary: family_member.food_diary %>
+                            <%#= render "/food_diary_entries/form", food_diary: family_member.food_diary, food_diary_entry: food_diary_entry if current_user %>
+                            <%#= render "/food_diary_entries/list", food_diary: family_member.food_diary %>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingThree">
                           <h4 class="panel-title text-center">

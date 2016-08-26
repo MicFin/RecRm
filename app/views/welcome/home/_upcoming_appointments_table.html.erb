@@ -24,22 +24,16 @@
           <% else %>
             <td><%= link_to appointment.appointment_start_time, appointment_path(appointment) %> </td>
           <% end %>
-          
             <td><%= appointment.show_duration%></td>
             <td><%= appointment.dietitian.signature if appointment.dietitian%></td>
             <td><%= appointment.appointment_host_full_name%></td>
             <td><%= appointment.patient_focus_full_name%></td>
-
-            <% if current_user %>
-              <td><%= link_to("Edit", edit_appointment_survey_path(appointment, appointment.client_prep_survey_id), class: "btn btn-xs btn-default") if appointment.client_prep_survey? %></td>
-            <% else %>
-              <td>
-                <%= link_to("View", appointment_path(appointment), class: "btn btn-xs btn-primary") %> 
-              </td>
-              <td>
-                <%= link_to("Join", in_session_room_path(appointment.room_id, :appointment => appointment.id), class: "btn btn-small btn-default") if current_dietitian && appointment.room_id %>
-              </td>
-            <% end %>
+            <td>
+              <%= link_to("View", appointment_path(appointment), class: "btn btn-xs btn-primary") %> 
+            </td>
+            <td>
+              <%= link_to("Join", in_session_room_path(appointment.room_id, :appointment => appointment.id), class: "btn btn-small btn-default") if current_dietitian && appointment.room_id %>
+            </td>
           </tr>
         <% end %>
       <% else %>

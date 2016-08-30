@@ -30,6 +30,11 @@
           <%= active_link_to landing_pages_benefits_path, { :active => [['landing_pages'], ['benefits', 'more_benefits', 'care', 'refer']], :class_active => 'active', :wrap_tag => :li} do %>
               FOR PROVIDERS
             <% end %>
+
+            <%= active_link_to destroy_user_session_path, {:method => :delete, :class_active => 'active', :wrap_tag => :li} do %>
+              sign out
+            <% end %>
+
             <li>
                 <a target="_blank" href="http://twitter.com/kindrdfood"class="btn btn-social-icon btn-twitter">
                   <i class="fa fa-twitter"></i>

@@ -1,30 +1,28 @@
 <div id="welcome-page" class="container-fluid">
-    <div class="row">
-
-      <%= render "/layouts/navbars/dietitian_nav" %>
-
-      <main class="main-content-container">
-        <section class="jumbotron">
-          <div id="jumbotron-inner" class="row">
-            <div class="col-xs-12 form-group">
-              <h1>Appointments To Be Assigned</h1>
-            </div>
-            <%= assign_appointments_prompt(@appointments_no_dietitian) %>      
+  <div class="row">
+    <%= render "/layouts/navbars/dietitian_nav" %>
+    <main class="main-content-container">
+      <section class="jumbotron">
+        <div id="jumbotron-inner" class="row">
+          <div class="col-xs-12 form-group">
+            <h1>Appointments To Be Assigned</h1>
           </div>
-        </section>
-        <section>
-          <%= render "appointments/index/upcoming_appointments_table", upcoming_appointments: @upcoming_appointments %>
-          <br>
-        </section>
-        <section>
-          <%= render "appointments/index/previous_appointments_table", previous_appointments: @previous_appointments %>
-        </section>
-      </main>
-      <div class="col-xs-12 col-sm-10 col-sm-offset-2">
-        <%=render "/layouts/footers/main_footer" %>
-      </div>
+          <%= assign_appointments_prompt(@appointments_no_dietitian) %>      
+        </div>
+      </section>
+      <section>
+        <%= render "appointments/index/upcoming_appointments_table", upcoming_appointments: @upcoming_appointments %>
+        <br>
+      </section>
+      <section>
+        <%= render "appointments/index/previous_appointments_table", previous_appointments: @previous_appointments %>
+      </section>
+    </main>
+    <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+      <%=render "/layouts/footers/main_footer" %>
     </div>
   </div>
+</div>
 
 
 

@@ -15,7 +15,18 @@ en:
     mailer:
       invitation_instructions:
         subject: 'Invitation to Kindrdfood'
-        hello: 'Hello %{email}'
+        hello: 'Hello %{first_name}!'
         someone_invited_you: 'Someone has invited you to Kindrdfood, you can accept it through the link below.'
+        provider_invited_you: > 
+          Welcome! You are receiving this email because your healthcare provider has referred you to Kindrdfood. 
+          What is Kindrdfood? 
+          We empower patients and families with a medically limited diet to navigate food. We make even the most difficult changes less stressful and get your family back to enjoying great food, regardless of what limits your table. 
+          Learn more about Kindrdfood and what we do to help you! Click on the button below to accept your invitation. You are under no obligation by accepting this invitation, but you will be entitled to receive a discount of $10 off of all individual 1 hour sessions.
         accept: 'Accept invitation'
-        ignore: "If you don't want to accept the invitation, please ignore this email.<br />Your account won't be created until you access the link above and set your password."
+        closing: "We are looking forward to meeting you!"
+        closing_signature: |
+          Thank you and welcome to Kindrdfood!
+          Tara McCarthy, MS RD LDN
+          Chief Dietitian, Kindrdfood
+        customer_service_email: "customer.service@kindrdfood.com"
+        customer_service_email_path: "email_to:customer.service@kindrdfood.com"

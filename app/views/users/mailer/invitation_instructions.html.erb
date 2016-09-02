@@ -32,7 +32,7 @@
                                 <th>
                                   <h1 class="text-center">Welcome to Kindrdfood</h1>
                                   <center data-parsed="">
-                                    <table class="menu text-center float-center" align="center">
+                           <!--          <table class="menu text-center float-center" align="center">
                                       <tr>
                                         <td>
                                           <table>
@@ -45,7 +45,7 @@
                                           </table>
                                         </td>
                                       </tr>
-                                    </table>
+                                    </table> -->
                                   </center>
                                 </th>
                                 <th class="expander"></th>
@@ -85,11 +85,16 @@
                                       </tr>
                                     </tbody>
                                   </table>
-                                  <h4><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></h4>
+                                  <h4><%= t("devise.mailer.invitation_instructions.hello", first_name: @resource.first_name) %></h4>
 
 																	<p></p>
 
-																	<p><% t("devise.mailer.invitation_instructions.someone_invited_you") %></p>
+																	<!-- <p><%#= t("devise.mailer.invitation_instructions.provider_invited_you") %></p> -->
+                                  <p>Welcome! You are receiving this email because your healthcare provider has referred you to Kindrdfood. </p>
+                                  <p>What is Kindrdfood? </p>
+                                  <p>We empower patients and families with a medically limited diet to navigate food. We make even the most difficult changes less stressful and get your family back to enjoying great food, regardless of what limits your table. </p>
+                                  <p>Learn more about Kindrdfood and what we do to help you! Click on the button below to accept your invitation. You are under no obligation by accepting this invitation, but you will be entitled to receive a discount of $10 off of all individual 1 hour sessions.</p>
+                                  <br>
 																	<table class="button large expand">
                                     <tr>
                                       <td>
@@ -97,6 +102,7 @@
                                           <tr>
                                             <td>
                                               <center data-parsed=""><%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token) %></center>
+
                                             </td>
                                           </tr>
                                         </table>
@@ -104,12 +110,18 @@
                                       <td class="expander"></td>
                                     </tr>
                                   </table>
-
+                                  <p><%= link_to accept_invitation_url(@resource, :invitation_token => @token), accept_invitation_url(@resource, :invitation_token => @token) %></p>
 																	<p><%#= t("devise.mailer.invitation_instructions.accept_until", due_date: l(@resource.invitation_due_at, format: :'devise.mailer.invitation_instructions.accept_until_format')) %></p>
 
-																	<p><%= t("devise.mailer.invitation_instructions.ignore").html_safe %></p>
-
-                                  <center data-parsed="">
+                                  <br>
+                                  <p><%= simple_format(t("devise.mailer.invitation_instructions.closing"))%></p>
+                                  <p>If you believe that you received this invitation in error please let us know by sending an email to <a href="<%=t('devise.mailer.invitation_instructions.customer_service_email_path')%>"><%=t("devise.mailer.invitation_instructions.customer_service_email")%></a></p>
+                                  <br>
+                                  <!--  <p><%#= t("devise.mailer.invitation_instructions.closing_signature")%></p> -->
+                                  <p>Thank you and welcome to Kindrdfood!</p>
+                                  <p>Tara McCarthy, MS RD LDN</p>
+                                  <p>Chief Dietitian, Kindrdfood</p>
+                           <!--        <center data-parsed="">
                                     <table class="menu float-center" align="center">
                                       <tr>
                                         <td>
@@ -124,7 +136,7 @@
                                         </td>
                                       </tr>
                                     </table>
-                                  </center>
+                                  </center> -->
                                 </th>
                                 <th class="expander"></th>
                               </tr>

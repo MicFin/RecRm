@@ -12,7 +12,7 @@ class WelcomeController < Users::RegistrationsController
     # if user is a provider then go to new user invitation page
     if current_user.provider?
 
-      new_user_invitation_path
+      redirect_to new_user_invitation_path
 
     else
 
@@ -50,6 +50,7 @@ class WelcomeController < Users::RegistrationsController
   ### This is currently the dietitian's dashboard
   ### /welcome/index
   def index
+
     @upcoming_appointments = Appointments::AppointmentPresenter.present(current_dietitian.appointments.upcoming_and_current.includes(:appointment_host).includes(:patient_focus).by_start_time)
     @previous_appointments = Appointments::AppointmentPresenter.present(current_dietitian.appointments.previous.complete_or_scheduled.includes(:appointment_host).includes(:patient_focus).by_start_time)
   end

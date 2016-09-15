@@ -25,6 +25,7 @@
   post_recommendations
   users/sessions
   dietitians/registrations
+  users/registrations
   devise/sessions
   ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.css", "#{controller}.js"]

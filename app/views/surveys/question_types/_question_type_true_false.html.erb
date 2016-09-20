@@ -1,16 +1,16 @@
 
-<% if question.tier == 1 %>
-<div class="question-container question-container-radio">
+<% if survey_question.question.tier == 1 %>
+	<div class="question-container question-container-radio">
 <% else %>
-<div class="question-container question-container-radio tier-2">
+	<div class="question-container question-container-radio tier-2">
 <% end %>
-	<h4><%=question.content%></h4>
+
+	<h4><%=survey_question.question.content%></h4>
 
 	<label class="radio-inline">
-  	<input type="radio" name="questions[<%=question.id%>]" id="inlineRadio1-<%=question.id%>" value="Yes" > Yes
+  	<input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio1-<%=survey_question.id%>" value="Yes" <%= "checked" if survey_question.answer == true %> > Yes
 	</label>
 	<label class="radio-inline">
-  	<input type="radio" name="questions[<%=question.id%>]" id="inlineRadio2-<%=question.id%>" value="No"> No
+  	<input type="radio" name="questions[<%=survey_question.id%>]" id="inlineRadio2-<%=survey_question.id%>" value="No" <%= "checked" if survey_question.answer == false %>> No
 	</label>
 </div>
-

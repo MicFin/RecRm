@@ -31,6 +31,10 @@
               FOR PROVIDERS
             <% end %>
 
+            <%= active_link_to edit_user_registration_path, { :active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
+              settings
+            <% end %>
+
             <%= active_link_to destroy_user_session_path, {:method => :delete, :class_active => 'active', :wrap_tag => :li} do %>
               sign out
             <% end %>

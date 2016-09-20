@@ -38,7 +38,12 @@
 		<%= active_link_to packages_path, :wrap_tag => :li do %>
 		 <span class=" nav-item">Purchase Package</span>
 		<% end %>
-		<li><%= link_to "Settings", edit_user_registration_path %></li>
+
+		<!-- SETTINGS LINK -->
+		<%= active_link_to edit_user_registration_path, { :active => [['users'], ["edit"]], :wrap_tag => :li} do %>
+		  <span class=" nav-item">Settings</span>
+		<% end %>
+
 		<!-- CONTACT US -->
 		<li><a href="#" class="contact-us-link"><span class=" nav-item">Contact Us</span></a></li>	
 	</ul>

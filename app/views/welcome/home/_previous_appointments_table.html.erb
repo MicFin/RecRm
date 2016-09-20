@@ -35,6 +35,7 @@
                   <button class="btn btn-xs btn-success" >Sent</button>
 
                 <% elsif appointment.client_assessment? %>
+                  <%= link_to "View", appointment_path(appointment), class: "btn btn-xs btn-success" %> 
                   <%= link_to("Send", appointment_send_assessment_path(appointment, send_to: "Client"), class: "btn btn-xs btn-danger", :method => :patch) %> 
                 <% else %>
                   <button class="btn btn-xs" disabled="disabled">Not Ready</button>
@@ -45,6 +46,7 @@
                 <% if appointment.provider_assessment? && appointment.provider_assessment_sent %>
                   <button class="btn btn-xs btn-success" >Sent</button>
                 <% elsif appointment.provider_assessment? %>
+                  <%= link_to "View", appointment_path(appointment), class: "btn btn-xs btn-success" %> 
                   <%= link_to("Send", appointment_send_assessment_path(appointment, send_to: "Provider"), class: "btn btn-xs btn-danger", :method => :patch) %> 
                 <% else %>
                   <button class="btn btn-xs" disabled="disabled">Not Ready</button>

@@ -32,22 +32,24 @@
 		  <span class=""></span><span class=" nav-item">Schedule</span>
 		<% end %>
 
-
-		<!-- ADMIN LINK -->
-		<% if current_dietitian.has_role? "Admin Dietitian" %>
-
-			<!-- ClIENTS LINK -->
-			<%= active_link_to main_app.appointments_path, :wrap_tag => :li  do %>
-			  <span class=""></span><span class=" nav-item">Clients</span>
-			<% end %>		
-
-			<!-- CONTENT LINK -->
+		<!-- CONTENT LINK -->
+		<% if current_dietitian.has_role? "Editor" %>
 			<%= active_link_to "/education/monologue", :wrap_tag => :li do %>
 			  <span class=""></span><span class=" nav-item">Content</span>
 			<% end %>
-		
+		<% end %>
+
+
+		<!-- ADMIN LINK -->
+		<% if current_dietitian.has_role? "Admin Dietitian" %>
 			<li><a href="#" id="krdn-admin-nav-button" data-toggle="collapse" data-target="#krdn-admin-nav-list" aria-expanded="false">Admin</a>
 				<ul class="nav collapse" id="krdn-admin-nav-list" role="menu" aria-labelledby="btn-1">
+			
+					<!-- ClIENTS LINK -->
+					<%= active_link_to main_app.appointments_path, :wrap_tag => :li  do %>
+					  <span class=""></span><span class=" nav-item">Clients</span>
+					<% end %>		
+
 
 					<!-- LEADS LINK -->
 					<%= active_link_to main_app.dashboard_clients_onboarding_path, :wrap_tag => :li do %>

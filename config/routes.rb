@@ -456,13 +456,13 @@ Rails.application.routes.draw do
   end
 
   ### ROUTES AVAILABLE TO NON USERS 
-  get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
   get 'qoladmin', to: "landing_pages#qol_admin", as: "landing_pages_qol_admin"
   get 'qol', to: "landing_pages#qol", as: "landing_pages_qol"
   get 'tara', to: 'landing_pages#tara', as: 'landing_pages_tara'
   get "/join" => redirect("/tara")
   
-  # LANDING PAGES
+  # Original LANDING PAGES
+  get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
   get 'our_solution', to: "landing_pages#our_solution", as: "landing_pages_our_solution"
   get 'results', to: "landing_pages#results", as: "landing_pages_results"
   get 'how_it_works', to: "landing_pages#how_it_works", as: "landing_pages_how_it_works"
@@ -477,6 +477,9 @@ Rails.application.routes.draw do
   get 'care', to: "landing_pages#care", as: "landing_pages_care"
   get 'contact_us', to: "landing_pages#contact_us", as: "landing_pages_contact_us"
   get 'refer', to: "landing_pages#refer", as: "landing_pages_refer"
+
+  # New LANDING PAGES
+  get 'new_landing_page', to: "landing_pages#new_landing_page", as: "landing_pages_new_landing_page"
 
   # should change these to not being opened to all users
   patch 'packages/:package_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_package_payment'

@@ -1,0 +1,42 @@
+// Landing page container
+.kf-landing-page {
+	@extend .container-fluid;
+}
+
+// Landing page navbar
+.kf-landing-page .kf-landing-page-navbar{
+	@extend .navbar;
+	@extend .navbar-default;
+	@extend .navbar-fixed-top;
+	min-height: 50px;
+	margin-bottom: 0px;
+	.navbar-brand {
+		padding: 0px;
+	}
+}
+// Landing page navbar brand logo
+.kf-landing-page .navbar-brand-image {
+	margin-left: 5%;
+	@extend .img-responsive;
+	// responsive max heights
+	@media (max-width: $screen-sm-max) {
+		max-height: 50px;
+	}
+	@media (min-width: $screen-sm-max) {
+		max-height: 70px;	
+	}		
+}
+
+// Landing page navbar list items
+.kf-landing-page .kf-landing-page-navbar-list {
+	@extend .nav; 
+	@extend .navbar-nav; 
+	@extend .navbar-right;
+	margin: 10px;
+	margin-right: 1%;
+	a {
+		color: $gray-darker;
+		font-weight: bold;
+	}
+}
+

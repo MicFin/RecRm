@@ -1,0 +1,33 @@
+  <nav class="kf-landing-page-navbar">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        <%= image_tag "logos/kf-logo-registration.png", class: "navbar-brand-image" %>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+      <ul class="kf-landing-page-navbar-list">
+            <%= active_link_to landing_pages_our_solution_path, { :active => [['landing_pages'], ['new_landing_page']], :class_active => 'active', :wrap_tag => :li} do %>
+              For Patients
+            <% end %>
+
+            <%= active_link_to landing_pages_why_kindrdfood_path, { :active => [['landing_pages'], ['for_providers']], :class_active => 'active', :wrap_tag => :li} do %>
+              For Providers
+            <% end %>
+            <%= active_link_to landing_pages_why_kindrdfood_path, { :active => [['landing_pages'], ['why_kindrdfood']], :class_active => 'active', :wrap_tag => :li} do %>
+              SIGN UP
+            <% end %>
+            <%= active_link_to landing_pages_why_kindrdfood_path, { :active => [['landing_pages'], ['why_kindrdfood']], :class_active => 'active', :wrap_tag => :li} do %>
+              LOGIN
+            <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+	</nav>

@@ -1,15 +1,5 @@
 
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- 
  *= require jquery.ui.autocomplete
  *= require jquery.Jcrop
  *= require_self
@@ -18,15 +8,18 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  */
  
+// Bootstrap theme
+@import "themes/bootstrap_customizer_theme";
+// Bootstrap
+// import bootstrap-sprockets before bootstrap if using bootstrap >= 3.2
 // @import "bootstrap-sprockets";
 @import "bootstrap";
 
-// import bootstrap-sprockets before bootstrap if using bootstrap >= 3.2
-@import 'bootstrap-datetimepicker';
 
-// Vendors
-@import "themes/bootstrap_customizer_theme";
-@import "vendor/bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+
+// Bootstrap date time picker
+@import 'bootstrap-datetimepicker';
 
 
 $pie-path: "/assets/vendor/bower_components/css3pie/PIE.htc";

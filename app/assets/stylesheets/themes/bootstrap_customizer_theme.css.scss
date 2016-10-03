@@ -20,7 +20,12 @@ $brand-light-orange: #F68D3C;
 $brand-white: rgb(255, 255, 255);
 $brand-black: black;
 $brand-red: red;
+$brand-yellow: yellow;
 
+$brand-success: $brand-light-green;
+$brand-info: $brand-light-green;
+$brand-warning: $brand-yellow;
+$brand-danger: $brand-red;
 
 // delete this once all HTML elements are updated with correct classes
 $carrotgreen: $brand-carrot-green;

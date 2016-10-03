@@ -8,15 +8,15 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  */
  
+
 // Bootstrap theme
+// load before bootstrap
 @import "themes/bootstrap_customizer_theme";
+
 // Bootstrap
 // import bootstrap-sprockets before bootstrap if using bootstrap >= 3.2
 // @import "bootstrap-sprockets";
 @import "bootstrap";
-
-
-
 
 // Bootstrap date time picker
 @import 'bootstrap-datetimepicker';

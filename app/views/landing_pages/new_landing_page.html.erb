@@ -1,24 +1,32 @@
 
-<div id="index-landing-page" class="landing-page">
+
+<!-- LANDING PAGE INDEX TEMPLATE -->
+<div id="kf-landing-page-main" class="kf-landing-page">
+
+	<!-- LANDING PAGE NAVIGATION -->
 	<%= render "/landing_pages/landing_pages_rd_1/landing_page_nav" %>
+
+	<!-- LANDING PAGE BODY -->
 	<div class="landing-page-body">
-		<section id="alerts-container">
-			<%= render "/layouts/alerts" %>
-		</section>
+
+		<!-- LANDING PAGE SPLASH IMAGE SECTION -->
 		<section class="splash-image-section">
 			<div class="left-splash-column">
-				<h1>Bring confidence back to your kitchen.</h1>
-				<h3>Great food and good nutrition start with the right guidance.</h3>
+				<h1>Bring confidence<br>back to your table</h1>
+				<h2>Great food and good nutrition<br>start with the right guidance.</h2>
 			</div>
 			<div class="right-splash-column">
 				<div>
 					<h3>Welcome to Kindrdfood!</h3>
-					<p>Please sign in to your account to schedule a session with one of our Registered Dietitian Nutritionists.</p>
+					<p class="details">Please create your account to schedule a session with one of our Registered Dietitian Nutritionists.</p>
 
-					<%= render "/users/sessions/new_session_form", :resource => @user %>
+					<!-- LANDING PAGE SIGN UP FORM -->
+					<%#= render "/landing_pages/sign_up_form", :user => @user %>
 				</div>
 			</div>
 		</section>
+
+		<!-- LANDING PAGE SECTION -->
 		<section class="landing-page-row two-column-left">
 			<div class="two-column-text">
 				<h2 class="heading">Make mealtime a pleasure, everytime.</h2>
@@ -29,12 +37,20 @@
 			<div class="two-column-image img-happy-family">
 			</div>
 		</section>
+
+		<!-- LANDING PAGE TESTIMONIAL -->
 		<section class="landing-page-row landing-page-testimonial">
+			<div class="img-quote-left">
+			</div>
+			<div class="img-quote-right">
+			</div>
 			<div class="testimonial-container">
-				<h3>“Since Daniel’s diagnosis we made 2 different meals every night, until [my Kindrd Nutritionist] got us on a plan that made everything so much easier and more enjoyable. I can’t imagine what things would be like for us if we hadn’t found Kindrdfood.”</h3>
+				<h3>“Since Daniel’s diagnosis we made 2 different meals every night, until my Kindrd Nutritionist got us on a plan that made everything so much easier and more enjoyable. I can’t imagine what things would be like for us if we hadn’t found Kindrdfood.”</h3>
 				<h4> – Beth </h4>
 			</div>
 		</section>
+
+		<!-- LANDING PAGE SECTION -->
 		<section class="landing-page-row three-column">
 			<div class="three-column-container">
 				<h2 class="heading">Expect the best for you and your family.</h2>
@@ -50,7 +66,7 @@
 				</div>
 				<div class="three-column-one">
 					<%=image_tag "icons/food-allergies.svg", class: "img-responsive" %>
-					<h3>Food allergies & dietary restrictions</h3>
+					<h3>Food allergies &<br>dietary restrictions</h3>
 					<ul>
 						<h4><li>Improve variety and taste</li></h4>
 						<h4><li>New restrictions to navigate</li></h4>
@@ -59,7 +75,7 @@
 				</div>
 				<div class="three-column-one">
 				<%=image_tag "icons/stethoscope.svg", class: "img-responsive" %>
-					<h3>New medical conditions that limit your table</h3>
+					<h3>New medical conditions<br>that limit your table</h3>
 					<ul>
 						<h4><li>New diagnoses</li></h4>
 						<h4><li>Practical challenges to tackle</li></h4>
@@ -68,11 +84,17 @@
 				</div>
 			</div>
 		</section>
+
+		<!-- LANDING PAGE TESTIMONIAL -->
 		<section class="landing-page-row landing-page-testimonial">
 			<div class="testimonial-container">
-				<h2>Whatever limits your table, you deserve to enjoy great food. We can help.</h2>
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+					<h2>No matter what limits your table, you deserve to enjoy great food. We can help you with that!</h2>
+				</div>
 			</div>
 		</section>
+
+		<!-- LANDING PAGE SECTION -->
 		<section class="landing-page-row two-column-right">
 			<div class="two-column-image img-ipad-kitchen">
 			</div>
@@ -82,16 +104,20 @@
 				<hr class="small-hr">
 				<h3>Specialized and at your service. We’ve got you covered.</h3>
 			</div>
-		</section>		
+		</section>	
+
+		<!-- LANDING PAGE DIVIDER -->	
 		<section class="landing-page-row divider">
-		 	<div class="col-xs-6">
-			 	<h2>Virtually in your kitchen and at your table.</h2>
-			 	<p class="details">Web?  Check.  Mobile?  Check.  At your convenience.</p>
+		 	<div class="col-xs-12 col-sm-6">
+			 	<h1>Virtually in your kitchen<br>and at your table.</h1>
+			 	<p class="details">Web or mobile and at your convenience.</p>
 		 	</div>
-		 	<div class="col-xs-6">
+		 	<div class="col-xs-12 col-sm-6">
 		 		<p class="details">Access Kindrdfood from wherever and whenever is convenient for you. All you need is access to the internet and you can connect with your Kindrd Nutritionist and all of the recipes and materials tailored to your family’s needs and preferences.</p>
 		 	</div>
 		</section>
+
+		<!-- LANDING PAGE SECTION -->
 		<section class="landing-page-row two-column-left">
 			<div class="two-column-text">
 				<h2 class="heading">Guidance you can trust...Finally!</h2>
@@ -102,6 +128,8 @@
 			<div class="two-column-image img-rdns-discussing">
 			</div>
 		</section>
+
+		<!-- LANDING PAGE SECTION -->
 		<section class="landing-page-row two-column-right">
 			<div class="two-column-image img-confused-kid">
 			</div>
@@ -112,8 +140,14 @@
 				<h3>Filtered, verified, personalized and all in one place.</h3>
 			</div>
 		</section>
-		<%= render "/landing_pages/sections/call_to_action" %>
+
+		<!-- LANDING PAGE CALL TO ACTION BUTTON -->
+		<%#= render "/landing_pages/sections/call_to_action" %>
 	</div>
-	<%= render "/landing_pages/landing_pages_rd_1/landing_page_footer" %>
-	<%= render "/landing_pages/sign_up_modal", user: @user %>
+
+	<!-- LANDING PAGE FOOTER -->
+	<%#= render "/landing_pages/landing_pages_rd_1/landing_page_footer" %>
+
+	<!-- LANDING PAGE SIGN UP MODAL -->
+	<%#= render "/landing_pages/sign_up_modal", user: @user %>
 </div>

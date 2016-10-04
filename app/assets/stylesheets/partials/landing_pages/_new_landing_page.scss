@@ -250,13 +250,13 @@ $landing-page-max-nav-height: 70px;
 .kf-landing-page #section-navigate-food{
 	text-align: center;
 	.infographic-container {
-		@extend .img-responsive;
     padding: 2% 0;
     border: 5px solid #222222;
     border-radius: 15px;
     margin: 0 5%;
     position: relative;
     img {
+			@extend .img-responsive;			@extend .img-responsive;
 			margin: 0 auto;
 		}	
 	}
@@ -848,7 +848,7 @@ $landing-page-max-nav-height: 70px;
 	// Section - Guidance
 	#section-guidance{
 		h2 {
-			margin-top: 50px;
+			margin-bottom: 50px;
 		}
 	}
 

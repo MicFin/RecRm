@@ -480,6 +480,7 @@ Rails.application.routes.draw do
 
   # New LANDING PAGES
   get 'new_landing_page', to: "landing_pages#new_landing_page", as: "landing_pages_new_landing_page"
+  get 'new_providers_page', to: "landing_pages#new_provider_page", as: "landing_pages_new_provider_page"
 
   # should change these to not being opened to all users
   patch 'packages/:package_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_package_payment'

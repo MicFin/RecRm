@@ -19,7 +19,7 @@
               For Patients
             <% end %>
 
-            <%= active_link_to landing_pages_why_kindrdfood_path, { :active => [['landing_pages'], ['for_providers']], :class_active => 'active', :wrap_tag => :li} do %>
+            <%= active_link_to landing_pages_new_provider_page_path, { :active => [['landing_pages'], ['new_provider_page']], :class_active => 'active', :wrap_tag => :li} do %>
               For Providers
             <% end %>
             <li> <%= link_to "Login", new_session_path("user")%>

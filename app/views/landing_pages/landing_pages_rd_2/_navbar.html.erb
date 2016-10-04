@@ -22,12 +22,11 @@
             <%= active_link_to landing_pages_why_kindrdfood_path, { :active => [['landing_pages'], ['for_providers']], :class_active => 'active', :wrap_tag => :li} do %>
               For Providers
             <% end %>
-            <%= active_link_to landing_pages_why_kindrdfood_path, { :active => [['landing_pages'], ['why_kindrdfood']], :class_active => 'active', :wrap_tag => :li} do %>
-              SIGN UP
-            <% end %>
-            <%= active_link_to landing_pages_why_kindrdfood_path, { :active => [['landing_pages'], ['why_kindrdfood']], :class_active => 'active', :wrap_tag => :li} do %>
-              LOGIN
-            <% end %>
+            <li> <%= link_to "Login", new_session_path("user")%>
+            </li>
+            <li>
+            <%= link_to "SIGN UP", landing_pages_index_path, class: "btn btn-lg btn-primary"%>
+            </li>
       </ul>
     </div><!-- /.navbar-collapse -->
 	</nav>

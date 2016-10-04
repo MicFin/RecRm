@@ -1,152 +1,299 @@
 
 
 <!-- LANDING PAGE INDEX TEMPLATE -->
-<div id="kf-landing-page-main" class="kf-landing-page">
+<div class="kf-landing-page">
 
 	<!-- LANDING PAGE NAVIGATION -->
 	<%= render "/landing_pages/landing_pages_rd_2/navbar" %>
 
 	<!-- LANDING PAGE BODY -->
-	<div class="landing-page-body">
+	<main class="kf-landing-page-sections">
 
-		<!-- LANDING PAGE SPLASH IMAGE SECTION -->
-		<section class="splash-image-section">
-			<div class="left-splash-column">
-				<h1>Bring confidence<br>back to your table</h1>
-				<h2>Great food and good nutrition<br>start with the right guidance.</h2>
+		<!-- LANDING PAGE TOP ROW-->
+		<section id="section-video">
+			<div class="video-row">
+				<div class="video-image">
+					<h1>A guided path to navigate food<br>with a medically limited diet:<br>Support that every patient deserves.</h1>
+					<button>START A PROFILE</button>
+					<p><a href="">Learn More</a></p>
+					<div class="video-footer">
+						<p>Are you a healthcare provider? <a href="">SEE PROVIDER SOLUTIONS</a></p>
+					</div>
+				</div>
 			</div>
-			<div class="right-splash-column">
+			<div class="section-trusted-guidance">
+				<h2>Trusted specialized guidance in food & nutrition</h2>
 				<div>
-					<h3>Welcome to Kindrdfood!</h3>
-					<p class="details">Please create your account to schedule a session with one of our Registered Dietitian Nutritionists.</p>
-
-					<!-- LANDING PAGE SIGN UP FORM -->
-					<%#= render "/landing_pages/sign_up_form", :user => @user %>
+					<div>
+						<%= image_tag("icons/icon_stethescope.png", class: "img-responsive") %>
+						<h3>HAVE A DIET LIMITING NEW DIAGNOSIS</h3>
+						<p>A top-tier Dietitian, who specializes in eating with your condition, will give you a guided path to regain control of healthy daily meals.  Connect within days and without any travel.</p>
+					</div>
+					<div>
+						<%= image_tag("icons/icon_computer_screen.png", class: "img-responsive") %>
+						<h3>WANT MORE THAN GENERAL INFORMATION</h3>
+						<p>We match you with a Dietiain and resources, presonalized to your profile.  All guidance is based on current research.   We work with any food preference, as long as it's safe.</p>
+					</div>
+					<div>
+						<%= image_tag("icons/icon_asterisk.png", class: "img-responsive") %>
+						<h3>FRUSTRATED BY FEWER OPTIONS?</h3>
+						<p>Our experts help even the most limited diets.  Our experienced Deitians work together with your  physician and care team.</p>
+					</div>
+					<div>
+						<%= image_tag("icons/icon_question_marks.png", class: "img-responsive") %>
+						<h3>CAN'T FIND THE RIGHT EXPERT NEARBY?</h3>
+						<p>We match you with the right Dietitian for your needs, from wherever you are.  Connect live for a 1-on-1 session by video or phone.</p>
+					</div>
+				</div>
+				<p><a href="">List of our specialties</a></p>
+			</div>
+		</section>
+		<section id="section-navigate-food">
+			<div>
+				<div class="infographic-container">
+					<h1>How we help you navigate food</h1>
+					<%= image_tag("infographics/infographic_how_we_help.png", class: "img-responsive") %>
+					<!-- 					<p>Start on the right path and stay there. <br>Your dietitian is an exper partner to guide your journey.</p>
+					<p>You get personalized guidance and resources you can trust.  <br>You save tons of time and frustration by skipping the searh engine and other generalized sources.</p>
+					<p>Make your day-to-day smoother and enjoy better meals <br>by relying on your expert Dietitian, personalized recipes <br>and dietitain verified resources.</p> -->
 				</div>
 			</div>
 		</section>
-
-		<!-- LANDING PAGE SECTION -->
-		<section class="landing-page-row two-column-left">
-			<div class="two-column-text">
-				<h2 class="heading">Make mealtime a pleasure, everytime.</h2>
-				<p class="details">Kindrdfood is a convenient and trustworthy system that guides families who have to change the way that they eat, due to a medical condition, dietary restriction or a change in the family. Our simple application and team of experts make change easier by providing reliable, balanced guidance to help you get rid of the stress and enjoy your food with confidence. As a Kindrdfood client you will be matched with your very own Kindrd Nutritionist  – a highly trained and clinically experienced Registered Dietitian Nutritionist (RDN), who guide you remotely through live video or phone sessions. Your preferences, your needs, our best people are on it.</p>
-				<hr class="small-hr">
-				<h3>Food allergy? No problem. Infant in arms? We get it. New diagnosis? We’ll train you up.</h3>
-			</div>
-			<div class="two-column-image img-happy-family">
-			</div>
-		</section>
-
-		<!-- LANDING PAGE TESTIMONIAL -->
-		<section class="landing-page-row landing-page-testimonial">
-			<div class="img-quote-left">
-			</div>
-			<div class="img-quote-right">
-			</div>
-			<div class="testimonial-container">
-				<h3>“Since Daniel’s diagnosis we made 2 different meals every night, until my Kindrd Nutritionist got us on a plan that made everything so much easier and more enjoyable. I can’t imagine what things would be like for us if we hadn’t found Kindrdfood.”</h3>
-				<h4> – Beth </h4>
-			</div>
-		</section>
-
-		<!-- LANDING PAGE SECTION -->
-		<section class="landing-page-row three-column">
-			<div class="three-column-container">
-				<h2 class="heading">Expect the best for you and your family.</h2>
-				<div class="three-column-one">
-					<%=image_tag "icons/developing-family.svg", class: "img-responsive" %>
-					<h3>Growing families</h3>
-					<ul>
-						<h4><li>New baby on the way or in arms</li></h4>
-						<h4><li>Breastfeeding; transition to solids, and more</li></h4>
-						<h4><li>Growing children</li></h4>
-						<h4><li>Seeking informed choices</li></h4>
-					</ul>
+		<section id="section-quality">
+		 	<div>
+				<h2>Quality & Specialization</h2>
+				<p>Our world-class, Dietitian specialists give you better support to take on your specific challenges.</p>
+				<div>
+					<div>
+						<h4>FINDING THE RIGHT FOOD<br>& NUTRITION SUPPORT IS OFTEN CHALLENGING</h4>
+						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						  <div class="panel panel-default">
+						    <div class="panel-heading" role="tab" id="headingOne">
+						      <h4 class="panel-title">
+						        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						          There is a range of expertise in nutrition
+						        </a>
+						      </h4>
+						    </div>
+						    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						      <div class="panel-body">
+						        <p>Dietitians vs nutritionists</p>
+						        <p>"Registered dietitian" or Dietitian is a credential, regulared by law in many countries, requiring substantial formal training and experience.  The title of nutritionist (alone) is not regulated, so while familiar, it does not indicate any minium level of knowledge or experience.  Dietitians and nutritionists are oftenly mistakenly used interchangeably.</p>
+						        <p>Patient focused</p>
+						        <p>Not all dietitians see patients, and some work in a food service capacity.</p>
+						      </div>
+						    </div>
+						  </div>
+						  <div class="panel panel-default">
+						    <div class="panel-heading" role="tab" id="headingTwo">
+						      <h4 class="panel-title">
+						        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						          Quality of guidance, service, and content varies
+						        </a>
+						      </h4>
+						    </div>
+						    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+						      <div class="panel-body">
+						        <p>Evidence based nutrition vs fads and beliefs</p>
+						        <p>Research is conducted in nutrition as with medicine and while not eveything is answered and is alwyas subject to new learning, there is a lot of misinformaion and marketed nutrition "fads".  They aren't all bad, but it can be hard to know what is well evaluated and what is more like a belief.</p>
+						        <p>Trusted guidance vs selling something</p>
+						        <p>Unfortunately a lot of information online and guidance about food has a hidden sales agenda.  A specific food product, a book, or even a food belief system can be underlying guidance.  Selling is a part of the how people get introduced to new t hings but nutrition guidance driven by marketing can be a problem.</p>
+						        <p>Service is an experience you deserve</p>
+						        <p>Sadly, some expect service providers foret that service is most importantly abut the experience.  Even when you are stressed, confused and desperately need the right information, you shouldn't have to endure poor service.</p>
+						      </div>
+						    </div>
+						  </div>
+						  <div class="panel panel-default">
+						    <div class="panel-heading" role="tab" id="headingThree">
+						      <h4 class="panel-title">
+						        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						          Nutrition is specialized - just like medicine
+						        </a>
+						      </h4>
+						    </div>
+						    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+						      <div class="panel-body">
+						        <p>The right expert for each challenge</p>
+						        <p>For virtually every condition, there are experts in nutrition and practical challenges of eating for that condition.  Would you want a knee suegeon working on your heart?  Of course not!  We apply the same logic to matching you with an expert Dietitian.</p>
+						        <p>Not all dietitians are specialized</p>
+						        <p>Many practitioners will simly createa a long list of topics that they are familiar with.  We believe in going beyond well-rounded and connecting with an expert.</p>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</div>
+					<div>
+						<img src="">
+						<h4>THE RIGHT SPECIALIZED EXPERT<br> & HIGHEST QUALITY OF SUPPORT</h4>
+						<ul class="kf-quality-list">
+							<li>Every expert at Kindrdfood <br>is a registered Dietitian.
+							</li>
+							<li>Clients receive trusted, evidence<br> based guidance and content.</li>
+							<li>Every Kindrd Nutritionist is a<br>dietitian with focused specialities.</li>
+						</ul>
+						<button>SIGN UP</button>
+					</div>
 				</div>
-				<div class="three-column-one">
-					<%=image_tag "icons/food-allergies.svg", class: "img-responsive" %>
-					<h3>Food allergies &<br>dietary restrictions</h3>
-					<ul>
-						<h4><li>Improve variety and taste</li></h4>
-						<h4><li>New restrictions to navigate</li></h4>
-						<h4><li>Rare dietary restrictions</li></h4>
-					</ul>
+			</div>
+		</section>
+		<section id="section-specialization">
+			<div>
+				<h2>We provide a specialized guide to navigate food<br>with a medically limited diet</h2>
+				<div>
+					<div>
+						<%= image_tag("icons/icon_video_or_phone.png", class: "img-responsive") %>
+						<h3>CONVENIENT ACCESS<br>LIVE ONLINE VIDEO OR PHONE</h3>
+						<p>Live video session (or phone) let you connect to your Dietitian at your convenience - even from your kitchen.  Meet within a few days, even nights or weekends.</p>
+					</div>
+					<div>
+						<%= image_tag("icons/icon_matching_arrows.png", class: "img-responsive") %>
+						<h3>MATCHING WITH SPECIALIZED DIETITIANS</h3>
+						<p>Guidance from a Dietitian with special expertise in your condition and challenges, means that you get the right information the first time.</p>
+					</div>
+					<div>
+						<%= image_tag("icons/icon_check_mark.png", class: "img-responsive") %>
+						<h3>TRUSTED ANSWERS THE 1ST TIME</h3>
+						<p>Highly specialized experts and carefully curated recipes and resources, allow us to offer you personalized support that you can rely on.</p>
+					</div>
+					<div>
+						<%= image_tag("icons/icon_finger_print.png", class: "img-responsive") %>
+						<h3>PERSONALIZED IN EVERY WAY</h3>
+						<p>Recipes, information, and live support are all personalied to you, sparing ou the time and stress of finding and trying to validate information.</p>
+					</div>
 				</div>
-				<div class="three-column-one">
-				<%=image_tag "icons/stethoscope.svg", class: "img-responsive" %>
-					<h3>New medical conditions<br>that limit your table</h3>
-					<ul>
-						<h4><li>New diagnoses</li></h4>
-						<h4><li>Practical challenges to tackle</li></h4>
-						<h4><li>Big change to habits for health</li></h4>
-					</ul>
+			</div>
+		</section>
+		<section id="section-client-success">
+			<div>
+				<h2>Personal stories from Kindrdfood Clients</h2>
+				<div>
+					<div>
+						<h3>Client<br>Success<br>Stories</h3>
+					</div>
+					<div>
+						<%= image_tag("children/kristie_mother_with_children.png") %>
+						<p>Kristie's Story</p>
+						<button>Read Story</button>
+					</div>
+					<div>
+						<%= image_tag("children/baby_with_fpies.png") %>
+						<p>Chandler's Story</p>
+						<button>Read Story</button>
+					</div>
+					<div>
+						<%= image_tag("children/girl_studying_with_apple.png") %>
+						<p>Sarah's Story</p>
+						<button>Read Story</button>
+					</div>
 				</div>
 			</div>
 		</section>
-
-		<!-- LANDING PAGE TESTIMONIAL -->
-		<section class="landing-page-row landing-page-testimonial">
-			<div class="testimonial-container">
-				<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-					<h2>No matter what limits your table, you deserve to enjoy great food. We can help you with that!</h2>
+		<section id="section-experts">
+			<div>
+				<h2>Meet a few of our experts</h2>
+				<p>Our "Kindrd Nutritionists" are all Registered Dietitians (RDs). <a href="">What is an RD?</a></p>
+				<div>
+					<div>
+						<h3>Meet<br>Our<br>Experts</h3>
+					</div>
+					<div>
+						<%= image_tag("team/head_shots/head_shot_elise.png") %>
+						<p>Elise Steiner, MS, RD, LDN</p>
+						<button>View Profile</button>
+					</div>
+					<div>
+						<%= image_tag("team/head_shots/head_shot_karen.png") %>
+						<p>Karen Warman, MS, RD, LDN</p>
+						<button>View Profile</button>
+					</div>
+					<div>
+						<%= image_tag("team/head_shots/head_shot_tara.png") %>
+						<p>Tara McCarthy, MS, RD, LDN</p>
+						<button>View Profile</button>
+					</div>
+				</div>
+			</div>
+			<div>
+				<button>LEARN MORE ABOUT OUR TEAM</button>
+			</div>
+		</section>
+		<section id="section-guidance">
+			<div>
+				<div>
+					<div>
+						<%= image_tag("computers/computer_video_chat.png") %>
+					</div>
+					<div>
+						<h2>Expert specialized guidance<br>at your convenience</h2>
+						<ul>
+							<li>Matched with a specialized Dietitian: <strong><em>your</em> Kindrd Nutritionist</strong></li>
+							<li>Schedule when you want</li>
+							<li>Connect within a few days</li>
+							<li>Live 1-on-1 online video or by phone</li>
+							<li>Coordinated with your physician</li>
+						</ul>
+					</div>
+				</div>
+				<div>
+					<div>
+						<h3>Personalized recipes and guidance materials</h3>
+						<ul>
+							<li>Developed by our Executive Chef and our team of Dietitians</li>
+							<li>Tested, verified, and personalized for you</li>
+							<li>Meals for all types of limited diets</li>
+						</ul>
+						<p>(If we don't already have a recipe that fits your family's diet, we make them just for you!)</p>
+					</div>
+					<div>
+						<h3>Try these recipes for FREE!</h3>
+						<div>
+							<div>
+								<a href="http://www.kindrdfood.com/education/roasted-ratatouille">
+									<%= image_tag("https://kindrd-pics.s3.amazonaws.com/uploads/ckeditor/pictures/133/content_PH00231___roasted_ratatouille.png_.png") %>
+									<p>Roasted Ratatouille</p>
+								</a>
+							</div>
+							<div>
+							  <a href="/education/basic-frittata-plus-3-variations">
+									<%= image_tag("https://kindrd-pics.s3.amazonaws.com/uploads/ckeditor/pictures/135/content_RP00271_-_fritatta.png") %>
+									<p>Basic Frittata<br>(plus 3 variations)</p>
+								</a>
+							</div>
+							<div>
+							  <a href="/education/black-bean-brownies">
+									<%= image_tag("https://kindrd-pics.s3.amazonaws.com/uploads/ckeditor/pictures/132/content_brownie.png") %>
+									<p>Black Bean Brownies</p>
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
-
-		<!-- LANDING PAGE SECTION -->
-		<section class="landing-page-row two-column-right">
-			<div class="two-column-image img-ipad-kitchen">
+		<section id="section-pricing">
+			<h2>Pricing for Live 1-on-1 Guidance</h2>
+			<p>(Includes all accompanying recipes and information sent to you by your Kindrd Nutritionist.)</p>
+			<div>
+				<%= image_tag("icons/icon_sunshine.png") %>
+				<p>$109</p>
+				<p>1st Session<br>(1 hour)</p>
 			</div>
-			<div class="two-column-text">
-				<h2 class="heading">Kindrd Nutritionists help you approach every meal with confidence.</h2>
-				<p class="details">At Kindrdfood, our team of specialized RDNs all have comprehensive expertise and have received rigorous clinical training, but we don’t stop there. Every Kindrd Nutritionist goes through additional training with Kindrdfood in nutrition subspecialties, family eating challenges and cooking for safety and great taste. We hold our team to the highest standards possible, so that you can rely on the best.</p>
-				<hr class="small-hr">
-				<h3>Specialized and at your service. We’ve got you covered.</h3>
-			</div>
-		</section>	
-
-		<!-- LANDING PAGE DIVIDER -->	
-		<section class="landing-page-row divider">
-		 	<div class="col-xs-12 col-sm-6">
-			 	<h1>Virtually in your kitchen<br>and at your table.</h1>
-			 	<p class="details">Web or mobile and at your convenience.</p>
-		 	</div>
-		 	<div class="col-xs-12 col-sm-6">
-		 		<p class="details">Access Kindrdfood from wherever and whenever is convenient for you. All you need is access to the internet and you can connect with your Kindrd Nutritionist and all of the recipes and materials tailored to your family’s needs and preferences.</p>
-		 	</div>
+			<p>Follow up sessions available for <br>1 hour ($109) or 1/2 hour ($69).</p>
+			<p>Discount packages avialble for follow up sessions.</p>
+			<a href="">Insurance coverage & cost comparison</a>
 		</section>
-
-		<!-- LANDING PAGE SECTION -->
-		<section class="landing-page-row two-column-left">
-			<div class="two-column-text">
-				<h2 class="heading">Guidance you can trust...Finally!</h2>
-				<p class="details">Our Kindrd Nutritionists have deep experience in nutrition and are seasoned professionals when it comes to partnering with you and your family. They’re the best! Our approach to service is personalized. Your Kindrd Nutritionist will help you keep your family safe and help you enjoy better food, regardless of what limits your table. Our clients gain the confidence and comfort of having a guide to help them learn and improve the quality and taste of everything that they eat.</p>
-				<hr class="small-hr">
-				<h3>Verified and validated. Experts and info you can trust.</h3>
-			</div>
-			<div class="two-column-image img-rdns-discussing">
+		<section id="section-provider-solution">
+			<div>
+				<h2>World Class Nutrition Support for your Patients</h2>
+				<h4>Kindrdfood provides physician practices, hospitals, and ACOs, with a nutrition support solution for patients, making access to the right high quality guidance convenient, cost effective and coordinated with the rest of their health care.</h4>
+				<p>(Dietitians are all carefully sleected, specialized and focused on patients witin their specialty.)</p>
+				<button>SEE PROVIDER SOLUTIONS</button>
 			</div>
 		</section>
-
-		<!-- LANDING PAGE SECTION -->
-		<section class="landing-page-row two-column-right">
-			<div class="two-column-image img-confused-kid">
-			</div>
-			<div class="two-column-text">
-				<h2 class="heading">Why are you still using a search engine for your nutrition knowledge?</h2>
-				<p class="details">Searching the Internet often lands you on web pages with heavily biased and frequently incorrect information. You have to sift through and filter for yourself. Kindrdfood removes all of the guesswork for you and puts everything that you need in one trustworthy place. We do not accept food product or supplement endorsement deals, so neither the 1-on-1 guidance nor any content is adulterated by product marketing. We make it easy for you to learn with certainty.</p>
-				<hr class="small-hr">
-				<h3>Filtered, verified, personalized and all in one place.</h3>
-			</div>
-		</section>
-
-		<!-- LANDING PAGE CALL TO ACTION BUTTON -->
-		<%#= render "/landing_pages/sections/call_to_action" %>
-	</div>
+	</main>
 
 	<!-- LANDING PAGE FOOTER -->
-	<%#= render "/landing_pages/landing_pages_rd_1/landing_page_footer" %>
+	<%= render "/landing_pages/landing_pages_rd_2/footer" %>
 
 	<!-- LANDING PAGE SIGN UP MODAL -->
 	<%#= render "/landing_pages/sign_up_modal", user: @user %>

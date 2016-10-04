@@ -56,7 +56,7 @@ $landing-page-max-nav-height: 70px;
 // Navbar list items
 .kf-landing-page .kf-landing-page-navbar-list {
 	@extend .nav; 
-	@extend .navbar-nav-height; 
+	@extend .navbar-nav; 
 	@extend .navbar-right;
 	width: 100%;
 	margin: 10px;
@@ -69,9 +69,13 @@ $landing-page-max-nav-height: 70px;
 	// Responsive links
 	li {
 		width: 30%;
+		font-size: 20px;
 	}
 	li:nth-child(n+3){
 		width: 20%;
+	}
+	li:last-child a {
+		color: $brand-white;
 	}
 	@media (max-width: $screen-xs-max) {
 		li, li:nth-child(n+3) {
@@ -80,14 +84,493 @@ $landing-page-max-nav-height: 70px;
 	}
 }
 
-.kf-landing-page .landing-page-body {
+// Landing page container 
+.kf-landing-page .kf-landing-page-sections {
 	// Top margin for responsive nav
 	@media (max-width: $screen-sm-max) {
-		margin-top: $landing-page-min-nav-height;
+		margin-top: $landing-page-min-nav-height + 5px;
 	}
 	@media (min-width: $screen-sm-max) {
-		margin-top: $landing-page-max-nav-height;	
+		margin-top: $landing-page-max-nav-height + 5px;	
 	}	
-
 }
 
+// Landing page sections
+.kf-landing-page .kf-landing-page-sections section {
+	@include make-row();
+	position: relative;
+	padding: 5% 0;
+}
+
+// Section - Video
+.kf-landing-page #section-video{
+
+	.video-row {
+		min-height: 300px;
+	}
+	.video-image {
+	  width: 70%;
+	  float: left;
+	  margin-left: 15%;
+	  position: relative;
+    overflow: hidden;
+    z-index: 1; // higher than :.video-image:before
+    text-align: center;
+    @media (max-width: $screen-sm-max) {
+    	width: 90%;
+    	margin-left: 5%;
+    }
+    // video heading
+		h1{
+			text-align: center;
+			color: white;
+			width: 80%;
+	    margin: 0 auto;
+	    padding: 3%;
+    	@media (max-width: $screen-md-max) {
+				font-size: 30px;
+			}
+    	@media (max-width: $screen-xs-max) {
+				font-size: 20px;
+				line-height: 1.4;
+    		margin-top: 15px;
+    		width: 100%;
+			}
+		}
+		// video button
+		button {
+			@extend .btn;
+			@extend .btn-lg;
+			@extend .btn-primary;
+			font-size: 25px;
+			margin-top: 100px;
+			@media (max-width: $screen-sm-max) {
+		    margin-top: 20px;
+		  }
+		}
+		// video caption
+		> p {
+			font-size: 20px;
+			margin-top: 30px;
+			a {
+				color: white;
+			}
+		}
+		// video footer
+		.video-footer {
+			margin-top: 100px;
+			padding:10px;
+			text-align: right;
+	    background-color: rgba(0,0,0,0.6);
+	    padding: 20px;
+			p {
+				margin: 0px;
+				font-size: 20px;
+		    color: white;
+		    a {
+		    	font-size: 14px;
+		    }
+		    @media (max-width: $screen-sm-max) {
+		    	font-size: 14px;
+		    	text-align: center;
+		    	a {
+		    		display: block;
+		    	}
+		    }
+			}
+		}
+	}	
+	// video image before has background
+	.video-image:before {
+ 		content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1; // lower than :.video-image
+    // opacity: 0.6;
+    background-image: url("children/child_with_toys.png");
+    background-repeat: no-repeat;
+    background-position: 25% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+	}
+	// section beneath video image
+	.section-trusted-guidance {
+		position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+		background-color: $brand-dark-green;
+    padding-top: 300px; // for video
+    color: white;
+    text-align: center;
+		@media (max-width: $screen-sm-max){
+			padding-top: 250px; 
+		}
+    > div {
+    	@include make-row();
+    	> div {
+    		@include make-xs-column( 10 );
+    		@include make-xs-column-offset( 1 );
+    		@include make-sm-column-offset( 0 );
+    		@include make-sm-column( 6 );
+    		@include make-md-column( 3 );
+    		padding: 1% 5%;
+    		> img {
+    			padding: 10%;
+    			margin: 0 auto;
+    			width: 100%;
+    			max-width: 424px;
+    		}
+    		> h3 {
+    			margin-bottom: 20px;
+    		}
+    	}
+    }
+    > p {
+			font-size: 24px;
+			padding: 2%;
+			margin: 0;
+			a {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+// Section - Navigate Food
+.kf-landing-page #section-navigate-food{
+	text-align: center;
+	.infographic-container {
+    padding: 2% 0;
+    border: 5px solid #222222;
+    border-radius: 15px;
+    margin: 0 5%;
+    position: relative;
+    img {
+			margin: 0 auto;
+		}	
+	}
+}
+
+// Section - Quality
+.kf-landing-page #section-quality {
+	text-align: center;
+	background-color: $brand-dark-green;
+	color: $brand-white;
+	> div {
+		@include make-xs-column( 12 );
+		> p {
+	    font-size: 20px;
+	    margin-bottom: 75px;
+		}
+		> div {
+			@include make-row( );
+			> div {
+				@include make-xs-column( 12 );
+				@include make-sm-column( 6 );
+				.panel-group{
+					color: $brand-dark-green;
+					text-align: left;
+				}	
+				ul{
+					text-align: left;
+				}
+				ul.kf-quality-list {
+					list-style-type: none;
+					padding: 0;
+			    margin: 0 auto;
+			    text-align: center;
+			    max-width: 500px;
+			    margin-left: 20%;
+			    @media (max-width: $screen-md-max){
+			    	margin-left: auto;
+			    	padding-left: 2%;
+			    	h3{
+			    		font-size: 20px;
+			    	}
+			    }
+					li {
+						background: url('icons/icon_verified_list.png') no-repeat left top;
+						background-size: contain;
+				    height: 54px;
+				    margin: 7%;
+				    font-size: 18px;
+				    @media (max-width: $screen-xs-max){
+			    		margin: 7% 0;
+			    		padding-left: 10%
+			    	}
+					}
+					li:first-child{
+						background: url('icons/icon_rd.png') no-repeat left top;
+						background-size: contain;
+					}
+					li:last-child{
+						background: url('icons/icon_puzzles.png') no-repeat left top;
+						background-size: contain;
+					}
+				}
+			}
+			button {
+				@extend .btn;
+				@extend .btn-lg;
+				@extend .btn-primary;
+				font-size: 25px;
+				margin-top: 20px;
+			}
+		}
+  }
+}
+
+// Section - Specialization
+.kf-landing-page #section-specialization {
+  text-align: center;
+  > div {
+  	@include make-xs-column( 12 );
+
+  	> h2{
+  		margin-bottom: 75px;
+  	}
+  	> div {
+  		@include make-row();
+  	  > div {
+    		@include make-xs-column( 10 );
+    		@include make-xs-column-offset( 1 );
+    		@include make-sm-column-offset( 0 );
+  	  	@include make-sm-column( 6 );
+    		@include make-md-column( 3 );
+    		padding: 1% 5%;
+    		> img {
+    			padding: 10%;
+    			margin: 0 auto;
+    			width: 100%;
+    			max-width: 424px;
+    		}
+    		> h3 {
+    			margin-bottom: 20px;
+    		}    	
+    	}
+    }
+  }		
+}
+
+// Section - Client Success
+.kf-landing-page #section-client-success {
+  text-align: center;
+  > div {
+  	@include make-xs-column( 12 );
+  	h2{
+  		margin-bottom: 30px
+  	}
+  	> div {
+  		@include make-row();
+  		background-color: $brand-light-orange;
+  		> div:not(:first-child) {
+    		@include make-xs-column( 10 );
+    		@include make-xs-column-offset( 1 );
+    		@include make-sm-column-offset( 0 );
+  			@include make-sm-column( 3 );
+  			padding-top: 15px;
+  			padding-bottom: 15px;
+  			background-color: $brand-carrot-orange;
+  			> img {
+  				@extend .img-responsive;
+  				margin: 0 auto;
+  				width: 100%;
+    			max-width: 424px;
+  			}
+  			> p {
+  				margin-top:  20px;
+  			}
+  			> button {
+  				@extend .btn;
+					@extend .btn-lg;
+					@extend .btn-primary;
+  			}
+  		}
+  	  > div:first-child {
+  	  	@extend .hidden-xs;
+  	  	@include make-sm-column( 2 );
+  	  }
+  	}
+  }
+}
+
+// Section - Experts
+.kf-landing-page #section-experts {
+  text-align: center;
+  > div {
+  	@include make-xs-column( 12 );
+  	> p{
+  		margin-bottom: 30px
+  	}
+  	> div {
+  		@include make-row();
+  		background-color: $brand-light-green;
+  		> div:not(:first-child) {
+    		@include make-xs-column( 10 );
+    		@include make-xs-column-offset( 1 );
+    		@include make-sm-column-offset( 0 );
+  			@include make-sm-column( 3 );
+  			padding-top: 15px;
+  			padding-bottom: 15px;
+  			background-color: $brand-dark-green;
+  			> img {
+  				@extend .img-responsive;
+  				margin: 0 auto;
+  				width: 100%;
+    			max-width: 424px;
+  			}
+  			> p {
+  				margin-top:  20px;
+  			}
+  			> button {
+  				@extend .btn;
+					@extend .btn-lg;
+					@extend .btn-success;
+  			}
+  		}
+  	  > div:first-child {
+  	  	@extend .hidden-xs;
+  	  	@include make-sm-column( 2 );
+  	  }
+  	}
+  	> button {
+	  	@extend .btn;
+			@extend .btn-lg;
+			@extend .btn-primary;
+			margin-top: 50px;
+	  }
+	}
+}
+
+// Section - Guidance
+.kf-landing-page #section-guidance {
+  text-align: center;
+  background-color: $gray-lighter;
+  > div {
+  	@include make-xs-column( 12 );
+  	> div {
+  		@include make-row();
+  		> div {
+  			@include make-xs-column( 12 );
+  			@include make-sm-column( 6 );
+  			> img {
+		  		@extend .img-responsive;
+		    	max-width: 400px;
+		    	margin: 0 auto; 
+					@media (max-width: $screen-sm-max) {
+						width: 100%;
+					} 	
+		    }
+		    > ul {
+		    	text-align: left;
+		    	width: 100%;
+		    	margin: 5% auto;
+		    	font-size: 20px;
+    			line-height: 2;
+					@media (max-width: $screen-md-max) {
+						width: 100%;
+					}
+		    }
+		    > h3 {
+		    	margin: 10% auto;		    
+		    }
+		    > div {
+		    	@include make-row();
+		    	> div {
+		    		@include make-xs-column( 12 );
+		    		@include make-sm-column( 4 );
+		    		> a > img {
+		    			@extend .img-responsive;
+    			    margin: 0 auto;
+    			    width: 100%;
+    			   	max-width: 424px;
+
+		    		}
+		    		> a > p {
+		    			font-size: 20px;
+		    		}
+		    	}
+		    }
+  		}
+  	}
+	}
+}
+
+// Section - Pricing
+.kf-landing-page #section-pricing {
+  text-align: center;
+	> div {
+	  height: 250px;
+	  width: 250px;
+	  margin: 50px auto;
+	 	position: relative;
+  	> img {
+  		width: 250px;
+  		height: auto;
+  		position: absolute;
+  		top: 0;
+  		left: 0;
+  	} 
+  	> p {
+			position: absolute;
+    	font-size: 50px;
+  		top: 60px;
+  		left: 70px;
+    	color: white;
+  	}
+  	> p:last-child {
+  		top: 152px;
+    	left:75px;
+    	font-size: 20px;
+  	}
+  }
+  > p > br {
+		@extend .visible-xs-inline;
+  }
+}
+
+// Section - Provider Solution
+.kf-landing-page #section-provider-solution {
+ background-color: $gray-lighter;
+ text-align: center;
+  > div {
+    @include make-xs-column( 8 );
+    @include make-xs-column-offset( 2 );
+  	> h2{
+  		margin-bottom: 35px;
+  	}
+  	> h4 {
+  		line-height: 1.5;
+  	}
+		> button {
+			@extend .btn;
+			@extend .btn-lg;
+			@extend .btn-primary;
+			margin-top: 20px;
+		}
+	}
+}
+
+// FOOTER
+.kf-landing-page footer {
+	@include make-row();
+	text-align: center;
+	> div {
+		 @include make-row();
+		 > div {
+		 	@include make-xs-column(4);
+		 }
+		 > div:last-child {
+		 	 @include make-xs-column(12);
+		 }
+	}
+}

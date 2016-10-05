@@ -482,6 +482,10 @@ Rails.application.routes.draw do
   get 'new_landing_page', to: "landing_pages#new_landing_page", as: "landing_pages_new_landing_page"
   get 'new_providers_page', to: "landing_pages#new_provider_page", as: "landing_pages_new_provider_page"
   get 'new_contact_us_page', to: "landing_pages#new_contact_us_page", as: "landing_pages_new_contact_us_page"
+  get 'new_leadership_page', to: "landing_pages#new_leadership_page", as: "landing_pages_new_leadership_page"
+  get 'new_faq_page', to: "landing_pages#new_faq_page", as: "landing_pages_new_faq_page"
+  get 'new_sign_in_page', to: "landing_pages#new_sign_in_page", as: "landing_pages_new_sign_in_page"
+  get 'new_sign_up_page', to: "landing_pages#new_sign_up_page", as: "landing_pages_new_sign_up_page"
 
   # should change these to not being opened to all users
   patch 'packages/:package_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_package_payment'

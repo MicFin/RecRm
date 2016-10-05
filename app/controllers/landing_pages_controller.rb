@@ -54,7 +54,19 @@ class LandingPagesController < ApplicationController
 
   def new_contact_us_page
   end
-  
+
+  def new_leadership_page
+  end
+
+  def new_faq_page
+  end
+
+  def new_sign_up_page
+  end
+
+  def new_sign_in_page
+  end
+
   private
 
     def set_new_user

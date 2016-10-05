@@ -1,0 +1,58 @@
+
+
+<!-- LANDING PAGE INDEX TEMPLATE -->
+<div id="kf-landing-page-leadership" class="kf-landing-page landing-page-sub-navbar">
+
+	<!-- LANDING PAGE NAVIGATION -->
+	<%= render "/landing_pages/landing_pages_rd_2/navbar" %>
+
+	<!-- LANDING PAGE BODY -->
+	<main class="kf-landing-page-sections">
+		<%= render "/landing_pages/landing_pages_rd_2/sub_navbar" %>
+		<h1>Leadership</h1>
+		<div>
+			<div>
+				<div>
+					<%= image_tag("team/head_shots/head_shot_tara.png") %>
+					<div class="caption">
+        		<h3>Tara McCarthy, MS, RDN, LDN</h3>
+        		<p>Co-Founder & Chief Dietitian<p>
+      		</div>
+				</div>
+			</div>
+			<div>
+				<div>
+					<%= image_tag("team/head_shots/head_shot_liz.png") %>
+					<div class="caption">
+        		<h3>Elizabeth Hait, MD, MPH</h3>
+        		<p>Co-Founder & Senior Medical Advisor</p>
+      		</div>
+				</div>
+			</div>
+			<div>
+				<div>
+					<%= image_tag("team/head_shots/head_shot_lauren.png") %>
+					<div class="caption">
+        		<h3>Lauren Deal</h3>
+        		<p>Executive Chef</p>
+      		</div>
+				</div>
+			</div>
+			<div>
+				<div>
+					<%= image_tag("team/head_shots/head_shot_david.png") %>
+					<div class="caption">
+        		<h3>David Constantine</h3>
+        		<p>Co-Founder & CEO</p>
+      		</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<!-- LANDING PAGE FOOTER -->
+	<%= render "/landing_pages/landing_pages_rd_2/footer" %>
+
+	<!-- LANDING PAGE SIGN UP MODAL -->
+	<%#= render "/landing_pages/sign_up_modal", user: @user %>
+</div>

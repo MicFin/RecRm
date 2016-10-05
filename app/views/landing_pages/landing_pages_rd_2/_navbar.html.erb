@@ -22,11 +22,10 @@
             <%= active_link_to landing_pages_new_provider_page_path, { :active => [['landing_pages'], ['new_provider_page']], :class_active => 'active', :wrap_tag => :li} do %>
               For Providers
             <% end %>
-            <li> 
-              <%= link_to 'LOGIN', landing_pages_new_sign_in_page_path %>
+            <li> <%= link_to "Login", new_session_path("user")%>
             </li>
             <li>
-              <%= link_to "SIGN UP", landing_pages_new_sign_up_page_path, class: "btn btn-lg btn-primary"%>
+            <%= link_to "SIGN UP", landing_pages_new_sign_up_page_path, class: "btn btn-lg btn-primary"%>
             </li>
       </ul>
     </div><!-- /.navbar-collapse -->

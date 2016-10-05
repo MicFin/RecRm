@@ -181,25 +181,25 @@ $landing-page-max-nav-height: 70px;
 		}
 	}	
 	// video image before has background
-	.video-image:before {
- 		content: ' ';
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -1; // lower than :.video-image
-    // opacity: 0.6;
-    background-image: url("children/child_with_toys.png");
-    background-repeat: no-repeat;
-    background-position: 25% 0;
-    -ms-background-size: cover;
-    -o-background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    background-size: cover;
-	}
+	// .video-image:before {
+ // 		content: ' ';
+ //    display: block;
+ //    position: absolute;
+ //    left: 0;
+ //    top: 0;
+ //    bottom: 0;
+ //    right: 0;
+ //    z-index: -1; // lower than :.video-image
+ //    // opacity: 0.6;
+ //    background-image: url("children/child_with_toys.png");
+ //    background-repeat: no-repeat;
+ //    background-position: 25% 0;
+ //    -ms-background-size: cover;
+ //    -o-background-size: cover;
+ //    -moz-background-size: cover;
+ //    -webkit-background-size: cover;
+ //    background-size: cover;
+	// }
 	// section beneath video image
 	.section-trusted-guidance {
 		position: relative;

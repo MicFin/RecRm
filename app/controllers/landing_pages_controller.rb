@@ -67,6 +67,10 @@ class LandingPagesController < ApplicationController
   def new_sign_in_page
   end
 
+  def new_provider_sign_up_page
+  end
+
+
   private
 
     def set_new_user

@@ -1,0 +1,30 @@
+
+
+<!-- LANDING PAGE INDEX TEMPLATE -->
+<div id="kf-landing-page-contact-us" class="kf-landing-page landing-page-sub-navbar">
+
+	<!-- LANDING PAGE NAVIGATION -->
+	<%= render "/landing_pages/landing_pages_rd_2/navbar" %>
+
+	<!-- LANDING PAGE BODY -->
+	<main class="kf-landing-page-sections">
+		<%= render "/landing_pages/landing_pages_rd_2/sub_navbar" %>
+		<h1>Contact Us</h1>
+		<div>
+			<%=image_tag "team/tara_contact_us.jpg", class: "img-responsive" %>
+			<h3>Clients in need of support, please contact us here:</h3>
+			<h4><a href="tel:6175752203">617-575-2203</a></h4>
+			<h4><a href="mailto:customer.service@kindrdfood.com">customer.service@kindrdfood.com</a></h4>
+			<h3>We're shaping the way that patients and healthcare providers navigate food.</h3>
+			<h3>Partnerships & Business Inquiries:</h3>
+			<h4><a href="tel:6175752203;ext=3">617-575-2203  Ext. 3</a></h4>
+			<h4><a href="mailto:partnerships@kindrdfood.com?Subject=Partnership Inquiry" target="_top">partnerships@kindrdfood.com</a></h4>
+		</div>
+	</main>
+
+	<!-- LANDING PAGE FOOTER -->
+	<%= render "/landing_pages/landing_pages_rd_2/footer" %>
+
+	<!-- LANDING PAGE SIGN UP MODAL -->
+	<%#= render "/landing_pages/sign_up_modal", user: @user %>
+</div>

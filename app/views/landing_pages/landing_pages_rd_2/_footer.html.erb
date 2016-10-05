@@ -3,12 +3,8 @@
 					<div>
 						<h4>OUR SOLUTION</h4>
 						<ul>
-							<%= active_link_to landing_pages_our_mission_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-              For Patients
-            	<% end %>
-							<%= active_link_to landing_pages_leadership_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-              	For Providers
-            	<% end %>
+ 							<li><%= link_to 'For Patients', landing_pages_new_landing_page_path %></li>
+							<li><%= link_to 'For Providers', landing_pages_new_provider_page_path %></li>
 						</ul>
 					</div>
 					<div>

@@ -320,7 +320,7 @@ $landing-page-max-nav-height: 70px;
 					}
 				}
 			}
-			button {
+			a.register {
 				@extend .btn;
 				@extend .btn-lg;
 				@extend .btn-primary;
@@ -553,7 +553,7 @@ $landing-page-max-nav-height: 70px;
   	> h4 {
   		line-height: 1.5;
   	}
-		> button {
+		> a.register {
 			@extend .btn;
 			@extend .btn-lg;
 			@extend .btn-primary;
@@ -602,7 +602,7 @@ $landing-page-max-nav-height: 70px;
 					font-size: 14px;
 				}
 			}
-			button {
+			a {
 				margin-left: 3%;
 				margin-top: 50px;
 			}
@@ -881,6 +881,12 @@ $landing-page-max-nav-height: 70px;
 	  	}
 	  }
 	}
+	a.register {
+			@extend .btn;
+			@extend .btn-lg;
+			@extend .btn-primary;
+			margin-top: 20px;
+		}
 }
 
 .kf-landing-page .kf-landing-page-sub-navbar {

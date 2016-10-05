@@ -7,16 +7,16 @@
 	<div class="kf-landing-page-sections">
 		<h1>Get the support you deserve</h1>
 		
-		<p>Already have an account? <%= link_to 'Sign in.', landing_pages_new_sign_in_page_path %></p>	
+		<p>New user? <%= link_to 'Create an account.', landing_pages_new_sign_up_page_path %></p>	
 
 		<div>
 			<div>
-				<!-- Partial msut recieve user -->
-				 <%= simple_form_for(@user, as: "user", url: user_registration_path, html: {role:"form" }) do |f| %>
-				   <%#= devise_error_messages! %>
-				   <%= render "/layouts/alerts" %>
+				<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {role:"form" }) do |f| %>
+
+					<%= render "/layouts/alerts" %>
+
 				  <div class="form-group">
-				    <label for="email">Email Address</label>
+				    <label for="email">Email</label>
 				    <%= f.email_field :email, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
 				  </div>
 				  <div class="form-group">
@@ -27,14 +27,29 @@
 				    <label for="last-name">Confirm password</label>
 				    <%= f.password_field :password_confirmation, autofocus: false, class: "form-control", type: "password", placeholder: "secret sauce" %>
 				  </div>
-<!-- 				  <div class="form-group">
+				  <div class="form-group">
 				  	<p>I agree to the <a href="">Terms of Service</a></p>
-				  </div> -->
-
-				  <div class="text-center">
-				    <%= f.button :submit, "CREATE ACCOUNT", class: "btn btn-primary btn-lg", type: "submit" %>
 				  </div>
 
+					<div class="col-xs-8 col-xs-offset-2 text-right">
+					  <div class="checkbox">
+					    <label>
+					      <input type="checkbox"><span class="white-font"> Remember </span>
+					    </label>
+					  </div>
+					</div>
+				  <div class="text-center">
+				    <%= f.button :submit, "SIGN IN", class: "btn btn-primary btn-lg", type: "submit" %>
+				  </div>
+					
+					<div class="text-right">
+					<%#= render "users/shared/links" %>
+						<!-- 				snippet from shared/links, should be made into a partial -->
+						<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'  %>
+						  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+						<% end -%>
+						<!-- 				snippet from shared/links, should be made into a partial -->
+					</div>
 				<% end %>
 				
 			</div>

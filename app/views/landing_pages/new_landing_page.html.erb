@@ -16,15 +16,15 @@
 
 				<div class="video-image">
 					<h1>A guided path to navigate food<br>with a medically limited diet:<br>Support that every patient deserves.</h1>
-					<button>START A PROFILE</button>
-					<p><a href="">Learn More</a></p>
+					<%= link_to "START A PROFILE", landing_pages_new_sign_up_page_path, class: "register"%>
+					<p><a href="#trusted-guidance-header">Learn More</a></p>
 					<div class="video-footer">
-						<p>Are you a healthcare provider? <a href="">SEE PROVIDER SOLUTIONS</a></p>
+						<p>Are you a healthcare provider? <a href="/landing_pages_new_provider_page">SEE PROVIDER SOLUTIONS</a></p>
 					</div>
 				</div>
 			</div>
 			<div class="section-trusted-guidance">
-				<h2>Trusted specialized guidance in food & nutrition</h2>
+				<h2 id="trusted-guidance-header">Trusted specialized guidance in food & nutrition</h2>
 				<div>
 					<div>
 						<%= image_tag("icons/icon_stethescope.png") %>
@@ -47,7 +47,7 @@
 						<p>We match you with the right Dietitian for your needs, from wherever you are.  Connect live for a 1-on-1 session by video or phone.</p>
 					</div>
 				</div>
-				<p><a href="">List of our specialties</a></p>
+				<button type="button" class="btn btn-link" data-toggle="modal" data-target="#specialtiesModal">List of our specialties</button>
 			</div>
 		</section>
 		<section id="section-navigate-food">
@@ -201,17 +201,17 @@
 					<div>
 						<%= image_tag("team/head_shots/head_shot_elise.png") %>
 						<p>Elise Steiner<br> MS, RD, LDN</p>
-						<button>View Profile</button>
+						<!-- <button>View Profile</button> -->
 					</div>
 					<div>
 						<%= image_tag("team/head_shots/head_shot_karen.png") %>
 						<p>Karen Warman<br> MS, RD, LDN</p>
-						<button>View Profile</button>
+						<!-- <button>View Profile</button> -->
 					</div>
 					<div>
 						<%= image_tag("team/head_shots/head_shot_tara.png") %>
 						<p>Tara McCarthy<br> MS, RD, LDN</p>
-						<button>View Profile</button>
+						<!-- <button>View Profile</button> -->
 					</div>
 				</div>
 			</div>
@@ -282,7 +282,7 @@
 			</div>
 			<p>Follow up sessions available for <br>1 hour ($109) or 1/2 hour ($69).</p>
 			<p>Discount packages avialble for follow up sessions.</p>
-			<a href="">Insurance coverage & cost comparison</a>
+			<!-- 			<a href="">Insurance coverage & cost comparison</a> -->
 		</section>
 		<section id="section-provider-solution">
 			<div>
@@ -297,6 +297,6 @@
 	<!-- LANDING PAGE FOOTER -->
 	<%= render "/landing_pages/landing_pages_rd_2/footer" %>
 
-	<!-- LANDING PAGE SIGN UP MODAL -->
-	<%#= render "/landing_pages/sign_up_modal", user: @user %>
+	<!-- SPECIALTIES MODAL -->
+	<%= render "/landing_pages/landing_pages_rd_2/modals/specialties" %>
 </div>

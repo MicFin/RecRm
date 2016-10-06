@@ -45,7 +45,8 @@
 						<p>Each patient's nutritoin guidance is coordinated with their helathcare provider and Dietitians send a follow up to the provider after each session.</p>
 					</div>
 				</div>
-				<p><a href="">List of our team's specialties</a><br><small>Our team of Dietitians are specialists.  They see clients in their few ares of true focused expertise.</small></p>
+				<button type="button" class="btn btn-link" data-toggle="modal" data-target="#specialtiesModal">List of our specialties</button>
+				<p>Our team of Dietitians are specialists.  They see clients in their few ares of true focused expertise.</p>
 			</div>
 		</section>
 		<section id="section-navigate-food">
@@ -65,8 +66,7 @@
 				<h4>LICENSABLE SOLUTION<br>FOR GULLY OR<br>PARTIALLY STAFFED</h4>
 				<p>Arm your team with the best<br> technology system and curated<br> content to support patients'<br> general nutrition and medically limited diets.</p>
 
-				<button>CONTACT US</button>
-				<a href="">OR SIMPLY REGISTER<br>TO MAKE REFERRALS RIGHT NOW</a>
+				<%= link_to "SIGN UP", landing_pages_new_provider_sign_up_page_path, class: "register" %>
 			</div>
 		</section>
 		<section id="section-guidance">
@@ -84,7 +84,7 @@
 							<li>Patient support coordinated with their provider</li>
 							<li>Patient & practicioner interfaces designed specifically for food navigation & nutrition support</li>
 						</ul>
-						<p><a href="">How do we match?</a></p>
+						<!-- <p><a href="">How do we match?</a></p> -->
 					</div>
 				</div>
 			</div>
@@ -135,7 +135,7 @@
 		<section id="section-experts">
 			<div>
 				<h2>Meet a few of our experts</h2>
-				<p>Our "Kindrdfood Dietitians" are all Registered Dietitians (RDs). <a href="">What is an RD?</a></p>
+				<p>Our "Kindrdfood Dietitians" are all Registered Dietitians (RDs). <a href="/education/registered-dietitian-vs-nutritionist">What is an RD?</a></p>
 				<div>
 					<div>
 						<h3>Meet<br>Our<br>Experts</h3>
@@ -158,7 +158,7 @@
 				</div>
 			</div>
 			<div>
-				<button>LEARN MORE ABOUT OUR TEAM</button>
+				<%= link_to "LEARN MORE ABOUT OUR TEAM", landing_pages_new_leadership_page_path, class: "register" %>
 			</div>
 		</section>
 		<section id="section-provider-solution">
@@ -174,6 +174,6 @@
 	<!-- LANDING PAGE FOOTER -->
 	<%= render "/landing_pages/landing_pages_rd_2/footer" %>
 
-	<!-- LANDING PAGE SIGN UP MODAL -->
-	<%#= render "/landing_pages/sign_up_modal", user: @user %>
+	<!-- 	SPECIALTES MODAL -->
+	<%= render "/landing_pages/landing_pages_rd_2/modals/specialties" %>
 </div>

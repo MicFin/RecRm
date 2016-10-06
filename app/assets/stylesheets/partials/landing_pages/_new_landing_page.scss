@@ -145,10 +145,7 @@ $landing-page-max-nav-height: 70px;
 			}
 		}
 		// video button
-		button {
-			@extend .btn;
-			@extend .btn-lg;
-			@extend .btn-primary;
+		.register {
 			font-size: 25px;
 			margin-top: 100px;
 			@media (max-width: $screen-sm-max) {
@@ -242,13 +239,11 @@ $landing-page-max-nav-height: 70px;
     		}
     	}
     }
-    > p {
+    > button {
+			text-decoration: underline;
 			font-size: 24px;
 			padding: 2%;
 			margin: 0;
-			a {
-				text-decoration: underline;
-			}
 		}
 	}
 }
@@ -620,7 +615,6 @@ $landing-page-max-nav-height: 70px;
 			}
 			a {
 				margin-left: 3%;
-				margin-top: 50px;
 			}
 			.video-footer {
 				margin-top: 50px;
@@ -648,10 +642,10 @@ $landing-page-max-nav-height: 70px;
 		// section beneath video image
 		.section-trusted-guidance {
 			background-color: $brand-light-orange;
-			a {
+			button {
 				color: $brand-white;
 			}
-			a:hover {
+			button:hover {
 				color: $brand-light-green;
 			}
 			@media (max-width: $screen-xs-max) {
@@ -1002,5 +996,22 @@ $landing-page-max-nav-height: 70px;
 			@include make-xs-column(6);
 			@include make-xs-column-offset( 3 );
 	  }
+	}
+}
+
+// MODALS
+#specialtiesModal {
+	.modal-body {
+		text-align: center;
+		> div > div  > div {
+	    border-radius: 15px;
+	    border: 1px solid black;
+	    padding: 20px 0;
+		}
+	}
+	ul {
+		display: inline-block;
+    list-style-type: none;
+    padding: 0;
 	}
 }

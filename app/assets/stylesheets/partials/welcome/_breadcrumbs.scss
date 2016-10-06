@@ -13,6 +13,10 @@
 
 #welcome-breadcrumb{
 
+  .btn-warning{
+    background-color: $brand-light-orange;
+    border-color: $brand-light-orange;
+  }
   /** The arrows **/
   .btn-breadcrumb .btn:not(:last-child):after {
     content: " ";

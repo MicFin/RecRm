@@ -6,8 +6,16 @@ Kindrdfood.landingPages = Kindrdfood.landingPages || {};
 
 Kindrdfood.landingPages.qolAdmin = {
     validateSignUpForm: function(){
-      $("#qol-page form, .new-user-form").validate({
+      $("#qol-page form, .new-user-form, .new_user").validate({
         rules: {
+          "user[first_name]":{
+            required: true,
+            minlength: 2,
+          },
+          "user[last_name]": {
+            required: true,
+            minlength: 2,
+          },
           "user[email]":{
             email: true,
             required: true,

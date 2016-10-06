@@ -1,3 +1,10 @@
+// Buttons
+.register {
+			@extend .btn;
+			@extend .btn-lg;
+			@extend .btn-primary;
+}
+
 // Landing page container
 .kf-landing-page {
 	@extend .container-fluid;
@@ -181,25 +188,25 @@ $landing-page-max-nav-height: 70px;
 		}
 	}	
 	// video image before has background
-	// .video-image:before {
- // 		content: ' ';
- //    display: block;
- //    position: absolute;
- //    left: 0;
- //    top: 0;
- //    bottom: 0;
- //    right: 0;
- //    z-index: -1; // lower than :.video-image
- //    // opacity: 0.6;
- //    background-image: url("children/child_with_toys.png");
- //    background-repeat: no-repeat;
- //    background-position: 25% 0;
- //    -ms-background-size: cover;
- //    -o-background-size: cover;
- //    -moz-background-size: cover;
- //    -webkit-background-size: cover;
- //    background-size: cover;
-	// }
+	.video-image:before {
+ 		content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1; // lower than :.video-image
+    // opacity: 0.6;
+    background-image: url("children/child_with_toys.png");
+    background-repeat: no-repeat;
+    background-position: 25% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+	}
 	// section beneath video image
 	.section-trusted-guidance {
 		position: relative;
@@ -267,6 +274,9 @@ $landing-page-max-nav-height: 70px;
 	text-align: center;
 	background-color: $brand-dark-green;
 	color: $brand-white;
+	.panel {
+		background-color: $gray-light;
+	}
 	> div {
 		@include make-xs-column( 12 );
 		> p {
@@ -279,9 +289,17 @@ $landing-page-max-nav-height: 70px;
 				@include make-xs-column( 12 );
 				@include make-sm-column( 6 );
 				.panel-group{
-					color: $brand-dark-green;
+					// color: $brand-dark-green;
 					text-align: left;
 				}	
+				img {
+					@extend .img-responsive;
+					max-height: 200px;
+					margin: 0 auto;
+					max-height: 150px;
+			    margin: 0 auto;
+			    margin-top: 20px;
+				}
 				ul{
 					text-align: left;
 				}
@@ -319,6 +337,10 @@ $landing-page-max-nav-height: 70px;
 						background-size: contain;
 					}
 				}
+			}
+			> div:first-child {
+				@include make-sm-column( 4 );
+				@include make-sm-column-offset( 1 );
 			}
 			a.register {
 				@extend .btn;
@@ -444,10 +466,7 @@ $landing-page-max-nav-height: 70px;
   	  	@include make-sm-column( 2 );
   	  }
   	}
-  	> button {
-	  	@extend .btn;
-			@extend .btn-lg;
-			@extend .btn-primary;
+  	> a {
 			margin-top: 50px;
 	  }
 	}
@@ -554,9 +573,6 @@ $landing-page-max-nav-height: 70px;
   		line-height: 1.5;
   	}
 		> a.register {
-			@extend .btn;
-			@extend .btn-lg;
-			@extend .btn-primary;
 			margin-top: 20px;
 		}
 	}
@@ -953,14 +969,14 @@ $landing-page-max-nav-height: 70px;
 		margin-bottom: 50px;
 	}
 	> div {
-		@include make-row();
+		@include make-xs-column( 3);
+		@media (max-width: $screen-xs-max) {
+			@include make-xs-column(12);
+		}
 		> div {
-			@include make-xs-column( 3);
-			@media (max-width: $screen-xs-max) {
-				@include make-xs-column(12);
-			}
-			> div {
-				@extend .thumbnail;
+			@extend .thumbnail;
+			img {
+				max-height: 500px;
 			}
 		}
 	}

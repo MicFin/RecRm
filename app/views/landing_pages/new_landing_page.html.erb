@@ -15,20 +15,12 @@
 
 
 				<div class="video-image">
-			<script src="//fast.wistia.com/embed/medias/gslowafq38.jsonp" async></script>
-			<script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
-				<div class="wistia_responsive_padding" style="position:relative;">
 					<h1>A guided path to navigate food<br>with a medically limited diet:<br>Support that every patient deserves.</h1>
 					<button>START A PROFILE</button>
 					<p><a href="">Learn More</a></p>
 					<div class="video-footer">
 						<p>Are you a healthcare provider? <a href="">SEE PROVIDER SOLUTIONS</a></p>
 					</div>
-					<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-						<div class="wistia_embed wistia_async_gslowafq38 videoFoam=true" style="height:100%;width:100%">&nbsp;</div>
-					</div>
-				</div>
-
 				</div>
 			</div>
 			<div class="section-trusted-guidance">
@@ -81,11 +73,11 @@
 						    <div class="panel-heading" role="tab" id="headingOne">
 						      <h4 class="panel-title">
 						        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						          There is a range of expertise in nutrition
+						          There is a range of expertise in nutrition <br> (learn more)
 						        </a>
 						      </h4>
 						    </div>
-						    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 						      <div class="panel-body">
 						        <p>Dietitians vs nutritionists</p>
 						        <p>"Registered dietitian" or Dietitian is a credential, regulared by law in many countries, requiring substantial formal training and experience.  The title of nutritionist (alone) is not regulated, so while familiar, it does not indicate any minium level of knowledge or experience.  Dietitians and nutritionists are oftenly mistakenly used interchangeably.</p>
@@ -98,7 +90,7 @@
 						    <div class="panel-heading" role="tab" id="headingTwo">
 						      <h4 class="panel-title">
 						        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						          Quality of guidance, service, and content varies
+						          Quality of guidance, service, and content varies <br> (learn more)
 						        </a>
 						      </h4>
 						    </div>
@@ -117,7 +109,7 @@
 						    <div class="panel-heading" role="tab" id="headingThree">
 						      <h4 class="panel-title">
 						        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						          Nutrition is specialized - just like medicine
+						          Nutrition is specialized - just like medicine <br> (learn more)
 						        </a>
 						      </h4>
 						    </div>
@@ -133,13 +125,13 @@
 						</div>
 					</div>
 					<div>
-						<img src="">
 						<h4>THE RIGHT SPECIALIZED EXPERT<br> & HIGHEST QUALITY OF SUPPORT</h4>
+						<%= image_tag("logos/logo-vertical.jpg") %>
 						<ul class="kf-quality-list">
 							<li>Every expert at Kindrdfood <br>is a registered Dietitian.
 							</li>
 							<li>Clients receive trusted, evidence<br> based guidance and content.</li>
-							<li>Every Kindrd Nutritionist is a<br>dietitian with focused specialities.</li>
+							<li>Every Kindrdfood Dietitian is a<br>dietitian with focused specialities.</li>
 						</ul>
 						<%= link_to "SIGN UP", landing_pages_new_sign_up_page_path, class: "register" %>
 					</div>
@@ -201,7 +193,7 @@
 		<section id="section-experts">
 			<div>
 				<h2>Meet a few of our experts</h2>
-				<p>Our "Kindrd Nutritionists" are all Registered Dietitians (RDs). <a href="">What is an RD?</a></p>
+				<p>Our "Kindrdfood Dietitians" are all Registered Dietitians (RDs). <a href="/education/registered-dietitian-vs-nutritionist">What is an RD?</a></p>
 				<div>
 					<div>
 						<h3>Meet<br>Our<br>Experts</h3>
@@ -224,7 +216,7 @@
 				</div>
 			</div>
 			<div>
-				<button>LEARN MORE ABOUT OUR TEAM</button>
+				<%= link_to "LEARN MORE ABOUT OUR TEAM", landing_pages_new_leadership_page_path, class: "register" %>
 			</div>
 		</section>
 		<section id="section-guidance">
@@ -236,7 +228,7 @@
 					<div>
 						<h2>Expert specialized guidance<br>at your convenience</h2>
 						<ul>
-							<li>Matched with a specialized Dietitian: <strong><em>your</em> Kindrd Nutritionist</strong></li>
+							<li>Matched with a specialized Dietitian: <strong><em>your</em> Kindrdfood Dietitian</strong></li>
 							<li>Schedule when you want</li>
 							<li>Connect within a few days</li>
 							<li>Live 1-on-1 online video or by phone</li>
@@ -282,7 +274,7 @@
 		</section>
 		<section id="section-pricing">
 			<h2>Pricing for Live 1-on-1 Guidance</h2>
-			<p>(Includes all accompanying recipes and information sent to you by your Kindrd Nutritionist.)</p>
+			<p>(Includes all accompanying recipes and information sent to you by your Kindrdfood Dietitian.)</p>
 			<div>
 				<%= image_tag("icons/icon_sunshine.png") %>
 				<p>$109</p>

@@ -648,6 +648,7 @@ $landing-page-max-nav-height: 70px;
 			button:hover {
 				color: $brand-light-green;
 			}
+			padding-top: 350px; // for video
 			@media (max-width: $screen-xs-max) {
 				padding-top: 200px;
 			}

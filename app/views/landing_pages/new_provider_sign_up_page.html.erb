@@ -5,8 +5,7 @@
 	<!-- LANDING PAGE NAVIGATION -->
 	<%= render "/landing_pages/landing_pages_rd_2/navbar" %>
 	<div class="kf-landing-page-sections">
-		<h1>Get the support you deserve</h1>
-		
+		<h1>REGISTER<br>Give your patients great nutrition support</h2>	
 		<p>Already have an account? <%= link_to 'Sign in.', landing_pages_new_sign_in_page_path %></p>	
 
 		<div>
@@ -31,10 +30,10 @@
 
 				  <div class="form-group">
 				    <label for="specialty">Specialty</label>
-				    <%= f.input_field :hospitals_or_practices, autofocus: true, class: "form-control", type: "text", placeholder: "Boston Children's Hospital, Harvard Medical" %>
+				    <%= f.input_field :hospitals_or_practices, autofocus: true, class: "form-control", type: "text", placeholder: "Pediatric GI" %>
 				  </div>
 				  <div class="form-group">
-				    <label for="fax">Fax (important!: this is used for follow up records)</label>
+				    <label for="fax">Fax (Important! This is used for follow up records)</label>
 				    <%= f.input_field :fax, autofocus: true, class: "form-control", type: "text", placeholder: "Fax" %>
 				  </div>
 				  <div class="form-group">

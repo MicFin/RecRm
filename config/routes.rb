@@ -687,7 +687,7 @@ Rails.application.routes.draw do
     unauthenticated :dietitian do
       
       # THIS IS THE MAIN ROOT FOR ALL NON REGISTERED USERS
-      root :to => "landing_pages#index", as: :dietitian_unauthenticated_root
+      root :to => "landing_pages#new_landing_page", as: :dietitian_unauthenticated_root
       get 'dietitians/:id' => 'dietitians/registrations#show' # for unauthenticated users to be able to dietitian page
     end   
   end

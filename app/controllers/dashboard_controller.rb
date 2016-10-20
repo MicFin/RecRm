@@ -21,6 +21,10 @@ class DashboardController < ApplicationController
     @clients_invited = User.invited_accounts.order_by_created_at
   end
 
+  def providers
+    @providers = User.where(provider: true)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def verify_admin

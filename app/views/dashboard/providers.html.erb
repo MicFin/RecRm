@@ -1,0 +1,66 @@
+<div id="welcome-page" class="container-fluid">
+  <div class="row">
+    <%= render "/layouts/navbars/dietitian_nav" %>
+    <main class="main-content-container">
+      <h1>Providers</h1>  
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>First</th>
+              <th>Last</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Zip</th>
+              <th>Hospitals or Practices</th>
+              <th>Academic Affiliation</th>
+              <th>Specialty</th>
+              <th>Sub Specialty</th>
+              <th>Fax</th>
+              <th>Sign Up Date</th>
+              <th>Last Sign In</th>
+              <th>Sign In Count</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @providers && @providers.each do |provider| %>
+              <tr>
+                <td><%= provider.first_name if provider.first_name? %></td>
+                <td><%= provider.last_name if provider.first_name? %></td>
+                <td><%= provider.email %></td>
+                <td><%= provider.phone_number if provider.phone_number? %></td>
+                <td><%= provider.zip_code if provider.zip_code? %></td>
+                <td><%= provider.hospitals_or_practices if provider.hospitals_or_practices %></td>
+                <td><%= provider.academic_affiliations if provider.academic_affiliations %></td>
+                <td><%= provider.specialty if provider.specialty %></td>
+                <td><%= provider.subspecialty if provider.subspecialty %></td>
+                <td><%= provider.fax if provider.fax %></td>
+                <td><%= provider.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+                <td><%= provider.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+                <td><%= provider.sign_in_count%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+      <%=render "/layouts/footers/main_footer" %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

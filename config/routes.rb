@@ -654,6 +654,7 @@ Rails.application.routes.draw do
 
       # Dashboard paths
       get 'dashboard/clients_onboarding', to: 'dashboard#clients_onboarding', as: 'dashboard_clients_onboarding'
+      get 'dashboard/providers', to: "dashboard#providers", as: "dashboard_providers"
       
       # Role assignment paths
       get 'roles/assignments', to: 'roles#assignments', as: 'roles_assignments'
@@ -680,6 +681,9 @@ Rails.application.routes.draw do
 
       # Invitation paths
       get 'users/invitations', to: 'users/invitations#index', as: 'users_invitations'
+
+
+
 
     end
 

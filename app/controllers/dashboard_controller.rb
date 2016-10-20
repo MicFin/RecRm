@@ -22,7 +22,7 @@ class DashboardController < ApplicationController
   end
 
   def providers
-    @providers = User.where(provider: true)
+    @providers = User.provider_accounts.order_by_created_at
   end
 
   private

@@ -5,5 +5,10 @@
 	border-radius: 5px;
 	behavior: url($pie-path);
 	background-color: $lightorange;
-	color: white;
+	color: $white;
+}
+
+.error input[type="password"] {
+	background-color: $lightorange;
+	color: $white;
 }

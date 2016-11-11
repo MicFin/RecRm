@@ -493,6 +493,8 @@ Rails.application.routes.draw do
   get 'new_provider_sign_up_page', to: "landing_pages#new_provider_sign_up_page", as: "landing_pages_new_provider_sign_up_page"
 
 
+  resources :guest_users
+
   # should change these to not being opened to all users
   patch 'packages/:package_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_package_payment'
   resources :packages do 
@@ -528,6 +530,7 @@ Rails.application.routes.draw do
   get 'provider9172' => redirect("/")
   get "/kindrdnutritionist" => redirect("/dietitians/sign_in")
   get "/krdn" => redirect("/dietitians/sign_in")
+
 
   ### ROUTES AVAILABLE TO USERS 
   devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'users/sessions', :confirmations => "users/confirmations", :invitations => 'users/invitations' }

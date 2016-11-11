@@ -6,6 +6,23 @@
 	<%= render "/landing_pages/landing_pages_rd_2/navbar" %>
 	<div class="kf-landing-page-sections">
 		<h1>REGISTER<br>Give your patients great nutrition support</h2>	
+		<div>
+			<div>
+				<div class="row">
+					<div class="col-xs-3">
+						<%=image_tag "icons/icon_hands_green.png", class: "img-responsive" %>
+					</div>	
+					<div class="col-xs-9">
+						<h3>Why register to refer?</h3>
+						<ul>
+							<li>We keep track of referrals</li>
+							<li>Assure that care is coordinated in your office</li>
+							<li>Offer your patients a discount on all 1 hour sessions</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 		<p>Already have an account? <%= link_to 'Sign In', new_session_path("user") %></p>	
 
 		<div>

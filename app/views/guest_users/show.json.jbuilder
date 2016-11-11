@@ -1,0 +1,1 @@
+json.partial! "guest_users/guest_user", guest_user: @guest_user

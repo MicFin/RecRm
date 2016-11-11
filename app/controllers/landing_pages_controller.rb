@@ -1,5 +1,6 @@
 class LandingPagesController < ApplicationController
   before_action :set_new_user
+  before_action :set_new_guest_user, only: [:new_contact_us_page]
 
   # qol admin landing page
   def qol_admin
@@ -75,5 +76,9 @@ class LandingPagesController < ApplicationController
 
     def set_new_user
       @user = User.new 
+    end
+
+    def set_new_guest_user
+      @guest_user = GuestUser.new 
     end
 end

@@ -10,15 +10,62 @@
 	<main class="kf-landing-page-sections">
 		<%= render "/landing_pages/landing_pages_rd_2/sub_navbar" %>
 		<h1>Contact Us</h1>
-		<div>
+		<div class="col-xs-4 col-xs-offset-4">
 			<%=image_tag "team/tara_contact_us.jpg", class: "img-responsive" %>
-			<h3>Clients in need of support, please contact us here:</h3>
+		</div>
+		<div class="col-xs-12">
+			<h3>Client in need of support? Please contact us here:</h3>
 			<h4><a href="tel:6175752203">617-575-2203</a></h4>
 			<h4><a href="mailto:customer.service@kindrdfood.com">customer.service@kindrdfood.com</a></h4>
-			<h3>We're shaping the way that patients and healthcare providers navigate food. Want to get involved?</h3>
-			<h3>For healthcare provider, partnership and other business inquiries, please contact us here:</h3>
-			<h4><a href="tel:6175752203;ext=3">617-575-2203  Ext. 3</a></h4>
-			<h4><a href="mailto:partnerships@kindrdfood.com?Subject=Partnership Inquiry" target="_top">partnerships@kindrdfood.com</a></h4>
+			<h3>We're shaping the way that patients and healthcare providers navigate food.<br>Want to know more?</h3>
+			<p>Please fill out this form and we'll connect you with the right person ASAP</p>
+		</div>
+		<div>
+			<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+				<%= simple_form_for(@guest_user, html: {role:"form" }) do |f| %>
+
+					<div class="form-group">
+
+
+				    <%= f.input :first_name, autofocus: true, type: "text", input_html: {class: "form-control", placeholder: "First Name"} %>
+				  </div>
+					<div class="form-group">
+
+			
+				    <%= f.input :last_name, autofocus: true, type: "text", input_html: {class: "form-control", placeholder: "Last Name"} %>
+				  </div>
+					<div class="form-group">
+
+
+				    <%= f.input :phone_number, autofocus: true, type: "text", input_html: {class: "form-control", placeholder: "###-###-###"} %>
+				  </div>				
+				  <div class="form-group">
+
+				    <%= f.email_field :email_address, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
+				  </div>
+					<div class="form-group">
+
+				
+				    <%= f.input :title, autofocus: true, type: "text", input_html: {class: "form-control", placeholder: "Title"} %>
+				  </div>
+					<div class="form-group">
+
+	
+				    <%= f.input :company, autofocus: true, type: "text", input_html: {class: "form-control", placeholder: "Company"} %>
+				  </div>
+					<div class="form-group">
+
+				    <label for="last_name">How can we help you?</label>
+				    <%= f.input :help, autofocus: true, type: "text", input_html: {class: "form-control", placeholder: "Comment here"}, label: false %>
+				  </div>
+				  <div class="text-center">
+				    <%= f.button :submit, "Submit", class: "btn btn-primary btn-lg", type: "submit" %>
+				  </div>
+				
+				<% end %>
+				
+			</div>
+		</div>
 		</div>
 	</main>
 

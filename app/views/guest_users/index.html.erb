@@ -1,0 +1,66 @@
+
+<div id="welcome-page" class="container-fluid">
+  <div class="row">
+
+    <%= render "/layouts/navbars/dietitian_nav" %>
+
+    <main class="main-content-container">
+
+      <!-- ALERTS-->
+      <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+      </section>
+        
+
+      <section class="row">
+        <div class="col-xs-12">
+          <h1>These folks contacted us!</h1>
+        </div>
+      </section>
+      <section class="row coupons-table-section">
+        <div class="col-xs-12 ">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Phone number</th>
+                  <th>Email address</th>
+                  <th>Title</th>
+                  <th>Company</th>
+                  <th>Purpose</th>
+                  <th>Help</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @guest_users.each do |guest_user| %>
+                  <tr>
+                    <td><%= guest_user.first_name %></td>
+                    <td><%= guest_user.last_name %></td>
+                    <td><%= guest_user.phone_number %></td>
+                    <td><%= guest_user.email_address %></td>
+                    <td><%= guest_user.title %></td>
+                    <td><%= guest_user.company %></td>
+                    <td><%= guest_user.purpose %></td>
+                    <td><%= guest_user.help %></td>
+                    <td><%= link_to 'Show', guest_user %></td>
+                    <td><%= link_to 'Edit', edit_guest_user_path(guest_user) %></td>
+                    <td><%= link_to 'Destroy', guest_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      
+    </main>
+    <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+      <%=render "/layouts/footers/main_footer" %>
+    </div>
+  </div>
+</div>

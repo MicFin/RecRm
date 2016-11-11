@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826091318) do
+ActiveRecord::Schema.define(version: 20161111085248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -222,6 +222,19 @@ ActiveRecord::Schema.define(version: 20160826091318) do
   end
 
   add_index "growth_entries", ["growth_chart_id"], name: "index_growth_entries_on_growth_chart_id", using: :btree
+
+  create_table "guest_users", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone_number"
+    t.string   "email_address"
+    t.string   "title"
+    t.string   "company"
+    t.text     "purpose"
+    t.text     "help"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "images", force: true do |t|
     t.string   "image_type"

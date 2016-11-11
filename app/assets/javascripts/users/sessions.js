@@ -15,5 +15,5 @@ $(document).ready(function() {
 	Kindrdfood.landingPages.qolAdmin.validateSignInForm();
 
 	// // JS for landing_pages#index
-	Kindrdfood.landingPages.signUpForm.init();
+	Kindrdfood.landingPages.main.init();
 });

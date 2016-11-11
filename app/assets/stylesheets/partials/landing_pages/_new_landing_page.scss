@@ -425,6 +425,9 @@ $landing-page-max-nav-height: 70px;
 // Section - Experts
 .kf-landing-page #section-experts {
   text-align: center;
+	.carousel-container {
+			color: $brand-white;
+	}
   > div {
   	@include make-xs-column( 12 );
   	> p{

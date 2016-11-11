@@ -192,33 +192,7 @@
 			</div>
 		</section>
 		<section id="section-experts">
-			<div>
-				<h2>Meet a few of our experts</h2>
-				<p>Our "Kindrdfood Dietitians" are all Registered Dietitians (RDs). <a href="/education/registered-dietitian-vs-nutritionist">What is an RD?</a></p>
-				<div>
-					<div>
-						<h3>Meet<br>Our<br>Experts</h3>
-					</div>
-					<div>
-						<%= image_tag("team/head_shots/head_shot_elise.png") %>
-						<p>Elise Steiner<br> MS, RD, LDN</p>
-						<!-- <button>View Profile</button> -->
-					</div>
-					<div>
-						<%= image_tag("team/head_shots/head_shot_karen.png") %>
-						<p>Karen Warman<br> MS, RD, LDN</p>
-						<!-- <button>View Profile</button> -->
-					</div>
-					<div>
-						<%= image_tag("team/head_shots/head_shot_tara.png") %>
-						<p>Tara McCarthy<br> MS, RD, LDN</p>
-						<!-- <button>View Profile</button> -->
-					</div>
-				</div>
-			</div>
-			<div>
-				<%= link_to "LEARN MORE ABOUT OUR TEAM", landing_pages_new_leadership_page_path, class: "register" %>
-			</div>
+			<%= render "/landing_pages/landing_pages_rd_2/meet_the_experts" %>
 		</section>
 		<section id="section-guidance">
 			<div>

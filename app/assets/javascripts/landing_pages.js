@@ -13,7 +13,7 @@ $(document).ready(function() {
 	Kindrdfood.landingPages.qolAdmin.validateProviderForm();
 
 	// // JS for landing_pages#index
-	Kindrdfood.landingPages.signUpForm.init();
+	Kindrdfood.landingPages.main.init();
 
 	// mobile nav
 	Kindrdfood.layouts.navbars.init();

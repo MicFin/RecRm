@@ -5,7 +5,7 @@ Kindrdfood = Kindrdfood || {};
 // create landing pages object if not already created
 Kindrdfood.landingPages = Kindrdfood.landingPages || {};
 
-Kindrdfood.landingPages.signUpForm = {
+Kindrdfood.landingPages.main = {
   init: function(){
 
 		$(".sign-up-button").on("click", function(e){
@@ -26,6 +26,13 @@ Kindrdfood.landingPages.signUpForm = {
 		$(".js-register-provider").on("click", function(e){
 			e.preventDefault();
 			$("#provider-sign-up-modal").modal();
+		})
+
+		// meet the experts dietitian carousel
+		var headshots = $(".head-shot-container");
+		$(".carousel-container .carousel-controller").on("click", function(e){
+			e.preventDefault();
+			headshots.toggleClass("hidden");
 		})
 
 	}

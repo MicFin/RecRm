@@ -64,7 +64,7 @@
 				<h2>Quality & Specialization</h2>
 				<p>Our world-class, Dietitian specialists give you better support to take on your specific challenges.</p>
 				<div>
-					<div>
+	<!-- 				<div>
 						<h4>FINDING THE RIGHT FOOD<br>& NUTRITION SUPPORT IS OFTEN CHALLENGING</h4>
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 						  <div class="panel panel-default">
@@ -121,7 +121,7 @@
 						    </div>
 						  </div>
 						</div>
-					</div>
+					</div> -->
 					<div>
 						<h4>THE RIGHT SPECIALIZED EXPERT<br> & HIGHEST QUALITY OF SUPPORT</h4>
 						<%= image_tag("logos/logo-vertical.jpg") %>
@@ -142,19 +142,20 @@
 				<div>
 					<div>
 						<%= image_tag("icons/icon_video_or_phone.png", class: "img-responsive") %>
-						<h3>CONVENIENT ACCESS<br>LIVE ONLINE VIDEO OR PHONE</h3>
+					<!-- 	<h3>CONVENIENT ACCESS<br>LIVE ONLINE VIDEO OR PHONE</h3> -->
+						<h3>LIVE ONLINE VIDEO OR PHONE</h3>
 						<p>Live video session (or phone) let you connect to your Dietitian at your convenience - even from your kitchen.  Meet within a few days, even nights or weekends.</p>
 					</div>
 					<div>
 						<%= image_tag("icons/icon_matching_arrows.png", class: "img-responsive") %>
-						<h3>MATCHING WITH SPECIALIZED DIETITIANS</h3>
+						<h3>MATCH WITH AN EXPERT</h3>
 						<p>Guidance from a Dietitian with special expertise in your condition and challenges, means that you get the right information the first time.</p>
 					</div>
-					<div>
-						<%= image_tag("icons/icon_check_mark.png", class: "img-responsive") %>
+<!-- 					<div>
+						<%#= image_tag("icons/icon_check_mark.png", class: "img-responsive") %>
 						<h3>TRUSTED ANSWERS THE 1ST TIME</h3>
 						<p>Highly specialized experts and carefully curated recipes and resources, allow us to offer you personalized support that you can rely on.</p>
-					</div>
+					</div> -->
 					<div>
 						<%= image_tag("icons/icon_finger_print.png", class: "img-responsive") %>
 						<h3>PERSONALIZED IN EVERY WAY</h3>
@@ -234,6 +235,7 @@
 							<li>Live 1-on-1 online video or by phone</li>
 							<li>Coordinated with your physician</li>
 						</ul>
+						<h4><%=link_to "How do we match you?", landing_pages_new_faq_page_path %></h4>
 					</div>
 				</div>
 				<div>
@@ -282,7 +284,7 @@
 			</div>
 			<p>Follow up sessions available for <br>1 hour ($109) or 1/2 hour ($69).</p>
 			<p>Discount packages available for follow up sessions.</p>
-			<!-- 			<a href="">Insurance coverage & cost comparison</a> -->
+			<h4><%= link_to "Insurance coverage & cost comparison", landing_pages_new_faq_page_path %></h4> 
 		</section>
 		<section id="section-provider-solution">
 			<div>

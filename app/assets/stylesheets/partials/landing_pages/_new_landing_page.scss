@@ -282,7 +282,6 @@ $landing-page-max-nav-height: 70px;
 			@include make-row( );
 			> div {
 				@include make-xs-column( 12 );
-				@include make-sm-column( 6 );
 				.panel-group{
 					// color: $brand-dark-green;
 					text-align: left;
@@ -304,7 +303,6 @@ $landing-page-max-nav-height: 70px;
 			    margin: 0 auto;
 			    text-align: center;
 			    max-width: 500px;
-			    margin-left: 20%;
 			    @media (max-width: $screen-md-max){
 			    	margin-left: auto;
 			    	padding-left: 2%;
@@ -333,10 +331,10 @@ $landing-page-max-nav-height: 70px;
 					}
 				}
 			}
-			> div:first-child {
-				@include make-sm-column( 4 );
-				@include make-sm-column-offset( 1 );
-			}
+			// > div:first-child {
+			// 	@include make-sm-column( 4 );
+			// 	@include make-sm-column-offset( 1 );
+			// }
 			a.register {
 				@extend .btn;
 				@extend .btn-lg;
@@ -362,9 +360,8 @@ $landing-page-max-nav-height: 70px;
   	  > div {
     		@include make-xs-column( 10 );
     		@include make-xs-column-offset( 1 );
-    		@include make-sm-column-offset( 0 );
-  	  	@include make-sm-column( 6 );
-    		@include make-md-column( 3 );
+    		@include make-md-column-offset( 0 );
+    		@include make-md-column( 4 );
     		padding: 1% 5%;
     		> img {
     			padding: 10%;
@@ -1002,13 +999,21 @@ $landing-page-max-nav-height: 70px;
 
 // MODALS
 #specialtiesModal {
+	.modal-content {
+		background-color: $gray;
+    padding: 2%;
+	}
 	.modal-body {
 		text-align: center;
-		> div > div  > div {
-	    border-radius: 15px;
-	    border: 1px solid black;
-	    padding: 20px 0;
+		h4, p {
+			color: white;
 		}
+	}
+	.specialties-list-container {
+		background-color: $gray-lighter;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 20px 0;
 	}
 	ul {
 		display: inline-block;

@@ -23,7 +23,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse">
       <ul class="kf-landing-page-navbar-list">
-            <%= active_link_to landing_pages_new_landing_page_path, { :active => [['users'], ['invitation']], :class_active => 'active', :wrap_tag => :li} do %>
+            <%= active_link_to new_user_invitation_path, { :active => [['users'], ['invitation']], :class_active => 'active', :wrap_tag => :li} do %>
               Dashboard
             <% end %>
 
@@ -35,10 +35,10 @@
               What's Next?
             <% end %>
 
-            <%= active_link_to edit_user_registration_path, {:active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
+            <%= active_link_to landing_pages_new_faq_page_path, {:active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
               FAQ
             <% end %>
-            <%= active_link_to edit_user_registration_path, {:active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
+            <%= active_link_to landing_pages_new_contact_us_page_path, {:active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
               Contact Us
             <% end %>
             <%= active_link_to destroy_user_session_path, {:method => :delete, :class_active => 'active', :wrap_tag => :li} do %>

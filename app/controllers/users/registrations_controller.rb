@@ -118,47 +118,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # should split update family member to families controller
   def update
 
-    # create new growth chart and food diary for format.js response
-    @growth_chart = GrowthChart.new
-    @food_diary = FoodDiary.new
-
-    # user updating a fmaily member
-    if params[:family_member] == "true"
-      @family_member = User.find(params[:user][:id])
-
-      find_or_create_new_health_groups
-
-      clean_height_and_weight_input
-      
-      verify_image_upload
-
-      successfully_updated = @family_member.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
-
-      respond_to do |format|   
-        if successfully_updated
-
-          set_flash_message :notice, :updated
-
-          if @family_member.families != [] 
-            
-            @family = @family_member.families.last 
-
-          else 
-            @family = @family_member.head_of_families.last 
-          end
-          @family = Families::FamilyPresenter.new(@family)
-          @user = Users::UserPresenter.new(current_user)
-          format.js
-          format.html { redirect_to family_path(@family) }
-          
-        else
-          format.html {render "/families/edit_family_member"}
-          format.js
-        end
-      end
-    else
-      @user = current_user
-      # check if a password is needed for this update
+    if current_user.provider == true
       successfully_updated = if needs_password?(@user, params)
         # if password is needed
         # then update with password
@@ -172,29 +132,101 @@ class Users::RegistrationsController < Devise::RegistrationsController
         # update_without_password doesn't know how to ignore it
         @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
       end
-      @family = Families::FamilyPresenter.new(@family)
-      # @user = Users::UserPresenter.new(@user)
+
       respond_to do |format|  
         if successfully_updated
 
-          # update user registration stage
-          @user.update_registration_stage
-
           set_flash_message :notice, :updated
           # Sign in the user bypassing validation in case their password changed
-          
           sign_in @user, :bypass => true
           
           format.js
-          format.html { after_update_path_for(@user) }
+          format.html { after_update_path_for(@user)}
           
         else
           format.html {render "edit"}
           format.js
         end
       end
+    else
+      # create new growth chart and food diary for format.js response
+      @growth_chart = GrowthChart.new
+      @food_diary = FoodDiary.new
+
+      # user updating a fmaily member
+      if params[:family_member] == "true"
+        @family_member = User.find(params[:user][:id])
+
+        find_or_create_new_health_groups
+
+        clean_height_and_weight_input
+        
+        verify_image_upload
+
+        successfully_updated = @family_member.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
+
+        respond_to do |format|   
+          if successfully_updated
+
+            set_flash_message :notice, :updated
+
+            if @family_member.families != [] 
+              
+              @family = @family_member.families.last 
+
+            else 
+              @family = @family_member.head_of_families.last 
+            end
+            @family = Families::FamilyPresenter.new(@family)
+            @user = Users::UserPresenter.new(current_user)
+            format.js
+            format.html { redirect_to family_path(@family) }
+            
+          else
+            format.html {render "/families/edit_family_member"}
+            format.js
+          end
+        end
+      else
+        @user = current_user
+        # check if a password is needed for this update
+        successfully_updated = if needs_password?(@user, params)
+          # if password is needed
+          # then update with password
+          @user.update_with_password(devise_parameter_sanitizer.sanitize(:account_update))
+          
+        else
+          
+          # if no password is needed 
+          # remove the virtual current_password attribute
+          params[:user].delete(:current_password)
+          # update_without_password doesn't know how to ignore it
+          @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
+        end
+        @family = Families::FamilyPresenter.new(@family)
+        # @user = Users::UserPresenter.new(@user)
+        respond_to do |format|  
+          if successfully_updated
+
+            # update user registration stage
+            @user.update_registration_stage
+
+            set_flash_message :notice, :updated
+            # Sign in the user bypassing validation in case their password changed
+            
+            sign_in @user, :bypass => true
+            
+            format.js
+            format.html { after_update_path_for(@user) }
+            
+          else
+            format.html {render "edit"}
+            format.js
+          end
+        end
+      end
     end
-    
+      
   end
 
 
@@ -230,8 +262,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     def after_update_path_for(resource)
           
+        # if provider
+        if resource.provider
+          redirect_to new_user_invitation_path
+
         # if they have finished on boarding then add family path
-        if ( !resource.finished_on_boarding? ) || ( URI(request.referer).path == "/welcome/get_started")
+        elsif ( !resource.finished_on_boarding? ) || ( URI(request.referer).path == "/welcome/get_started")
     
           redirect_to welcome_add_family_path
 
@@ -345,10 +381,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.for(:account_update) do |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :date_of_birth, :weight_ounces, :height_inches, :sex, :stripe_id, :family_note, :family_role, :early_access, :zip_code, :phone_number, :qol_referral, :physician_referral, :registration_stage, :due_date, :time_zone, :provider, :hospitals_or_practices, :academic_affiliations, :academic_affiliations, :subspecialty, :fax, :terms_accepted, :remove_image, :images_attributes => [:image_type, :imageable_id, :imageable_type, :position, :image_cache, :crop_x, :crop_y, :crop_w, :crop_h, :crop_image, :remove_image, :image], :patient_group_ids => [])
     end
 
+    # devise_parameter_sanitizer.for(:accept_invitation) do |u|
+    #   u.permit(:first_name, :last_name, :email_address, :password, :password_confirmation. :invitation_token)
+    # end
+
+    # devise_parameter_sanitizer.permit(:invite, keys: [:first_name, :last_name, :email_address, :invitation_token])
+
+    # devise_parameter_sanitizer.for(:invite) do |u|
+    #   u.permit(:first_name, :last_name, :email_address, :invitation_token)
+    # end
 
     # # USE THESE WHEN DOING CONFIRMATION
     # # To be continued ...
-    # devise_parameter_sanitizer.for(:accept_invitation).concat [:first_name, :last_name, :phone]
+
 
     # # USE THESE WHEN DOING CONFIRMATION
     # # To be continued ...

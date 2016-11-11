@@ -24,6 +24,7 @@
   images
   post_recommendations
   users/sessions
+  users/invitations
   dietitians/registrations
   users/registrations
   devise/sessions

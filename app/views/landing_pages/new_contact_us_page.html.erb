@@ -40,12 +40,10 @@
 				    <%= f.input :phone_number, autofocus: true, type: "text", input_html: {class: "form-control", placeholder: "###-###-###"} %>
 				  </div>				
 				  <div class="form-group">
-
-				    <%= f.email_field :email_address, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com" %>
+				  	<label for="last_name">Email</label>
+				    <%= f.email_field :email_address, autofocus: true, class: "form-control", type: "email", placeholder: "friend@dinner.com", label: false %>
 				  </div>
 					<div class="form-group">
-
-				
 				    <%= f.input :title, autofocus: true, type: "text", input_html: {class: "form-control", placeholder: "Title"} %>
 				  </div>
 					<div class="form-group">

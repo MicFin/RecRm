@@ -1044,7 +1044,7 @@ $landing-page-max-nav-height: 70px;
     padding: 20px 0;
 	}
 	.specialties-list-container + p {
-		margintop: 2%;
+		margin-top: 2%;
 	}
 	ul {
 		display: inline-block;
@@ -1053,3 +1053,21 @@ $landing-page-max-nav-height: 70px;
 	}
 }
 
+// provider dashboard
+#kf-provider-dashboard {
+	.kf-icon {
+	    max-height: 150px;
+	    margin: 0 auto;
+	    margin-bottom: 5%;
+	}
+	.kf-landing-page-navbar-list li {
+		width: 16%;
+	}	
+	form {
+    margin-top: 2%;
+	}
+	.alerts-container .alert {
+		    margin-top: 100px;
+
+	}
+}

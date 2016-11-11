@@ -14,6 +14,13 @@ class Users::InvitationsController < Devise::InvitationsController
   # def after_accept_path_for
   # end
 
+    # GET /resource/invitation/new
+  def new
+    self.resource = resource_class.new
+    @invitees = current_user.invitations
+    render :new
+  end
+
 
   # POST /resource/invitation
   def create
@@ -37,6 +44,10 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
  private
+
+  # def resource_params
+  #   params.permit(user: [:first_name, :last_name, :email_address, :invitation_token])[:user]
+  # end
 
   # # this is called when creating invitation
   # # should return an instance of resource class

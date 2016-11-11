@@ -13,9 +13,9 @@
 		<section id="section-video">
 			<div class="video-row">
 				<div class="video-image">
-					<h1>Give your patients the<br>easiest access to high<br>quality support with<br>Kindrdfood</h1>
+					<h1>Give your patients<br>easy access to<br>high quality support</h1>
 					<p>Extend coordinated support<br>beyond the clinic with <br>1-on-1 expert guidance through<br>live online video or phone</p>
-					<%= link_to "SIGN UP", landing_pages_new_provider_sign_up_page_path, class: "register" %>
+					<%= link_to "CONTACT US", landing_pages_new_provider_sign_up_page_path, class: "register" %>
 					<div class="video-footer">
 						<p><%= link_to "Register in less than 2 minutes to make fast referrals", landing_pages_new_provider_sign_up_page_path %></p>
 					</div>
@@ -26,12 +26,13 @@
 				<div>
 					<div>
 						<%= image_tag("icons/icon_video_or_phone_green.png") %>
-						<h3>CONVENIENT ACCESS BY VIDEO OR PHONE</h3>
+						<!-- <h3>CONVENIENT ACCESS BY VIDEO OR PHONE</h3> -->
+						<h3>LIVE ACCESS BY VIDEO OR PHONE</h3>
 						<p>Patients connect live from their kitchen or office.  They can schedule within a few days and meet when they a want, including nights and weekends.</p>
 					</div>
 					<div>
 						<%= image_tag("icons/icon_matching_arrows_green.png") %>
-						<h3>MATCHING TO THE RIGHT SPECIALIST</h3>
+						<h3>MATCH WITH AN EXPERT</h3>
 						<p>We match each patient with a dietitan who's food and nutrition expertise is specifically focused on your patient's diet limiting condition and relation challenges.</p>
 					</div>
 					<div>
@@ -41,16 +42,20 @@
 					</div>
 					<div>
 						<%= image_tag("icons/icon_recycle.png") %>
-						<h3>NUTRITION COORDINATED WITH HEALTHCARE</h3>
+						<h3>COORDINATED WITH HEALTHCARE</h3>
 						<p>Each patient's nutritoin guidance is coordinated with their helathcare provider and Dietitians send a follow up to the provider after each session.</p>
 					</div>
 				</div>
-				<button type="button" class="btn btn-link" data-toggle="modal" data-target="#specialtiesModal">List of our specialties</button>
-				<p>Our team of Dietitians are specialists.  They see clients in their few ares of true focused expertise.</p>
+				<div class="specialties-banner">
+					<button type="button" class="btn btn-link" data-toggle="modal" data-target="#specialtiesModal">List of our specialties</button>
+				</div>
 			</div>
 		</section>
 		<section id="section-navigate-food">
-			<div>
+			<h2>Kindrdfood is flexible for providers:<br>3 ways to implement support for patients</h2>
+			<p>We work with healthcare providres of all sizes - individual practices and hospitals to large ACOs</p>
+			<div class="infographic">
+				<%= image_tag("logos/kindrdfood-carrot.png", class: "infographic-logo-center") %>
 				<%= image_tag("icons/icon_kf_plus_people.png", class: "infographic-plus-people") %>
 				<%= image_tag("icons/icon_arc_left.png", class: "infographic-arc-left") %>
 				<h4>FOR PROVIDERS WITH<br>NO OUTPATIENT<BR>NUTRITION SUPPORT</h4>
@@ -84,7 +89,7 @@
 							<li>Patient support coordinated with their provider</li>
 							<li>Patient & practicioner interfaces designed specifically for food navigation & nutrition support</li>
 						</ul>
-						<!-- <p><a href="">How do we match?</a></p> -->
+						<h4><%=link_to "How do we match?", landing_pages_new_faq_page_path %></h4>
 					</div>
 				</div>
 			</div>
@@ -92,6 +97,7 @@
 		<section id="section-specialization">
 			<div>
 				<h2>How it works</h2>
+				<p>(in terms of general referral experience)</p>
 				<div>
 					<div>
 						<p>1.</p>
@@ -115,7 +121,7 @@
 						<p>4.</p>
 						<h4>FOLLOW UP SENT TO PROVIDER & PATIENT</h4>
 						<%= image_tag("icons/icon_papers_orange.png") %>
-						<p>Recipes and resources are sent to the patient, and follow up notes are sent to both patient and provider each session.</p>
+						<p>Recipes and resources are sent to the patient.  Follow up notes are sent to both patient and provider each session.</p>
 					</div>
 				</div>
 			</div>
@@ -127,8 +133,8 @@
 					<p>"I have a medically complex patient who required a nutritional intervention but did not have access to a local dietitian with knowledge of his disease.<strong> I was extremely impressed with the level of expertise provided by the Kindrd Dietitian</strong> who worked with his family. I am happy to report that the child is now doing very well.<strong> I will definitely refer my patients to Kindrdfood for nutritional guidance</strong>."</p>
 					<h3>Athos Bousvaros, MD MPH</h3>
 					<p>Associate Chief, Division of Gastroenterology, Hepatology and Nutrition, <strong>BOSTON CHILDREN'S HOSPITAL</strong></p>
-					<p>Associate Professor of Pediatrics, <strong>Harvard Medical School</strong></p>
-					<p>Past President, <strong>NASPGHAN</strong> (North American Society for Pediatric Gastroenterology, Hepatology & Nutrition)</p>
+					<p>Associate Professor of Pediatrics, <strong>HARVARD MEDICAL SCHOOL</strong></p>
+					<p>Past President, <strong>NASPGHAN</strong> <small>(North American Society for Pediatric Gastroenterology, Hepatology & Nutrition)</small></p>
 				</blockquote>
 			</div>
 		</section>
@@ -166,7 +172,7 @@
 				<h2>World Class Nutrition Support for Your Patients</h2>
 				<h4>Kindrdfood provides physician practices, hospitals, and ACOs, with a nutrition support solution for patients, making access to the right high quality guidance convenient, cost effective and coordinated with the rest of their health care.</h4>
 				<p>(Dietitians are all carefully selected, specialized and focused on patients witin their specialty.)</p>
-				<%= link_to "SIGN UP", landing_pages_new_provider_sign_up_page_path, class: "register" %>
+				<%= link_to "CONTACT US", landing_pages_new_provider_sign_up_page_path, class: "register" %>
 			</div>
 		</section>
 	</main>

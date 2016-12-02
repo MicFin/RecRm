@@ -34,7 +34,9 @@ class AppointmentsController < ApplicationController
 
   # # CALL BACKS
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :update_duration, :purchase, :assign_dietitian, :appointment_prep, :client_appointment_prep, :end_appointment, :send_assessment]
-  before_filter :config_opentok, :only => [:assign_dietitian]
+  before_filter :config_opentok, :only => [:assign_dietitian, :create]
+
+  before_filter :verify_admin, only: [:new]
 
   # GET /appointments
   # as: "appointments_path"
@@ -57,7 +59,8 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1
   # GET /appointments/1.json
-  # this is where the index modal is coming from to view the prep information before the admin assigns a dietitian to an appointment
+  # where all users view an overview of an appointment
+  # this is where the index is coming from to view the prep information before the admin assigns a dietitian to an appointment
   def show
 
     @surveyable = Appointments::AppointmentPresenter.new(@appointment)
@@ -108,18 +111,43 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
-    
     @appointment = Appointment.new
+
+    @clients = Users::UserPresenter.present(User.client_accounts.includes(:head_of_families))
+    @family_members = Users::UserPresenter.present(User.family_member_accounts.includes(:families))
+    @clients_and_family_members = @clients + @family_members
+    @dietitians = Dietitian.all
   end
 
   # POST /appointments
   # POST /appointments.json
   def create
-    
-    clean_dates_for_database
+
+    # clean_dates_for_database(time_zone)
+    add_time_zone_to_input
     
     @appointment = Appointment.new(appointment_params)
     
+    if @appointment.dietitian 
+      # create a tokbox session and room
+      @new_session = @opentok.create_session 
+      @tok_token = @new_session.generate_token :session_id =>@new_session.session_id 
+      # creating a new room each time, should either purge old rooms or assign rooms to dietitians 
+      @new_room = Room.new(dietitian_id:  @appointment.dietitian_id, public: true, sessionId: @new_session.session_id, name: "Appointment")
+      @new_room.save
+      # assign roles to room
+      dietitian = @appointment.dietitian
+      dietitian.add_role "Session Host", @new_room
+      user = @appointment.appointment_host
+      user.add_role "Session Guest", @new_room
+      user.save
+      # set appointment to room (1st and only for now)
+      if @appointment.room_id == nil
+        @appointment.room_id = @new_room.id
+        @appointment.save
+      end
+    end
+
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
@@ -348,48 +376,55 @@ class AppointmentsController < ApplicationController
       params[:appointment][:start_time] = params[:appointment][:start_time].in_time_zone(time_zone)
     end
 
-    def clean_dates_for_database(time_zone)
+    # def clean_dates_for_database(time_zone)
       
-      ## clean start date for saving
-      if params[:appointment][:start_time]
-        temp_start_date = params[:appointment][:start_time].split("/")
-        temp_start_month = temp_start_date[0]
-        temp_start_day = temp_start_date[1]
-        temp_start_year = temp_start_date[2].split(" ")[0]
-        params[:appointment][:start_time] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
-        params[:appointment][:start_time] = params[:appointment][:start_time].in_time_zone(time_zone)
-        ## clean end date for saving
-        temp_end_date = params[:appointment][:end_time].split("/")
-        temp_end_month = temp_end_date[0]
-        temp_end_day = temp_end_date[1]
-        temp_end_year = temp_end_date[2].split(" ")[0]
-        params[:appointment][:end_time] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
-        params[:appointment][:end_time] = params[:appointment][:end_time].in_time_zone(time_zone)
+    #   ## clean start date for saving
+    #   if params[:appointment][:start_time]
+    #     temp_start_date = params[:appointment][:start_time].split("/")
+    #     temp_start_month = temp_start_date[0]
+    #     temp_start_day = temp_start_date[1]
+    #     temp_start_year = temp_start_date[2].split(" ")[0]
+    #     params[:appointment][:start_time] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
+    #     params[:appointment][:start_time] = params[:appointment][:start_time].in_time_zone(time_zone)
+    #     ## clean end date for saving
+    #     temp_end_date = params[:appointment][:end_time].split("/")
+    #     temp_end_month = temp_end_date[0]
+    #     temp_end_day = temp_end_date[1]
+    #     temp_end_year = temp_end_date[2].split(" ")[0]
+    #     params[:appointment][:end_time] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
+    #     params[:appointment][:end_time] = params[:appointment][:end_time].in_time_zone(time_zone)
         
-      else
+    #   else
         
-      ## clean start date for saving
-        temp_start_date = value_hash["start_time"].split("/")
-        temp_start_month = temp_start_date[0]
-        temp_start_day = temp_start_date[1]
-        temp_start_year = temp_start_date[2].split(" ")[0]
-        value_hash["start_time"] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
-        value_hash["start_time"] = value_hash["start_time"].in_time_zone(time_zone)
+    #   ## clean start date for saving
+    #     temp_start_date = value_hash["start_time"].split("/")
+    #     temp_start_month = temp_start_date[0]
+    #     temp_start_day = temp_start_date[1]
+    #     temp_start_year = temp_start_date[2].split(" ")[0]
+    #     value_hash["start_time"] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
+    #     value_hash["start_time"] = value_hash["start_time"].in_time_zone(time_zone)
 
-        ## clean end date for saving
-        temp_end_date = value_hash["end_time"].split("/")
-        temp_end_month = temp_end_date[0]
-        temp_end_day = temp_end_date[1]
-        temp_end_year = temp_end_date[2].split(" ")[0]
-        value_hash["end_time"] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
-        value_hash["end_time"] = value_hash["end_time"].in_time_zone(time_zone)
-      end
-    end
+    #     ## clean end date for saving
+    #     temp_end_date = value_hash["end_time"].split("/")
+    #     temp_end_month = temp_end_date[0]
+    #     temp_end_day = temp_end_date[1]
+    #     temp_end_year = temp_end_date[2].split(" ")[0]
+    #     value_hash["end_time"] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
+    #     value_hash["end_time"] = value_hash["end_time"].in_time_zone(time_zone)
+    #   end
+    # end
 
     def config_opentok
       
       if @opentok.nil?
        @opentok = OpenTok::OpenTok.new ENV["API_KEY"], ENV["API_SECRET"]
+      end
+    end
+
+
+    def verify_admin
+      if !current_dietitian.has_role? "Admin Dietitian" 
+        redirect_to dietitian_unauthenticated_root_path
       end
     end
 end

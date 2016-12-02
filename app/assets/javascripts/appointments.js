@@ -11,7 +11,6 @@ $(document).ready(function() {
 
 	// appointments controller edit method js
 	Kindrdfood.appointments.edit.init();
-
 	// // JS for post_recommednations#posts
 	// Kindrdfood.post_recommendations.posts.init();
 

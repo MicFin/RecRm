@@ -64,9 +64,11 @@ class User < ActiveRecord::Base
   scope :user_accounts, -> { where("encrypted_password <> ''") }
   scope :client_accounts, -> { user_accounts.where(provider: false)  }
   scope :provider_accounts, -> { user_accounts.where(provider: true) }
-  scope :invited_accounts, -> { where("confirmation_sent_at IS NOT NULL") } # QOL referral
+  # QOL referral
+  scope :qol_referrals, -> { where("confirmation_sent_at IS NOT NULL") } 
+  # Provider referral
+  scope :provider_referrals, -> { where("invitation_sent_at IS NOT NULL") }
   scope :family_member_accounts, -> { where("family_role <> ''") }   
-  scope :provider_accounts, -> { where(provider: true) }
    
   # SCOPES: User Registration Stage
   scope :at_stage, -> (stage){ where(registration_stage: stage) } 

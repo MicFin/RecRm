@@ -10,15 +10,17 @@ class DashboardController < ApplicationController
   # GET /admin_dashboard
   def clients_onboarding
     
-    # should fetch all at once and user incomplete_onboarding scope 
-    # could use User.incomplete_onboarding.group_by { |u| u.registration_stage }
-    @clients_stage1 = User.client_accounts.at_stage(1).order_by_last_sign_in
-    @clients_stage2 = User.client_accounts.at_stage(2).order_by_last_sign_in
-    @clients_stage3 = User.client_accounts.at_stage(3).order_by_last_sign_in
-    @clients_stage4 = User.client_accounts.at_stage(4).order_by_last_sign_in
-    @clients_stage5 = User.client_accounts.at_stage(5).order_by_last_sign_in
+    # @clients_stage1 = User.client_accounts.at_stage(1).order_by_last_sign_in
+    # @clients_stage2 = User.client_accounts.at_stage(2).order_by_last_sign_in
+    # @clients_stage3 = User.client_accounts.at_stage(3).order_by_last_sign_in
+    # @clients_stage4 = User.client_accounts.at_stage(4).order_by_last_sign_in
+    # @clients_stage5 = User.client_accounts.at_stage(5).order_by_last_sign_in
 
-    @clients_invited = User.invited_accounts.order_by_created_at
+    @leads = User.incomplete_onboarding.order_by_created_at
+
+    @qol_referrals = User.qol_referrals.incomplete_onboarding.order_by_created_at
+
+    @provider_referrals = User.provider_referrals.incomplete_onboarding.order_by_created_at
   end
 
   def providers

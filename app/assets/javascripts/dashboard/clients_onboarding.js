@@ -2,33 +2,14 @@
 
 Kindrdfood = Kindrdfood || {};
 
-Kindrdfood.appointments = Kindrdfood.appointments || {};
+Kindrdfood.dashboard = Kindrdfood.dashboard || {};
 
-Kindrdfood.appointments.edit = {
+Kindrdfood.dashboard.clients_onboarding = {
 
 	init: function(){
 
-		// initiate datetimepicker
-		Kindrdfood.dateTimePickers.dateTimePicker.init();
+		$(".clients-table.datatable").DataTable({
 
-				// 
-		$('#appointment_appointment_host_id').on("change", function(event){
-
-			var familyId = $(this).find(":selected").data("family-id");
-
-			$("#appointment_patient_focus_id option").each(function() {  
-
-				if ( $(this).data("family-id") != familyId ) { 
-					$(this).addClass("hidden");
-				} else { 
-					$(this).removeClass("hidden");
-				}
-			})
-			$("#appointment_patient_focus_id option").not(".hidden").first().prop('selected', true);
-		});
-
-
-		$(".previous-appointments.datatable").DataTable({ 
 			initComplete: function () {
         this.api().columns().every( function () {
           var column = this;

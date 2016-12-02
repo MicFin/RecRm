@@ -56,7 +56,9 @@ class Appointment < ActiveRecord::Base
   scope :by_start_time, -> { order(start_time: :desc) }
 
   # # CALL BACKS
-  after_save :update_purchase_price, :if => Proc.new {|model| model.duration_changed? }
+  before_save :update_duration, :if => Proc.new {|model| model.start_time_changed? || model.end_time_changed? }
+  before_save :update_purchase_price, :if => Proc.new {|model| model.duration_changed? }
+  before_save :update_registration_stage, :if => Proc.new {|model| model.status_changed? }
 
   # # RELATIONSHIPS
   belongs_to :appointment_host, :class_name => "User", :foreign_key => "appointment_host_id"
@@ -107,6 +109,20 @@ class Appointment < ActiveRecord::Base
     def update_purchase_price
       if self.purchase 
         self.purchase.update_pricing
+      end
+    end
+
+    def update_duration
+      if self.start_time && self.end_time 
+        self.duration = (self.end_time - self.start_time) / 60
+      end
+    end
+
+    def update_registration_stage
+      if self.status == "In Registration" || self.status == "Follow Up Unpaid"
+        self.registration_stage = 5
+      else
+        self.registration_stage = 6
       end
     end
 end

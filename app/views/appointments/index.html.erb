@@ -11,6 +11,9 @@
         </div>
       </section>
       <section>
+        <%= link_to "Create New Appointment", new_appointment_path, class: "btn btn-md btn-primary" %>
+      </section>
+      <section>
         <%= render "appointments/index/upcoming_appointments_table", upcoming_appointments: @upcoming_appointments %>
         <br>
       </section>

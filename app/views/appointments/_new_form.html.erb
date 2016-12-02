@@ -1,0 +1,64 @@
+<%= simple_form_for(@appointment, html: {class: 'form-horizontal' }) do |f| %>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% @appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-xs-12 form-group">
+    <p><b>Start Time</b></p> 
+    <%= f.datetime_select :start_time, input_html: { class: "form-control"}  %>
+  </div>
+
+  <div class="col-xs-12 form-group">
+    <p><b>End Time</b></p> 
+    <%= f.datetime_select :end_time, input_html: { class: "form-control"}  %>
+  </div>
+  <div class="col-xs-12 form-group">
+    <%= f.input :status, collection: ['In Registration', "Unused Package Session", 'Paid', "Follow Up Unpaid", 'Complete'], :selected => "Paid", :include_hidden => false, input_html: { class: "form-control"} %>
+  </div>
+
+  <!--   <div class="col-xs-12 form-group">
+    <%#= f.input :registration_stage, collection: [[1, "1"], [2, "2"], [3, "3"], [4, "4"], [5, "5"],[6, "6"] ], input_html: { class: "form-control"}, :selected => 6 %>
+  </div> -->
+
+
+
+  <div class="col-xs-12 form-group">
+    <%#= f.input :appointment_host_id,  collection: @clients, prompt: "Choose a Client", :label_method => lambda { |client| "#{client.full_name}"}, value_method: :id, include_blank: false, input_html: { class: "form-control", data: { :family_id => lambda { |client| "#{client.family_id}"}}}  %>
+
+  <%= f.input :appointment_host_id, prompt: "Choose a Client", include_blank: false, input_html: { class: "form-control"} do %>
+
+     <%= f.select :appointment_host_id, @clients.map{ |client| [client.full_name, client.id, {"data-family-id" => client.family_id}] } %>
+
+   <% end %>
+
+  </div> 
+
+  <div class="field">
+    <%#= f.input :patient_focus_id, collection: @family_members, :label_method => lambda { |family_member| "#{family_member.full_name}"}, value_method: :id, include_blank: false, input_html: { class: "form-control-3", data: { :family_id => lambda { |family_member| "#{family_member.family_id}"}}}  %>
+    <%#= f.association :patient_focus, label_method: :first_name, value_method: :id, include_blank: false %>
+
+  <%= f.input :patient_focus_id, prompt: "Choose a Patient", include_blank: false, input_html: { class: "form-control"} do %>
+
+     <%= f.select :patient_focus_id, @clients_and_family_members.map{ |patient| [patient.full_name, patient.id, {"data-family-id" => patient.family_id}] } %>
+     
+   <% end %>
+
+  </div> 
+
+  <div class="col-xs-12 form-group">
+    <%= f.input :dietitian_id, collection: @dietitians, prompt: "Choose a Dietitian", label_method: :signature, value_method: :id, :include_hidden => false, input_html: { class: "form-control"}%>
+  </div>
+
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

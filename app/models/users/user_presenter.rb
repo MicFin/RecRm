@@ -80,6 +80,12 @@ module Users
       # user.patient_focus gets all appointments where user is patient_Focus
       Appointments::AppointmentPresenter.present(patient_focus.complete)
     end
+
+    def family_id
+      family = families.first || head_of_families.first
+      family.id 
+    end
+
     # # CLASS METHODS
     def self.present(users)
       users.map { |user| Users::UserPresenter.new(user) }

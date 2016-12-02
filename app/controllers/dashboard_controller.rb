@@ -18,9 +18,11 @@ class DashboardController < ApplicationController
 
     @leads = User.incomplete_onboarding.order_by_created_at
 
-    @qol_referrals = User.qol_referrals.incomplete_onboarding.order_by_created_at
+    @qol_referrals = User.qol_referrals.order_by_created_at
 
-    @provider_referrals = User.provider_referrals.incomplete_onboarding.order_by_created_at
+    @provider_referrals = User.provider_referrals.order_by_created_at
+
+    @guest_user = GuestUser.all
   end
 
   def providers

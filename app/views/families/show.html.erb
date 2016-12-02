@@ -1,14 +1,14 @@
 <div id="family-page" class="container-fluid">
     <div class="row">
 
-      <%= render "/layouts/navbars/user_nav" %>
+      <%= render "/layouts/navbars/main_navigation_column" %>
 
       <main class="main-content-container">
        <section class="alerts-container">
           <%= render "/layouts/alerts" %>
         </section>
         <section>
-          <h1>The <%=current_user.last_name%> Family</h1>
+          <h1>The <%= @family.name%> Family</h1>
         </section>
         <hr>
         <div class="dynamic-page-container">

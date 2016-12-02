@@ -10,49 +10,58 @@
       <section class="alerts-container">
           <%= render "/layouts/alerts" %>
       </section>
-        
-
-      <section class="row">
-        <div class="col-xs-12">
-          <h1>These folks contacted us!</h1>
-        </div>
-      </section>
+      
       <section class="row coupons-table-section">
         <div class="col-xs-12 ">
           <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>First name</th>
-                  <th>Last name</th>
-                  <th>Phone number</th>
-                  <th>Email address</th>
-                  <th>Title</th>
-                  <th>Company</th>
-                  <th>Purpose</th>
-                  <th>Help</th>
-                  <th colspan="3"></th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <% @guest_users.each do |guest_user| %>
-                  <tr>
-                    <td><%= guest_user.first_name %></td>
-                    <td><%= guest_user.last_name %></td>
-                    <td><%= guest_user.phone_number %></td>
-                    <td><%= guest_user.email_address %></td>
-                    <td><%= guest_user.title %></td>
-                    <td><%= guest_user.company %></td>
-                    <td><%= guest_user.purpose %></td>
-                    <td><%= guest_user.help %></td>
-                    <td><%= link_to 'Show', guest_user %></td>
-                    <td><%= link_to 'Edit', edit_guest_user_path(guest_user) %></td>
-                    <td><%= link_to 'Destroy', guest_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
+        <h1>All Client Accounts</h1>  
+        <table class="table guest-users table-striped datatable">
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>First</th>
+              <th>Last</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Zip</th>
+              <th>Sign Up Date</th>
+              <th>Last Sign In</th>
+              <th>Sign In Count</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Stage</th>
+              <th>First</th>
+              <th>Last</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Zip</th>
+              <th>Sign Up Date</th>
+              <th>Last Sign In</th>
+              <th>Sign In Count</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% @users && @users.each do |client| %>
+              <tr>
+                <td><%= client.registration_stage%></td>
+                <td><%= client.first_name if client.first_name? %></td>
+                <td><%= client.last_name if client.first_name? %></td>
+                <% if client.head_of_families.count >= 1 %>
+                  <td><%= link_to client.email, family_path(client.head_of_families.first.id)%></td>
+                <% else %>
+                  <td><%= client.email %> </td>
                 <% end %>
-              </tbody>
-            </table>
+                <td><%= client.phone_number if client.phone_number? %></td>
+                <td><%= client.zip_code if client.zip_code? %></td>
+                <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+                <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.last_sign_in_at? %></td>
+                <td><%= client.sign_in_count if client.sign_in_count?%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
           </div>
         </div>
       </section>

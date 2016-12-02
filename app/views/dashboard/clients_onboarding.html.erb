@@ -250,6 +250,47 @@
 				    <% end %>
 				  </tbody>
 				</table>
+
+				<h1>Contacted Us</h1>	
+        <table class="table clients-table table-striped datatable">
+          <thead>
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Phone number</th>
+              <th>Email address</th>
+              <th>Title</th>
+              <th>Company</th>
+              <th>Purpose</th>
+              <th>Help</th>
+            </tr>
+          </thead>
+          <tfoot>
+          	  <th>First name</th>
+              <th>Last name</th>
+              <th>Phone number</th>
+              <th>Email address</th>
+              <th>Title</th>
+              <th>Company</th>
+              <th>Purpose</th>
+              <th>Help</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% @guest_user.each do |guest_user| %>
+              <tr>
+                <td><%= guest_user.first_name %></td>
+                <td><%= guest_user.last_name %></td>
+                <td><%= guest_user.phone_number %></td>
+                <td><%= guest_user.email_address %></td>
+                <td><%= guest_user.title %></td>
+                <td><%= guest_user.company %></td>
+                <td><%= guest_user.purpose %></td>
+                <td><%= guest_user.help %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 			</main>
 
 			</main>

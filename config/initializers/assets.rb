@@ -16,6 +16,7 @@
   survey_groups
   growth_charts
   growth_entries
+  guest_users
   food_diaries
   food_diary_entries
   appointments

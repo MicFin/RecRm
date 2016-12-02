@@ -4,7 +4,7 @@ class GuestUsersController < ApplicationController
   # GET /guest_users
   # GET /guest_users.json
   def index
-    @guest_users = GuestUser.all
+    @users = User.client_accounts.order_by_last_sign_in
   end
 
   # GET /guest_users/1

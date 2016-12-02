@@ -50,15 +50,14 @@
 					  <span class=""></span><span class=" nav-item">Appointments</span>
 					<% end %>		
 
-
+					<!-- CONTACTED US LINK -->
+					<%= active_link_to main_app.guest_users_path, :wrap_tag => :li do %>
+					  <span class=""></span><span class=" nav-item">Clients</span>
+					<% end %>
+					
 					<!-- LEADS LINK -->
 					<%= active_link_to main_app.dashboard_clients_onboarding_path, :wrap_tag => :li do %>
 					  <span class=""></span><span class=" nav-item">Leads</span>
-					<% end %>
-
-					<!-- LEADS LINK -->
-					<%= active_link_to main_app.guest_users_path, :wrap_tag => :li do %>
-					  <span class=""></span><span class=" nav-item">Customer Service</span>
 					<% end %>
 
 					<!-- PROVIDERS LINK -->
@@ -68,7 +67,7 @@
 
 					<!-- DIETITIANS LINK -->
 					<%= active_link_to main_app.dietitians_path, :wrap_tag => :li do %>
-					  <span class=""></span><span class=" nav-item">KRDNs</span>
+					  <span class=""></span><span class=" nav-item">Dietitians</span>
 					<% end %>
 
 					<!-- COUPONS LINK -->

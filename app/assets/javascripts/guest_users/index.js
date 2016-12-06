@@ -7,7 +7,8 @@ Kindrdfood.guestUsers = Kindrdfood.guestUsers || {};
 Kindrdfood.guestUsers.index = {
   init: function(){
 
-  		$(".guest-users.datatable").DataTable({ 
+  	$(".guest-users.datatable").DataTable({ 
+      "order": [[ 0, "desc" ]],
 			initComplete: function () {
         this.api().columns().every( function () {
           var column = this;

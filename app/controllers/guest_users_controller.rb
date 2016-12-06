@@ -4,7 +4,10 @@ class GuestUsersController < ApplicationController
   # GET /guest_users
   # GET /guest_users.json
   def index
-    @users = User.client_accounts.order_by_last_sign_in
+
+    @users = User.client_accounts.includes(:invited_by) + User.family_member_accounts.includes(:invited_by)
+    @users = @users.sort_by(&:created_at)
+
   end
 
   # GET /guest_users/1

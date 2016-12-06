@@ -13,55 +13,71 @@
       
       <section class="row coupons-table-section">
         <div class="col-xs-12 ">
+          <h1>All Account Holders and Family Members</h1>  
           <div class="table-responsive">
-        <h1>All Client Accounts</h1>  
-        <table class="table guest-users table-striped datatable">
-          <thead>
-            <tr>
-              <th>Stage</th>
-              <th>First</th>
-              <th>Last</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Zip</th>
-              <th>Sign Up Date</th>
-              <th>Last Sign In</th>
-              <th>Sign In Count</th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th>Stage</th>
-              <th>First</th>
-              <th>Last</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Zip</th>
-              <th>Sign Up Date</th>
-              <th>Last Sign In</th>
-              <th>Sign In Count</th>
-            </tr>
-          </tfoot>
-          <tbody>
-            <% @users && @users.each do |client| %>
+            <table class="guest-users datatable responsive no-wrap table table-striped" cellspacing="0" width="100%">
+            <thead>
               <tr>
-                <td><%= client.registration_stage%></td>
-                <td><%= client.first_name if client.first_name? %></td>
-                <td><%= client.last_name if client.first_name? %></td>
-                <% if client.head_of_families.count >= 1 %>
-                  <td><%= link_to client.email, family_path(client.head_of_families.first.id)%></td>
-                <% else %>
-                  <td><%= client.email %> </td>
-                <% end %>
-                <td><%= client.phone_number if client.phone_number? %></td>
-                <td><%= client.zip_code if client.zip_code? %></td>
-                <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-                <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.last_sign_in_at? %></td>
-                <td><%= client.sign_in_count if client.sign_in_count?%></td>
+                <th>ID</th>
+                <th>Acct Type</th>
+                <th>Referrer</th>
+                <th>Stage</th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Zip</th>
+                <th>Sign Up Date</th>
+                <th>Sign In Count</th>
+                <th>Last Sign In</th>
+                <th></th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>ID</th>
+                <th>Acct Type</th>
+                <th>Referrer</th>
+                <th>Stage</th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Zip</th>
+                <th>Sign Up Date</th>
+                <th>Sign In Count</th>
+                <th>Last Sign In</th>
+                <th></th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <% @users && @users.each do |client| %>
+                <tr>
+                  <td><%= client.id%></td>
+                  <td><%= client.family_role ? "Family Member" : "Account Holder"%></td>
+                  <td><%= client_referrer(client) %></td>
+                  <td><%= client.registration_stage%></td>
+                  <td><%= client.first_name if client.first_name? %></td>
+                  <td><%= client.last_name if client.first_name? %></td>
+                  <td><%= client.phone_number if client.phone_number? %></td>
+                  <td><%= client.email %> </td>
+
+                  <td><%= client.zip_code if client.zip_code? %></td>
+                  <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+
+                  <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.last_sign_in_at? %></td>
+                  <td><%= client.sign_in_count if client.sign_in_count?%></td>
+
+                  <% if client.head_of_families.count >= 1 %>
+                    <td><%= link_to 'View', family_path(client.head_of_families.first.id) %></td>
+                  <% else %>
+                    <td><%= link_to 'View', family_path(client.families.first.id) if client.families%></td>
+                  <% end %>
+
+                </tr>
+              <% end %>
+            </tbody>
+            </table>
           </div>
         </div>
       </section>

@@ -61,14 +61,20 @@ class User < ActiveRecord::Base
 
   # # SCOPES
   # SCOPES: User Type
+  # All users with a password
   scope :user_accounts, -> { where("encrypted_password <> ''") }
+  # Clients
   scope :client_accounts, -> { user_accounts.where(provider: false)  }
-  scope :provider_accounts, -> { user_accounts.where(provider: true) }
+
+  # Family members
+  scope :family_member_accounts, -> { where("family_role <> ''") }  
+
   # QOL referral
   scope :qol_referrals, -> { where("confirmation_sent_at IS NOT NULL") } 
   # Provider referral
   scope :provider_referrals, -> { where("invitation_sent_at IS NOT NULL") }
-  scope :family_member_accounts, -> { where("family_role <> ''") }   
+   # Providers
+  scope :provider_accounts, -> { user_accounts.where(provider: true) }
    
   # SCOPES: User Registration Stage
   scope :at_stage, -> (stage){ where(registration_stage: stage) } 

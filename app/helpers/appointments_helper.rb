@@ -36,4 +36,15 @@ module AppointmentsHelper
     end   
   end
 
+  def appointment_referrer(appointment)
+
+    if appointment.appointment_host.qol_referral == true
+      "QOL"
+    elsif appointment.appointment_host.invited_by
+      "#{appointment.appointment_host.invited_by.first_name} #{appointment.appointment_host.invited_by.last_name}" 
+    else
+      "None"
+    end
+  end
+
 end

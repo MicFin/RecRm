@@ -14,9 +14,16 @@
     <h4>KRDN:</h4>
     <% if surveyable.dietitian %>
       <p><%= surveyable.dietitian.signature %></p>
+
+    <!--  for assigning dietitian -->
     <% elsif current_dietitian && (current_dietitian.has_role? "Admin Dietitian") %>
       <%= simple_form_for(surveyable, url: appointments_assign_dietitian_path(surveyable), html: {class: 'form-horizontal'} ) do |f| %>  
-        <%=f.input :dietitian_id, collection: surveyable.available_dietitians, :label_method => :email, label: false, :input_html => { :class => "form-control form-group"}   %>
+
+        <%= f.input :dietitian_id,
+           :as => :grouped_select,
+           :collection => [['Available', surveyable.available_dietitians], ['All', dietitians]],
+           :group_method => :last, :label_method => :email, :value_method => :id %>
+
         <%= f.button :submit, "Assign", class: "btn btn-primary btn-block" %>
       <% end %>
     <% end %>
@@ -31,6 +38,10 @@
     <div class="appt-overview-item">
       <h4>Client:</h4>
       <p><%= surveyable.appointment_host_full_name%></p>
+    </div>
+    <div class="appt-overview-item">
+      <h4>Referral:</h4>
+      <p><%= appointment_referrer(surveyable)%></p>
     </div>
   <% end %>
 

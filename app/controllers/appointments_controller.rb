@@ -63,6 +63,11 @@ class AppointmentsController < ApplicationController
   # this is where the index is coming from to view the prep information before the admin assigns a dietitian to an appointment
   def show
 
+    # load dietitians if no dietitian is assigned so admin can assign dietitian
+    if @appointment.dietitian == nil 
+      @dietitians = Dietitian.all
+    end
+
     @surveyable = Appointments::AppointmentPresenter.new(@appointment)
 
     @client_prep_survey = Survey.generate_for_appointment(@surveyable, @surveyable.appointment_host)
@@ -87,26 +92,6 @@ class AppointmentsController < ApplicationController
     @family = Families::FamilyPresenter.new(@surveyable.appointment_host.head_of_families.first)
     
     @post_recommendations = @surveyable.post_recommendations
-    # if params[:data] == "Request"
-      
-    # else 
-    #   ### this is being used to prep assign the dietitian 
-    #   @dietitians = @appointment.available_dietitians
-      
-    #   @dietitians_data = {}
-    #   @dietitians.each do |dietitian|
-    #     @dietitians_data[dietitian] = {}
-    #     # @dietitians_data[dietitian]["half_hour_time_slots_available"] = dietitian.half_hour_time_slots_available
-    #     # @dietitians_data[dietitian]["loss_time_slots"] = dietitian.loss_time_slots(@appointment) 
-    #     # @dietitians_data[dietitian]["loss_cal_slots"] = dietitian.loss_calendar_slots(@appointment)      
-    #   end
-
-    #   #@survey = @appointment.surveys.where(survey_type: "Pre-Appointment-Client").last
-    # end
-    # @appointment = Appointments::AppointmentPresenter.new(@appointment)
-    # respond_to do |format|
-    #   format.js
-    # end
   end
 
   # GET /appointments/new

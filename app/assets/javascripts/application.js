@@ -43,6 +43,7 @@
 //   JQUERY DATATABLE
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require dataTables/extras/dataTables.responsive
 
 //  JAVASCRIPT TIME ZONES
 //= require plugins/time_zones
@@ -50,7 +51,7 @@
 //  JAVASCRIPT COUNT DOWN
 //= require plugins/count-down-clock.js
 
-//= require dataTables/jquery.dataTables
+
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 
 // BROWSER DETAILS FOR RAILS LOG

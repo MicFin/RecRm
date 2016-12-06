@@ -28,7 +28,8 @@ Kindrdfood.appointments.edit = {
 		});
 
 
-		$(".previous-appointments.datatable").DataTable({ 
+		$(".previous-appointments.datatable, .upcoming-appointments.datatable").DataTable({ 
+			responsive: true,
 			initComplete: function () {
         this.api().columns().every( function () {
           var column = this;

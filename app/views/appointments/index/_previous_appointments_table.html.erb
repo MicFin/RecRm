@@ -1,39 +1,51 @@
 
 <h1>Previous appointments</h1>
-<div class="table-responsive">
-  <table class="previous-appointments table table-striped datatable">
+<div class="">
+  <table class="previous-appointments datatable responsive no-wrap table table-striped" cellspacing="0" width="100%">
     <thead>
       <tr>
         <th>Date</th>
-        <th>Client</th>
-        <th>Patient</th>
+        <th>Client ID</th>
+        <th>Client Name</th>
+        <th>Patient Name</th>
+        <th>Phone</th>
+        <th>Email</th>
         <th>Dietitian</th>
         <th>Duration</th>
         <th>Date of Purchase</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tfoot>
       <tr>
         <th>Date</th>
-        <th>Client</th>
-        <th>Patient</th>
+        <th>Client ID</th>
+        <th>Client Name</th>
+        <th>Patient Name</th>
+        <th>Phone</th>
+        <th>Email</th>
         <th>Dietitian</th>
         <th>Duration</th>
         <th>Date of Purchase</th>
-
+        <th></th>
+        <th></th>
       </tr>
     </tfoot>
     <tbody>
       <% previous_appointments.each do |appointment| %>
         <tr class="appt-id" data-appt-id="<%=appointment.id%>">
           <td><%= appointment.start_time.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-          <td><%= appointment.appointment_host.first_name%></td>
+          <td><%= appointment.appointment_host.id%></td>
+          <td><%= "#{appointment.appointment_host.first_name} #{appointment.appointment_host.last_name}" %></td>
           <td><%= appointment.patient_focus.first_name%></td>
+          <td><%= appointment.appointment_host.phone_number%></td>
+          <td><%= appointment.appointment_host.email%></td>
           <td><%= appointment.dietitian.signature %></td>
           <td><%= appointment.show_duration%></td>
           <td><%= appointment.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-          <!--           <td><%#= link_to 'Edit', edit_appointment_path(appointment) %></td>
-          <td><%#= link_to 'Delete', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+          <td><%= link_to 'View', appointment_path(appointment) %></td>
+          <td><%= link_to 'Delete', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>

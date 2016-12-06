@@ -7,7 +7,11 @@ Kindrdfood.dateTimePickers = Kindrdfood.dateTimePickers || {};
 
 Kindrdfood.dateTimePickers.dateTimePicker = {
   init: function(){
-  	$("#datetimepicker, .datetimepicker").datetimepicker({ sideBySide: true, allowInputToggle: true });
+  	$("#datetimepicker, .datetimepicker").datetimepicker({ 
+  		sideBySide: true, 
+  		allowInputToggle: true,
+  		format: "ddd MMM D, YYYY h:mm A" 
+  	});
 
 	},
 	dateOnlyInit: function(){

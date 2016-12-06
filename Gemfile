@@ -46,7 +46,7 @@ gem "opentok", "2.3.4"                              # https://github.com/opentok
 # # Dates, Time and Phone
 gem 'fullcalendar-rails', '~> 2.3.1'
 gem 'momentjs-rails', '~> 2.8.4'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'     # https://eonasdan.github.io/bootstrap-datetimepicker/
 gem 'phony_rails', "0.14.2"
 
 # # CoffeeScript

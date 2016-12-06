@@ -96,11 +96,18 @@ class Appointment < ActiveRecord::Base
     return dietitians
   end
 
+  # should be in AppointmentPresenter model 
   def show_duration
     if self.duration == 30
       return "1/2 hour"
-    else
+    elsif self.duration == 60
       return "1 hour"
+    elsif self.duration == 90
+      return "1 1/2 hours"
+    elsif self.duration == 120
+      return "2 hours"
+    else
+      return "3 hours"
     end
   end
 

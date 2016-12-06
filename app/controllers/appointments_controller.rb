@@ -108,7 +108,6 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
 
-    # clean_dates_for_database(time_zone)
     add_time_zone_to_input
     
     @appointment = Appointment.new(appointment_params)
@@ -150,18 +149,17 @@ class AppointmentsController < ApplicationController
 
     # should have both variables
     @appointment = Appointments::AppointmentPresenter.new(@appointment)
-   
+    @clients_and_family_members = Families::FamilyPresenter.new(@appointment.appointment_host.head_of_families.first).family_members
+    @dietitians = Dietitian.all
+
     if @appointment.status == "Follow Up Unpaid"
       # unpaid appointment that is edited after a dietitian creates the follow up unpaid appointment
       # set new_appointment variable for next_session_form.html.erb
       @new_appointment = @appointment
 
-    else
-
-      # unknown scenario
-      @dietitians = Dietitian.all 
     end
-  
+
+
     @user = current_user  
 
     respond_to do |format|
@@ -174,7 +172,6 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1.json
   def update
 
-    # clean_dates_for_database(time_zone)
     add_time_zone_to_input
 
 
@@ -355,49 +352,13 @@ class AppointmentsController < ApplicationController
       params.require(:appointment).permit(:patient_focus_id, :appointment_host_id, :dietitian_id, :start_time, :end_time, :room_id, :note, :client_note, :other_note, :created_at, :updated_at, :status, :time_slot_id, :stripe_card_token, :duration)
     end
 
+    # called for create or update when an admin manually updates time or creates new
     def add_time_zone_to_input
       current_user ? time_zone = current.time_zone : time_zone = "Eastern Time (US & Canada)"
       params[:appointment][:end_time] = params[:appointment][:end_time].in_time_zone(time_zone)
       params[:appointment][:start_time] = params[:appointment][:start_time].in_time_zone(time_zone)
     end
 
-    # def clean_dates_for_database(time_zone)
-      
-    #   ## clean start date for saving
-    #   if params[:appointment][:start_time]
-    #     temp_start_date = params[:appointment][:start_time].split("/")
-    #     temp_start_month = temp_start_date[0]
-    #     temp_start_day = temp_start_date[1]
-    #     temp_start_year = temp_start_date[2].split(" ")[0]
-    #     params[:appointment][:start_time] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
-    #     params[:appointment][:start_time] = params[:appointment][:start_time].in_time_zone(time_zone)
-    #     ## clean end date for saving
-    #     temp_end_date = params[:appointment][:end_time].split("/")
-    #     temp_end_month = temp_end_date[0]
-    #     temp_end_day = temp_end_date[1]
-    #     temp_end_year = temp_end_date[2].split(" ")[0]
-    #     params[:appointment][:end_time] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
-    #     params[:appointment][:end_time] = params[:appointment][:end_time].in_time_zone(time_zone)
-        
-    #   else
-        
-    #   ## clean start date for saving
-    #     temp_start_date = value_hash["start_time"].split("/")
-    #     temp_start_month = temp_start_date[0]
-    #     temp_start_day = temp_start_date[1]
-    #     temp_start_year = temp_start_date[2].split(" ")[0]
-    #     value_hash["start_time"] = temp_start_year +"/"+temp_start_month+"/"+temp_start_day+" "+temp_start_date[2].split(" ", 2)[1].delete(' ')
-    #     value_hash["start_time"] = value_hash["start_time"].in_time_zone(time_zone)
-
-    #     ## clean end date for saving
-    #     temp_end_date = value_hash["end_time"].split("/")
-    #     temp_end_month = temp_end_date[0]
-    #     temp_end_day = temp_end_date[1]
-    #     temp_end_year = temp_end_date[2].split(" ")[0]
-    #     value_hash["end_time"] = temp_end_year +"/"+temp_end_month+"/"+temp_end_day+" "+temp_end_date[2].split(" ", 2)[1].delete(' ')
-    #     value_hash["end_time"] = value_hash["end_time"].in_time_zone(time_zone)
-    #   end
-    # end
 
     def config_opentok
       

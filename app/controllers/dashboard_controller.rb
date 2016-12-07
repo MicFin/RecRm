@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
   end
 
   def providers
-    @providers = User.provider_accounts.order_by_created_at
+    @providers = User.provider_accounts
   end
 
   private

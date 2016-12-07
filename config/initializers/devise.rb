@@ -136,7 +136,7 @@ Devise.setup do |config|
   # The column name used for counter_cache column. If this is nil,
   # the #invited_by association is declared without counter_cache.
   # Default: nil
-  # config.invited_by_counter_cache = :invitations_count
+  config.invited_by_counter_cache = :invitations_count
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without

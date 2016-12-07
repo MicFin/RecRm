@@ -4,16 +4,17 @@
     <main class="main-content-container">
       <h1>Providers</h1>  
       <div class="table-responsive">
-        <table class="table">
+        <table class="clients-table datatable responsive no-wrap table table-striped" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>First</th>
               <th>Last</th>
+              <th>Referrals</th>
+              <th>Hospitals or Practices</th>
+              <th>Academic Affiliation</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Zip</th>
-              <th>Hospitals or Practices</th>
-              <th>Academic Affiliation</th>
               <th>Specialty</th>
               <th>Sub Specialty</th>
               <th>Fax</th>
@@ -22,17 +23,36 @@
               <th>Sign In Count</th>
             </tr>
           </thead>
+          <tfoot>
+            <tr>
+              <th>First</th>
+              <th>Last</th>
+              <th>Referrals</th>
+              <th>Hospitals or Practices</th>
+              <th>Academic Affiliation</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Zip</th>
+              <th>Specialty</th>
+              <th>Sub Specialty</th>
+              <th>Fax</th>
+              <th>Sign Up Date</th>
+              <th>Last Sign In</th>
+              <th>Sign In Count</th>
+            </tr>
+          </tfoot>
 
           <tbody>
             <% @providers && @providers.each do |provider| %>
               <tr>
                 <td><%= provider.first_name if provider.first_name? %></td>
                 <td><%= provider.last_name if provider.first_name? %></td>
+                <td><%= provider.invitations_count%></td>
+                <td><%= provider.hospitals_or_practices if provider.hospitals_or_practices %></td>
+                <td><%= provider.academic_affiliations if provider.academic_affiliations %></td>
                 <td><%= provider.email %></td>
                 <td><%= provider.phone_number if provider.phone_number? %></td>
                 <td><%= provider.zip_code if provider.zip_code? %></td>
-                <td><%= provider.hospitals_or_practices if provider.hospitals_or_practices %></td>
-                <td><%= provider.academic_affiliations if provider.academic_affiliations %></td>
                 <td><%= provider.specialty if provider.specialty %></td>
                 <td><%= provider.subspecialty if provider.subspecialty %></td>
                 <td><%= provider.fax if provider.fax %></td>

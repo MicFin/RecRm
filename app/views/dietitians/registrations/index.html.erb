@@ -24,7 +24,7 @@
 				</section>
 
 				<section>
-				  <table class="table">
+				  <table class="provider-table datatable responsive no-wrap table table-striped" cellspacing="0" width="100%">
 	          <thead>
 	            <tr>
 	              <th>Signature</th>
@@ -36,14 +36,29 @@
 	              <th>Experience Level</th>
 	              <th>Last Sign In At</th>
 	              <th>Created At</th>
+	              <th></th>
 	            </tr>
 	          </thead>
+	          <tfoot>
+	            <tr>
+	              <th>Signature</th>
+	              <th>First </th>
+	              <th>Last</th>
+	              <th>Email</th>
+	              <th>Location</th>
+	              <th>Time Zone</th>
+	              <th>Experience Level</th>
+	              <th>Last Sign In At</th>
+	              <th>Created At</th>
+	              <th></th>
+	            </tr>
+	          </tfoot>
 	          <tbody>
 
 	            <% @dietitians.each do | dietitian | %>
 
 	              <tr>
-	                <td><%=link_to dietitian.signature, dietitian_path(dietitian)%></td>
+	                <td><%=dietitian.signature%></td>
 	                <td><%=dietitian.first_name%></td>
 	                <td><%=dietitian.last_name%></td>
 	                <td><%=dietitian.email %></td>
@@ -52,6 +67,7 @@
 	                <td><%=dietitian.experience_level %></td>
 	                <td><%=dietitian.last_sign_in%></td>
 	                <td><%=dietitian.created %></td>
+	                <td><%=link_to "View", dietitian_path(dietitian)%></td>
 	              </tr>
 	            <% end %>
 	          </tbody>

@@ -14,7 +14,7 @@ class Users::InvitationsController < Devise::InvitationsController
   # def after_accept_path_for
   # end
 
-    # GET /resource/invitation/new
+  # GET /resource/invitation/new
   def new
     self.resource = resource_class.new
     @invitees = current_user.invitations
@@ -43,6 +43,26 @@ class Users::InvitationsController < Devise::InvitationsController
     end
   end
 
+  # # GET /resource/invitation/:id/resend
+  # def resend_invitation
+  #   # binding.pry
+  #   # self.resource = invite_resource
+
+  #   # resource_invited = resource.errors.empty?
+
+  #   # yield resource if block_given?
+
+  #   # if resource_invited
+  
+  #   #   if is_flashing_format? && self.resource.invitation_sent_at
+  #   #     set_flash_message :notice, :send_instructions, :email => self.resource.email
+  #   #   end
+  #   #   respond_with resource, :location => after_invite_path_for(current_inviter)
+  #   # else
+  
+  #   #   respond_with_navigational(resource) { render :new }
+  #   # end    
+  # end
  private
 
   # def resource_params

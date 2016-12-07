@@ -5,219 +5,113 @@
 
 			<main class="main-content-container">
 				<h1>Leads</h1>	
-				<table class="table clients-table table-striped datatable">
+				<table class="clients-table datatable responsive no-wrap table table-striped" cellspacing="0" width="100%">
 				  <thead>
 				    <tr>
-				    	<th>Stage</th>
-				      <th>First</th>
-				      <th>Last</th>
-				      <th>Email</th>
-				      <th>Phone</th>
-				      <th>Zip</th>
-				      <th>Sign Up Date</th>
-				      <th>Last Sign In</th>
-				      <th>Sign In Count</th>
+							<th>ID</th>
+              <th>Referrer</th>
+              <th>Stage</th>
+              <th>First</th>
+              <th>Last</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Zip</th>
+              <th>Sign Up Date</th>
+              <th>Sign In Count</th>
+              <th>Last Sign In</th>
+				    	<th></th>
 				    </tr>
 				  </thead>
 				  <tfoot>
 				  	<tr>
-				    	<th>Stage</th>
-				      <th>First</th>
-				      <th>Last</th>
-				      <th>Email</th>
-				      <th>Phone</th>
-				      <th>Zip</th>
-				      <th>Sign Up Date</th>
-				      <th>Last Sign In</th>
-				      <th>Sign In Count</th>
+							<th>ID</th>
+              <th>Referrer</th>
+              <th>Stage</th>
+              <th>First</th>
+              <th>Last</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Zip</th>
+              <th>Sign Up Date</th>
+              <th>Sign In Count</th>
+              <th>Last Sign In</th>
+				    	<th></th>
 				    </tr>
 				  </tfoot>
 				  <tbody>
 				    <% @leads && @leads.each do |client| %>
 				      <tr>
+				      	<td><%= client.id%></td>
+				      	<td><%= client_referrer(client) %></td>
 				      	<td><%= client.registration_stage%></td>
 				        <td><%= client.first_name if client.first_name? %></td>
 				        <td><%= client.last_name if client.first_name? %></td>
-				        <td><%= client.email %></td>
 				        <td><%= client.phone_number if client.phone_number? %></td>
+				        <td><%= client.email %></td>
 				        <td><%= client.zip_code if client.zip_code? %></td>
 				        <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.sign_in_count if client.sign_in_count? %></td>
 				        <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.last_sign_in_at? %></td>
-				        <td><%= client.sign_in_count if client.sign_in_count?%></td>
+				        <td></td>
 				      </tr>
 				    <% end %>
 				  </tbody>
 				</table>
 				<h1>Provider Referrals</h1>	
-				<table class="table clients-table table-striped datatable">
+				<table class="clients-table datatable responsive no-wrap table table-striped" cellspacing="0" width="100%">
 				  <thead>
 				    <tr>
-				    	<th>Stage</th>
-				      <th>First</th>
-				      <th>Last</th>
-				      <th>Email</th>
-				      <th>Phone</th>
-				      <th>Zip</th>
-				      <th>Sign Up Date</th>
-				      <th>Last Sign In</th>
-				      <th>Sign In Count</th>
+							<th>ID</th>
+              <th>Referrer</th>
+              <th>Stage</th>
+              <th>First</th>
+              <th>Last</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Zip</th>
+              <th>Sign Up Date</th>
+              <th>Sign In Count</th>
+              <th>Last Sign In</th>
+				    	<th></th>
 				    </tr>
 				  </thead>
 				  <tfoot>
 				  	<tr>
-				    	<th>Stage</th>
-				      <th>First</th>
-				      <th>Last</th>
-				      <th>Email</th>
-				      <th>Phone</th>
-				      <th>Zip</th>
-				      <th>Sign Up Date</th>
-				      <th>Last Sign In</th>
-				      <th>Sign In Count</th>
+							<th>ID</th>
+              <th>Referrer</th>
+              <th>Stage</th>
+              <th>First</th>
+              <th>Last</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Zip</th>
+              <th>Sign Up Date</th>
+              <th>Sign In Count</th>
+              <th>Last Sign In</th>
+				    	<th></th>
 				    </tr>
 				  </tfoot>
 				  <tbody>
 				    <% @provider_referrals && @provider_referrals.each do |client| %>
 				      <tr>
+				      	<td><%= client.id%></td>
+				      	<td><%= client_referrer(client) %></td>
 				      	<td><%= client.registration_stage%></td>
 				        <td><%= client.first_name if client.first_name? %></td>
 				        <td><%= client.last_name if client.first_name? %></td>
-				        <td><%= client.email %></td>
 				        <td><%= client.phone_number if client.phone_number? %></td>
+				        <td><%= client.email %></td>
 				        <td><%= client.zip_code if client.zip_code? %></td>
 				        <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
+				        <td><%= client.sign_in_count if client.sign_in_count? %></td>
 				        <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.last_sign_in_at? %></td>
-				        <td><%= client.sign_in_count if client.sign_in_count?%></td>
+				        <td></td>
 				      </tr>
 				    <% end %>
 				  </tbody>
 				</table>
-				<!-- 
-				<h1>Stage 4</h1>	
-				<table class="table clients-table table-striped datatable">
-				  <thead>
-				    <tr>
-				      <th>First</th>
-				      <th>Last</th>
-				      <th>Email</th>
-				      <th>Phone</th>
-				      <th>Zip</th>
-				      <th>Sign Up Date</th>
-				      <th>Last Sign In</th>
-				      <th>Sign In Count</th>
-				    </tr>
-				  </thead>
-
-				  <tbody>
-				    <%# @clients_stage4 && @clients_stage4.each do |client| %>
-				      <tr>
-				        <td><%#= client.first_name if client.first_name? %></td>
-				        <td><%#= client.last_name if client.first_name? %></td>
-				        <td><%#= client.email %></td>
-				        <td><%#= client.phone_number if client.phone_number? %></td>
-				        <td><%#= client.zip_code if client.zip_code? %></td>
-				        <td><%#= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%#= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%#= client.sign_in_count%></td>
-				      </tr>
-				    <%# end %>
-				  </tbody>
-				</table>
-				<h1>Stage 3</h1>	
-				<table class="table clients-table table-striped datatable">
-				  <thead>
-				    <tr>
-				      <th>First</th>
-				      <th>Last</th>
-				      <th>Email</th>
-				      <th>Phone</th>
-				      <th>Zip</th>
-				      <th>Sign Up Date</th>
-				      <th>Last Sign In</th>
-				      <th>Sign In Count</th>
-				    </tr>
-				  </thead>
-
-				  <tbody>
-				    <%# @clients_stage3 && @clients_stage3.each do |client| %>
-				      <tr>
-				        <td><%#= client.first_name if client.first_name? %></td>
-				        <td><%#= client.last_name if client.first_name? %></td>
-				        <td><%#= client.email %></td>
-				        <td><%#= client.phone_number if client.phone_number? %></td>
-				        <td><%#= client.zip_code if client.zip_code? %></td>
-				        <td><%#= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%#= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%#= client.sign_in_count%></td>
-				      </tr>
-				    <%# end %>
-				  </tbody>
-				</table>
-				<h1>Stage 2</h1>	
-				<table class="table clients-table table-striped datatable">
-				  <thead>
-				    <tr>
-				      <th>First</th>
-				      <th>Last</th>
-				      <th>Email</th>
-				      <th>Phone</th>
-				      <th>Zip</th>
-				      <th>Sign Up Date</th>
-				      <th>Last Sign In</th>
-				      <th>Sign In Count</th>
-				 
-				    </tr>
-				  </thead>
-
-				  <tbody>
-				    <%# @clients_stage2 && @clients_stage2.each do |client| %>
-				      <tr>
-				        <td><%#= client.first_name if client.first_name? %></td>
-				        <td><%#= client.last_name if client.first_name? %></td>
-				        <td><%#= client.email %></td>
-				        <td><%#= client.phone_number if client.phone_number? %></td>
-				        <td><%#= client.zip_code if client.zip_code? %></td>
-				        <td><%#= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%#= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%#= client.sign_in_count%></td>
-				      </tr>
-				    <%# end %>
-				  </tbody>
-				</table>
-				<h1>Stage 1</h1>	
-				<table class="table clients-table table-striped datatable">
-				  <thead>
-				    <tr>
-				      <th>First</th>
-				      <th>Last</th>
-				      <th>Email</th>
-				      <th>Phone</th>
-				      <th>Zip</th>
-				      <th>Sign Up Date</th>
-				      <th>Last Sign In</th>
-				      <th>Sign In Count</th>
-				 
-				    </tr>
-				  </thead>
-
-				  <tbody>
-				    <%# @clients_stage1 && @clients_stage1.each do |client| %>
-				      <tr>
-				        <td><%#= client.first_name if client.first_name? %></td>
-				        <td><%#= client.last_name if client.first_name? %></td>
-				        <td><%#= client.email %></td>
-				        <td><%#= client.phone_number if client.phone_number? %></td>
-				        <td><%#= client.zip_code if client.zip_code? %></td>
-				        <td><%#= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%#= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%#= client.sign_in_count%></td>
-				      </tr>
-				    <%# end %>
-				  </tbody>
-				</table> -->
-
 				<h1>QOL Referrals</h1>	
-				<table class="table clients-table table-striped datatable">
+				<table class="clients-table datatable responsive no-wrap table table-striped" cellspacing="0" width="100%">
 				  <thead>
 				    <tr>
 				      <th>First</th>
@@ -225,7 +119,6 @@
 				      <th>Email</th>
 				      <th>Invitation Sent</th>
 				      <th>Invitation Accepted</th>
-				 
 				    </tr>
 				  </thead>
 				  <tfoot>
@@ -252,7 +145,7 @@
 				</table>
 
 				<h1>Contacted Us</h1>	
-        <table class="table clients-table table-striped datatable">
+        <table class="clients-table datatable responsive no-wrap table table-striped" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>First name</th>

@@ -9,7 +9,7 @@ Kindrdfood.dashboard.clients_onboarding = {
 	init: function(){
 
 		$(".clients-table.datatable").DataTable({
-
+      "order": [[ 0, "desc" ]],
 			initComplete: function () {
         this.api().columns().every( function () {
           var column = this;

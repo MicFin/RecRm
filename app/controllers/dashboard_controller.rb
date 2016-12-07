@@ -16,11 +16,11 @@ class DashboardController < ApplicationController
     # @clients_stage4 = User.client_accounts.at_stage(4).order_by_last_sign_in
     # @clients_stage5 = User.client_accounts.at_stage(5).order_by_last_sign_in
 
-    @leads = User.incomplete_onboarding.order_by_created_at
+    @leads = User.incomplete_onboarding
 
-    @qol_referrals = User.qol_referrals.order_by_created_at
+    @qol_referrals = User.qol_referrals
 
-    @provider_referrals = User.provider_referrals.order_by_created_at
+    @provider_referrals = User.provider_referrals
 
     @guest_user = GuestUser.all
   end

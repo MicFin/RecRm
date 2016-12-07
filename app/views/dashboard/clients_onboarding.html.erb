@@ -57,22 +57,17 @@
 				    <% end %>
 				  </tbody>
 				</table>
-				<h1>Provider Referrals</h1>	
+				<h1>Provider Referral Leads</h1>	
 				<table class="clients-table datatable responsive no-wrap table table-striped" cellspacing="0" width="100%">
 				  <thead>
-				    <tr>
+				  	<tr>
 							<th>ID</th>
               <th>Referrer</th>
               <th>Stage</th>
               <th>First</th>
               <th>Last</th>
-              <th>Phone</th>
               <th>Email</th>
-              <th>Zip</th>
-              <th>Sign Up Date</th>
-              <th>Sign In Count</th>
-              <th>Last Sign In</th>
-				    	<th></th>
+              <th>Referral Sent</th>
 				    </tr>
 				  </thead>
 				  <tfoot>
@@ -82,13 +77,8 @@
               <th>Stage</th>
               <th>First</th>
               <th>Last</th>
-              <th>Phone</th>
               <th>Email</th>
-              <th>Zip</th>
-              <th>Sign Up Date</th>
-              <th>Sign In Count</th>
-              <th>Last Sign In</th>
-				    	<th></th>
+              <th>Referral Sent</th>
 				    </tr>
 				  </tfoot>
 				  <tbody>
@@ -99,18 +89,13 @@
 				      	<td><%= client.registration_stage%></td>
 				        <td><%= client.first_name if client.first_name? %></td>
 				        <td><%= client.last_name if client.first_name? %></td>
-				        <td><%= client.phone_number if client.phone_number? %></td>
 				        <td><%= client.email %></td>
-				        <td><%= client.zip_code if client.zip_code? %></td>
-				        <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%= client.sign_in_count if client.sign_in_count? %></td>
-				        <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.last_sign_in_at? %></td>
-				        <td></td>
+				        <td><%= client.invitation_sent_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
 				      </tr>
 				    <% end %>
 				  </tbody>
 				</table>
-				<h1>QOL Referrals</h1>	
+				<h1>QOL Referral Leads</h1>	
 				<table class="clients-table datatable responsive no-wrap table table-striped" cellspacing="0" width="100%">
 				  <thead>
 				    <tr>
@@ -118,7 +103,6 @@
 				      <th>Last</th>
 				      <th>Email</th>
 				      <th>Invitation Sent</th>
-				      <th>Invitation Accepted</th>
 				    </tr>
 				  </thead>
 				  <tfoot>
@@ -127,8 +111,7 @@
 				      <th>Last</th>
 				      <th>Email</th>
 				      <th>Invitation Sent</th>
-				      <th>Invitation Accepted</th>
-				 
+				
 				    </tr>
 				  </tfoot>
 				  <tbody>
@@ -138,7 +121,6 @@
 				        <td><%= client.last_name if client.first_name? %></td>
 				        <td><%= client.email %></td>
 				        <td><%= client.confirmation_sent_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
-				        <td><%= client.confirmed_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.confirmed_at?%></td>
 				      </tr>
 				    <% end %>
 				  </tbody>

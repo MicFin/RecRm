@@ -20,16 +20,18 @@
               <tr>
                 <th>ID</th>
                 <th>Acct Type</th>
-                <th>Referrer</th>
                 <th>Stage</th>
+                <th>Referrer</th>
                 <th>First</th>
                 <th>Last</th>
-                <th>Phone</th>
                 <th>Email</th>
+                <th>Phone</th>
                 <th>Zip</th>
+                <th>Referral Sent</th>
+                <th>Referral Accepted</th>
                 <th>Sign Up Date</th>
-                <th>Sign In Count</th>
                 <th>Last Sign In</th>
+                <th>Sign In Count</th>
                 <th></th>
               </tr>
             </thead>
@@ -37,16 +39,18 @@
               <tr>
                 <th>ID</th>
                 <th>Acct Type</th>
-                <th>Referrer</th>
                 <th>Stage</th>
+                <th>Referrer</th>
                 <th>First</th>
                 <th>Last</th>
-                <th>Phone</th>
                 <th>Email</th>
+                <th>Phone</th>
                 <th>Zip</th>
+                <th>Referral Sent</th>
+                <th>Referral Accepted</th>
                 <th>Sign Up Date</th>
-                <th>Sign In Count</th>
                 <th>Last Sign In</th>
+                <th>Sign In Count</th>
                 <th></th>
               </tr>
             </tfoot>
@@ -55,14 +59,15 @@
                 <tr>
                   <td><%= client.id%></td>
                   <td><%= client.family_role ? "Family Member" : "Account Holder"%></td>
-                  <td><%= client_referrer(client) %></td>
                   <td><%= client.registration_stage%></td>
+                  <td><%= client_referrer(client) %></td>
                   <td><%= client.first_name if client.first_name? %></td>
                   <td><%= client.last_name if client.first_name? %></td>
-                  <td><%= client.phone_number if client.phone_number? %></td>
                   <td><%= client.email %> </td>
-
+                  <td><%= client.phone_number if client.phone_number? %></td>
                   <td><%= client.zip_code if client.zip_code? %></td>
+                  <td><%= client_referral_sent(client)%></td>
+                  <td><%= client_referral_accepted(client)%></td>
                   <td><%= client.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") %></td>
 
                   <td><%= client.last_sign_in_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p") if client.last_sign_in_at? %></td>

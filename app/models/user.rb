@@ -70,10 +70,12 @@ class User < ActiveRecord::Base
   scope :family_member_accounts, -> { where("family_role <> ''") }  
 
   # QOL referral
-  scope :qol_referrals, -> { where("confirmation_sent_at IS NOT NULL") } 
+  scope :qol_referrals_not_accepted, -> { where("confirmation_sent_at IS NOT NULL").where("confirmed_at IS NULL") } 
+
   # Provider referral
-  scope :provider_referrals, -> { where("invitation_sent_at IS NOT NULL") }
-   # Providers
+  scope :provider_referrals_not_accepted, -> { where("invitation_sent_at IS NOT NULL").where("invitation_accepted_at IS NULL") } 
+  
+  # Providers
   scope :provider_accounts, -> { user_accounts.where(provider: true) }
    
   # SCOPES: User Registration Stage

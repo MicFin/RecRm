@@ -18,9 +18,9 @@ class DashboardController < ApplicationController
 
     @leads = User.incomplete_onboarding
 
-    @qol_referrals = User.qol_referrals
+    @qol_referrals = User.qol_referrals_not_accepted
 
-    @provider_referrals = User.provider_referrals
+    @provider_referrals = User.provider_referrals_not_accepted
 
     @guest_user = GuestUser.all
   end

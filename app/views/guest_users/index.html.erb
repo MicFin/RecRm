@@ -74,7 +74,7 @@
                   <td><%= client.sign_in_count if client.sign_in_count?%></td>
 
                   <% if client.head_of_families.count >= 1 %>
-                    <td><%= link_to 'View', family_path(client.head_of_families.first.id) %></td>
+                    <td><%= link_to 'View', family_path(client.head_of_families.first.id) if client.head_of_families%></td>
                   <% else %>
                     <td><%= link_to 'View', family_path(client.families.first.id) if client.families%></td>
                   <% end %>

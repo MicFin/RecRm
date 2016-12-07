@@ -2,73 +2,73 @@
 <% if current_user.provider %>
 
 
-<!-- LANDING PAGE INDEX TEMPLATE -->
-<div id="kf-provider-dashboard" class="kf-landing-page landing-page-sub-navbar">
+  <!-- LANDING PAGE INDEX TEMPLATE -->
+  <div id="kf-provider-dashboard" class="kf-landing-page landing-page-sub-navbar">
 
-  <!-- LANDING PAGE NAVIGATION -->
-  <nav class="kf-landing-page-navbar">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">
-        <%= image_tag "logos/kf-logo-registration.png", class: "navbar-brand-image" %>
-      </a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse">
-      <ul class="kf-landing-page-navbar-list">
-            <%= active_link_to new_user_invitation_path, { :active => [['users'], ['invitation']], :class_active => 'active', :wrap_tag => :li} do %>
-              Dashboard
-            <% end %>
-
-            <%= active_link_to edit_user_registration_path, { :active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
-              Profile
-            <% end %>
-
-            <%= active_link_to edit_user_registration_path, { :active => [[''], ['']], :class_active => 'active', :wrap_tag => :li} do %>
-              What's Next?
-            <% end %>
-
-            <%= active_link_to landing_pages_new_faq_page_path, {:active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
-              FAQ
-            <% end %>
-            <%= active_link_to landing_pages_new_contact_us_page_path, {:active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
-              Contact Us
-            <% end %>
-            <%= active_link_to destroy_user_session_path, {:method => :delete, :class_active => 'active', :wrap_tag => :li} do %>
-              sign out
-            <% end %>
-            </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </nav>
-    <section class="alerts-container">
-      <%= render "/layouts/alerts" %>
-    </section>
-
-
-  <!-- LANDING PAGE BODY -->
-  <main class="kf-landing-page-sections">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <%= render "/users/registrations/forms/settings" %>
+    <!-- LANDING PAGE NAVIGATION -->
+    <nav class="kf-landing-page-navbar">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <%= image_tag "logos/kf-logo-registration.png", class: "navbar-brand-image" %>
+        </a>
       </div>
-    </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse">
+        <ul class="kf-landing-page-navbar-list">
+              <%= active_link_to new_user_invitation_path, { :active => [['users'], ['invitation']], :class_active => 'active', :wrap_tag => :li} do %>
+                Dashboard
+              <% end %>
+
+              <%= active_link_to edit_user_registration_path, { :active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
+                Profile
+              <% end %>
+
+              <%= active_link_to edit_user_registration_path, { :active => [[''], ['']], :class_active => 'active', :wrap_tag => :li} do %>
+                What's Next?
+              <% end %>
+
+              <%= active_link_to landing_pages_new_faq_page_path, {:active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
+                FAQ
+              <% end %>
+              <%= active_link_to landing_pages_new_contact_us_page_path, {:active => [['users'], ['edit']], :class_active => 'active', :wrap_tag => :li} do %>
+                Contact Us
+              <% end %>
+              <%= active_link_to destroy_user_session_path, {:method => :delete, :class_active => 'active', :wrap_tag => :li} do %>
+                sign out
+              <% end %>
+              </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+      <section class="alerts-container">
+        <%= render "/layouts/alerts" %>
+      </section>
+
+
+    <!-- LANDING PAGE BODY -->
+    <main class="kf-landing-page-sections">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+          <%= render "/users/registrations/forms/settings" %>
+        </div>
+      </div>
 
 
 
-  </main>
+    </main>
 
-  <!-- LANDING PAGE FOOTER -->
-  <%= render "/landing_pages/landing_pages_rd_2/footer" %>
+    <!-- LANDING PAGE FOOTER -->
+    <%= render "/landing_pages/landing_pages_rd_2/footer" %>
 
-</div>
+  </div>
 
 
 

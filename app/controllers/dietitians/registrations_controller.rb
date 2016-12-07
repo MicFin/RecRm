@@ -234,7 +234,7 @@ class Dietitians::RegistrationsController < Devise::RegistrationsController
        end
       devise_parameter_sanitizer.for(:account_update) do |u|  
 
-        u.permit(:first_name, :last_name, :email, :signature, :location, :password, :password_confirmation, :current_password, :remove_image, :undergraduate_education, :graduate_education, :professional_experience_first, :professional_experience_second, :professional_experience_third, :professional_experience_fourth, :professional_experience_fifth, :introduction, :experience_level, :age_level, :expertises_attributes => [:dietitian_preference, :dietitian_qualification, :dietitian_id, :patient_group_id, :id], :images_attributes => [:image_type, :imageable_id, :imageable_type, :position, :image_cache, :crop_x, :crop_y, :crop_w, :crop_h, :crop_image, :remove_image, :image])
+        u.permit(:first_name, :last_name, :email, :phone_number, :signature, :location, :password, :password_confirmation, :current_password, :remove_image, :undergraduate_education, :graduate_education, :professional_experience_first, :professional_experience_second, :professional_experience_third, :professional_experience_fourth, :professional_experience_fifth, :introduction, :experience_level, :age_level, :expertises_attributes => [:dietitian_preference, :dietitian_qualification, :dietitian_id, :patient_group_id, :id], :images_attributes => [:image_type, :imageable_id, :imageable_type, :position, :image_cache, :crop_x, :crop_y, :crop_w, :crop_h, :crop_image, :remove_image, :image])
        end
        
     end

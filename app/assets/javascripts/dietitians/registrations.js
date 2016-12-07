@@ -2,6 +2,7 @@
 
 //= require dietitians/edit
 //= require dietitians/index
+//= require dietitians/show
 
 // when page has loaded...
 $(document).ready(function() {
@@ -10,5 +11,7 @@ $(document).ready(function() {
 	Kindrdfood.dietitians.edit.init();
 
 	Kindrdfood.dietitians.index.init();
+
+	Kindrdfood.dietitians.show.init();
 
 });

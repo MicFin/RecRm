@@ -70,15 +70,20 @@
 					  		<p><%= @dietitian.professional_experience_third %></p>
 					 		</div>
 					 	</div>
-					 <!-- 	<div class="row">
+				 	</div>
+				</section>
+
+				<% if current_dietitian && (current_dietitian.has_role? "Admin Dietitian") %>
+					 	<section class="row">
 					 		<div class="col-xs-12">
-					  		<h3>Favorite Recipe</h3>
+					  		<h3>Schedule</h3>
 					  	</div>
 					  	<div class="col-xs-12">
-					  	 <%#= render "/post_recommendations/show", post_recommendation: @dietitian.favorite_recipe %>
+					  		<div class="col-xs-8" id="availability-cal">
+	        			</div>
 					  	</div>
-					 	</div> -->
-				 	</div>
+					 	</section>
+				 	<% end %>
 				</section>
 				<section class="row">
 

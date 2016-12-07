@@ -1,3 +1,11 @@
+.dietitian-show-page{
+	/// override calendar
+	.fc-toolbar .fc-right {
+		position: relative;
+	  right: 0;
+	  top: 0;
+	}
+}
 .profile-heading {
 	@include make-row( );
 	.profile-heading-logo {

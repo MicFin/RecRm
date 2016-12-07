@@ -138,6 +138,7 @@
               <th>Company</th>
               <th>Purpose</th>
               <th>Help</th>
+              <th>Date Contacted</th>
             </tr>
           </thead>
           <tfoot>
@@ -149,6 +150,7 @@
               <th>Company</th>
               <th>Purpose</th>
               <th>Help</th>
+              <th>Date Contacted</th>
             </tr>
           </tfoot>
           <tbody>
@@ -162,6 +164,7 @@
                 <td><%= guest_user.company %></td>
                 <td><%= guest_user.purpose %></td>
                 <td><%= guest_user.help %></td>
+              	<td><%= guest_user.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%B %d, %Y %I:%M %p")%></td>
               </tr>
             <% end %>
           </tbody>

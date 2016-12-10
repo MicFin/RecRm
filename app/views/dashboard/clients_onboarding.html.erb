@@ -115,7 +115,7 @@
 				    </tr>
 				  </tfoot>
 				  <tbody>
-				    <% @referrals && @referrals.each do |client| %>
+				    <% @qol_referrals && @qol_referrals.each do |client| %>
 				      <tr>
 				        <td><%= client.first_name if client.first_name? %></td>
 				        <td><%= client.last_name if client.first_name? %></td>

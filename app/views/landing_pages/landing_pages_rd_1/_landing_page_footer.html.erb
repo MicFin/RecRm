@@ -3,18 +3,11 @@
 					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-sm-offset-2">
 						<h4>Company</h4>
 						<ul>
-							<%= active_link_to landing_pages_our_mission_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-              Our mission & vision
-            	<% end %>
-							<%= active_link_to landing_pages_leadership_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-              Our team
-            	<% end %>
-							<%= active_link_to landing_pages_why_kindrdfood_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-              Why Kindrdfood?
-            	<% end %>
-							<%= active_link_to landing_pages_contact_us_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-              Contact Us
-            	<% end %>
+ 							<li><%= link_to 'For Patients', landing_pages_new_landing_page_path %></li>
+							<li><%= link_to 'For Providers', landing_pages_new_provider_page_path %></li>
+							<li><%= link_to 'Leadership', landing_pages_new_leadership_page_path %></li>
+							<li><%= link_to 'FAQ', landing_pages_new_faq_page_path %></li>
+							<li><%= link_to 'Contact Us', landing_pages_new_contact_us_page_path %></li>
 						</ul>
 					</div>
 					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 ">

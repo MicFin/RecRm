@@ -2,7 +2,9 @@ class WelcomeWorker
   include Sidekiq::Worker
 
   def perform(user_id)
-    UserMailer.welcome_message(user_id).deliver
+    RegistrationConfirmationWorker.perform_in(10.minutes, resource.id)
+    RegistrationReminderWorker.perform_in(1.day, resource.id)
+    RegistrationFinalReminderWorker.perform_in(7.day, resource.id)
     # UserMailer.welcome_message(user).deliver unless user.invalid?
   end
 

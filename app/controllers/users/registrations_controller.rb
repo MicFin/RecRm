@@ -28,6 +28,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)
+        # UserMailer.welcome(resource).deliver unless resource.invalid?
+        WelcomeWorker.perform_in(5.minutes, resource.id)
+        # MailMan.remind_in(.hours, resource)
+        # MailMan.welcome_in(24.hours, resource)
+        # MailMan.welcome_in(24.hours, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?

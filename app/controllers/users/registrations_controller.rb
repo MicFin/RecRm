@@ -30,7 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         sign_up(resource_name, resource)
 
         # WelcomeWorker.perform_in(5.minutes, resource.id)
-
+        # WelcomeWorker.perform_async(resource.id)
         respond_with resource, location: after_sign_up_path_for(resource)
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?

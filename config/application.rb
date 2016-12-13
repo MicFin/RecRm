@@ -31,6 +31,9 @@ module Myapp
 
     config.action_view.embed_authenticity_token_in_remote_forms = true
 
+    # https://medium.com/@benhansen/setting-up-sidekiq-redis-on-aws-elastic-beanstalk-with-elasticache-2efeb32935fe#.phxrtj3z0
+    # config.active_job.queue_adapter = :sidekiq
+
     config.to_prepare do
       Devise::Mailer.layout "email/application" # email/application.haml or email/application.erb
     end

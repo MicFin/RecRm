@@ -115,8 +115,8 @@ gem 'premailer-rails'
 # gem 'premailer-rails'
 
 # # Workers
-# gem 'sidekiq'
-# gem 'devise-async'
+gem 'sidekiq', '4.2.7'
+gem 'devise-async', '0.10.2'
 # gem 'sinatra', require: false
 
 # # Utils

@@ -434,24 +434,29 @@
 
 Rails.application.routes.draw do
 
+  ### ROUTES FOR SIDEKIQ
+  require 'sidekiq/web'
+  require 'sidekiq/api'
+  # Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+  # https://github.com/mperham/sidekiq/wiki/Monitoring
+  authenticate :dietitian, lambda { |u| u.has_role? "Admin Dietitian" } do
+    mount Sidekiq::Web => '/kf_sidekiq_dash'
+    match "kf_sidekiq_dash_queue" => proc { [200, {"Content-Type" => "text/plain"}, [Sidekiq::Queue.new.size < 100 ? "OK" : "UHOH" ]] }, via: :get
+    match "kf_sidekiq_dash_queue_latency" => proc { [200, {"Content-Type" => "text/plain"}, [Sidekiq::Queue.new.latency < 30 ? "OK" : "UHOH" ]] }, via: :get
+  end
+
   ### ROUTES FOR EMAIL PREVIEW 
   mount RailsEmailPreview::Engine, at: 'emails'
 
-  ### ROUTES FOR MONOLGUE
+  ### ROUTES FOR MONOLOGUE
   mount Ckeditor::Engine => '/ckeditor'
-  # or whatever path, be it "/blog" or "/monologue"
   mount Monologue::Engine, at: '/education' 
   Monologue::Engine.routes.draw do
-
-
-  mount RailsEmailPreview::Engine, at: 'emails'
+    mount RailsEmailPreview::Engine, at: 'emails'
     # # Not sure if need post_rec resources in engine as well as in main rails app
     # resources :post_recommendations
-
     namespace :admin, path: "monologue" do
-      
       resources :tags
-      
     end
   end
 

@@ -1,25 +1,38 @@
-class WelcomeWorker
+class RegistrationMailWorker
   include Sidekiq::Worker
 
-  def perform(user_id)
-    RegistrationConfirmationWorker.perform_in(10.minutes, resource.id)
-    RegistrationReminderWorker.perform_in(1.day, resource.id)
-    RegistrationFinalReminderWorker.perform_in(7.day, resource.id)
-    # UserMailer.welcome_message(user).deliver unless user.invalid?
+  def perform(user_id, registration_mailer)
+    user = User.find(user_id)
+    # For confirmation
+    if registration_mailer == "confirmation"
+      # Send confirmation 
+      UserMailer.registration_confirmation(user).deliver
+      # Set 1 day reminder
+      RegistrationMailWorker.perform_in(1.day, user_id, "reminder_1_day")
+
+    # For 1 day reminder
+    elsif registration_mailer == "reminder_1_day"
+      # Send 1 day reminder 
+      UserMailer.registration_reminder_1_day(user).deliver
+      # Set 1 week reminder 
+      RegistrationMailWorker.perform_in(7.day, user_id, "reminder_1_week")
+
+    # For 1 week reminder
+    elsif registration_mailer == "reminder_1_week"
+      # Send 1 week reminder
+      UserMailer.registration_reminder_1_day(user).deliver
+    # For no registration mailer do nothing
+    else
+     false
+    end
   end
-
-  # def reminder_one_day(user)
-  #   @user = user 
-  #   # attachments["rails.png"] = File.read("#{Rails.root}/public/images/rails.png")
-  #   UserMailer.registration_confirmation(user).deliver
-  # end
-
 end
 
 # class HardWorker
 #   include Sidekiq::Worker
 #   def perform(name, count)
 #     # do something
+#   # attachments["rails.png"] = File.read("#{Rails.root}/public/images/rails.png")
 #   end
 # end
 

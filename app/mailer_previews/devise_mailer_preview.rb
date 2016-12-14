@@ -6,6 +6,16 @@ class DeviseMailerPreview
     Devise::Mailer.invitation_instructions(mock_user,"fdsafdsafsd")
   end
 
+  def invitation_from_qol
+    # devise_mail(record, :invitation_instructions, opts)
+    mock_user = mock_user("Alice", true)
+    Devise::Mailer.confirmation_instructions(mock_user,"fdsafdsafsd")
+  end
+
+  def reset_password
+    mock_user = mock_user("Alice")
+    Devise::Mailer.reset_password_instructions(mock_user,"fdsafdsafsd")
+  end
   # def confirmation_instructions
 
   #   # devise_mail(record, :confirmation_instructions, opts)
@@ -22,29 +32,17 @@ class DeviseMailerPreview
   #   Devise::Mailer.unlock_instructions(mock_user,"fdsafdsafsd")
   # end
 
+  # def invitation_from_krdn
+  #   # devise_mail(record, :invitation_instructions, opts)
+  #   mock_user = mock_user("Alice")
+  #   Devise::Mailer.invitation_instructions(mock_user,"fdsafdsafsd")
+  # end
 
-  def invitation_from_qol
-    # devise_mail(record, :invitation_instructions, opts)
-    mock_user = mock_user("Alice", true)
-    Devise::Mailer.confirmation_instructions(mock_user,"fdsafdsafsd")
-  end
-
-  def invitation_from_krdn
-    # devise_mail(record, :invitation_instructions, opts)
-    mock_user = mock_user("Alice")
-    Devise::Mailer.invitation_instructions(mock_user,"fdsafdsafsd")
-  end
-
-  def invitation_from_client
-    # devise_mail(record, :invitation_instructions, opts)
-    mock_user = mock_user("Alice")
-    Devise::Mailer.invitation_instructions(mock_user,"fdsafdsafsd")
-  end
-
-  def reset_password
-    mock_user = mock_user("Alice")
-    Devise::Mailer.reset_password_instructions(mock_user,"fdsafdsafsd")
-  end
+  # def invitation_from_client
+  #   # devise_mail(record, :invitation_instructions, opts)
+  #   mock_user = mock_user("Alice")
+  #   Devise::Mailer.invitation_instructions(mock_user,"fdsafdsafsd")
+  # end
   
   private
   # You can put all your mock helpers in a module

@@ -22,28 +22,40 @@
         <section>
           
           <div class="rep--main-container">
-            <h1><%= t '.list_title' %></h1>
-
+            <h1>Outgoing Mail</h1>
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <!-- <h2></h2> -->
+                <div class="list-group">
+                  <a class="list-group-item" href="/kf_sidekiq_dash">View scheduled mail
+                  </a>
+                  <a class="list-group-item" href="https://www.sendgrid.com">View sent mail (see Sendgrid)
+                  </a>
+                </div>
+              </div>
+            </div>
+            <h1>Email Templates</h1>
             <%= with_index_hook :list do %>
-              <div class="<%= rep_style[:row_class] %>">
-                <div class="rep--email-list-half">
-                  <h2>Stripe</h2>
-                  <div class="rep--list-group">
-                    <a class="rep--list-group__item" href="#">
-                      Payment Receipt
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <h4>Payments</h4>
+                  <div class="list-group">
+                    <a class="list-group-item" href="https://www.stripe.com">
+                      Payment Receipt (see Stripe)
                     </a>
-                    <a class="rep--list-group__item" href="#">
-                      Refund Receipt
+                    <a class="list-group-item" href="https://www.stripe.com">
+                      Refund Receipt (see Stripe)
                     </a>
                   </div>
                 </div>
+
                 <% list.columns do |groups| %>
-                  <div class="rep--email-list-half">
+                  <div class="col-xs-12 col-sm-4">
                     <% groups.each do |title, group_previews| %>
-                      <h2><%= title == "Devise" ? "Registration" : title %></h2>
-                      <div class="<%= rep_style[:list_group_class] %>">
+                      <h4><%= title == "Devise" ? "Invitations" : title %></h4>
+                      <div class="list-group">
                         <% group_previews.each do |p| %>
-                          <a class="<%= rep_style[:list_group_item_class] %>"
+                          <a class="list-group-item"
                              href="<%= rails_email_preview.rep_email_path(preview_id: p.id, email_locale: @email_locale) %>">
                             <%= p.method_name.titleize  %>
                           </a>
@@ -52,7 +64,7 @@
                     <% end %>
                   </div>
                 <% end %>
-                <div class="rep--email-list-half">
+<!--                 <div class="rep--email-list-half">
                   <h2>Appointments</h2>
                   <div class="rep--list-group">
                     <a class="rep--list-group__item" href="#">
@@ -92,13 +104,13 @@
                     </a>
                    
                   </div>
-                </div>
+                </div> -->
               </div>
             <% end %>
             <hr/>
-            <p class="rep--footer">
+            <!--             <p class="rep--footer">
               <%#= t 'rep.base.email', count: previews.length %> <%#= t 'rep.base.in' %> <%#= t 'rep.base.mailer', count: list.groups.length %>
-            </p>
+            </p> -->
           </div>
         </section>
       </main>

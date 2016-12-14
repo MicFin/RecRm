@@ -446,13 +446,12 @@ Rails.application.routes.draw do
   end
 
   ### ROUTES FOR EMAIL PREVIEW 
-  mount RailsEmailPreview::Engine, at: 'emails'
+  mount RailsEmailPreview::Engine, at: '/kf_emails'
 
   ### ROUTES FOR MONOLOGUE
   mount Ckeditor::Engine => '/ckeditor'
   mount Monologue::Engine, at: '/education' 
   Monologue::Engine.routes.draw do
-    mount RailsEmailPreview::Engine, at: 'emails'
     # # Not sure if need post_rec resources in engine as well as in main rails app
     # resources :post_recommendations
     namespace :admin, path: "monologue" do

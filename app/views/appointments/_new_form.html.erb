@@ -33,21 +33,21 @@
   <div class="col-xs-12 form-group">
     <%#= f.input :appointment_host_id,  collection: @clients, prompt: "Choose a Client", :label_method => lambda { |client| "#{client.full_name}"}, value_method: :id, include_blank: false, input_html: { class: "form-control", data: { :family_id => lambda { |client| "#{client.family_id}"}}}  %>
 
-  <%= f.input :appointment_host_id, prompt: "Choose a Client", include_blank: false, input_html: { class: "form-control"} do %>
+    <%= f.input :appointment_host_id do %>
 
-     <%= f.select :appointment_host_id, @clients.map{ |client| [client.full_name, client.id, {"data-family-id" => client.family_id}] } %>
+      <%= f.select :appointment_host_id, @clients.map{ |client| [client.full_name, client.id, {"data-family-id" => client.family_id}]}, {prompt: "Choose a Client", include_blank: false}, { :class => 'form-control' }  %>
 
-   <% end %>
+    <% end %>
 
   </div> 
 
-  <div class="field">
+  <div class="col-xs-12 form-group">
     <%#= f.input :patient_focus_id, collection: @family_members, :label_method => lambda { |family_member| "#{family_member.full_name}"}, value_method: :id, include_blank: false, input_html: { class: "form-control-3", data: { :family_id => lambda { |family_member| "#{family_member.family_id}"}}}  %>
     <%#= f.association :patient_focus, label_method: :first_name, value_method: :id, include_blank: false %>
 
-  <%= f.input :patient_focus_id, prompt: "Choose a Patient", include_blank: false, input_html: { class: "form-control"} do %>
+  <%= f.input :patient_focus_id do %>
 
-     <%= f.select :patient_focus_id, @clients_and_family_members.map{ |patient| [patient.full_name, patient.id, {"data-family-id" => patient.family_id}] } %>
+     <%= f.select :patient_focus_id, @clients_and_family_members.map{ |patient| [patient.full_name, patient.id, {"data-family-id" => patient.family_id}] }, {prompt: "Choose a Patient", include_blank: false}, { :class => 'form-control' } %>
      
    <% end %>
 

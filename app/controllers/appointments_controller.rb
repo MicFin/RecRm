@@ -97,8 +97,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
-
-    @clients = Users::UserPresenter.present(User.client_accounts.includes(:head_of_families))
+    @clients = Users::UserPresenter.present(User.registered_client_accounts.includes(:head_of_families))
     @family_members = Users::UserPresenter.present(User.family_member_accounts.includes(:families))
     @clients_and_family_members = @clients + @family_members
     @dietitians = Dietitian.all

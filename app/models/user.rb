@@ -66,6 +66,9 @@ class User < ActiveRecord::Base
   # Clients
   scope :client_accounts, -> { user_accounts.where(provider: false)  }
 
+  # Registered Clients
+  scope :registered_client_accounts, -> { client_accounts.where(registration_stage: 6)}
+  
   # Family members
   scope :family_member_accounts, -> { where("family_role <> ''") }  
 

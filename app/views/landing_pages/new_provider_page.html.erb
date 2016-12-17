@@ -11,38 +11,56 @@
 
 		<!-- LANDING PAGE TOP ROW-->
 		<section id="section-video">
-			<div class="video-row">
-				<div class="video-image">
-					<h1>Give your patients<br>easy access to<br>high quality support</h1>
-					<p>Extend coordinated support<br>beyond the clinic with <br>1-on-1 expert guidance through<br>live online video or phone</p>
-					<%= link_to "CONTACT US", landing_pages_new_provider_sign_up_page_path, class: "register" %>
-					<div class="video-footer">
-						<p><%= link_to "Register in less than 2 minutes to make fast referrals", landing_pages_new_provider_sign_up_page_path %></p>
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-push-4 col-sm-7">
+					<script src="//fast.wistia.com/embed/medias/gslowafq38.jsonp" async></script>
+					<script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+
+					<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+						<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+							<div class="wistia_embed wistia_async_gslowafq38 videoFoam=true autoPlay=true endVideoBehavior=loop" style="height:100%;width:100% popover=true">&nbsp;</div>
+						</div>
 					</div>
 				</div>
+				<div class="video-side-caption">
+					<h1>Give your patients easy access to high quality support</h1>
+					<p>Extend coordinated support beyond the clinic with 1-on-1 expert guidance through live online video or phone</p>
+					<%= link_to "CONTACT US", landing_pages_new_provider_sign_up_page_path, class: "register" %>
+					<div class="video-footer">
+						<h4>
+							<%= link_to(landing_pages_new_provider_sign_up_page_path) do %>
+							  Register in less than 2 minutes
+							  <br> 
+							  to make fast referrals
+							<% end %>
+
+						</h4>
+					</div>
+				</div> 
 			</div>
 			<div class="section-trusted-guidance">
 				<h2>Remote access to a specialized expert guide<br>to help your patients navigate food and nutrition.</h2>
 				<div>
 					<div>
-						<%= image_tag("infographics/icon_video_or_phone_green.png") %>
+						<%= image_tag("icons/icon_video_or_phone_green.png") %>
 						<!-- <h3>CONVENIENT ACCESS BY VIDEO OR PHONE</h3> -->
-						<h3>LIVE ACCESS BY VIDEO OR PHONE</h3>
+						<h4>LIVE ACCESS BY VIDEO OR PHONE</h4>
 						<p>Patients connect live from their kitchen or office.  They can schedule within a few days and meet when they want, including at nights and on weekends.</p>
 					</div>
 					<div>
 						<%= image_tag("icons/icon_matching_arrows_green.png") %>
-						<h3>MATCH WITH AN EXPERT</h3>
+						<h4>MATCH WITH AN EXPERT</h4>
 						<p>We match each patient with a dietitian whose food and nutrition expertise is specifically focused on your patient's diet-limiting condition and related challenges.</p>
 					</div>
 					<div>
 						<%= image_tag("icons/icon_check_mark_green.png") %>
-						<h3>TRUSTED GUIDANCE THE 1st TIME AROUND</h3>
+						<h4>TRUSTED GUIDANCE THE 1st TIME AROUND</h4>
 						<p>Evidence based guidance and delicious meals begin with the right expert.  Our dietitians are more than just well rounded. They are experts in their areas of specialty.</p>
 					</div>
 					<div>
 						<%= image_tag("icons/icon_recycle.png") %>
-						<h3>COORDINATED WITH HEALTHCARE</h3>
+						<h4>COORDINATED WITH HEALTHCARE</h4>
 						<p>Each patient's nutrition guidance is coordinated with their healthcare provider. Dietitians send a follow-up to the provider after each session.</p>
 					</div>
 				</div>

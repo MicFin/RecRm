@@ -538,63 +538,21 @@ $landing-page-max-nav-height: 70px;
 
 	// Seciton - Video
 	#section-video {
-		.video-image{
-			text-align: left;
-			h1{ 
-				text-align: left;
-				text-shadow:
-			    -1px -1px 0 #000,
-			    1px -1px 0 #000,
-			    -1px 1px 0 #000,
-			    1px 1px 0 #000;
-			  width: 100%;
-
-			}
-			p {
-				width: 100%;
-				padding-left: 3%;
-				@media (max-width: $screen-md-max) {
-					font-size: 14px;
-				}
-			}
-			a {
-				margin-left: 3%;
-			}
-			.video-footer {
-				margin-top: 50px;
+		.video-footer {
+			h4 {
+				line-height: 1.5;
 			}
 		}
-		.video-image:before {
-			content: ' ';
-		  display: block;
-		  position: absolute;
-		  left: 0;
-		  top: 0;
-		  bottom: 0;
-		  right: 0;
-		  z-index: -1; // lower than :.video-image
-		  // opacity: 0.6;
-		  background-image: url("people/growing-family.jpg");
-		  background-repeat: no-repeat;
-		  background-position: 25% 0;
-		  -ms-background-size: cover;
-		  -o-background-size: cover;
-		  -moz-background-size: cover;
-		  -webkit-background-size: cover;
-		  background-size: cover;
-		}
+			
 		// section beneath video image
 		.section-trusted-guidance {
 			background-color: $brand-light-orange;
+			padding-bottom: 0;
 			button {
 				color: $brand-white;
 			}
 			button:hover {
 				color: $brand-light-green;
-			}
-			padding-top: 350px; // for video
-			@media (max-width: $screen-xs-max) {
-				padding-top: 200px;
 			}
 		}
 	}
@@ -602,6 +560,9 @@ $landing-page-max-nav-height: 70px;
 	// Section - Infographic
 	#section-navigate-food {
 		padding-top: 0px;
+    p {
+    	margin: 0;
+  	}
 		.infographic {
 			position: relative;
 			height: 500px;

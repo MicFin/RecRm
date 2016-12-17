@@ -106,104 +106,118 @@ $landing-page-max-nav-height: 70px;
 .kf-landing-page .kf-landing-page-sections section {
 	@include make-row();
 	position: relative;
-	padding: 5% 0;
+	padding: 3% 0;
 }
 
 // Section - Video
 .kf-landing-page #section-video{
 
-	.video-row {
-		min-height: 300px;
+	.row {
+		text-align: center;
+		margin: 0;
 	}
-	.video-image {
-	  width: 70%;
-	  float: left;
-	  margin-left: 15%;
-	  position: relative;
-    overflow: hidden;
-    z-index: 1; // higher than :.video-image:before
-    text-align: center;
-    @media (max-width: $screen-sm-max) {
-    	width: 90%;
-    	margin-left: 5%;
-    }
+
+	.video-side-caption {
+		h1 {
+			margin-top: 0px;
+			line-height: 1.4;
+			font-size: 30px;
+
+		}
+		@media (max-width: $screen-md-max) {
+			h1 {
+				font-size: 24px;
+			}
+		}
+		// position: absolute;
+	 //  // width: 70%;
+	 //  // float: left;
+	 //  // margin-left: 15%;
+	 //  // position: relative;
+  //  //  overflow: hidden;
+  //  //  z-index: 1; // higher than :.video-image:before
+  //  //  text-align: center;
+  //   @media (max-width: $screen-sm-max) {
+  //   	// width: 90%;
+  //   	// margin-left: 5%;
+  //   }
     // video heading
-		h1{
-			text-align: center;
-			color: white;
-			width: 80%;
-	    margin: 0 auto;
-	    padding: 3%;
-    	@media (max-width: $screen-md-max) {
-				font-size: 30px;
-			}
-    	@media (max-width: $screen-xs-max) {
-				font-size: 20px;
-				line-height: 1.4;
-    		margin-top: 15px;
-    		width: 100%;
-			}
-		}
+		// h1{
+		// 	text-align: center;
+		// 	color: $brand-black;
+		// 	width: 80%;
+	 //    margin: 0 auto;
+	 //    padding: 3%;
+  //   	@media (max-width: $screen-md-max) {
+		// 		font-size: 30px;
+		// 	}
+  //   	@media (max-width: $screen-xs-max) {
+		// 		font-size: 20px;
+		// 		line-height: 1.4;
+  //   		margin-top: 15px;
+  //   		width: 100%;
+		// 	}
+		// }
 		// video button
-		.register {
-			font-size: 25px;
-			margin-top: 100px;
-			@media (max-width: $screen-sm-max) {
-		    margin-top: 20px;
-		  }
-		}
+		// .register {
+		// 	font-size: 25px;
+		// 	margin-top: 100px;
+		// 	@media (max-width: $screen-sm-max) {
+		//     margin-top: 20px;
+		//   }
+		// }
 		// video caption
-		> p {
-			font-size: 20px;
-			margin-top: 30px;
-			a {
-				color: white;
-			}
-		}
+		// > p {
+		// 	font-size: 20px;
+		// 	margin-top: 30px;
+		// 	a {
+		// 		color: white;
+		// 	}
+		// }
 		// video footer
-		.video-footer {
-			margin-top: 100px;
-			padding:10px;
-			text-align: right;
-	    background-color: rgba(0,0,0,0.6);
-	    padding: 20px;
-			p {
-				margin: 0px;
-				font-size: 20px;
-		    color: white;
-		    a {
-		    	font-size: 14px;
-		    }
-		    @media (max-width: $screen-sm-max) {
-		    	font-size: 14px;
-		    	text-align: center;
-		    	a {
-		    		display: block;
-		    	}
-		    }
-			}
-		}
+		// .video-footer {
+		// 	margin-top: 100px;
+		// 	padding:10px;
+		// 	text-align: right;
+	 //    background-color: rgba(0,0,0,0.6);
+	 //    padding: 20px;
+		// 	p {
+		// 		margin: 0px;
+		// 		font-size: 20px;
+		//     color: white;
+		//     a {
+		//     	font-size: 14px;
+		//     }
+		//     @media (max-width: $screen-sm-max) {
+		//     	font-size: 14px;
+		//     	text-align: center;
+		//     	a {
+		//     		display: block;
+		//     	}
+		//     }
+		// 	}
+		// }
 	}	
 	// video image before has background
-	.video-image:before {
- 		content: ' ';
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -1; // lower than :.video-image
-    // opacity: 0.6;
-    background-image: url("children/child_with_toys.png");
-    background-repeat: no-repeat;
-    background-position: 25% 0;
-    -ms-background-size: cover;
-    -o-background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    background-size: cover;
-	}
+	// .video-image:before {
+ // 		content: ' ';
+ //    display: block;
+ //    position: absolute;
+ //    left: 0;
+ //    top: 0;
+ //    bottom: 0;
+ //    right: 0;
+ //    z-index: -1; // lower than :.video-image
+ //    // opacity: 0.6;
+ //    background-image: url("children/child_with_toys.png");
+ //    background-repeat: no-repeat;
+ //    background-position: 25% 0;
+ //    -ms-background-size: cover;
+ //    -o-background-size: cover;
+ //    -moz-background-size: cover;
+ //    -webkit-background-size: cover;
+ //    background-size: cover;
+	// }
 	// section beneath video image
 	.section-trusted-guidance {
 		position: relative;
@@ -212,12 +226,11 @@ $landing-page-max-nav-height: 70px;
     padding-left: 15px;
     padding-right: 15px;
 		background-color: $brand-dark-green;
-    padding-top: 300px; // for video
+    // padding-top: 300px; // for video
     color: white;
     text-align: center;
-		@media (max-width: $screen-sm-max){
-			padding-top: 250px; 
-		}
+    padding-top: 1%;
+    margin-top: 1%;
     > div {
     	@include make-row();
     	> div {
@@ -232,7 +245,7 @@ $landing-page-max-nav-height: 70px;
     			padding: 10%;
     			margin: 0 auto;
     			width: 100%;
-    			max-width: 424px;
+    			max-width: 350px;
     		}
     		> h3 {
     			margin-bottom: 20px;
@@ -254,16 +267,15 @@ $landing-page-max-nav-height: 70px;
 // Section - Navigate Food
 .kf-landing-page #section-navigate-food{
 	text-align: center;
-	.infographic-container {
-    padding: 2% 0;
-    border: 5px solid #222222;
+	h3 {
+    color: green;
+    border: 5px solid green;
     border-radius: 15px;
-    margin: 0 5%;
-    position: relative;
-    img {
-			@extend .img-responsive;			@extend .img-responsive;
-			margin: 0 auto;
-		}	
+    padding: 20px;
+	}
+	p {
+    margin: 6%;
+    line-height: 2;
 	}
 }
 

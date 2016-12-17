@@ -11,52 +11,71 @@
 
 		<!-- LANDING PAGE TOP ROW-->
 		<section id="section-video">
-			<div class="video-row">
-				<div class="video-image">
-					<h1>A guided path to navigate food<br>with a medically limited diet:<br>Support that every patient deserves.</h1>
-					<%= link_to "START A PROFILE", landing_pages_new_sign_up_page_path, class: "register"%>
-					<p><a href="#trusted-guidance-header">Learn More</a></p>
-					<div class="video-footer">
-						<p>Are you a health care provider? <a href="/new_providers_page">SEE PROVIDER SOLUTIONS</a></p>
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-push-4 col-sm-7">
+					<script src="//fast.wistia.com/embed/medias/gslowafq38.jsonp" async></script>
+					<script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+
+					<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+						<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+							<div class="wistia_embed wistia_async_gslowafq38 videoFoam=true autoPlay=true endVideoBehavior=loop" style="height:100%;width:100% popover=true">&nbsp;</div>
+						</div>
 					</div>
 				</div>
+
+
+
+				<div class="col-xs-12 col-sm-pull-7 col-sm-3 col-sm-offset-1">
+					<div class="video-side-caption">
+						<h1>A guided path to navigate food with a medically limited diet: <em>Support that every patient deserves.</em></h1>
+						<%= link_to "START A PROFILE", landing_pages_new_sign_up_page_path, class: "register"%>
+						<h4><a href="#trusted-guidance-header">Learn More</a></h4>
+						<div class="video-footer">
+							<p>Are you a health care provider?</p>
+							<p><a href="/new_providers_page">SEE PROVIDER SOLUTIONS</a></p>
+						</div>
+					</div> 
+				</div>
+
+
 			</div>
 			<div class="section-trusted-guidance">
 				<h2 id="trusted-guidance-header">Trusted, specialized guidance in food & nutrition</h2>
 				<div>
 					<div>
 						<%= image_tag("icons/icon_stethescope.png") %>
-						<h3>HAVE A DIET LIMITING DIAGNOSIS?</h3>
-						<p>A top-tier dietitian, who specializes in eating with your condition, will give you a guided path to regain control of healthy daily meals.  Connect within days and without any travel.</p>
+						<h4>HAVE A DIET LIMITING DIAGNOSIS?</h4>
+						<p>A top-tier dietitian, who specializes in eating with your condition, will give you a guided path to regain control of healthy daily meals. Connect within days and without any travel.</p>
 					</div>
 					<div>
 						<%= image_tag("icons/icon_computer_screen.png") %>
-						<h3>WANT PERSONALIZED INFORMATION?</h3>
-						<p>We match you with a dietitian and resources, personalized to your profile.  All guidance is based on current research.   We work with any food preference, as long as it's safe.</p>
+						<h4>WANT PERSONALIZED INFORMATION?</h4>
+						<p>We match you with a dietitian and resources, personalized to your profile. All guidance is based on current research. We work with any food preference, as long as it's safe.</p>
 					</div>
 					<div>
 						<%= image_tag("icons/icon_asterisk.png") %>
-						<h3>FRUSTRATED BY FEWER OPTIONS?</h3>
-						<p>Our experts help with even the most limited diets.  Our experienced dietitians work together with your physician and care team.</p>
+						<h4>FRUSTRATED BY FEWER OPTIONS?</h4>
+						<p>Our experts help with even the most limited diets. Our experienced dietitians work together with your physician and care team.</p>
 					</div>
 					<div>
 						<%= image_tag("icons/icon_question_marks.png") %>
-						<h3>CAN'T FIND THE RIGHT EXPERT?</h3>
-						<p>We match you with the right dietitian for your needs, from wherever you are.  Connect live for a 1-on-1 session by video or phone.</p>
+						<h4>CAN'T FIND THE RIGHT EXPERT?</h4>
+						<p>We match you with the right dietitian for your needs, from wherever you are. Connect live for a 1-on-1 session by video or phone.</p>
 					</div>
 				</div>
 				<button type="button" class="btn btn-link" data-toggle="modal" data-target="#specialtiesModal">List of our specialties</button>
 			</div>
 		</section>
 		<section id="section-navigate-food">
-			<div>
-				<div class="infographic-container">
-					<h1>How we help you navigate food</h1>
-					<%= image_tag("infographics/infographic_how_we_help.png") %>
-					<!-- 					<p>Start on the right path and stay there. <br>Your dietitian is an exper partner to guide your journey.</p>
-					<p>You get personalized guidance and resources you can trust.  <br>You save tons of time and frustration by skipping the searh engine and other generalized sources.</p>
-					<p>Make your day-to-day smoother and enjoy better meals <br>by relying on your expert Dietitian, personalized recipes <br>and dietitain verified resources.</p> -->
-				</div>
+			<div class="col-xs-8 col-sm-6 col-xs-offset-2 col-sm-offset-3">
+					<%#= image_tag("infographics/infographic_how_we_help_2.png") %>
+					<h3>Expert guided path</h3>
+					<p>Start on the right path and stay there. Expert guidance nad personalized information you can trust, in 1 place.</p>
+					<h3>Faster & less stressful change</h3>
+					<p>Personalized guidance and curated resources save you tons of time and frustration.  Skip the search engine and go beyond general sources.</p>
+					<h3>Easier, safer & tastier meals</h3>
+					<p>Make your day-to-day, esier and smoother. Less decisions, les time shopping and better meals made specifically for your family profile.</p>
 			</div>
 		</section>
 		<section id="section-quality">

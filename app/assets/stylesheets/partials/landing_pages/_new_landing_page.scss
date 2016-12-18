@@ -216,6 +216,10 @@ $landing-page-max-nav-height: 70px;
 	.panel {
 		background-color: $gray-light;
 	}
+	.section-quality-sub-heading {
+		line-height: 1.5;
+		margin-bottom: 30px;
+	}
 	> div {
 		@include make-xs-column( 12 );
 		> p {
@@ -223,47 +227,56 @@ $landing-page-max-nav-height: 70px;
 	    margin-bottom: 75px;
 		}
 		> div {
-			@include make-row( );
 			> div {
-				@include make-xs-column( 12 );
+
 				.panel-group{
 					// color: $brand-dark-green;
 					text-align: left;
 				}	
+				.panel.panel-default {
+
+					background-color: inherit;
+					border: inherit;
+					border-color: inherit;
+					margin-bottom: 30px;
+				} 
+				.panel-default > .panel-heading + .panel-collapse > .panel-body {
+					border-top-color: inherit;
+				}
+				.panel-group .panel-heading + .panel-collapse .panel-body {
+					border-top: inherit;
+				}
+				[data-toggle="collapse"] span:after {
+			    font-family: 'FontAwesome';
+			    content: "\f078";    
+			    float: right;
+
+				}
+				[data-toggle="collapse"] span {
+					float: right;
+				}
 				img {
 					@extend .img-responsive;
 					max-height: 200px;
 					margin: 0 auto;
 					max-height: 150px;
-			    margin: 0 auto;
-			    margin-top: 20px;
+			    margin: 20px auto;
 				}
 				ul{
 					text-align: left;
 				}
 				ul.kf-quality-list {
 					list-style-type: none;
-					padding: 0;
 			    margin: 0 auto;
-			    text-align: center;
+			    text-align: left;
 			    max-width: 500px;
-			    @media (max-width: $screen-md-max){
-			    	margin-left: auto;
-			    	padding-left: 2%;
-			    	h3{
-			    		font-size: 20px;
-			    	}
-			    }
 					li {
 						background: url('icons/icon_verified_list.png') no-repeat left top;
 						background-size: contain;
 				    height: 54px;
 				    margin: 7%;
-				    font-size: 18px;
-				    @media (max-width: $screen-xs-max){
-			    		margin: 7% 0;
-			    		padding-left: 10%
-			    	}
+				    font-size: 16px;
+				    padding-left: 100px;
 					}
 					li:first-child{
 						background: url('icons/icon_rd.png') no-repeat left top;
@@ -275,10 +288,6 @@ $landing-page-max-nav-height: 70px;
 					}
 				}
 			}
-			// > div:first-child {
-			// 	@include make-sm-column( 4 );
-			// 	@include make-sm-column-offset( 1 );
-			// }
 			a.register {
 				@extend .btn;
 				@extend .btn-lg;
@@ -295,15 +304,14 @@ $landing-page-max-nav-height: 70px;
   text-align: center;
   > div {
   	@include make-xs-column( 12 );
-
-  	> h2{
-  		margin-bottom: 75px;
-  	}
+		h2 {
+			line-height: 1.5;
+		}
   	> div {
   		@include make-row();
   	  > div {
-    		@include make-xs-column( 10 );
-    		@include make-xs-column-offset( 1 );
+    		@include make-xs-column( 8 );
+    		@include make-xs-column-offset( 2 );
     		@include make-md-column-offset( 0 );
     		@include make-md-column( 4 );
     		padding: 1% 5%;
@@ -311,7 +319,7 @@ $landing-page-max-nav-height: 70px;
     			padding: 10%;
     			margin: 0 auto;
     			width: 100%;
-    			max-width: 424px;
+    			max-width: 350px;
     		}
     		> h3 {
     			margin-bottom: 20px;

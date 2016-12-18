@@ -78,17 +78,20 @@
 		</section>
 		<section id="section-quality">
 		 	<div>
-				<h2>Quality & Specialization</h2>
+				<!-- 				<h2>Quality & Specialization</h2> -->
+				<!-- <h1>Our world-class, dietitian specialists give you<br> better support to take on your specific challenges.</h1> -->
+				<h1>Quality and specialization matter</h1>
 				<p>Our world-class, dietitian specialists give you better support to take on your specific challenges.</p>
-				<div>
-	<!-- 				<div>
-						<h4>FINDING THE RIGHT FOOD<br>& NUTRITION SUPPORT IS OFTEN CHALLENGING</h4>
+				<div class="row">
+					<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-1">
+						<h4 class="section-quality-sub-heading"><em>FINDING THE RIGHT FOOD &<br>NUTRITION SUPPORT IS OFTEN CHALLENGING</em></h4>
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-						  <div class="panel panel-default">
+					  
+					  	<div class="panel panel-default">
 						    <div class="panel-heading" role="tab" id="headingOne">
 						      <h4 class="panel-title">
 						        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						          There is a range of expertise in nutrition <br> (learn more)
+						          There is a range of expertise in nutrition <span>learn more</span>
 						        </a>
 						      </h4>
 						    </div>
@@ -100,12 +103,14 @@
 						        <p>Not all dietitians see patients, and some work in a food service capacity.</p>
 						      </div>
 						    </div>
-						  </div>
-						  <div class="panel panel-default">
+					  	</div>
+					  
+					  
+					  	<div class="panel panel-default">
 						    <div class="panel-heading" role="tab" id="headingTwo">
 						      <h4 class="panel-title">
 						        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-						          Quality of guidance, service, and content varies <br> (learn more)
+						          Quality of guidance, service, and content varies <span>learn more</span>
 						        </a>
 						      </h4>
 						    </div>
@@ -119,34 +124,40 @@
 						        <p>Sadly, some expect service providers forget that service is most importantly abut the experience.  Even when you are stressed, confused and desperately need the right information, you shouldn't have to endure poor service.</p>
 						      </div>
 						    </div>
-						  </div>
-						  <div class="panel panel-default">
-						    <div class="panel-heading" role="tab" id="headingThree">
-						      <h4 class="panel-title">
-						        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-						          Nutrition is specialized - just like medicine <br> (learn more)
-						        </a>
-						      </h4>
-						    </div>
-						    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-						      <div class="panel-body">
-						        <p>The right expert for each challenge</p>
-						        <p>For virtually every condition, there are experts in nutrition and practical challenges of eating for that condition.  Would you want a knee surgeon working on your heart?  Of course not!  We apply the same logic to matching you with an expert Dietitian.</p>
-						        <p>Not all dietitians are specialized</p>
-						        <p>Many practitioners will simply create a long list of topics that they are familiar with.  We believe in going beyond well-rounded and connecting with an expert.</p>
-						      </div>
-						    </div>
-						  </div>
+					  	</div>
+					  
+					  
+					  	<div class="panel panel-default">
+							    <div class="panel-heading" role="tab" id="headingThree">
+							      <h4 class="panel-title">
+							        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							          Nutrition is specialized - just like medicine <span>learn more</span>
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+							      <div class="panel-body">
+							        <p>The right expert for each challenge</p>
+							        <p>For virtually every condition, there are experts in nutrition and practical challenges of eating for that condition.  Would you want a knee surgeon working on your heart?  Of course not!  We apply the same logic to matching you with an expert Dietitian.</p>
+							        <p>Not all dietitians are specialized</p>
+							        <p>Many practitioners will simply create a long list of topics that they are familiar with.  We believe in going beyond well-rounded and connecting with an expert.</p>
+							      </div>
+							    </div>
+					  	</div>
+					  
 						</div>
-					</div> -->
-					<div>
-						<h4>THE RIGHT SPECIALIZED EXPERT<br> & HIGHEST QUALITY OF SUPPORT</h4>
-						<%= image_tag("logos/logo-vertical.jpg") %>
+					</div>
+					<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 hidden-md hidden-lg">
+						<%= image_tag("logos/logo-vertical.jpg", class: "img-responsive hidden-md hidden-lg") %>
+					</div>
+					
+					<div class="col-xs-12 col-md-5">
+						<h4 class="section-quality-sub-heading"><em>THE RIGHT SPECIALIZED EXPERT &<br>THE HIGHEST QUALITY OF SUPPORT</em></h4>
 						<ul class="kf-quality-list">
-							<li>Every expert at Kindrdfood <br>is a Registered Dietitian.
+							<li>Every expert at Kindrdfood is a Registered Dietitian.
 							</li>
-							<li>Clients receive trusted, evidence<br> based guidance and content.</li>
-							<li>Every Kindrdfood Dietitian is a<br>dietitian with focused specialties.</li>
+							<li>Clients receive trusted, evidence based guidance and content.</li>
+							<li>Every Kindrdfood Dietitian is a dietitian with focused specialties.</li>
 						</ul>
 						<%= link_to "SIGN UP", landing_pages_new_sign_up_page_path, class: "register" %>
 					</div>

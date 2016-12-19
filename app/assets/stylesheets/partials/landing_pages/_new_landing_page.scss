@@ -154,11 +154,16 @@ $landing-page-max-nav-height: 70px;
     padding-left: 15px;
     padding-right: 15px;
 		background-color: $brand-dark-green;
-    // padding-top: 300px; // for video
-    color: white;
+		color: $brand-white;
+		button {
+			color: $brand-white;
+		}
+		button:hover {
+			color: $brand-light-green;
+		}
     text-align: center;
     padding-top: 3%;
-    padding-bottom: 3%;
+		padding-bottom: 0;
     margin-top: 3%;
     > div {
     	@include make-row();
@@ -183,6 +188,7 @@ $landing-page-max-nav-height: 70px;
     }
     .specialties-banner {
     	background-color: $gray;
+    	margin-top: 20px;
     }
     button {
 			text-decoration: underline;
@@ -213,13 +219,27 @@ $landing-page-max-nav-height: 70px;
 	text-align: center;
 	background-color: $brand-dark-green;
 	color: $brand-white;
-	.panel {
-		background-color: $gray-light;
-	}
+	@media (min-width: $screen-sm-max) {
+		.section-quality-right{
+			border-left: 5px solid $brand-white;
+		}
+	} 	
 	.section-quality-sub-heading {
 		line-height: 1.5;
 		margin-bottom: 30px;
 	}
+	.panel {
+		background-color: $gray-light;
+	}
+	// .section-quality-sub-heading:after {
+	//  	content: "";
+ //    position: absolute;
+ //    left: 10%;
+ //    top: 26%;
+ //    height: 1px;sp
+ //    width: 80%;
+	//   border-bottom:5px solid $brand-white;
+	// }
 	> div {
 		@include make-xs-column( 12 );
 		> p {
@@ -254,6 +274,7 @@ $landing-page-max-nav-height: 70px;
 				}
 				[data-toggle="collapse"] span {
 					float: right;
+					color: $brand-light-orange;
 				}
 				img {
 					@extend .img-responsive;

@@ -23,9 +23,6 @@
 						</div>
 					</div>
 				</div>
-
-
-
 				<div class="video-side-caption">
 					<h1>A guided path to navigate food with a medically limited diet: <em>Support that every patient deserves.</em></h1>
 					<%= link_to "START A PROFILE", landing_pages_new_sign_up_page_path, class: "register"%>
@@ -62,7 +59,9 @@
 						<p>We match you with the right dietitian for your needs, from wherever you are. Connect live for a 1-on-1 session by video or phone.</p>
 					</div>
 				</div>
-				<button type="button" class="btn btn-link" data-toggle="modal" data-target="#specialtiesModal">List of our specialties</button>
+				<div class="specialties-banner">
+					<button type="button" class="btn btn-link" data-toggle="modal" data-target="#specialtiesModal">List of our specialties</button>
+				</div>
 			</div>
 		</section>
 		<section id="section-navigate-food">
@@ -83,7 +82,7 @@
 				<h1>Quality and specialization matter</h1>
 				<p>Our world-class, dietitian specialists give you better support to take on your specific challenges.</p>
 				<div class="row">
-					<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-1">
+					<div class="section-quality-left col-xs-12 col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-1">
 						<h4 class="section-quality-sub-heading"><em>FINDING THE RIGHT FOOD &<br>NUTRITION SUPPORT IS OFTEN CHALLENGING</em></h4>
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					  
@@ -151,7 +150,7 @@
 						<%= image_tag("logos/logo-vertical.jpg", class: "img-responsive hidden-md hidden-lg") %>
 					</div>
 					
-					<div class="col-xs-12 col-md-5">
+					<div class="section-quality-right col-xs-12 col-md-5">
 						<h4 class="section-quality-sub-heading"><em>THE RIGHT SPECIALIZED EXPERT &<br>THE HIGHEST QUALITY OF SUPPORT</em></h4>
 						<ul class="kf-quality-list">
 							<li>Every expert at Kindrdfood is a Registered Dietitian.

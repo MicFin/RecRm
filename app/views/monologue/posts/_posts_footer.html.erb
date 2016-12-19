@@ -1,34 +1,28 @@
 			<footer>
 				<div class="row">
 					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 col-sm-offset-2">
-						<h4>Company</h4>
+						<h4>OUR SOLUTION</h4>
 						<ul>
-							<%= active_link_to main_app.landing_pages_our_mission_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-              Our mission & vision
-            	<% end %>
-							<%= active_link_to main_app.landing_pages_leadership_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-              Our team
-            	<% end %>
-							<%= active_link_to main_app.landing_pages_why_kindrdfood_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-              Why Kindrdfood?
-            	<% end %>
-							<%= active_link_to main_app.landing_pages_contact_us_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-              Contact Us
-            	<% end %>
+ 							<li><%= link_to 'For Patients', main_app.landing_pages_new_landing_page_path %></li>
+							<li><%= link_to 'For Providers', main_app.landing_pages_new_provider_page_path %></li>
+						</ul>
 						</ul>
 					</div>
 					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 ">
-						<h4>Policies</h4>
+						<h4>ABOUT</h4>
 						<ul>
-							<li><a class="terms-modal-link"href="#terms-modal">Terms & Conditions</a></li>
-							<li><a class="privacy-modal-link"href="#terms-modal">Privacy</a></li>
-							
+							<!-- <li><a >About Us</a></li> -->
+							<li><%= link_to 'Leadership', main_app.landing_pages_new_leadership_page_path %></li>
+							<li><%= link_to 'FAQ', main_app.landing_pages_new_faq_page_path %></li>
+							<li><%= link_to 'Contact Us', main_app.landing_pages_new_contact_us_page_path %></li>
 						</ul>
 					</div>	
 					
 					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 ">
-						<h4>Connect with us</h4>
+						<h4>CONNECT WITH US</h4>
 						<ul>
+							<li><%= link_to 'Sign Up', main_app.landing_pages_new_sign_up_page_path %></li>
+							<li><%= link_to 'Login', new_session_path("user") %></li>
 							<li>      
 								<a target="_blank" href="http://twitter.com/kindrdfood"class="btn btn-social-icon btn-twitter">
 	                <i class="fa fa-twitter"></i>
@@ -39,32 +33,12 @@
               </li>
 						</ul>
 					</div>
-					<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 ">
-						<h4>Our solution</h4>
-						<ul>
-							<%= active_link_to main_app.landing_pages_our_solution_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-            		What we do
-          		<% end %>
-							<%= active_link_to main_app.landing_pages_results_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-            		Results for you
-          		<% end %>
-							<%= active_link_to main_app.landing_pages_how_it_works_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-            		How it works & pricing
-          		<% end %>
-							<%= active_link_to main_app.landing_pages_who_we_help_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-            		Who we help
-          		<% end %>
-							<%= active_link_to main_app.landing_pages_benefits_path, { :active => :exclusive, :class_active => 'active', :wrap_tag => :li} do %>
-            		For providers
-          		<% end %>
-						</ul>
-					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<p>Kindrdfood does not provide medical advice, diagnosis, or treatment.  See <a class="terms-modal-link" href="#terms-modal">additional information</a>.</p>
+						<p>Kindrdfood does not provide medical advice, diagnosis, or treatment.  See <a class="terms-modal-link" >additional information</a> about <a class="terms-modal-link" >Terms of Service</a> and our <a class="terms-modal-link" >Privacy Policy</a>.</p>
 						<p>All materials on this site may not be reproduced, transmitted, cached or otherwise used, except with the prior written permission of Kindrdfood Inc.</p>
-						<p>Copyright &copy; 2015 | Kindrdfood Inc.</p>
+						<p>Copyright &copy; 2016 | Kindrdfood Inc.</p>
 					</div>
 				</div>
 			</footer>

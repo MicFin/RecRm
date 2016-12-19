@@ -585,7 +585,10 @@ $landing-page-max-nav-height: 70px;
 			}
 		}
 	}
-
+	// Section - Specialization
+	#section-specialization > div > div > div {
+		@include make-md-column( 3 );
+	}
 	// Section - Infographic
 	#section-navigate-food {
 		padding-top: 0px;

@@ -1,0 +1,301 @@
+// PROVIDER PAGE
+#kf-landing-page-provider.kf-landing-page {
+
+	// Seciton - Video
+	#section-video {
+		background: $brand-white;
+		.video-footer {
+			h4 {
+				line-height: 1.5;
+			}
+		}
+			
+		// section beneath video image
+		.section-trusted-guidance {
+			background-color: $brand-light-orange;
+			padding-bottom: 0;
+			button {
+				color: $brand-white;
+			}
+			button:hover {
+				color: $brand-light-green;
+			}
+		}
+	}
+
+	// Section - Specialization
+	#section-specialization > div > div > div {
+		@include make-md-column( 3 );
+	}
+
+	// Section - Infographic
+	#section-navigate-food {
+		padding-top: 0px;
+		background: $brand-white;
+    p {
+    	margin: 0;
+  	}
+		.infographic {
+			position: relative;
+			height: 500px;
+			width: 500px;
+	    margin: 150px auto;
+			@media (max-width: $screen-sm-max) {
+				margin-top: 0px;
+			}
+			.infographic-arc-left{
+				position: absolute;
+				top:0;
+				left:40px;
+				width:200px;
+			}
+			.infographic-arc-left + h4{
+				position: absolute;
+    		top: -100px;
+    		left: -200px;
+			}
+			.infographic-arc-left + h4 + p {
+				position: absolute;
+    		top: -20px;
+    		left: -220px;
+  		}
+			.infographic-arc-right{
+				position: absolute;
+				top:0;
+				right: 40px;
+				width:200px;
+			}
+			.infographic-arc-right + h4{
+				position: absolute;
+    		top: -100px;
+    		right: -240px;
+			}
+			.infographic-arc-right + h4 + p {
+				position: absolute;
+    		top: -20px;
+    		right: -220px;
+  		}
+			.infographic-arc-bottom{
+				position: absolute;
+				bottom: 90px;
+		    left: 80px;
+		    height: 150px;
+			}
+			.infographic-arc-bottom + h4{
+				position: absolute;
+    		bottom: 100px;
+    		left: -150px;
+			}
+			.infographic-arc-bottom + h4 + p {
+				position: absolute;
+		    bottom: 0;
+		    left: -200px;
+  		}
+			.infographic-plus-people{
+				position: absolute;
+				top:0;
+				left:0;
+				width:150px;
+				z-index: 1;
+			}
+			.infographic-plus-provider{
+				position: absolute;
+		    top: 0;
+		    right: 0;
+		    width: 150px;
+		    z-index: 1;
+			}
+			.infographic-provider{
+				position: absolute;
+		    bottom: 15px;
+		    left: 180px;
+		    width: 150px;
+		    z-index: 1;
+
+			}
+			.infographic-logo-center{
+		    position: absolute;
+		    top: 110px;
+		    left: 180px;
+		    width: 150px;
+		    z-index: 0;
+			}
+			button {
+				@extend .btn;
+				@extend .btn-lg;
+				@extend .btn-primary;
+		    position: absolute;
+		    bottom: 100px;
+		    right: -100px;
+			}
+			a{
+		    position: absolute;
+		    bottom: 50px;
+		    right: -135px;
+			}
+			@media (max-width: $screen-sm-max) {
+				height: auto;
+				@include make-xs-column( 12 );
+				* {
+					margin: 3% auto;
+				}
+				.infographic-arc-left{
+			    display: none !important;
+			    visibility: hidden !important;
+				}
+				.infographic-arc-left + h4{
+					position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+				}
+				.infographic-arc-left + h4 + p {
+					position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+	  		}
+				.infographic-arc-right{
+			    display: none !important;
+			    visibility: hidden !important;
+				}
+				.infographic-arc-right + h4{
+					position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+				}
+				.infographic-arc-right + h4 + p {
+					position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+	  		}
+				.infographic-arc-bottom{
+			    display: none !important;
+			    visibility: hidden !important;				
+			  }
+				.infographic-arc-bottom + h4{
+					position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+				}
+				.infographic-arc-bottom + h4 + p {
+					position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+	  		}
+				.infographic-plus-people{
+					position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+					width: 100%;
+					max-width:150px;
+				}
+				.infographic-plus-provider{
+					position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+					top:0;
+					left:0;
+					width: 100%;
+					max-width:150px;
+				}
+				.infographic-provider{
+					position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+			    width: 100%;
+			    max-width: 150px;
+				}
+				.infographic-logo-center{
+					position: relative;
+			    top: 0;
+			    left: 0;
+			    right: 0;
+			    bottom: 0;
+			    width: 100%;
+			    max-width: 150px;
+		    	z-index: 0;
+    	    display: none;
+				}
+				button {
+					@extend .btn;
+					@extend .btn-lg;
+					@extend .btn-primary;
+			    position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+				}
+				a{
+			    position: relative;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+					display: block;
+				}
+			}
+		}
+	}
+	
+	// Section - Guidance
+	#section-guidance{
+		h2 {
+			margin-bottom: 50px;
+		}
+	}
+
+	// Section - How It Works
+	#section-specialization p:first-child{
+		color: $brand-light-orange;
+		font-size: 40px;
+	}
+
+	// Section - Providers Saying
+	#section-provider-saying {
+	 	background-color: $brand-dark-green;
+	 	color: $brand-white;
+	 	text-align: center;
+  	> div {
+	    @include make-xs-column( 12 );
+	  	> h2 {
+	  		margin-bottom: 35px;
+	  	}
+	  	p:first-child {
+	  		line-height: 2.5;
+    		font-size: 20px;
+    		margin-bottom: 50px;
+    		@media (max-width: $screen-xs-max) {
+    			line-height: 1.8;
+    		}
+	  	}
+	  	p:not(:first-child), h3 {
+	  		text-align: left;
+	  		margin-left: 5%;
+	  	}
+	  }
+	}
+	a.register {
+			@extend .btn;
+			@extend .btn-lg;
+			@extend .btn-primary;
+			margin-top: 20px;
+		}
+}

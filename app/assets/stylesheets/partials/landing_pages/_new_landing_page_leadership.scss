@@ -1,0 +1,19 @@
+
+#kf-landing-page-leadership.kf-landing-page .kf-landing-page-sections{
+	h1{
+		text-align: center;
+		margin-bottom: 50px;
+	}
+	> div {
+		@include make-xs-column( 3);
+		@media (max-width: $screen-xs-max) {
+			@include make-xs-column(12);
+		}
+		> div {
+			@extend .thumbnail;
+			img {
+				max-height: 500px;
+			}
+		}
+	}
+}

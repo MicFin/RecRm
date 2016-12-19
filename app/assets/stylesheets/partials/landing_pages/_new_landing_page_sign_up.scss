@@ -1,0 +1,23 @@
+
+#kf-landing-page-sign-up.kf-landing-page .kf-landing-page-sections {
+	h1 {
+    color: white;
+    background-color: $brand-light-orange;;
+    padding-top: 20px;
+		padding-bottom: 20px;
+		margin-left: -15px;
+    margin-right: -15px;
+    text-align: center;
+	}
+	p {
+    margin: 25px;
+    text-align: center;
+	}
+	> div {
+		@include make-row();
+		> div {
+			@include make-xs-column(6);
+			@include make-xs-column-offset( 3 );
+	  }
+	}
+}

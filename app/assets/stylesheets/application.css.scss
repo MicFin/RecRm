@@ -62,8 +62,14 @@ $box-sizing-path: "/assets/partials/browser_specific/box-sizing.htc";
 @import "partials/landing_pages/refer";
 @import "partials/landing_pages/care";
 @import "partials/landing_pages/leadership";
-// new landing pages
+
+// New landing pages
 @import "partials/landing_pages/new_landing_page";
+@import "partials/landing_pages/new_landing_page_provider";
+@import "partials/landing_pages/new_landing_page_contact_us";
+@import "partials/landing_pages/new_landing_page_leadership";
+@import "partials/landing_pages/new_landing_page_sign_up";
+@import "partials/landing_pages/modals/specialties";
 
 	// welcome controller
 @import "partials/welcome/home";
@@ -98,7 +104,6 @@ $box-sizing-path: "/assets/partials/browser_specific/box-sizing.htc";
 @import "partials/dietitians/registrations";
 
 // Old Partials
-
 @import "partials/dietitian_sign_in_page";
 @import "partials/dietitian_edit_profile";
 @import "partials/dietitian_in_session";

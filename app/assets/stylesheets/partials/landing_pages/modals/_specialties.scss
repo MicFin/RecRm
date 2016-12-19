@@ -1,0 +1,28 @@
+
+// MODALS
+#specialtiesModal {
+	.modal-content {
+		background-color: $gray;
+    padding: 2%;
+	}
+	.modal-body {
+		text-align: center;
+		h4, p {
+			color: white;
+		}
+	}
+	.specialties-list-container {
+		background-color: $gray-lighter;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 20px 0;
+	}
+	.specialties-list-container + p {
+		margin-top: 2%;
+	}
+	ul {
+		display: inline-block;
+    list-style-type: none;
+    padding: 0;
+	}
+}

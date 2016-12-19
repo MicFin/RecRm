@@ -117,6 +117,7 @@ $landing-page-max-nav-height: 70px;
 		margin: 0;
 	}
 
+	// Section - Trusted Guidance (left of video image)
 	.video-side-caption {
 		@include make-xs-column( 12 );
 		@include make-sm-column-pull( 7 );
@@ -143,10 +144,7 @@ $landing-page-max-nav-height: 70px;
 		}
 	}
 
-
-
-
-	// section beneath video image
+	// Section - Trusted Guidance (beneath video image)
 	.section-trusted-guidance {
 		position: relative;
     width: 100%;
@@ -231,82 +229,69 @@ $landing-page-max-nav-height: 70px;
 	.panel {
 		background-color: $gray-light;
 	}
-	// .section-quality-sub-heading:after {
-	//  	content: "";
- //    position: absolute;
- //    left: 10%;
- //    top: 26%;
- //    height: 1px;sp
- //    width: 80%;
-	//   border-bottom:5px solid $brand-white;
-	// }
 	> div {
 		@include make-xs-column( 12 );
 		> p {
 	    font-size: 20px;
 	    margin-bottom: 75px;
 		}
-		> div {
-			> div {
+		> div > div {
+			.panel-group{
+				text-align: left;
+			}	
+			.panel.panel-default {
 
-				.panel-group{
-					// color: $brand-dark-green;
-					text-align: left;
-				}	
-				.panel.panel-default {
+				background-color: inherit;
+				border: inherit;
+				border-color: inherit;
+				margin-bottom: 30px;
+			} 
+			.panel-default > .panel-heading + .panel-collapse > .panel-body {
+				border-top-color: inherit;
+			}
+			.panel-group .panel-heading + .panel-collapse .panel-body {
+				border-top: inherit;
+			}
+			[data-toggle="collapse"] span:after {
+		    font-family: 'FontAwesome';
+		    content: "\f078";    
+		    float: right;
 
-					background-color: inherit;
-					border: inherit;
-					border-color: inherit;
-					margin-bottom: 30px;
-				} 
-				.panel-default > .panel-heading + .panel-collapse > .panel-body {
-					border-top-color: inherit;
+			}
+			[data-toggle="collapse"] span {
+				float: right;
+				color: $brand-light-orange;
+			}
+			img {
+				@extend .img-responsive;
+				max-height: 200px;
+				margin: 0 auto;
+				max-height: 150px;
+		    margin: 20px auto;
+			}
+			ul{
+				text-align: left;
+			}
+			ul.kf-quality-list {
+				list-style-type: none;
+		    margin: 0 auto;
+		    text-align: left;
+		    max-width: 500px;
+				li {
+					background: url('icons/icon_verified_list.png') no-repeat left top;
+					background-size: contain;
+			    height: 54px;
+			    margin: 7%;
+			    font-size: 16px;
+			    padding-left: 100px;
 				}
-				.panel-group .panel-heading + .panel-collapse .panel-body {
-					border-top: inherit;
+				li:first-child{
+					background: url('icons/icon_rd.png') no-repeat left top;
+					background-size: contain;
 				}
-				[data-toggle="collapse"] span:after {
-			    font-family: 'FontAwesome';
-			    content: "\f078";    
-			    float: right;
-
-				}
-				[data-toggle="collapse"] span {
-					float: right;
-					color: $brand-light-orange;
-				}
-				img {
-					@extend .img-responsive;
-					max-height: 200px;
-					margin: 0 auto;
-					max-height: 150px;
-			    margin: 20px auto;
-				}
-				ul{
-					text-align: left;
-				}
-				ul.kf-quality-list {
-					list-style-type: none;
-			    margin: 0 auto;
-			    text-align: left;
-			    max-width: 500px;
-					li {
-						background: url('icons/icon_verified_list.png') no-repeat left top;
-						background-size: contain;
-				    height: 54px;
-				    margin: 7%;
-				    font-size: 16px;
-				    padding-left: 100px;
-					}
-					li:first-child{
-						background: url('icons/icon_rd.png') no-repeat left top;
-						background-size: contain;
-					}
-					li:last-child{
-						background: url('icons/icon_puzzles.png') no-repeat left top;
-						background-size: contain;
-					}
+				li:last-child{
+					background: url('icons/icon_puzzles.png') no-repeat left top;
+					background-size: contain;
 				}
 			}
 			a.register {
@@ -561,306 +546,7 @@ $landing-page-max-nav-height: 70px;
 	}
 }
 
-
-// PROVIDER PAGE
-#kf-landing-page-provider.kf-landing-page {
-
-	// Seciton - Video
-	#section-video {
-		background: $brand-white;
-		.video-footer {
-			h4 {
-				line-height: 1.5;
-			}
-		}
-			
-		// section beneath video image
-		.section-trusted-guidance {
-			background-color: $brand-light-orange;
-			padding-bottom: 0;
-			button {
-				color: $brand-white;
-			}
-			button:hover {
-				color: $brand-light-green;
-			}
-		}
-	}
-	// Section - Specialization
-	#section-specialization > div > div > div {
-		@include make-md-column( 3 );
-	}
-	// Section - Infographic
-	#section-navigate-food {
-		padding-top: 0px;
-		background: $brand-white;
-    p {
-    	margin: 0;
-  	}
-		.infographic {
-			position: relative;
-			height: 500px;
-			width: 500px;
-	    margin: 150px auto;
-			@media (max-width: $screen-sm-max) {
-				margin-top: 0px;
-			}
-			.infographic-arc-left{
-				position: absolute;
-				top:0;
-				left:40px;
-				width:200px;
-			}
-			.infographic-arc-left + h4{
-				position: absolute;
-    		top: -100px;
-    		left: -200px;
-			}
-			.infographic-arc-left + h4 + p {
-				position: absolute;
-    		top: -20px;
-    		left: -220px;
-  		}
-			.infographic-arc-right{
-				position: absolute;
-				top:0;
-				right: 40px;
-				width:200px;
-			}
-			.infographic-arc-right + h4{
-				position: absolute;
-    		top: -100px;
-    		right: -240px;
-			}
-			.infographic-arc-right + h4 + p {
-				position: absolute;
-    		top: -20px;
-    		right: -220px;
-  		}
-			.infographic-arc-bottom{
-				position: absolute;
-				bottom: 90px;
-		    left: 80px;
-		    height: 150px;
-			}
-			.infographic-arc-bottom + h4{
-				position: absolute;
-    		bottom: 100px;
-    		left: -150px;
-			}
-			.infographic-arc-bottom + h4 + p {
-				position: absolute;
-		    bottom: 0;
-		    left: -200px;
-  		}
-			.infographic-plus-people{
-				position: absolute;
-				top:0;
-				left:0;
-				width:150px;
-				z-index: 1;
-			}
-			.infographic-plus-provider{
-				position: absolute;
-		    top: 0;
-		    right: 0;
-		    width: 150px;
-		    z-index: 1;
-			}
-			.infographic-provider{
-				position: absolute;
-		    bottom: 15px;
-		    left: 180px;
-		    width: 150px;
-		    z-index: 1;
-
-			}
-			.infographic-logo-center{
-		    position: absolute;
-		    top: 110px;
-		    left: 180px;
-		    width: 150px;
-		    z-index: 0;
-			}
-			button {
-				@extend .btn;
-				@extend .btn-lg;
-				@extend .btn-primary;
-		    position: absolute;
-		    bottom: 100px;
-		    right: -100px;
-			}
-			a{
-		    position: absolute;
-		    bottom: 50px;
-		    right: -135px;
-			}
-			@media (max-width: $screen-sm-max) {
-				height: auto;
-				@include make-xs-column( 12 );
-				* {
-					margin: 3% auto;
-				}
-				.infographic-arc-left{
-			    display: none !important;
-			    visibility: hidden !important;
-				}
-				.infographic-arc-left + h4{
-					position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-				}
-				.infographic-arc-left + h4 + p {
-					position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-	  		}
-				.infographic-arc-right{
-			    display: none !important;
-			    visibility: hidden !important;
-				}
-				.infographic-arc-right + h4{
-					position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-				}
-				.infographic-arc-right + h4 + p {
-					position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-	  		}
-				.infographic-arc-bottom{
-			    display: none !important;
-			    visibility: hidden !important;				
-			  }
-				.infographic-arc-bottom + h4{
-					position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-				}
-				.infographic-arc-bottom + h4 + p {
-					position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-	  		}
-				.infographic-plus-people{
-					position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-					width: 100%;
-					max-width:150px;
-				}
-				.infographic-plus-provider{
-					position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-					top:0;
-					left:0;
-					width: 100%;
-					max-width:150px;
-				}
-				.infographic-provider{
-					position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-			    width: 100%;
-			    max-width: 150px;
-				}
-				.infographic-logo-center{
-					position: relative;
-			    top: 0;
-			    left: 0;
-			    right: 0;
-			    bottom: 0;
-			    width: 100%;
-			    max-width: 150px;
-		    	z-index: 0;
-    	    display: none;
-				}
-				button {
-					@extend .btn;
-					@extend .btn-lg;
-					@extend .btn-primary;
-			    position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-				}
-				a{
-			    position: relative;
-					top:0;
-					left:0;
-					right:0;
-					bottom:0;
-					display: block;
-				}
-			}
-		}
-	}
-	// Section - Guidance
-	#section-guidance{
-		h2 {
-			margin-bottom: 50px;
-		}
-	}
-
-	// Section - How It Works
-	#section-specialization p:first-child{
-		color: $brand-light-orange;
-		font-size: 40px;
-	}
-
-	// Section - Providers Saying
-	#section-provider-saying {
-	 	background-color: $brand-dark-green;
-	 	color: $brand-white;
-	 	text-align: center;
-  	> div {
-	    @include make-xs-column( 12 );
-	  	> h2 {
-	  		margin-bottom: 35px;
-	  	}
-	  	p:first-child {
-	  		line-height: 2.5;
-    		font-size: 20px;
-    		margin-bottom: 50px;
-    		@media (max-width: $screen-xs-max) {
-    			line-height: 1.8;
-    		}
-	  	}
-	  	p:not(:first-child), h3 {
-	  		text-align: left;
-	  		margin-left: 5%;
-	  	}
-	  }
-	}
-	a.register {
-			@extend .btn;
-			@extend .btn-lg;
-			@extend .btn-primary;
-			margin-top: 20px;
-		}
-}
-
+// Landing page sub nav bar
 .kf-landing-page .kf-landing-page-sub-navbar {
 	@extend .navbar;
 	@extend .navbar-default;
@@ -904,92 +590,9 @@ $landing-page-max-nav-height: 70px;
 	@include make-row();
 }
 
-// CONTACT US PAGE
-#kf-landing-page-contact-us.kf-landing-page {
-	.kf-landing-page-sections {
-		text-align: center;
-		> div {
-			@include make-xs-column( 10);
-			@include make-xs-column-offset( 1 );
-			> * {
-				margin-top: 3%;
-				margin-bottom: 3%;
-			}
-		}
-	}
-}
 
-#kf-landing-page-leadership.kf-landing-page .kf-landing-page-sections{
-	h1{
-		text-align: center;
-		margin-bottom: 50px;
-	}
-	> div {
-		@include make-xs-column( 3);
-		@media (max-width: $screen-xs-max) {
-			@include make-xs-column(12);
-		}
-		> div {
-			@extend .thumbnail;
-			img {
-				max-height: 500px;
-			}
-		}
-	}
-}
 
-#kf-landing-page-sign-up.kf-landing-page .kf-landing-page-sections {
-	h1 {
-    color: white;
-    background-color: $brand-light-orange;;
-    padding-top: 20px;
-		padding-bottom: 20px;
-		margin-left: -15px;
-    margin-right: -15px;
-    text-align: center;
-	}
-	p {
-    margin: 25px;
-    text-align: center;
-	}
-	> div {
-		@include make-row();
-		> div {
-			@include make-xs-column(6);
-			@include make-xs-column-offset( 3 );
-	  }
-	}
-}
-
-// MODALS
-#specialtiesModal {
-	.modal-content {
-		background-color: $gray;
-    padding: 2%;
-	}
-	.modal-body {
-		text-align: center;
-		h4, p {
-			color: white;
-		}
-	}
-	.specialties-list-container {
-		background-color: $gray-lighter;
-    border-radius: 15px;
-    border: 1px solid black;
-    padding: 20px 0;
-	}
-	.specialties-list-container + p {
-		margin-top: 2%;
-	}
-	ul {
-		display: inline-block;
-    list-style-type: none;
-    padding: 0;
-	}
-}
-
-// provider dashboard
+// Provider dashboard
 #kf-provider-dashboard {
 	.kf-icon {
 	    max-height: 150px;

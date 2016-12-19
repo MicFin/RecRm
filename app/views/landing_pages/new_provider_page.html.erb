@@ -1,6 +1,3 @@
-
-
-<!-- LANDING PAGE INDEX TEMPLATE -->
 <div id="kf-landing-page-provider" class="kf-landing-page">
 
 	<!-- LANDING PAGE NAVIGATION -->
@@ -8,165 +5,26 @@
 
 	<!-- LANDING PAGE BODY -->
 	<main class="kf-landing-page-sections">
-
-		<!-- LANDING PAGE TOP ROW-->
 		<section id="section-video">
-			<div class="row">
-
-				<div class="col-xs-12 col-sm-push-4 col-sm-7">
-					<script src="//fast.wistia.com/embed/medias/gslowafq38.jsonp" async></script>
-					<script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
-
-					<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
-						<div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-							<div class="wistia_embed wistia_async_gslowafq38 videoFoam=true autoPlay=true endVideoBehavior=loop" style="height:100%;width:100% popover=true">&nbsp;</div>
-						</div>
-					</div>
-				</div>
-				<div class="video-side-caption">
-					<h1>Give your patients easy access to high quality support</h1>
-					<p>Extend coordinated support beyond the clinic with 1-on-1 expert guidance through live online video or phone</p>
-					<%= link_to "CONTACT US", landing_pages_new_provider_sign_up_page_path, class: "register" %>
-					<div class="video-footer">
-						<h4>
-							<%= link_to(landing_pages_new_provider_sign_up_page_path) do %>
-							  Register in less than 2 minutes
-							  <br> 
-							  to make fast referrals
-							<% end %>
-
-						</h4>
-					</div>
-				</div> 
-			</div>
-			<div class="section-trusted-guidance">
-				<h2>Remote access to a specialized expert guide<br>to help your patients navigate food and nutrition.</h2>
-				<div>
-					<div>
-						<%= image_tag("icons/icon_video_or_phone_green.png") %>
-						<!-- <h3>CONVENIENT ACCESS BY VIDEO OR PHONE</h3> -->
-						<h4>LIVE ACCESS BY VIDEO OR PHONE</h4>
-						<p>Patients connect live from their kitchen or office.  They can schedule within a few days and meet when they want, including at nights and on weekends.</p>
-					</div>
-					<div>
-						<%= image_tag("icons/icon_matching_arrows_green.png") %>
-						<h4>MATCH WITH AN EXPERT</h4>
-						<p>We match each patient with a dietitian whose food and nutrition expertise is specifically focused on your patient's diet-limiting condition and related challenges.</p>
-					</div>
-					<div>
-						<%= image_tag("icons/icon_check_mark_green.png") %>
-						<h4>TRUSTED GUIDANCE THE 1st TIME AROUND</h4>
-						<p>Evidence based guidance and delicious meals begin with the right expert.  Our dietitians are more than just well rounded. They are experts in their areas of specialty.</p>
-					</div>
-					<div>
-						<%= image_tag("icons/icon_recycle.png") %>
-						<h4>COORDINATED WITH HEALTHCARE</h4>
-						<p>Each patient's nutrition guidance is coordinated with their healthcare provider. Dietitians send a follow-up to the provider after each session.</p>
-					</div>
-				</div>
-				<div class="specialties-banner">
-					<button type="button" class="btn btn-link" data-toggle="modal" data-target="#specialtiesModal">List of our specialties</button>
-				</div>
-			</div>
+			<%= render "/landing_pages/landing_pages_rd_2/sections_for_provider/section_video" %>
 		</section>
 		<section id="section-navigate-food">
-			<h2>Kindrdfood is flexible for providers:<br>3 ways to implement support for patients</h2>
-			<p>We work with healthcare providers of all sizes - from individual practices to hospitals to large ACOs</p>
-			<div class="infographic">
-				<%#= image_tag("infographics/infographic_providers.png", class: "infographic-providers") %>
-				<%= image_tag("logos/kindrdfood-carrot.png", class: "infographic-logo-center") %>
-				<%= image_tag("icons/icon_kf_plus_people.png", class: "infographic-plus-people") %>
-				<%= image_tag("icons/icon_arc_left.png", class: "infographic-arc-left") %>
-				<h4>FOR PROVIDERS WITH<br>NO OUTPATIENT<BR>NUTRITION SUPPORT</h4>
-				<p>Our team is your team.  We offer<br>the full spectrum of specialist<br>dietitians, empowered by<br>Kindrdfood's technology and<br>patient personalization content.</p>
-
-				<%= image_tag("icons/icon_kf_plus_provider.png", class: "infographic-plus-provider") %>
-				<%= image_tag("icons/icon_arc_right.png", class: "infographic-arc-right") %>
-				<h4>AUGMENT EXISTING<br>OUTPATIENT NUTRITION<br>SUPPORT TO FILL CARE GAPS</h4>
-				<p>We help providers who have<br> existing staff by offering<br> patients options for scenarios<br> that are not covered (e.g. out of<br> town, no coverage, no daytime<br> hours, no specialist in house).</p>
-
-				<%= image_tag("icons/icon_provider.png", class: "infographic-provider") %>
-				<%= image_tag("icons/icon_arc_bottom.png", class: "infographic-arc-bottom") %>
-				<h4>LICENSABLE SOLUTION<br>WHETHER FULLY OR<br>PARTIALLY STAFFED</h4>
-				<p>Arm your team with the best<br> technology system and curated<br> content to support patients'<br> general nutrition and medically limited diets.</p>
-
-				<%= link_to "SIGN UP", landing_pages_new_provider_sign_up_page_path, class: "register" %>
-			</div>
+			<%= render "/landing_pages/landing_pages_rd_2/sections_for_provider/section_navigate_food" %>
 		</section>
 		<section id="section-guidance">
-			<div>
-				<h2>Every Provider Using Kindrdfood Can Expect</h2>	
-				<div>
-					<div>
-						<%= image_tag("computers/computer_video_chat.png") %>
-					</div>
-					<div>
-						<ul>
-							<li>Easy referral with or without integration into existing work-flows</li>
-							<li>Easy access to exceptional specialized RDs for patients</li>
-							<li>Patients matched with best possible dietitian for their needs</li>
-							<li>Patient support coordinated with their provider</li>
-							<li>Patient & practitioner interfaces designed specifically for food navigation & nutrition support</li>
-						</ul>
-						<h4><%=link_to "How do we match?", landing_pages_new_faq_page_path %></h4>
-					</div>
-				</div>
-			</div>
+			<%= render "/landing_pages/landing_pages_rd_2/sections_for_provider/section_guidance" %>
 		</section>
 		<section id="section-specialization">
-			<div>
-				<h2>How it works</h2>
-				<p>(in terms of general referral experience)</p>
-				<div>
-					<div>
-						<p>1.</p>
-						<h4>PROVIDER REFERS PATIENT</h4>
-						<%= image_tag("icons/icon_stethescope_orange.png") %>
-						<p>Kindrdfood team has expertise in nutrition for many different conditions.</p>
-					</div>
-					<div>
-						<p>2.</p>
-						<h4>PATIENT IS MATCHED WITH SPECIALIZED RD</h4>
-						<%= image_tag("icons/icon_hands_orange.png") %>
-						<p>Patient will see a specialist in their condition specific challenges.</p>
-					</div>
-					<div>
-						<p>3.</p>
-						<h4>RD GIVES PATIENT A GUIDED PATH</h4>
-						<%= image_tag("icons/icon_path_orange.png") %>
-						<p>Guidance and resources are personalized.  Each patient's journey is different, and always supported.</p>
-					</div>
-					<div>
-						<p>4.</p>
-						<h4>FOLLOW-UP SENT TO PROVIDER & PATIENT</h4>
-						<%= image_tag("icons/icon_papers_orange.png") %>
-						<p>Recipes and resources are sent to the patient.  Follow-up notes are sent to both patient and provider after each session..</p>
-					</div>
-				</div>
-			</div>
+			<%= render "/landing_pages/landing_pages_rd_2/sections_for_provider/section_specialization" %>
 		</section>
 		<section id="section-provider-saying">
-			<div>
-				<h2>What are providers saying?</h2>
-				<blockquote>
-					<p>"I have a medically complex patient who required a nutritional intervention but did not have access to a local dietitian with knowledge of his disease.<strong> I was extremely impressed with the level of expertise provided by the Kindrd Dietitian</strong> who worked with his family. I am happy to report that the child is now doing very well.<strong> I will definitely refer my patients to Kindrdfood for nutritional guidance</strong>."</p>
-					<h3>Athos Bousvaros, MD MPH</h3>
-					<p>Associate Chief, Division of Gastroenterology, Hepatology and Nutrition, <strong>BOSTON CHILDREN'S HOSPITAL</strong></p>
-					<p>Associate Professor of Pediatrics, <strong>HARVARD MEDICAL SCHOOL</strong></p>
-					<p>Past President, <strong>NASPGHAN</strong> (North American Society for Pediatric Gastroenterology, Hepatology & Nutrition)</p>
-				</blockquote>
-			</div>
+			<%= render "/landing_pages/landing_pages_rd_2/sections_for_provider/section_provider_saying" %>
 		</section>
 		<section id="section-experts">
 			<%= render "/landing_pages/landing_pages_rd_2/meet_the_experts" %>
 		</section>
 		<section id="section-provider-solution">
-			<div>
-				<h2>World Class Nutrition Support for Your Patients</h2>
-				<h4>Kindrdfood provides physician practices, hospitals, and ACOs, with a nutrition support solution for patients, making access to the right high quality guidance convenient, cost effective and coordinated with the rest of their health care.</h4>
-				<p>(Dietitians are all carefully selected, specialized and focused on patients within their specialty.)</p>
-				<%= link_to "CONTACT US", landing_pages_new_provider_sign_up_page_path, class: "register" %>
-			</div>
+			<%= render "/landing_pages/landing_pages_rd_2/sections_for_provider/section_provider_solution" %>
 		</section>
 	</main>
 

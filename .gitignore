@@ -34,3 +34,5 @@
 # Not using .env
 .env 
 
+# Ignore local redis dump
+dump.rdb

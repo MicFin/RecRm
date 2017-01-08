@@ -115,9 +115,12 @@ gem 'premailer-rails'
 # gem 'premailer-rails'
 
 # # Workers
-gem 'sidekiq', '4.2.7'
+gem 'sidekiq', '4.2.7'   #
 gem 'devise-async', '0.10.2'
 # gem 'sinatra', require: false
+# Redis links used for sidekiq/redis production
+# https://cbabhusal.wordpress.com/2015/03/16/ruby-on-rails-redis-server-how-to-install-redis-in-ubuntu-14-04/
+# https://askubuntu.com/questions/58869/how-to-sucessfully-install-redis-server-tclsh8-5-not-found-error
 
 # # Utils
 # gem 'addressable'

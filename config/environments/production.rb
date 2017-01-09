@@ -58,7 +58,7 @@ Rails.application.configure do
 
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "dh5bguyrh098f.cloudfront.net"
+  # config.action_controller.asset_host = "dh5bguyrh098f.cloudfront.net"
 
 
   # Precompile additional assets.

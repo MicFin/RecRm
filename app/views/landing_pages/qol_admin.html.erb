@@ -3,47 +3,35 @@
 
 
 <div id="qol-page" class="landing-page container-fluid">
-  <nav class="row navbar navbar-default">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">
-      <%= image_tag "logos/kf-logo-registration.png", class: "img-responsive" %>
-      </a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#link-approach">OUR APPROACH <span class="sr-only">(current)</span></a></li>
-        <li><a href="#link-team">OUR TEAM</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-	</nav>
+  <div class="row">
+  	<div class="col-xs-12 text-left" >
+  		<%= image_tag "logos/kf-logo-registration.png", class: "img-responsive" %>
+  	</div>
+  </div>
 	<div class="row">
 		<%= render "/layouts/alerts" %>
 	</div>
 	<div class="row splash-image-section">
+
 		<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-sm-offset-1 col-md-5 text-left col-lg-5 left-column">
-			<h1>Eat Easier.</h1>
-			<h1>Eat Happier.</h1>
-			<h3>Great food and good nutrition start with the right guidance.</h3>
-			<div class="alert alert-warning">
-				<p>ONLY IF THEY HAVE NO ACCESS TO THE INTERNET:</p>
-				<p>Have the customer call (877) 367-2918</p>
-				<p>If they have questions or challenges</p>
-				<p>Dial (617) 575-2203 for customer service or technical support.</p>
-			</div>
+				<div class="col-xs-12 ">
+				<h2>2 FREE sessions* for clients!</h2>
+					<p>Kindrdfood helps families with a limited or changing diet, to navigate food more easily and enjoy better meals, by providing personalized, 1-on-1 guidance, remotely through video or by phone.</p>
+
+					<p>This admin site is for QOL Medical  Administrators only. Use of the fields or phone numbers listed on this page are prohibited to all others.</p>
+				</div>
+				<div class="col-xs-12 alert alert-warning">
+					<p>ONLY IF THE CUSTOMER HAS NO ACCESS TO THE INTERNET (to create a profile or schedule) have the customer call (617) 367-2918 to schedule a session.</p>
+				</div>
+				<div class="col-xs-12">
+					<p>Any questions or challenges, please call (617)575-2203 for customer service or technical support. </p>
+				</div>
+				
 		</div>
 		<div class="col-xs-12 col-sm-6 outside-form-container">
 			<div class="text-center">
-				<h3>2 FREE sessions* for clients!</h3>
-				<p>Clients qualify for both a complimentary one-hour session and a half-hour follow up session with a Kindrdfood Dietitian, replace the stress with great taste and variety!</p>
+				<h3>Administrator actions:</h3>
+				<p>To send an invitation, fill out the following fields with the customer’s information and click on the button below</p>
 					<%= simple_form_for(@user, as: "user", url: user_registration_path, html: {class: 'row text-left', role:"form" }) do |f| %>
 
 						<div class="form-group col-xs-8 col-xs-offset-2">
@@ -67,85 +55,45 @@
 					<% end %>
 			</div>
 		</div>
-	</div>
+		<div class="col-xs-12 col-sm-11 col-sm-offset-1">
+			
+<h3>Customers qualify for both a complimentary one-hour session and a half-hour follow up session with a Kindrdfood Dietitian (see details below*)</h3>
 
-	<div class="row qol-container landing-page-row">
-		<div class="col-xs-12 col-sm-5">
-		<%=image_tag "logos/logo-vertical.jpg", class: "img-responsive"  %>
-		</div>
-		<div class="hidden-xs col-sm-3">
-			<!-- <p><span class="glyphicon glyphicon-plus"></span></p> -->
-		</div>
-		<div class="col-xs-12 col-sm-4">
-		<%=image_tag "logos/qol-logo.jpg", class: "img-responsive" %>
-		</div>
-		<div class="qol-update col-xs-12 col-sm-6 col-sm-offset-3">
-			<p class="details">QOL has partnered with Kindrdfood to offer customers an additional layer of support. Kindrdfood offers confidence and ease to families who have to change the way that they eat, because of a medical condition or dietary condition by providing expert 1-on-1 guidance and materials that make everyday easier.</p>
+<p>Customer/Client’s experience after name and email are submitted:</p>
+<ul>
+<li>Customer receives email with special link to Kindrdfood site.</li>
 
-		</div>
-	</div>
-	<div id="link-approach" class="row landing-page-row approach">
-		<div class="col-xs-12 col-sm-6 text-left">
-			<h2 class="heading">We make mealtime a pleasure, everytime.</h2>
-			<p class="details">Kindrdfood is the secret weapon for families who have to change the way they eat due to a medical condition, dietary restriction or a new family addition.  We make changes easy with trustworthy, balanced guidance so that you can relax and enjoy your food with confidence.  As a Kindrdfood client, you will be matched with your very own Kindrdfood Dietitian - a highly trained and clinically experienced Registered Dietitian Nutritionist (RDN), with amazing cooking chops who guides you remotely through live video sessions.  Your preferences, your needs, our best people are on it.</p>
-			<hr class="small-hr">
-			<h3>Food allergy?  No problem.  Infant in arms?  We get it.  New diagnosis?  We'll train you up.</h3>
-		</div>
-		<div class="col-xs-12 col-sm-4 col-sm-offset-1 faded-image">
-		</div>
-	</div>
-	<section class="row landing-page-row testimonial">
-		<div class="col-xs-12 text-center">
-			<h2>It was such a relief to get answers that I could trust, my kitchen just got happier!</h2>
-			<p>KF Member</p>
-		</div>
-	</section>
-	<div id="link-team" class="row landing-page-row team">
-		<div class="col-xs-12 col-sm-4 col-sm-offset-1 faded-image-2">
-		</div>
-		<div class="col-xs-12 col-sm-6 col-sm-offset-1 text-left">
-			<h2 class="heading">Kindrdfood Dietitians take your food to a new level.</h2>
-			<p class="details">At Kindrdfood, we have a team of specialized RDNs, who have all been clinically trained, but we don't stop there.  Every Kindrdfood Dietitian goes through additional training in nutrition subspecialties, family eating challenges, and cooking for safety and great taste.  We hold our team to the highest standards possible, so that you can rely on the best.</p>
-			<hr class="small-hr">
-			<h3>In the kitchen, in the store, and at the table.  We've got you covered!</h3>
-		</div>
-	</div>
-	<section class="row landing-page-row mobile">
-	 	<div class="col-xs-6">
-		 	<h2>In your kitchen and at your table.</h2>
-		 	<p class="details">Web?  Check.  Mobile?  Check.  At your convenience.</p>
-	 	</div>
-	 	<div class="col-xs-6">
-	 		<p class="details">Access Kindrdfood from wherever and whenever it is convenient for you.  All you need is access to the internet or a telephone and you can connect with your Kindrdfood Dietitian and all of the recipes and materials that suit your family's personalized needs and preferences.</p>
-	 	</div>
-	</section>
-	<div class="row landing-page-row">
-		<div class="col-xs-12 col-sm-6 text-left">
-			<h2 class="heading">Guidance you can trust...Finally!</h2>
-			<p class="details">Kindrdfood Dietitians are hired based on the highest standards of competence and service delivery.  Then we train them more.  More nutrition.  More family strategies.  More cooking skills.  They're the best!  Our approach to service is personalized and not biased toward manufacturers' agendas or popular nutrition.  Your Kindrdfood Dietitian will help you keep your family safe and help you enjoy better food, regardless of what limits your table.  Our clients get the confidence and comfort of having a partner to guide them in learning and improving the quality and taste of everything they eat.</p>
-			<hr class="small-hr">
-			<h3>Verified and validated.  Experts and information you can trust.</h3>
-		</div>
-		<div class="hidden-xs col-sm-4 col-sm-offset-1 faded-image-3">
-		</div>
-	</div>
-	<div class="row landing-page-row problem">
-		<div class="col-xs-12 col-sm-4 col-sm-offset-1 faded-image-4">
-		</div>
-		<div class="col-xs-12 col-sm-6 col-sm-offset-1 text-left">
-			<h2 class="heading">Why are you still using a search engine for your nutrition knowledge?</h2>
-			<p class="details">Searching the internet can land you on pages with heavily spun and frequently incorrect information, leaving you alone to sift through the fragments of questionable data across more sites than anyone would care to visit.  Kindrdfood puts everything that you need in one trustworthy place.  We do not accept food product or supplement endorsements, so neither the 1-on-1 guidance nor any content is adulterated by product marketing.  We make it easy for you to learn, without having to question the credibility of the guidance you receive.</p>
-			<hr class="small-hr">
-			<h3>Filtered, verified, personalized, and all in one place.</h3>
+<li>Customer click the special link to the site.</li>
+
+<li>On the Kindrdfood site from the special link, the customer creates a client profile and selects their best time to meet with a dietitian.</li>
+
+<li>Now considered a client, the client is matched to a Kindrdfood Dietitian based on their specific limitations from their profile.</li>
+
+<li>Client and dietitian connect live at the selected time through video conference on the Kindrdfood website or by phone if necessary.</li>
+
+<li>Follow up materials are personalized to client’s profile.</li>
+</ul>
+
+
 		</div>
 	</div>
 	<section class="row landing-page-row call-to-action-bar">
-		<div class="col-xs-12 text-center">
+		<div class="col-xs-12 col-sm-11 col-sm-offset-1 text-center">
 			<%= render "/legal/disclaimers/qol_free_sessions_disclaimer" %>
-			<%= render "/legal/disclaimers/standard_footer_disclaimer" %>
 		</div>
 	</section>
-		<%= render "/landing_pages/landing_pages_rd_2/footer" %>
+	<footer>
+		<div>
+			<div>
+				<p>Kindrdfood does not provide medical advice, diagnosis, or treatment.  See <a class="terms-modal-link" >additional information</a> about <a class="terms-modal-link" >Terms of Service</a> and our <a class="terms-modal-link" >Privacy Policy</a>.</p>
+				<p>All materials on this site may not be reproduced, transmitted, cached or otherwise used, except with the prior written permission of Kindrdfood Inc.</p>
+				<p>Copyright &copy; 2016 | Kindrdfood Inc.</p>
+			</div>
+		</div>
+	</footer>
+	<%= render "/landing_pages/terms_modal" %>
+	<%= render "/landing_pages/privacy_modal" %>
+
 </div>
 
 

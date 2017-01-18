@@ -36,12 +36,20 @@ class Coupon < ActiveRecord::Base
     coupon = self.find_coupon(coupon_code, user)
 
     # If the coupon is active apply it and return true
+    
     if coupon 
 
       # IF 
 
       # Get users purchase currently in registration
       appointment = user.appointment_in_registration
+
+      # if no appointment in registation than being applied 
+      # to a purchase which is not allowed
+      if appointment == nil
+        return false
+      end
+      
       purchase = appointment.purchase
 
       # Apply coupon to purchase

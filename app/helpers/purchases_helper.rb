@@ -4,7 +4,7 @@ module PurchasesHelper
 
   def show_purchase_cost(user, purchase, purchasable) 
     
-    if (user.qol_referral == false) && (purchasable.status != "Unused Package Session")
+    if (purchasable.class == Package) || ( (user.qol_referral == false) && (purchasable.status != "Unused Package Session") )
         render "purchases/purchases_modal/purchase_cost", user: user, purchase: purchase, purchasable: purchasable
     end 
   end

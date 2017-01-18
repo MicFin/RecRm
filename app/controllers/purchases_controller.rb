@@ -33,6 +33,8 @@ class PurchasesController < ApplicationController
   def new
     
     @user = current_user 
+
+    # IF PURCHASING APPOINTMENT
     if @purchasable.class == Appointment
       
       # if time slot param then find time slot (for new appts)
@@ -47,6 +49,7 @@ class PurchasesController < ApplicationController
       # set appointment's purchase or create a new one
       @purchase = @purchasable.purchase || Purchase.create(user_id: @user.id, status: "Incomplete", purchasable_type: "Appointment", purchasable_id: @purchasable.id )
       
+    # IF PURCHASING PACKAGE
     else
   
       @purchase = Purchase.create(user_id: @user.id, status: "Incomplete", purchasable_type: "Package", purchasable_id: @purchasable.id)

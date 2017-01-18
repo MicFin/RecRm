@@ -1,6 +1,12 @@
 
+// remove payment modal if it exists
+if ( $('#paymentModal').length > 0){
+	$('#paymentModal').remove();
+}
+
 // If purchase is a package
 <% if @purchasable.class == Package %>
+
 	$("body").append("<%= j render(:partial => 'purchase_package_modal', :locals => {:user => @user, :purchase => @purchase, :purchasable => @purchasable}) %>");
 	$('#paymentModal').modal();
 	payment.setupForm();

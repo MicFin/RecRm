@@ -16,22 +16,10 @@
               <h3><li><%=purchasable.num_half_appointments%> - Half hour sessions</li></h3>
             </ul>
           </div>
-          <div class="col-xs-8 col-xs-offset-2 text-center">
-            <div class="col-xs-12 form-group">
-              <%= show_purchase_coupon_response(purchase, purchasable) %>
-            </div>
+          
+          <!-- DISCOUNT CODE RESPONSE -->
+          <%= show_purchase_cost(user, purchase, purchasable) %>          
 
-            <!--  DISCOUNT CODE BUTTONS -->
-            <div class="col-xs-12 form-group">
-              <div class="col-xs-8">
-                <input type="text" class="form-control hidden" id="coupon-field" placeholder="Enter discount code" name="coupon">
-              </div>
-              <div class="col-xs-2">
-                <button id="coupon-button" class="btn btn-sm btn-link hidden">APPLY DISCOUNT</button>
-                <button id="remove-coupon-button" class="btn btn-link">remove discount</button>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="row form-group">
           <div class="col-xs-8 col-xs-offset-2 discount-response">

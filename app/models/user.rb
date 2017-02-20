@@ -1,93 +1,25 @@
 # == Schema Information
 #
-# Table name: users
-#
-#  id                     :integer          not null, primary key
-#  email                  :string(255)      default("")
-#  encrypted_password     :string(255)      default("")
-#  reset_password_token   :string(255)
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string(255)
-#  last_sign_in_ip        :string(255)
-#  created_at             :datetime
-#  updated_at             :datetime
-#  first_name             :string(255)
-#  last_name              :string(255)
-#  phone_number           :string(255)
-#  date_of_birth          :date
-#  sex                    :string(255)
-#  height_inches          :integer
-#  weight_ounces          :integer
-#  stripe_id              :text
-#  family_note            :text
-#  family_role            :string(255)
-#  early_access           :boolean          default(FALSE)
-#  tara_referral          :boolean          default(FALSE), not null
-#  zip_code               :string(255)
-#  qol_referral           :boolean          default(FALSE), not null
-#  confirmation_token     :string(255)
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  due_date               :datetime
-#  registration_stage     :integer          default(0)
-#  invitation_token       :string(255)
-#  invitation_created_at  :datetime
-#  invitation_sent_at     :datetime
-#  invitation_accepted_at :datetime
-#  invitation_limit       :integer
-#  invited_by_id          :integer
-#  invited_by_type        :string(255)
-#  invitations_count      :integer          default(0)
-#  time_zone              :string(255)
-#  physician_referral     :boolean          default(FALSE)
-#  provider               :boolean          default(FALSE)
-#  hospitals_or_practices :text
-#  academic_affiliations  :text
-#  specialty              :string(255)
-#  subspecialty           :string(255)
-#  fax                    :string(255)
-#  terms_accepted         :boolean
-#  monologue_user_id      :integer
-#
 
 class User < ActiveRecord::Base
 
   # # ATTRIBUTE ACCESSORS
   attr_accessor :health_group_ids, :health_groups, :image_cache, :remove_image
+  attr_accessor :ip_address # using for paper trail, may not be useful
 
   # # SCOPES
   # SCOPES: User Type
-  # All users with a password
   scope :user_accounts, -> { where("encrypted_password <> ''") }
-  # Clients
   scope :client_accounts, -> { user_accounts.where(provider: false)  }
-
-  # Registered Clients
   scope :registered_client_accounts, -> { client_accounts.where(registration_stage: 6)}
-  
-  # Family members
-  scope :family_member_accounts, -> { where("family_role <> ''") }  
-
-  # QOL referral
-  scope :qol_referrals_not_accepted, -> { where("confirmation_sent_at IS NOT NULL").where("confirmed_at IS NULL") } 
-
-  # Provider referral
+  scope :family_member_accounts, -> { where("family_role <> ''") } 
+  scope :qol_referrals_not_accepted, -> { where("confirmation_sent_at IS NOT NULL").where("confirmed_at IS NULL") }
   scope :provider_referrals_not_accepted, -> { where("invitation_sent_at IS NOT NULL").where("invitation_accepted_at IS NULL") } 
-  
-  # Providers
   scope :provider_accounts, -> { user_accounts.where(provider: true) }
-   
   # SCOPES: User Registration Stage
   scope :at_stage, -> (stage){ where(registration_stage: stage) } 
   scope :incomplete_onboarding, -> { where(registration_stage: [1, 2, 3, 4, 5])}
-  # SCOPES: Time slot for specific dietitian
-  # scope :repeat_customers, -> { includes(:appointment_hosts).where("appointment_hosts.status=?", "Complete").references(:appointment_hosts) }
-  # SCOPES: Users by Appointment order
-  # scope :order_by_most_current_appointment, -> {includes(:appointment_hosts).order('appoinment_hosts.start_time DESC')}
+  # SCOPES: Order
   scope :order_by_last_sign_in, -> {where("last_sign_in_at IS NOT NULL").order('last_sign_in_at DESC')}
   scope :order_by_created_at, -> {order('created_at DESC')}
 
@@ -162,8 +94,17 @@ class User < ActiveRecord::Base
   validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map.keys, :allow_blank => true
 
   # versioning and tracking of model changes
-  has_paper_trail
+  # has_paper_trail
+  has_paper_trail class_name: 'UserVersion'
 
+  # # CLASS METHODS
+
+  # returns the user that is the author of a specified version
+  # def self.find_version_author(version)
+  #   find(version.terminator)   
+  # end
+
+  # # INSTANCE METHODS
   def main_avatar
     if self.images.count >= 1
       avatar = self.images.where(image_type: "Avatar").where(position: 1)
@@ -464,32 +405,32 @@ end
     self.errors[:password_confirmation] << "does not match password" if password != password_confirmation
     password == password_confirmation && !password.blank?
   end
-  
+
+
+  # # PRIVATE METHODS
   private
 
-  def delete_images
-    self.images = []
-  end
-
-
-  def create_original_growth_entry
-    growth_chart = self.growth_chart || GrowthChart.create(user_id: self.id)
-    if growth_chart.growth_entries.count < 1 
-      GrowthEntry.create({growth_chart_id: growth_chart.id, height_in_inches: self.height_inches, weight_in_ounces: self.weight_ounces, measured_at: Date.today})
-    end
-  end
-
-  def create_original_food_diary
-    self.food_diary = FoodDiary.new
-  end
-
-  def check_for_appointments
-    # do no delete if user is a patient focus of at stage 5 of an appointment
-    if ( (self.patient_focus.count >= 1) || ( ( self.appointment_hosts.count >= 1) && (self.registration_stage >= 5) ) )
-      errors[:messages] << "Can not delete family member's that have appointments assigned to them."
-      return false
+    def delete_images
+      self.images = []
     end
 
-  end
+    def create_original_growth_entry
+      growth_chart = self.growth_chart || GrowthChart.create(user_id: self.id)
+      if growth_chart.growth_entries.count < 1 
+        GrowthEntry.create({growth_chart_id: growth_chart.id, height_in_inches: self.height_inches, weight_in_ounces: self.weight_ounces, measured_at: Date.today})
+      end
+    end
+
+    def create_original_food_diary
+      self.food_diary = FoodDiary.new
+    end
+
+    def check_for_appointments
+      # do no delete if user is a patient focus of at stage 5 of an appointment
+      if ( (self.patient_focus.count >= 1) || ( ( self.appointment_hosts.count >= 1) && (self.registration_stage >= 5) ) )
+        errors[:messages] << "Can not delete family member's that have appointments assigned to them."
+        return false
+      end
+    end
 
 end

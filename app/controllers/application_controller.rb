@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 	include Pundit
+  before_action :set_paper_trail_whodunnit
 	# Prevent CSRF attacks by raising an exception.
 	# For APIs, you may want to use :null_session instead.
 	protect_from_forgery with: :exception
@@ -53,6 +54,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # save ip address to paper trail, not working
+  def info_for_paper_trail
+    { ip_address: request.remote_ip }
+  end
+
+  def user_for_paper_trail
+    # Save the user responsible for the action
+    if current_user
+      current_user 
+    elsif current_dietitian
+      current_dietitian
+    else
+      request.remote_ip 
+    end
+  end
   # def after_accept_path_for(resource_name)
   #   
   # end

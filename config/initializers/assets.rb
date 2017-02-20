@@ -1,8 +1,7 @@
 
 
-# controller specific assets so that the controller.scss is compiled 
-# turned off .tree in app.css
-# same with app.js
+# controller specific assets so that the <controller-name>.scss is compiled 
+# turned off .tree in app.css and app.js
 # http://theflyingdeveloper.com/controller-specific-assets-with-rails-4/
 %w( 
   welcome 
@@ -29,6 +28,7 @@
   dietitians/registrations
   users/registrations
   devise/sessions
+  versions
   rails_email_preview/emails
   ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.css", "#{controller}.js"]

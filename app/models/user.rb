@@ -161,7 +161,8 @@ class User < ActiveRecord::Base
   # allows nil if no time zone is saved
   validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map.keys, :allow_blank => true
 
-
+  # versioning and tracking of model changes
+  has_paper_trail
 
   def main_avatar
     if self.images.count >= 1

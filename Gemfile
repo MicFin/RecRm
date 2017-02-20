@@ -122,6 +122,9 @@ gem 'devise-async', '0.10.2'
 # https://cbabhusal.wordpress.com/2015/03/16/ruby-on-rails-redis-server-how-to-install-redis-in-ubuntu-14-04/
 # https://askubuntu.com/questions/58869/how-to-sucessfully-install-redis-server-tclsh8-5-not-found-error
 
+# # Model Versioning
+gem 'paper_trail', '3.0.5' # https://github.com/airblade/paper_trail
+
 # # Utils
 # gem 'addressable'
 # gem 'settingslogic'

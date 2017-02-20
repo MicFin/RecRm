@@ -469,15 +469,12 @@ Rails.application.routes.draw do
   get 'landing_pages/index', to: "landing_pages#index", as: "landing_pages_index"
   get 'our_solution', to: "landing_pages#our_solution", as: "landing_pages_our_solution"
   get 'results', to: "landing_pages#results", as: "landing_pages_results"
-  # get 'how_it_works', to: "landing_pages#how_it_works", as: "landing_pages_how_it_works"
   get 'how_it_works' => redirect("/new_landing_page")
   get 'who_we_help', to: "landing_pages#who_we_help", as: "landing_pages_who_we_help"
-  # get 'why_kindrdfood', to: "landing_pages#why_kindrdfood", as: "landing_pages_why_kindrdfood"
   get 'why_kindrdfood' => redirect("/new_landing_page")
   get 'quality', to: "landing_pages#quality", as: "landing_pages_quality"
   get 'navigate_change', to: "landing_pages#navigate_change", as: "landing_pages_navigate_change"
   get 'our_mission', to: "landing_pages#our_mission", as: "landing_pages_our_mission"
-  # get 'leadership', to: "landing_pages#leadership", as: "landing_pages_leadership"
   get 'leadership' => redirect("/new_leadership_page")
   get 'benefits', to: "landing_pages#benefits", as: "landing_pages_benefits"
   get 'more_benefits', to: "landing_pages#more_benefits", as: "landing_pages_more_benefits"
@@ -491,25 +488,18 @@ Rails.application.routes.draw do
   get 'new_contact_us_page', to: "landing_pages#new_contact_us_page", as: "landing_pages_new_contact_us_page"
   get 'new_leadership_page', to: "landing_pages#new_leadership_page", as: "landing_pages_new_leadership_page"
   get 'new_faq_page', to: "landing_pages#new_faq_page", as: "landing_pages_new_faq_page"
-
   get "new_sign_in_page" => redirect("/users/sign_in")
-
-  # get 'new_sign_in_page', to: "landing_pages#new_sign_in_page", as: "landing_pages_new_sign_in_page"
-
   get 'new_sign_up_page', to: "landing_pages#new_sign_up_page", as: "landing_pages_new_sign_up_page"
   get 'new_provider_sign_up_page', to: "landing_pages#new_provider_sign_up_page", as: "landing_pages_new_provider_sign_up_page"
 
-
   resources :guest_users
 
-  # should change these to not being opened to all users
+  # Should change these to not being opened to all users
   patch 'packages/:package_id/purchases/:id/make_payment', to: 'purchases#make_payment', as: 'make_package_payment'
   resources :packages do 
     resources :purchases 
   end
-
   resources :plans 
-
   resources :coupons do 
     collection do 
       # /coupons/redeem_coupon
@@ -519,19 +509,19 @@ Rails.application.routes.draw do
     end
   end
 
+  # Not using?
   resources :food_diaries do 
     resources :food_diary_entries
   end
-
+  # Not using?
   resources :growth_charts do 
      resources :growth_entries
   end
-
+  # Public?
   resources :survey_groups do 
     resources :questions 
   end
 
-  # is it better to do a redirect or another route that goes to the same controller method?
   ### REDIRECTS
   get 'provider3126' => redirect("/")
   get 'provider9172' => redirect("/")
@@ -541,7 +531,6 @@ Rails.application.routes.draw do
 
   ### ROUTES AVAILABLE TO USERS 
   devise_for :users, :controllers => { :registrations => "users/registrations", sessions: 'users/sessions', :confirmations => "users/confirmations", :invitations => 'users/invitations' }
-
   devise_scope :user do
 
 
@@ -616,16 +605,12 @@ Rails.application.routes.draw do
     unauthenticated :user do
       match '/user/confirmation' => 'users/confirmations#update', :via => :patch, :as => :update_user_confirmation
     end   
-
   end
-
 
   ### ROUTES AVAILABLE TO DIETITIANS 
   devise_for :dietitians, :controllers => { :registrations => "dietitians/registrations" }
-
   devise_scope :dietitian do
-
-     # Routes available to authenticated dietitians
+    # Routes available to authenticated dietitians
     authenticated :dietitian do
 
       # Authenticated dietitian root path
@@ -633,6 +618,13 @@ Rails.application.routes.draw do
 
       # Settings
       resources :kf_config, :constraints => { :id => /.*/ } # allow period in route param
+
+      # Versions
+      get '/versions/:user_id/diff/:id', to: 'versions#diff', as: :versions_diff
+      patch "versions/:user_id/rollback/:id", to: "versions#rollback", as: :versions_rollback
+      patch 'versions/:user_id/bringback/:id', to: 'versions#bringback', as: :versions_bringback
+      get 'versions/deleted', to: 'versions#deleted', as: :versions_deleted
+      resources :versions, only: [:index, :destroy] 
 
       # Registration paths
       get 'dietitians/:id' => 'dietitians/registrations#show', as: "dietitian"
@@ -695,20 +687,15 @@ Rails.application.routes.draw do
 
       # Invitation paths
       get 'users/invitations', to: 'users/invitations#index', as: 'users_invitations'
-
-
-
-
     end
-
     # ROUTES FOR UNAUTHENTICATED DIETITIAN (and all unathenticated users )
     unauthenticated :dietitian do
       
       # THIS IS THE MAIN ROOT FOR ALL NON REGISTERED USERS
       root :to => "landing_pages#new_landing_page", as: :dietitian_unauthenticated_root
-      get 'dietitians/:id' => 'dietitians/registrations#show' # for unauthenticated users to be able to dietitian page
     end   
   end
 
-
+  # for unauthenticated users to be able to dietitian page
+  get 'dietitians/:id' => 'dietitians/registrations#show' 
 end

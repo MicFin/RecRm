@@ -1,0 +1,21 @@
+<h2>
+  <%= previous ? "Version #{@version.id}" : 'Current Version' %>
+</h2>
+
+<div class='well diff'>
+  <p class=<%= version_1.first_name == version_2.first_name ? 'bg-success' : 'bg-danger' %>>
+    <strong>First Name:</strong>
+    <%= version_1.first_name %>
+  </p>
+
+  <p class=<%= version_1.last_name == version_2.last_name ? 'bg-success' : 'bg-danger' %>>
+    <strong>Last Name:</strong>
+    <%= version_1.last_name %>
+  </p>
+</div>
+
+<%- if previous %>
+  <p>
+    <%#= "Version authored by #{find_version_author_name(@version)} on #{@version.created_at} by '#{@version.event.humanize}'." %>
+  </p>
+<% end %>

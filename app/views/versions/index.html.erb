@@ -1,0 +1,33 @@
+<div id="welcome-page" class="container-fluid">
+  <div class="row">
+
+    <%= render "/layouts/navbars/dietitian_nav" %>
+
+    <main class="main-content-container">
+      <section class="alerts-container">
+        <%= render "/layouts/alerts" %>
+      </section>
+      <section>
+          <h1>History</h1>
+          <%= link_to 'See Deleted', versions_deleted_path({item_type: @versions[0].item_type}) %>
+          <%= render 'versions_table', versions: @versions %>
+      </section>
+    </main>
+    <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+      <%=render "/layouts/footers/main_footer" %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

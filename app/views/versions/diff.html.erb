@@ -1,0 +1,39 @@
+
+
+<div id="welcome-page" class="container-fluid">
+    <div class="row">
+
+      <%= render "/layouts/navbars/dietitian_nav" %>
+
+      <main class="main-content-container">
+        <section class="alerts-container">
+          <%= render "/layouts/alerts" %>
+        </section>
+        <section>
+          <div class='row'>
+					 	<div class='col-sm-6'>
+					 	  <%= render 'versions/show', version_1: @version.reify, version_2: @user, version: @version, previous: true %>
+					 	</div>
+					 	
+					 	<div class='col-sm-6'>
+					 	  <%= render 'versions/show', version_1: @user, version_2: @version.reify, version: @version, previous: false %>
+					 	</div>
+
+						<div class="col-xs-12">
+							<%= link_to 'Back', versions_path, class: 'btn btn-danger' %>
+							<%= link_to 'Rollback', versions_rollback_path(@user, @version), class: 'btn btn-primary', method: 'PATCH' %>
+						</div> 
+					</div>
+
+					<div class="row">
+						<div class='col-sm-12'>
+					 	  <%= render 'versions/versions_table', versions: @versions %>
+					 	</div>	
+					</div>
+        </section>
+      </main>
+      <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+        <%=render "/layouts/footers/main_footer" %>
+      </div>
+    </div>
+  </div>

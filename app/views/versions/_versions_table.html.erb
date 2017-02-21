@@ -2,34 +2,33 @@
   <table class='datatable responsive no-wrap table table-striped' cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th>Index</th>
+        <th>Version</th>
+        <!-- <th>Index</th> -->
+        <th>Type</th>
+        <th>Event</th>
         <th>Date</th>
         <!--         <th>Author</th> -->
         <th>Editor</th>
         <!-- <th>IP Address</th> -->
-        <th>Event</th>
-        <th>Event ID</th>
-        <th>Type</th>
-        <!--         <th>Changeset</th> -->
         <th></th>
         <th></th>
         <th></th>
-        <th>More Info</th>
+        <!-- <th>More Info</th>
+        <th>Changeset</th>  -->
       </tr>
     </thead>
 
     <tbody>
       <% @versions.each do |version| %>
         <tr>
-          <td><%= version.index %></td>
+          <td><%= version.id %></td>
+          <!-- <td><%#= version.index %></td> -->
+          <td><%= version.item_type %></td>
+          <td><%= version.event.humanize %></td>
           <td><%= version.created_at %></td>
           <!-- <td><%#= find_version_author_name(version) %></td> -->
           <td><%=version.terminator%></td>
           <!-- <td><%#= version.ip_address %></td> -->
-          <td><%= version.event.humanize %></td>
-          <td><%= version.id %></td>
-          <td><%= version.item_type %></td>
-          <!-- <td><%#= version.changeset %></td> -->
           <%- if version ==  version.item.versions.last %>
             <td>Current Version</td>
             <td></td>
@@ -39,7 +38,8 @@
             <td><%= link_to 'Rollback', versions_rollback_path(version.item, version), method: 'PATCH' %></td>
             <td><%#= link_to 'Delete', '' %></td>
           <% end %>
-          <td><%= version.object %></td>
+          <!--           <td><%#= version.object %></td>
+          <td><%#= version.changeset %></td> -->
         </tr>
       <% end %>
     </tbody>

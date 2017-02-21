@@ -124,7 +124,7 @@ gem 'devise-async', '0.10.2'
 
 # # Model Versioning
 gem 'paper_trail', '3.0.5' # https://github.com/airblade/paper_trail
-
+gem 'diffy', '3.0.6'
 # # Utils
 # gem 'addressable'
 # gem 'settingslogic'

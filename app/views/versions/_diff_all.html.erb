@@ -1,0 +1,8 @@
+<div class='well diff'>
+	<% version.item.attributes.each do |attr_name, attr_value| %>
+    <p>
+      <strong><%= attr_name.humanize%>:</strong>
+      <%= diff(version.reify.send(attr_name), attr_value) %>
+    </p>
+  <% end %>
+</div>

@@ -11,20 +11,12 @@
         </section>
         <section>
           <div class='row'>
-					 	<div class='col-sm-6'>
-					 	  <%= render 'versions/show', version_1: @version.reify, version_2: @user, version: @version, previous: true %>
-					 	</div>
-					 	
-					 	<div class='col-sm-6'>
-					 	  <%= render 'versions/show', version_1: @user, version_2: @version.reify, version: @version, previous: false %>
-					 	</div>
-
-						<div class="col-xs-12">
-							<%= link_to 'Back', versions_path, class: 'btn btn-danger' %>
-							<%= link_to 'Rollback', versions_rollback_path(@user, @version), class: 'btn btn-primary', method: 'PATCH' %>
-						</div> 
+					 	<div class='col-sm-12'>
+					 		<%= render "diff_css" %>
+					 		<h2><%= "Version #{@version.previous.id} and " + (@version.next ? "Version #{@version.id}" : 'Current Version') %> </h2>
+					 		<%= render 'diff_user', version: @version, user: @user %>
+					  </div>
 					</div>
-
 					<div class="row">
 						<div class='col-sm-12'>
 					 	  <%= render 'versions/versions_table', versions: @versions %>

@@ -69,8 +69,8 @@ class Monologue::PostsController < Monologue::ApplicationController
 
     @showcase_tags = Monologue::Tag.showcase_tags
     @tags = Monologue::Tag.last(10)
-    # monologue application controller
-    @recent_posts
+    # recent posts overrides monologue application controller
+    @recent_posts = Monologue::Post.published.where.not(id: @post.id).limit(3)
   end
 
   def feed

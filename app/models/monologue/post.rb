@@ -72,6 +72,16 @@ class Monologue::Post < ActiveRecord::Base
   validate :url_do_not_start_with_slash
 
   before_save :save_published_date, :save_main_image_url
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |user|
+        csv << user.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   #  returns a hash of param names and category names
   #  used for form presentation
   def self.tag_key

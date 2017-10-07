@@ -434,6 +434,9 @@
 
 Rails.application.routes.draw do
 
+        get '/datasci', to: 'dashboard#datasci', as: :dashboard_datasci
+        get '/datasci2', to: 'dashboard#datasci2', as: :dashboard_datasci2
+
   ### ROUTES FOR SIDEKIQ
   require 'sidekiq/web'
   require 'sidekiq/api'

@@ -7,6 +7,36 @@ class DashboardController < ApplicationController
     # @online_dietitians = Dietitian.online
   end
 
+  def datasci
+    # require 'csv'
+    # csv_string = CSV.generate do |csv|
+    #   csv << User.attribute_names
+    #   User.all.each do |user|
+    #     csv << user.attributes.values
+    #   end
+    # end
+    @users = User.all
+    respond_to do |format|
+      format.csv { render text: @users.to_csv }
+    end
+
+  end
+
+  def datasci2
+    # require 'csv'
+    # csv_string = CSV.generate do |csv|
+    #   csv << User.attribute_names
+    #   User.all.each do |user|
+    #     csv << user.attributes.values
+    #   end
+    # end
+    @posts = Monologue::Post.all
+    respond_to do |format|
+      format.csv { render text: @posts.to_csv }
+    end
+
+  end
+
   # GET /admin_dashboard
   def clients_onboarding
     
